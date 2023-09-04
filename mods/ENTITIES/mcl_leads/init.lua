@@ -1,7 +1,7 @@
 --[[
-    mcl_leads,
-    lead entity code reused from
-    Minetest Leads mod by Silver Sandstone <@SilverSandstone@craftodon.social>
+	mcl_leads,
+	lead entity code reused from
+	Minetest Leads mod by Silver Sandstone <@SilverSandstone@craftodon.social>
 --]]
 
 local modname = core.get_current_modname()
@@ -12,6 +12,20 @@ local STRETCH_SOUND_INTERVAL = 2.0
 local LEAD_MAX_LENGTH = 15
 local PULL_FORCE = 25
 
+local active_leads = {}
+
+local function add_knot(pos)
+	pos = pos:round();
+	for __, object in ipairs(core.get_objects_in_area(pos, pos)) do
+		local entity = object:get_luaentity()
+		if entity and entity.name == "mcl_leads:knot" then
+			return object
+		end
+	end
+
+	return core.add_entity(pos, "mcl_leads:knot")
+end
+
 core.register_craftitem("mcl_leads:lead", {
 	description = S("Lead"),
 	_doc_items_longdesc = S("Leads can be used for moving and tethering animals. They can also be attached between two fences for decoration."),
@@ -19,18 +33,31 @@ core.register_craftitem("mcl_leads:lead", {
 	inventory_image = "leads_lead_inv.png",
 	groups = { lead = 1 },
 	on_place = function(itemstack, user, pointed_thing)
+		if pointed_thing.type == "node" then
+			local p = core.get_pointed_thing_position(pointed_thing)
+			local n = core.get_node(p)
+			if active_leads[user] and #active_leads[user] > 0 and core.get_item_group(n.name, "can_attach_lead") > 0 then
+				local leadent = table.remove(active_leads[user])
+				leadent.leader = add_knot(p)
+				leadent.tied_to_node = true
+				core.sound_play("leads_attach", {pos = p}, true)
+			end
+		end
 	end,
 	on_secondary_use = function(itemstack, user, pointed_thing)
 		if pointed_thing.type == "object" then
 			local mob = pointed_thing.ref:get_luaentity()
 			if mob and mob.is_mob and mob.is_leadable then
+				if not active_leads[user] then active_leads[user] = {} end
 				local lead = core.add_entity(mob.object:get_pos(),"mcl_leads:lead_entity")
 				local leadent = lead:get_luaentity()
+				leadent.tied_to_node = false
 				leadent.leader = user
 				leadent.follower = pointed_thing.ref
 				leadent.item = itemstack:get_name()
 				leadent.max_length = LEAD_MAX_LENGTH
 				leadent:update_visuals()
+				table.insert(active_leads[user], leadent)
 				core.sound_play("leads_attach", {pos = mob.object:get_pos()}, true)
 			end
 		end
@@ -195,3 +222,80 @@ function lead_entity:update_visuals()
 end
 
 core.register_entity("mcl_leads:lead_entity", lead_entity)
+
+knot_entity = {}
+
+knot_entity.description = S("Lead Knot")
+
+knot_entity._leads_immobile  = true
+knot_entity._leads_leashable = true
+
+knot_entity.initial_properties = {
+	visual		  = 'mesh',
+	visual_size	 = vector.new(10, 10, 10),
+	mesh			= 'leads_lead_knot.obj',
+	textures		= {'leads_lead_knot.png'},
+	physical		= false,
+	selectionbox	= {-3/16, -4/16, -3/16, 3/16, 4/16, 3/16},
+}
+
+function knot_entity:on_activate(staticdata, dtime_s)
+	self.num_connections = 0
+
+	local data = core.deserialize(staticdata)
+	if data then
+		self.num_connections = data.num_connections or 0
+	end
+
+	self.object:set_armor_groups{immortal = 1}
+end
+
+function knot_entity:on_step(dtime, moveresult)
+	--if self.num_connections <= 0 then
+	--	self.object:remove()
+	--end
+end
+
+function knot_entity:get_staticdata()
+	local data = {num_connections = self.num_connections}
+	return core.serialize(data)
+end
+
+function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, dir, damage)
+
+	local pos = self.object:get_pos():round()
+	local name = puncher and puncher:get_player_name() or ''
+	if core.is_protected(pos, name) then
+		core.record_protection_violation(pos, name)
+		return true
+	end
+
+	local break_leads = puncher and puncher:get_player_control().sneak
+	local connected_leads
+	if break_leads then
+		connected_leads = {}
+	else
+		core.sound_play("leads_remove", {pos = self.object:get_pos()}, true)
+	end
+
+
+	if puncher then
+		self:transfer_leads(puncher)
+	end
+
+	if break_leads then
+		for __, lead in ipairs(connected_leads) do
+			lead:get_luaentity():break_lead(puncher)
+		end
+	end
+
+	self.object:remove()
+	return true
+end
+
+function knot_entity:on_rightclick(clicker)
+	--local pos = self.object:get_pos()
+	--leads.knot(clicker, pos)
+end
+
+core.register_entity("mcl_leads:knot", knot_entity)

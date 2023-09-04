@@ -12,7 +12,6 @@ local z1 = { -0.0625, 0.25, -0.5, 0.0625, 0.4375, -0.125 }
 local z12 = { -0.0625, -0.125, -0.5, 0.0625, 0.0625, -0.125 }
 local z2 = { -0.0625, 0.25, 0.125, 0.0625, 0.4375, 0.5 }
 local z22 = { -0.0625, -0.125, 0.125, 0.0625, 0.0625, 0.5 }
-
 -- Collision box
 local cp = { -0.125, -0.5, -0.125, 0.125, 1.01, 0.125 }
 local cx1 = { -0.5, -0.5, -0.125, -0.125, 1.01, 0.125 }
@@ -207,6 +206,7 @@ function mcl_fences.register_fence_def(name, definitions)
     definitions.groups.fence = 1
     definitions._pathfinding_class = "FENCE"
     definitions.groups.deco_block = 1
+	definitions.groups.can_attach_lead = 1
 
     if not definitions.connects_to then
         definitions.connects_to = { fence_name, "group:fence", "group:fence_gate", "group:solid" }
