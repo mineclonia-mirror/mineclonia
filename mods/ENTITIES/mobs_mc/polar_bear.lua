@@ -37,6 +37,7 @@ local polar_bear = {
 	movement_speed = 5.0,
 	follow_bonus = 1.25,
 	attack_type = "melee",
+	is_leadable = true,
 	drops = {
 		-- 3/4 chance to drop raw fish (poor approximation)
 		{

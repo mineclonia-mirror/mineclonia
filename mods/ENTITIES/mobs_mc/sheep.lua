@@ -79,6 +79,7 @@ local sheep = {
 	movement_speed = 4.6,
 	runaway = true,
 	drops = get_sheep_drops (),
+	is_leadable = true,
 	sounds = {
 		random = {name="mobs_sheep", gain=0.4},
 		death = "mobs_sheep",

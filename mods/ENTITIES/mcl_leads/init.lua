@@ -23,7 +23,7 @@ core.register_craftitem("mcl_leads:lead", {
 	on_secondary_use = function(itemstack, user, pointed_thing)
 		if pointed_thing.type == "object" then
 			local mob = pointed_thing.ref:get_luaentity()
-			if mob and mob.is_mob then
+			if mob and mob.is_mob and mob.is_leadable then
 				local lead = core.add_entity(mob.object:get_pos(),"mcl_leads:lead_entity")
 				local leadent = lead:get_luaentity()
 				leadent.leader = user

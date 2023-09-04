@@ -37,6 +37,7 @@ local rabbit = {
 		eat = "mobs_mc_animal_eat_generic",
 		distance = 16,
 	},
+	is_leadable = true,
 	makes_footstep_sound = false,
 	movement_speed = 6.0,
 	runaway_from = {

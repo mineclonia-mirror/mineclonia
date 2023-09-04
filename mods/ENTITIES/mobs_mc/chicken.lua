@@ -80,6 +80,7 @@ local chicken = {
 	},
 	run_bonus = 1.4,
 	_is_chicken_jockey = false,
+	is_leadable = true,
 }
 
 ------------------------------------------------------------------------

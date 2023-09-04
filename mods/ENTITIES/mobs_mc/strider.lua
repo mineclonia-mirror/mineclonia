@@ -46,6 +46,7 @@ local strider = {
 	},
 	makes_footstep_sound = true,
 	movement_speed = 3.5,
+	is_leadable = true,
 	drops = {
 		{
 			name = "mcl_mobitems:string",

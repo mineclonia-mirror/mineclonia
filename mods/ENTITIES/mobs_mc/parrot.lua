@@ -69,6 +69,7 @@ local parrot = {
 	pace_height = 7,
 	pace_width = 8,
 	_is_party_parrot = false,
+	is_leadable = true,
 }
 
 ------------------------------------------------------------------------

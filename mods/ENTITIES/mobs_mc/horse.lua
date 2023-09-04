@@ -199,6 +199,7 @@ local horse = {
 	_horse_armor_stack = "",
 	_eats = true,
 	_csm_driving_enabled = true,
+	is_leadable = true,
 }
 
 function horse:on_spawn ()

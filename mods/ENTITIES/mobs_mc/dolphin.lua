@@ -70,6 +70,7 @@ local dolphin = {
 	_moisture = 120,
 	_waiting_for_treasure_position = false,
 	_max_air_supply = 240,
+	is_leadable = true,
 }
 
 ------------------------------------------------------------------------

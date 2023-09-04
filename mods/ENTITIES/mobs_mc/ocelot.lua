@@ -462,6 +462,7 @@ local cat = table.merge (ocelot, {
 	_sitting_on_bed_timeout = 0,
 	_age = 0.0,
 	_is_ocelot_tamable = true,
+	is_leadable = true,
 })
 
 ------------------------------------------------------------------------

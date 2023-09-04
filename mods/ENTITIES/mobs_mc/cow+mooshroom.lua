@@ -29,6 +29,7 @@ local cow_def = {
 	head_yaw = "z",
 	makes_footstep_sound = true,
 	movement_speed = 4.0,
+	is_leadable = true,
 	drops = {
 		{
 			name = "mcl_mobitems:beef",

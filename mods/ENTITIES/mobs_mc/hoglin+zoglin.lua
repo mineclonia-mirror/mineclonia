@@ -59,6 +59,7 @@ local hoglin = {
 		"mobs_mc:piglin",
 		"mobs_mc:sword_piglin",
 	},
+	is_leadable = true,
 	drops = {
 		{
 			name = "mcl_mobitems:leather",

@@ -28,6 +28,7 @@ local pig = {
 	makes_footstep_sound = true,
 	movement_speed = 5.0,
 	drive_bonus = 0.225,
+	is_leadable = true,
 	drops = {
 		{
 			name = "mcl_mobitems:porkchop",

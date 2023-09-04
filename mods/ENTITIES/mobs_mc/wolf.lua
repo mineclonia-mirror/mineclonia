@@ -50,6 +50,7 @@ local wolf = {
 	reach = 2,
 	attack_type = "melee",
 	_melee_esp = true,
+	is_leadable = true,
 	animation = {
 		stand_start = 0,
 		stand_end = 0,

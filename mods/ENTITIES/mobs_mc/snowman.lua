@@ -63,6 +63,7 @@ local snow_golem = {
 		walk_start = 0, walk_end = 20, walk_speed = 25,
 	},
 	_water_sensitive = true,
+	is_leadable = true,
 }
 
 ------------------------------------------------------------------------

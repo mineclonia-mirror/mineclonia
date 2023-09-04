@@ -40,6 +40,7 @@ local llama = table.merge (horse, {
 		{"blank.png", "blank.png", "mobs_mc_llama.png"},
 	},
 	movement_speed = 3.5,
+	is_leadable = true,
 	drops = {
 		{name = "mcl_mobitems:leather",
 		 chance = 1,

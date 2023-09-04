@@ -38,6 +38,7 @@ local squid = {
 	movement_speed = 14,
 	breathes_in_water = true,
 	runaway = false,
+	is_leadable = true,
 	drops = {
 		{
 			name = "mcl_mobitems:ink_sac",
