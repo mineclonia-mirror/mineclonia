@@ -3,6 +3,7 @@
 	lead entity code reused from
 	Minetest Leads mod by Silver Sandstone <@SilverSandstone@craftodon.social>
 --]]
+mcl_leads = {}
 
 local modname = core.get_current_modname()
 --local modpath = core.get_modpath(modname)
@@ -22,57 +23,64 @@ local function add_knot(pos)
 			return object
 		end
 	end
-
 	return core.add_entity(pos, "mcl_leads:knot")
 end
 
-core.register_craftitem("mcl_leads:lead", {
-	description = S("Lead"),
-	_doc_items_longdesc = S("Leads can be used for moving and tethering animals. They can also be attached between two fences for decoration."),
-	_doc_items_usagehelp = S("Right-click on an animal or fence to attach a lead. Punch the lead to release it, or right-click on a fence to tether it."),
-	inventory_image = "leads_lead_inv.png",
-	groups = { lead = 1 },
-	on_place = function(itemstack, user, pointed_thing)
-		if pointed_thing.type == "node" then
-			local p = core.get_pointed_thing_position(pointed_thing)
-			local n = core.get_node(p)
-			if active_leads[user] and #active_leads[user] > 0 and core.get_item_group(n.name, "can_attach_lead") > 0 then
-				local leadent = table.remove(active_leads[user])
-				leadent.leader = add_knot(p)
-				leadent.tied_to_node = true
-				core.sound_play("leads_attach", {pos = p}, true)
-			end
-		end
-	end,
-	on_secondary_use = function(itemstack, user, pointed_thing)
-		if pointed_thing.type == "object" then
-			local mob = pointed_thing.ref:get_luaentity()
-			if mob and mob.is_mob and mob.is_leadable then
-				if not active_leads[user] then active_leads[user] = {} end
-				local lead = core.add_entity(mob.object:get_pos(),"mcl_leads:lead_entity")
-				local leadent = lead:get_luaentity()
-				leadent.tied_to_node = false
-				leadent.leader = user
-				leadent.follower = pointed_thing.ref
-				leadent.item = itemstack:get_name()
-				leadent.max_length = LEAD_MAX_LENGTH
-				leadent:update_visuals()
-				table.insert(active_leads[user], leadent)
-				core.sound_play("leads_attach", {pos = mob.object:get_pos()}, true)
-			end
-		end
-	end,
-})
+function mcl_leads.player_to_node(pos, player)
+	local n = core.get_node(pos)
+	if active_leads[player] and #active_leads[player] > 0 and core.get_item_group(n.name, "can_attach_lead") > 0 then
+		local leadent = table.remove(active_leads[player])
+		local mob = leadent.follower and leadent.follower:get_luaentity()
+		mob.tied_to_node = pos
+		mob.leader = nil
+		leadent.leader = add_knot(pos)
+		leadent.tied_to_node = true
+		core.sound_play("leads_attach", {pos = pos}, true)
+		return true
+	end
+end
 
-core.register_craft({
-	output = 'leads:lead';
-	recipe =
-	{
-		{"mcl_mobitems:string", "mcl_mobitems:string", ""},
-		{"mcl_mobitems:string", "mcl_mobitems:slimeball", ""},
-		{"",   "",   "mcl_mobitems:string"},
-	}
-})
+function mcl_leads.attach_mob(obj, mobobj)
+	local mob = mobobj:get_luaentity()
+	if mob and mob.is_mob and mob.is_leadable then
+		local lead = core.add_entity(obj:get_pos(), "mcl_leads:lead_entity")
+		if lead and lead:get_pos() then
+			local leadent = lead:get_luaentity()
+			leadent.tied_to_node = true
+			mob.lead = lead
+			leadent.leader = obj
+			leadent.follower = mobobj
+			leadent.max_length = LEAD_MAX_LENGTH
+			leadent.leader_attach_offset = vector.zero()
+			leadent:update_visuals()
+			if obj:is_player() then
+				if not active_leads[obj] then active_leads[obj] = {} end
+				mob.leader = obj:get_player_name()
+				table.insert(active_leads[obj], leadent)
+				leadent.tied_to_node = false
+				leadent.leader_attach_offset = vector.new(0,1,0)
+			end
+			core.sound_play("leads_attach", {pos = mob.object:get_pos()}, true)
+			return leadent
+
+		else
+			core.log("no lead ent")
+		end
+	end
+end
+
+function mcl_leads.check_mob(mob)
+	if mob.lead and mob.lead:get_pos() then return true end
+	if not mob.leader and not mob.tied_to_node then return true end
+	if mob.tied_to_node then
+		mcl_leads.attach_mob(add_knot(mob.tied_to_node), mob.object)
+	elseif mob.leader then
+		local pl = core.get_player_by_name(mob.leader)
+		if pl and pl:get_pos() then
+			mcl_leads.attach_mob(pl, mob.object)
+		end
+	end
+end
 
 local lead_entity = {}
 lead_entity.description = S'Lead'
@@ -87,34 +95,16 @@ lead_entity.initial_properties = {
 }
 
 function lead_entity:on_activate(staticdata, dtime_s)
-	self.current_length = 1
-	self.max_length = LEAD_MAX_LENGTH
-	self.rotation = vector.zero()
-	self.leader_attach_offset = vector.zero()
-	self.follower_attach_offset = vector.zero()
-	self.age = 0.0
-	self.sound_timer = 0.0
-
-	local data = core.deserialize(staticdata)
-	if data then
-		self:load_from_data(data)
+	if staticdata == "remove" then
+		self.object:remove() --mobs respawn their own lead
 	end
-
-	self.object:set_armor_groups{fleshy = 0}
-end
-
-function lead_entity:load_from_data(data)
-	self.item = data.item or self.item
-	self.max_length = data.max_length or self.max_length
-	self.leader_id = data.leader_id or {}
-	self.follower_id = data.follower_id or {}
-	self.leader_id.pos   = vector.new(self.leader_id.pos)
-	self.follower_id.pos = vector.new(self.follower_id.pos)
-	self:update_visuals()
+	self.current_length = LEAD_MAX_LENGTH
+	self.follower_attach_offset = vector.zero()
+	self.leader_attach_offset = vector.zero()
 end
 
 function lead_entity:on_step(dtime)
-	self.age = self.age + dtime
+	self.age = ( self.age or 0 ) + dtime
 	local success, pos, offset = self:step_physics(dtime)
 	if success then
 		self.current_length = math.max(offset:length(), 0.25)
@@ -148,7 +138,7 @@ function lead_entity:step_physics(dtime)
 		local force = (distance - pull_distance) * PULL_FORCE / pull_distance
 		self.follower:add_velocity((l_pos - f_pos):normalize() * dtime * force)
 
-		self.sound_timer = self.sound_timer + dtime
+		self.sound_timer = ( self.sound_timer or 0 ) + dtime
 		if self.sound_timer >= STRETCH_SOUND_INTERVAL then
 			self.sound_timer = self.sound_timer - STRETCH_SOUND_INTERVAL
 			if math.random(8) == 1 then
@@ -186,12 +176,7 @@ end
 
 --- Returns the lead's state as a table.
 function lead_entity:get_staticdata()
-	local data = {}
-	data.item = self.item
-	data.max_length = self.max_length
-	data.leader_id = self.leader_id
-	data.follower_id = self.follower_id
-	return core.serialize(data)
+	return "remove"
 end
 
 function lead_entity:break_lead(breaker, snap)
@@ -215,13 +200,10 @@ end
 
 function lead_entity:update_visuals()
 	local properties = {visual_size = vector.new(10, 10, 10 * self.current_length)}
-	properties.selectionbox = {-0.0625, -0.0625, -self.current_length / 2,
-									0.0625,  0.0625,  self.current_length / 2, rotate = true}
+	properties.selectionbox = {-0.4, -0.4, -0.4, 0.4, 0.4, 0.4, rotate = false}
 	self.object:set_properties(properties)
-	self.object:set_rotation(self.rotation)
+	self.object:set_rotation(self.rotation or vector.zero())
 end
-
-core.register_entity("mcl_leads:lead_entity", lead_entity)
 
 knot_entity = {}
 
@@ -298,4 +280,33 @@ function knot_entity:on_rightclick(clicker)
 	--leads.knot(clicker, pos)
 end
 
+core.register_craftitem("mcl_leads:lead", {
+	description = S("Lead"),
+	_doc_items_longdesc = S("Leads can be used for moving and tethering animals. They can also be attached between two fences for decoration."),
+	_doc_items_usagehelp = S("Right-click on an animal or fence to attach a lead. Punch the lead to release it, or right-click on a fence to tether it."),
+	inventory_image = "leads_lead_inv.png",
+	groups = { lead = 1 },
+	on_place = function(itemstack, user, pointed_thing)
+		if pointed_thing.type == "node" then
+			mcl_leads.player_to_node(pointed_thing.under, user)
+		end
+	end,
+	on_secondary_use = function(itemstack, user, pointed_thing)
+		if pointed_thing.type == "object" then
+			mcl_leads.attach_mob(user, pointed_thing.ref)
+		end
+	end,
+})
+
+core.register_craft({
+	output = 'leads:lead';
+	recipe =
+	{
+		{"mcl_mobitems:string", "mcl_mobitems:string", ""},
+		{"mcl_mobitems:string", "mcl_mobitems:slimeball", ""},
+		{"",   "",   "mcl_mobitems:string"},
+	}
+})
+
+core.register_entity("mcl_leads:lead_entity", lead_entity)
 core.register_entity("mcl_leads:knot", knot_entity)
