@@ -10,14 +10,14 @@ local modname = core.get_current_modname()
 local S = core.get_translator(modname)
 local MIN_BREAK_AGE = 1.0
 local STRETCH_SOUND_INTERVAL = 2.0
-local LEAD_MAX_LENGTH = 15
-local PULL_FORCE = 25
+local LEAD_MAX_LENGTH = 10
+local PULL_FORCE = 35
 
 local active_leads = {}
 
 local function add_knot(pos)
 	pos = vector.round(pos)
-	for __, object in ipairs(core.get_objects_in_area(pos, pos)) do
+	for __, object in pairs(core.get_objects_in_area(pos, pos)) do
 		local entity = object:get_luaentity()
 		if entity and entity.name == "mcl_leads:knot" then
 			return object
@@ -31,9 +31,13 @@ function mcl_leads.player_to_node(pos, player)
 	if active_leads[player] and #active_leads[player] > 0 and core.get_item_group(n.name, "can_attach_lead") > 0 then
 		local leadent = table.remove(active_leads[player])
 		local mob = leadent.follower and leadent.follower:get_luaentity()
+		local knot = add_knot(pos)
+		local knotent = knot:get_luaentity()
+		if not knot or not leadent then return end
+		table.insert(knotent.leads, leadent)
 		mob.tied_to_node = pos
 		mob.leader = nil
-		leadent.leader = add_knot(pos)
+		leadent.leader = knot
 		leadent.tied_to_node = true
 		leadent.leader_attach_offset = vector.zero()
 		core.sound_play("leads_attach", {pos = pos}, true)
@@ -211,8 +215,7 @@ knot_entity = {}
 
 knot_entity.description = S("Lead Knot")
 
-knot_entity._leads_immobile  = true
-knot_entity._leads_leashable = true
+knot_entity.leads = {}
 
 knot_entity.initial_properties = {
 	visual		  = 'mesh',
@@ -247,21 +250,11 @@ function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, 
 	end
 
 	local break_leads = puncher and puncher:get_player_control().sneak
-	local connected_leads
-	if break_leads then
-		connected_leads = {}
-	else
-		core.sound_play("leads_remove", {pos = self.object:get_pos()}, true)
-	end
-
-
-	--if puncher then
-		--mcl_leads.attach_mob(puncher, self)
-	--end
+	core.sound_play("leads_remove", {pos = self.object:get_pos()}, true)
 
 	if break_leads then
-		for __, lead in ipairs(connected_leads) do
-			lead:get_luaentity():break_lead(puncher)
+		for __, lead in pairs(self.leads) do
+			lead:break_lead()
 		end
 	end
 
@@ -270,8 +263,27 @@ function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, 
 end
 
 function knot_entity:on_rightclick(clicker)
-	--local pos = self.object:get_pos()
-	--leads.knot(clicker, pos)
+	local pos = self.object:get_pos():round()
+	local name = clicker and clicker:get_player_name() or ''
+	if core.is_protected(pos, name) then
+		core.record_protection_violation(pos, name)
+		return true
+	end
+	if clicker and clicker:is_player() then
+		if active_leads[clicker] and #active_leads[clicker] > 0 then
+			return mcl_leads.player_to_node(pos, clicker)
+		else
+			local lead = table.remove(self.leads)
+			if lead then
+				mcl_leads.attach_mob(clicker, lead.follower)
+				lead.object:remove()
+				if #self.leads < 1 then
+					self.object:remove()
+					return
+				end
+			end
+		end
+	end
 end
 
 core.register_craftitem("mcl_leads:lead", {
