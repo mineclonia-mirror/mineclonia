@@ -16,7 +16,7 @@ local PULL_FORCE = 25
 local active_leads = {}
 
 local function add_knot(pos)
-	pos = pos:round();
+	pos = vector.round(pos)
 	for __, object in ipairs(core.get_objects_in_area(pos, pos)) do
 		local entity = object:get_luaentity()
 		if entity and entity.name == "mcl_leads:knot" then
@@ -35,6 +35,7 @@ function mcl_leads.player_to_node(pos, player)
 		mob.leader = nil
 		leadent.leader = add_knot(pos)
 		leadent.tied_to_node = true
+		leadent.leader_attach_offset = vector.zero()
 		core.sound_play("leads_attach", {pos = pos}, true)
 		return true
 	end
@@ -70,8 +71,9 @@ function mcl_leads.attach_mob(obj, mobobj)
 end
 
 function mcl_leads.check_mob(mob)
-	if mob.lead and mob.lead:get_pos() then return true end
+	if not mob.is_leadable then return end
 	if not mob.leader and not mob.tied_to_node then return true end
+	if mob.lead and mob.lead:get_pos() then return true end
 	if mob.tied_to_node then
 		mcl_leads.attach_mob(add_knot(mob.tied_to_node), mob.object)
 	elseif mob.leader then
@@ -222,14 +224,7 @@ knot_entity.initial_properties = {
 }
 
 function knot_entity:on_activate(staticdata, dtime_s)
-	self.num_connections = 0
-
-	local data = core.deserialize(staticdata)
-	if data then
-		self.num_connections = data.num_connections or 0
-	end
-
-	self.object:set_armor_groups{immortal = 1}
+	if staticdata == "remove" then self.object:remove() end
 end
 
 function knot_entity:on_step(dtime, moveresult)
@@ -239,8 +234,7 @@ function knot_entity:on_step(dtime, moveresult)
 end
 
 function knot_entity:get_staticdata()
-	local data = {num_connections = self.num_connections}
-	return core.serialize(data)
+	return "remove"
 end
 
 function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, dir, damage)
@@ -261,9 +255,9 @@ function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, 
 	end
 
 
-	if puncher then
-		self:transfer_leads(puncher)
-	end
+	--if puncher then
+		--mcl_leads.attach_mob(puncher, self)
+	--end
 
 	if break_leads then
 		for __, lead in ipairs(connected_leads) do
