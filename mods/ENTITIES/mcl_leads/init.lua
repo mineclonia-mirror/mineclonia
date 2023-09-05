@@ -26,25 +26,6 @@ local function add_knot(pos)
 	return core.add_entity(pos, "mcl_leads:knot")
 end
 
-function mcl_leads.player_to_node(pos, player)
-	local n = core.get_node(pos)
-	if active_leads[player] and #active_leads[player] > 0 and core.get_item_group(n.name, "can_attach_lead") > 0 then
-		local leadent = table.remove(active_leads[player])
-		local mob = leadent.follower and leadent.follower:get_luaentity()
-		local knot = add_knot(pos)
-		local knotent = knot:get_luaentity()
-		if not knot or not leadent then return end
-		table.insert(knotent.leads, leadent)
-		mob.tied_to_node = pos
-		mob.leader = nil
-		leadent.leader = knot
-		leadent.tied_to_node = true
-		leadent.leader_attach_offset = vector.zero()
-		core.sound_play("leads_attach", {pos = pos}, true)
-		return true
-	end
-end
-
 function mcl_leads.attach_mob(obj, mobobj)
 	local mob = mobobj:get_luaentity()
 	if mob and mob.is_mob and mob.is_leadable then
@@ -57,6 +38,7 @@ function mcl_leads.attach_mob(obj, mobobj)
 			leadent.follower = mobobj
 			leadent.max_length = LEAD_MAX_LENGTH
 			leadent.leader_attach_offset = vector.zero()
+			leadent.follower_attach_offset = vector.new(0,0.5,0)
 			leadent:update_visuals()
 			if obj:is_player() then
 				if not active_leads[obj] then active_leads[obj] = {} end
@@ -64,6 +46,14 @@ function mcl_leads.attach_mob(obj, mobobj)
 				table.insert(active_leads[obj], leadent)
 				leadent.tied_to_node = false
 				leadent.leader_attach_offset = vector.new(0,1,0)
+			else
+				local knot = obj:get_luaentity()
+				if knot then
+					table.insert(knot.leads, leadent)
+					leadent.leader_attach_offset = vector.new(0,0,0)
+				else
+					lead:remove()
+				end
 			end
 			core.sound_play("leads_attach", {pos = mob.object:get_pos()}, true)
 			return leadent
@@ -71,6 +61,17 @@ function mcl_leads.attach_mob(obj, mobobj)
 		else
 			core.log("no lead ent")
 		end
+	end
+end
+
+function mcl_leads.player_to_node(pos, player)
+	local n = core.get_node(pos)
+	if active_leads[player] and #active_leads[player] > 0 and core.get_item_group(n.name, "can_attach_lead") > 0 then
+		local leadent = table.remove(active_leads[player])
+		local knot = add_knot(pos)
+		mcl_leads.attach_mob(knot, leadent.follower)
+		leadent.object:remove()
+		return true
 	end
 end
 
@@ -124,7 +125,7 @@ function lead_entity:step_physics(dtime)
 	local l_pos = self.leader:get_pos()
 	local f_pos = self.follower:get_pos()
 	if not (l_pos and f_pos) then
-		self:break_lead()
+		self:remove()
 		return false, nil, nil
 	end
 
@@ -135,7 +136,7 @@ function lead_entity:step_physics(dtime)
 	local break_distance = pull_distance * 2
 	local distance = l_pos:distance(f_pos)
 	if distance > break_distance and self.age > MIN_BREAK_AGE then
-		self:break_lead(nil, true)
+		self:remove(nil, true)
 		return false, nil, nil
 	end
 
@@ -171,13 +172,13 @@ function lead_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, 
 	--end
 
 
-	self:break_lead(puncher)
+	self:remove(puncher)
 	return true
 end
 
 --- Handles the lead being ‘killed’.
 function lead_entity:on_death(killer)
-	self:break_lead(killer)
+	self:remove(killer)
 end
 
 --- Returns the lead's state as a table.
@@ -185,7 +186,7 @@ function lead_entity:get_staticdata()
 	return "remove"
 end
 
-function lead_entity:break_lead(breaker, snap)
+function lead_entity:remove(breaker, snap)
 	if self.item then
 		--if not core.is_creative_enabled(owner:get_player_name()) then
 		core.add_item(self.object:get_pos(),"mcl_leads:lead")
@@ -230,10 +231,21 @@ function knot_entity:on_activate(staticdata, dtime_s)
 	if staticdata == "remove" then self.object:remove() end
 end
 
+function knot_entity:remove()
+	for _,v in pairs(self.leads) do
+		v:remove()
+	end
+	self.object:remove()
+end
+
 function knot_entity:on_step(dtime, moveresult)
-	--if self.num_connections <= 0 then
-	--	self.object:remove()
-	--end
+	self.timer = (self.timer or 1) - dtime
+	if self.timer > 0 then return end
+	self.timer = 1
+	local n = core.get_node(self.object:get_pos())
+	if core.get_item_group(n.name, "can_attach_lead") == 0 then
+		self:remove()
+	end
 end
 
 function knot_entity:get_staticdata()
@@ -254,7 +266,7 @@ function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, 
 
 	if break_leads then
 		for __, lead in pairs(self.leads) do
-			lead:break_lead()
+			lead:remove()
 		end
 	end
 
