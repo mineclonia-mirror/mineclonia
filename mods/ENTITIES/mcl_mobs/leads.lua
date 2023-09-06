@@ -28,7 +28,9 @@ local function add_knot(pos)
 end
 
 local function drop_lead(pos)
-	core.add_item(pos, "mcl_mobs:lead")
+	if pos then
+		core.add_item(pos, "mcl_mobs:lead")
+	end
 end
 
 function mob_class:attach_lead(obj)
@@ -42,7 +44,7 @@ function mob_class:attach_lead(obj)
 			leadent.follower = self.object
 			leadent.max_length = LEAD_MAX_LENGTH
 			leadent.leader_attach_offset = vector.zero()
-			leadent.follower_attach_offset = vector.new(0,self.collisionbox[5] or 0.5,0)
+			leadent.follower_attach_offset = vector.new(0,self.collisionbox[5] - 0.2 or 0.5,0)
 			leadent:update_visuals()
 			if obj:is_player() then
 				if not player_leads[obj] then player_leads[obj] = {} end
@@ -76,16 +78,26 @@ function mcl_mobs.transfer_lead_to_node(pos, player)
 		local leadent = table.remove(player_leads[player])
 		local knot = add_knot(pos)
 		local l = leadent.follower:get_luaentity()
-		l:attach_lead(knot)
-		leadent.object:remove()
-		return true
+		if l then
+			l:attach_lead(knot)
+			leadent.object:remove()
+			return true
+		end
 	end
 end
 
-function mob_class:check_lead()
+function mob_class:check_lead(dtime)
 	if not self.is_leadable then return end
 	if not self.leader and not self.tied_to_node then return false end
-	if self.lead and self.lead:get_pos() then return true end
+	if self.lead and self.lead:get_pos() then
+		if self.leader then
+			local pl = core.get_player_by_name(self.leader)
+			if vector.distance(self.object:get_pos(), pl:get_pos()) > 5 then
+				self:go_to_pos(self.object:get_pos() + vector.direction(self.object:get_pos(), pl:get_pos()))
+			end
+		end
+		return true
+	end
 
 	if self.tied_to_node then
 		self:attach_lead(add_knot(self.tied_to_node))
