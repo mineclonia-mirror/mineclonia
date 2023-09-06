@@ -27,6 +27,10 @@ local function add_knot(pos)
 	return core.add_entity(pos, "mcl_mobs:knot")
 end
 
+local function drop_lead(pos)
+	core.add_item(pos, "mcl_mobs:lead")
+end
+
 function mob_class:attach_lead(obj)
 	if self.is_leadable then
 		local lead = core.add_entity(obj:get_pos(), "mcl_mobs:lead_entity")
@@ -161,40 +165,30 @@ function lead_entity:step_physics(dtime)
 end
 
 function lead_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, dir, damage)
-	-- Check protection:
-	--if leads.settings.respect_protection then
-		local name = puncher and puncher:get_player_name() or ''
-		for __, connector_id in ipairs{self.leader_id, self.follower_id} do
-			if connector_id and connector_id.pos then
-				local pos = vector.round(connector_id.pos)
-				if core.is_protected(pos, name) then
-					core.record_protection_violation(connector_id.pos, name)
-					return true
-				end
-			end
-		end
-	--end
-
-
+	local name = puncher and puncher:get_player_name() or ''
+	local pos = vector.round(self.leader:get_pos())
+	if core.is_protected(pos, name) then
+		core.record_protection_violation(pos, name)
+		return
+	end
+	if not core.is_creative_enabled(name) then
+		drop_lead(pos)
+	end
 	self:remove(puncher)
 	return true
 end
 
---- Handles the lead being ‘killed’.
 function lead_entity:on_death(killer)
 	self:remove(killer)
 end
 
---- Returns the lead's state as a table.
 function lead_entity:get_staticdata()
 	return "remove"
 end
 
 function lead_entity:remove(breaker, snap)
-	if self.item then
-		--if not core.is_creative_enabled(owner:get_player_name()) then
-		core.add_item(self.object:get_pos(),"mcl_mobs:lead")
-		--end
+	if not (breaker and breaker:is_player() and core.is_creative_enabled(breaker:get_player_name())) then
+		drop_lead(self.object:get_pos())
 	end
 
 	if self.follower and self.follower:get_pos() then
@@ -239,29 +233,26 @@ function knot_entity:on_activate(staticdata, dtime_s)
 	if staticdata == "remove" then self.object:remove() end
 end
 
-function knot_entity:remove()
+function knot_entity:remove(killer)
 	for _,v in pairs(self.leads) do
-		v:remove()
+		v:remove(killer)
 	end
 	self.object:remove()
 end
 
-function knot_entity:on_step(dtime, moveresult)
+function knot_entity:on_step(dtime)
 	self.timer = (self.timer or 1) - dtime
 	if self.timer > 0 then return end
 	self.timer = 1
 	local n = core.get_node(self.object:get_pos())
-	if core.get_item_group(n.name, "can_attach_lead") == 0 then
+	if core.get_item_group(n.name, "can_attach_lead") == 0 or not self.leads or #self.leads == 0 then
 		self:remove()
 	end
 end
 
-function knot_entity:get_staticdata()
-	return "remove"
-end
+function knot_entity:get_staticdata() return "remove" end
 
 function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, dir, damage)
-
 	local pos = self.object:get_pos():round()
 	local name = puncher and puncher:get_player_name() or ''
 	if core.is_protected(pos, name) then
