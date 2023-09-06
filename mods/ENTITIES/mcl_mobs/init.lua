@@ -307,6 +307,8 @@ dofile(path .. "/items.lua")
 dofile(path .. "/pathfinding.lua")
 -- combat: attack logic
 dofile(path .. "/combat.lua")
+
+dofile(path .. "/leads.lua")
 -- the enity functions themselves
 dofile(path .. "/api.lua")
 
