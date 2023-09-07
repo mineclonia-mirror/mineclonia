@@ -188,6 +188,9 @@ enable_real_maps (Real maps) bool true
 # Place bonus chest near players' initial spawn point
 mcl_bonus_chest (Bonus chest) bool false
 
+# Enable to make it possible to attach boats to the lead.
+mcl_boat_leadable (Boats Leadable) bool false
+
 # Allow re-editing signs after they are placed
 mcl_signs_editable (Editable signs) bool false
 

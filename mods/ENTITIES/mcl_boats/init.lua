@@ -20,6 +20,8 @@ local raft_specific_properties = {
 }
 
 
+local boat_leadable = core.settings:get_bool("mcl_boat_leadable", false)
+
 local function is_group(pos, group)
 	local nn = core.get_node(pos).name
 	return core.get_item_group(nn, group) ~= 0
@@ -195,6 +197,7 @@ local boat = {
 	},
 
 	_variant = variant.BOAT,
+	is_leadable = boat_leadable,
 	_driver = nil, -- Attached driver (player) or nil if none
 	_passenger = nil,
 	_v = 0, -- Speed
@@ -218,6 +221,16 @@ local boat = {
 core.register_on_respawnplayer(detach_object)
 
 function boat.on_rightclick(self, clicker)
+	local wield = clicker:get_wielded_item()
+	if clicker and clicker:is_player() and wield:get_name() == "mcl_mobs:lead" then
+		mcl_mobs.mob_class.attach_lead(self, clicker)
+		--directly call the mob_class method since boats aren't actually mobs
+		if core.is_creative_enabled(clicker:get_player_name()) then
+			wield:take_item()
+			clicker:set_wielded_item(wield)
+		end
+		return
+	end
 	if self._passenger or not clicker or clicker:get_attach() or (self.name == "mcl_boats:chest_boat" and self._driver) then
 		return
 	end
