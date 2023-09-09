@@ -358,6 +358,8 @@ local on_rightclick_prefix = function(self, clicker)
 	local item_name = item:get_name()
 	item_name = core.registered_aliases[item_name] or item_name
 
+	if item_name == "mcl_mobs:lead" then return true end
+
 	if not self.ignores_nametag and item_name == "mcl_mobitems:nametag" then
 		if self:set_nametag(item:get_meta():get_string("name")) and not core.is_creative_enabled(playername) then
 			item:take_item()
