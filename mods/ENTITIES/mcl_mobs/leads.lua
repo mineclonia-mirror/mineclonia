@@ -92,9 +92,7 @@ function mob_class:check_lead(dtime)
 	if self.lead and self.lead:get_pos() then
 		if self.leader then
 			local pl = core.get_player_by_name(self.leader)
-			if vector.distance(self.object:get_pos(), pl:get_pos()) > 5 then
-				self:go_to_pos(self.object:get_pos() + vector.direction(self.object:get_pos(), pl:get_pos()))
-			end
+			self:look_at(pl:get_pos())
 		end
 		return true
 	end
