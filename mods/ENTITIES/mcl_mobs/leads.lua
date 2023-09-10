@@ -160,7 +160,11 @@ function lead_entity:step_physics(dtime)
 
 	local pos = (f_pos + l_pos) / 2
 	if self.follower and distance > pull_distance then
-		local force = (distance - pull_distance) * PULL_FORCE / pull_distance
+		local pull_force = PULL_FORCE
+		if not self.follower:get_luaentity().is_mob then
+			pull_force = PULL_FORCE * 4
+		end
+		local force = (distance - pull_distance) * pull_force/ pull_distance
 		self.follower:add_velocity((l_pos - f_pos):normalize() * dtime * force)
 
 		self.sound_timer = ( self.sound_timer or 0 ) + dtime
