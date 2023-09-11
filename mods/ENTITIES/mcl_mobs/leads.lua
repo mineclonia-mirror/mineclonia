@@ -311,6 +311,8 @@ core.register_craftitem("mcl_mobs:lead", {
 	inventory_image = "mcl_mobs_lead_inv.png",
 	groups = { lead = 1 },
 	on_place = function(itemstack, user, pointed_thing)
+		local rc = mcl_util.call_on_rightclick(itemstack, user, pointed_thing)
+		if rc then return rc end
 		if pointed_thing.type == "node" then
 			mcl_mobs.transfer_lead_to_node(pointed_thing.under, user)
 		end
