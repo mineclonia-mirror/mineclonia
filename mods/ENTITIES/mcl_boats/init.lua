@@ -221,17 +221,18 @@ local boat = {
 core.register_on_respawnplayer(detach_object)
 
 function boat.on_rightclick(self, clicker)
-	local wield = clicker:get_wielded_item()
-	if clicker and clicker:is_player() and wield:get_name() == "mcl_mobs:lead" then
-		mcl_mobs.mob_class.attach_lead(self, clicker)
-		--directly call the mob_class method since boats aren't actually mobs
-		if core.is_creative_enabled(clicker:get_player_name()) then
+	local wield
+	if clicker and clicker:is_player() then
+		wield = clicker:get_wielded_item()
+	end
+	if wield and boat_leadable and wield:get_name() == "mcl_mobs:lead" then
+		if mcl_mobs.mob_class.attach_lead(self, clicker) and not core.is_creative_enabled(clicker:get_player_name()) then
+			--directly call the mob_class method since boats aren't actually mobs
 			wield:take_item()
 			clicker:set_wielded_item(wield)
 		end
 		return
-	end
-	if self._passenger or not clicker or clicker:get_attach() or (self.name == "mcl_boats:chest_boat" and self._driver) then
+	elseif self._passenger or not clicker or clicker:get_attach() or (self.name == "mcl_boats:chest_boat" and self._driver) then
 		return
 	end
 	if mcl_serverplayer.is_csm_capable (clicker)

@@ -65,7 +65,6 @@ function mob_class:attach_lead(obj)
 			end
 			core.sound_play("leads_attach", {pos = self.object:get_pos()}, true)
 			return leadent
-
 		else
 			core.log("no lead ent")
 		end
