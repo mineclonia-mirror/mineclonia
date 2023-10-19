@@ -37,6 +37,7 @@ function mob_class:attach_lead(obj)
 	if self.is_leadable then
 		local lead = core.add_entity(obj:get_pos(), "mcl_mobs:lead_entity")
 		if lead and lead:get_pos() then
+			local cb = self.object:get_properties().collisionbox or { 0,0,0,0,0,0 }
 			local leadent = lead:get_luaentity()
 			leadent.tied_to_node = true
 			self.lead = lead
@@ -44,7 +45,7 @@ function mob_class:attach_lead(obj)
 			leadent.follower = self.object
 			leadent.max_length = LEAD_MAX_LENGTH
 			leadent.leader_attach_offset = vector.zero()
-			leadent.follower_attach_offset = vector.new(0,self.collisionbox[5] - 0.2 or 0.5,0)
+			leadent.follower_attach_offset = vector.new(0,cb[5] - 0.2 or 0.5,0)
 			leadent:update_visuals()
 			if obj:is_player() then
 				if not player_leads[obj] then player_leads[obj] = {} end
