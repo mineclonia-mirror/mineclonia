@@ -164,7 +164,7 @@ function lead_entity:step_physics(dtime)
 	if self.follower and distance > pull_distance then
 		local pull_force = PULL_FORCE
 		if not self.follower:get_luaentity().is_mob then
-			pull_force = PULL_FORCE * 4
+			pull_force = PULL_FORCE * 20
 		end
 		local force = (distance - pull_distance) * pull_force/ pull_distance
 		self.follower:add_velocity((l_pos - f_pos):normalize() * dtime * force)
