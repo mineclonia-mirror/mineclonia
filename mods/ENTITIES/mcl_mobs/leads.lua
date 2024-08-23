@@ -78,7 +78,7 @@ function mcl_mobs.transfer_lead_to_node(pos, player)
 		local leadent = table.remove(player_leads[player])
 		local knot = add_knot(pos)
 		local l = leadent.follower:get_luaentity()
-		if l then
+		if l and l.attach_lead then
 			l:attach_lead(knot)
 			leadent.object:remove()
 			return true
@@ -86,7 +86,7 @@ function mcl_mobs.transfer_lead_to_node(pos, player)
 	end
 end
 
-function mob_class:check_lead(dtime)
+function mob_class:check_lead()
 	if not self.is_leadable then return end
 	if not self.leader and not self.tied_to_node then return false end
 	if self.lead and self.lead:get_pos() then
@@ -97,12 +97,14 @@ function mob_class:check_lead(dtime)
 		return true
 	end
 
-	if self.tied_to_node then
-		self:attach_lead(add_knot(self.tied_to_node))
-	elseif self.leader then
-		local pl = core.get_player_by_name(self.leader)
-		if pl and pl:get_pos() then
-			self:attach_lead(pl)
+	if self.attach_lead then
+		if self.tied_to_node then
+			self:attach_lead(add_knot(self.tied_to_node))
+		elseif self.leader then
+			local pl = core.get_player_by_name(self.leader)
+			if pl and pl:get_pos() then
+				self:attach_lead(pl)
+			end
 		end
 	end
 end
