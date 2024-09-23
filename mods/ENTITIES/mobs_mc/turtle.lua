@@ -31,6 +31,7 @@ mcl_mobs.register_mob("mobs_mc:turtle", {
 	fear_height = 4,
 	---
 	swims = true,
+	spawn_in_group = 5,
 	--breathes_in_water = true,
 	sounds = {
 	   -- random = "",
@@ -77,9 +78,36 @@ mcl_mobs.register_mob("mobs_mc:turtle", {
 	end
 
 	]]
-
-
-
 })
+
+local tspawn = {
+	name = "mobs_mc:turtle",
+	type_of_spawning = "ground",
+	dimension = "overworld",
+	min_height = mobs_mc.water_level-4,
+	max_height = mobs_mc.water_level+3,
+	min_light = 0,
+	max_light = minetest.LIGHT_MAX + 1,
+	aoc = 7,
+	chance = 100,
+	biomes = {
+		"Plains_beach",
+		"ExtremeHills_beach",
+		"MangroveSwamp_shore",
+		"ColdTaiga_beach",
+		"ColdTaiga_beach_water",
+		"Swampland_shore",
+		"Taiga_beach",
+		"Forest_beach",
+		"FlowerForest_beach",
+		"Savanna_beach",
+		"Jungle_shore",
+		"JungleM_shore",
+	},
+}
+mcl_mobs.spawn_setup(tspawn)
+mcl_mobs.spawn_setup(table.merge(tspawn, {
+	type_of_spawning = "water",
+}))
 
 mcl_mobs.register_egg("mobs_mc:turtle", "turtle", "#516720", "#ded88f", 0)
