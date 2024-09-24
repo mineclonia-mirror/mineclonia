@@ -430,7 +430,7 @@ minetest.register_craftitem("mcl_mobitems:scute", {
 	description = S("Scute"),
 	_doc_items_longdesc = S("Used as a potion ingredient."),
 	_doc_items_usagehelp = S("Use the scute to brew the potion of the turtlemaster"),
-	inventory_image = "mobs_mc_scute.png",
+	inventory_image = "mcl_mobitems_scute.png",
 	groups = { craftitem = 1 },
 })
 
