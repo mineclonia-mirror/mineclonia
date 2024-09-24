@@ -426,7 +426,15 @@ core.register_craftitem("mcl_mobitems:glow_ink_sac", {
 	groups = { craftitem = 1 },
 })
 
-core.register_craftitem("mcl_mobitems:nametag", {
+minetest.register_craftitem("mcl_mobitems:scute", {
+	description = S("Scute"),
+	_doc_items_longdesc = S("Used as a potion ingredient."),
+	_doc_items_usagehelp = S("Use the scute to brew the potion of the turtlemaster"),
+	inventory_image = "mobs_mc_scute.png",
+	groups = { craftitem = 1 },
+})
+
+minetest.register_craftitem("mcl_mobitems:nametag", {
 	description = S("Name Tag"),
 	_tt_help = S("Give names to mobs").."\n"..S("Set name at anvil"),
 	_doc_items_longdesc = S("A name tag is an item to name a mob."),
