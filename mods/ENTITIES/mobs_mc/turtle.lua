@@ -58,6 +58,9 @@ mcl_mobs.register_mob("mobs_mc:turtle", {
 		--die_start = 0, die_end = 0, die_speed = 0,--die_loop = 0,
 	},
 
+	on_grow = function(self)
+		mcl_util.drop_item_stack(self.object:get_pos(), ItemStack("mcl_mobitems:scute"))
+	end,
 
 
 	--[[
