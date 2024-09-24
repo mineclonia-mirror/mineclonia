@@ -77,6 +77,27 @@ mcl_mobs.register_mob("mobs_mc:turtle", {
 	end,
 })
 
+local function start_egg_timer(pos)
+	minetest.get_node_timer(pos):start(math.random(3600,24000))
+end
+
+minetest.override_item("mcl_mobitems:turtle_egg", {
+	on_timer = function(pos)
+		local tod = minetest.get_timeofday()
+		if tod < 0.14 and tod < 0.18 then
+			local o = mcl_mobs.spawn(pos, "mobs_mc:turtle")
+			if o then
+				o:get_luaentity():make_child()
+			end
+			minetest.remove_node(pos)
+		else
+			start_egg_timer(pos)
+		end
+		return false
+	end,
+	on_construct = start_egg_timer,
+})
+
 local tspawn = {
 	name = "mobs_mc:turtle",
 	type_of_spawning = "ground",
