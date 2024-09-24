@@ -63,14 +63,37 @@ mcl_mobs.register_mob("mobs_mc:turtle", {
 			end
 		end
 	end,
+	on_breed = function(self, _)
+		self._has_egg = true
+		self:go_home()
+		return false
+	end,
+	go_home = function(self)
+		if not self._home then return end
+		if vector.distance(self.object:get_pos() < 25) then
+			return true
+		end
+		self:go_to_pos(self._home)
+	end,
+	lay_egg = function(self)
+		local pos = self.object:get_pos()
+		local nn = minetest.find_nodes_in_area_under_air(vector.offset(pos, -32, -5, -32), vector.offset(pos, 32, 5, 32), { "mcl_core:sand", "mcl_core:red_sand" } )
+		if nn and #nn > 0 then
+			local p = nn[math.random(#nn)]
+			self:gopath(p, function()
+				minetest.set_node(vector.offset(p, 0, 1, 0), { name = "mcl_mobitems:turtle_egg" })
+			end)
+		end
+	end,
 
 	on_grow = function(self)
 		mcl_util.drop_item_stack(self.object:get_pos(), ItemStack("mcl_mobitems:scute"))
 	end,
 
-	on_spawn = function(self, pos)
-		if math.random(10) == 1 then
-			self:make_child()
+	on_spawn = function(self)
+		local pos = self.object:get_pos()
+		if not self.child and math.random(10) == 1 then
+			mcl_mobs.spawn_child(pos, "mobs_mc:turtle")
 			self._home_position = vector.copy(pos)
 			self._hornytimer = 0
 		end
