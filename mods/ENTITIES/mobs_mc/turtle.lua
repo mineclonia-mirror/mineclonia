@@ -33,6 +33,7 @@ mcl_mobs.register_mob("mobs_mc:turtle", {
 	swims = true,
 	spawn_in_group = 5,
 	--breathes_in_water = true,
+	follow = { "mcl_ocean:seagrass" },
 	sounds = {
 	   -- random = "",
 	},
@@ -44,43 +45,36 @@ mcl_mobs.register_mob("mobs_mc:turtle", {
    animation = {
 				-- swing = 145,165
 				-- idinging underwater = 175,250
-
 		stand_start = 1, stand_end = 20, stand_speed = 10,
-
 		walk_start = 30, walk_end =85, speed_normal = 10,
-
 		--run_start = 0, run_end = 0, speed_run = 15,
-
 		--punch_start = 0, punch_end = 0, punch_speed =15,
-
 		-- = 145,fly_end = 165,fly_speed = 10,
-
 		--die_start = 0, die_end = 0, die_speed = 0,--die_loop = 0,
 	},
+
+	on_rightclick = function(self, clicker)
+		local it = clicker:get_wielded_item()
+		if it:get_name() == "mcl_ocean:seagrass" then
+			self:feed_tame(clicker, 4, true, false, true)
+			if not minetest.is_creative_enabled(clicker:get_player_name()) then
+				it:take_item()
+				clicker:set_wielded_item(it)
+			end
+		end
+	end,
 
 	on_grow = function(self)
 		mcl_util.drop_item_stack(self.object:get_pos(), ItemStack("mcl_mobitems:scute"))
 	end,
 
-
-	--[[
-	do_custom = function(self,dtime)
-
-	  --
-
-	end,
-
-
 	on_spawn = function(self, pos)
-
-		   --local pos = self.object:get_pos()
+		if math.random(10) == 1 then
+			self:make_child()
+			self._home_position = vector.copy(pos)
+			self._hornytimer = 0
 		end
-
-	  on_die = function(self, pos)
-		   --
-	end
-
-	]]
+	end,
 })
 
 local tspawn = {
