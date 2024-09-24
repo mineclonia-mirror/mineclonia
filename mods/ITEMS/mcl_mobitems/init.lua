@@ -434,6 +434,28 @@ minetest.register_craftitem("mcl_mobitems:scute", {
 	groups = { craftitem = 1 },
 })
 
+local turtle_egg_box = {
+	type = "fixed",
+	fixed = {
+		{-0.1625, -0.5, -0.1625, 0.1625, -0.25, 0.1625}, -- Rod
+	},
+}
+minetest.register_node("mcl_mobitems:turtle_egg", {
+	description = S("Turtle Egg"),
+	_doc_items_longdesc = S("Turtle eggs hatch to grown turtles."),
+	tiles = { "mcl_mobitems_turtle_egg.png" },
+	drawtype = "nodebox",
+	is_ground_content = false,
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	groups = { deco_block=1, destroy_by_lava_flow=1, },
+	node_box = turtle_egg_box,
+	selection_box = turtle_egg_box,
+	collision_box = turtle_egg_box,
+	_mcl_silk_touch_drop = true,
+})
+
 minetest.register_craftitem("mcl_mobitems:nametag", {
 	description = S("Name Tag"),
 	_tt_help = S("Give names to mobs").."\n"..S("Set name at anvil"),
