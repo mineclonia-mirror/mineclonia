@@ -32,7 +32,8 @@ mcl_mobs.register_mob("mobs_mc:turtle", {
 	---
 	swims = true,
 	spawn_in_group = 5,
-	--breathes_in_water = true,
+	-- turtle doesn't take drowning damage
+	breath_max = -1,
 	follow = { "mcl_ocean:seagrass" },
 	sounds = {
 	   -- random = "",
