@@ -48,8 +48,8 @@ Fields not mentioned in this document can also be added as custom fields for the
 	hp_max = 20,
 	-- the maximum health value the mob can spawn with.
 
-	breath_max = -1,
-	-- The maximum breath value the mob can spawn with and can have. If -1 (default), mob does not take drowning damage.
+	breath_max = 15,
+	-- The maximum breath value the mob can spawn with and can have. If -1, mob does not take drowning damage.
 
 	breathes_in_water = true,
 	--If true, mob loses breath when not in water. Otherwise, mob loses breath when inside a node with `drowning` attribute set (default: false).
