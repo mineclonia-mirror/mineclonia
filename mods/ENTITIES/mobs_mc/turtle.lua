@@ -108,7 +108,7 @@ end
 minetest.override_item("mcl_mobitems:turtle_egg", {
 	on_timer = function(pos)
 		local tod = minetest.get_timeofday()
-		if tod < 0.14 and tod < 0.18 then
+		if tod > 0.14 and tod < 0.18 then
 			local o = mcl_mobs.spawn(pos, "mobs_mc:turtle")
 			if o then
 				o:get_luaentity():make_child()
