@@ -1,4 +1,7 @@
+local S = minetest.get_translator("mobs_mc")
+
 mcl_mobs.register_mob("mobs_mc:turtle", {
+	description = S("Turtle"),
 	type = "animal",
 	spawn_class = "passive",
 	attack_type = "dogfight",
