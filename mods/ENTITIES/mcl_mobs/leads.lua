@@ -358,7 +358,7 @@ core.register_craftitem("mcl_mobs:lead", {
 })
 
 core.register_craft({
-	output = "mcl_mobs:lead";
+	output = "mcl_mobs:lead 2";
 	recipe =
 	{
 		{"mcl_mobitems:string", "mcl_mobitems:string", ""},
