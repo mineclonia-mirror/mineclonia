@@ -33,38 +33,48 @@ local function drop_lead(pos)
 	end
 end
 
-function mob_class:attach_lead(obj)
-	if self.is_leadable then
-		local lead = core.add_entity(obj:get_pos(), "mcl_mobs:lead_entity")
+function mob_class:attach_lead(obj, lead)
+	-- can't attach more than one lead to a mob
+	if self.is_leadable and self.lead and not lead then return end
+	if self.is_leadable or self.is_knot then
+		local new_lead = not lead
+		local led_pos = self.object:get_pos()
+		local leader_pos = obj:get_pos()
+		lead = lead or core.add_entity(leader_pos, "mcl_mobs:lead_entity")
 		if lead and lead:get_pos() then
-			local cb = self.object:get_properties().collisionbox or { 0,0,0,0,0,0 }
 			local leadent = lead:get_luaentity()
-			leadent.tied_to_node = true
-			self.lead = lead
-			leadent.leader = obj
-			leadent.follower = self.object
 			leadent.max_length = LEAD_MAX_LENGTH
-			leadent.leader_attach_offset = vector.zero()
-			leadent.follower_attach_offset = vector.new(0,cb[5] - 0.2 or 0.5,0)
-			leadent:update_visuals()
-			if obj:is_player() then
-				if not player_leads[obj] then player_leads[obj] = {} end
-				self.leader = obj:get_player_name()
-				table.insert(player_leads[obj], leadent)
-				leadent.tied_to_node = false
-				leadent.leader_attach_offset = vector.new(0,1,0)
-			else
-				local knot = obj:get_luaentity()
-				self.leader = nil
-				self.tied_to_node = obj:get_pos()
-				if knot then
-					table.insert(knot.leads, leadent)
-					leadent.leader_attach_offset = vector.new(0,0,0)
+			-- lead properties of follower side already set up for
+			-- existing lead, especially the lead is already added
+			-- to knot's table and adding it twice would be bad
+			if new_lead then
+				leadent.follower = self.object
+				if self.is_leadable then
+					self.lead = lead
+					local cb = self.object:get_properties().collisionbox or { 0,0,0,0,0,0 }
+					leadent.follower_attach_offset = vector.new(0,cb[5] - 0.2 or 0.5,0)
 				else
-					lead:remove()
+					table.insert(self.leads, leadent)
+					leadent.follower_attach_offset = vector.zero()
 				end
 			end
-			core.sound_play("leads_attach", {pos = self.object:get_pos()}, true)
+			leadent.leader = obj
+			if obj:is_player() then
+				if not player_leads[obj] then player_leads[obj] = {} end
+				table.insert(player_leads[obj], leadent)
+				leadent.leader_attach_offset = vector.new(0,1,0)
+				if self.is_leadable then
+					self.leader = obj:get_player_name()
+				end
+			else
+				local knot = obj:get_luaentity()
+				table.insert(knot.leads, leadent)
+				leadent.leader_attach_offset = vector.zero()
+				self.leader = nil
+				self.tied_to_node = leader_pos
+			end
+			leadent:update_visuals()
+			core.sound_play("leads_attach", {pos = led_pos}, true)
 			return leadent
 		else
 			core.log("no lead ent")
@@ -72,18 +82,24 @@ function mob_class:attach_lead(obj)
 	end
 end
 
-function mcl_mobs.transfer_lead_to_node(pos, player)
+function mcl_mobs.transfer_lead_to_node(pos, player, stack)
 	local n = core.get_node(pos)
-	if player_leads[player] and #player_leads[player] > 0 and core.get_item_group(n.name, "can_attach_lead") > 0 then
-		local leadent = table.remove(player_leads[player])
-		local knot = add_knot(pos)
-		local l = leadent.follower:get_luaentity()
-		if l and l.attach_lead then
-			l:attach_lead(knot)
-			leadent.object:remove()
-			return true
+	if core.get_item_group(n.name, "can_attach_lead") > 0 then
+		if player_leads[player] and #player_leads[player] > 0 then
+			local leadent = table.remove(player_leads[player])
+			local l = leadent.follower:get_luaentity()
+			if l then
+				mob_class.attach_lead(l, add_knot(pos), leadent.object)
+			end
+		elseif stack:get_name() == "mcl_mobs:lead" then
+			mob_class.attach_lead(add_knot(pos):get_luaentity(), player)
+			if not core.is_creative_enabled(player:get_player_name()) then
+				stack:take_item()
+			end
 		end
 	end
+
+	return stack
 end
 
 -- leads are not persistent and get respawned when the mob gets reloaded
@@ -98,21 +114,18 @@ function mob_class:check_lead()
 		return true
 	end
 
-	if self.attach_lead then
-		if self.tied_to_node then
-			self:attach_lead(add_knot(self.tied_to_node))
-		elseif self.leader then
-			local pl = core.get_player_by_name(self.leader)
-			if pl and pl:get_pos() then
-				self:attach_lead(pl)
-			end
+	if self.tied_to_node then
+		self:attach_lead(add_knot(self.tied_to_node))
+	elseif self.leader then
+		local pl = core.get_player_by_name(self.leader)
+		if pl and pl:get_pos() then
+			self:attach_lead(pl)
 		end
 	end
 end
 
 local lead_entity = {}
 lead_entity.description = S("Lead")
-lead_entity._leads_immobile = true
 lead_entity.initial_properties = {
 	static_save = false,
 	visual	   = 'mesh',
@@ -141,7 +154,7 @@ function lead_entity:on_step(dtime)
 end
 
 function lead_entity:step_physics(dtime)
-	local l_pos = self.leader:get_pos()
+	local l_pos = self.leader and self.leader:get_pos() or self.tied_to_node
 	local f_pos = self.follower:get_pos()
 	if not (l_pos and f_pos) then
 		self:remove()
@@ -198,15 +211,32 @@ function lead_entity:on_death(killer)
 end
 
 function lead_entity:remove(breaker, snap)
-	if not (breaker and breaker:is_player() and core.is_creative_enabled(breaker:get_player_name())) then
-		drop_lead(self.object:get_pos())
+	if not (breaker and breaker:is_player()) then
+		-- non player action caused the lead to break, so drop it
+		drop_lead(self.follower:get_pos())
 	end
 
 	if self.follower and self.follower:get_pos() then
 		local l = self.follower:get_luaentity()
-		l.lead = nil
 		l.leader = nil
 		l.tied_to_node = nil
+		if l.is_knot then
+			table.remove(l.leads, table.indexof(l.leads, self))
+		else
+			l.lead = nil
+		end
+	end
+
+	if self.leader then
+		local leads = player_leads[self.leader]
+		if leads then
+			table.remove(leads, table.indexof(leads, self))
+		else
+			local knot = self.leader:get_luaentity()
+			if knot then
+				table.remove(knot.leads, table.indexof(knot.leads, self))
+			end
+		end
 	end
 
 	if snap then
@@ -239,9 +269,9 @@ local knot_entity = {
 
 knot_entity.description = S("Lead Knot")
 
-knot_entity.leads = {}
-
 function knot_entity:on_activate(staticdata, dtime_s)
+	self.is_knot = true
+	self.leads = {}
 end
 
 function knot_entity:remove(killer)
@@ -255,8 +285,10 @@ function knot_entity:on_step(dtime)
 	self.timer = (self.timer or 1) - dtime
 	if self.timer > 0 then return end
 	self.timer = 1
+	-- verify lead attachable node is still present and there is at least
+	-- one lead attached
 	local n = core.get_node(self.object:get_pos())
-	if core.get_item_group(n.name, "can_attach_lead") == 0 or not self.leads or #self.leads == 0 then
+	if core.get_item_group(n.name, "can_attach_lead") == 0 or #self.leads <= 0 then
 		self:remove()
 	end
 end
@@ -282,19 +314,18 @@ function knot_entity:on_rightclick(clicker)
 		return true
 	end
 	if clicker and clicker:is_player() then
-		if player_leads[clicker] and #player_leads[clicker] > 0 then
-			return mcl_mobs.transfer_lead_to_node(pos, clicker)
-		else
+		local stack = clicker:get_wielded_item()
+		if #self.leads > 0 then
 			local lead = table.remove(self.leads)
 			if lead then
-				local mob = lead.follower:get_luaentity()
-				mob:attach_lead(clicker)
-				lead.object:remove()
+				local l = lead.follower:get_luaentity()
+				mob_class.attach_lead(l, clicker, lead.object)
 				if #self.leads < 1 then
 					self:remove()
-					return
 				end
 			end
+		else
+			clicker:set_wielded_item(mcl_mobs.transfer_lead_to_node(pos, clicker, stack))
 		end
 	end
 end
@@ -309,16 +340,20 @@ core.register_craftitem("mcl_mobs:lead", {
 		local rc = mcl_util.call_on_rightclick(itemstack, user, pointed_thing)
 		if rc then return rc end
 		if pointed_thing.type == "node" then
-			mcl_mobs.transfer_lead_to_node(pointed_thing.under, user)
+			return mcl_mobs.transfer_lead_to_node(pointed_thing.under, user, itemstack)
 		end
 	end,
 	on_secondary_use = function(itemstack, user, pointed_thing)
 		if pointed_thing.type == "object" then
 			local l = pointed_thing.ref:get_luaentity()
-			if l and l.is_mob then
-				l:attach_lead(user)
+			if l then
+				l = mob_class.attach_lead(l, user)
+				if l and not core.is_creative_enabled(user and user:get_player_name() or "") then
+					itemstack:take_item()
+				end
 			end
 		end
+		return itemstack
 	end,
 })
 

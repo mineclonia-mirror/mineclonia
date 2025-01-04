@@ -226,11 +226,6 @@ function boat.on_rightclick(self, clicker)
 		wield = clicker:get_wielded_item()
 	end
 	if wield and boat_leadable and wield:get_name() == "mcl_mobs:lead" then
-		if mcl_mobs.mob_class.attach_lead(self, clicker) and not core.is_creative_enabled(clicker:get_player_name()) then
-			--directly call the mob_class method since boats aren't actually mobs
-			wield:take_item()
-			clicker:set_wielded_item(wield)
-		end
 		return
 	elseif self._passenger or not clicker or clicker:get_attach() or (self.name == "mcl_boats:chest_boat" and self._driver) then
 		return
