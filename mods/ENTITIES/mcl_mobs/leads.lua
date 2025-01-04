@@ -86,6 +86,7 @@ function mcl_mobs.transfer_lead_to_node(pos, player)
 	end
 end
 
+-- leads are not persistent and get respawned when the mob gets reloaded
 function mob_class:check_lead()
 	if not self.is_leadable then return end
 	if not self.leader and not self.tied_to_node then return false end
@@ -113,6 +114,7 @@ local lead_entity = {}
 lead_entity.description = S("Lead")
 lead_entity._leads_immobile = true
 lead_entity.initial_properties = {
+	static_save = false,
 	visual	   = 'mesh',
 	visual_size  = vector.new(0.5, 0.5, 0.5),
 	mesh		 = 'mcl_mobs_lead.obj',
@@ -122,9 +124,6 @@ lead_entity.initial_properties = {
 }
 
 function lead_entity:on_activate(staticdata, dtime_s)
-	if staticdata == "remove" then
-		self.object:remove() --mobs respawn their own lead
-	end
 	self.current_length = LEAD_MAX_LENGTH
 	self.follower_attach_offset = vector.zero()
 	self.leader_attach_offset = vector.zero()
@@ -198,10 +197,6 @@ function lead_entity:on_death(killer)
 	self:remove(killer)
 end
 
-function lead_entity:get_staticdata()
-	return "remove"
-end
-
 function lead_entity:remove(breaker, snap)
 	if not (breaker and breaker:is_player() and core.is_creative_enabled(breaker:get_player_name())) then
 		drop_lead(self.object:get_pos())
@@ -232,6 +227,7 @@ end
 
 local knot_entity = {
 	initial_properties = {
+		static_save = false,
 		visual		  = 'mesh',
 		visual_size	 = vector.new(10, 10, 10),
 		mesh			= "mcl_mobs_lead_knot.obj",
@@ -246,7 +242,6 @@ knot_entity.description = S("Lead Knot")
 knot_entity.leads = {}
 
 function knot_entity:on_activate(staticdata, dtime_s)
-	if staticdata == "remove" then self.object:remove() end
 end
 
 function knot_entity:remove(killer)
@@ -265,8 +260,6 @@ function knot_entity:on_step(dtime)
 		self:remove()
 	end
 end
-
-function knot_entity:get_staticdata() return "remove" end
 
 function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, dir, damage)
 	local pos = self.object:get_pos():round()
