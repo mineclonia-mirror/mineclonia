@@ -45,15 +45,24 @@ local function get_next_leader_id(obj)
 	return next_leader_id
 end
 
-local function add_knot(pos)
+local function is_lead_attachable(pos)
+	local node = core.get_node(pos)
+	return core.get_item_group(node.name, "can_attach_lead") > 0
+end
+
+local function create_knot(pos)
+	return core.add_entity(pos, "mcl_mobs:knot")
+end
+
+local function get_knot(pos, create)
 	pos = vector.round(pos)
 	for __, object in pairs(core.get_objects_in_area(pos, pos)) do
 		local entity = object:get_luaentity()
-		if entity and entity.name == "mcl_mobs:knot" then
+		if entity and entity.is_knot then
 			return object
 		end
 	end
-	return core.add_entity(pos, "mcl_mobs:knot")
+	return (create == nil or create) and create_knot(pos)
 end
 
 local function drop_lead(pos)
@@ -125,24 +134,78 @@ local function attach_lead(self, obj, lead)
 	end
 end
 
-function mcl_mobs.transfer_lead_to_node(pos, player, stack)
-	local n = core.get_node(pos)
-	if core.get_item_group(n.name, "can_attach_lead") > 0 then
-		if player_leads[player] and #player_leads[player] > 0 then
-			local leadent = table.remove(player_leads[player])
-			local l = leadent.follower:get_luaentity()
-			if l then
-				attach_lead(l, add_knot(pos), leadent.object)
+-- helper to transfer a lead between a player and a knot
+local function transfer_one_lead(leads, new_leader, knot)
+	local lead = table.remove(leads)
+	if lead then
+		local follower = lead.follower
+		if follower == knot then
+			-- knot clicked is in the follower role of the lead to
+			-- transfer, special handling needed
+
+			-- first return lead to table
+			table.insert(leads, lead)
+
+			-- try to invert lead direction
+			follower = lead.leader
+			if follower:is_player() then
+				-- lead might be held by another player, but
+				-- probably the player is just trying to connect
+				-- a fence to itself; anyway, a player can't be
+				-- led, abort transfer
+				core.log("warning", "[mcl_mobs] attempt to lead player")
+				return
+			elseif not new_leader:is_player() then
+				-- should not happen, but better safe than sorry
+				core.log("warning", "[mcl_mobs] unexpected lead transfer attempt")
+				return
 			end
-		elseif stack:get_name() == "mcl_mobs:lead" then
-			attach_lead(add_knot(pos):get_luaentity(), player)
-			if not core.is_creative_enabled(player:get_player_name()) then
-				stack:take_item()
+			-- new_leader is a player, just destroy lead (without
+			-- dropping the item) and let it be recreated in the
+			-- correct direction by attach_lead
+			lead:remove(new_leader)
+			lead = nil
+		end
+		return attach_lead(follower:get_luaentity(), new_leader, lead and lead.object)
+	end
+end
+
+local function tie_lead_to_knot(pos, clicker, itemstack, knot)
+	-- need a player to take or tie leads
+	if not clicker or not clicker:is_player() then return end
+
+	local knot = knot or get_knot(pos, false)
+
+	-- first try to take a lead from the fence, unless sneak is pressed
+	local knotent = knot and knot:get_luaentity()
+	local knot_leads =  knotent and knotent.leads or {}
+	if #knot_leads > 0 and not clicker:get_player_control().sneak then
+		if transfer_one_lead(knot_leads, clicker, knot) then
+			if #knot_leads < 1 then
+				knotent:remove()
 			end
+			return itemstack
 		end
 	end
 
-	return stack
+	-- then try to transfer a lead from the player to the fence
+	local player_leads = clicker and player_leads[clicker] or {}
+	if #player_leads > 0 then
+		if transfer_one_lead(player_leads, knot or create_knot(pos), knot) then
+			return itemstack
+		end
+	end
+
+	-- last try to tie a new lead to the fence
+	if itemstack:get_name() == "mcl_mobs:lead" then
+		local knotent = (knot or create_knot(pos)):get_luaentity()
+		if attach_lead(knotent, clicker) then
+			if not core.is_creative_enabled(clicker:get_player_name()) then
+				itemstack:take_item()
+			end
+			return itemstack
+		end
+	end
 end
 
 -- leads are not persistent and get respawned when the leadable object gets reloaded
@@ -167,7 +230,7 @@ function mcl_mobs.check_lead(self)
 
 	-- respawn lead if necessary
 	if self.tied_to_node then
-		attach_lead(self, add_knot(self.tied_to_node))
+		attach_lead(self, get_knot(self.tied_to_node))
 	elseif self.leader then
 		local pl = core.get_player_by_name(self.leader)
 		if pl and pl:get_pos() then
@@ -351,8 +414,7 @@ function knot_entity:on_step(dtime)
 	self.timer = 1
 	-- verify lead attachable node is still present and there is at least
 	-- one lead attached
-	local n = core.get_node(self.object:get_pos())
-	if core.get_item_group(n.name, "can_attach_lead") == 0 or #self.leads <= 0 then
+	if not is_lead_attachable(self.object:get_pos()) or #self.leads <= 0 then
 		self:remove()
 	end
 end
@@ -378,21 +440,14 @@ function knot_entity:on_rightclick(clicker)
 		return true
 	end
 	if clicker and clicker:is_player() then
-		local stack = clicker:get_wielded_item()
-		if #self.leads > 0 then
-			local lead = table.remove(self.leads)
-			if lead then
-				local l = lead.follower:get_luaentity()
-				attach_lead(l, clicker, lead.object)
-				if #self.leads < 1 then
-					self:remove()
-				end
-			end
-		else
-			clicker:set_wielded_item(mcl_mobs.transfer_lead_to_node(pos, clicker, stack))
+		local itemstack = clicker:get_wielded_item()
+		local resultstack = tie_lead_to_knot(pos, clicker, itemstack, self.object)
+		if resultstack then
+			clicker:set_wielded_item(resultstack)
 		end
 	end
 end
+
 
 core.register_craftitem("mcl_mobs:lead", {
 	description = S("Lead"),
@@ -404,7 +459,10 @@ core.register_craftitem("mcl_mobs:lead", {
 		local rc = mcl_util.call_on_rightclick(itemstack, user, pointed_thing)
 		if rc then return rc end
 		if pointed_thing.type == "node" then
-			return mcl_mobs.transfer_lead_to_node(pointed_thing.under, user, itemstack)
+			local pos = pointed_thing.under
+			if is_lead_attachable(pos) then
+				return tie_lead_to_knot(pos, user, itemstack)
+			end
 		end
 	end,
 	on_secondary_use = function(itemstack, user, pointed_thing)
@@ -412,7 +470,7 @@ core.register_craftitem("mcl_mobs:lead", {
 			local l = pointed_thing.ref:get_luaentity()
 			-- attaching a lead to a knot is handled by the knot entity
 			if l and l.is_leadable then
-				if attach_lead(l, user) and not core.is_creative_enabled(user and user:get_player_name()) then
+				if attach_lead(l, user) and not core.is_creative_enabled(user and user:get_player_name() or "") then
 					itemstack:take_item()
 				end
 			end
@@ -433,3 +491,21 @@ core.register_craft({
 
 core.register_entity("mcl_mobs:lead_entity", lead_entity)
 core.register_entity("mcl_mobs:knot", knot_entity)
+
+-- add lead interaction to all registered fences
+local function fence_on_rightclick(pos, _, clicker, itemstack)
+	return tie_lead_to_knot(pos, clicker, itemstack)
+end
+
+core.register_on_mods_loaded(function()
+	for name, def in pairs(core.registered_nodes) do
+		if core.get_item_group(name, "fence") == 1 then
+			local groups = table.copy(def.groups)
+			groups.can_attach_lead = 1
+			core.override_item(name, {
+				groups = groups,
+				_mcl_on_rightclick_optional = fence_on_rightclick,
+			})
+		end
+	end
+end)
