@@ -173,6 +173,8 @@ function lead_entity:step_physics(dtime)
 
 	local pos = (f_pos + l_pos) / 2
 	if self.follower and distance > pull_distance then
+		-- detach follower
+		mcl_util.detach_object(self.follower)
 		local pull_force = PULL_FORCE
 		if not self.follower:get_luaentity().is_mob then
 			pull_force = PULL_FORCE * 20
