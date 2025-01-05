@@ -4,7 +4,6 @@
 	Minetest Leads mod by Silver Sandstone <@SilverSandstone@craftodon.social>
 --]]
 
-local mob_class = mcl_mobs.mob_class
 local modname = core.get_current_modname()
 --local modpath = core.get_modpath(modname)
 local S = core.get_translator(modname)
@@ -33,7 +32,7 @@ local function drop_lead(pos)
 	end
 end
 
-function mob_class:attach_lead(obj, lead)
+local function attach_lead(self, obj, lead)
 	-- can't attach more than one lead to a mob
 	if self.is_leadable and self.lead and not lead then return end
 	if self.is_leadable or self.is_knot then
@@ -89,10 +88,10 @@ function mcl_mobs.transfer_lead_to_node(pos, player, stack)
 			local leadent = table.remove(player_leads[player])
 			local l = leadent.follower:get_luaentity()
 			if l then
-				mob_class.attach_lead(l, add_knot(pos), leadent.object)
+				attach_lead(l, add_knot(pos), leadent.object)
 			end
 		elseif stack:get_name() == "mcl_mobs:lead" then
-			mob_class.attach_lead(add_knot(pos):get_luaentity(), player)
+			attach_lead(add_knot(pos):get_luaentity(), player)
 			if not core.is_creative_enabled(player:get_player_name()) then
 				stack:take_item()
 			end
@@ -102,12 +101,12 @@ function mcl_mobs.transfer_lead_to_node(pos, player, stack)
 	return stack
 end
 
--- leads are not persistent and get respawned when the mob gets reloaded
-function mob_class:check_lead()
+-- leads are not persistent and get respawned when the leadable object gets reloaded
+function mcl_mobs.check_lead(self)
 	if not self.is_leadable then return end
 	if not self.leader and not self.tied_to_node then return false end
 	if self.lead and self.lead:get_pos() then
-		if self.leader then
+		if self.leader and self.is_mob then
 			local pl = core.get_player_by_name(self.leader)
 			self:look_at(pl:get_pos())
 		end
@@ -115,11 +114,11 @@ function mob_class:check_lead()
 	end
 
 	if self.tied_to_node then
-		self:attach_lead(add_knot(self.tied_to_node))
+		attach_lead(self, add_knot(self.tied_to_node))
 	elseif self.leader then
 		local pl = core.get_player_by_name(self.leader)
 		if pl and pl:get_pos() then
-			self:attach_lead(pl)
+			attach_lead(self, pl)
 		end
 	end
 end
@@ -319,7 +318,7 @@ function knot_entity:on_rightclick(clicker)
 			local lead = table.remove(self.leads)
 			if lead then
 				local l = lead.follower:get_luaentity()
-				mob_class.attach_lead(l, clicker, lead.object)
+				attach_lead(l, clicker, lead.object)
 				if #self.leads < 1 then
 					self:remove()
 				end
@@ -347,8 +346,7 @@ core.register_craftitem("mcl_mobs:lead", {
 		if pointed_thing.type == "object" then
 			local l = pointed_thing.ref:get_luaentity()
 			if l then
-				l = mob_class.attach_lead(l, user)
-				if l and not core.is_creative_enabled(user and user:get_player_name() or "") then
+				if attach_lead(l, user) and not core.is_creative_enabled(user and user:get_player_name()) then
 					itemstack:take_item()
 				end
 			end
