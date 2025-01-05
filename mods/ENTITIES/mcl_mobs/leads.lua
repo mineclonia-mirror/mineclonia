@@ -345,7 +345,8 @@ core.register_craftitem("mcl_mobs:lead", {
 	on_secondary_use = function(itemstack, user, pointed_thing)
 		if pointed_thing.type == "object" then
 			local l = pointed_thing.ref:get_luaentity()
-			if l then
+			-- attaching a lead to a knot is handled by the knot entity
+			if l and l.is_leadable then
 				if attach_lead(l, user) and not core.is_creative_enabled(user and user:get_player_name()) then
 					itemstack:take_item()
 				end
