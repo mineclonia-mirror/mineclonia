@@ -586,7 +586,7 @@ function lead_entity:step_physics(dtime, prevent_break)
 		if prevent_break then
 			if followerent.is_mob then
 				-- teleport follower near leader
-				f_pos = l_pos:add((f_pos - l_pos):normalize() * 5)
+				f_pos = l_pos:add((f_pos - l_pos):normalize() * pull_distance)
 				self.follower:set_pos(f_pos)
 			end
 			-- TODO: actively prevent breaking the lead for other constellations, too?

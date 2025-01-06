@@ -516,6 +516,20 @@ end
 function mob_class:on_punch(hitter, tflp, tool_capabilities, dir)
 	local is_player = hitter and hitter:is_player()
 	local hitter_playername = is_player and hitter:get_player_name()
+
+	if is_player and hitter:get_player_control().sneak then
+		-- try to attach first player held lead to this mob
+		local leadent = mcl_mobs.get_player_leads(hitter)[1]
+		leadent = leadent and leadent:transfer(self)
+		if leadent then
+			-- make lead shorter and stronger
+			leadent.max_length = 5
+			leadent.pull_force = 100
+			leadent:teleport() -- prevent breaking lead because of shorter max length
+			return
+		end
+	end
+
 	if hitter_playername and hitter_playername ~= "" then
 		doc.mark_entry_as_revealed(hitter_playername, "mobs", self.name)
 		mcl_potions.update_haste_and_fatigue(hitter)
