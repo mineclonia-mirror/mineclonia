@@ -251,6 +251,7 @@ function boat:on_activate(staticdata)
 		self._last_v = self._v
 		self._itemstring = data.itemstring
 		self.leader = data.leader
+		self.leadermob = data.leadermob
 		self.tied_to_node = data.tied_to_node
 
 		-- Fall back to oak boat texture if no texture is set
@@ -294,6 +295,7 @@ function boat:get_staticdata()
 		textures = props and props.textures or nil,
 		variant = self._variant,
 		leader = self.leader,
+		leadermob = self.leadermob,
 		tied_to_node = self.tied_to_node,
 	})
 end
