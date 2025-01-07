@@ -83,8 +83,7 @@ local function attach_lead(self, obj, lead)
 			local leadent = lead:get_luaentity()
 			leadent.max_length = LEAD_MAX_LENGTH
 			-- lead properties of follower side already set up for
-			-- existing lead, especially the lead is already added
-			-- to knot's table and adding it twice would be bad
+			-- existing lead
 			if new_lead then
 				leadent.follower = self.object
 				if self.is_leadable then
@@ -92,14 +91,14 @@ local function attach_lead(self, obj, lead)
 					local cb = self.object:get_properties().collisionbox or { 0,0,0,0,0,0 }
 					leadent.follower_attach_offset = vector.new(0,cb[5] - 0.2 or 0.5,0)
 				else
-					table.insert(self.leads, leadent)
+					self.leads[lead] = leadent
 					leadent.follower_attach_offset = vector.zero()
 				end
 			end
 			leadent.leader = obj
 			if obj:is_player() then
 				if not player_leads[obj] then player_leads[obj] = {} end
-				table.insert(player_leads[obj], leadent)
+				player_leads[obj][lead] = leadent
 				leadent.leader_attach_offset = vector.new(0,1,0)
 				if self.is_leadable then
 					self.leader = obj:get_player_name()
@@ -109,7 +108,7 @@ local function attach_lead(self, obj, lead)
 			else
 				local leaderent = obj:get_luaentity()
 				if leaderent.is_knot then
-					table.insert(leaderent.leads, leadent)
+					leaderent.leads[lead] = leadent
 					leadent.leader_attach_offset = vector.zero()
 					self.leader = nil
 					self.leadermob = nil
@@ -136,23 +135,18 @@ end
 
 -- helper to transfer a lead between a player and a knot
 local function transfer_one_lead(leads, new_leader, knot)
-	local lead = table.remove(leads)
+	local lead, leadent = next(leads)
 	if lead then
-		local follower = lead.follower
+		local follower = leadent.follower
 		if follower == knot then
 			-- knot clicked is in the follower role of the lead to
-			-- transfer, special handling needed
-
-			-- first return lead to table
-			table.insert(leads, lead)
-
-			-- try to invert lead direction
-			follower = lead.leader
+			-- transfer, try to invert lead direction
+			follower = leadent.leader
 			if follower:is_player() then
 				-- lead might be held by another player, but
 				-- probably the player is just trying to connect
 				-- a fence to itself; anyway, a player can't be
-				-- led, abort transfer
+				-- led, even by itself, abort transfer
 				core.log("warning", "[mcl_mobs] attempt to lead player")
 				return
 			elseif not new_leader:is_player() then
@@ -163,10 +157,15 @@ local function transfer_one_lead(leads, new_leader, knot)
 			-- new_leader is a player, just destroy lead (without
 			-- dropping the item) and let it be recreated in the
 			-- correct direction by attach_lead
-			lead:remove(new_leader)
+			--
+			-- this will also remove the lead from the leads table
+			leadent:remove(new_leader, nil, true)
 			lead = nil
+		else
+			-- remove lead from leads table
+			leads[lead] = nil
 		end
-		return attach_lead(follower:get_luaentity(), new_leader, lead and lead.object)
+		return attach_lead(follower:get_luaentity(), new_leader, lead)
 	end
 end
 
@@ -178,22 +177,18 @@ local function tie_lead_to_knot(pos, clicker, itemstack, knot)
 
 	-- first try to take a lead from the fence, unless sneak is pressed
 	local knotent = knot and knot:get_luaentity()
-	local knot_leads =  knotent and knotent.leads or {}
-	if #knot_leads > 0 and not clicker:get_player_control().sneak then
-		if transfer_one_lead(knot_leads, clicker, knot) then
-			if #knot_leads < 1 then
-				knotent:remove()
-			end
-			return itemstack
+	local knot_leads =  knotent and knotent.leads
+	if knot_leads and not clicker:get_player_control().sneak and transfer_one_lead(knot_leads, clicker, knot) then
+		if not next(knot_leads) then
+			knotent:remove()
 		end
+		return itemstack
 	end
 
 	-- then try to transfer a lead from the player to the fence
 	local player_leads = clicker and player_leads[clicker] or {}
-	if #player_leads > 0 then
-		if transfer_one_lead(player_leads, knot or create_knot(pos), knot) then
-			return itemstack
-		end
+	if next(player_leads) and transfer_one_lead(player_leads, knot or create_knot(pos), knot) then
+		return itemstack
 	end
 
 	-- last try to tie a new lead to the fence
@@ -210,7 +205,7 @@ end
 
 -- leads are not persistent and get respawned when the leadable object gets reloaded
 function mcl_mobs.check_lead(self)
-	-- repopulate leadermobs table
+	-- repopulate leader_mobs table
 	if self.leaderid and not leader_mobs[self.leaderid] then
 		leader_mobs[self.leaderid] = self.object
 	end
@@ -323,9 +318,6 @@ function lead_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, 
 		core.record_protection_violation(pos, name)
 		return
 	end
-	if not core.is_creative_enabled(name) then
-		drop_lead(pos)
-	end
 	self:remove(puncher)
 	return true
 end
@@ -334,9 +326,8 @@ function lead_entity:on_death(killer)
 	self:remove(killer)
 end
 
-function lead_entity:remove(breaker, snap)
-	if not (breaker and breaker:is_player()) then
-		-- non player action caused the lead to break, so drop it
+function lead_entity:remove(breaker, snap, nodrop)
+	if not (nodrop or (breaker and breaker:is_player() and core.is_creative_enabled(breaker:get_player_name()))) then
 		drop_lead(self.follower:get_pos())
 	end
 
@@ -346,7 +337,7 @@ function lead_entity:remove(breaker, snap)
 		l.leadermob = nil
 		l.tied_to_node = nil
 		if l.is_knot then
-			table.remove(l.leads, table.indexof(l.leads, self))
+			l.leads[self.object] = nil
 		else
 			l.lead = nil
 		end
@@ -355,13 +346,12 @@ function lead_entity:remove(breaker, snap)
 	if self.leader then
 		local leads = player_leads[self.leader]
 		if leads then
-			table.remove(leads, table.indexof(leads, self))
+			leads[self.object] = nil
 		else
+			-- knot's leads table needs to be updated
 			local leaderent = self.leader:get_luaentity()
-			if leaderent then
-				if leaderent.is_knot then
-					table.remove(leaderent.leads, table.indexof(leaderent.leads, self))
-				end
+			if leaderent and leaderent.is_knot then
+				leaderent.leads[self.object] = nil
 			end
 		end
 	end
@@ -402,8 +392,11 @@ function knot_entity:on_activate(staticdata, dtime_s)
 end
 
 function knot_entity:remove(killer)
-	for _,v in pairs(self.leads) do
-		v:remove(killer)
+	for _, leadent in pairs(self.leads) do
+		-- note that removing the lead will remove leadent from the
+		-- leads table just being iterated, but that modification does
+		-- not interfere with the iteration
+		leadent:remove(killer)
 	end
 	self.object:remove()
 end
@@ -412,9 +405,9 @@ function knot_entity:on_step(dtime)
 	self.timer = (self.timer or 1) - dtime
 	if self.timer > 0 then return end
 	self.timer = 1
-	-- verify lead attachable node is still present and there is at least
-	-- one lead attached
-	if not is_lead_attachable(self.object:get_pos()) or #self.leads <= 0 then
+	-- verify there is at least one lead attached and lead attachable node
+	-- is still present
+	if not (next(self.leads) and is_lead_attachable(self.object:get_pos())) then
 		self:remove()
 	end
 end
@@ -428,7 +421,7 @@ function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, 
 	end
 	core.sound_play("leads_remove", {pos = self.object:get_pos()}, true)
 
-	self:remove()
+	self:remove(puncher)
 	return true
 end
 
