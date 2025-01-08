@@ -135,9 +135,23 @@ end
 
 -- helper to transfer a lead between a player and a knot
 local function transfer_one_lead(leads, new_leader, knot)
-	local lead, leadent = next(leads)
+	local lead, leadent, follower, followerent, invalid
+
+	-- skip and clean defunct leads (this typically happens because some
+	-- entity got removed directly); mostly harmless:-)
+	repeat
+		lead, leadent = next(leads)
+		follower = lead and leadent.follower
+		followerent = follower and follower:get_luaentity()
+		invalid = lead and not (lead:get_pos() and followerent)
+		if invalid then
+			core.log("action", "[mcl_mobs] cleaning defunct lead")
+			leads[lead] = nil
+			-- no need to further clean up the defunct follower
+		end
+	until not invalid
+
 	if lead then
-		local follower = leadent.follower
 		if follower == knot then
 			-- knot clicked is in the follower role of the lead to
 			-- transfer, try to invert lead direction
@@ -160,12 +174,13 @@ local function transfer_one_lead(leads, new_leader, knot)
 			--
 			-- this will also remove the lead from the leads table
 			leadent:remove(new_leader, nil, true)
+			followerent = follower:get_luaentity()
 			lead = nil
 		else
 			-- remove lead from leads table
 			leads[lead] = nil
 		end
-		return attach_lead(follower:get_luaentity(), new_leader, lead)
+		return attach_lead(followerent, new_leader, lead)
 	end
 end
 
