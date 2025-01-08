@@ -219,6 +219,24 @@ local function tie_lead_to_knot(pos, clicker, itemstack, knot)
 end
 
 -- leads are not persistent and get respawned when the leadable object gets reloaded
+local function respawn_lead(self, leader, leadermob, tied_to_node)
+	local leaderobj
+
+	if tied_to_node then
+		leaderobj = get_knot(tied_to_node)
+	elseif leader then
+		local pl = core.get_player_by_name(leader)
+		leaderobj = pl and pl:get_pos() and pl
+	elseif leadermob then
+		local mob = leader_mobs[leadermob]
+		leaderobj =  mob and mob:get_pos() and mob
+	end
+
+	if leaderobj then
+		return attach_lead(self, leaderobj)
+	end
+end
+
 function mcl_mobs.check_lead(self)
 	-- repopulate leader_mobs table
 	if self.leaderid and not leader_mobs[self.leaderid] then
@@ -239,16 +257,7 @@ function mcl_mobs.check_lead(self)
 	end
 
 	-- respawn lead if necessary
-	if self.tied_to_node then
-		attach_lead(self, get_knot(self.tied_to_node))
-	elseif self.leader then
-		local pl = core.get_player_by_name(self.leader)
-		if pl and pl:get_pos() then
-			attach_lead(self, pl)
-		end
-	elseif self.leadermob and leader_mobs[self.leadermob] and leader_mobs[self.leadermob]:get_pos() then
-		attach_lead(self, leader_mobs[self.leadermob])
-	end
+	respawn_lead(self, self.leader, self.leadermob, self.tied_to_node)
 
 	-- if respawning didnt work just try again next time
 	--
