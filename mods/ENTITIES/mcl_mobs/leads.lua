@@ -37,7 +37,8 @@
 
 	Players and knots on fences have a list of leads they are holding so
 	they can be transfered on interaction. Knots are automatically created
-	and destroyed when leads get attached or removed.
+	and destroyed when leads get attached or removed. Knots persist their
+	lead information in fence node metadata.
 --]]
 
 local modname = core.get_current_modname()
@@ -49,6 +50,7 @@ local MIN_BREAK_AGE = 1.0
 local STRETCH_SOUND_INTERVAL = 2.0
 local LEAD_MAX_LENGTH = 10
 local PULL_FORCE = 35
+local PERSISTENT_LEAD_KEY = "mcl_mobs:lead_data"
 
 local player_leads = {}
 local leader_mobs = {}
@@ -100,25 +102,11 @@ local function attach_lead(self, obj, lead, respawn)
 		end
 	end
 	if led_pos and self.is_leadable or self.is_knot then
-		local new_lead = not lead
 		local leader_pos = obj:get_pos()
 		lead = lead or core.add_entity(leader_pos, "mcl_mobs:lead_entity")
 		if lead and lead:get_pos() then
 			local leadent = lead:get_luaentity()
 			leadent.max_length = LEAD_MAX_LENGTH
-			-- lead properties of follower side already set up for
-			-- existing lead
-			if new_lead then
-				leadent.follower = self.object
-				if self.is_leadable then
-					self.lead = lead
-					local cb = self.object:get_properties().collisionbox or { 0,0,0,0,0,0 }
-					leadent.follower_attach_offset = vector.new(0,cb[5] - 0.2 or 0.5,0)
-				else
-					self.leads[lead] = leadent
-					leadent.follower_attach_offset = vector.zero()
-				end
-			end
 			leadent.leader = obj
 			if obj:is_player() then
 				if not player_leads[obj] then player_leads[obj] = {} end
@@ -147,6 +135,16 @@ local function attach_lead(self, obj, lead, respawn)
 					self.leader = nil
 					self.tied_to_node = nil
 				end
+			end
+			leadent.follower = self.object
+			if self.is_leadable then
+				self.lead = lead
+				local cb = self.object:get_properties().collisionbox or { 0,0,0,0,0,0 }
+				leadent.follower_attach_offset = vector.new(0,cb[5] - 0.2 or 0.5,0)
+			else
+				-- knot in follower role, persist lead data
+				self:add_persistent_lead(lead, leadent)
+				leadent.follower_attach_offset = vector.zero()
 			end
 			leadent:update_visuals()
 			core.sound_play("leads_attach", {pos = led_pos}, true)
@@ -192,19 +190,13 @@ local function transfer_one_lead(leads, new_leader, knot)
 				core.log("warning", "[mcl_mobs] unexpected lead transfer attempt")
 				return
 			end
-			-- new_leader is a player, just destroy lead (without
-			-- dropping the item) and let it be recreated in the
-			-- correct direction by attach_lead
-			--
-			-- this will also remove the lead from the leads table
-			leadent:remove(new_leader, nil, true)
+			-- new_leader is a player, remove persistent lead data from knot
+			followerent:remove_persistent_lead(lead, leadent)
 			followerent = follower:get_luaentity()
-			lead = nil
-		else
-			-- remove lead from leads table
-			leads[lead] = nil
 		end
-		return attach_lead(followerent, new_leader, lead, lead == nil)
+		-- remove lead from leads table
+		leads[lead] = nil
+		return attach_lead(followerent, new_leader, lead)
 	end
 end
 
@@ -218,9 +210,6 @@ local function tie_lead_to_knot(pos, clicker, itemstack, knot)
 	local knotent = knot and knot:get_luaentity()
 	local knot_leads =  knotent and knotent.leads
 	if knot_leads and not clicker:get_player_control().sneak and transfer_one_lead(knot_leads, clicker, knot) then
-		if not next(knot_leads) then
-			knotent:remove()
-		end
 		return itemstack
 	end
 
@@ -394,7 +383,8 @@ function lead_entity:remove(breaker, snap, nodrop)
 		l.leadermob = nil
 		l.tied_to_node = nil
 		if l.is_knot then
-			l.leads[self.object] = nil
+			-- knot in follower role, unpersist lead data
+			l:remove_persistent_lead(self.object, self)
 		else
 			l.lead = nil
 		end
@@ -446,6 +436,50 @@ knot_entity.description = S("Lead Knot")
 function knot_entity:on_activate(staticdata, dtime_s)
 	self.is_knot = true
 	self.leads = {}
+	self.pos = self.object:get_pos():round()
+	local meta = core.get_meta(self.pos)
+	self.persistent_leads = core.deserialize(meta:get(PERSISTENT_LEAD_KEY)) or {}
+end
+
+function knot_entity:save_persistent_leads()
+	local meta = core.get_meta(self.pos)
+	local data = next(self.persistent_leads) and self.persistent_leads
+	meta:set_string(PERSISTENT_LEAD_KEY, data and core.serialize(data) or "")
+end
+
+local function get_lead_data_key(leadent)
+	local leader = leadent.leader
+	local is_player = leader:is_player()
+	local leaderent = leader:get_luaentity()
+	if not is_player and not leaderent then return "<defunct>"  end
+	return core.serialize({
+		player = is_player and leader:get_player_name() or nil,
+		mob = leaderent and leaderent.is_mob and leaderent.leaderid or nil,
+		node = leaderent and leaderent.is_knot and core.pos_to_string(leader:get_pos(), 0) or nil,
+	})
+end
+
+function knot_entity:add_persistent_lead(lead, leadent)
+	if self.leads[lead] then
+		-- remove old leader data
+		self.persistent_leads[get_lead_data_key(self.leads[lead])] = nil
+	end
+	-- make copy to detect leader changes on lead transfer
+	self.leads[lead] = setmetatable(table.copy(leadent), getmetatable(leadent))
+	local lead_data_key = get_lead_data_key(leadent)
+	if not self.persistent_leads[lead_data_key] then
+		self.persistent_leads[lead_data_key] = 1
+	end
+	self:save_persistent_leads()
+end
+
+function knot_entity:remove_persistent_lead(lead, leadent)
+	self.leads[lead] = nil
+	local lead_data_key = get_lead_data_key(leadent)
+	if self.persistent_leads[lead_data_key] then
+		self.persistent_leads[lead_data_key] = nil
+		self:save_persistent_leads()
+	end
 end
 
 function knot_entity:remove(killer)
@@ -455,18 +489,58 @@ function knot_entity:remove(killer)
 		-- not interfere with the iteration
 		leadent:remove(killer)
 	end
+	-- drop unspawned persistent leads, too
+	for lead_data, _ in pairs(self.persistent_leads) do
+		-- we don't need to inspect the lead any further
+		drop_lead(self.pos)
+		self.persistent_leads[lead_data] = nil
+	end
+	self:save_persistent_leads()
 	self.object:remove()
 end
 
 function knot_entity:on_step(dtime)
-	self.timer = (self.timer or 1) - dtime
+	-- verify leads once a second, if no (potentially unspawned) lead or no
+	-- lead attachable node is present, remove the knot
+	self.timer = (self.timer or 0) - dtime
 	if self.timer > 0 then return end
 	self.timer = 1
-	-- verify there is at least one lead attached and lead attachable node
-	-- is still present
-	if not (next(self.leads) and is_lead_attachable(self.object:get_pos())) then
+
+	if not ((next(self.leads) or next(self.persistent_leads)) and is_lead_attachable(self.object:get_pos())) then
 		self:remove()
 	end
+
+	-- check whether to respawn some leads
+	local active = {}
+	for _, leadent in pairs(self.leads) do
+		if leadent.follower == self.object then
+			active[get_lead_data_key(leadent)] = true
+		end
+	end
+	local incomplete = false
+	for lead_data_key, _ in pairs(self.persistent_leads) do
+		if not active[lead_data_key] then
+			local lead_data = core.deserialize(lead_data_key)
+			-- try to respawn
+			if not respawn_lead(self, lead_data.player, lead_data.mob, lead_data.node and core.string_to_pos(lead_data.node)) then
+				incomplete = true
+			end
+		end
+	end
+
+	-- make knot look different when no leads active
+	local texture, alpha = "mcl_mobs_lead_knot.png", false
+	if incomplete then
+		if not next(self.leads) then
+			texture, alpha = "[fill:16x16:#80808080^[overlay:" .. texture, true
+		else
+			texture = "[fill:16x16:#908088FF^[overlay:" .. texture
+		end
+	end
+	self.object:set_properties({
+		textures = { texture },
+		use_texture_alpha = alpha,
+	})
 end
 
 function knot_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, dir, damage)
@@ -559,3 +633,17 @@ core.register_on_mods_loaded(function()
 		end
 	end
 end)
+
+-- spawn knots on fences with persistent leads on every load
+core.register_lbm({
+    label = "Spawn knots on fences",
+    name = "mcl_mobs:spawn_knots_on_fences",
+    nodenames = {"group:fence"},
+    run_at_every_load = true,
+    action = function(pos)
+	    local meta = core.get_meta(pos)
+	    if meta:contains(PERSISTENT_LEAD_KEY) then
+		    create_knot(pos)
+	    end
+    end,
+})
