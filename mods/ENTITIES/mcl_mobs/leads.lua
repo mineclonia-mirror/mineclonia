@@ -7,8 +7,9 @@
 	"leader" entity and restricts the followers movement. A leader may hold
 	many leads, but a follower can be tied to only one lead. Currently
 	players, mobs, and fences (actually a "knot" entity at the fence
-	position) can act as leaders, while mobs, boats and fences (actually the
-	knot) can be followers. Lead is persisted on the follower side by
+	position) can act as leaders, while registered entities with the
+	`is_leadable` property (currently mobs and boats) and fences (actually
+	the knot) can be followers. A lead is persisted on the follower side by
 	storing the type and identity of the leader entity - if any - using the
 	properties
 
@@ -16,12 +17,27 @@
 	* `leadermob`: the `leaderid` of the leading mob
 	* `tied_to_node`: the position vector of the fence the entity is tied to
 
+	and automatically respawned when the follower and leader object are both
+	available. When a lead's follower or leader object disappear from the
+	game the lead object is removed, but the lead data remains. Thus when
+	one from a pair of mobs connected by a lead gets unloaded by the engine
+	(e.g. because of the server's active range), the lead disappears, too,
+	but reappears when the object becomes active again. To make this work
+	smoothly the follower object is teleported near the leader object when
+	respawning the lead, if necessary to not break the lead. Game logic
+	needs to explicitly remove the lead entity if it wants to have the lead
+	drop back as an item (this automatically happens if the lead breaks).
+
+	A lead starts to pull `is_leadable` followers towards the leader when
+	its length exceeds its 'max_length` property (initially 10) and breaks
+	if its length exceeds twice that length.
+
 	Mobs get assigned a `leaderid` when they start leading a mob, ids are
 	increasing numbers. The largest id used is persisted in mod storage.
 
 	Players and knots on fences have a list of leads they are holding so
 	they can be transfered on interaction. Knots are automatically created
-	and destroyed when leads get attached resp. removed.
+	and destroyed when leads get attached or removed.
 --]]
 
 local modname = core.get_current_modname()
@@ -71,12 +87,20 @@ local function drop_lead(pos)
 	end
 end
 
-local function attach_lead(self, obj, lead)
-	-- can't attach more than one lead to a mob
-	if self.is_leadable and self.lead and not lead then return end
-	if self.is_leadable or self.is_knot then
+local function attach_lead(self, obj, lead, respawn)
+	local led_pos = self.object:get_pos()
+	-- check wether the mob already has a lead (unless transfering or respawning the lead)
+	if self.is_leadable and (self.leader or self.leadermob or self.tied_to_node) and not (lead or respawn) then
+		-- check wether the lead is actually active, then abort,
+		-- otherwise drop the old lead and allow attaching a new lead
+		if self.lead and self.lead:get_pos() then
+			return
+		elseif led_pos then
+			drop_lead(led_pos)
+		end
+	end
+	if led_pos and self.is_leadable or self.is_knot then
 		local new_lead = not lead
-		local led_pos = self.object:get_pos()
 		local leader_pos = obj:get_pos()
 		lead = lead or core.add_entity(leader_pos, "mcl_mobs:lead_entity")
 		if lead and lead:get_pos() then
@@ -180,7 +204,7 @@ local function transfer_one_lead(leads, new_leader, knot)
 			-- remove lead from leads table
 			leads[lead] = nil
 		end
-		return attach_lead(followerent, new_leader, lead)
+		return attach_lead(followerent, new_leader, lead, lead == nil)
 	end
 end
 
@@ -233,7 +257,7 @@ local function respawn_lead(self, leader, leadermob, tied_to_node)
 	end
 
 	if leaderobj then
-		return attach_lead(self, leaderobj)
+		return attach_lead(self, leaderobj, nil, true)
 	end
 end
 
@@ -251,7 +275,9 @@ function mcl_mobs.check_lead(self)
 	if self.lead and self.lead:get_pos() then
 		if self.leader and self.is_mob then
 			local pl = core.get_player_by_name(self.leader)
-			self:look_at(pl:get_pos())
+			if pl then
+				self:look_at(pl:get_pos())
+			end
 		end
 		return true
 	end
@@ -298,7 +324,7 @@ function lead_entity:step_physics(dtime)
 	local l_pos = self.leader and self.leader:get_pos() or self.tied_to_node
 	local f_pos = self.follower:get_pos()
 	if not (l_pos and f_pos) then
-		self:remove()
+		self.object:remove()
 		return false, nil, nil
 	end
 
@@ -317,20 +343,25 @@ function lead_entity:step_physics(dtime)
 	local followerent = self.follower:get_luaentity()
 	-- can't pull knots
 	if distance > pull_distance and not followerent.is_knot then
-		-- detach follower
-		mcl_util.detach_object(self.follower)
-		local pull_force = PULL_FORCE
-		if not followerent.is_mob then
-			pull_force = PULL_FORCE * 20
-		end
-		local force = (distance - pull_distance) * pull_force/ pull_distance
-		self.follower:add_velocity((l_pos - f_pos):normalize() * dtime * force)
+		if self.age < MIN_BREAK_AGE and followerent.is_mob then
+			-- teleport follower mob near leader on lead respawn
+			self.follower:set_pos(l_pos:add((f_pos - l_pos):normalize() * pull_distance))
+		else
+			-- detach follower
+			mcl_util.detach_object(self.follower)
+			local pull_force = PULL_FORCE
+			if not followerent.is_mob then
+				pull_force = PULL_FORCE * 20
+			end
+			local force = (distance - pull_distance) * pull_force/ pull_distance
+			self.follower:add_velocity((l_pos - f_pos):normalize() * dtime * force)
 
-		self.sound_timer = ( self.sound_timer or 0 ) + dtime
-		if self.sound_timer >= STRETCH_SOUND_INTERVAL then
-			self.sound_timer = self.sound_timer - STRETCH_SOUND_INTERVAL
-			if math.random(8) == 1 then
-				core.sound_play("leads_stretch", {pos = pos}, true)
+			self.sound_timer = ( self.sound_timer or 0 ) + dtime
+			if self.sound_timer >= STRETCH_SOUND_INTERVAL then
+				self.sound_timer = self.sound_timer - STRETCH_SOUND_INTERVAL
+				if math.random(8) == 1 then
+					core.sound_play("leads_stretch", {pos = pos}, true)
+				end
 			end
 		end
 	end
