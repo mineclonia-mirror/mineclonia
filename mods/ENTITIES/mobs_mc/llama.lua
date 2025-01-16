@@ -266,11 +266,7 @@ function llama:check_caravan ()
 end
 
 function llama:is_leashed ()
-	-- TODO: leashes
-	-- -- For the present any llama with a driver is taken to be
-	-- -- leashed.
-	-- return self.tamed and self.driver ~= nil
-	return false
+	return self.lead and is_valid (self.lead)
 end
 
 function llama:count_ahead ()
