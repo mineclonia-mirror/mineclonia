@@ -229,52 +229,63 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-local function find_empty_inv_slots(inv)
-	local main, hotbar
-	for i, stack in pairs(inv:get_list("main")) do
-		if i > 9 and not main and stack:is_empty() then
-			main = i
-		elseif i <= 9 and not hotbar and stack:is_empty() then
-			hotbar = i
-		end
-		if hotbar and main then break end
+local function sort_stack(player, stack, inv)
+	if core.get_item_group(stack:get_name(), "armor") > 0 then
+		return "armor"
 	end
-	return main, hotbar
 end
 
 core.register_on_player_inventory_action(function(player, action, inv, info)
 	if action == "move" and info.to_list == "sorter" then
 		local stack = inv:get_stack(info.to_list, info.to_index)
-		local empty_main, empty_hotbar = find_empty_inv_slots(inv)
-		if core.get_item_group(stack:get_name(), "armor") > 0 then
-			local newstack = mcl_armor.equip(stack, player, true)
-			if newstack and not newstack:is_empty() then
-				if inv:get_stack(info.from_list, info.from_index):is_empty() then
-					inv:set_stack(info.from_list, info.from_index, newstack)
-				elseif inv:room_for_item(info.from_list, newstack) then
-					inv:add_item(info.from_list, newstack)
+		local trg = sort_stack(player, stack, inv)
+		if trg == "armor" then
+			stack = mcl_armor.equip(stack, player, true)
+		elseif trg then
+			stack = inv:add_item(trg, stack)
+		elseif info.from_list == "main" and info.from_index <= 9 then -- hotbar to inv
+			stack = mcl_inventory.inv_add(inv, "main", stack, nil, 10, 36)
+		elseif info.from_list == "main" and info.from_index > 9 then  -- inv to hotbar
+			stack = mcl_inventory.inv_add(inv, "main", stack, nil, 1, 9)
+		end
+		if stack and not stack:is_empty() then
+			-- put leftover/switched out stack back into source slot
+			-- note that source slot should be empty now
+			stack = mcl_inventory.inv_add_at(inv, info.from_list, info.from_index, stack)
+			if not stack:is_empty() then
+				-- should not happen, probably a broken synthetic event
+				-- log relevant info, be careful not to crash
+				core.log("error", "[mcl_inventory] source slot not empty in sorter action" .. dump({
+					player = player and player:get_player_name(),
+					action = info,
+					sorter_target = trg,
+					leftover = stack:to_string(),
+					where = debug.traceback(),
+				}))
+				-- try to add leftover stack to source inv list
+				stack = inv:add_item(info.from_list, stack)
+				if not stack:is_empty() then
+					-- prevent item loss just in case
+					local pos = player and player:get_pos() or vector.zero()
+					core.log("none", "[mcl_invwntory] stack left over from sorter action dropped at " .. core.pos_to_string(pos))
+					core.add_item(pos, stack)
 				end
 			end
-		elseif info.from_list == "main" and info.from_index <= 9 and empty_main then --hotbar to inv
-			inv:set_stack("main", empty_main, stack)
-		elseif info.from_list == "main" and info.from_index > 9 and empty_hotbar then
-			inv:set_stack("main", empty_hotbar, stack)
-		else
-			inv:set_stack(info.from_list, info.from_index, stack)
 		end
 		inv:set_stack("sorter", 1, ItemStack(""))
 	end
 end)
 
-core.register_allow_player_inventory_action(function(_, action, inv, info)
+core.register_allow_player_inventory_action(function(player, action, inv, info)
 	if info.to_list == "sorter" or info.from_list == "sorter" or info.listname == "sorter" then
 		if action == "put" or action == "take" then return 0 end
 		local stack = inv:get_stack(info.from_list, info.from_index)
-		local empty_main, empty_hotbar = find_empty_inv_slots(inv)
-		if core.get_item_group(stack:get_name(), "armor") > 0 then
+		local trg = sort_stack(player, stack, inv)
+		if trg == "armor" then
 			return 1
-		elseif ( info.from_list == "main" and info.from_index <= 9 and empty_main ) or
-			( info.from_list == "main" and info.from_index > 9 and empty_hotbar ) then
+		elseif trg then
+			return stack:get_count()
+		elseif info.from_list == "main" then
 			return stack:get_count()
 		end
 		return 0
