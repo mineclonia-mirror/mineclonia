@@ -291,10 +291,7 @@ end
 
 local old_cipu = core.item_pickup
 function core.item_pickup(itemstack,picker,pointed_thing,time_from_last_punch,...)
-	local inv = picker:get_inventory()
-	if not inv:is_empty("offhand") then
-		itemstack = inv:add_item("offhand", itemstack)
-	end
+	itemstack = mcl_inventory.give_to_player(picker, itemstack, true, true)
 
 	return old_cipu(itemstack, picker, pointed_thing, time_from_last_punch, ...)
 end
