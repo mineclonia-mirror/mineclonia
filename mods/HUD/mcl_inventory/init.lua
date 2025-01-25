@@ -299,6 +299,76 @@ mcl_gamemode.register_on_gamemode_change(function(p, old_gm, gm) ---@diagnostic 
 	set_inventory(p)
 end)
 
+-- inventory actions (currently only for putting items) that trigger the same
+-- notifications as their interactive counterparts
+
+function mcl_inventory.inv_add_at(inv, listname, i, stack, callback)
+	local old_count = stack:get_count()
+	if old_count <= 0 then return stack end
+
+	local max = callback and callback.allow_put and callback.allow_put(i, ItemStack(stack))
+		or old_count
+	if max > 0 then
+		local inv_stack = inv:get_stack(listname, i)
+		local put_stack = ItemStack(stack)
+		put_stack:set_count(max)
+		put_stack = inv_stack:add_item(put_stack)
+		local new_count = old_count - max + put_stack:get_count()
+		if new_count < old_count then
+			-- something was actually put, record change
+			stack:set_count(new_count)
+			inv:set_stack(listname, i, inv_stack)
+			if callback and callback.put then
+				inv_stack:set_count(old_count - new_count)
+				callback.put(i, inv_stack)
+			end
+		end
+	else
+		-- Put the full stack without changing the target stack.  Note
+		-- that this effectively destroys the input stack unless the
+		-- callback is doing something with it.
+		if callback and callback.put then
+			callback.put(i, stack)
+		end
+		stack = ItemStack()
+	end
+
+	return stack
+end
+
+function mcl_inventory.inv_add(inv, listname, stack, callback, from_index, to_index)
+	local size = inv:get_size(listname)
+
+	if size == 0 or stack:is_empty() then
+		return stack
+	end
+
+	local min = from_index and math.min(math.max(from_index, 1), size) or 1
+	local max = to_index and math.min(math.max(to_index, 1), size) or size
+
+	if max < min then min, max = max, min end
+
+	-- first fill existing stacks (by ignoring empty slots)
+	for i = min, max do
+		if not inv:get_stack(listname, i):is_empty() then
+			stack = mcl_inventory.inv_add_at(inv, listname, i, stack, callback)
+			if stack:is_empty() then
+				return stack
+			end
+		end
+	end
+
+	-- put rest anywhere where there is room
+	for i = min, max do
+		stack = mcl_inventory.inv_add_at(inv, listname, i, stack, callback)
+		if stack:is_empty() then
+			return stack
+		end
+	end
+
+	return stack
+end
+
 -- Handles replacing the item wielded in an interaction with another item
 --
 -- Replaces the wielded stack with the reward stack if the wielded stack is
