@@ -1,6 +1,14 @@
 local S = core.get_translator("mcl_inventory")
 local F = core.formspec_escape
 
+mcl_player.register_player_setting("mcl_inventory:quick_move_to_craftgrid", {
+        type = "boolean",
+	section = "Inventory",
+	short_desc = S("Quick move items to craftgrid"),
+	long_desc = S("Moves items to craftgrid when shift-clicking in inventory instead of moving between hotbar and main inventory."),
+	ui_default = false,
+})
+
 mcl_inventory.registered_survival_inventory_tabs = {}
 
 function mcl_inventory.register_survival_inventory_tab(def)
@@ -243,6 +251,11 @@ core.register_on_player_inventory_action(function(player, action, inv, info)
 			stack = mcl_armor.equip(stack, player, true)
 		elseif trg then
 			stack = inv:add_item(trg, stack)
+		elseif mcl_player.get_player_setting(player, "mcl_inventory:quick_move_to_craftgrid") then
+			-- only use top left 2x2 area of craft grid
+			local width = inv:get_width("craft")
+			stack = mcl_inventory.inv_add(inv, "craft", stack, nil, 1, 2)
+			stack = mcl_inventory.inv_add(inv, "craft", stack, nil, width + 1, width + 2)
 		elseif info.from_list == "main" and info.from_index <= 9 then -- hotbar to inv
 			stack = mcl_inventory.inv_add(inv, "main", stack, nil, 10, 36)
 		elseif info.from_list == "main" and info.from_index > 9 then  -- inv to hotbar
