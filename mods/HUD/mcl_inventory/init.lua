@@ -369,6 +369,35 @@ function mcl_inventory.inv_add(inv, listname, stack, callback, from_index, to_in
 	return stack
 end
 
+local function get_player_inv_callback(player, inv, listname)
+	return {
+		allow_put = function(index, stack)
+			return core.run_callbacks(core.registered_allow_player_inventory_actions, 5, player, "put", inv, { listname = listname, index = index, stack = stack }) or stack:get_count()
+		end,
+		put = function(index, stack)
+			core.run_callbacks(core.registered_on_player_inventory_actions, 0, player, "put", inv, { listname = listname, index = index, stack = stack })
+		end,
+	}
+end
+
+function mcl_inventory.give_to_player(player, stack, trigger_inv_action, no_drop_leftover)
+	local inv = player:get_inventory()
+	-- first check if stack can be added to non empty offhand
+	if not inv:is_empty("offhand") then
+		stack = mcl_inventory.inv_add(inv, "offhand", stack, trigger_inv_action and get_player_inv_callback(player, inv, "offhand"))
+	end
+	-- then add to main
+	stack = mcl_inventory.inv_add(inv, "main", stack, trigger_inv_action and get_player_inv_callback(player, inv, "main"))
+	-- by default whatever remains is dropped at the player's position, but
+	-- this can be overriden to return the leftover stack
+	if no_drop_leftover then
+		return stack
+	else
+		mcl_util.drop_item_stack(player:get_pos(), stack)
+		return nil
+	end
+end
+
 -- Handles replacing the item wielded in an interaction with another item
 --
 -- Replaces the wielded stack with the reward stack if the wielded stack is
@@ -383,7 +412,7 @@ end
 -- "both": give and take item like in non creative mode
 
 function mcl_inventory.give_and_take(player, wield_stack, reward_stack, creative_behavior)
-	if not player then return nil end
+	if not player then return wield_stack end
 	local creative = core.is_creative_enabled(player:get_player_name())
 	creative_behavior = creative_behavior or "give_new"
 	if creative and creative_behavior == "nothing" then
@@ -405,4 +434,7 @@ function mcl_inventory.give_and_take(player, wield_stack, reward_stack, creative
 			return wield_stack
 		end
 	end
+
+	-- creative mode "give_new" and already contained
+	return wield_stack
 end
