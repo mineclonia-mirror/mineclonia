@@ -70,8 +70,34 @@ function bee:_should_go_home()
 	return self._got_nectar
 end
 
+local bees_per_hive = 3
+
+function bee:_nest()
+	if self._home then
+		local m = core.get_meta(self._home)
+		local bees_current = m:get_int("mobs_mc:bees_present")
+		if bees_current < bees_per_hive then
+			m:set_int("mobs_mc:bees_present", bees_current + 1)
+			self:safe_remove()
+			return self._home
+		end
+	end
+end
+
+function bee:_should_sleep(pos)
+	if mcl_worlds.pos_to_dimension(pos) ~= "overworld" then return false end
+
+	if mcl_weather.get_weather() == "rain" then return true end
+
+	local tod = core.get_timeofday() * 24000
+	if tod < 6000 or tod < 18000 then return true end
+	return false
+end
+
 function bee:airborne_pacing_target (pos, width, height, groups)
-	if self._home and self:_should_go_home() then
+	if self._home and self:_should_sleep(pos) and vector.distance(pos, self._home) < 1 then
+		return self:_nest()
+	elseif self._home and self:_should_go_home() then
 		return self._home
 	else
 		if not self._home then
