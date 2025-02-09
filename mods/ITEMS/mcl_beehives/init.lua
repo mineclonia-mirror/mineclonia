@@ -47,6 +47,7 @@ local function honey_harvest(pos, node, player, itemstack)
 end
 
 local function dig_hive(pos, node, _, digger)
+	mcl_beehives.release_bees(pos)
 	local wield_item = digger:get_wielded_item()
 	local beehive = string.find(node.name, "mcl_beehives:beehive")
 	local beenest = string.find(node.name, "mcl_beehives:bee_nest")
@@ -96,6 +97,10 @@ local tpl_beehive = {
 	_mcl_baseitem = "mcl_beehives:beehive",
 	drop = "",
 	after_dig_node = dig_hive,
+	after_place_node = function(pos)
+		local m = core.get_meta(pos)
+		m:set_string("mcl_beehives:initialized", "true")
+	end,
 }
 
 local tpl_bee_nest = table.merge(tpl_beehive, {
@@ -163,30 +168,55 @@ core.register_craft({
 
 function mcl_beehives.add_level(pos, add_levels)
 	local node = core.get_node(pos)
-	local honey_level = core.get_item_group(node.name, "honey_level")
-	honey_level = math.min(honey_level + add_levels, 5)
-	local nodename_base = "mcl_beehives:bee_nest"
-	core.swap_node(pos, { name = nodename_base.."_"..honey_level })
+	local def = core.registered_nodes[node.name]
+	if def and def._mcl_baseitem then
+		local honey_level = core.get_item_group(node.name, "honey_level")
+		honey_level = math.min(honey_level + add_levels, 5)
+		core.swap_node(pos, { name = def._mcl_baseitem.."_"..honey_level })
+	end
+end
+
+function mcl_beehives.bees_should_sleep(pos)
+	if mcl_worlds.pos_to_dimension(pos) ~= "overworld" then return false end
+
+	if mcl_weather.get_weather() == "rain" then return true end
+
+	local tod = core.get_timeofday() * 24000
+	if tod < 6000 or tod > 18000 then return true end
+	return false
+end
+
+local max_bees = 3
+
+function mcl_beehives.release_bees(pos)
+	local m = core.get_meta(pos)
+	local bees = m:get_int("mobs_mc:bees_present")
+	if bees > 0 then
+		local node = core.get_node(pos)
+		local front = vector.subtract(pos, core.facedir_to_dir(node.param2))
+		if core.get_node(front).name =="air" then
+			for _ = 1, bees do
+				mcl_mobs.spawn(front, "mobs_mc:bee", core.serialize({_home = pos}))
+			end
+			m:set_int("mobs_mc:bees_present", 0)
+		end
+	end
 end
 
 core.register_abm({
-	label = "Update Beehive or Beenest Honey Levels",
-	nodenames = abm_nodes, --Register for all levels but 5 so honeyed hives aren't constantly updating themselves
-	interval = 75, --This is similar to what the situation would be for 2 bees (~5 to reach flower, 20 to harvest pollen, ~5 to return, 120 to process).
-	chance = 1,
-	action = function(pos, node)
-		local flower = core.find_node_near(pos, 5, "group:flower")
-		local tod = core.get_timeofday() * 24000 --Bees need to sleep (note in Minecraft, they don't in the Nether/End, which is ridiculous)
-		if tod > 6000 and tod < 18000 and flower and mcl_weather.get_weather() ~= "rain" then
-			local node_name = node.name
-			local original_block = "mcl_beehives:bee_nest"
-			if core.get_item_group(node_name, "beehive") == 1 then
-				original_block = "mcl_beehives:beehive"
-			end
-			local honey_level = core.get_item_group(node_name, "honey_level")
-			honey_level = math.min(honey_level + (math.random(100) == 100 and 2 or 1), 5)
-			node.name = original_block.."_"..honey_level
-			mcl_redstone.swap_node(pos, node)
+	label = "Bees exist nest",
+	nodenames = abm_nodes,
+	interval = 25,
+	chance = 5,
+	action = function(pos, _)
+		local m = core.get_meta(pos)
+		if m:get_string("mcl_beehives:initialized") == "" then
+			m:set_int("mobs_mc:bees_present", math.random(max_bees)) --initialize mapgen bee nests with a random amount of bees inside
+			m:set_string("mcl_beehives:initialized", "true")
+		end
+
+		if not mcl_beehives.bees_should_sleep(pos) then
+			mcl_beehives.release_bees(pos)
 		end
 	end,
 })

@@ -1,4 +1,5 @@
 local mob_class = mcl_mobs.mob_class
+local bees_per_hive = 3
 local bee = {
 	type = "animal",
 	spawn_class = "passive",
@@ -58,11 +59,18 @@ local bee = {
 	pace_width = 8,
 }
 
+
 function bee:_find_new_home()
-	local n = core.find_node_near(self.object:get_pos(), self.view_range, {"group:beehive", "group:bee_nest"})
-	if n then
-		self._home = n
-		return true
+	local v = self.view_range
+	local p = self.object:get_pos()
+	local nn = core.find_nodes_in_area(vector.offset(p, -v, -v, -v), vector.offset(p, v, v, v), {"group:beehive", "group:bee_nest"})
+	for _, n in pairs(nn) do
+		local m = core.get_meta(n)
+		local bees = m:get_int("mobs_mc:bees_present")
+		if bees < bees_per_hive then
+			self._home = n
+			return true
+		end
 	end
 end
 
@@ -70,7 +78,6 @@ function bee:_should_go_home()
 	return self._got_nectar
 end
 
-local bees_per_hive = 3
 
 function bee:_nest()
 	if self._home then
@@ -84,19 +91,15 @@ function bee:_nest()
 	end
 end
 
-function bee:_should_sleep(pos)
-	if mcl_worlds.pos_to_dimension(pos) ~= "overworld" then return false end
-
-	if mcl_weather.get_weather() == "rain" then return true end
-
-	local tod = core.get_timeofday() * 24000
-	if tod < 6000 or tod < 18000 then return true end
-	return false
-end
-
 function bee:airborne_pacing_target (pos, width, height, groups)
-	if self._home and self:_should_sleep(pos) and vector.distance(pos, self._home) < 1 then
-		return self:_nest()
+	if self._home and vector.distance(pos, self._home) < 1 then
+		if self._got_nectar then
+			mcl_beehives.add_level(self._home, 1)
+			self._got_nectar = false
+		end
+		if mcl_beehives.bees_should_sleep(pos) then
+			self:_nest()
+		end
 	elseif self._home and self:_should_go_home() then
 		return self._home
 	else
