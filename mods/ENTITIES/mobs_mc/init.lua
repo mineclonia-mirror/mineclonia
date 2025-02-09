@@ -28,6 +28,7 @@ local files = {
 	"spawning.lua",
 	"axolotl.lua",
 	"bat.lua",
+	"bee.lua",
 	"blaze.lua",
 	"chicken.lua",
 	"cod.lua",
