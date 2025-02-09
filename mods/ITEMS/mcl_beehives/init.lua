@@ -1,8 +1,4 @@
-------------------
----- Beehives ----
-------------------
-
--- Variables
+mcl_beehives = {}
 local S = core.get_translator(core.get_current_modname())
 local abm_nodes = { "mcl_beehives:beehive", "mcl_beehives:bee_nest" }
 
@@ -209,6 +205,14 @@ core.register_craft({
 		{ "group:wood", "group:wood", "group:wood" },
 	},
 })
+
+function mcl_beehives.add_level(pos, add_levels)
+	local node = core.get_node(pos)
+	local honey_level = core.get_item_group(node.name, "honey_level")
+	honey_level = math.min(honey_level + add_levels, 5)
+	local nodename_base = "mcl_beehives:bee_nest"
+	core.swap_node(pos, { name = nodename_base.."_"..honey_level })
+end
 
 -- Temporary ABM to update honey levels
 core.register_abm({
