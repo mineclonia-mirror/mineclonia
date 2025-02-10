@@ -12,13 +12,7 @@ core.register_chatcommand("effect",{
 	description = S("Add a status effect to yourself. Arguments: <effect>: name of status effect. Passing \"list\" as effect name lists available effects. Passing \"heal\" as effect name heals (or harms) by amount designed by the next parameter. Passing \"clear\" as effect name removes all effects. Passing \"remove\" as effect name removes the effect named by the next parameter. <duration>: duration in seconds. Passing \"INF\" as duration makes the effect infinite. (<heal-amount>: amount of healing when the effect is \"heal\", passing a negative value subtracts health. <effect>: name of a status effect to be removed when using \"remove\" as the previous parameter.) <level>: effect power determinant, bigger level results in more powerful effect for effects that depend on the level (no changes for other effects), defaults to 1, pass F to use low-level factor instead. <factor>: effect strength modifier, can mean different things depending on the effect, no changes for effects that do not depend on level/factor. NOPART at the end means no particles will be shown for this effect."),
 	privs = {server = true},
 	func = function(name, params)
-
-		local P = {}
-		local i = 0
-		for str in string.gmatch(params, "([^ ]+)") do
-			i = i + 1
-			P[i] = str
-		end
+		local P = params:split(" ")
 
 		if not P[1] then
 			return false, S("Missing effect parameter!")
