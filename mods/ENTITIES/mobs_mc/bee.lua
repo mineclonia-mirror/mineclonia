@@ -4,6 +4,7 @@ local bee = {
 	type = "animal",
 	spawn_class = "passive",
 	passive = true,
+	retaliates = true,
 	pathfinding = 1,
 	hp_min = 6,
 	hp_max = 6,
@@ -15,7 +16,7 @@ local bee = {
 	horizontal_head_height=0,
 	head_eye_height = 0.54,
 	curiosity = 10,
-	reach = 3,
+	reach = 2,
 	collisionbox = { -0.2, -0.1, -0.2, 0.2, 0.7, 0.2 },
 	visual = "mesh",
 	mesh = "mobs_mc_bee.b3d",
@@ -57,6 +58,7 @@ local bee = {
 	stop_chasing_distance = 1.0,
 	pace_height = 7,
 	pace_width = 8,
+	group_attack = { "mobs_mc:bee", },
 }
 
 
@@ -75,7 +77,7 @@ function bee:_find_new_home()
 end
 
 function bee:_should_go_home()
-	return self._got_nectar
+	return self._got_nectar or mcl_beehives.bees_should_sleep(self.object:get_pos())
 end
 
 
@@ -92,7 +94,7 @@ function bee:_nest()
 end
 
 function bee:airborne_pacing_target (pos, width, height, groups)
-	if self._home and vector.distance(pos, self._home) < 1 then
+	if self._home and vector.distance(pos, self._home) < 1.5 then
 		if self._got_nectar then
 			mcl_beehives.add_level(self._home, 1)
 			self._got_nectar = false
@@ -106,11 +108,12 @@ function bee:airborne_pacing_target (pos, width, height, groups)
 		if not self._home then
 			if self:_find_new_home() then return self._home end
 		end
-		local aa = vector.offset (pos, -3, -6, -3)
-		local bb = vector.offset (pos, 3, 6, 3)
+		local v = self.view_range
+		local aa = vector.offset (pos, -v, -v, -v)
+		local bb = vector.offset (pos, v, v, v)
 		local nodes = core.find_nodes_in_area_under_air (aa, bb, {"group:flower"})
 		for _, v in pairs(nodes) do
-			if vector.distance(pos, v) < 1 then
+			if vector.distance(pos, v) < 1.5 then
 				self._got_nectar = true
 				break
 			end
