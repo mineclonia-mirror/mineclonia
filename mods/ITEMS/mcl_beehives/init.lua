@@ -46,8 +46,7 @@ local function honey_harvest(pos, node, player, itemstack)
 	-- returning the old itemstack here would result in it still being in hand *after* death
 end
 
-local function dig_hive(pos, node, _, digger)
-	mcl_beehives.release_bees(pos)
+local function dig_hive(pos, node, oldmeta, digger)
 	local wield_item = digger:get_wielded_item()
 	local beehive = string.find(node.name, "mcl_beehives:beehive")
 	local beenest = string.find(node.name, "mcl_beehives:bee_nest")
@@ -58,10 +57,8 @@ local function dig_hive(pos, node, _, digger)
 	if beehive then
 		if not is_creative then
 			if not silk_touch then
-				mcl_util.deal_damage(digger, 10, {type = "mob"})
-				core.add_item(pos, "mcl_beehives:beehive")
+				mcl_beehives.release_bees(pos, tonumber(oldmeta.fields["mobs_mc:bees_present"]) or 0, digger)
 			else
-
 				core.add_item(pos, node.name)
 			end
 		elseif is_creative and inv:room_for_item("main", "mcl_beehives:beehive") and not inv:contains_item("main", "mcl_beehives:beehive") then
@@ -73,7 +70,7 @@ local function dig_hive(pos, node, _, digger)
 				awards.unlock(digger:get_player_name(), "mcl:total_beelocation")
 				core.add_item(pos, node.name)
 			else
-				mcl_util.deal_damage(digger, 10, {type = "mob"})
+				mcl_beehives.release_bees(pos, tonumber(oldmeta.fields["mobs_mc:bees_present"]) or 0, digger)
 			end
 		elseif is_creative and inv:room_for_item("main", "mcl_beehives:bee_nest") and not inv:contains_item("main", "mcl_beehives:bee_nest") then
 			inv:add_item("main", "mcl_beehives:bee_nest")
@@ -188,17 +185,21 @@ end
 
 local max_bees = 3
 
-function mcl_beehives.release_bees(pos)
-	local m = core.get_meta(pos)
-	local bees = m:get_int("mobs_mc:bees_present")
+function mcl_beehives.release_bees(pos, bees, digger)
 	if bees > 0 then
 		local node = core.get_node(pos)
 		local front = vector.subtract(pos, core.facedir_to_dir(node.param2))
 		if core.get_node(front).name =="air" then
 			for _ = 1, bees do
-				mcl_mobs.spawn(front, "mobs_mc:bee", core.serialize({_home = pos}))
+				local o = mcl_mobs.spawn(front, "mobs_mc:bee", core.serialize({_home = pos}))
+				if digger and o then
+					local l = o:get_luaentity()
+					if l then
+						l:do_attack(digger)
+					end
+				end
 			end
-			m:set_int("mobs_mc:bees_present", 0)
+			core.get_meta(pos):set_string("mobs_mc:bees_present", "")
 		end
 	end
 end
@@ -216,7 +217,8 @@ core.register_abm({
 		end
 
 		if not mcl_beehives.bees_should_sleep(pos) then
-			mcl_beehives.release_bees(pos)
+
+			mcl_beehives.release_bees(pos, m:get_int("mobs_mc:bees_present"))
 		end
 	end,
 })
