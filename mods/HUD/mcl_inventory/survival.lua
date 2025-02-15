@@ -9,6 +9,20 @@ mcl_player.register_player_setting("mcl_inventory:quick_move_to_craftgrid", {
 	ui_default = false,
 })
 
+mcl_player.register_player_setting("mcl_inventory:quick_move_to_offhand", {
+        type = "enum",
+	options = {
+		{ name = "never", description = S("Never") },
+		{ name = "empty", description = S("When offhand is empty") },
+		{ name = "matching", description = S("Topping up non empty offhand stack") },
+		{ name = "always", description = S("Always (when offhand is empty or matching)") },
+	},
+	section = "Inventory",
+	short_desc = S("Quick move items to offhand"),
+	long_desc = S("Specifies when shift-clicking in the main inventory moves clicked stack of group 'offhand_item' to the offhand slot. Defaults to 'Never'"),
+	ui_default = "never",
+})
+
 mcl_inventory.registered_survival_inventory_tabs = {}
 
 function mcl_inventory.register_survival_inventory_tab(def)
@@ -238,7 +252,13 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 local function sort_stack(player, stack, inv)
-	if core.get_item_group(stack:get_name(), "armor") > 0 then
+	if core.get_item_group(stack:get_name(), "offhand_item") > 0 then
+		local mode = mcl_player.get_player_setting(player, "mcl_inventory:quick_move_to_offhand", "never")
+		if ((mode == "empty" or mode == "always") and inv:is_empty("offhand"))
+			or ((mode == "matching" or mode == "always") and stack:peek_item():equals(inv:get_stack("offhand", 1):peek_item())) then
+			return "offhand"
+		end
+	elseif core.get_item_group(stack:get_name(), "armor") > 0 then
 		return "armor"
 	end
 end
