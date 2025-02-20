@@ -68,9 +68,10 @@ function bee:_find_new_home()
 	local nn = core.find_nodes_in_area(vector.offset(p, -v, -v, -v), vector.offset(p, v, v, v), {"group:beehive", "group:bee_nest"})
 	for _, n in pairs(nn) do
 		local m = core.get_meta(n)
-		local bees = m:get_int("mobs_mc:bees_present")
+		local bees = m:get_int("mobs_mc:bees")
 		if bees < bees_per_hive then
 			self._home = n
+			m:set_int("mobs_mc:bees", bees + 1)
 			return true
 		end
 	end
