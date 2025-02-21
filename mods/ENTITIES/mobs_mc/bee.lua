@@ -162,6 +162,7 @@ function bee:ai_step(dtime)
 		self:remove_physics_factor ("movement_speed",
 				"mobs_mc:bee_attack_modifier")
 	end
+	return mob_class.ai_step(self, dtime)
 end
 
 bee.ai_functions = {
