@@ -124,7 +124,11 @@ function bee:airborne_pacing_target (pos, width, height, groups)
 			return vector.offset (nodes[math.random (#nodes)], 0, 1, 0)
 		end
 	end
-	return mob_class.airborne_pacing_target (self, pos, width, height, groups)
+	local target = mob_class.airborne_pacing_target (self, pos, width, height, groups)
+	if target and self._home and vector.distance(target, self._home) > 25 then
+		return self._home
+	end
+	return target
 end
 
 function bee:_alert_other_bees()
