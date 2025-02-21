@@ -169,7 +169,8 @@ function mcl_beehives.add_level(pos, add_levels)
 	if def and def._mcl_baseitem then
 		local honey_level = core.get_item_group(node.name, "honey_level")
 		honey_level = math.min(honey_level + add_levels, 5)
-		core.swap_node(pos, { name = def._mcl_baseitem.."_"..honey_level })
+		node.name = def._mcl_baseitem.."_"..honey_level
+		core.swap_node(pos, node)
 	end
 end
 
