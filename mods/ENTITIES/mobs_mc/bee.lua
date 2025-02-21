@@ -59,7 +59,7 @@ local bee = {
 	pace_height = 7,
 	pace_width = 8,
 	group_attack = { "mobs_mc:bee", },
-	_alert_interval = 5,
+	_alert_interval = 0,
 }
 
 
@@ -147,8 +147,8 @@ function bee:retaliate_against(source)
 end
 
 function bee:ai_step(dtime)
-	self._alert_interval = self._alert_interval - dtime
 	if self.attack and not self.dead then
+		self._alert_interval = self._alert_interval - dtime
 		if self._alert_interval <= 0 then
 			self:_alert_other_bees()
 			self._alert_interval = mcl_util.float_random(2, 5)
