@@ -127,7 +127,7 @@ function bee:airborne_pacing_target (pos, width, height, groups)
 	return mob_class.airborne_pacing_target (self, pos, width, height, groups)
 end
 
-function bee:alert_other_bees()
+function bee:_alert_other_bees()
 	local self_pos = self.object:get_pos ()
 	local aa = vector.offset (self_pos, -self.view_range, -10, -self.view_range)
 	local bb = vector.offset (self_pos, self.view_range, 10, self.view_range)
@@ -150,7 +150,7 @@ function bee:ai_step(dtime)
 	self._alert_interval = self._alert_interval - dtime
 	if self.attack and not self.dead then
 		if self._alert_interval <= 0 then
-			self:alert_other_bees()
+			self:_alert_other_bees()
 			self._alert_interval = mcl_util.float_random(2, 5)
 		end
 	end
