@@ -148,6 +148,7 @@ function bee:ai_step(dtime)
 		if self._got_nectar then
 			mcl_beehives.add_level(self._home, 1)
 			self._got_nectar = false
+			self:_nest()
 		end
 		if mcl_beehives.bees_should_sleep(pos) then
 			self:_nest()
