@@ -59,6 +59,7 @@ local bee = {
 	pace_height = 7,
 	pace_width = 8,
 	group_attack = { "mobs_mc:bee", },
+	_alert_interval = 5,
 }
 
 
@@ -126,8 +127,46 @@ function bee:airborne_pacing_target (pos, width, height, groups)
 	return mob_class.airborne_pacing_target (self, pos, width, height, groups)
 end
 
+function bee:alert_other_bees()
+	local self_pos = self.object:get_pos ()
+	local aa = vector.offset (self_pos, -self.view_range, -10, -self.view_range)
+	local bb = vector.offset (self_pos, self.view_range, 10, self.view_range)
+	for object in core.objects_in_area (aa, bb) do
+		local entity = object:get_luaentity ()
+		if entity and entity.name == "mobs_mc:bee"
+			and not entity.attack and entity ~= self then
+			entity:do_attack (self.attack, 15)
+		end
+	end
+end
+
+function bee:retaliate_against(source)
+	if source:is_player() then
+		mob_class.retaliate_against (self, source)
+	end
+end
+
+function bee:ai_step(dtime)
+	self._alert_interval = self._alert_interval - dtime
+	if self.attack and not self.dead then
+		if self._alert_interval <= 0 then
+			self:alert_other_bees()
+			self._alert_interval = mcl_util.float_random(2, 5)
+		end
+	end
+	if self.attack then
+		self:add_physics_factor ("movement_speed",
+				"mobs_mc:bee_attack_modifier",
+				1.0, "add")
+	else
+		self:remove_physics_factor ("movement_speed",
+				"mobs_mc:bee_attack_modifier")
+	end
+end
+
 bee.ai_functions = {
 	mob_class.check_pace,
+	mob_class.check_attack,
 }
 
 bee.gwp_penalties = table.copy (mob_class.gwp_penalties)
