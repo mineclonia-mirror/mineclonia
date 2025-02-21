@@ -96,15 +96,7 @@ function bee:_nest()
 end
 
 function bee:airborne_pacing_target (pos, width, height, groups)
-	if self._home and vector.distance(pos, self._home) < 1.5 then
-		if self._got_nectar then
-			mcl_beehives.add_level(self._home, 1)
-			self._got_nectar = false
-		end
-		if mcl_beehives.bees_should_sleep(pos) then
-			self:_nest()
-		end
-	elseif self._home and self:_should_go_home() then
+	if self._home and self:_should_go_home() then
 		return self._home
 	else
 		if not self._home then
@@ -151,7 +143,16 @@ function bee:retaliate_against(source)
 end
 
 function bee:ai_step(dtime)
-	if self.attack and not self.dead then
+	local pos = self.object:get_pos()
+	if self._home and vector.distance(pos, self._home) < 1.5 then
+		if self._got_nectar then
+			mcl_beehives.add_level(self._home, 1)
+			self._got_nectar = false
+		end
+		if mcl_beehives.bees_should_sleep(pos) then
+			self:_nest()
+		end
+	elseif self.attack and not self.dead then
 		self._alert_interval = self._alert_interval - dtime
 		if self._alert_interval <= 0 then
 			self:_alert_other_bees()
