@@ -1,6 +1,5 @@
 mcl_beehives = {}
 local S = core.get_translator(core.get_current_modname())
-local abm_nodes = { "mcl_beehives:beehive", "mcl_beehives:bee_nest" }
 
 -- Function to allow harvesting honey and honeycomb from the beehive and bee nest.
 local function honey_harvest(pos, node, player, itemstack)
@@ -117,7 +116,6 @@ core.register_node("mcl_beehives:beehive", tpl_beehive)
 
 for l = 1, 4 do
 	local name = "mcl_beehives:beehive_" .. l
-	table.insert(abm_nodes, name)
 	core.register_node(name, table.merge(tpl_beehive, {
 		groups = { axey = 1, deco_block = 1, flammable = 0, fire_flammability = 5, material_wood = 1, not_in_creative_inventory = 1, beehive = 1, honey_level = l, unmovable_by_piston = 1},
 	}))
@@ -138,7 +136,6 @@ core.register_node("mcl_beehives:bee_nest", tpl_bee_nest)
 
 for i = 1, 4 do
 	local name = "mcl_beehives:bee_nest_"..i
-	table.insert(abm_nodes, name)
 	core.register_node(name, table.merge(tpl_bee_nest, {
 		groups = { axey = 1, deco_block = 1, flammable = 0, fire_flammability = 30, not_in_creative_inventory = 1, bee_nest = 1, honey_level = i, comparator_signal = i },
 	}))
@@ -207,7 +204,7 @@ end
 
 core.register_abm({
 	label = "Bees exist nest",
-	nodenames = abm_nodes,
+	nodenames = { "group:beehive", "group:bee_nest" },
 	interval = 25,
 	chance = 5,
 	action = function(pos, _)
