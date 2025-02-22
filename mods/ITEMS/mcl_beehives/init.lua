@@ -184,11 +184,15 @@ end
 local max_bees = 3
 
 function mcl_beehives.release_bees(pos, bees, digger)
+	local m = core.get_meta(pos)
+	local bees_current = m:get_int("mobs_mc:bees_present")
+	bees = bees or bees_current
 	if bees > 0 then
 		local node = core.get_node(pos)
 		local front = vector.subtract(pos, core.facedir_to_dir(node.param2))
 		if core.get_node(front).name =="air" then
-			for _ = 1, bees do
+			for i = 1, bees do
+				if i > bees_current then break end
 				local o = mcl_mobs.spawn(front, "mobs_mc:bee", core.serialize({_home = pos}))
 				if digger and o then
 					local l = o:get_luaentity()
@@ -197,26 +201,26 @@ function mcl_beehives.release_bees(pos, bees, digger)
 					end
 				end
 			end
-			core.get_meta(pos):set_string("mobs_mc:bees_present", "")
+			m:set_int("mobs_mc:bees_present", bees_current - bees)
 		end
 	end
 end
 
 core.register_abm({
-	label = "Bees exist nest",
+	label = "Bees exist nest / Initialize Bee nests",
 	nodenames = { "group:beehive", "group:bee_nest" },
 	interval = 25,
 	chance = 5,
 	action = function(pos, _)
 		local m = core.get_meta(pos)
 		if m:get_string("mcl_beehives:initialized") == "" then
-			m:set_int("mobs_mc:bees_present", math.random(max_bees)) --initialize mapgen bee nests with a random amount of bees inside
+			m:set_int("mobs_mc:bees_present", max_bees)
+			m:set_int("mobs_mc:bees", max_bees)
 			m:set_string("mcl_beehives:initialized", "true")
 		end
 
 		if not mcl_beehives.bees_should_sleep(pos) then
-
-			mcl_beehives.release_bees(pos, m:get_int("mobs_mc:bees_present"))
+			mcl_beehives.release_bees(pos, 1)
 		end
 	end,
 })
