@@ -167,7 +167,7 @@ function mcl_beehives.add_level(pos, add_levels)
 		local honey_level = core.get_item_group(node.name, "honey_level")
 		honey_level = math.min(honey_level + add_levels, 5)
 		node.name = def._mcl_baseitem.."_"..honey_level
-		mcl_redstone.swap_node(pos, node)
+		mcl_redstone.swap_node(vector.new(pos.x, pos.y, pos.z), node) --make sure mcl_redstone gets a proper vector
 	end
 end
 
