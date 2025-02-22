@@ -117,12 +117,12 @@ core.register_node("mcl_beehives:beehive", tpl_beehive)
 for l = 1, 4 do
 	local name = "mcl_beehives:beehive_" .. l
 	core.register_node(name, table.merge(tpl_beehive, {
-		groups = { axey = 1, deco_block = 1, flammable = 0, fire_flammability = 5, material_wood = 1, not_in_creative_inventory = 1, beehive = 1, honey_level = l, unmovable_by_piston = 1},
+		groups = { axey = 1, deco_block = 1, flammable = 0, fire_flammability = 5, material_wood = 1, not_in_creative_inventory = 1, beehive = 1, honey_level = l, unmovable_by_piston = 1,  comparator_signal = l},
 	}))
 end
 
 core.register_node("mcl_beehives:beehive_5", table.merge(tpl_beehive, {
-	groups = { axey = 1, deco_block = 1, flammable = 0, fire_flammability = 5, material_wood = 1, not_in_creative_inventory = 1, beehive = 1, honey_level = 5, unmovable_by_piston = 1},
+	groups = { axey = 1, deco_block = 1, flammable = 0, fire_flammability = 5, material_wood = 1, not_in_creative_inventory = 1, beehive = 1, honey_level = 5, unmovable_by_piston = 1,  comparator_signal = 5},
 	on_rightclick = honey_harvest,
 	tiles = {
 		"mcl_beehives_beehive_end.png", "mcl_beehives_beehive_end.png",
@@ -167,7 +167,7 @@ function mcl_beehives.add_level(pos, add_levels)
 		local honey_level = core.get_item_group(node.name, "honey_level")
 		honey_level = math.min(honey_level + add_levels, 5)
 		node.name = def._mcl_baseitem.."_"..honey_level
-		core.swap_node(pos, node)
+		mcl_redstone.swap_node(pos, node)
 	end
 end
 
