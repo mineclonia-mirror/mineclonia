@@ -85,6 +85,12 @@ end
 
 function bee:_nest()
 	if self._home then
+		local n = core.get_node(self._home).name
+		if core.get_item_group(n, "beehive") > 0 or core.get_item_group(n, "bee_nest") == 0 then
+			self._home = nil
+			return
+		end
+
 		local m = core.get_meta(self._home)
 		local bees_current = m:get_int("mobs_mc:bees_present")
 		if bees_current < bees_per_hive then
