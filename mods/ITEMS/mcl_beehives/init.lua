@@ -37,7 +37,9 @@ local function honey_harvest(pos, node, player, itemstack)
 		end
 		--TODO: damage type = "mob" since this is supposed to be done by bee mobs which aren't a thing yet
 		--Once bees exist this branch should spawn them and/or make them aggro
-		if not campfire[1] then mcl_util.deal_damage(player, 10, {type = "mob"}) end
+		if not campfire[1] then
+			mcl_beehives.release_bees(pos, nil, player)
+		end
 		node.name = original_block
 		mcl_redstone.swap_node(pos, node)
 	end
