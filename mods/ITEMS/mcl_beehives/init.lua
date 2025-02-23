@@ -212,7 +212,7 @@ core.register_abm({
 	label = "Bees exist nest / Initialize Bee nests",
 	nodenames = { "group:beehive", "group:bee_nest" },
 	interval = 25,
-	chance = 5,
+	chance = 2,
 	action = function(pos, _)
 		local m = core.get_meta(pos)
 		if m:get_string("mcl_beehives:initialized") == "" then
