@@ -189,7 +189,7 @@ function mcl_beehives.release_bees(pos, bees, digger)
 	local m = core.get_meta(pos)
 	local bees_current = m:get_int("mobs_mc:bees_present")
 	bees = bees or bees_current
-	if bees > 0 then
+	if bees_current > 0 then
 		local node = core.get_node(pos)
 		local front = vector.subtract(pos, core.facedir_to_dir(node.param2))
 		if core.get_node(front).name =="air" then
