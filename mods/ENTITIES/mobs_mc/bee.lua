@@ -114,8 +114,16 @@ function bee:airborne_pacing_target (pos, width, height, groups)
 		local nodes = core.find_nodes_in_area_under_air (aa, bb, {"group:flower"})
 		for _, v in pairs(nodes) do
 			if vector.distance(pos, v) < 1.5 then
-				self._got_nectar = true
-				break
+				if self._nectar_timer and self._nectar_timer < 0 then
+					self._got_nectar = true
+					self._nectar_timer = nil
+					return self._home
+				else
+					if not self._nectar_timer then
+						self._nectar_timer = 20
+					end
+					return v
+				end
 			end
 		end
 		if #nodes > 0 then
@@ -150,6 +158,11 @@ end
 
 function bee:ai_step(dtime)
 	local pos = self.object:get_pos()
+
+	if self._nectar_timer then
+		self._nectar_timer = self._nectar_timer - dtime
+	end
+
 	if self._home and vector.distance(pos, self._home) < 1.5 then
 		if self._got_nectar then
 			mcl_beehives.add_level(self._home, 1)
