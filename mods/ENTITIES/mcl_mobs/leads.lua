@@ -565,7 +565,7 @@ end
 
 function lead_entity:step_physics(dtime, prevent_break)
 	local l_pos = self.leader and self.leader:get_pos() or self.tied_to_node
-	local f_pos = self.follower:get_pos()
+	local f_pos = self.follower and self.follower:get_pos()
 
 	if not (l_pos and f_pos) then
 		self.object:remove()
