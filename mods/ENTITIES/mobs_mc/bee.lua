@@ -26,7 +26,7 @@ local bee = {
 	visual = "mesh",
 	mesh = "mobs_mc_bee.b3d",
 	visual_size = {x = 1, y = 1},
-	textures = {
+	texture_list = {
 		{"mobs_mc_bee.png"},
 	},
 	fly = true,
