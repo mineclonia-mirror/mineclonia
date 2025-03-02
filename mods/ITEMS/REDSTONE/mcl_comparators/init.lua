@@ -160,6 +160,8 @@ local measure_tab = {
 	--[[ initalized using after_mods_loaded
 	["mcl_beds:respawn_anchor"] = measure_constant(comparator_signal),
 	["mcl_beds:respawn_anchor_charged_xxx"] = measure_constant(comparator_signal),
+	["mcl_beehives:beehive_xxx"] = measure_constant(comparator_signal),
+	["mcl_beehives:bee_nest_xxx"] = measure_constant(comparator_signal),
 	["mcl_brewing:stand_xxx"] = measure_brewing_stand,
 	["mcl_chests:xxx_shulker_box"] = measure_inventory,
 	["mcl_cauldron:cauldron_xxx"] = measure_constant(comparator_signal),
@@ -172,8 +174,6 @@ local measure_tab = {
 	--["decorated_pot"] = measure_inventory,
 	--["minecart_with_chest"] = measure_inventory,
 	--["minecart_with_hopper"] = measure_inventory,
-	--["beehive"] = measure_beehive,
-	--["bees_nest"] = measure_beehive,
 	--["chiseled_bookshelf"] = measure_bookshelf,
 	--["command_block"] = measure_command_block,
 	--["crafter"] = measure_crafter,
