@@ -78,17 +78,8 @@ function cow_def:on_rightclick (clicker)
 
 	local item = clicker:get_wielded_item()
 	if item:get_name() == "mcl_buckets:bucket_empty" and clicker:get_inventory() then
-		local inv = clicker:get_inventory()
-		inv:remove_item("main", "mcl_buckets:bucket_empty")
 		core.sound_play("mobs_mc_cow_milk", {pos=self.object:get_pos(), gain=0.6})
-		-- if room add bucket of milk to inventory, otherwise drop as item
-		if inv:room_for_item("main", {name = "mcl_mobitems:milk_bucket"}) then
-			clicker:get_inventory():add_item("main", "mcl_mobitems:milk_bucket")
-		else
-			local pos = self.object:get_pos()
-			pos.y = pos.y + 0.5
-			core.add_item(pos, {name = "mcl_mobitems:milk_bucket"})
-		end
+		clicker:set_wielded_item(mcl_inventory.give_and_take(clicker, item, ItemStack("mcl_mobitems:milk_bucket")))
 	end
 end
 
