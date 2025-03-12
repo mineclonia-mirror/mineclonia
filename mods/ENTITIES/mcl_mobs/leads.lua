@@ -656,7 +656,7 @@ end
 
 function lead_entity:remove(breaker, snap, nodrop)
 	if not (nodrop or (breaker and breaker:is_player() and core.is_creative_enabled(breaker:get_player_name()))) then
-		drop_lead(self.follower:get_pos())
+		drop_lead(self.follower and self.follower:get_pos() or self.object:get_pos())
 	end
 
 	if self.follower and self.follower:get_pos() then
