@@ -198,4 +198,4 @@ bee.gwp_penalties.DAMAGE_FIRE = -1.0
 
 mcl_mobs.register_mob("mobs_mc:bee", bee)
 
-mcl_mobs.register_egg("mobs_mc:bee", "Bee", "#6f4833", "#daa047", 0)
+mcl_mobs.register_egg("mobs_mc:bee", "Bee", "#edc343", "#43241b", 0)
