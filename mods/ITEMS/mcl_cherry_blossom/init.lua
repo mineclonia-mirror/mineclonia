@@ -25,6 +25,12 @@ mcl_trees.register_wood("cherry_blossom",{
 		tiles = { "mcl_cherry_blossom_leaves.png" },
 		paramtype2 = "none",
 		palette = "",
+		groups = {
+			handy = 1, hoey = 1, shearsy = 1, swordy = 1, dig_by_piston = 1,
+			deco_block = 1, leaves = 1, biomecolor = 1, flammable = 2,
+			fire_encouragement = 30, fire_flammability = 60, compostability = 30,
+			unsticky = 1, nectar_bearing = 1
+		},
 	},
 	stripped = {
 		tiles = {"mcl_cherry_blossom_log_top_stripped.png", "mcl_cherry_blossom_log_top_stripped.png","mcl_cherry_blossom_log_stripped.png"}

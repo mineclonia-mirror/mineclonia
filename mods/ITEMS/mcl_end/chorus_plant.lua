@@ -139,6 +139,7 @@ core.register_node("mcl_end:chorus_flower", {
 		unsticky = 1,
 		dig_by_trident = 1,
 		not_breaking_cactus = 1,
+		nectar_bearing = 1
 	},
 	node_placement_prediction = "",
 	on_place = function(itemstack, placer, pointed_thing)

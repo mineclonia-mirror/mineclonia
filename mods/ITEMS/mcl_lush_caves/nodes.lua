@@ -340,7 +340,9 @@ local function register_leaves(subname, def)
 		"mcl_trees:", subname, def,
 		{"mcl_lush_caves:azalea_flowering", "mcl_lush_caves:azalea"}, false, {20, 16, 12, 10})
 	d.leaves_def.groups.biomecolor = nil
+	d.leaves_def.groups.nectar_bearing = 1
 	d.orphan_leaves_def.groups.biomecolor = nil
+	d.orphan_leaves_def.groups.nectar_bearing = 1
 	core.register_node(":"..d["leaves_id"], d["leaves_def"])
 	core.register_node(":"..d["orphan_leaves_id"], d["orphan_leaves_def"])
 end
@@ -479,7 +481,7 @@ local azalea_flowering = table.merge(
 			"mcl_lush_caves_azalea_flowering_top.png",
 			"mcl_lush_caves_azalea_plant.png"
 		},
-		groups = table.merge(tpl_azalea.groups, {flower = 1}),
+		groups = table.merge(tpl_azalea.groups, {flower = 1, nectar_bearing = 1}),
 })
 azalea_flowering.groups.compostability = 85
 core.register_node("mcl_lush_caves:azalea_flowering", azalea_flowering)

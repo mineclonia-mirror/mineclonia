@@ -114,7 +114,7 @@ function mcl_flowers.register_simple_flower(flowername, def, node_defs)
 		dig_by_water = 1, destroy_by_lava_flow = 1, enderman_takable = 1,
 		plant = 1, flower = 1, place_flowerlike = 1, non_mycelium_plant = 1,
 		flammable = 2, fire_encouragement = 60, fire_flammability = 100,
-		compostability = 65, unsticky = 1,
+		compostability = 65, unsticky = 1, nectar_bearing = 1
 	}
 	if def.sus_stew then
 		groups.sus_stew_ingredient = 1
@@ -160,20 +160,20 @@ end
 function mcl_flowers.register_ground_flower(flowername, def, add_def)
 	local nodename = "mcl_flowers:"..flowername
 	core.register_craftitem(":"..nodename, table.merge({
-	description = def.desc,
-	_doc_items_longdesc = def.longdesc,
-	inventory_image = def.image,
-	wield_image = def.image,
-	groups = {
+		description = def.desc,
+		_doc_items_longdesc = def.longdesc,
+		inventory_image = def.image,
+		wield_image = def.image,
+		groups = table.merge({
 			craftitem = 1,
 			attached_node = 1, deco_block = 1, dig_by_piston = 1, dig_immediate = 3,
 			dig_by_water = 1, destroy_by_lava_flow = 1, enderman_takable = 1,
 			plant = 1, flower = 1, place_flowerlike = 1, non_mycelium_plant = 1,
 			flammable = 3, fire_encouragement = 60, fire_flammability = 100,
 			compostability = 30, unsticky = 1
-		},
+		}, def.groups or {}),
 
-	on_place = function(itemstack, placer, pointed_thing)
+		on_place = function(itemstack, placer, pointed_thing)
 			local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
 			if rc then return rc end
 
@@ -233,7 +233,7 @@ function mcl_flowers.register_ground_flower(flowername, def, add_def)
 				flammable = 3, fire_encouragement = 60, fire_flammability = 100,
 				compostability = 30, unsticky = 1,
 				not_in_creative_inventory = 1,
-				not_in_craft_guide = 1
+				not_in_craft_guide = 1, nectar_bearing = 1
 			},
 			sounds = mcl_sounds.node_sound_leaves_defaults(),
 			drop = nodename.." "..i,
@@ -341,11 +341,15 @@ function mcl_flowers.add_large_plant(plantname, def)
 
 	if def.is_flower then
 		table.update(def.bottom.groups, { flower = 1, place_flowerlike = 1, dig_immediate = 3 })
+		table.update(def.top.groups, {
+			not_in_creative_inventory = 1, handy = 1, shearsy = 1,
+			double_plant = 2, supported_node = 1, nectar_bearing = 1
+		})
 	else
 		table.update(def.bottom.groups, { place_flowerlike = 2, handy = 1, shearsy = 1 })
+		table.update(def.top.groups, { not_in_creative_inventory = 1, handy = 1, shearsy = 1, double_plant = 2, supported_node = 1 })
 	end
 
-	table.update(def.top.groups, { not_in_creative_inventory=1, handy = 1, shearsy = 1, double_plant=2, supported_node = 1})
 
 	if def.grass_color then
 		def.bottom.paramtype2 = "color"
