@@ -133,7 +133,8 @@ core.register_node("mcl_end:chorus_flower", table.merge(tpl_chorus_flower, {
 	_doc_items_longdesc = S("A chorus flower is the living part of a chorus plant. It can grow into a tall chorus plant, step by step. When it grows, it may die on old age eventually. It also dies when it is unable to grow."),
 	_doc_items_usagehelp = S("Place it and wait for it to grow. It can only be placed on top of end stone, on top of a chorus plant stem, or at the side of exactly one chorus plant stem."),
 	tiles = {"mcl_end_chorus_flower.png"},
-	groups = table.merge(chorus_flower_groups, {deco_block = 1}),
+	groups = table.merge(chorus_flower_groups, {deco_block = 1, nectar_bearing = 1}),
+
 	node_placement_prediction = "",
 	on_place = function(itemstack, placer, pointed_thing)
 		local node_under = core.get_node(pointed_thing.under)

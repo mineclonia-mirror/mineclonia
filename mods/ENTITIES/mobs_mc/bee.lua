@@ -111,7 +111,7 @@ function bee:airborne_pacing_target (pos, width, height, groups)
 		local v = self.view_range
 		local aa = vector.offset (pos, -v, -v, -v)
 		local bb = vector.offset (pos, v, v, v)
-		local nodes = core.find_nodes_in_area_under_air (aa, bb, {"group:flower"})
+		local nodes = core.find_nodes_in_area_under_air (aa, bb, {"group:nectar_bearing"})
 		for _, v in pairs(nodes) do
 			if vector.distance(pos, v) < 1.5 then
 				if self._nectar_timer and self._nectar_timer < 0 then

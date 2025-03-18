@@ -157,7 +157,7 @@ core.register_node("mcl_mangrove:propagule", {
 	groups = {
 		plant = 1, sapling = 1, flower = 1, non_mycelium_plant = 1, attached_node = 1,
 		deco_block = 1, dig_immediate = 3, dig_by_water = 0, dig_by_piston = 1,
-		destroy_by_lava_flow = 1, compostability = 30
+		destroy_by_lava_flow = 1, compostability = 30, nectar_bearing = 1
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	on_construct = function(pos)
