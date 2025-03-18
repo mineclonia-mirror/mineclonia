@@ -149,6 +149,7 @@ mcl_flowers.register_ground_flower("wildflowers", {
 	desc = S("Wildflowers"),
 	image = "mcl_flowers_wildflower.png",
 	tiles = {"mcl_flowers_wildflower.png","mcl_flowers_wildflower_stem.png"},
+	groups = {nectar_bearing = 1},
 }, {
 	_mcl_crafting_output = {single = {output = "mcl_dyes:yellow"}}
 })
@@ -167,6 +168,7 @@ mcl_flowers.register_ground_flower("pink_petals", {
 	longdesc = S("Pink Petals are ground decoration of cherry grove biomes"),
 	image = "mcl_cherry_blossom_pink_petals.png",
 	tiles = {"mcl_cherry_blossom_pink_petals.png","mcl_flowers_wildflower_stem.png"},
+	groups = {nectar_bearing = 1},
 }, {
 	_mcl_crafting_output = {single = {output = "mcl_dyes:pink"}}
 })
