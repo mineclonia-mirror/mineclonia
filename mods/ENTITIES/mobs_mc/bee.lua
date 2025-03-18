@@ -21,30 +21,22 @@ local bee = {
 	head_eye_height = 0.54,
 	curiosity = 10,
 	reach = 2,
-	collisionbox = { -0.2, -0.1, -0.2, 0.2, 0.7, 0.2 },
+	collisionbox = {-0.2, -0.1, -0.2, 0.2, 0.7, 0.2},
 	visual = "mesh",
 	mesh = "mobs_mc_bee.b3d",
-	visual_size = { x = 1, y = 1 },
+	visual_size = {x = 1, y = 1},
 	textures = {
 		{"mobs_mc_bee.png"},
 	},
-	glow = 4,
 	fly = true,
-	fly_in = { "air" },
+	fly_in = {"air"},
 	fly_velocity = 4,
-	sounds = {
-	   -- random = "",
-	},
-	drops = {
-	   -- {name = "bee:bee", min = 1, max = 2},
-	},
-
 	view_range = 16,
 	stepheight = 1.1,
 	fall_damage = 0,
 	animation = {
-				-- Holding Item = 200,220
-				--
+		-- Holding Item = 200,220
+		--
 		stand_start = 1, stand_end = 40, stand_speed = 10,
 		walk_start =1, walk_end = 40, speed_normal = 10,
 		run_start = 1, run_end = 40, speed_run = 15,
@@ -62,7 +54,7 @@ local bee = {
 	stop_chasing_distance = 1.0,
 	pace_height = 7,
 	pace_width = 8,
-	group_attack = { "mobs_mc:bee", },
+	group_attack = {"mobs_mc:bee"},
 	_alert_interval = 0,
 }
 
@@ -86,28 +78,28 @@ function bee:_should_go_home()
 end
 
 function bee:_nest()
-	if self._home then
-		local n = core.get_node(self._home).name
-		if core.get_item_group(n, "beehive") == 0 and core.get_item_group(n, "bee_nest") == 0 then
-			self._home = nil
-			return
-		end
+	if not self._home then return end
 
-		local m = core.get_meta(self._home)
-		local bees_current = m:get_int("mobs_mc:bees_present")
-		if bees_current < bees_per_hive then
-			m:set_int("mobs_mc:bees_present", bees_current + 1)
-			self:safe_remove()
-			return self._home
-		end
+	local n = core.get_node(self._home).name
+	if core.get_item_group(n, "beehive") == 0 and core.get_item_group(n, "bee_nest") == 0 then
+		self._home = nil
+		return
+	end
+
+	local m = core.get_meta(self._home)
+	local bees_current = m:get_int("mobs_mc:bees_present")
+	if bees_current < bees_per_hive then
+		m:set_int("mobs_mc:bees_present", bees_current + 1)
+		self:safe_remove()
+		return self._home
 	end
 end
 
 function bee:_collect_nectar(pos)
 	local v = self.view_range
 	local nodes = core.find_nodes_in_area_under_air(pos:add(-v), pos:add(v), {"group:nectar_bearing"})
-	for _, v in pairs(nodes) do
-		if vector.distance(pos, v) < 1.5 then
+	for _, n in pairs(nodes) do
+		if vector.distance(pos, n) < 1.5 then
 			if self._nectar_timer and self._nectar_timer < 0 then
 				self._got_nectar = true
 				self._nectar_timer = nil
@@ -116,7 +108,7 @@ function bee:_collect_nectar(pos)
 				if not self._nectar_timer then
 					self._nectar_timer = 20
 				end
-				return v
+				return n
 			end
 		end
 	end
@@ -209,4 +201,4 @@ bee.gwp_penalties.DAMAGE_FIRE = -1.0
 
 mcl_mobs.register_mob("mobs_mc:bee", bee)
 
-mcl_mobs.register_egg("mobs_mc:bee", "Bee", "#edc343", "#43241b", 0)
+mcl_mobs.register_egg("mobs_mc:bee", S("Bee"), "#edc343", "#43241b", 0)
