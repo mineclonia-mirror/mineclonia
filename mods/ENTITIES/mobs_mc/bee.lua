@@ -103,32 +103,37 @@ function bee:_nest()
 	end
 end
 
-function bee:airborne_pacing_target (pos, width, height, groups)
+function bee:_collect_nectar(pos)
+	local v = self.view_range
+	local nodes = core.find_nodes_in_area_under_air(pos:add(-v), pos:add(v), {"group:nectar_bearing"})
+	for _, v in pairs(nodes) do
+		if vector.distance(pos, v) < 1.5 then
+			if self._nectar_timer and self._nectar_timer < 0 then
+				self._got_nectar = true
+				self._nectar_timer = nil
+				return self._home
+			else
+				if not self._nectar_timer then
+					self._nectar_timer = 20
+				end
+				return v
+			end
+		end
+	end
+	if #nodes > 0 then
+		return vector.offset(nodes[math.random(#nodes)], 0, 1, 0)
+	end
+end
+
+function bee:airborne_pacing_target(pos, width, height, groups)
 	if self._home and self:_should_go_home() then
 		return self._home
 	else
 		if not self._home then
 			if self:_find_new_home() then return self._home end
 		end
-		local v = self.view_range
-		local nodes = core.find_nodes_in_area_under_air(pos:add(-v), pos:add(v), {"group:nectar_bearing"})
-		for _, v in pairs(nodes) do
-			if vector.distance(pos, v) < 1.5 then
-				if self._nectar_timer and self._nectar_timer < 0 then
-					self._got_nectar = true
-					self._nectar_timer = nil
-					return self._home
-				else
-					if not self._nectar_timer then
-						self._nectar_timer = 20
-					end
-					return v
-				end
-			end
-		end
-		if #nodes > 0 then
-			return vector.offset(nodes[math.random(#nodes)], 0, 1, 0)
-		end
+		local target = self:_collect_nectar(pos)
+		if target then return target end
 	end
 	local target = mob_class.airborne_pacing_target(self, pos, width, height, groups)
 	if target and self._home and vector.distance(target, self._home) > 25 then
@@ -154,6 +159,12 @@ function bee:retaliate_against(source)
 	if source:is_player() then
 		mob_class.retaliate_against(self, source)
 	end
+end
+
+function bee:do_custom(dtime)
+	local angry = self.attack and "_angry" or ""
+	local nectar = self._got_nectar and "_nectar" or ""
+	self:set_textures({"mobs_mc_bee" .. angry .. nectar .. ".png"})
 end
 
 function bee:ai_step(dtime)
