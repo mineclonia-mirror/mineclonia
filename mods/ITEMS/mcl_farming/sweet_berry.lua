@@ -5,9 +5,16 @@ local planton = {"mcl_core:dirt_with_grass", "mcl_core:dirt", "mcl_core:podzol",
 for i=0, 3 do
 	local texture = "mcl_farming_sweet_berry_bush_" .. i .. ".png"
 	local node_name = "mcl_farming:sweet_berry_bush_" .. i
-	local groups = {sweet_berry=1, dig_immediate=3, not_in_creative_inventory=1,plant=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,dig_by_piston=1, flammable=3, fire_encouragement=60, fire_flammability=20, compostability=30}
+	local groups = {
+		sweet_berry = 1, dig_immediate = 3, not_in_creative_inventory = 1, plant = 1, attached_node = 1,
+		dig_by_water = 1, destroy_by_lava_flow = 1, dig_by_piston = 1, flammable = 3,
+		fire_encouragement = 60, fire_flammability = 20, compostability = 30
+	}
 	if i > 0 then
 		groups.sweet_berry_thorny = 1
+	end
+	if i < 3 then
+		groups.fertilizable_crop = 1
 	end
 	local drop_berries = (i >= 2)
 	local berries_to_drop = drop_berries and {i - 1, i} or nil

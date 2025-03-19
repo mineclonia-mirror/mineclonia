@@ -2,7 +2,8 @@ local S = core.get_translator("mobs_mc")
 
 local mob_class = mcl_mobs.mob_class
 
-local bees_per_hive = 3
+local BEES_PER_HIVE = 3
+local FERTILIZE_CHANCE = 0.01 -- 1% chance each tick to attempt fertilization
 local bee = {
 	description = S("Bee"),
 	type = "animal",
@@ -56,6 +57,7 @@ local bee = {
 	pace_width = 8,
 	group_attack = {"mobs_mc:bee"},
 	_alert_interval = 0,
+	_fertilize_count = 0,
 }
 
 function bee:_find_new_home()
@@ -65,7 +67,7 @@ function bee:_find_new_home()
 	for _, n in pairs(nn) do
 		local m = core.get_meta(n)
 		local bees = m:get_int("mobs_mc:bees")
-		if bees < bees_per_hive then
+		if bees < BEES_PER_HIVE then
 			self._home = n
 			m:set_int("mobs_mc:bees", bees + 1)
 			return true
@@ -88,7 +90,7 @@ function bee:_nest()
 
 	local m = core.get_meta(self._home)
 	local bees_current = m:get_int("mobs_mc:bees_present")
-	if bees_current < bees_per_hive then
+	if bees_current < BEES_PER_HIVE then
 		m:set_int("mobs_mc:bees_present", bees_current + 1)
 		self:safe_remove()
 		return self._home
@@ -103,6 +105,7 @@ function bee:_collect_nectar(pos)
 			if self._nectar_timer and self._nectar_timer < 0 then
 				self._got_nectar = true
 				self._nectar_timer = nil
+				self._fertilize_count = 10
 				self:update_textures()
 				return self._home
 			else
@@ -115,6 +118,24 @@ function bee:_collect_nectar(pos)
 	end
 	if #nodes > 0 then
 		return vector.offset(nodes[math.random(#nodes)], 0, 1, 0)
+	end
+end
+
+function bee:_fertilize(pos)
+	if self._fertilize_count <= 0 then return end
+
+	local raycast = core.raycast(pos, vector.offset(pos, 0, -2.5, 0), false, false)
+	for hitpoint in raycast do
+		local pos = hitpoint.under
+		local node = core.get_node(pos)
+		local def = core.registered_nodes[node.name]
+		if def and (def.groups["fertilizable_crop"] or 0) ~= 0 and def._on_bone_meal then
+			local success = def._on_bone_meal(nil, nil, hitpoint, pos, node)
+			if success then
+				mcl_bone_meal.add_bone_meal_particle(pos)
+				self._fertilize_count = self._fertilize_count - 1
+			end
+		end
 	end
 end
 
@@ -180,10 +201,13 @@ function bee:ai_step(dtime)
 		self._nectar_timer = self._nectar_timer - dtime
 	end
 
-	if self._home and vector.distance(pos, self._home) < 1.5 then
+	if self._got_nectar and math.random() <= FERTILIZE_CHANCE then
+		self:_fertilize(pos)
+	elseif self._home and vector.distance(pos, self._home) < 1.5 then
 		if self._got_nectar then
 			mcl_beehives.add_level(self._home, 1)
 			self._got_nectar = false
+			self._fertilize_count = 0
 			self:update_textures()
 			self:_nest()
 		end

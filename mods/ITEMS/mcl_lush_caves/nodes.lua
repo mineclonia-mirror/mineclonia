@@ -169,9 +169,8 @@ core.register_node("mcl_lush_caves:cave_vines", {
 		},
 	},
 	groups = {
-		handy=1, plant=1, vinelike_node=2,
-		dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1,
-		deco_block=1, not_in_creative_inventory=1
+		handy = 1, plant = 1, vinelike_node = 2, dig_by_water = 1, destroy_by_lava_flow = 1,
+		dig_by_piston = 1, deco_block = 1, not_in_creative_inventory = 1, fertilizable_crop = 1
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	_mcl_hardness = 0,
@@ -380,7 +379,7 @@ core.register_node("mcl_lush_caves:spore_blossom", {
 	use_texture_alpha = "clip",
 	paramtype = "light",
 	walkable = false,
-	groups = {handy = 1, plant = 1, deco_block = 1, attached_node = 4},
+	groups = {handy = 1, plant = 1, deco_block = 1, attached_node = 4, nectar_bearing = 1},
 	sounds = mcl_sounds.node_sound_dirt_defaults(),
 	selection_box = {
 		type = "fixed",

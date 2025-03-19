@@ -40,7 +40,10 @@ core.register_node("mcl_farming:beetroot_0", {
 			{-5/16, -0.5 ,-5/16, 5/16, -0.5+(2/16) ,5/16}
 		},
 	},
-	groups = {dig_immediate=3, not_in_creative_inventory=1,plant=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,dig_by_piston=1},
+	groups = {
+		dig_immediate = 3, not_in_creative_inventory = 1, plant = 1, attached_node = 1,
+		dig_by_water = 1, destroy_by_lava_flow = 1, dig_by_piston = 1, fertilizable_crop = 1
+	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	_mcl_hardness = 0,
 	_on_bone_meal = on_bone_meal,
@@ -66,7 +69,10 @@ core.register_node("mcl_farming:beetroot_1", {
 			{-6/16, -0.5 ,-6/16, 6/16, -0.5+(5/16) ,6/16}
 		},
 	},
-	groups = {dig_immediate=3, not_in_creative_inventory=1,plant=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,dig_by_piston=1},
+	groups = {
+		dig_immediate = 3, not_in_creative_inventory = 1, plant = 1, attached_node = 1,
+		dig_by_water = 1, destroy_by_lava_flow = 1, dig_by_piston = 1, fertilizable_crop = 1
+	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	_mcl_hardness = 0,
 	_on_bone_meal = on_bone_meal,
@@ -92,7 +98,10 @@ core.register_node("mcl_farming:beetroot_2", {
 			{-7/16, -0.5 ,-7/16, 7/16, -0.5+(6/16) ,7/16}
 		},
 	},
-	groups = {dig_immediate=3, not_in_creative_inventory=1,plant=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,dig_by_piston=1},
+	groups = {
+		dig_immediate = 3, not_in_creative_inventory = 1, plant = 1, attached_node = 1,
+		dig_by_water = 1, destroy_by_lava_flow = 1, dig_by_piston = 1, fertilizable_crop = 1
+	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	_mcl_hardness = 0,
 	_on_bone_meal = on_bone_meal,
