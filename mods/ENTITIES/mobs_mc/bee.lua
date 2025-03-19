@@ -103,6 +103,7 @@ function bee:_collect_nectar(pos)
 			if self._nectar_timer and self._nectar_timer < 0 then
 				self._got_nectar = true
 				self._nectar_timer = nil
+				self:update_textures()
 				return self._home
 			else
 				if not self._nectar_timer then
@@ -143,6 +144,7 @@ function bee:_alert_other_bees()
 		if entity and entity.name == "mobs_mc:bee"
 			and not entity.attack and entity ~= self then
 			entity:do_attack(self.attack, 15)
+			self:update_textures()
 		end
 	end
 end
@@ -150,13 +152,25 @@ end
 function bee:retaliate_against(source)
 	if source:is_player() then
 		mob_class.retaliate_against(self, source)
+		self:update_textures()
 	end
 end
 
-function bee:do_custom(dtime)
-	local angry = self.attack and "_angry" or ""
-	local nectar = self._got_nectar and "_nectar" or ""
-	self:set_textures({"mobs_mc_bee" .. angry .. nectar .. ".png"})
+function bee:_get_overlaid_texture()
+	local base = "mobs_mc_bee" .. (self._got_nectar and "_nectar" or "") .. ".png"
+	local angry = self.attack and "mobs_mc_bee_angry_e.png"
+	return table.concat({base, angry}, "^")
+end
+
+function bee:update_textures()
+	self.base_texture = {
+		self:_get_overlaid_texture(),
+	}
+	self:set_textures(self.base_texture)
+	self.base_mesh = self.initial_properties.mesh
+	self.base_size = self.initial_properties.visual_size
+	self.base_colbox = self.initial_properties.collisionbox
+	self.base_selbox = self.initial_properties.selectionbox
 end
 
 function bee:ai_step(dtime)
@@ -170,6 +184,7 @@ function bee:ai_step(dtime)
 		if self._got_nectar then
 			mcl_beehives.add_level(self._home, 1)
 			self._got_nectar = false
+			self:update_textures()
 			self:_nest()
 		end
 		if mcl_beehives.bees_should_sleep(pos) then
