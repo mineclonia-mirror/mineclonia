@@ -48,7 +48,10 @@ for i=1, 7 do
 			type = "fixed",
 			fixed = { selbox },
 		},
-		groups = {dig_immediate=3, not_in_creative_inventory=1,plant=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,dig_by_piston=1},
+		groups = {
+			dig_immediate = 3, not_in_creative_inventory = 1, plant = 1, attached_node = 1,
+			dig_by_water = 1, destroy_by_lava_flow = 1, dig_by_piston = 1, fertilizable_crop = 1
+		},
 		sounds = mcl_sounds.node_sound_leaves_defaults(),
 		_mcl_hardness = 0,
 		_on_bone_meal = on_bone_meal,
