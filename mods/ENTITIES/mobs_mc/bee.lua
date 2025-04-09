@@ -58,6 +58,33 @@ local bee = {
 	group_attack = {"mobs_mc:bee"},
 	_alert_interval = 0,
 	_fertilize_count = 0,
+	follow = {
+		"mcl_flowers:poppy",
+		"mcl_flowers:dandelion",
+		"mcl_flowers:oxeye_daisy",
+		"mcl_flowers:tulip_orange",
+		"mcl_flowers:tulip_pink",
+		"mcl_flowers:tulip_red",
+		"mcl_flowers:tulip_white",
+		"mcl_flowers:allium",
+		"mcl_flowers:azure_bluet",
+		"mcl_flowers:blue_orchid",
+		"mcl_flowers:wither_rose",
+		"mcl_flowers:lily_of_the_valley",
+		"mcl_flowers:cornflower",
+		"mcl_flowers:wildflowers",
+		"mcl_flowers:pink_petals",
+		"mcl_flowers:peony",
+		"mcl_flowers:rose_bush",
+		"mcl_flowers:lilac",
+		"mcl_flowers:sunflower",
+	},
+	on_rightclick = function(self, clicker)
+		if self:follow_holding (clicker)
+			and self:feed_tame (clicker, 4, true, false) then
+			return
+		end
+	end,
 }
 
 function bee:_find_new_home()
@@ -232,6 +259,8 @@ end
 bee.ai_functions = {
 	mob_class.check_pace,
 	mob_class.check_attack,
+	mob_class.check_breeding,
+	mob_class.check_following,
 }
 
 bee.gwp_penalties = table.copy(mob_class.gwp_penalties)
