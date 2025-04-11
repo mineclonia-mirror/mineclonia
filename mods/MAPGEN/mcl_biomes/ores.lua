@@ -340,11 +340,45 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				{ 6560, 7, 3, deepslate_min, deepslate_max },
 			},
 			["diamond"] = {
-				{ 10000, 4, 3, deepslate_min, mcl_worlds.layer_to_y(12) },
-				{ 5000, 2, 3, deepslate_min, mcl_worlds.layer_to_y(12) },
-				{ 10000, 8, 3, deepslate_min, mcl_worlds.layer_to_y(12) },
-				{ 20000, 1, 1, mcl_worlds.layer_to_y(13), mcl_worlds.layer_to_y(15) },
-				{ 20000, 2, 2, mcl_worlds.layer_to_y(13), mcl_worlds.layer_to_y(15) },
+				-- spawnsize 4, max 5 nodes
+				-- -> num = 3, size = 2 (>94% 1-5 nodes)
+				-- 7 tries per chunk, triangular, -64+80, air exposure reduction 0.5
+				-- -> 161 tries in deepslate (+14 stone tries), num -= 1 (33%) except lowest
+				-- 50 tries   [ -64,  -49]
+				{  2048, 3, 2, -128, -113 },
+				-- 40 tries   [ -48,  -33]
+				{  2560, 2, 2, -112,  -97 },
+				-- 32 tries   [ -32,  -17]
+				{  3200, 2, 2,  -96,  -81 },
+				-- 25 tries   [ -16,   -1]
+				{  4096, 2, 2,  -80,  -65 },
+				-- aggregate tries for all spawn sizes in highest layer
+				-- 25 tries   [   0,   15]
+				{  4096, 2, 2,  -64,  -49 },
+				-- spawnsize 8, max 10 nodes
+				-- -> num = 5, size = 3 (>99% 1-10 nodes)
+				-- 4 tries per chunk, triangular, -64+80, air exposure reduction 1.0
+				-- 2 tries per chunk, uniform, [-64, -4], air exposure reduction 0.5
+				-- -> 4 tries in stone (+146 tries in deepslate), num -= 1 (20%) except lowest
+				-- 50 tries   [ -64,  -49]
+				{  2048, 5, 3, -128, -113 },
+				-- 40 tries   [ -48,  -33]
+				{  2560, 4, 3, -112,  -97 },
+				-- 32 tries   [ -32,  -17]
+				{  3200, 4, 3,  -96,  -81 },
+				-- 20 tries   [ -16,   -1]
+				-- replace by 25 tries of num 3, size 2
+				{  4096, 3, 2,  -80,  -65 },
+				-- spawnsize 12, max 23 nodes, reduced air exposure
+				-- -> num = 12, size = 3 (>99% 5-19 nodes)
+				-- 1/9 tries per chunk, triangular, -64+80, air exposure reduction 0.7
+				-- -> 3 tries in deepslate (0 stone tries, num -= 2 (16,7%)
+				-- 1 tries [-128, -49]
+				{ 512000, 10, 3, -128, -49 },
+				-- 1 tries [-128, -81]
+				{ 307200, 10, 3, -128, -81 },
+				-- 1 tries [-128, -113]
+				{ 102400, 10, 3, -128, -113 },
 			},
 			["redstone"] = {
 				{ 500, 4, 3, deepslate_min, mcl_worlds.layer_to_y(13) },
@@ -398,11 +432,22 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				{ 3333, 5, 3, mcl_worlds.layer_to_y(32), mcl_worlds.layer_to_y(79), mesa }
 			},
 			["diamond"] = {
-				{ 10000, 4, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(12) },
-				{ 5000, 2, 2, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(12) },
-				{ 10000, 8, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(12) },
-				{ 20000, 1, 1, mcl_worlds.layer_to_y(13), mcl_worlds.layer_to_y(15) },
-				{ 20000, 2, 2, mcl_worlds.layer_to_y(13), mcl_worlds.layer_to_y(15) },
+				-- spawnsize 4, max 5 nodes
+				-- -> num = 3, size = 2 (>94% 1-5 nodes)
+				-- 7 tries per chunk, triangular, -64+80, air exposure reduction 0.5
+				-- -> 14 tries in stone (+161 deepslate tries)
+				-- spawnsize 8, max 10 nodes
+				-- -> num = 5, size = 3 (>99% 1-10 nodes)
+				-- 4 tries per chunk, triangular, -64+80, air exposure reduction 1.0
+				-- 2 tries per chunk, uniform, [-64, -4], air exposure reduction 0.5
+				-- -> 4 tries in stone (+146 tries in deepslate)
+				-- spawnsize 12, max 23 nodes, reduced air exposure
+				-- -> num = 12, size = 3 (>99% 5-19 nodes)
+				-- 1/9 tries per chunk, triangular, -64+80, air exposure reduction 0.7
+				-- -> 0 tries in stone (+3 deepslate tries)
+				-- aggregate all stone tries, num = 2, size = 2
+				-- 25 tries  [  0,  15]
+				{ 4096, 2, 2, -64, -49 },
 			},
 			["redstone"] = {
 				{ 500, 4, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(13) },
