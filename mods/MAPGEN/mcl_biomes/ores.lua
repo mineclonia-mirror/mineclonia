@@ -272,6 +272,59 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 		})
 	end
 
+	-- Methodology for transforming MC wiki values:
+	--
+	-- MC tries per chunk are multiplied by 25 (default chunksize^2). For
+	-- non uniform distribution tries are distributed to height layers
+	-- usually 16 or 32 blocks high. This large height is on the coarse
+	-- side, but unfortunately thinner layers would easily exceed the
+	-- supported scarcity range for rare ores.
+	--
+	-- Distribution of tries is mostly chosen to give 'nice' scarcity
+	-- values, i.e. number of tries evenly divide 80x80, to prevent
+	-- unexpected ore node loss due to rounding in the engine with default
+	-- chunksize 5. 8, 16, 25, 32, 40, 50, 64, 80, 100 are 'good' values for
+	-- number of tries in a height range.
+	--
+	-- Luanti clust_scarcity = (volume / (MC tries * 25))
+	--
+	-- Volume usually is (80^2 * (y_max-y_min)), but chunk borders may need
+	-- to be taken into account for rarer ores; the most relevant chunk
+	-- borders for default chunksize 5 are at y = -48 and y = 32.
+	--
+	-- Tries per height range may be aggregated to prevent scarcity from
+	-- coming close to the engine supported scarcity limit - beyond which no
+	-- ore will be generated at all - or to get better values.
+	--
+	-- Split of tries between stone and deepslate:
+	-- - all tries for range [-128, -65] go to deepslate
+	-- - all tries for range [-48, +inf] go to stone
+	-- - tries for range [-64, -49] are doubled for deepslate and stone (the
+	--   assumption being that around half the nodes will hit the wrong
+	--   stone type and get discarded by the engine; as always numbers may
+	--   be jiggled a bit to get 'nice' scarcity values)
+	--
+	-- MC spawn size values are converted to clust_size/clust_num_ores with
+	-- hopefully similar average number of ore nodes in a cluster (there
+	-- seems to be little data on actual MC ore cluster size distribution,
+	-- Luanti scatter ores have a binomial distribution). Values get tweaked
+	-- to account for air exposure reduction using the following
+	-- assumptions:
+	-- - ~50% of clusters will be intersected by a cave
+	-- - ~33% of nodes exposed to air
+	-- -> (100 * <air exposure reduction factor> / 6)% nodes lost
+	-- -> adapt tries to account for too large/small reduction, because of
+	--    coarse value range for clust_num_ores (cluster size may need to
+	--    be adjusted similarly to get better scarcity values)
+	--
+	-- Challenges:
+	-- - partial tries per chunk are not (well) supported by Luanti ores
+	--   (see https://github.com/luanti-org/luanti/issues/16065)
+	-- - Luanti ores can't place different ore nodes depending on
+	--   replaced node (making it necessary to separate stone and deepslate
+	--   ores)
+	-- - Luanti's calculation of number of ore nodes in a cluster and
+	--   cluster shape seems very different from MC
 	local ore_mapgen = {
 		["deepslate"] = {
 			["coal"] = {
