@@ -328,9 +328,17 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 	local ore_mapgen = {
 		["deepslate"] = {
 			["coal"] = {
-				{ 1575, 5, 3, deepslate_min, deepslate_max },
-				{ 1530, 8, 3, deepslate_min, deepslate_max },
-				{ 1500, 12, 3, deepslate_min, deepslate_max },
+				-- spawnsize 17, max 37 nodes
+				-- -> num = 25, size = 4 (>99% 4-34 nodes)
+				-- 20 tries per chunk, triangular, 96+-96, air exposure reduction 0.5
+				-- -> 12 tries in deepslate (+ 488 stone tries), num -= 4 (16%)
+				-- 12 tries   [  0,  15]
+				-- replace by 25 tries of num = 12, size = 3
+				{ 4096, 12, 3, -64, -49},
+				-- 30 tries per chunk, uniform, [136, 320]
+				-- -> 0 tries in deepslate
+				-- 20 tries per chunk, uniform, [128, 256], mountains (Bedrock only)
+				-- -> 0 tries in deepslate
 			},
 			["iron"] = {
 				{ 830, 5, 3, deepslate_min, deepslate_max },
@@ -411,15 +419,34 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 		},
 		["stone"] = {
 			["coal"] = {
-				{ 525*3, 5, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(50) },
-				{ 510*3, 8, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(50) },
-				{ 500*3, 12, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(50) },
-				{ 550*3, 4, 2, mcl_worlds.layer_to_y(51), mcl_worlds.layer_to_y(80) },
-				{ 525*3, 6, 3, mcl_worlds.layer_to_y(51), mcl_worlds.layer_to_y(80) },
-				{ 500*3, 8, 3, mcl_worlds.layer_to_y(51), mcl_worlds.layer_to_y(80) },
-				{ 600*3, 3, 2, mcl_worlds.layer_to_y(81), mcl_worlds.layer_to_y(128) },
-				{ 550*3, 4, 3, mcl_worlds.layer_to_y(81), mcl_worlds.layer_to_y(128) },
-				{ 500*3, 5, 3, mcl_worlds.layer_to_y(81), mcl_worlds.layer_to_y(128) },
+				-- spawnsize 17, max 37 nodes
+				-- -> num = 25, size = 4 (>99% 4-34 nodes)
+				-- 20 tries per chunk, triangular, 96+-96, air exposure reduction 0.5
+				-- -> 488 tries in stone (+ 12 deepslate tries), num -= 4 (16%)
+				-- 12 tries   [  0,  15]
+				-- replace by 25 tries of num = 12, size = 3
+				{ 4096, 12, 3, -64, -49},
+				-- 64 tries   [ 16,  47]
+				{ 3200, 21, 4, -48, -17},
+				-- 80 tries   [ 48,  79]
+				{ 2560, 21, 4, -16,  15},
+				-- 100 tries  [ 80, 111]
+				{ 2048, 21, 4,  16,  47},
+				-- 64 tries   [ 88, 103]
+				{ 1600, 21, 4,  24,  39},
+				-- 80 tries   [112, 143]
+				{ 2560, 21, 4,  48,  79},
+				-- 64 tries   [144, 175]
+				{ 3200, 21, 4,  80, 111},
+				-- 24 tries   [176, 191]
+				-- replace by 50 tries of num = 10, size = 3
+				{ 2048, 10, 3, 112, 127},
+				-- 30 tries per chunk, uniform, [136, 320]
+				-- -> 750 tries in stone
+				{ 1571, 25, 4,  72, 256},
+				-- 20 tries per chunk, uniform, [128, 256], mountains (Bedrock only)
+				-- -> 500 tries in stone
+				{ 1639, 25, 4,  64, 192, mountains},
 			},
 			["iron"] = {
 				{ 830, 5, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(39) },
