@@ -2496,8 +2496,26 @@ local function register_biomes()
 		depth_top = 1,
 		node_cave_liquid = "mcl_core:water_source",
 		depth_riverbed = 2,
-		y_min = mcl_vars.mg_overworld_min,
+		y_min = mcl_vars.mg_overworld_min_old,
 		y_max = -1,
+		vertical_blend = 1,
+		humidity_point = 50,
+		heat_point = 50,
+		_mcl_biome_type = "medium",
+		_mcl_palette_index = 0,
+		_mcl_groups = {
+			is_overworld = true,
+		},
+	})
+
+	core.register_biome({
+		name = "DripstoneCave_deep_underground",
+		node_stone = "mcl_deepslate:deepslate",
+		depth_top = 1,
+		node_cave_liquid = "mcl_core:water_source",
+		depth_riverbed = 2,
+		y_min = mcl_vars.mg_overworld_min,
+		y_max = mcl_vars.mg_overworld_min_old,
 		vertical_blend = 1,
 		humidity_point = 50,
 		heat_point = 50,

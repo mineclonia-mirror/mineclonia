@@ -13,6 +13,10 @@ local mesa = {
 	"MesaPlateauFM", "MesaPlateauFM_sandlevel", "MesaPlateauFM_ocean",
 }
 
+local dripstone = {
+	"DripstoneCave", "DripstoneCave_deep_underground",
+}
+
 --Clay
 core.register_ore({
 	ore_type       = "blob",
@@ -414,7 +418,23 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				{ 16384, 1, 1, mcl_worlds.layer_to_y(4), deepslate_max, mountains },
 			},
 			["copper"] = {
-				{ 830, 5, 3, deepslate_min, deepslate_max },
+				-- spawnsize 20 (in deepslate, 10 in stone), max 52 nodes
+				-- -> num = 27, size = 4 (>99% 8-46 nodes)
+				-- 10 tries per chunk, triangular, 48+-64
+				-- -> 20 tries in deepslate (+ 230 tries in stone)
+				-- 8 tries    [-16,  -1]
+				-- replace by 25 tries of num = 9, size = 3
+				{ 4096,  9, 3, -80, -65},
+				-- 12 tries   [  0,  15]
+				-- replace by 25 tries of num = 13, size = 3
+				{ 4096, 13, 3, -64, -49},
+				-- 20 tries per chunk, triangular, 48+-64, dripstone caves
+				-- -> 40 tries in deepslate (+ 460 tries in stone)
+				-- 16 tries   [-16,  -1]
+				-- replace by 25 tries of num = 18, size = 3
+				{ 4096, 18, 3, -80, -65, dripstone},
+				-- 25 tries   [  0,  15]
+				{ 4096, 27, 4, -64, -49, dripstone},
 			}
 		},
 		["stone"] = {
@@ -499,8 +519,44 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				{  6400, 4, 2, -48, -33 },
 			},
 			["copper"] = {
-				{ 830, 5, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(39) },
-				{ 1660, 4, 2, mcl_worlds.layer_to_y(40), mcl_worlds.layer_to_y(63) },
+				-- spawnsize 10 (in stone, 20 in deepslate), max 16 nodes
+				-- -> num = 8, size = 3 (>99% 1-16 nodes)
+				-- 10 tries per chunk, triangular, 48+-64
+				-- -> 230 tries in stone (+ 20 tries in deepslate)
+				-- 13 tries  [  0,  15]
+				-- replace by 25 tries of num = 4, size = 3
+				{ 4096, 4, 3, -64, -49},
+				-- 32 tries  [ 16,  31]
+				{ 3200, 8, 3, -48, -33},
+				-- 80 tries  [ 32,  63]
+				{ 2560, 8, 3, -32,  -1},
+				-- 40 tries  [ 40,  55]
+				{ 2560, 8, 3, -24,  -9},
+				-- 32 tries  [ 64,  79]
+				{ 3200, 8, 3,   0,  15},
+				-- 25 tries  [ 80,  95]
+				-- replace by 50 tries of num = 4, size = 3
+				{ 2048, 4, 3,  16,  31},
+				-- 8 tries   [ 96, 111]
+				-- replace by 25 tries of num = 2, size = 2
+				{ 4096,  2, 2,  32,  47},
+				-- 20 tries per chunk, triangular, 48+-64, dripstone caves
+				-- -> 460 tries in stone (+ 40 tries in deepslate)
+				-- 25 tries  [  0,  15]
+				{ 4096, 8, 3, -64, -49, dripstone},
+				-- 64 tries  [ 16,  31]
+				{ 1600, 8, 3, -48, -33, dripstone},
+				-- 160 tries [ 32,  63]
+				{ 1280, 8, 3, -32,  -1, dripstone},
+				-- 80 tries  [ 40,  55]
+				{ 1280, 8, 3, -24,  -9, dripstone},
+				-- 64 tries  [ 64,  79]
+				{ 1600, 8, 3,   0,  15, dripstone},
+				-- 25 tries  [ 80,  95]
+				{ 4096, 8, 3,  16,  31, dripstone},
+				-- 16 tries  [ 96, 111]
+				-- replace by 25 tries of num = 5, size = 3
+				{ 4096, 5, 3,  32,  47, dripstone},
 			},
 			["emerald"] = {
 				{ 16384, 1, 1, mcl_worlds.layer_to_y(4), mcl_worlds.layer_to_y(32), mountains }
