@@ -722,7 +722,7 @@ function knot_entity:on_activate(staticdata, dtime_s)
 	self.leads = {}
 	self.pos = self.object:get_pos():round()
 	local meta = core.get_meta(self.pos)
-	self.persistent_leads = core.deserialize(meta:get(PERSISTENT_LEAD_KEY)) or {}
+	self.persistent_leads = core.deserialize(meta:get(PERSISTENT_LEAD_KEY) or "") or {}
 end
 
 function knot_entity:save_persistent_leads()
