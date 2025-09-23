@@ -348,6 +348,9 @@ local function attach_lead(followerent, leader, lead, respawn)
 				else
 					local offset = leaderent.get_lead_attach_offset and leaderent:get_lead_attach_offset() or vector.zero()
 					leadent.leader_attach_offset = offset
+					if leaderent.name == "mobs_mc:wandering_trader" then
+						leadent.leader_attach_offset = vector.new(0,1,0)
+					end
 				end
 			end
 			if followerent.is_leadable then

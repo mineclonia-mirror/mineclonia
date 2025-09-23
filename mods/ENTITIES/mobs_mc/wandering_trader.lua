@@ -427,6 +427,7 @@ local function spawn_one_llama (around, entity)
 			llama._trader_id = entity._trader_id
 			llama._get_owner = entity._provide_owner
 			llama._life_timer = entity._life_timer
+			mcl_mobs.attach_lead(llama, entity.object)
 			table.insert (entity._llamas, llama.object)
 			return
 		end
