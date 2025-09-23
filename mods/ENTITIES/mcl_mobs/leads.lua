@@ -224,7 +224,7 @@ local storage = core.get_mod_storage()
 local MIN_BREAK_AGE = 1.0
 local STRETCH_SOUND_INTERVAL = 2.0
 local LEAD_MAX_LENGTH = 4
-local LEAD_PULL_FORCE = 1.3
+local LEAD_PULL_FORCE = 1.5
 local PERSISTENT_LEAD_KEY = "mcl_mobs:lead_data"
 
 local player_leads = {}

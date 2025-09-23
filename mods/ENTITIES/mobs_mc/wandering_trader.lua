@@ -599,47 +599,7 @@ function trader_llama:_get_owner ()
 end
 
 function trader_llama:is_leashed ()
-	-- TODO: revise this once leashes are introduced.
-	return self:_get_owner () ~= nil
-end
-
--- XXX: revisit this function once leashes are implemented.
-local function trader_llama_follow_owner (self, self_pos, dtime)
-	if self._following_owner then
-		local owner = self:_get_owner ()
-		if not owner then
-			self._following_owner = false
-			return false
-		end
-		local owner_pos = owner:get_pos ()
-		if vector.distance (self_pos, owner_pos) < 6.0 then
-			self._following_owner = false
-			self:look_at (owner_pos)
-			return false
-		end
-
-		if self:check_timer ("follow_owner", 0.5) then
-			self:gopath (owner_pos, 1.4, nil, 3.0)
-		end
-		return true
-	else
-		local owner = self:_get_owner ()
-		if not owner then
-			return
-		end
-		local owner_pos = owner:get_pos ()
-		if vector.distance (self_pos, owner_pos) <= 20 then
-			if vector.distance (self_pos, owner_pos) >= 6.0 then
-				self._following_owner = true
-				self:gopath (owner_pos, 1.4, nil, 3.0)
-				return "_following_owner"
-			end
-		elseif owner then
-			self._trader_id = nil
-			self._get_owner = trader_llama._get_owner
-		end
-	end
-	return false
+	return self.lead and is_valid (self.lead)
 end
 
 function trader_llama:ai_step (dtime)
@@ -663,7 +623,6 @@ trader_llama.ai_functions = {
 	llama.check_tame,
 	llama.follow_caravan,
 	mob_class.check_attack,
-	trader_llama_follow_owner,
 	mob_class.check_frightened,
 	mob_class.check_breeding,
 	mob_class.check_following,
