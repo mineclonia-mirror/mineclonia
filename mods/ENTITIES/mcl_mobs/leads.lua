@@ -483,14 +483,7 @@ function mcl_mobs.check_lead(self)
 	if not self.is_leadable then return false end
 	if not self._lead_leader then return false end
 
-	-- make mob look at leading player
 	if self.lead and self.lead:get_pos() then
-		if self._lead_leader.player and self.is_mob then
-			local pl = core.get_player_by_name(self._lead_leader.player)
-			if pl then
-				self:look_at(pl:get_pos())
-			end
-		end
 		return true
 	end
 
