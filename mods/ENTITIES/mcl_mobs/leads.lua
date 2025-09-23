@@ -775,7 +775,7 @@ function knot_entity:on_step(dtime)
 	-- lead attachable node is present, remove the knot
 	self.timer = (self.timer or 0) - dtime
 	if self.timer > 0 then return end
-	self.timer = 1
+	self.timer = 0.1
 
 	if not ((next(self.leads) or next(self.persistent_leads)) and is_lead_attachable(self.object:get_pos())) then
 		self:remove()
