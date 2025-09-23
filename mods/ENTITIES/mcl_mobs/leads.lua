@@ -521,10 +521,6 @@ function mob_class:attach_lead(followerent)
 	return mcl_mobs.attach_lead(followerent, self.object)
 end
 
-function mob_class:attach_lead(followerent)
-	return mcl_mobs.attach_lead(followerent, self.object)
-end
-
 function mob_class:check_lead()
 	return mcl_mobs.check_lead(self)
 end
