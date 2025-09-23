@@ -566,7 +566,7 @@ function lead_entity:step_physics(dtime, prevent_break)
 	local f_pos = self.follower and self.follower:get_pos()
 
 	if not (l_pos and f_pos) then
-		self.object:remove()
+		self:remove(nil, true)
 		return false, nil, nil
 	end
 
