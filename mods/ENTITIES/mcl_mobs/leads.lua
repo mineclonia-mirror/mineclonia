@@ -434,7 +434,13 @@ local function tie_lead_to_knot(pos, clicker, itemstack, knot)
 
 	-- then try to transfer a lead from the player to the fence
 	local player_leads = clicker and player_leads[clicker] or {}
-	if next(player_leads) and transfer_one_lead(player_leads, knot or create_knot(pos), knot) then
+	if next(player_leads) then
+		for objref, _ in pairs(player_leads) do
+			local leads = {}
+			leads[objref] = player_leads[objref]
+			transfer_one_lead(leads, knot or create_knot(pos), knot)
+			leads = {}
+		end
 		return itemstack
 	end
 
