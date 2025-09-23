@@ -223,8 +223,8 @@ local storage = core.get_mod_storage()
 
 local MIN_BREAK_AGE = 1.0
 local STRETCH_SOUND_INTERVAL = 2.0
-local LEAD_MAX_LENGTH = 10
-local LEAD_PULL_FORCE = 35
+local LEAD_MAX_LENGTH = 4
+local LEAD_PULL_FORCE = 1.3
 local PERSISTENT_LEAD_KEY = "mcl_mobs:lead_data"
 
 local player_leads = {}
@@ -596,12 +596,8 @@ function lead_entity:step_physics(dtime, prevent_break)
 		-- detach follower before pulling
 		mcl_util.detach_object(self.follower)
 
-		local pull_force = self.pull_force
-		if not followerent.is_mob then
-			pull_force = pull_force * 20
-		end
-		local force = (distance - pull_distance) * pull_force/ pull_distance
-		self.follower:add_velocity((l_pos - f_pos):normalize() * dtime * force)
+		local pull_speed_factor = self.pull_force
+		followerent:gopath(lead_pos, pull_speed_factor, "run")
 
 		self.sound_timer = ( self.sound_timer or 0 ) + dtime
 		if self.sound_timer >= STRETCH_SOUND_INTERVAL then
