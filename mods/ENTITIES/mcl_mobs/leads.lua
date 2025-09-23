@@ -622,7 +622,7 @@ function lead_entity:step_physics(dtime, prevent_break)
 	return true, lead_pos, f_pos - l_pos
 end
 
-function lead_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, dir, damage)
+function lead_entity:on_rightclick(puncher, time_from_last_punch, tool_capabilities, dir, damage)
 	local name = puncher and puncher:get_player_name() or ''
 	local pos = vector.round(self.leader:get_pos())
 	if core.is_protected(pos, name) then
