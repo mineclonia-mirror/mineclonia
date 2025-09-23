@@ -869,6 +869,8 @@ core.register_craftitem("mcl_mobs:lead", {
 		end
 	end,
 	on_secondary_use = function(itemstack, user, pointed_thing)
+		local rc = mcl_util.call_on_rightclick(itemstack, user, pointed_thing)
+		if rc then return rc end
 		if pointed_thing.type == "object" then
 			local l = pointed_thing.ref:get_luaentity()
 			-- attaching a lead to a knot is handled by the knot entity
