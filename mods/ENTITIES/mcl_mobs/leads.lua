@@ -441,6 +441,7 @@ local function tie_lead_to_knot(pos, clicker, itemstack, knot)
 		for objref, _ in pairs(player_leads) do
 			local leads = {}
 			leads[objref] = player_leads[objref]
+			player_leads[objref] = nil
 			transfer_one_lead(leads, knot or create_knot(pos), knot)
 			leads = {}
 		end
