@@ -893,7 +893,7 @@ core.register_craft({
 	recipe =
 	{
 		{"mcl_mobitems:string", "mcl_mobitems:string", ""},
-		{"mcl_mobitems:string", "mcl_mobitems:slimeball", ""},
+		{"mcl_mobitems:string", "mcl_mobitems:string", ""},
 		{"",   "",   "mcl_mobitems:string"},
 	}
 })
