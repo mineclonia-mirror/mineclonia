@@ -233,29 +233,6 @@ function wandering_trader:ai_step (dtime)
 			self:set_wielditem (ItemStack ())
 		end
 	end
-
-	local valid_llamas = {}
-	-- Delete invalid llamas.
-	for _, llama in pairs (self._llamas) do
-		if is_valid (llama) then
-			table.insert (valid_llamas, llama)
-		end
-	end
-	-- Search within a 16 node radius for llamas belonging to this
-	-- trader.  TODO: revisit this once leashes are available.
-	if #valid_llamas < 2
-		and self:check_timer ("locate_llamas", 0.5) then
-		local self_pos = self.object:get_pos ()
-		for object in core.objects_inside_radius (self_pos, 16) do
-			local entity = object:get_luaentity ()
-			if entity and entity.name == "mobs_mc:trader_llama"
-				and entity._trader_id == self._trader_id then
-				entity._get_owner = self._provide_owner
-				table.insert (valid_llamas, object)
-			end
-		end
-	end
-	self._llamas = valid_llamas
 end
 
 local function is_mob (source)
