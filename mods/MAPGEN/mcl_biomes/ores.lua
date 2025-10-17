@@ -345,7 +345,34 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				-- -> 0 tries in deepslate
 			},
 			["iron"] = {
-				{ 830, 5, 3, deepslate_min, deepslate_max },
+				-- spawnsize 4, max 5 nodes
+				-- -> num = 3, size = 2 (>94% 1-5 nodes)
+				-- 4 tries per chunk, uniform, [-64, 72], no air exposure reduction
+				-- -> 100 + ~12 tries
+				-- -> 64 tries in deepslate (+50 stone tries)
+				-- 64 tries  [ -64,  15]
+				{ 8000, 3, 2, -128, -49 },
+				-- spawnsize 10 (BE, JE has 9), max 16 nodes
+				-- -> num = 7, size = 3 (>99% 2-13 nodes)
+				-- 10 tries per chunk, triangular, 16+-40, no air exposure reduction
+				-- -> 250 + 75 tries
+				-- -> 121 tries in deepslate (+193 stone tries)
+				-- 8 tries   [-24, -17]
+				{ 6400, 7, 3, -88, -81 },
+				-- 16 tries  [-16,  -9]
+				{ 3200, 7, 3, -80, -73 },
+				-- 25 tries  [ -8,  -1]
+				{ 2048, 7, 3, -72, -65 },
+				-- 32 tries  [  0,   7]
+				{ 1600, 7, 3, -64, -57 },
+				-- 40 tries  [  8,  15]
+				-- increase cluster size a bit in the max density layer
+				-- to compensate for slightly to few overall clusters
+				{ 1280, 8, 3, -56, -49 },
+				-- spawnsize 10 (BE, JE has 9), max 16 nodes
+				-- -> num = 7, size = 3 (>99% 2-13 nodes)
+				-- 90 tries per chunk, triangular, 232+-152, no air exposure reduction
+				-- no tries in deepslate
 			},
 			["gold"] = {
 				{ 4775, 5, 3, deepslate_min, deepslate_max },
@@ -469,8 +496,57 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				{ 1639, 25, 4,  64, 192, mountains},
 			},
 			["iron"] = {
-				{ 830, 5, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(39) },
-				{ 1660, 4, 2, mcl_worlds.layer_to_y(40), mcl_worlds.layer_to_y(63) },
+				-- spawnsize 4, max 5 nodes
+				-- -> num = 3, size = 2 (>94% 1-5 nodes)
+				-- 4 tries per chunk, uniform, [-64, 72], no air exposure reduction
+				-- -> 100 + ~12 tries
+				-- -> 50 tries in stone (+64 deepslate tries)
+				-- 50 tries   [  0, 71]
+				{ 10240, 3, 2, -64,  7 },
+				-- spawnsize 10 (BE, JE has 9), max 16 nodes
+				-- -> num = 7, size = 3 (>99% 2-13 nodes)
+				-- 10 tries per chunk, triangular, 16+-40, no air exposure reduction
+				-- -> 250 + 75 tries
+				-- -> 193 tries in stone (+121 deepslate tries)
+				-- 32 tries  [  0,   7]
+				{ 1600, 7, 3, -64, -57 },
+				-- 40 tries  [  8,  23]
+				-- increase cluster size a bit in the max density layer
+				-- to compensate for slightly to few overall clusters
+				{ 1280, 8, 3, -56, -41 },
+				-- 32 tries  [ 24,  31]
+				{ 1600, 7, 3, -40, -33 },
+				-- 25 tries  [ 32,  39]
+				{ 2048, 7, 3, -32, -25 },
+				-- 16 tries  [ 40,  47]
+				{ 3200, 7, 3, -24, -17 },
+				-- 8 tries   [ 48,  55]
+				{ 6400, 7, 3, -16,  -9 },
+				-- spawnsize 10 (BE, JE has 9), max 16 nodes
+				-- -> num = 7, size = 3 (>99% 2-13 nodes)
+				-- 90 tries per chunk, triangular, 232+-152, no air exposure reduction
+				-- -> 2250 tries in stone
+				-- use 2500 tries with some smaller clusters
+				-- 475 tries [ 80, 383]
+				{ 4096, 6, 3,  16, 319 },
+				-- 425 tries [ 96, 367]
+				{ 4096, 6, 3,  32, 303 },
+				-- 375 tries [112, 351]
+				{ 4096, 6, 3,  48, 287 },
+				-- 325 tries [128, 335]
+				{ 4096, 6, 3,  64, 271 },
+				-- 275 tries [144, 319]
+				{ 4096, 7, 3,  80, 255 },
+				-- 225 tries [160, 303]
+				{ 4096, 7, 3,  96, 239 },
+				-- 175 tries [176, 287]
+				{ 4096, 7, 3, 112, 223 },
+				-- 125 tries [192, 271]
+				{ 4096, 7, 3, 128, 207 },
+				--  75 tries [208, 255]
+				{ 4096, 7, 3, 144, 191 },
+				--  25 tries [224, 239]
+				{ 4096, 7, 3, 160, 175 },
 			},
 			["gold"] = {
 				{ 4775, 5, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(30) },
