@@ -50,6 +50,7 @@ local spear_reach = 4.5
 -- local spear_charge_minimum_speed_for_knockback = 5.1
 local spear_charge_minimum_speed_for_damage = 4.6
 local spear_lunge_velocity_multiplier = 0.458 / 0.05
+local minimum_attack_distance = 2
 
 local function get_next_phase(phase, stack_def)
 	if phase == "activation" then
@@ -101,7 +102,7 @@ local function spear_on_use(stack, user, pointed_thing)
 	end
 
 	local ray = core.raycast(user_pos, user_pos + vector.multiply(user_look, spear_reach), true)
-	local to_be_attacked = {}
+	local sharpness_damage = (enchantments.sharpness and 1 + (enchantments.sharpness - 1) / 2) or 0
 
 	for ray_pointed_thing in ray do
 		if ray_pointed_thing.type == "node" then
@@ -111,17 +112,14 @@ local function spear_on_use(stack, user, pointed_thing)
 				break
 			end
 		elseif ray_pointed_thing.type == "object" and ray_pointed_thing.ref ~= user then
-			table.insert(to_be_attacked, ray_pointed_thing.ref)
+			local distance = vector.distance(user_pos, ray_pointed_thing.ref:get_pos())
+			if distance >= minimum_attack_distance then
+				obj:punch(user, spear_def._mcl_spear_jab_cooldown, {
+					full_punch_interval = spear_def._mcl_spear_jab_cooldown,
+					damage_groups = {fleshy = spear_def.tool_capabilities.damage_groups.fleshy * spear_def._mcl_spear_jab_damage + sharpness_damage},
+				}, nil)
+			end
 		end
-	end
-
-	local sharpness_damage = (enchantments.sharpness and 1 + (enchantments.sharpness - 1) / 2) or 0
-
-	for _, obj in pairs(to_be_attacked) do
-		obj:punch(user, spear_def._mcl_spear_jab_cooldown, {
-			full_punch_interval = spear_def._mcl_spear_jab_cooldown,
-			damage_groups = {fleshy = spear_def.tool_capabilities.damage_groups.fleshy * spear_def._mcl_spear_jab_damage + sharpness_damage},
-		}, nil)
 	end
 
 	stack:add_wear_by_uses(spear_def.groups.uses)
