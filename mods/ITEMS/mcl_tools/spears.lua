@@ -47,7 +47,7 @@ local spear_charge_data = {}
 local spear_jab_data = {}
 
 local spear_reach = 4.5
-local spear_charge_minimum_speed_for_knockback = 5.1
+-- local spear_charge_minimum_speed_for_knockback = 5.1
 local spear_charge_minimum_speed_for_damage = 4.6
 local spear_lunge_velocity_multiplier = 0.458 / 0.05
 
@@ -195,11 +195,11 @@ mcl_player.register_globalstep(function(player, dtime)
 				local speed_diff = vector.distance(player_velocity, obj:get_velocity())
 				local step_diff = data.step_counter - (data.object_store[obj] or -2137)
 
-				local deal_knockback = speed_diff >= spear_charge_minimum_speed_for_knockback
-					and (
-						data.phase == "engaged"
-						or data.phase == "tired"
-					)
+				-- local deal_knockback = speed_diff >= spear_charge_minimum_speed_for_knockback
+				-- 	and (
+				-- 		data.phase == "engaged"
+				-- 		or data.phase == "tired"
+				-- 	)
 
 				-- There is a hidden assumption here that `spear_charge_minimum_speed_for_knockback` is ALWAYS bigger than `spear_charge_minimum_speed_for_damage`
 				local deal_damage = speed_diff >= spear_charge_minimum_speed_for_damage
