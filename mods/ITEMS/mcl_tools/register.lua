@@ -54,6 +54,7 @@ mcl_tools.register_set("wood", {
 
 		uses = 59,
 		charge_delay = 0.75,
+		charge_minimum_dismount_speed = 14,
 		engaged_phase_duration = 5,
 		tired_phase_duration = 5,
 		disengaged_phase_duration = 5,
@@ -115,6 +116,7 @@ mcl_tools.register_set("stone", {
 
 		uses = 131,
 		charge_delay = 0.7,
+		charge_minimum_dismount_speed = 10,
 		engaged_phase_duration = 4.5,
 		tired_phase_duration = 4.5,
 		disengaged_phase_duration = 4.75,
@@ -220,6 +222,7 @@ mcl_tools.register_set("iron", {
 
 		uses = 250,
 		charge_delay = 0.6,
+		charge_minimum_dismount_speed = 8,
 		engaged_phase_duration = 2.5,
 		tired_phase_duration = 4.25,
 		disengaged_phase_duration = 4.5,
@@ -281,6 +284,7 @@ mcl_tools.register_set("gold", {
 
 		uses = 32,
 		charge_delay = 0.7,
+		charge_minimum_dismount_speed = 10,
 		engaged_phase_duration = 3.5,
 		tired_phase_duration = 5,
 		disengaged_phase_duration = 5.25,
@@ -350,6 +354,7 @@ mcl_tools.register_set("diamond", {
 
 		uses = 1561,
 		charge_delay = 0.5,
+		charge_minimum_dismount_speed = 7.5,
 		engaged_phase_duration = 3,
 		tired_phase_duration = 3.25,
 		disengaged_phase_duration = 3.5,
@@ -411,6 +416,7 @@ mcl_tools.register_set("netherite", {
 
 		uses = 2031,
 		charge_delay = 0.4,
+		charge_minimum_dismount_speed = 7,
 		engaged_phase_duration = 2.5,
 		tired_phase_duration = 3,
 		disengaged_phase_duration = 3.25,

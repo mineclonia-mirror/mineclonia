@@ -148,6 +148,7 @@ function mcl_tools.register_spear(name, spear_def)
 		_mcl_spear_jab_damage = spear_def.jab_damage,
 		_mcl_spear_jab_cooldown = spear_def.jab_cooldown,
 		_mcl_spear_charge_delay = spear_def.charge_delay,
+		_mcl_spear_minimum_dismount_speed = spear_def.charge_minimum_dismount_speed,
 		_mcl_spear_engaged_phase_duration = spear_def.engaged_phase_duration,
 		_mcl_spear_tired_phase_duration = spear_def.tired_phase_duration,
 		_mcl_spear_disengaged_phase_duration = spear_def.disengaged_phase_duration,
@@ -204,6 +205,10 @@ mcl_player.register_globalstep(function(player, dtime)
 					and data.phase ~= "activation"
 
 				if deal_damage and step_diff >= charge_minimum_steps_to_consider_seperate_hits then
+					if data.phase == "engaged" and speed_diff >= stack_def._mcl_spear_minimum_dismount_speed and obj:get_attach() then
+						obj:set_detach()
+					end
+
 					obj:punch(player, 1, {
 						full_punch_interval = 1,
 						damage_groups = {fleshy = stack_def.tool_capabilities.damage_groups.fleshy * speed_diff * stack_def._mcl_spear_charge_damage_multiplier}
