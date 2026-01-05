@@ -116,8 +116,7 @@ local function spear_on_use(stack, user, pointed_thing)
 	for _, obj in pairs(to_be_attacked) do
 		obj:punch(user, spear_def._mcl_spear_jab_cooldown, {
 			full_punch_interval = spear_def._mcl_spear_jab_cooldown,
-			punch_attack_uses = 59,
-			damage_groups = {fleshy = spear_def._mcl_spear_jab_damage + sharpness_damage},
+			damage_groups = {fleshy = spear_def.tool_capabilities.damage_groups.fleshy * spear_def._mcl_spear_jab_damage + sharpness_damage},
 		}, nil)
 	end
 
@@ -133,14 +132,12 @@ local function register_spear(name, spear_def)
 		groups = { weapon = 1, enchantability = spear_def.enchantability, spear = 1, tool = 1, uses = spear_def.uses},
 		_repair_material = spear_def.repair_material,
 		range = spear_reach,
-		-- tool_capabilities = {
-		-- 	full_punch_interval = 1.6,
-		-- 	max_drop_level = 1,
-		-- 	groupcaps = {
-		-- 		snappy = {times = {1.5, 0.9, 0.4}, uses = 50, maxlevel = 3},
-		-- 	},
-		-- 	damage_groups = {fleshy = 5},
-		-- },
+
+		-- this is only used so that mods that the damage is modified by mods that change tool capabilities (eg. mcl_enchanting)
+		-- will proportionally increase the damage
+		tool_capabilities = {
+			damage_groups = {fleshy = 1},
+		},
 		on_use = spear_on_use,
 		_mcl_spear_jab_damage = spear_def.jab_damage,
 		_mcl_spear_jab_cooldown = spear_def.jab_cooldown,
@@ -198,7 +195,7 @@ mcl_player.register_globalstep(function(player, dtime)
 				if deal_damage then
 					obj:punch(player, 1, {
 						full_punch_interval = 1,
-						damage_groups = {fleshy = speed_diff * stack_def._mcl_spear_charge_damage_multiplier}
+						damage_groups = {fleshy = stack_def.tool_capabilities.damage_groups.fleshy * speed_diff * stack_def._mcl_spear_charge_damage_multiplier}
 					})
 				end
 

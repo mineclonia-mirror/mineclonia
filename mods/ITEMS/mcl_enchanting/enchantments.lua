@@ -14,7 +14,7 @@ end
 mcl_enchanting.register_enchantment("bane_of_arthropods", {
 	name = S("Bane of Arthropods"),
 	max_level = 5,
-	primary = {sword = true, mace = true},
+	primary = {sword = true, mace = true, spear = true},
 	secondary = {axe = true},
 	incompatible = {smite = true, sharpness = true, density = true, breach = true},
 	weight = 5,
@@ -41,7 +41,10 @@ mcl_enchanting.register_enchantment("channeling", {
 -- implemented in mcl_death_drop
 mcl_enchanting.register_enchantment("curse_of_vanishing", {
 	name = S("Curse of Vanishing"),
-	secondary = {armor_head = true, armor_torso = true, armor_legs = true, armor_feet = true, tool = true, weapon = true, trident = true, },
+	secondary = {
+		armor_head = true, armor_torso = true, armor_legs = true, armor_feet = true,
+		tool = true, weapon = true, trident = true, spear = true,\
+	},
 	weight = 1,
 	description = S("Item destroyed on death."),
 	curse = true,
@@ -127,7 +130,7 @@ mcl_enchanting.register_enchantment("efficiency", {
 mcl_enchanting.register_enchantment("fire_aspect", {
 	name = S("Fire Aspect"),
 	max_level = 2,
-	primary = {sword = true, mace = true},
+	primary = {sword = true, mace = true, spear = true},
 	weight = 2,
 	description = S("Sets target on fire."),
 	power_range_table = {{10, 61}, {30, 71}},
@@ -234,7 +237,7 @@ mcl_enchanting.register_enchantment("infinity", {
 mcl_enchanting.register_enchantment("knockback", {
 	name = S("Knockback"),
 	max_level = 2,
-	primary = {sword = true},
+	primary = {sword = true, spear = true},
 	weight = 5,
 	description = S("Increases knockback."),
 	power_range_table = {{5, 61}, {25, 71}},
@@ -252,7 +255,7 @@ end
 mcl_enchanting.register_enchantment("looting", {
 	name = S("Looting"),
 	max_level = 3,
-	primary = {sword = true},
+	primary = {sword = true, spear = true},
 	weight = 2,
 	description = S("Increases mob loot."),
 	power_range_table = {{15, 61}, {24, 71}, {33, 81}},
@@ -303,7 +306,10 @@ mcl_enchanting.register_enchantment("lure", {
 -- implemented in mcl_experience
 mcl_enchanting.register_enchantment("mending", {
 	name = S("Mending"),
-	secondary = {armor_head = true, armor_torso = true, armor_legs = true, armor_feet = true, tool = true, weapon = true, trident = true, },
+	secondary = {
+		armor_head = true, armor_torso = true, armor_legs = true, armor_feet = true,
+		tool = true, weapon = true, trident = true, spear = true,
+	},
 	incompatible = {infinity = true},
 	weight = 2,
 	description = S("Repair the item while gaining XP orbs."),
@@ -461,7 +467,7 @@ mcl_enchanting.register_enchantment("riptide", {
 mcl_enchanting.register_enchantment("sharpness", {
 	name = S("Sharpness"),
 	max_level = 5,
-	primary = {sword = true},
+	primary = {sword = true, spear = true},
 	secondary = {axe = true},
 	incompatible = {bane_of_arthropods = true, smite = true},
 	weight = 5,
@@ -491,7 +497,7 @@ mcl_enchanting.register_enchantment("silk_touch", {
 mcl_enchanting.register_enchantment("smite", {
 	name = S("Smite"),
 	max_level = 5,
-	primary = {sword = true, mace = true},
+	primary = {sword = true, mace = true, spear = true},
 	secondary = {axe = true},
 	incompatible = {bane_of_arthropods = true, sharpness = true, density = true, breach = true},
 	weight = 5,
