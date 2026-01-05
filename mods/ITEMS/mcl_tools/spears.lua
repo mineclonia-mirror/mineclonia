@@ -46,6 +46,7 @@ local spear_jab_data = {}
 local spear_reach = 4.5
 local spear_charge_minimum_speed_for_knockback = 5.1
 local spear_charge_minimum_speed_for_damage = 4.6
+local spear_lunge_velocity_multiplier = 0.458 / 0.05
 
 local function get_next_phase(phase, stack_def)
 	if phase == "activation" then
@@ -57,6 +58,15 @@ local function get_next_phase(phase, stack_def)
 	else
 		return "end of charge", math.huge
 	end
+end
+
+local function can_player_lunge(player)
+	local feet_node = core.get_node(player:get_pos())
+	local feet_def = core.registered_nodes[feet_node.name]
+	return not mcl_player.players[player].elytra.active
+		and (not feet_def or feet_def.liquidtype == "none")
+		and not player:get_attach()
+		and mcl_hunger.get_hunger(player) >= 6
 end
 
 local function spear_on_use(stack, user, pointed_thing)
@@ -72,6 +82,17 @@ local function spear_on_use(stack, user, pointed_thing)
 	local enchantments = mcl_enchanting.get_enchantments(stack)
 	local user_pos = vector.offset(user:get_pos(), 0, 1.5, 0)
 	local user_look = user:get_look_dir()
+
+	if enchantments.lunge and can_player_lunge(user) then
+		local lunge_velocity = vector.copy(user_look)
+		lunge_velocity.y = 0
+		lunge_velocity = vector.multiply(lunge_velocity, spear_lunge_velocity_multiplier * enchantments.lunge)
+
+		mcl_hunger.exhaust(user:get_player_name(), mcl_hunger.EXHAUST_LVL * enchantments.lunge)
+
+		user:add_velocity(lunge_velocity)
+		return
+	end
 
 	local ray = core.raycast(user_pos, user_pos + vector.multiply(user_look, spear_reach), true)
 	local to_be_attacked = {}
@@ -142,8 +163,6 @@ mcl_player.register_globalstep(function(player, dtime)
 
 		local data = spear_charge_data[player]
 
-		core.debug(data.phase, data.phase_duration)
-
 		data.phase_timer = data.phase_timer + dtime
 		if data.phase_timer >= data.phase_duration then
 			data.phase, data.phase_duration = get_next_phase(data.phase, stack_def)
@@ -156,7 +175,6 @@ mcl_player.register_globalstep(function(player, dtime)
 
 		for obj in core.objects_inside_radius(player_pos, charge_attack_radius) do
 			local speed_diff = vector.distance(player_velocity, obj:get_velocity())
-			core.debug("Hitcha", speed_diff, speed_diff * stack_def._mcl_spear_charge_damage_multiplier)
 
 			local deal_knockback = speed_diff >= spear_charge_minimum_speed_for_knockback
 				and (

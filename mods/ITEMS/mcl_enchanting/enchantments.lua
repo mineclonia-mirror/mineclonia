@@ -564,7 +564,28 @@ mcl_enchanting.register_enchantment("unbreaking", {
 })
 
 -- implemented in mcl_tools
-mcl_enchanting.register_enchantment("density", {
+mcl_enchanting.enchantments.lunge = {
+	name = S("Lunge"),
+	max_level = 3,
+	primary = { spear = true },
+	secondary = {},
+	disallow = {},
+	incompatible = {},
+	weight = 5,
+	description = S("Launches the player horizontally when using a jab attack"),
+	curse = false,
+	on_enchant = function() end,
+	requires_tool = false,
+	treasure = true,
+	power_range_table = {{10, 25}, {20, 35}, {30, 45}, {40, 55}, {50, 65}},
+	inv_combat_tab = true,
+	inv_tool_tab = false,
+	anvil_item_factor = 8,
+	anvil_book_factor = 4,
+}
+
+-- implemented in mcl_tools
+mcl_enchanting.enchantments.density = {
 	name = S("Density"),
 	max_level = 5,
 	primary = { mace = true},
