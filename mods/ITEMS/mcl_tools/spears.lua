@@ -73,6 +73,7 @@ local function can_player_lunge(player)
 end
 
 local function spear_on_use(stack, user, pointed_thing)
+	if spear_charge_data[user] then return end
 	local spear_def = core.registered_items[stack:get_name()]
 
 	local timestamp = core.get_us_time()
@@ -128,10 +129,13 @@ local function spear_on_use(stack, user, pointed_thing)
 	return stack
 end
 
-local function register_spear(name, spear_def)
+function mcl_tools.register_spear(name, spear_def)
 	core.register_tool(name, {
+		description = spear_def.description,
 		longdesc = S("A spear is tool impale your enemies, either by using the jab attack, or charging at them"),
 		usagehelp = S("To peform a jab attack, left click the enemy. To peform the charge attach, right-click and run at the enemy"),
+		inventory_image = spear_def.inventory_image,
+		wield_image = spear_def.wield_image,
 		groups = { weapon = 1, enchantability = spear_def.enchantability, spear = 1, tool = 1, uses = spear_def.uses},
 		_repair_material = spear_def.repair_material,
 		range = spear_reach,
@@ -139,6 +143,7 @@ local function register_spear(name, spear_def)
 		-- this is only used so that mods that the damage is modified by mods that change tool capabilities (eg. mcl_enchanting)
 		-- will proportionally increase the damage
 		tool_capabilities = {
+			full_punch_interval = 1,
 			damage_groups = {fleshy = 1},
 		},
 		on_use = spear_on_use,
@@ -153,7 +158,7 @@ local function register_spear(name, spear_def)
 
 end
 
-local charge_attack_radius = 2
+local charge_attack_radius = 2.5
 local charge_minimum_steps_to_consider_seperate_hits = 2
 mcl_player.register_globalstep(function(player, dtime)
 	local controls = player:get_player_control()
@@ -218,17 +223,3 @@ mcl_player.register_globalstep(function(player, dtime)
 		spear_charge_data[player] = nil
 	end
 end)
-
-register_spear("mcl_tools:test_spear", {
-	jab_cooldown = 1.4,
-	jab_damage = 5,
-	enchantability = 15,
-	repial_material = "mcl_core:stick",
-
-	uses = 59,
-	charge_delay = 0.75,
-	engaged_phase_duration = 5,
-	tired_phase_duration = 5,
-	disengaged_phase_duration = 5,
-	charge_damage_multiplier = 1
-})

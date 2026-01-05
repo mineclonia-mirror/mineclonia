@@ -242,6 +242,8 @@ function mcl_tools.register_set(setname, materialdefs, tools, overrides)
 	for tool, defs in pairs(tools) do
 		if mcl_tools.commondefs[tool] then
 			register_tool(setname, materialdefs, tool, defs, overrides)
+		elseif tool == "spear" then
+			mcl_tools.register_spear("mcl_tools:spear_" .. setname, defs)
 		else
 			local msg = "[mcl_tools] mod '%s' trying to register unknown tool '%s' for set '%s'"
 			if tool == "hoe" then
