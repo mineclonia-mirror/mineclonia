@@ -23,21 +23,24 @@ local S = core.get_translator("mcl_tools")
 -- > hit registration, giving them more effective area. It is not possible to break blocks while holding a spear, and instead an
 -- > attack is performed. Spears have the unique ability to attack through non-solid blocks like cobwebs and tall grass.
 -- > Spears have two methods of attacking:
+--
+-- Another thing is the fact that spears shouldn't be affected by stength and weakness potions. But there is no way to filter
+-- out these effects without also filtering out sharpness or smite
 
 -- implementation checklist
 --
 -- [x] Jab attack
 -- [x] sharpness attack
--- [ ] register al the enchantments
+-- [x] register al the enchantments
 -- [x] Make spear jab attack pierce multiple enemies
 -- [x] Make spear jab attack go through non solid nodes
 -- [ ] Add charge attack
--- [ ] Add minimum speed for knockback
--- [ ] Add minimum speed for damage
+-- [x] Add minimum speed for knockback
+-- [x] Add minimum speed for damage
 -- [ ] Add minimum speed for dismounting
--- [ ] Add lounch attack
--- [ ] Implement the knockback enchantment
--- [ ] Implement the fire aspect enchantment
+-- [x] Add lounch attack
+-- [x] Implement the knockback enchantment
+-- [x] Implement the fire aspect enchantment
 
 local spear_charge_data = {}
 
@@ -151,6 +154,7 @@ local function register_spear(name, spear_def)
 end
 
 local charge_attack_radius = 2
+local charge_minimum_steps_to_consider_seperate_hits = 2
 mcl_player.register_globalstep(function(player, dtime)
 	local controls = player:get_player_control()
 	local wielded_stack = player:get_wielded_item()
@@ -158,15 +162,18 @@ mcl_player.register_globalstep(function(player, dtime)
 
 	if controls.RMB and core.get_item_group(wielded_name, "spear") > 0 then
 		local stack_def = core.registered_items[wielded_name]
-		local player_pos = player:get_pos()
+		local spear_head_pos = vector.offset(player:get_pos(), 0, 1.5, 0) + player:get_look_dir()
 		local player_velocity = player:get_velocity()
 		spear_charge_data[player] = spear_charge_data[player] or {
 			phase = "activation", phase_timer = 0,
-			phase_duration = stack_def._mcl_spear_charge_delay
+			phase_duration = stack_def._mcl_spear_charge_delay,
+			step_counter = 0,
+			object_store = {}
 		}
 
 		local data = spear_charge_data[player]
 
+		data.step_counter = data.step_counter + 1
 		data.phase_timer = data.phase_timer + dtime
 		if data.phase_timer >= data.phase_duration then
 			data.phase, data.phase_duration = get_next_phase(data.phase, stack_def)
@@ -177,10 +184,11 @@ mcl_player.register_globalstep(function(player, dtime)
 			return
 		end
 
-		for obj in core.objects_inside_radius(player_pos, charge_attack_radius) do
+		for obj in core.objects_inside_radius(spear_head_pos, charge_attack_radius) do
 			local props = obj:get_properties()
 			if obj ~= player and props.physical then
 				local speed_diff = vector.distance(player_velocity, obj:get_velocity())
+				local step_diff = data.step_counter - (data.object_store[obj] or -2137)
 
 				local deal_knockback = speed_diff >= spear_charge_minimum_speed_for_knockback
 					and (
@@ -192,14 +200,16 @@ mcl_player.register_globalstep(function(player, dtime)
 				local deal_damage = speed_diff >= spear_charge_minimum_speed_for_damage
 					and data.phase ~= "activation"
 
-				if deal_damage then
+				if deal_damage and step_diff >= charge_minimum_steps_to_consider_seperate_hits then
 					obj:punch(player, 1, {
 						full_punch_interval = 1,
 						damage_groups = {fleshy = stack_def.tool_capabilities.damage_groups.fleshy * speed_diff * stack_def._mcl_spear_charge_damage_multiplier}
 					})
+
+					wielded_stack:add_wear_by_uses(stack_def.groups.uses)
 				end
 
-				wielded_stack:add_wear_by_uses(stack_def.groups.uses)
+				data.object_store[obj] = data.step_counter
 			end
 		end
 
