@@ -304,4 +304,5 @@ core.register_craft({
 })
 
 dofile(modpath.."/mace.lua")
+dofile(modpath.."/spears.lua")
 dofile(modpath.."/register.lua")
