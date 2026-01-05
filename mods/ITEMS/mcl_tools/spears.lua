@@ -91,7 +91,9 @@ local function spear_on_use(stack, user, pointed_thing)
 		mcl_hunger.exhaust(user:get_player_name(), mcl_hunger.EXHAUST_LVL * enchantments.lunge)
 
 		user:add_velocity(lunge_velocity)
-		return
+
+		stack:add_wear_by_uses(spear_def.groups.uses)
+		return stack
 	end
 
 	local ray = core.raycast(user_pos, user_pos + vector.multiply(user_look, spear_reach), true)
@@ -114,16 +116,21 @@ local function spear_on_use(stack, user, pointed_thing)
 	for _, obj in pairs(to_be_attacked) do
 		obj:punch(user, spear_def._mcl_spear_jab_cooldown, {
 			full_punch_interval = spear_def._mcl_spear_jab_cooldown,
+			punch_attack_uses = 59,
 			damage_groups = {fleshy = spear_def._mcl_spear_jab_damage + sharpness_damage},
 		}, nil)
 	end
+
+	stack:add_wear_by_uses(spear_def.groups.uses)
+
+	return stack
 end
 
 local function register_spear(name, spear_def)
 	core.register_tool(name, {
 		longdesc = S("A spear is tool impale your enemies, either by using the jab attack, or charging at them"),
 		usagehelp = S("To peform a jab attack, left click the enemy. To peform the charge attach, right-click and run at the enemy"),
-		groups = { weapon = 1, enchantability = spear_def.enchantability, spear = 1, tool = 1 },
+		groups = { weapon = 1, enchantability = spear_def.enchantability, spear = 1, tool = 1, uses = spear_def.uses},
 		_repair_material = spear_def.repair_material,
 		range = spear_reach,
 		-- tool_capabilities = {
@@ -174,25 +181,32 @@ mcl_player.register_globalstep(function(player, dtime)
 		end
 
 		for obj in core.objects_inside_radius(player_pos, charge_attack_radius) do
-			local speed_diff = vector.distance(player_velocity, obj:get_velocity())
+			local props = obj:get_properties()
+			if obj ~= player and props.physical then
+				local speed_diff = vector.distance(player_velocity, obj:get_velocity())
 
-			local deal_knockback = speed_diff >= spear_charge_minimum_speed_for_knockback
-				and (
-					data.phase == "engaged"
-					or data.phase == "tired"
-				)
+				local deal_knockback = speed_diff >= spear_charge_minimum_speed_for_knockback
+					and (
+						data.phase == "engaged"
+						or data.phase == "tired"
+					)
 
-			-- There is a hidden assumption here that `spear_charge_minimum_speed_for_knockback` is ALWAYS bigger than `spear_charge_minimum_speed_for_damage`
-			local deal_damage = speed_diff >= spear_charge_minimum_speed_for_damage
-				and data.phase ~= "activation"
+				-- There is a hidden assumption here that `spear_charge_minimum_speed_for_knockback` is ALWAYS bigger than `spear_charge_minimum_speed_for_damage`
+				local deal_damage = speed_diff >= spear_charge_minimum_speed_for_damage
+					and data.phase ~= "activation"
 
-			if deal_damage then
-				obj:punch(player, 1, {
-					full_punch_interval = 1,
-					damage_groups = {fleshy = speed_diff * stack_def._mcl_spear_charge_damage_multiplier}
-				})
+				if deal_damage then
+					obj:punch(player, 1, {
+						full_punch_interval = 1,
+						damage_groups = {fleshy = speed_diff * stack_def._mcl_spear_charge_damage_multiplier}
+					})
+				end
+
+				wielded_stack:add_wear_by_uses(stack_def.groups.uses)
 			end
 		end
+
+		player:set_wielded_item(wielded_stack)
 	elseif spear_charge_data[player] then
 		spear_charge_data[player] = nil
 	end
@@ -204,6 +218,7 @@ register_spear("mcl_tools:test_spear", {
 	enchantability = 15,
 	repial_material = "mcl_core:stick",
 
+	uses = 59,
 	charge_delay = 0.75,
 	engaged_phase_duration = 5,
 	tired_phase_duration = 5,
