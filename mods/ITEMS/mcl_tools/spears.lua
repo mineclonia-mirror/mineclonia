@@ -114,7 +114,7 @@ local function spear_on_use(stack, user, pointed_thing)
 		elseif ray_pointed_thing.type == "object" and ray_pointed_thing.ref ~= user then
 			local distance = vector.distance(user_pos, ray_pointed_thing.ref:get_pos())
 			if distance >= minimum_attack_distance then
-				obj:punch(user, spear_def._mcl_spear_jab_cooldown, {
+				ray_pointed_thing.ref:punch(user, spear_def._mcl_spear_jab_cooldown, {
 					full_punch_interval = spear_def._mcl_spear_jab_cooldown,
 					damage_groups = {fleshy = spear_def.tool_capabilities.damage_groups.fleshy * spear_def._mcl_spear_jab_damage + sharpness_damage},
 				}, nil)
