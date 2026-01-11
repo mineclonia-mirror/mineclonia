@@ -1,6 +1,3 @@
-local modname = core.get_current_modname()
-local modpath = core.get_modpath(modname)
-
 mcl_shelfs = {}
 
 local player_reach = 8
@@ -65,7 +62,7 @@ end
 
 local function initalize_shelf(pos, inv)
 	local node = core.get_node(pos)
-	local rotation = 0
+	local rotation
 
 	if node.param2 == 0 then
 		rotation = 0
