@@ -121,6 +121,9 @@ mcl_trees.register_wood("crimson",{
 		_mcl_burntime = 0,
 		_mcl_cooking_output = ""
 	},
+	shelf = {
+		tiles = mcl_shelfs.sliced_shelf_texture("mcl_crimson_crimson_shelf.png")
+	},
 	wood = {
 		tiles = {"crimson_hyphae_wood.png"},
 		groups = table.merge(nether_wood_groups,{wood = 1}),
@@ -184,6 +187,9 @@ mcl_trees.register_wood("warped",{
 		groups = table.merge(nether_wood_groups,{tree = 1, bark = 1}),
 		_mcl_burntime = 0,
 		_mcl_cooking_output = ""
+	},
+	shelf = {
+		tiles = mcl_shelfs.sliced_shelf_texture("mcl_crimson_warped_shelf.png")
 	},
 	wood = {
 		tiles = {"warped_hyphae_wood.png"},
