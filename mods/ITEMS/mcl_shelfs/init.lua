@@ -265,6 +265,10 @@ local function propagate_redstone_update(pos)
 	local node = core.get_node(pos)
 	local root_name = string.gsub(node.name, "_powered.*", "")
 
+	if core.get_item_group(root_name, "mcl_shelf") <= 0 then
+		return
+	end
+
 	local connect_left = false
 	local connect_right = false
 
