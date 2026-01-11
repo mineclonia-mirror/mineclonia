@@ -272,14 +272,15 @@ local function propagate_redstone_update(pos)
 	local node_left_1 = core.get_node(pos_left_1)
 	local node_left_1_variant = get_shelf_variant(node_left_1.name)
 
-	if node_left_1_variant == "_powered" or node_left_1_variant == "_powered_left" then
+	if (node_left_1_variant == "_powered" or node_left_1_variant == "_powered_left")
+			and node.param2 == node_left_1.param2 then
 		connect_left = true
-	elseif node_left_1_variant == "_powered_right" then
+	elseif node_left_1_variant == "_powered_right" and node.param2 == node_left_1.param2 then
 		local pos_left_2 = pos_left_1 + perpendicular_dir
 		local node_left_2 = core.get_node(pos_left_2)
 		local node_left_2_variant = get_shelf_variant(node_left_2.name)
 
-		if node_left_2_variant == "_powered_left" then
+		if node_left_2_variant == "_powered_left" and node.param2 == node_left_2.param2 then
 			core.swap_node(pos_left_2, {name = root_name .. "_powered_left", param2 = node.param2})
 			core.swap_node(pos_left_1, {name = root_name .. "_powered_center", param2 = node.param2})
 			core.swap_node(pos,        {name = root_name .. "_powered_right", param2 = node.param2})
@@ -291,7 +292,8 @@ local function propagate_redstone_update(pos)
 	local node_right_1 = core.get_node(pos_right_1)
 	local node_right_1_variant = get_shelf_variant(node_right_1.name)
 
-	if node_right_1_variant == "_powered" or node_right_1_variant == "_powered_right" then
+	if (node_right_1_variant == "_powered" or node_right_1_variant == "_powered_right")
+			and node.param2 == node_right_1.param2 then
 		if connect_left then
 			core.swap_node(pos_left_1,  {name = root_name .. "_powered_left", param2 = node.param2})
 			core.swap_node(pos,         {name = root_name .. "_powered_center", param2 = node.param2})
@@ -300,12 +302,12 @@ local function propagate_redstone_update(pos)
 		end
 
 		connect_right = true
-	elseif node_right_1_variant == "_powered_left" and not connect_left then
+	elseif node_right_1_variant == "_powered_left" and not connect_left and node.param2 == node_right_1.param2 then
 		local pos_right_2 = pos_right_1 - perpendicular_dir
 		local node_right_2 = core.get_node(pos_right_2)
 		local node_right_2_variant = get_shelf_variant(node_right_2.name)
 
-		if node_right_2_variant == "_powered_right" then
+		if node_right_2_variant == "_powered_right" and node.param2 == node_right_2.param2 then
 			core.swap_node(pos,         {name = root_name .. "_powered_left", param2 = node.param2})
 			core.swap_node(pos_right_1, {name = root_name .. "_powered_center", param2 = node.param2})
 			core.swap_node(pos_right_2, {name = root_name .. "_powered_right", param2 = node.param2})
@@ -367,7 +369,12 @@ local shelf_tpl = {
 		initalize_shelf(pos, inv)
 	end,
 	on_destruct = function(pos)
+		local inv = core.get_inventory({type = "node", pos = pos})
+		for i = 1, 3 do
+			core.add_item(pos, inv:get_stack("main", i))
+		end
 		clear_shelf_entities(pos)
+		propagate_redsone_removal(pos)
 	end,
 	on_rightclick = normal_on_rightclick
 }
@@ -392,6 +399,7 @@ function mcl_shelfs.register_shelf(name, def)
 		description = def.description,
 		groups = table.merge({mcl_shelf = 1, deco_block = 1}, def.groups),
 		sounds = def.sounds,
+		_mcl_baseitem = root_name,
 		_mcl_redstone = {
 			update = function(pos, node)
 				local power = mcl_redstone.get_power(pos)
