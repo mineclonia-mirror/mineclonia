@@ -456,7 +456,6 @@ function mcl_trees.register_wood(name, p)
 		core.register_node(":mcl_trees:sapling_"..name, def)
 	end
 
-
 	if p.leaves == nil or type(p.leaves) == "table" then
 		local def = table.merge({
 				tiles = { modname.."_leaves_"..name..".png"},
@@ -507,6 +506,13 @@ function mcl_trees.register_wood(name, p)
 		def.description = def.description or D(rname .. " Fence Gate")
 		mcl_fences.register_fence_gate_def(name.."_fence", def)
 	end
+
+	if type(p.shelf) == "table" then
+		p.shelf.description = p.shelf.description or D(rname .. " Shelf")
+		p.shelf.sounds = wood_sounds
+		mcl_shelfs.register_shelf(name, p.shelf)
+	end
+
 	if p.door == nil or type(p.door) == "table" then
 		local def = table.merge(tpl_door, {
 			inventory_image = "mcl_doors_door_"..name..".png",
