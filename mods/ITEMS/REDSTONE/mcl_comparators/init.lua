@@ -181,6 +181,10 @@ local measure_tab = {
 	--["sculc_sensor"] = measure_sculc_sensor,
 }
 
+function mcl_redstone.register_comparator_measure_func(nodename, func)
+	measure_tab[nodename] = func
+end
+
 -- check if node at pos is 'interesting', returning multiple results
 -- 1: measuring function for node from measure_tab or nil
 -- 2: true, iff node has opaque group set to non zero
