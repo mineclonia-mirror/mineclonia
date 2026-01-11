@@ -157,6 +157,7 @@ local function normal_on_rightclick(pos, node, player, stack, pointed_thing)
 	inv:set_stack("main", slot, stack)
 
 	set_shelf_entities(pos, inv)
+	mcl_redstone.update_comparators(pos)
 
 	return shelf_stack
 end
@@ -235,6 +236,7 @@ local function powered_on_rightclick(pos, node, player, stack, pointed_thing)
 		if i % 3 == 0 then
 			if shelf_inv then
 				set_shelf_entities(shelf_positions[(i / 3)], shelf_inv)
+				mcl_redstone.update_comparators(shelf_positions[(i / 3)])
 			end
 			shelf_inv = core.get_inventory({type = "node", pos = shelf_positions[(i / 3) + 1]})
 		end
@@ -252,6 +254,7 @@ local function powered_on_rightclick(pos, node, player, stack, pointed_thing)
 		shelf_inv:set_stack("main", shelf_inv_slot, player_stack)
 	end
 
+	mcl_redstone.update_comparators(shelf_positions[#shelf_positions])
 	set_shelf_entities(shelf_positions[#shelf_positions], shelf_inv)
 
 	return leftover
@@ -349,6 +352,20 @@ local function propagate_redsone_removal(pos)
 	end
 end
 
+local function comparator_measure(pos)
+	local inv = core.get_inventory({type = "node", pos = pos})
+	local powerlevel = 0
+	for i = 1, 3 do
+		local stack = inv:get_stack("main", i)
+
+		if not stack:is_empty() then
+			powerlevel = bit.bor(powerlevel, bit.lshift(1, i - 1))
+		end
+	end
+
+	return powerlevel
+end
+
 local shelf_tpl = {
 	drawtype = "nodebox",
 	paramtype2 = "4dir",
@@ -361,6 +378,7 @@ local shelf_tpl = {
 			{-0.5, 8/32, 6/32,  0.5, 0.5,   0.5},
 		}
 	},
+	groups = {mcl_shelf = 1, deco_block = 1, container = 3},
 	on_construct = function(pos)
 		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -376,7 +394,21 @@ local shelf_tpl = {
 		clear_shelf_entities(pos)
 		propagate_redsone_removal(pos)
 	end,
-	on_rightclick = normal_on_rightclick
+	on_rightclick = normal_on_rightclick,
+	_mcl_redstone = {
+		update = function(pos, node)
+			local power = mcl_redstone.get_power(pos)
+			if power > 0 then
+				propagate_redstone_update(pos)
+			end
+		end
+	},
+	_after_hopper_out = function(pos)
+		set_shelf_entities(pos, core.get_inventory({type = "node", pos = pos}))
+	end,
+	_after_hopper_in = function(pos)
+		set_shelf_entities(pos, core.get_inventory({type = "node", pos = pos}))
+	end
 }
 
 -- def takes members:
@@ -393,27 +425,19 @@ local shelf_tpl = {
 -- description - the `groups` of the node def
 function mcl_shelfs.register_shelf(name, def)
 	local root_name = "mcl_shelfs:" .. name
-	local basic_def = table.merge(shelf_tpl, {
+	local base_def = table.merge(shelf_tpl, {
 		tiles = def.tiles.normal,
 		inventory_image = def.inventory_image,
 		description = def.description,
-		groups = table.merge({mcl_shelf = 1, deco_block = 1}, def.groups),
+		groups = table.merge(shelf_tpl.groups, def.groups),
 		sounds = def.sounds,
 		_mcl_baseitem = root_name,
-		_mcl_redstone = {
-			update = function(pos, node)
-				local power = mcl_redstone.get_power(pos)
-				if power > 0 then
-					propagate_redstone_update(pos)
-					-- return {name = root_name .. "_powered", param2 = node.param2}
-				end
-			end
-		}
+		drop = root_name,
 	}, def.overrides or {})
 
-	local powered_def = table.merge(basic_def, {
+	local powered_def = table.merge(base_def, {
 		on_rightclick = powered_on_rightclick,
-		groups = table.merge(basic_def.groups, {not_in_creative_inventory = 1}),
+		groups = table.merge(base_def.groups, {not_in_creative_inventory = 1}),
 		_mcl_redstone = {
 			update = function(pos, node)
 				local power = mcl_redstone.get_power(pos)
@@ -424,7 +448,7 @@ function mcl_shelfs.register_shelf(name, def)
 		}
 	})
 
-	core.register_node(":" .. root_name, basic_def)
+	core.register_node(":" .. root_name, base_def)
 
 	core.register_node(":" .. root_name .. "_powered", table.merge(powered_def, {
 		tiles = def.tiles.powered,
@@ -441,6 +465,12 @@ function mcl_shelfs.register_shelf(name, def)
 	core.register_node(":" .. root_name .. "_powered_right", table.merge(powered_def, {
 		tiles = def.tiles.powered_right,
 	}))
+
+	mcl_redstone.register_comparator_measure_func(root_name, comparator_measure)
+	mcl_redstone.register_comparator_measure_func(root_name .. "_powered", comparator_measure)
+	mcl_redstone.register_comparator_measure_func(root_name .. "_powered_left", comparator_measure)
+	mcl_redstone.register_comparator_measure_func(root_name .. "_powered_center", comparator_measure)
+	mcl_redstone.register_comparator_measure_func(root_name .. "_powered_right", comparator_measure)
 end
 
 core.register_entity("mcl_shelfs:item_entity", {
