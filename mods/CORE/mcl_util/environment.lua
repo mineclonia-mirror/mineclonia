@@ -60,7 +60,7 @@ function mcl_util.rotate_axis_and_place(itemstack, placer, pointed_thing, infini
 	elseif is_x then
 		p2 = 12
 	elseif is_z then
-		p2 = 6
+		p2 = 4
 	end
 	core.set_node(pos, {name = wield_name, param2 = p2})
 
