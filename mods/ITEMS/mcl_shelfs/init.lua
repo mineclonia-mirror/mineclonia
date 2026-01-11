@@ -158,6 +158,7 @@ local function normal_on_rightclick(pos, node, player, stack, pointed_thing)
 
 	set_shelf_entities(pos, inv)
 	mcl_redstone.update_comparators(pos)
+	mcl_hunger.prevent_eating(player)
 
 	return shelf_stack
 end
@@ -255,6 +256,7 @@ local function powered_on_rightclick(pos, node, player, stack, pointed_thing)
 	end
 
 	mcl_redstone.update_comparators(shelf_positions[#shelf_positions])
+	mcl_hunger.prevent_eating(player)
 	set_shelf_entities(shelf_positions[#shelf_positions], shelf_inv)
 
 	return leftover
