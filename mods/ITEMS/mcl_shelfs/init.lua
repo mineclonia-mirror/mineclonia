@@ -5,9 +5,9 @@ mcl_shelfs = {}
 
 local player_reach = 8
 local item_entity_offsets = {
-	vector.new(0.3, 0, -0.3),
-	vector.new(0,     0, -0.3),
-	vector.new(-0.3,  0, -0.3),
+	vector.new(-0.3, 0, 0.25),
+	vector.new(0,    0, 0.25),
+	vector.new(0.3,  0, 0.25),
 }
 local shelf_item_entities = {}
 
@@ -23,7 +23,6 @@ function mcl_shelfs.sliced_shelf_texture(texture)
 
 	local base_tex = texture .. "^[sheet:2x2:1,0"
 
-	core.debug(base_tex .. "^[combine:16x16:1,4=" .. texture)
 	return {
 		normal =         {base_tex, base_tex, base_tex, base_tex, base_tex, "[combine:16x16:0,0=" .. texture},
 		powered =        {base_tex, base_tex, base_tex, base_tex, base_tex, base_tex .. "^[combine:16x16:0,4=" .. escape_texture(sheet_at(1, 3))},
@@ -65,9 +64,26 @@ local function clear_shelf_entities(pos)
 end
 
 local function initalize_shelf(pos, inv)
+	local node = core.get_node(pos)
+	local rotation = 0
+
+	if node.param2 == 0 then
+		rotation = 0
+	elseif node.param2 == 1 then
+		rotation = math.pi / 2
+	elseif node.param2 == 2 then
+		rotation = math.pi
+	else
+		rotation = math.pi * 3/2
+	end
+
 	local objects = {}
 	for i = 1, 3 do
-		local obj = core.add_entity(pos + item_entity_offsets[i], "mcl_shelfs:item_entity")
+		local obj = core.add_entity(
+			pos + vector.rotate_around_axis(item_entity_offsets[i], vector.new(0, -1, 0), rotation),
+			"mcl_shelfs:item_entity"
+		)
+		obj:set_yaw(rotation)
 		local stack_name = inv:get_stack("main", i):get_name()
 
 		if stack_name == "" then
