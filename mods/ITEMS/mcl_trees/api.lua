@@ -510,7 +510,19 @@ function mcl_trees.register_wood(name, p)
 	if type(p.shelf) == "table" then
 		p.shelf.description = p.shelf.description or D(rname .. " Shelf")
 		p.shelf.sounds = wood_sounds
+		p.shelf._mcl_hardness = 2
+		p.shelf._mcl_blast_resistance = 3
+		p.shelf.groups = table.merge({material_wood = 1, axey = 1, fire_flammability = 20, fire_encouragement = 30}, p.shelf.groups)
 		mcl_shelfs.register_shelf(name, p.shelf)
+
+		core.register_craft({
+			output = "mcl_shelfs:" .. name,
+			recipe = {
+				{"mcl_trees:stripped_" .. name, "mcl_trees:stripped_" .. name, "mcl_trees:stripped_" .. name},
+				{"",                            "",                            ""},
+				{"mcl_trees:stripped_" .. name, "mcl_trees:stripped_" .. name, "mcl_trees:stripped_" .. name}
+			}
+		})
 	end
 
 	if p.door == nil or type(p.door) == "table" then
