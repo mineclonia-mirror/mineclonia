@@ -29,13 +29,13 @@ local minimum_attack_distance = 2
 
 local function get_next_phase(phase, stack_def)
 	if phase == "activation" then
-		return "engaged", stack_def._mcl_spear_engaged_phase_duration
+		return "engaged", stack_def._mcl_spear_engaged_phase_duration, "engaged_spear_overlay.png"
 	elseif phase == "engaged" then
-		return "tired", stack_def._mcl_spear_tired_phase_duration
+		return "tired", stack_def._mcl_spear_tired_phase_duration, "tired_spear_overlay.png"
 	elseif phase == "tired" then
-		return "disengaged", stack_def._mcl_spear_disengaged_phase_duration
+		return "disengaged", stack_def._mcl_spear_disengaged_phase_duration, "disengaged_spear_overlay.png"
 	else
-		return "end of charge", math.huge
+		return "end of charge", math.huge, ""
 	end
 end
 
@@ -132,7 +132,6 @@ function mcl_tools.register_spear(name, spear_def)
 
 end
 
-local charge_attack_radius = 2.5
 local charge_minimum_steps_to_consider_seperate_hits = 2
 mcl_player.register_globalstep(function(player, dtime)
 	local controls = player:get_player_control()
@@ -153,22 +152,19 @@ mcl_player.register_globalstep(function(player, dtime)
 
 		local data = spear_charge_data[player]
 
-		core.add_particle({
-			pos = spear_head_pos,
-			expirationtime = 10,
-			texture = "marker.png",
-			size = 1,
-			glow = 14,
-		})
-
 		data.step_counter = data.step_counter + 1
 		data.phase_timer = data.phase_timer + dtime
 		if data.phase_timer >= data.phase_duration then
-			data.phase, data.phase_duration = get_next_phase(data.phase, stack_def)
+			local spear_overlay
+			data.phase, data.phase_duration, spear_overlay = get_next_phase(data.phase, stack_def)
 			data.phase_timer = data.phase_timer - data.phase_duration
+
+			local stack_meta = wielded_stack:get_meta()
+			stack_meta:set_string("wield_image", core.registered_items[wielded_name].wield_image .. "^" .. spear_overlay)
 		end
 
 		if data.phase == "end of charge" then
+			player:set_wielded_item(wielded_stack)
 			return
 		end
 
@@ -213,6 +209,9 @@ mcl_player.register_globalstep(function(player, dtime)
 
 		player:set_wielded_item(wielded_stack)
 	elseif spear_charge_data[player] then
+		local stack_meta = wielded_stack:get_meta()
+		stack_meta:set_string("wield_image", "")
+		player:set_wielded_item(wielded_stack)
 		spear_charge_data[player] = nil
 	end
 end)
