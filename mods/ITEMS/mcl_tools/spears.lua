@@ -1,19 +1,4 @@
 local S = core.get_translator("mcl_tools")
--- local def_tpl = {
--- 	craft_shapes = {
--- 		{
--- 			{ "material",       "",               "" },
--- 			{ "",               "mcl_core:stick", "" },
--- 			{ "",               "",               "mcl_core:stick" }
--- 		},
--- 		{
--- 			{ "",               "",               "material" },
--- 			{ "",               "mcl_core:stick", "" },
--- 			{ "mcl_core:stick", "",               "" }
--- 		}
--- 	}
--- },
-
 -- Spear NYI
 --
 -- This section of the wiki isn't implemented fully, due to engine limitations. This *could* be implemented with very hacky
@@ -26,21 +11,11 @@ local S = core.get_translator("mcl_tools")
 --
 -- Another thing is the fact that spears shouldn't be affected by stength and weakness potions. But there is no way to filter
 -- out these effects without also filtering out sharpness or smite
-
--- implementation checklist
 --
--- [x] Jab attack
--- [x] sharpness attack
--- [x] register al the enchantments
--- [x] Make spear jab attack pierce multiple enemies
--- [x] Make spear jab attack go through non solid nodes
--- [ ] Add charge attack
--- [x] Add minimum speed for knockback
--- [x] Add minimum speed for damage
--- [ ] Add minimum speed for dismounting
--- [x] Add lounch attack
--- [x] Implement the knockback enchantment
--- [x] Implement the fire aspect enchantment
+-- In addition the "disengaged" phase the charge attack is supposed to deal damage but not knockback, but there is no way
+-- to do that
+--
+-- Yet another thing is the spear visual, the engine doesn't provide a way to animate the wield item like that
 
 local spear_charge_data = {}
 
@@ -172,10 +147,19 @@ mcl_player.register_globalstep(function(player, dtime)
 			phase = "activation", phase_timer = 0,
 			phase_duration = stack_def._mcl_spear_charge_delay,
 			step_counter = 0,
-			object_store = {}
+			object_store = {},
+			spear_head_pos = spear_head_pos
 		}
 
 		local data = spear_charge_data[player]
+
+		core.add_particle({
+			pos = spear_head_pos,
+			expirationtime = 10,
+			texture = "marker.png",
+			size = 1,
+			glow = 14,
+		})
 
 		data.step_counter = data.step_counter + 1
 		data.phase_timer = data.phase_timer + dtime
@@ -188,7 +172,13 @@ mcl_player.register_globalstep(function(player, dtime)
 			return
 		end
 
-		for obj in core.objects_inside_radius(spear_head_pos, charge_attack_radius) do
+		local ray = core.raycast(data.spear_head_pos, spear_head_pos, true, false)
+
+		for pointed_thing in ray do
+			if pointed_thing.type ~= "object" then
+				break
+			end
+			local obj = pointed_thing.ref
 			local props = obj:get_properties()
 			if obj ~= player and props.physical then
 				local speed_diff = vector.distance(player_velocity, obj:get_velocity())
