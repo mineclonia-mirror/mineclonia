@@ -30,7 +30,7 @@ mcl_trees.register_wood("oak",{
 		_after_grow=mcl_trees.sapling_add_bee_nest,
 	},
 	shelf = {
-		tiles = mcl_shelfs.sliced_shelf_texture("mcl_core_oak_shelf.png")
+		tiles = mcl_shelves.sliced_shelf_texture("mcl_core_oak_shelf.png")
 	},
 	door = {
 		inventory_image = "doors_item_wood.png",
@@ -67,7 +67,7 @@ mcl_trees.register_wood("dark_oak",{
 		wield_image = "mcl_core_sapling_big_oak.png",
 	},
 	shelf = {
-		tiles = mcl_shelfs.sliced_shelf_texture("ncl_core_dark_oak_shelf.png")
+		tiles = mcl_shelves.sliced_shelf_texture("ncl_core_dark_oak_shelf.png")
 	},
 	fence = {
 		tiles = { "mcl_fences_fence_big_oak.png" },
@@ -109,7 +109,7 @@ mcl_trees.register_wood("jungle",{
 		wield_image = "default_junglesapling.png",
 	},
 	shelf = {
-		tiles = mcl_shelfs.sliced_shelf_texture("mcl_core_jungle_shelf.png")
+		tiles = mcl_shelves.sliced_shelf_texture("mcl_core_jungle_shelf.png")
 	},
 	potted_sapling = {
 		image = "default_junglesapling.png",
@@ -154,7 +154,7 @@ mcl_trees.register_wood("spruce",{
 		end
 	},
 	shelf = {
-		tiles = mcl_shelfs.sliced_shelf_texture("mcl_core_spruce_shelf.png")
+		tiles = mcl_shelves.sliced_shelf_texture("mcl_core_spruce_shelf.png")
 	},
 	hanging_sign = true,
 })
@@ -184,7 +184,7 @@ mcl_trees.register_wood("acacia",{
 		wield_image = "default_acacia_sapling.png",
 	},
 	shelf = {
-		tiles = mcl_shelfs.sliced_shelf_texture("mcl_core_acacia_shelf.png")
+		tiles = mcl_shelves.sliced_shelf_texture("mcl_core_acacia_shelf.png")
 	},
 	potted_sapling = {
 		image = "default_acacia_sapling.png",
@@ -205,7 +205,7 @@ mcl_trees.register_wood("birch",{
 		_after_grow=mcl_trees.sapling_add_bee_nest,
 	},
 	shelf = {
-		tiles = mcl_shelfs.sliced_shelf_texture("mcl_core_birch_shelf.png")
+		tiles = mcl_shelves.sliced_shelf_texture("mcl_core_birch_shelf.png")
 	},
 	hanging_sign = true,
 })
