@@ -1,4 +1,4 @@
-mcl_shelfs = {}
+mcl_shelves = {}
 
 local player_reach = 8
 local item_entity_offsets = {
@@ -12,7 +12,7 @@ local function escape_texture (text)
 	return text:gsub("\\", "\\\\"):gsub("%^", "\\%^"):gsub(":", "\\:")
 end
 
-function mcl_shelfs.sliced_shelf_texture(texture)
+function mcl_shelves.sliced_shelf_texture(texture)
 
 	local function sheet_at(x, y)
 		return texture .. "^[sheet:2x4:" .. x .. "," .. y
@@ -78,7 +78,7 @@ local function initalize_shelf(pos, inv)
 	for i = 1, 3 do
 		local obj = core.add_entity(
 			pos + vector.rotate_around_axis(item_entity_offsets[i], vector.new(0, -1, 0), rotation),
-			"mcl_shelfs:item_entity"
+			"mcl_shelves:item_entity"
 		)
 		obj:set_yaw(rotation)
 		local stack_name = inv:get_stack("main", i):get_name()
@@ -421,13 +421,13 @@ local shelf_tpl = {
 --	powered_left = tile_def
 --	powered_center = tile_def
 --	powered_right = tile_def
--- } -- you should consider using mcl_shelfs.sliced_shelf_texture()
--- overrides - table that overrides the nodedef of the shelfs
+-- } -- you should consider using mcl_shelves.sliced_shelf_texture()
+-- overrides - table that overrides the nodedef of the shelves
 -- sounds - the `sounds` part of the node def
 -- description - the `description` of the node def
 -- description - the `groups` of the node def
-function mcl_shelfs.register_shelf(name, def)
-	local root_name = "mcl_shelfs:" .. name
+function mcl_shelves.register_shelf(name, def)
+	local root_name = "mcl_shelves:" .. name
 	local base_def = table.merge(shelf_tpl, {
 		tiles = def.tiles.normal,
 		inventory_image = def.inventory_image,
@@ -476,7 +476,7 @@ function mcl_shelfs.register_shelf(name, def)
 	mcl_redstone.register_comparator_measure_func(root_name .. "_powered_right", comparator_measure)
 end
 
-core.register_entity("mcl_shelfs:item_entity", {
+core.register_entity("mcl_shelves:item_entity", {
 	initial_properties = {
 		visual = "wielditem",
 		visual_size = {x = 0.1, y = 0.1},
@@ -495,7 +495,7 @@ core.register_entity("mcl_shelfs:item_entity", {
 
 core.register_lbm({
 	label = "Spawn shelf entities",
-	name = "mcl_shelfs:item_entity_spawner",
+	name = "mcl_shelves:item_entity_spawner",
 	nodenames = {"group:mcl_shelf"},
 	run_at_every_load = true,
 	bulk_action = function(pos_list)
