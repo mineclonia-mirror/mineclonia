@@ -136,6 +136,12 @@ function mcl_tools.register_spear(name, spear_def)
 
 end
 
+core.register_on_leaveplayer(function(player)
+	spear_charge_data[player] = nil
+	spear_jab_data[player] = nil
+	spear_crosshair_huds[player] = nil
+end)
+
 local charge_minimum_steps_to_consider_seperate_hits = 2
 mcl_player.register_globalstep(function(player, dtime)
 	local wielded_stack = player:get_wielded_item()
