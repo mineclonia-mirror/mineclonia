@@ -21,6 +21,10 @@ local spear_charge_data = {}
 
 local spear_jab_data = {}
 
+-- Workaround the fact that `get_look_dir` may be confusing for touchscreen users that don't have a crosshair
+-- So we add a fake one
+local spear_crosshair_huds = {}
+
 local spear_reach = 4.5
 -- local spear_charge_minimum_speed_for_knockback = 5.1
 local spear_charge_minimum_speed_for_damage = 4.6
@@ -134,11 +138,32 @@ end
 
 local charge_minimum_steps_to_consider_seperate_hits = 2
 mcl_player.register_globalstep(function(player, dtime)
-	local controls = player:get_player_control()
 	local wielded_stack = player:get_wielded_item()
 	local wielded_name = wielded_stack:get_name()
 
-	if controls.RMB and core.get_item_group(wielded_name, "spear") > 0 then
+	if core.get_item_group(wielded_name, "spear") == 0 then
+		if spear_crosshair_huds[player] then
+			player:hud_remove(spear_crosshair_huds[player])
+			spear_crosshair_huds[player] = nil
+		end
+		return
+	end
+
+	local controls = player:get_player_control()
+	local window_info = core.get_player_window_information(player:get_player_name())
+	local is_touchscreen = window_info and window_info.touch_controls
+
+	if is_touchscreen and not spear_crosshair_huds[player] then
+		spear_crosshair_huds[player] = player:hud_add({
+			type = "image",
+			alignment = {x = 0.5, y = 0.5},
+			position = {x = 0.5, y = 0.5},
+			scale = {x = 5, y = 5},
+			text = "mcl_tools_spears_crosshair.png"
+		})
+	end
+
+	if controls.RMB then
 		local stack_def = core.registered_items[wielded_name]
 		local spear_head_pos = vector.offset(player:get_pos(), 0, 1.5, 0) + player:get_look_dir()
 		local player_velocity = player:get_velocity()
