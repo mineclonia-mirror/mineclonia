@@ -172,7 +172,10 @@ mcl_player.register_globalstep(function(player, dtime)
 	if controls.RMB then
 		local stack_def = core.registered_items[wielded_name]
 		local spear_head_pos = vector.offset(player:get_pos(), 0, 1.5, 0) + player:get_look_dir()
-		local player_velocity = player:get_velocity()
+
+		local elytra = mcl_player.players[player].elytra
+		local player_velocity = elytra.active and player:get_attach():get_velocity() or player:get_velocity()
+
 		spear_charge_data[player] = spear_charge_data[player] or {
 			phase = "activation", phase_timer = 0,
 			phase_duration = stack_def._mcl_spear_charge_delay,
