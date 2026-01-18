@@ -33,13 +33,13 @@ local minimum_attack_distance = 2
 
 local function get_next_phase(phase, stack_def)
 	if phase == "activation" then
-		return "engaged", stack_def._mcl_spear_engaged_phase_duration, "engaged_spear_overlay.png"
+		return "engaged", stack_def._mcl_spear_engaged_phase_duration
 	elseif phase == "engaged" then
-		return "tired", stack_def._mcl_spear_tired_phase_duration, "tired_spear_overlay.png"
+		return "tired", stack_def._mcl_spear_tired_phase_duration
 	elseif phase == "tired" then
-		return "disengaged", stack_def._mcl_spear_disengaged_phase_duration, "disengaged_spear_overlay.png"
+		return "disengaged", stack_def._mcl_spear_disengaged_phase_duration
 	else
-		return "end of charge", math.huge, ""
+		return "end of charge", math.huge
 	end
 end
 
@@ -162,7 +162,6 @@ mcl_player.register_globalstep(function(player, dtime)
 	if is_touchscreen and not spear_crosshair_huds[player] then
 		spear_crosshair_huds[player] = player:hud_add({
 			type = "image",
-			alignment = {x = 0.5, y = 0.5},
 			position = {x = 0.5, y = 0.5},
 			scale = {x = 5, y = 5},
 			text = "mcl_tools_spears_crosshair.png"
@@ -177,11 +176,18 @@ mcl_player.register_globalstep(function(player, dtime)
 		local player_velocity = elytra.active and player:get_attach():get_velocity() or player:get_velocity()
 
 		spear_charge_data[player] = spear_charge_data[player] or {
-			phase = "activation", phase_timer = 0,
+			phase = "activation",
+			phase_timer = 0,
 			phase_duration = stack_def._mcl_spear_charge_delay,
 			step_counter = 0,
 			object_store = {},
-			spear_head_pos = spear_head_pos
+			spear_head_pos = spear_head_pos,
+			hud_id = player:hud_add({
+				type = "text",
+				position = {x = 0.5, y = 0.5},
+				offset = {x = 0, y = 24},
+				text = core.colorize("#FFFFFF", "activation")
+			})
 		}
 
 		local data = spear_charge_data[player]
@@ -189,17 +195,16 @@ mcl_player.register_globalstep(function(player, dtime)
 		data.step_counter = data.step_counter + 1
 		data.phase_timer = data.phase_timer + dtime
 		if data.phase_timer >= data.phase_duration then
-			local spear_overlay
-			data.phase, data.phase_duration, spear_overlay = get_next_phase(data.phase, stack_def)
+			data.phase, data.phase_duration = get_next_phase(data.phase, stack_def)
 			data.phase_timer = data.phase_timer - data.phase_duration
 
-			local stack_meta = wielded_stack:get_meta()
-			stack_meta:set_string("wield_image", core.registered_items[wielded_name].wield_image .. "^" .. spear_overlay)
-		end
+			if data.phase == "end of charge" then
+				player:hud_remove(spear_charge_data[player].hud_id)
+				data.hud_id = nil
+				return
+			end
 
-		if data.phase == "end of charge" then
-			player:set_wielded_item(wielded_stack)
-			return
+			player:hud_change(data.hud_id, "text", core.colorize("#FFFFFF", data.phase))
 		end
 
 		local ray = core.raycast(data.spear_head_pos, spear_head_pos, true, false)
@@ -243,9 +248,9 @@ mcl_player.register_globalstep(function(player, dtime)
 
 		player:set_wielded_item(wielded_stack)
 	elseif spear_charge_data[player] then
-		local stack_meta = wielded_stack:get_meta()
-		stack_meta:set_string("wield_image", "")
-		player:set_wielded_item(wielded_stack)
+		if spear_charge_data[player].hud_id then
+			player:hud_remove(spear_charge_data[player].hud_id)
+		end
 		spear_charge_data[player] = nil
 	end
 end)
