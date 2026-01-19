@@ -381,7 +381,7 @@ local shelf_tpl = {
 			{-0.5, 8/32, 6/32,  0.5, 0.5,   0.5},
 		}
 	},
-	groups = {mcl_shelf = 1, deco_block = 1, container = 3},
+	groups = {mcl_shelf = 1, deco_block = 1, container = 3, unmovable_by_piston = 1},
 	on_construct = function(pos)
 		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
