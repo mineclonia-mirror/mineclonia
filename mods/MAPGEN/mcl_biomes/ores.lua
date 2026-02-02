@@ -353,11 +353,20 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				{ 1600, 7, 4, mcl_worlds.layer_to_y(13), mcl_worlds.layer_to_y(15) },
 			},
 			["lapis"] = {
-				{ 10000, 7, 4, mcl_worlds.layer_to_y(14), deepslate_max },
-				{ 12000, 6, 3, mcl_worlds.layer_to_y(10), mcl_worlds.layer_to_y(13) },
-				{ 14000, 5, 3, mcl_worlds.layer_to_y(6), mcl_worlds.layer_to_y(9) },
-				{ 16000, 4, 3, mcl_worlds.layer_to_y(2), mcl_worlds.layer_to_y(5) },
-				{ 18000, 3, 2, mcl_worlds.layer_to_y(0), mcl_worlds.layer_to_y(2) },
+				-- spawnsize 7, max 10 nodes
+				-- -> num = 5, size = 3 (~99% 1-10 nodes)
+				-- 4 tries per chunk, uniform, [-64, 64]
+				-- -> 62.5 tries in deepslate (+ 50 tries in stone)
+				-- 62.5 tries [ -64,  15]
+				{ 8192, 5, 3,  -128, -49 },
+				-- 2 tries per chunk, triangular, 0+-32
+				-- air exposure reduction factor 1.0
+				-- -> num -= 1 (-20%), size -= 1, -> upgrade to ~2.5 tries per chunk
+				-- -> 58 tries in deepslate (+ 33 tries in stone)
+				-- 8 tries    [-32, -17]
+				{  6400, 4, 2, -96, -81 },
+				-- 50 tries   [-16,  15]
+				{  4096, 4, 2, -80, -49 },
 			},
 			["emerald"] = {
 				{ 16384, 1, 1, mcl_worlds.layer_to_y(4), deepslate_max, mountains },
@@ -402,16 +411,20 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				{ 1600, 7, 4, mcl_worlds.layer_to_y(13), mcl_worlds.layer_to_y(15) },
 			},
 			["lapis"] = {
-				{ 7000, 7, 4, mcl_worlds.layer_to_y(14), mcl_worlds.layer_to_y(16) },
-				{ 10000, 6, 3, mcl_worlds.layer_to_y(10), mcl_worlds.layer_to_y(13) },
-				{ 12000, 5, 3, mcl_worlds.layer_to_y(6), mcl_worlds.layer_to_y(9) },
-				{ 16000, 4, 3, mcl_worlds.layer_to_y(2), mcl_worlds.layer_to_y(5) },
-				{ 18000, 3, 2, mcl_worlds.layer_to_y(0), mcl_worlds.layer_to_y(2) },
-				{ 10000, 6, 3, mcl_worlds.layer_to_y(17), mcl_worlds.layer_to_y(20) },
-				{ 12000, 5, 3, mcl_worlds.layer_to_y(21), mcl_worlds.layer_to_y(24) },
-				{ 14000, 4, 3, mcl_worlds.layer_to_y(25), mcl_worlds.layer_to_y(28) },
-				{ 18000, 3, 2, mcl_worlds.layer_to_y(29), mcl_worlds.layer_to_y(32) },
-				{ 28000, 1, 1, mcl_worlds.layer_to_y(31), mcl_worlds.layer_to_y(32) },
+				-- spawnsize 7, max 10 nodes
+				-- -> num = 5, size = 3 (~99% 1-10 nodes)
+				-- 4 tries per chunk, uniform, [-64, 64]
+				-- -> 50 tries in stone (+ 62.5 tries in deepslate)
+				-- 50 tries  [  0, 63]
+				{ 8192, 5, 3, -64, -1 },
+				-- 2 tries per chunk, triangular, 0+-32
+				-- air exposure reduction factor 1.0
+				-- -> num -= 1 (-20%), size -= 1, -> upgrade to ~2.5 tries per chunk
+				-- -> 33 tries in stone (+ 58 tries in deepslate)
+				-- 25 tries   [  0,  15]
+				{  4096, 4, 2, -64, -49 },
+				-- 8 tries    [ 16,  31]
+				{  6400, 4, 2, -48, -33 },
 			},
 			["copper"] = {
 				{ 830, 5, 3, mcl_vars.mg_overworld_min, mcl_worlds.layer_to_y(39) },
