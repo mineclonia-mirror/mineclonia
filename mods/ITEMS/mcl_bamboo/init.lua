@@ -42,7 +42,7 @@ mcl_trees.register_wood("bamboo",{
 	bark = false,
 	stripped_bark = false,
 	shelf = {
-		tiles = mcl_shelves.sliced_shelf_texture("mcl_bamboo_shelf.png")
+		tiles = {"mcl_bamboo_shelf.png"}
 	},
 	fence = { tiles = { "mcl_bamboo_fence_bamboo.png" },},
 	fence_gate = { tiles = { "mcl_bamboo_fence_gate_bamboo.png" }, },

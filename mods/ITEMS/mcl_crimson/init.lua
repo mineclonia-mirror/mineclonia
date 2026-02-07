@@ -122,7 +122,8 @@ mcl_trees.register_wood("crimson",{
 		_mcl_cooking_output = ""
 	},
 	shelf = {
-		tiles = mcl_shelves.sliced_shelf_texture("mcl_crimson_crimson_shelf.png"),
+		_mcl_burntime = 0,
+		tiles = {"mcl_crimson_crimson_shelf.png"},
 		groups = {fire_flammability = 0, fire_encouragement = 0}
 	},
 	wood = {
@@ -190,7 +191,8 @@ mcl_trees.register_wood("warped",{
 		_mcl_cooking_output = ""
 	},
 	shelf = {
-		tiles = mcl_shelves.sliced_shelf_texture("mcl_crimson_warped_shelf.png"),
+		_mcl_burntime = 0,
+		tiles = {"mcl_crimson_warped_shelf.png"},
 		groups = {fire_flammability = 0, fire_encouragement = 0}
 	},
 	wood = {
