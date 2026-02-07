@@ -507,13 +507,16 @@ function mcl_trees.register_wood(name, p)
 		mcl_fences.register_fence_gate_def(name.."_fence", def)
 	end
 
-	if type(p.shelf) == "table" then
+	if p.shelf == nil or type(p.shelf) == "table" then
+		p.shelf = p.shelf or {}
 		local def = table.merge({
 			description = p.shelf.description or D(rname .. " Shelf"),
 			sounds = wood_sounds,
+			_mcl_burntime = 15,
 			_mcl_hardness = 2,
 			_mcl_blast_resistance = 3,
-			groups = table.merge({material_wood = 1, axey = 1, fire_flammability = 20, fire_encouragement = 30}, p.shelf.groups)
+			groups = table.merge({material_wood = 1, axey = 1, fire_flammability = 20, fire_encouragement = 30}, p.shelf.groups),
+			tiles = {modname.."_"..name.."_shelf.png"}
 		}, p.shelf)
 
 		mcl_shelves.register_shelf(name, def)
