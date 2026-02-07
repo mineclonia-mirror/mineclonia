@@ -409,17 +409,11 @@ local shelf_tpl = {
 -- description - the `groups` of the node def
 function mcl_shelves.register_shelf(name, def)
 	local root_name = "mcl_shelves:" .. name
-	local base_def = table.merge(shelf_tpl, {
-		tiles = def.tiles,
-		inventory_image = def.inventory_image,
-		description = def.description,
+	local base_def = table.merge(shelf_tpl, def, {
 		groups = table.merge(shelf_tpl.groups, def.groups),
-		sounds = def.sounds,
-		_mcl_baseitem = root_name,
-		_mcl_burntime = def._mcl_burntime,
 		drop = root_name,
 		mesh = "mcl_shelves_shelf.obj"
-	}, def.overrides or {})
+	})
 
 	local powered_def = table.merge(base_def, {
 		on_rightclick = powered_on_rightclick,
