@@ -8,27 +8,6 @@ local item_entity_offsets = {
 }
 local shelf_item_entities = {}
 
-local function escape_texture (text)
-	return text:gsub("\\", "\\\\"):gsub("%^", "\\%^"):gsub(":", "\\:")
-end
-
-function mcl_shelves.sliced_shelf_texture(texture)
-
-	local function sheet_at(x, y)
-		return texture .. "^[sheet:2x4:" .. x .. "," .. y
-	end
-
-	local base_tex = texture .. "^[sheet:2x2:1,0"
-
-	return {
-		normal =         {base_tex, base_tex, base_tex, base_tex, base_tex, "[combine:16x16:0,0=" .. texture},
-		powered =        {base_tex, base_tex, base_tex, base_tex, base_tex, base_tex .. "^[combine:16x16:0,4=" .. escape_texture(sheet_at(1, 3))},
-		powered_left =   {base_tex, base_tex, base_tex, base_tex, base_tex, base_tex .. "^[combine:16x16:0,4=" .. escape_texture(sheet_at(0, 2))},
-		powered_center = {base_tex, base_tex, base_tex, base_tex, base_tex, base_tex .. "^[combine:16x16:0,4=" .. escape_texture(sheet_at(0, 3))},
-		powered_right =  {base_tex, base_tex, base_tex, base_tex, base_tex, base_tex .. "^[combine:16x16:0,4=" .. escape_texture(sheet_at(1, 2))},
-	}
-end
-
 local function rotate_dir_90_deg_clockwise(dir)
 	local rotated_dir = vector.copy(dir)
 
@@ -369,18 +348,20 @@ local function comparator_measure(pos)
 	return powerlevel
 end
 
+local shelf_box = {
+	type = "fixed",
+	fixed = {
+		{-0.5, -0.5, 10/32, 0.5, 0.5,   0.5},
+		{-0.5, -0.5, 6/32,  0.5, -8/32, 0.5},
+		{-0.5, 8/32, 6/32,  0.5, 0.5,   0.5},
+	}
+}
 local shelf_tpl = {
-	drawtype = "nodebox",
+	drawtype = "mesh",
 	paramtype2 = "4dir",
 	paramtype = "light",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, 10/32, 0.5, 0.5,   0.5},
-			{-0.5, -0.5, 6/32,  0.5, -8/32, 0.5},
-			{-0.5, 8/32, 6/32,  0.5, 0.5,   0.5},
-		}
-	},
+	selection_box = shelf_box,
+	collision_box = shelf_box,
 	groups = {mcl_shelf = 1, deco_block = 1, container = 3, unmovable_by_piston = 1},
 	on_construct = function(pos)
 		local meta = core.get_meta(pos)
@@ -429,13 +410,15 @@ local shelf_tpl = {
 function mcl_shelves.register_shelf(name, def)
 	local root_name = "mcl_shelves:" .. name
 	local base_def = table.merge(shelf_tpl, {
-		tiles = def.tiles.normal,
+		tiles = def.tiles,
 		inventory_image = def.inventory_image,
 		description = def.description,
 		groups = table.merge(shelf_tpl.groups, def.groups),
 		sounds = def.sounds,
 		_mcl_baseitem = root_name,
+		_mcl_burntime = def._mcl_burntime,
 		drop = root_name,
+		mesh = "mcl_shelves_shelf.obj"
 	}, def.overrides or {})
 
 	local powered_def = table.merge(base_def, {
@@ -454,19 +437,19 @@ function mcl_shelves.register_shelf(name, def)
 	core.register_node(":" .. root_name, base_def)
 
 	core.register_node(":" .. root_name .. "_powered", table.merge(powered_def, {
-		tiles = def.tiles.powered,
+		mesh = "mcl_shelves_shelf_powered.obj"
 	}))
 
 	core.register_node(":" .. root_name .. "_powered_left", table.merge(powered_def, {
-		tiles = def.tiles.powered_left,
+		mesh = "mcl_shelves_shelf_powered_left.obj",
 	}))
 
 	core.register_node(":" .. root_name .. "_powered_center", table.merge(powered_def, {
-		tiles = def.tiles.powered_center,
+		mesh = "mcl_shelves_shelf_powered_center.obj",
 	}))
 
 	core.register_node(":" .. root_name .. "_powered_right", table.merge(powered_def, {
-		tiles = def.tiles.powered_right,
+		mesh = "mcl_shelves_shelf_powered_right.obj",
 	}))
 
 	mcl_redstone.register_comparator_measure_func(root_name, comparator_measure)
