@@ -321,7 +321,7 @@ core.register_entity(":__builtin:item", {
 		hp_max = 1,
 		physical = true,
 		collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.3, 0.3},
-		pointable = false,
+		pointable = true,
 		visual = "wielditem",
 		visual_size = {x = 0.4, y = 0.4},
 		wield_item = "",
@@ -512,7 +512,6 @@ core.register_entity(":__builtin:item", {
 			wield_item = stack:get_name(),
 			visual_size = {x = s, y = s},
 			collisionbox = {-c, -c, -c, c, c, c},
-			infotext = def.description,
 			glow = def.light_source,
 		}, props_overrides))
 		if item_drop_settings.random_item_velocity == true and self.age < 1 then
