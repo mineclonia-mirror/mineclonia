@@ -221,6 +221,7 @@ core.register_craftitem("mcl_paintings:painting", {
 			meta:set_string("mcl_paintings:title", def.title)
 			meta:set_int("mcl_paintings:width", def.width)
 			meta:set_int("mcl_paintings:height", def.height)
+			meta:set_string("inventory_image", def.texture )
 			tt.reload_itemstack_description(stack)
 			table.insert(output.deco, stack:to_string())
 		end
