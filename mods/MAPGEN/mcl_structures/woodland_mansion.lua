@@ -54,6 +54,7 @@ mcl_structures.register_structure("woodland_cabin",{
 				{ itemstring = "mcl_core:iron_ingot", weight = 10, amount_min = 1, amount_max = 4 },
 				{ itemstring = "mcl_buckets:bucket_empty", weight = 10, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_core:gold_ingot", weight = 5, amount_min = 1, amount_max = 4 },
+				{ itemstring = "mcl_pale_oak:resin_clump", weight = 2, amount_min = 2, amount_max = 4 },
 			}},{
 				stacks_min = 1,
 				stacks_max = 4,

@@ -1,9 +1,21 @@
 local S = core.get_translator("mcl_pale_oak")
 
-core.register_craftitem("mcl_pale_oak:resin_clump", {
+core.register_node("mcl_pale_oak:resin_clump", {
 	description = S("Resin Clump"),
+	drawtype = "signlike",
 	inventory_image = "mcl_pale_oak_resin_clump.png",
-	groups = { craftitem = 1 },
+	wield_image = "mcl_pale_oak_resin_clump.png",
+	tiles = {"mcl_pale_oak_resin_clump_block.png"},
+	use_texture_alpha = "clip",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5}
+	},
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	groups = {attached_node = 1, craftitem = 1, dig_by_piston = 1, dig_immediate = 3, unsticky = 1},
 	_mcl_crafting_output = {
 		square3 = {output = "mcl_pale_oak:block_of_resin"}
 	},
@@ -18,7 +30,7 @@ core.register_craftitem("mcl_pale_oak:resin_brick", {
 		square2 = {output = "mcl_pale_oak:resin_brick_block"}
 	},
 	_mcl_armor_trim_color = "#ff5315",
-	_mcl_armor_trim_desc = "Resin Material"
+	_mcl_armor_trim_desc = S("Resin Material")
 })
 
 core.register_node("mcl_pale_oak:block_of_resin", {
@@ -49,12 +61,12 @@ core.register_node("mcl_pale_oak:chiseled_resin_brick", {
 
 mcl_stairs.register_stair_and_slab("resin_brick", {
     baseitem = "mcl_pale_oak:resin_brick_block",
-    description_stair = "Resin Brick Stairs",
-    description_slab = "Resin Brick Slab",
+    description_stair = S("Resin Brick Stairs"),
+    description_slab = S("Resin Brick Slab"),
 	groups = { pickaxey=1 },
 	overrides = {
 		_mcl_stonecutter_recipes = {"mcl_pale_oak:resin_brick_block"},
 	}
 })
 
-mcl_walls.register_wall("mcl_pale_oak:resinbrick", "Resin Brick Wall", "mcl_pale_oak:resin_brick", {"mcl_pale_oak_resin_brick_block.png"})
+mcl_walls.register_wall("mcl_pale_oak:resinbrick", S("Resin Brick Wall"), "mcl_pale_oak:resin_brick", {"mcl_pale_oak_resin_brick_block.png"})
