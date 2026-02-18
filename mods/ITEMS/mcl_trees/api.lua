@@ -522,7 +522,7 @@ function mcl_trees.register_wood(name, p)
 		mcl_shelves.register_shelf(name, def)
 
 		core.register_craft({
-			output = "mcl_shelves:" .. name,
+			output = "mcl_shelves:" .. name .. " 6",
 			recipe = {
 				{"mcl_trees:stripped_" .. name, "mcl_trees:stripped_" .. name, "mcl_trees:stripped_" .. name},
 				{"",                            "",                            ""},
