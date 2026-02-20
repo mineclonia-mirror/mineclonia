@@ -1,6 +1,6 @@
---
--- Lava vs water interactions
---
+local function extinguish_sound(pos)
+	core.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.2, max_hear_distance = 16}, true)
+end
 core.register_abm({
 	label = "Lava cooling",
 	nodenames = {"group:lava"},
@@ -9,31 +9,27 @@ core.register_abm({
 	chance = 1,
 	min_y = mcl_vars.mg_end_min,
 	action = function(pos, node)
-		local water = core.find_nodes_in_area({x=pos.x-1, y=pos.y-1, z=pos.z-1}, {x=pos.x+1, y=pos.y+1, z=pos.z+1}, "group:water")
 
 		local lavatype = core.registered_nodes[node.name].liquidtype
 
-		for w=1, #water do
-			--local waternode = core.get_node(water[w])
-			--local watertype = core.registered_nodes[waternode.name].liquidtype
+		for _, w in pairs(core.find_nodes_in_area(pos:offset(-1, -1, -1),pos:offset(1, 1, 1), "group:water")) do
 			-- Lava on top of water: Water turns into stone
-			if water[w].y < pos.y and water[w].x == pos.x and water[w].z == pos.z then
-				core.set_node(water[w], {name="mcl_core:stone"})
-				core.sound_play("fire_extinguish_flame", {pos = water[w], gain = 0.2, max_hear_distance = 16}, true)
-			-- Flowing lava vs water on same level: Lava turns into cobblestone
-			elseif lavatype == "flowing" and water[w].y == pos.y and (water[w].x == pos.x or water[w].z == pos.z) then
-				core.set_node(pos, {name="mcl_core:cobble"})
-				core.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.2, max_hear_distance = 16}, true)
+			if w.y < pos.y and w.x == pos.x and w.z == pos.z then
+				core.set_node(w, {name="mcl_core:stone"})
+				extinguish_sound(w)
 			-- Lava source vs flowing water above or horizontally neighbored: Lava turns into obsidian
 			elseif lavatype == "source" and
-					((water[w].y > pos.y and water[w].x == pos.x and water[w].z == pos.z) or
-					(water[w].y == pos.y and (water[w].x == pos.x or water[w].z == pos.z))) then
+			((w.y > pos.y and w.x == pos.x and w.z == pos.z) or
+			(w.y == pos.y and (w.x == pos.x or w.z == pos.z))) then
 				core.set_node(pos, {name="mcl_core:obsidian"})
-				core.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.2, max_hear_distance = 16}, true)
+				extinguish_sound(pos)
+			-- Flowing lava vs water on same level: Lava turns into cobblestone
 			-- water above flowing lava: Lava turns into cobblestone
-			elseif lavatype == "flowing" and water[w].y > pos.y and water[w].x == pos.x and water[w].z == pos.z then
+			elseif lavatype == "flowing" and
+			((w.y == pos.y and (w.x == pos.x or w.z == pos.z))  or
+			(w.y > pos.y and w.x == pos.x and w.z == pos.z)) then
 				core.set_node(pos, {name="mcl_core:cobble"})
-				core.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.2, max_hear_distance = 16}, true)
+				extinguish_sound(pos)
 			end
 		end
 	end,
