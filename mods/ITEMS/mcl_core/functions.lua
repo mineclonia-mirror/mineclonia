@@ -113,14 +113,7 @@ local function drop_attached_node(p)
 	end
 	core.remove_node(p)
 	for _, item in pairs(core.get_node_drops(nn, "")) do
-		local pos = {
-			x = p.x + math.random()/2 - 0.25,
-			y = p.y + math.random()/2 - 0.25,
-			z = p.z + math.random()/2 - 0.25,
-		}
-		if item ~= "" then
-			core.add_item(pos, item)
-		end
+		mcl_util.drop_item_stack(p, ItemStack(item))
 	end
 end
 
