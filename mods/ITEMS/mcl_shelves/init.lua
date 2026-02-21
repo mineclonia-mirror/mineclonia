@@ -243,7 +243,7 @@ local function propagate_redstone_update(pos)
 	local node = core.get_node(pos)
 	local root_name = string.gsub(node.name, "_powered.*", "")
 
-	if core.get_item_group(root_name, "mcl_shelf") <= 0 then
+	if core.get_item_group(root_name, "shelf") <= 0 then
 		return
 	end
 
@@ -314,7 +314,7 @@ local function propagate_redstone_update(pos)
 	end
 end
 
-local function propagate_redsone_removal(pos)
+local function propagate_redstone_removal(pos)
 	local node = core.get_node(pos)
 	local root_name = string.gsub(node.name, "_powered.*", "")
 	local node_variant = get_shelf_variant(node.name)
@@ -362,7 +362,7 @@ local shelf_tpl = {
 	paramtype = "light",
 	selection_box = shelf_box,
 	collision_box = shelf_box,
-	groups = {mcl_shelf = 1, deco_block = 1, container = 3, unmovable_by_piston = 1},
+	groups = {shelf = 1, deco_block = 1, container = 3, unmovable_by_piston = 1},
 	on_construct = function(pos)
 		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -376,7 +376,7 @@ local shelf_tpl = {
 			core.add_item(pos, inv:get_stack("main", i))
 		end
 		clear_shelf_entities(pos)
-		propagate_redsone_removal(pos)
+		propagate_redstone_removal(pos)
 	end,
 	on_rightclick = normal_on_rightclick,
 	_mcl_redstone = {
@@ -395,18 +395,6 @@ local shelf_tpl = {
 	end
 }
 
--- def takes members:
--- tiles = {
---	normal = tile_def
---	powered = tile_def
---	powered_left = tile_def
---	powered_center = tile_def
---	powered_right = tile_def
--- } -- you should consider using mcl_shelves.sliced_shelf_texture()
--- overrides - table that overrides the nodedef of the shelves
--- sounds - the `sounds` part of the node def
--- description - the `description` of the node def
--- description - the `groups` of the node def
 function mcl_shelves.register_shelf(name, def)
 	local root_name = "mcl_shelves:" .. name
 	local base_def = table.merge(shelf_tpl, def, {
@@ -422,7 +410,7 @@ function mcl_shelves.register_shelf(name, def)
 			update = function(pos, node)
 				local power = mcl_redstone.get_power(pos)
 				if power == 0 then
-					propagate_redsone_removal(pos)
+					propagate_redstone_removal(pos)
 				end
 			end
 		}
@@ -473,7 +461,7 @@ core.register_entity("mcl_shelves:item_entity", {
 core.register_lbm({
 	label = "Spawn shelf entities",
 	name = "mcl_shelves:item_entity_spawner",
-	nodenames = {"group:mcl_shelf"},
+	nodenames = {"group:shelf"},
 	run_at_every_load = true,
 	bulk_action = function(pos_list)
 		for _, pos in pairs(pos_list) do
