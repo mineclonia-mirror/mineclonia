@@ -89,6 +89,7 @@ local bell_def = {
 	use_texture_alpha = "clip",
 	wield_image = "mcl_bells_bell.png",
 	is_ground_content = true,
+	on_rotate = false,
 	groups = {
 		bell = 1,
 		dig_by_piston = 1,
@@ -179,6 +180,7 @@ core.register_node("mcl_bells:bell", table.merge(bell_def, {
 		"mcl_bells_bell_floor_side.png",
 	},
 	paramtype2 = "facedir",
+	on_rotate = screwdriver.rotate_simple,
 	drop = "mcl_bells:bell",
 	groups = table.merge(bell_def.groups, {
 		not_in_creative_inventory = 0,
@@ -198,6 +200,7 @@ core.register_node("mcl_bells:bell_ceiling", table.merge(bell_def, {
 			{-5/16, -8/16, -5/16, 5/16, 6/16, 5/16}
 		},
 	},
+	on_rotate = false,
 	tiles = {"mcl_bells_bell_ceiling.png"},
 	drop = "mcl_bells:bell",
 	groups = table.merge(bell_def.groups, {
@@ -218,6 +221,7 @@ core.register_node("mcl_bells:bell_wall", table.merge(bell_def, {
 			{-4/16, -8/16, -8/16, 4/16, 8/16, 8/16}
 		},
 	},
+	on_rotate = false,
 	tiles = {"mcl_bells_bell_wall.png"},
 	groups = table.merge(bell_def.groups, {
 		not_in_creative_inventory = 1,
