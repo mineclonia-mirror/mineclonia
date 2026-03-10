@@ -72,8 +72,9 @@ function tt.reload_itemstack_description(itemstack)
 		    orig_desc = def._mcl_filter_description (itemstack,
 							     orig_desc)
 		end
-		if meta:get_string("name") ~= "" then
-			orig_desc = core.colorize(tt.NAME_COLOR, meta:get_string("name"))
+		local metaname = meta:get_string("name")
+		if metaname ~= "" then
+			orig_desc = core.colorize(tt.NAME_COLOR, mcl_util.sanitize_utf8(metaname))
 		end
 		local desc = apply_snippets(orig_desc, itemstring, toolcaps or def.tool_capabilities, itemstack)
 		if desc ~= def.description then
