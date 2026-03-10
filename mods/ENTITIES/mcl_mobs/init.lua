@@ -333,10 +333,8 @@ mob_class._targeting_rules = {}
 
 function mcl_mobs.mob_class:set_nametag(name)
 	if name ~= "" then
-		if string.len(name) > self.max_name_length then
-			name = string.sub(name, 1, self.max_name_length)
-		end
-		self.nametag = name
+		-- limit length in codepoints
+		self.nametag = mcl_util.truncate_utf8(name, nil, self.max_name_length)
 		self:update_tag()
 		return true
 	end
