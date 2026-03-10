@@ -49,7 +49,16 @@ local function make_description(itemstack)
 end
 
 local function cap_text_length(text, max_length)
-	return string.sub(text, 1, max_length)
+	-- Non ASCII codepoints are expanded to "\uxxxx" when stored in item meta.
+	local max_nonascii = math.floor(max_length / 6)
+	local valid, codepoints, nonascii = mcl_util.truncate_utf8(text, max_length, nil, max_nonascii)
+	-- Truncate further if necessary. This is an estimate potentially truncating too much.
+	local length = nonascii * 5 + codepoints
+	if length > max_length then
+		max_nonascii = max_nonascii - math.ceil((length - max_length) / 6)
+		valid = mcl_util.truncate_utf8(valid, nil, nil, max_nonascii)
+	end
+	return valid
 end
 
 local function write(itemstack, user, pointed_thing)
