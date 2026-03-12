@@ -2,9 +2,9 @@ mcl_shelves = {}
 
 local player_reach = 8
 local item_entity_offsets = {
-	vector.new(-0.3, 0, 0.25),
-	vector.new(0,    0, 0.25),
-	vector.new(0.3,  0, 0.25),
+	vector.new(-0.3, 0, 0.3),
+	vector.new(0,    0, 0.3),
+	vector.new(0.3,  0, 0.3),
 }
 local shelf_item_entities = {}
 
@@ -118,10 +118,9 @@ local function normal_on_rightclick(pos, node, player, stack, pointed_thing)
 	end
 
 	local pos_diff = vector.multiply(ray_pointed_thing.intersection_point - pos, perpendicular_dir)
-	local from_left =
-		(pos_diff.x ~= 0 and pos_diff.x)
-		or (pos_diff.y ~= 0 and pos_diff.y)
-		or (pos_diff.z ~= 0 and pos_diff.z)
+	local from_left = (pos_diff.x ~= 0 and pos_diff.x) or
+			(pos_diff.y ~= 0 and pos_diff.y) or
+			(pos_diff.z ~= 0 and pos_diff.z)
 
 	local slot = (from_left >= 0.15 and 1) or (from_left <= -0.15 and 3) or 2
 
@@ -305,7 +304,7 @@ local function propagate_redstone_update(pos)
 		core.swap_node(pos_left_1, {name = root_name .. "_powered_left",  param2 = node.param2})
 		return
 	elseif connect_right then
-		core.swap_node(pos,        {name = root_name .. "_powered_left",  param2 = node.param2})
+		core.swap_node(pos,         {name = root_name .. "_powered_left",  param2 = node.param2})
 		core.swap_node(pos_right_1, {name = root_name .. "_powered_right", param2 = node.param2})
 		return
 	else
@@ -351,13 +350,14 @@ end
 local shelf_box = {
 	type = "fixed",
 	fixed = {
-		{-0.5, -0.5, 10/32, 0.5, 0.5,   0.5},
-		{-0.5, -0.5, 6/32,  0.5, -8/32, 0.5},
-		{-0.5, 8/32, 6/32,  0.5, 0.5,   0.5},
+		{-8/16, -8/16, 5/16, 8/16, 8/16, 8/16},
+		{-8/16, -8/16, 3/16, 8/16, -4/16, 8/16},
+		{-8/16, 4/16, 3/16, 8/16, 8/16, 8/16},
 	}
 }
-local shelf_tpl = {
-	drawtype = "mesh",
+
+mcl_shelves.tpl_shelf = {
+	drawtype = "mesh", -- mesh applied later
 	paramtype2 = "4dir",
 	paramtype = "light",
 	selection_box = shelf_box,
@@ -397,8 +397,8 @@ local shelf_tpl = {
 
 function mcl_shelves.register_shelf(name, def)
 	local root_name = "mcl_shelves:" .. name
-	local base_def = table.merge(shelf_tpl, def, {
-		groups = table.merge(shelf_tpl.groups, def.groups),
+	local base_def = table.merge(mcl_shelves.tpl_shelf, def, {
+		groups = table.merge(mcl_shelves.tpl_shelf.groups, def.groups),
 		drop = root_name,
 		mesh = "mcl_shelves_shelf.obj"
 	})
@@ -444,7 +444,7 @@ end
 core.register_entity("mcl_shelves:item_entity", {
 	initial_properties = {
 		visual = "wielditem",
-		visual_size = {x = 0.1, y = 0.1},
+		visual_size = {x = 0.18, y = 0.18},
 		physical = false,
 		pointable = false,
 		static_save = false,
