@@ -1,10 +1,10 @@
 mcl_shelves = {}
 
-local player_reach = 8
+local PLAYER_REACH = 8
 local item_entity_offsets = {
 	vector.new(-0.3, 0, 0.3),
-	vector.new(0,    0, 0.3),
-	vector.new(0.3,  0, 0.3),
+	vector.new( 0.0, 0, 0.3),
+	vector.new( 0.3, 0, 0.3),
 }
 local shelf_item_entities = {}
 
@@ -41,15 +41,15 @@ end
 
 local function initalize_shelf(pos, inv)
 	local node = core.get_node(pos)
-	local rotation
 
+	local rotation
 	if node.param2 == 0 then
 		rotation = 0
 	elseif node.param2 == 1 then
 		rotation = math.pi / 2
 	elseif node.param2 == 2 then
 		rotation = math.pi
-	else
+	else -- node.param2 == 3
 		rotation = math.pi * 3/2
 	end
 
@@ -60,8 +60,8 @@ local function initalize_shelf(pos, inv)
 			"mcl_shelves:item_entity"
 		)
 		obj:set_yaw(rotation)
-		local stack_name = inv:get_stack("main", i):get_name()
 
+		local stack_name = inv:get_stack("main", i):get_name()
 		if stack_name == "" then
 			obj:set_properties({visual = "sprite", textures = {"blank.png"}})
 		else
@@ -72,7 +72,6 @@ local function initalize_shelf(pos, inv)
 	end
 
 	local hash = core.hash_node_position(pos)
-
 	shelf_item_entities[hash] = objects
 end
 
@@ -108,7 +107,7 @@ local function normal_on_rightclick(pos, node, player, stack, pointed_thing)
 	local perpendicular_dir = rotate_dir_90_deg_clockwise(dir)
 	local player_pos = vector.offset(player:get_pos(), 0, 1.5, 0)
 	local look_dir = player:get_look_dir()
-	local ray_end = player_pos + vector.multiply(look_dir, player_reach)
+	local ray_end = player_pos + vector.multiply(look_dir, PLAYER_REACH)
 
 	local ray = core.raycast(player_pos, ray_end, false, false)
 
@@ -242,9 +241,7 @@ local function propagate_redstone_update(pos)
 	local node = core.get_node(pos)
 	local root_name = string.gsub(node.name, "_powered.*", "")
 
-	if core.get_item_group(root_name, "shelf") <= 0 then
-		return
-	end
+	if core.get_item_group(root_name, "shelf") <= 0 then return end
 
 	local connect_left = false
 	local connect_right = false
@@ -256,8 +253,8 @@ local function propagate_redstone_update(pos)
 	local node_left_1 = core.get_node(pos_left_1)
 	local node_left_1_variant = get_shelf_variant(node_left_1.name)
 
-	if (node_left_1_variant == "_powered" or node_left_1_variant == "_powered_left")
-			and node.param2 == node_left_1.param2 then
+	if (node_left_1_variant == "_powered" or node_left_1_variant == "_powered_left") and
+			node.param2 == node_left_1.param2 then
 		connect_left = true
 	elseif node_left_1_variant == "_powered_right" and node.param2 == node_left_1.param2 then
 		local pos_left_2 = pos_left_1 + perpendicular_dir
@@ -276,8 +273,8 @@ local function propagate_redstone_update(pos)
 	local node_right_1 = core.get_node(pos_right_1)
 	local node_right_1_variant = get_shelf_variant(node_right_1.name)
 
-	if (node_right_1_variant == "_powered" or node_right_1_variant == "_powered_right")
-			and node.param2 == node_right_1.param2 then
+	if (node_right_1_variant == "_powered" or node_right_1_variant == "_powered_right") and
+			node.param2 == node_right_1.param2 then
 		if connect_left then
 			core.swap_node(pos_left_1,  {name = root_name .. "_powered_left", param2 = node.param2})
 			core.swap_node(pos,         {name = root_name .. "_powered_center", param2 = node.param2})
