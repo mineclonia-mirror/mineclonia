@@ -236,7 +236,7 @@ local sus_node_loot = {
 	},
 }
 
-function mcl_sus_nodes.get_random_item(pos)
+local function get_random_item(pos)
 	local meta = core.get_meta(pos)
 	local str = meta:get_string ("mcl_sus_nodes:desert_well_loot_seed")
 	if str ~= "" then
@@ -280,7 +280,7 @@ local function brush_node(itemstack, user, pointed_thing)
 		if not item_entities[ph] then
 			local o = core.add_entity(pos + (dir * 0.38),"mcl_sus_nodes:item_entity")
 			local l = o:get_luaentity()
-			l._item = mcl_sus_nodes.get_random_item(pos)
+			l._item = get_random_item(pos)
 			if not l._item then
 				o:remove()
 				return
@@ -335,7 +335,7 @@ local function overlay_tiles(orig,overlay)
 	return tiles
 end
 
-function mcl_sus_nodes.register_sus_node(name,source,overrides)
+local function register_sus_node(name,source,overrides)
 	local sdef = core.registered_nodes[source]
 	assert(sdef, "[mcl_sus_nodes] trying to register "..tostring(name).." but source node "..tostring(source).."doesn't exist")
 	local main_itemstring = "mcl_sus_nodes:"..name
@@ -453,11 +453,11 @@ core.register_craft({
 	}
 })
 
-mcl_sus_nodes.register_sus_node("sand","mcl_core:sand",{
+register_sus_node("sand","mcl_core:sand",{
 	description = S("Suspicious Sand"),
 })
 
-mcl_sus_nodes.register_sus_node("gravel","mcl_core:gravel",{
+register_sus_node("gravel","mcl_core:gravel",{
 	description = S("Suspicious Gravel"),
 })
 
@@ -494,3 +494,17 @@ end
 
 mcl_levelgen.register_notification_handler ("mcl_sus_nodes:suspicious_sand_structure_meta",
 					    handle_suspicious_sand_structure_meta)
+
+------------------------------------------------------------------------
+-- Compat shims for deprecated API
+------------------------------------------------------------------------
+
+function mcl_sus_nodes.get_random_item(pos)
+	mcl_util.log_deprecated_call("warning")
+	get_random_item(pos)
+end
+
+function mcl_sus_nodes.register_sus_node(name,source,overrides)
+	mcl_util.log_deprecated_call("warning")
+	register_sus_node(name,source,overrides)
+end
