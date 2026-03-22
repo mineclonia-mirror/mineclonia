@@ -86,7 +86,7 @@ core.register_node("mcl_core:cactus_flower",
 	groups = {
 			dig_immediate = 3, deco_block = 1, dig_by_piston = 1, plant = 1, flammable = 3,
 			fire_encouragement = 60, fire_flammability = 100, non_mycelium_plant = 1,
-			compostability = 30, unsticky = 1, attached_node = 1
+			compostability = 30, unsticky = 1, attached_node = 1, fertilizable_crop = 1,
 	},
 	selection_box = {
 		type = "fixed",

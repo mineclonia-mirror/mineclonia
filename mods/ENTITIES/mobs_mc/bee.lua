@@ -77,6 +77,7 @@ local bee = {
 		"mcl_flowers:rose_bush",
 		"mcl_flowers:lilac",
 		"mcl_flowers:sunflower",
+		"mcl_core:cactus_flower",
 	},
 	on_rightclick = function(self, clicker)
 		if self:follow_holding (clicker)
