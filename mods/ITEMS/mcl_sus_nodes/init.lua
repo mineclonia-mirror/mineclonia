@@ -346,7 +346,6 @@ local function register_sus_node(name,source,overrides)
 		drop = source,
 		_mcl_sus_nodes_parent = source,
 		_mcl_sus_nodes_main = main_itemstring,
-		_mcl_sus_nodes_drops = table.copy(sus_drops_default),
 		_mcl_falling_node_alternative = source,
 	}, overrides or {})
 	def.groups = table.merge(sdef.groups, tpl.groups, overrides and overrides.groups or {})
