@@ -741,11 +741,26 @@ core.register_entity(":__builtin:item", {
 		-- Destroy item when it collides with a cactus
 		if moveresult and moveresult.collides then
 			for _, collision in pairs(moveresult.collisions) do
-				local pos = collision.node_pos
-				if collision.type == "node" and core.get_node(pos).name == "mcl_core:cactus" then
-					self._removed = true
-					self.object:remove()
-					return
+				if collision.type == "node" then
+					local pos = collision.node_pos
+					if core.get_node(pos).name == "mcl_core:cactus" then
+						local a = 1
+						local d = 0.8^2
+						local d1 = (p.x - (pos.x + a))^2 + (p.z - pos.z)^2
+						local d2 = (p.x - (pos.x - a))^2 + (p.z - pos.z)^2
+						local d3 = (p.x - pos.x)^2 + (p.z - (pos.z + a))^2
+						local d4 = (p.x - pos.x)^2 + (p.z - (pos.z - a))^2
+						local diff = p - pos
+						if diff.y < 0.6 or (d1 > d and d2 > d and d3 > d and d4 > d) then
+							self._removed = true
+							self.object:remove()
+							return
+						else
+							diff = diff * math.min(d1, d2, d3, d4) * 0.5
+							diff.y = 0.1
+							self.object:add_velocity(diff)
+						end
+					end
 				end
 			end
 		end
