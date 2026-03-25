@@ -459,17 +459,10 @@ core.register_entity(":__builtin:item", {
 		local vel = self.object:get_velocity()
 
 		-- There is perhaps a cleverer way of making this physical so it bounces off the wall like swords.
-		local max_vel = 6.5 -- Faster than this and it throws it into the wall / floor and turns black because of clipping.
-
 		if vel and vel.x == 0 and vel.z == 0 and self.random_velocity > 0 then
-			local v = self.random_velocity
-			local m = max_vel - 5
-			local x = (5 + ( math.random() * m ) ) / 10 * v
-			local z = (5 + ( math.random() * m ) ) / 10 * v
-			if math.random(10) < 6 then x = -x end
-			if math.random(10) < 6 then z = -z end
-			local y = math.random(1, 2)
-			self.object:set_velocity(vector.new(x, y, z))
+			vel = vector.random_direction() * self.random_velocity * (0.70 + 0.3 * math.random())
+			vel.y = 1 + math.random()
+			self.object:set_velocity(vel)
 		end
 		self.random_velocity = 0
 	end,
