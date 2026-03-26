@@ -350,7 +350,9 @@ function mcl_flowers.add_large_plant(plantname, def)
 	if def.grass_color then
 		def.bottom.paramtype2 = "color"
 		def.top.paramtype2 = "color"
+		def.bottom.groups.biomecolor = 1
 		def.bottom.palette = "mcl_core_palette_grass.png"
+		def.top.groups.biomecolor = 1
 		def.top.palette = "mcl_core_palette_grass.png"
 	end
 

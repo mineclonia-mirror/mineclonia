@@ -7,8 +7,6 @@ local mathmin = math.min
 local mathabs = math.abs
 local floor = math.floor
 
-local band = bit.band
-
 local tree_placement_flags = {
 	place_center_x = true,
 	place_center_z = true,
@@ -59,43 +57,6 @@ local function test_clearance (x, y, z, min, max, rng)
 	return true
 end
 
-local biomecolor_nodes = {}
-local registered_biomes = mcl_levelgen.registered_biomes
-local index_biome = mcl_levelgen.index_biome
-
-local function get_biome_color (x, y, z)
-	local biome = index_biome (x, y, z)
-	local def = registered_biomes[biome]
-	return def.leaves_palette_index
-end
-mcl_trees.get_biome_color = get_biome_color
-
-local function apply_biome_coloration (aabb)
-	local x1, y1, z1 = aabb[1], aabb[2], aabb[3]
-	local x2, y2, z2 = aabb[4], aabb[5], aabb[6]
-
-	x1 = mathmax (run_minp.x - 16, x1)
-	x2 = mathmin (run_maxp.x + 16, x2)
-	z1 = mathmax (run_minp.z - 16, z1)
-	z2 = mathmin (run_maxp.z + 16, z2)
-	y1 = mathmax (run_minp.y - 32, y1)
-	y2 = mathmin (run_maxp.y + 32, y2)
-
-	for x = x1, x2 do
-		for y = y1, y2 do
-			for z = z1, z2 do
-				local cid, distance = get_block (x, y, z)
-				if biomecolor_nodes[cid] then
-					local idx = get_biome_color (x, y, z)
-					set_block (x, y, z, cid, band (distance, -32) + idx)
-				end
-			end
-		end
-	end
-end
-
-mcl_trees.apply_biome_coloration = apply_biome_coloration
-
 local function register_tree_feature (name, schematic_set, after_place, details,
 				      sapling_type, trunk_offset,
 				      min_trunk_clearance, max_trunk_clearance)
@@ -134,16 +95,14 @@ local function register_tree_feature (name, schematic_set, after_place, details,
 
 				local i = 1 + rng:next_within (n)
 				local schematic = schematics[i]
-				local aabb
-					= mcl_levelgen.place_schematic (x, y + trunk_offset,
-									z, schematic,
-									"random", false,
-									tree_placement_flags,
-									rng)
+				mcl_levelgen.place_schematic (x, y + trunk_offset,
+							      z, schematic,
+							      "random", false,
+							      tree_placement_flags,
+							      rng)
 				if after_place then
 					after_place (x, y, z, cfg, rng)
 				end
-				apply_biome_coloration (aabb)
 				return true
 			end,
 			tree_type = name,
@@ -484,15 +443,6 @@ register_tree_feature ("dark_oak", dark_oak, fix_hanging_trunks, {
 }, "mcl_trees:sapling_dark_oak", 0, 6, 9)
 
 if mcl_levelgen.is_levelgen_environment then
-
-for name, def in pairs (core.registered_nodes) do
-	if def.groups.leaves and def.groups.biomecolor
-		and def.groups.leaves > 0
-		and def.groups.biomecolor > 0 then
-		local cid = core.get_content_id (name)
-		biomecolor_nodes[cid] = true
-	end
-end
 
 local cid_spruce_sapling
 	= core.get_content_id ("mcl_trees:sapling_spruce")

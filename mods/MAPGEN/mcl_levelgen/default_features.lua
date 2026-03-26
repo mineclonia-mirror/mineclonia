@@ -528,12 +528,12 @@ local function simple_block_place (_, x, y, z, cfg, rng)
 
 	local cid_to_place, param2
 		= cfg.content (x, y, z, simple_block_rng)
+	-- `grass_palette_index' is accepted for purposes of
+	-- compatibility only, as level access functions now
+	-- automatically apply biome coloration as appropriate.
 	if param2 == "grass_palette_index" then
-		local biome = index_biome (x, y, z)
-		local def = mcl_levelgen.registered_biomes[biome]
-		param2 = def and def.grass_palette_index or 0
+		param2 = 0
 	end
-
 	if is_position_hospitable (cid_to_place, x, y, z) then
 		if double_plant_p (cid_to_place) then
 			if (get_block (x, y + 1, z)) ~= cid_air then
@@ -3270,7 +3270,7 @@ local cid_waterlily = core.get_content_id ("mcl_flowers:waterlily")
 mcl_levelgen.register_configured_feature ("mcl_levelgen:block_tall_grass", {
 	feature = "mcl_levelgen:simple_block",
 	content = function (_, _, _, rng)
-		return cid_double_grass, "grass_palette_index"
+		return cid_double_grass, 0
 	end,
 })
 
@@ -3321,7 +3321,7 @@ mcl_levelgen.register_placed_feature ("mcl_levelgen:patch_tall_grass_2", {
 mcl_levelgen.register_configured_feature ("mcl_levelgen:block_short_grass", {
 	feature = "mcl_levelgen:simple_block",
 	content = function (_, _, _, rng)
-		return cid_tallgrass, "grass_palette_index"
+		return cid_tallgrass, 0
 	end,
 })
 
@@ -3420,12 +3420,12 @@ mcl_levelgen.register_configured_feature ("mcl_levelgen:block_taiga_grass", {
 		{
 			weight = 1,
 			cid = cid_tallgrass,
-			param2 = "grass_palette_index",
+			param2 = 0,
 		},
 		{
 			weight = 4,
 			cid = cid_fern,
-			param2 = "grass_palette_index",
+			param2 = 0,
 		},
 	}),
 })
@@ -3480,12 +3480,12 @@ mcl_levelgen.register_configured_feature ("mcl_levelgen:block_jungle_grass", {
 		{
 			weight = 3,
 			cid = cid_tallgrass,
-			param2 = "grass_palette_index",
+			param2 = 0,
 		},
 		{
 			weight = 1,
 			cid = cid_fern,
-			param2 = "grass_palette_index",
+			param2 = 0,
 		},
 	}),
 })
@@ -3526,7 +3526,7 @@ mcl_levelgen.register_placed_feature ("mcl_levelgen:patch_grass_jungle", {
 mcl_levelgen.register_configured_feature ("mcl_levelgen:block_large_fern", {
 	feature = "mcl_levelgen:simple_block",
 	content = function (_, _, _, _)
-		return cid_double_fern, "grass_palette_index"
+		return cid_double_fern, 0
 	end,
 })
 
@@ -3787,9 +3787,7 @@ mcl_levelgen.register_configured_feature ("mcl_levelgen:disk_grass", {
 	content = function (x, y, z, rng)
 		local above, _ = get_block (x, y + 1, z, rng)
 		if not solid_p (above) and above ~= cid_water_source then
-			local biome = index_biome (x, y, z)
-			local def = mcl_levelgen.registered_biomes[biome]
-			return cid_grass, def and def.grass_palette_index or 0
+			return cid_grass, 0
 		else
 			return cid_dirt, 0
 		end

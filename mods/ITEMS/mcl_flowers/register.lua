@@ -321,7 +321,7 @@ local def_tallgrass = {
 	buildable_to = true,
 	groups = {
 		handy = 1, shearsy = 1, attached_node = 1, deco_block = 1,
-		plant = 1, place_flowerlike = 2, non_mycelium_plant = 1,
+		plant = 1, place_flowerlike = 2, non_mycelium_plant = 1, biomecolor = 1,
 		flammable = 3, fire_encouragement = 60, fire_flammability = 100, dig_by_piston = 1,
 		dig_by_water = 1, destroy_by_lava_flow = 1, compostability = 30, grass_palette = 1
 	},

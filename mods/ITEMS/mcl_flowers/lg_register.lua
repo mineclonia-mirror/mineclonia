@@ -11,13 +11,8 @@ local function build_flower_content_list (flowers)
 
 	for _, flower in ipairs (flowers) do
 		local name = "mcl_flowers:" .. flower
-		local param2 = 0
-		if name == "mcl_flowers:double_grass"
-			or name == "mcl_flowers:tallgrass" then
-			param2 = "grass_palette_index"
-		end
 		local cid = core.get_content_id (name)
-		table.insert (list, { cid, param2, })
+		table.insert (list, { cid, 0, })
 	end
 	return list
 end
@@ -41,14 +36,9 @@ end
 
 local function build_flower_cid_provider (flower)
 	local name = "mcl_flowers:" .. flower
-	local param2 = 0
-	if name == "mcl_flowers:double_grass"
-		or name == "mcl_flowers:tallgrass" then
-		param2 = "grass_palette_index"
-	end
 	local cid = core.get_content_id (name)
 	return function (_, _, _, _)
-		return cid, param2
+		return cid, 0
 	end
 end
 

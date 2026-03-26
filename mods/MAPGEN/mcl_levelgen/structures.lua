@@ -1593,6 +1593,35 @@ local function update_structure_extents (x, y, z)
 	structure_extents[6] = mathmax (z, structure_extents[6])
 end
 
+local munge_biome_coords = mcl_levelgen.munge_biome_coords
+local bindex = mcl_levelgen.biome_table_index
+local toquart = mcl_levelgen.toquart
+local apply_biomecolor
+
+local function munge_biome_index (x, y, z, level_min, bx, bz)
+	local qx, qy, qz = munge_biome_coords (biome_seed, x, y, z)
+	qy = qy - toquart (level_min)
+	return qx - toquart (bx), qy, qz - toquart (bz)
+end
+
+local function index_biome_1 (x, y, z)
+	local ix, iy, iz = munge_biome_index (x, y, z, level_min,
+					      nodes_origin_x,
+					      nodes_origin_z)
+	local cs = toquart (level_chunksize)
+	local idx = bindex (ix, iy, iz, cs, toquart (level_height), cs)
+	return biomes[idx]
+end
+
+function mcl_levelgen.index_biome (x, y, z)
+	if x < origin_x or x >= origin_x + 16
+		or z < origin_z or z >= origin_z + 16
+		or y < effective_level_min or y > level_max_y then
+		error ("Biome index out of bounds")
+	end
+	return index_biome_1 (x, y, z)
+end
+
 function mcl_levelgen.set_block (x, y, z, cid, param2)
 	if x < origin_x or x >= origin_x + 16
 		or z < origin_z or z >= origin_z + 16
@@ -1600,6 +1629,8 @@ function mcl_levelgen.set_block (x, y, z, cid, param2)
 		return nil
 	end
 
+	local param2 = apply_biomecolor (x, y, z, index_biome_1, cid,
+					 param2)
 	local node = structure_encode_node (cid, param2)
 	local idx = block_index (x, y, z)
 	nodes[idx] = node
@@ -1616,6 +1647,8 @@ function mcl_levelgen.set_block_checked (x, y, z, cid, param2, writable_p)
 		return nil
 	end
 
+	local param2 = apply_biomecolor (x, y, z, index_biome_1, cid,
+					 param2)
 	local node = structure_encode_node (cid, param2)
 	local idx = block_index (x, y, z)
 	local cid_1, param2_1 = decode_node (nodes[idx])
@@ -1639,30 +1672,6 @@ function mcl_levelgen.reorientate_coords (piece, x, y, z)
 	else
 		assert (false)
 	end
-end
-
-local munge_biome_coords = mcl_levelgen.munge_biome_coords
-local bindex = mcl_levelgen.biome_table_index
-local toquart = mcl_levelgen.toquart
-
-local function munge_biome_index (x, y, z, level_min, bx, bz)
-	local qx, qy, qz = munge_biome_coords (biome_seed, x, y, z)
-	qy = qy - toquart (level_min)
-	return qx - toquart (bx), qy, qz - toquart (bz)
-end
-
-function mcl_levelgen.index_biome (x, y, z)
-	if x < origin_x or x >= origin_x + 16
-		or z < origin_z or z >= origin_z + 16
-		or y < effective_level_min or y > level_max_y then
-		error ("Biome index out of bounds")
-	end
-	local ix, iy, iz = munge_biome_index (x, y, z, level_min,
-					      nodes_origin_x,
-					      nodes_origin_z)
-	local cs = toquart (level_chunksize)
-	local idx = bindex (ix, iy, iz, cs, toquart (level_height), cs)
-	return biomes[idx]
 end
 
 function mcl_levelgen.index_heightmap (x, z, wg)
@@ -2073,6 +2082,7 @@ local function copy_to_data (schematic, px, py, pz, rot, force_place)
 					cid, param2
 						= apply_schematic_processors (x, y, z, rng, cid, param2)
 				end
+				param2 = apply_biomecolor (x, y, z, index_biome_1, cid, param2)
 
 				local idx = block_index (x, y, z)
 				local current = band (nodes[idx], ENCODED_NODE_MASK)
@@ -2396,6 +2406,7 @@ function mcl_levelgen.init_structures_after_templates ()
 	place_template_internal = mcl_levelgen.place_template_internal
 	run_template_constructors = mcl_levelgen.run_template_constructors
 	generate_jigsaw = mcl_levelgen.generate_jigsaw
+	apply_biomecolor = mcl_levelgen.apply_biomecolor
 end
 
 ------------------------------------------------------------------------
@@ -2462,6 +2473,19 @@ function mcl_levelgen.jigsaw_create_start (self, level, terrain, rng, cx, cz)
 					project_start, level, terrain, self,
 					level.preset.min_y, level.preset.height)
 	return create_structure_start (self, pieces)
+end
+
+------------------------------------------------------------------------
+-- Utility functions for ersatz generation.
+------------------------------------------------------------------------
+
+function mcl_levelgen.replace_biome_indexing_functions (p_index_biome_1,
+							p_index_biome)
+	-- index_biome_1 is required by set_block, but must be
+	-- overridden to agree with mcl_levelgen.index_biome when the
+	-- latter is replaced by ersatz functions.
+	index_biome_1 = p_index_biome_1
+	mcl_levelgen.index_biome = p_index_biome
 end
 
 end

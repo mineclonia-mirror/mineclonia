@@ -299,27 +299,9 @@ mcl_levelgen.register_template_pool ("mcl_levelgen:trial_chambers_entrances", {
 	},
 })
 
-local leaf_p = mcl_levelgen.leaf_p
-local index_biome = mcl_levelgen.index_biome
-local registered_biomes = mcl_levelgen.registered_biomes
-
-local function apply_leaf_biome_colors (x, y, z, rng, cid_existing, param2_existing,
-					cid, param2)
-	if leaf_p (cid) then
-		local biome = index_biome (x, y, z)
-		local def = registered_biomes[biome]
-		return cid, def.leaves_palette_index
-	end
-	return cid, param2
-end
-
-local leaf_processors = {
-	apply_leaf_biome_colors,
-}
-
 mcl_levelgen.register_template_pool ("mcl_levelgen:trial_chambers_decor_bigs", {
 	elements = {
-		L ("trial_chambers_decor_big_oak_tree", 1, leaf_processors),
+		L ("trial_chambers_decor_big_oak_tree", 1),
 		L ("trial_chambers_decor_big_fountain", 1),
 	},
 })

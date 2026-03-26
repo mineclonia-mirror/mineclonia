@@ -157,20 +157,13 @@ end
 ------------------------------------------------------------------------
 
 local cid_dirt = core.get_content_id ("mcl_core:dirt")
-local cid_grass = core.get_content_id ("mcl_core:dirt_with_grass")
 
 local is_cid_dirt = mcl_levelgen.is_cid_dirt
-local registered_biomes = mcl_levelgen.registered_biomes
-local index_biome = mcl_levelgen.index_biome
 
 local function preserve_grass (x, y, z, rng, cid_existing, param2_existing,
 			       cid, param2)
 	if cid == cid_dirt and is_cid_dirt[cid_existing] then
 		return nil, nil
-	elseif cid == cid_grass then
-		local biome = index_biome (x, y, z)
-		local def = registered_biomes[biome]
-		return cid, def.grass_palette_index
 	end
 	return cid, param2
 end

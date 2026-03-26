@@ -192,7 +192,7 @@ local tpl_leaves = {
 	palette = "mcl_core_palette_leaves.png",
 	groups = {
 		handy = 1, hoey = 1, shearsy = 1, swordy = 1, dig_by_piston = 1,
-		deco_block = 1, leaves = 1, biomecolor = 1,
+		deco_block = 1, leaves = 1, biomecolor = 2,
 		flammable = 2, fire_encouragement = 30, fire_flammability = 60,
 		compostability = 30, unsticky = 1
 	},

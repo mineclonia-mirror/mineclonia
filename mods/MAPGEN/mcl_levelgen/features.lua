@@ -606,15 +606,7 @@ local index_biome_list = mcl_levelgen.index_biome_list
 
 local HORIZONTAL_QUARTS_PER_RUN = toquart (HEIGHTMAP_SIZE_NODES)
 
-function mcl_levelgen.index_biome (x, y, z)
-	local run_x = run_min_x
-	local run_z = run_min_z
-	if z - run_z >= HEIGHTMAP_SIZE_NODES
-		or x - run_x >= HEIGHTMAP_SIZE_NODES
-		or z - run_z <= 0 or x - run_x <= 0 then
-		error ("Heightmap index out of bounds")
-	end
-
+local function index_biome_1 (x, y, z)
 	local qx, qy, qz = munge_biome_coords (biome_seed, x, y, z)
 	local org_qx, org_qy, org_qz = qx, qy, qz
 
@@ -635,6 +627,17 @@ function mcl_levelgen.index_biome (x, y, z)
 	else
 		return preset:index_biomes (org_qx, org_qy, org_qz)
 	end
+end
+
+function mcl_levelgen.index_biome (x, y, z)
+	local run_x = run_min_x
+	local run_z = run_min_z
+	if z - run_z >= HEIGHTMAP_SIZE_NODES
+		or x - run_x >= HEIGHTMAP_SIZE_NODES
+		or z - run_z <= 0 or x - run_x <= 0 then
+		error ("Heightmap index out of bounds")
+	end
+	return index_biome_1 (x, y, z)
 end
 
 function mcl_levelgen.get_block (x, y, z)
@@ -733,6 +736,10 @@ end
 
 mcl_levelgen.is_walkable = is_walkable
 
+-- features.lua is loaded again by async_register.lua, after nodeprops
+-- has been loaded.
+local apply_biomecolor = mcl_levelgen.apply_biomecolor
+
 function mcl_levelgen.set_block (x, y, z, cid, param2)
 	assert (cid and param2)
 	local run_x = run_min_x
@@ -760,7 +767,8 @@ function mcl_levelgen.set_block (x, y, z, cid, param2)
 	local idx = index (x, y, z)
 	cids[idx] = cid
 	if param2 ~= -1 then
-		param2s[idx] = param2
+		param2s[idx] = apply_biomecolor (x, y, z, index_biome_1,
+						 cid, param2)
 	end
 	vm_modified = true
 	correct_heightmaps (x, y, z, cid, param2, false)
@@ -1032,15 +1040,15 @@ local function copy_to_data (schematic, px, py, pz, rot, force_place)
 								= convert_minetest_position (gx, y_map, gz)
 
 							if have_processors then
-								-- print (gx, y_map, gz)
 								cid, param2
 									= apply_schematic_processors (x_level,
 												      y_level,
 												      z_level,
 												      rng, cid,
 												      param2)
-								-- print ("  -->", cid, param2)
 							end
+							param2 = apply_biomecolor (x_level, y_level, z_level,
+										   index_biome_1, cid, param2)
 
 							local vi = area:index (gx, y_map, gz)
 							if cid and (force_place or force_place_node

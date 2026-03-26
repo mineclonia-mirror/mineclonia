@@ -599,10 +599,9 @@ local function azalea_tree_place (_, x, y, z, cfg, rng)
 	-- This feature purposefully omits the customary vertical
 	-- confinement test.
 	local schematic = "mcl_lush_caves:azalea_tree_1"
-	local aabb = mcl_levelgen.place_schematic (x, y, z, schematic, "random",
-						   true, tree_placement_flags,
-						   rng)
-	mcl_trees.apply_biome_coloration (aabb)
+	mcl_levelgen.place_schematic (x, y, z, schematic, "random",
+				      true, tree_placement_flags,
+				      rng)
 	return true
 end
 

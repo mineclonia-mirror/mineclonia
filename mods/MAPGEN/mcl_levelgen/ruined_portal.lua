@@ -516,18 +516,13 @@ end
 
 local is_air = mcl_levelgen.is_air
 local cid_leaves_jungle = getcid ("mcl_trees:leaves_jungle")
-local index_biome = mcl_levelgen.index_biome
-local registered_biomes = mcl_levelgen.registered_biomes
 
 local function place_leaves_above (self, rng, x, y, z)
 	local cid, _ = get_block (x, y, z)
 	if cid == cid_netherrack
 		and rng:next_float () < 0.5
 		and is_air (x, y + 1, z) then
-		local biome = index_biome (x, y, z)
-		local def = registered_biomes[biome]
-		set_block (x, y + 1, z, cid_leaves_jungle,
-			   32 + def.leaves_palette_index)
+		set_block (x, y + 1, z, cid_leaves_jungle, 0)
 	end
 end
 

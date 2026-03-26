@@ -158,7 +158,6 @@ local cid_sugar_cane = core.get_content_id ("mcl_core:reeds")
 local is_air = mcl_levelgen.is_air
 local biased_to_bottom_height = mcl_levelgen.biased_to_bottom_height
 local is_position_hospitable = mcl_levelgen.is_position_hospitable
-local index_biome = mcl_levelgen.index_biome
 
 mcl_levelgen.register_configured_feature ("mcl_farming:sugar_cane_column", {
 	feature = "mcl_levelgen:block_column",
@@ -166,10 +165,7 @@ mcl_levelgen.register_configured_feature ("mcl_farming:sugar_cane_column", {
 		{
 			height = biased_to_bottom_height (2, 4, nil),
 			content = function (x, y, z, _)
-				local biome = index_biome (x, y, z)
-				local def = mcl_levelgen.registered_biomes[biome]
-				local param2 = def and def.grass_palette_index or 0
-				return cid_sugar_cane, param2
+				return cid_sugar_cane, 0
 			end,
 		},
 	},

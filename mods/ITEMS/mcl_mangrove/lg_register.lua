@@ -64,7 +64,6 @@ local mangrove_roots_can_grow_through = mcl_levelgen.construct_cid_list ({
 	"mcl_mud:mud",
 })
 
-local get_biome_color = mcl_trees.get_biome_color
 local get_block = mcl_levelgen.get_block
 
 local function maybe_waterlog_mangrove_roots (x, y, z, rng)
@@ -92,7 +91,7 @@ mcl_levelgen.register_configured_feature ("mcl_mangrove:mangrove", {
 		place_branch_per_log_probability = 0.5,
 	}),
 	foliage_content = function (x, y, z, rng)
-		return cid_leaves_mangrove, get_biome_color (x, y, z)
+		return cid_leaves_mangrove, 0
 	end,
 	foliage_placer = mcl_trees.create_random_spread_foliage_placer ({
 		radius = THREE,
@@ -162,7 +161,7 @@ mcl_levelgen.register_configured_feature ("mcl_mangrove:tall_mangrove", {
 		place_branch_per_log_probability = 0.5,
 	}),
 	foliage_content = function (x, y, z, rng)
-		return cid_leaves_mangrove, get_biome_color (x, y, z)
+		return cid_leaves_mangrove, 0
 	end,
 	foliage_placer = mcl_trees.create_random_spread_foliage_placer ({
 		radius = THREE,

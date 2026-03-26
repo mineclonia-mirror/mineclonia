@@ -174,6 +174,16 @@ available for all MapBlocks in this area, context or not, and the
 heightmap may be modified on either axis as blocks are created or
 removed.
 
+Nodes which are subject to biome-specific hardware coloring will
+receive `param2' values from the biome definitions at their positions
+when they are placed, by any means (e.g., whether by schematics or
+`mcl_levelgen.set_block'), as formerly it was customary for mods
+defining features or structures to do by reading these definitions and
+assigning such values from the same specially.  The facilities (e.g.,
+the ability to provide the string "grass_palette_index" in place of a
+param2 value in) which existed for doing so continue to be supported
+on grounds of compatibility, and produce no effect.
+
 The functions and variables documented in this section are available
 to all placement modifiers and features.
 
@@ -288,7 +298,13 @@ Function: mcl_levelgen.set_block (X, Y, Z, CID, PARAM2)
 Set the block at X, Y, Z, to CID and PARAM2, and adjust heightmaps
 correspondingly.  If X, Y, Z are outside the accessible region of the
 level in a form not truncated by the confines of the level potentially
-log a warning but disregard the error.
+log a warning but disregard the error.  If CID should be a grass node
+or another node which is assigned the default biome palette,
+substitute the index of grass color of the biome at this position for
+PARAM2, or, if CID should be a leaf node, substitute the index of the
+leaf color of the biome at this position for the five least
+significant bits of PARAM2, so that the node is rendered in the color
+of this biome.
 
 You must make arrangements to correct the lighting in this area by
 means of `mcl_levelgen.fix_lighting' if any nodes should be inserted
@@ -358,7 +374,11 @@ Each block in a schematic will be transformed by any schematic
 processors that are active.  It is recommended that you employ this
 mechanism rather than probabilities and force_place directives to
 alter a schematic to fit its surroundings.  Schematic processors are
-documented in their own section, SCHEMATIC PROCESSORS.
+documented in their own section, SCHEMATIC PROCESSORS.  After
+schematic processors are executed, each node in the schematic which is
+assigned a biome-specific color will see its `param2' value modified
+to reflect the biome at its position before placement, as with
+`mcl_levelgen.set_block'.
 
 Value is a list { X1, Y1, Z1, X2, Y2, Z2, } specifying the minimum and
 maximum extents (inclusive) of the placed schematic in Minecraft's
@@ -1128,9 +1148,7 @@ Take a weighted list of elements of the form:
 and return a function which accepts (and discards) three coordinate
 values and a PRNG and yields a random CID and param2 value, which
 function is suitable as the CONTENT parameter to a
-`mcl_levelgen:simple_block' feature.  PARAM2 may also be the string
-"grass_palette_index", which is replaced by the palette index of the
-color of the biome at the current position.  This is not a placement
+`mcl_levelgen:simple_block' feature.  This is not a placement
 modifier.
 
 Function: mcl_levelgen.build_count (N)
@@ -1738,7 +1756,11 @@ northwest corner of the unrotated template), and with its unrotated
 contents mirrored along the Z axis prior to rotation if MIRRORING is
 the string "left_right" or along the X axis if MIRRORING is the string
 "front_back", executing all data block handlers in response to data
-blocks which intersect the chunk now being placed.
+blocks which intersect the chunk now being placed.  After template
+processors are executed, each node in the template which is assigned a
+biome-specific color will see its `param2' value modified to reflect
+the biome at its position before placement, as with
+`mcl_levelgen.set_block'.
 
 Function: mcl_levelgen.make_template_piece_with_pivot (TEMPLATE, X, Y, Z, PX, PZ,
 						       MIRRORING, ROTATION, RNG,

@@ -650,13 +650,19 @@ end
 
 mcl_levelgen.ersatz_biomemap_index = ersatz_biomemap_index
 
-function mcl_levelgen.index_biome (x, y, z)
+local function index_biome_1 (x, y, z)
+	return biomemap[ersatz_biomemap_index (x, z)]
+end
+
+local function index_biome (x, y, z)
 	if x < chunk_start_x or x >= chunk_start_x + chunksize
 		or z < chunk_start_z or z >= chunk_start_z + chunksize then
 		return nil
 	end
 	return biomemap[ersatz_biomemap_index (x, z)]
 end
+
+mcl_levelgen.replace_biome_indexing_functions (index_biome_1, index_biome)
 
 ------------------------------------------------------------------------
 -- Scripting interface.

@@ -247,8 +247,11 @@ local is_cid_frosted_ice = {}
 local is_cid_opaque = {}
 local is_cid_wall = {}
 local is_cid_floodable = {}
+
 local double_plant_tops = {}
 local paramtype2 = {}
+local biome_color_type = {}
+
 local mathmin = math.min
 mcl_levelgen.is_cid_dirt = is_cid_dirt
 
@@ -388,6 +391,9 @@ local function initialize_nodeprops ()
 		end
 		if def.floodable then
 			is_cid_floodable[cid] = true
+		end
+		if def.groups.biomecolor then
+			biome_color_type[cid] = def.groups.biomecolor
 		end
 		paramtype2[cid] = def.paramtype2
 	end
@@ -1181,6 +1187,24 @@ end
 
 function mcl_levelgen.floodable_p (cid)
 	return is_cid_floodable[cid]
+end
+
+local registered_biomes = mcl_levelgen.registered_biomes
+
+function mcl_levelgen.apply_biomecolor (x, y, z, index_biome, cid, param2)
+	local value = biome_color_type[cid]
+	if not value or value == 0 then
+		return param2
+	else
+		local biome = index_biome (x, y, z)
+		local def = registered_biomes[biome]
+		if value == 1 then
+			return def.grass_palette_index
+		else
+			local decay = band (param2, -32)
+			return decay + def.leaves_palette_index
+		end
+	end
 end
 
 --------------------------------------------------------------------------
