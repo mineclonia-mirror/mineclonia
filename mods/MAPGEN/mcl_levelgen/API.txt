@@ -376,9 +376,9 @@ mechanism rather than probabilities and force_place directives to
 alter a schematic to fit its surroundings.  Schematic processors are
 documented in their own section, SCHEMATIC PROCESSORS.  After
 schematic processors are executed, each node in the schematic which is
-assigned a biome-specific color will see its `param2' value modified
-to reflect the biome at its position before placement, as with
-`mcl_levelgen.set_block'.
+assigned a biome-specific color palette will see its `param2' value
+modified to reflect the biome at its position before placement, as
+with `mcl_levelgen.set_block'.
 
 Value is a list { X1, Y1, Z1, X2, Y2, Z2, } specifying the minimum and
 maximum extents (inclusive) of the placed schematic in Minecraft's
@@ -1758,8 +1758,8 @@ the string "left_right" or along the X axis if MIRRORING is the string
 "front_back", executing all data block handlers in response to data
 blocks which intersect the chunk now being placed.  After template
 processors are executed, each node in the template which is assigned a
-biome-specific color will see its `param2' value modified to reflect
-the biome at its position before placement, as with
+biome-specific color palette will see its `param2' value modified to
+reflect the biome at its position before placement, as with
 `mcl_levelgen.set_block'.
 
 Function: mcl_levelgen.make_template_piece_with_pivot (TEMPLATE, X, Y, Z, PX, PZ,
