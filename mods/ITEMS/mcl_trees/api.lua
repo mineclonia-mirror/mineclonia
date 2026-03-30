@@ -515,9 +515,10 @@ function mcl_trees.register_wood(name, p)
 			_mcl_burntime = 15,
 			_mcl_hardness = 2,
 			_mcl_blast_resistance = 3,
-			groups = table.merge({material_wood = 1, axey = 1, fire_flammability = 20, fire_encouragement = 30}, p.shelf.groups),
 			tiles = {modname.."_"..name.."_shelf.png"}
-		}, p.shelf)
+		}, p.shelf, {
+			groups = table.merge({material_wood = 1, axey = 1, fire_flammability = 20, fire_encouragement = 30}, p.shelf.groups)
+		})
 
 		mcl_shelves.register_shelf(name, def)
 
