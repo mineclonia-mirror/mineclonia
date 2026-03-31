@@ -490,7 +490,6 @@ core.register_on_mods_loaded (function ()
 		"group:jigsaw_block",
 		"group:container",
 		"group:sign",
-		"mcl_itemframes:frame",
 		"group:jigsaw_preserve_meta",
 	})
 	cids_to_construct = mcl_levelgen.construct_cid_list ({
@@ -498,7 +497,6 @@ core.register_on_mods_loaded (function ()
 		"group:redstone_wire",
 		"group:chest_entity",
 		"group:sign",
-		"mcl_itemframes:frame",
 		"group:jigsaw_construct",
 	})
 end)

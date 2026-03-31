@@ -43,7 +43,8 @@ mcl_itemframes.tpl_node = {
 local tpl_groups = {
 	dig_immediate = 3, deco_block = 1, dig_by_piston = 1,
 	handy = 1, axey = 1, itemframe = 1, unsticky = 1,
-	supported_node_wallmounted = 1
+	supported_node_wallmounted = 1, jigsaw_preserve_meta = 1,
+	jigsaw_construct = 1,
 }
 
 mcl_itemframes.tpl_entity = {
@@ -159,6 +160,11 @@ function mcl_itemframes.tpl_node.on_construct(pos)
 		local inv = meta:get_inventory()
 		inv:set_size("main", 1)
 	else
+		local meta = core.get_meta (pos)
+		local inv = meta:get_inventory ()
+		if inv:get_size ("main") == 0 then
+			inv:set_size ("main", 1)
+		end
 		update_entity (pos)
 	end
 end
