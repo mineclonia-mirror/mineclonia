@@ -32,3 +32,5 @@ dofile (modpath .. "/spatialindex.lua")
 dofile (modpath .. "/control.lua")
 -- UTF-8 library (stripped down 5.3 backport) from modlib
 mcl_util.utf8 = dofile(modpath .. "/utf8.lua")
+-- 'Unicode full' implementation of case-folding
+dofile(modpath.."/casefold.lua")
