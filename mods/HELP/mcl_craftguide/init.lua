@@ -697,7 +697,7 @@ local function search(data)
 		local item = data.items_raw[i]
 		local def  = core.registered_items[item]
 		if def then
-			local desc = string.lower(core.get_translated_string(data.lang_code, def.description))
+			local desc = mcl_util.casefold(core.get_translated_string(data.lang_code, def.description))
 			local search_in = item .. desc
 			local to_add
 
@@ -817,7 +817,7 @@ local function on_receive_fields(player, fields)
 
 	elseif (fields.key_enter_field == "filter" or fields.search) and
 			fields.filter ~= "" then
-		local fltr = string.lower(fields.filter)
+		local fltr = mcl_util.casefold(fields.filter)
 		if data.filter == fltr then
 			return
 		end
