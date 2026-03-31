@@ -153,11 +153,11 @@ end)
 local function filter_item(name, description, lang, filter)
 	local desc
 	if not lang then
-		desc = string.lower(description)
+		desc = mcl_util.casefold(description)
 	else
-		desc = string.lower(core.get_translated_string(lang, description))
+		desc = mcl_util.casefold(core.get_translated_string(lang, description))
 	end
-	return string.find(name, filter, nil, true) or string.find(desc, filter, nil, true)
+	return string.find(name, filter, nil, true) or string.find(mcl_util.casefold(desc), filter, nil, true)
 end
 
 local function set_inv_search(filter, player)
@@ -165,13 +165,12 @@ local function set_inv_search(filter, player)
 	local inv = core.get_inventory({ type = "detached", name = "creative_" .. playername })
 	local creative_list = {}
 	filter = filter:gsub("%s+", " ")
-	filter = string.lower(filter)
+	filter = mcl_util.casefold(filter)
 	filter = string.trim(filter)
 	local lang = core.get_player_information(playername).lang_code
 	for name, def in pairs(core.registered_items) do
 		if (not def.groups.not_in_creative_inventory or def.groups.not_in_creative_inventory == 0)
-		and def.description and
-			def.description ~= "" then
+				and def.description and def.description ~= "" then
 			local name = string.lower(def.name)
 			if filter_item (name, def.description, lang, filter) then
 				if def.groups._mcl_potion == 1 then
