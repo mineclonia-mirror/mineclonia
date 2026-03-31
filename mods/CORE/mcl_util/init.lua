@@ -30,3 +30,6 @@ core.register_async_dofile (modpath .. "/shape.lua")
 -- Spatial index library.
 dofile (modpath .. "/spatialindex.lua")
 dofile (modpath .. "/control.lua")
+-- UTF-8 library (stripped down 5.3 backport) from modlib
+-- CAUTION: most functions from there will error on invalid UTF-8, and it's up to the caller to catch those errors (e.g. via pcall)
+mcl_util.utf8 = dofile(modpath .. "/utf8.lua")

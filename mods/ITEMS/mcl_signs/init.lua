@@ -6,7 +6,7 @@ local S = core.get_translator(modname)
 local modpath = core.get_modpath(modname)
 
 -- UTF-8 library from modlib
-local utf8 = dofile(modpath .. DIR_DELIM .. "utf8.lua")
+local utf8 = mcl_util.utf8
 
 -- Character map (see API.md for reference)
 local charmap = {}
