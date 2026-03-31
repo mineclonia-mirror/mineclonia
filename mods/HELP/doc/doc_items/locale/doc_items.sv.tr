@@ -9,7 +9,6 @@ Hand=Hand
 Air=Luft
 Yes=Ja
 No=Nej
-# List separator (e.g. “one, two, three”)
 , =, 
 Unknown item (@1)=Okänt föremål (@1)
 unknown=okänd
@@ -38,7 +37,6 @@ This block can be mined by mining tools which match any of the following mining 
 Mining ratings:=Brytningsklasser:
 Toughness level: @1=Hårdhet: @1
 Range: @1=Räckvidd: @1
-# Range: <Hand> (<Range>)
 Range: @1 (@2)=Räckvidd: @1 (@2)
 This tool can serve as a smelting fuel with a burning time of @1.=Detta verktyg kan användas som smältbränsle med en brinntid på @1.
 This block can serve as a smelting fuel with a burning time of @1.=Detta block kan användas som smältbränsle med en brinntid på @1.
@@ -112,15 +110,10 @@ This block will drop the following when mined: @1.=Detta block kommer att släpp
 This block will drop the following items when mined: @1.=Detta block kommer att släppa följande föremål när det bryts: @1.
 This block will randomly drop one of the following when mined: @1.=Detta block kommer slumpmässigt att släppa en av följande när det bryts: @1.
 This block will randomly drop up to @1 drops of the following possible drops when mined: @2.=Detta block kommer slumpmässigt att släppa upp till @1 drops av följande möjliga drops när det bryts: @2.
-# Final list separator (e.g. “One, two and three”)
  and = och 
-# Item count times item name
 @1×@2=@1×@2
-# Itemname (<0.5%)
 @1 (<0.5%)=@1 (<0.5%)
-# Itemname (ca. 25%)
 @1 (ca. @2%)=@1 (ca. @2%)
-# Itemname (25%)
 @1 (@2%)=@1 (@2%)
 Tools and weapons=Vapen och Verktyg
 Item reference of all wieldable tools and weapons=Föremålsreferens för alla vapen och verktyg som kan användas

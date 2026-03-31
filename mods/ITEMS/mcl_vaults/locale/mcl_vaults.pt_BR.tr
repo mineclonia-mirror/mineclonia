@@ -1,7 +1,7 @@
 # textdomain: mcl_vaults
 Vault=Cofre
 Ejects loot when opened with the key=Ejeta o saque ao ser aberto com a chave
-A vault ejects loot when opened with the right key. It can only be opened once by each player.=
-Trial Key=
+A vault ejects loot when opened with the right key. It can only be opened once by each player.=Um cofre ejeta itens quando aberto com a chave correta. Ele só pode ser aberto uma vez por cada jogador.
+Trial Key=Chave do Desafio
 Ominous Trial Key=
 Ominous Vault=

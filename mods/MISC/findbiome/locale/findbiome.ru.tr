@@ -1,6 +1,4 @@
 # textdomain: findbiome
-# mod title
-# mod strings
 Wait until all mods have loaded!=Подождите пока все моды загрузятся!
 Find and teleport to biome=Найти и телепортироваться к биому
 <biome>=<биом>

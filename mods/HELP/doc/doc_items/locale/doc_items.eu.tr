@@ -9,7 +9,6 @@ Hand=Eskua
 Air=Airea
 Yes=Bai
 No=Ez
-# List separator (e.g. “one, two, three”)
 , =, 
 Unknown item (@1)=Item ezezaguna (@1)
 unknown=ezezaguna
@@ -38,7 +37,6 @@ This block can be mined by mining tools which match any of the following mining 
 Mining ratings:=Meatzaritzako kalifikazioak:
 Toughness level: @1=Gogortasun-maila: @1
 Range: @1=Irismena: @1
-# Range: <Hand> (<Range>)
 Range: @1 (@2)=Irismena: @1 (@2)
 This tool can serve as a smelting fuel with a burning time of @1.=Tresna hau galdaketa erregai moduan erabil daiteke @1-z denboraz.
 This block can serve as a smelting fuel with a burning time of @1.=Bloke hau galdaketa erregai moduan erabil daiteke @1-z denboraz.
@@ -112,15 +110,10 @@ This block will drop the following when mined: @1.=Bloke honek ondorengoa emango
 This block will drop the following items when mined: @1.=Bloke honek ondorengo itemak emango ditu ustiatzen denean: @1.
 This block will randomly drop one of the following when mined: @1.=Bloke honek ondorengo hauetako bat ausaz emango du ustiatzen denean: @1.
 This block will randomly drop up to @1 drops of the following possible drops when mined: @2.=Bloke honek ondorengo hauetako @1 ausaz emango ditu ustiatzen denean: @2.
-# Final list separator (e.g. “One, two and three”)
  and = eta 
-# Item count times item name
 @1×@2=@1×@2
-# Itemname (<0.5%)
 @1 (<0.5%)=@1 (<%0.5)
-# Itemname (ca. 25%)
 @1 (ca. @2%)=@1 (ggb. %@2)
-# Itemname (25%)
 @1 (@2%)=@1 (%@2)
 Tools and weapons=Tresnak eta armak
 Item reference of all wieldable tools and weapons=Erabil daitezkeen tresna eta arma guztien itemen erreferentzia

@@ -9,7 +9,6 @@ Hand=Käsi
 Air=Ilma
 Yes=Kyllä
 No=Ei
-# List separator (e.g. “one, two, three”)
 , =, 
 Unknown item (@1)=Tuntematon esine (@1)
 unknown=tuntematon
@@ -38,7 +37,6 @@ This block can be mined by mining tools which match any of the following mining 
 Mining ratings:=Kaivuuluokitukset:
 Toughness level: @1=Lujuustaso: @1
 Range: @1=Kantavuus: @1
-# Range: <Hand> (<Range>)
 Range: @1 (@2)=Kantavuus: @1 (@2)
 This tool can serve as a smelting fuel with a burning time of @1.=Tätä työkalua voi käyttää uunin polttoaineena, ja sen palamisaika on @1.
 This block can serve as a smelting fuel with a burning time of @1.=Tätä kuutiota voi käyttää uunin polttoaineena, ja sen palamisaika on @1.
@@ -112,15 +110,10 @@ This block will drop the following when mined: @1.=Tämä kuutio pudottaa seuraa
 This block will drop the following items when mined: @1.=Tämä kuutio pudottaa seuraavat esineet, kun se kaivetaan: @1.
 This block will randomly drop one of the following when mined: @1.=Tämä kuutio pudottaa satunnaisesti yhden seuraavista asioista, kun se kaivetaan: @1.
 This block will randomly drop up to @1 drops of the following possible drops when mined: @2.=Tämä kuutio pudottaa satunnaisesti enintään @1 kappaletta seuraavia asioita, kun sen kaivaa: @2.
-# Final list separator (e.g. “One, two and three”)
  and = ja 
-# Item count times item name
 @1×@2=@1 × @2
-# Itemname (<0.5%)
 @1 (<0.5%)=@1 (< 0.5 %)
-# Itemname (ca. 25%)
 @1 (ca. @2%)=@1 (n. @2 %)
-# Itemname (25%)
 @1 (@2%)=@1 (@2 %)
 Tools and weapons=Työkalut ja aseet
 Item reference of all wieldable tools and weapons=Tietoa kaikista kädessä pidettävistä työkaluista ja aseista

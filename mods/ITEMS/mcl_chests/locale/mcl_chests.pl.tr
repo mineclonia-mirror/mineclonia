@@ -2,9 +2,9 @@
 Chest=Skrzynia
 Inventory=Ekwipunek
 Large Chest=Duża skrzynia
-To access its inventory, rightclick it. When broken, the items will drop out.=Aby zarządzać jej ekwipunkiem kliknij prawym przyciskiem. Po zniszczeniu przedmioty z niej wypadną.
+To access its inventory, rightclick it. When broken, the items will drop out.=Żeby zobaczyć jej zawartość kliknij prawym przyciskiem. Po zniszczeniu wypadną z niej przedmioty.
 Chests are containers which provide 27 inventory slots. Chests can be turned into large chests with double the capacity by placing two chests next to each other.=Skrzynie to pojemniki zawierające 27 miejsc ekwipunku. Skrzynie można zmienić w wielkie skrzynie z podwojoną pojemnością kładąc dwie skrzynie jedna obok drugiej.
-27 inventory slots=27 miejsc ekwipunku
+27 inventory slots=27 miejsc na ekwipunek
 Can be combined to a large chest=Może być połączona w dużą skrzynię
 Trapped Chest=Skrzynia-pułapka
 A trapped chest is a container which provides 27 inventory slots. When it is opened, it sends a redstone signal to its adjacent blocks as long it stays open. Trapped chests can be turned into large trapped chests with double the capacity by placing two trapped chests next to each other.=Skrzynia pułapka jest pojemnikiem zawierającym 27 miejsc ekwipunku. Gdy jest otwarta wysyła ona zasila czerwienit na sąsiadujących blokach tak długo jak jest otwarta. Skrzynie-pułapki można zmienić w wielkie skrzynie-pułapki z podwojoną pojemnością przez położenie dwóch skrzynek-pułapek jedna obok drugiej.

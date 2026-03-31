@@ -1,6 +1,4 @@
 # textdomain: findbiome
-# mod title
-# mod strings
 Wait until all mods have loaded!=Várj, amíg minden mod betöltésre kerül!
 Find and teleport to biome=Biomot keresni és odateleportálni
 <biome>=<biom>

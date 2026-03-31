@@ -1,6 +1,4 @@
 # textdomain: findbiome
-# mod title
-# mod strings
 Wait until all mods have loaded!=모드들이 모두 로드될 때까지 기다리세요!
 Find and teleport to biome=생물 군계 찾기 및 텔레포트
 <biome>=<생물 군계>

@@ -9,7 +9,6 @@ Hand=手
 Air=空氣
 Yes=是
 No=否
-# List separator (e.g. “one, two, three”)
 , =, 
 Unknown item (@1)=不明物品 (@1)
 unknown=不明
@@ -38,7 +37,6 @@ This block can be mined by mining tools which match any of the following mining 
 Mining ratings:=開採等級：
 Toughness level: @1=硬度：@1
 Range: @1=距離：@1
-# Range: <Hand> (<Range>)
 Range: @1 (@2)=距離：@1 (@2)
 This tool can serve as a smelting fuel with a burning time of @1.=此工具可以用作冶煉燃料，能燃燒 @1。
 This block can serve as a smelting fuel with a burning time of @1.=此方塊可以用作冶煉燃料，能燃燒 @1。
@@ -112,15 +110,10 @@ This block will drop the following when mined: @1.=
 This block will drop the following items when mined: @1.=開採此方塊後會掉落這些東西：@1
 This block will randomly drop one of the following when mined: @1.=開採此方塊後會隨機掉落以下東西之一：@1
 This block will randomly drop up to @1 drops of the following possible drops when mined: @2.=開採此方塊後會隨機掉落最多 @1 組的以下東西：@2
-# Final list separator (e.g. “One, two and three”)
  and = , 和 
-# Item count times item name
 @1×@2=@1×@2
-# Itemname (<0.5%)
 @1 (<0.5%)=@1 (<0.5%)
-# Itemname (ca. 25%)
 @1 (ca. @2%)=@1 (約 @2%)
-# Itemname (25%)
 @1 (@2%)=@1 (@2%)
 Tools and weapons=工具與武器
 Item reference of all wieldable tools and weapons=可持用的工具及武器

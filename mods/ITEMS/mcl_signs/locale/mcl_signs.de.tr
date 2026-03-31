@@ -1,8 +1,8 @@
 # textdomain: mcl_signs
 Can be written=Kann beschriftet werden
 Signs can be written and come in two variants: Wall sign and sign on a sign post. Signs can be placed on the top and the sides of other blocks, but not below them.=Schilder können beschrieben werden und kommen in zwei Varianten: Wandschild und stehendes Schild. Sie können auf und an den Seiten von anderen Blöclen platziert werden, aber nicht unter ihnen.
-After placing the sign, you can write something on it. You have @1 lines of text with up to @2 characters for each line; anything beyond these limits is lost. Not all characters are supported. The text can be changed after it's written by rightclicking the sign. Can be colored and made to glow. Use bone meal to remove color and glow.=
+After placing the sign, you can write something on it. You have @1 lines of text with up to @2 characters for each line; anything beyond these limits is lost. Not all characters are supported. The text can be changed after it's written by rightclicking the sign. Can be colored and made to glow. Use bone meal to remove color and glow.=Nach dem Platzieren des Schildes können Sie etwas drauf schreiben. Sie haben @1 Linien für den Text mit jeweils @2 Buchstaben pro Linie; Alles nach den Limitierungen ist verloren. Nicht alle Buchstaben sind unterstützt. Der Text kann verändert werden, nachdem dieser geschrieben wurde, indem Sie das Schild rechtsklicken. Der Text kann farbig und glühend gemacht werden. Benutze Knochenmehl, um die Farbe und das Glühen zuentfernen.
 Enter sign text:=Schildtext eingeben:
-Maximum line length: @1=
-Maximum lines: @1=
+Maximum line length: @1=Maximale Linienlänge: @1
+Maximum lines: @1=Maximale Linien: @1
 Done=Fertig

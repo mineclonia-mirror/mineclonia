@@ -1,15 +1,15 @@
 # textdomain: mcl_skins
 Templates=Vorlagen
-Arm size=Schulergröße
-Bases=
-Footwears=
-Eyes=
-Mouths=
-Bottoms=
-Tops=
-Hairs=
-Headwears=
-Skins=
+Arm size=Schultergröße
+Bases=Basis
+Footwears=Schuhe
+Eyes=Augen
+Mouths=Münder
+Bottoms=Hosen
+Tops=Oberteile
+Hairs=Haare
+Headwears=Kopfbedeckung
+Skins=Hautfarben
 Open skin configuration screen.=
-Select=
-Select player skin=
+Select=Auswählen
+Select player skin=Wähle einen Spieler-Skin

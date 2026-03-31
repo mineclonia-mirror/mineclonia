@@ -2,7 +2,7 @@
 Repair & Disenchant=Reparar e Desencantar
 Inventory=Inventário
 Grindstone=Rocha de Afiar
-Used to disenchant/fix tools=
+Used to disenchant/fix tools=Usado para desencantar/consertar ferramentas
 Grindstone disenchants tools and armour except for curses, and repairs two items of the same type it is also the weapon smith's work station.=
 To use the grindstone, rightclick it, Two input slots (on the left) and a single output slot.=
 To disenchant an item place enchanted item in one of the input slots and take the disenchanted item from the output.=

@@ -1,6 +1,4 @@
 # textdomain: findbiome
-# mod title
-# mod strings
 Wait until all mods have loaded!=請等待所有模組載入完畢，然後重試。
 Find and teleport to biome=找尋和傳送至生態域
 <biome>=<生態域>

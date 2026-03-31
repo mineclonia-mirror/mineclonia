@@ -9,7 +9,6 @@ Hand=Mano
 Air=Aire
 Yes=Sí
 No=No
-# List separator (e.g. “one, two, three”)
 , =, 
 Unknown item (@1)=Ítem desconocido (@1)
 unknown=desconocido
@@ -38,7 +37,6 @@ This block can be mined by mining tools which match any of the following mining 
 Mining ratings:=Calificaciones mineras:
 Toughness level: @1=Nivel de dureza: @1
 Range: @1=Rango: @1
-# Range: <Hand> (<Range>)
 Range: @1 (@2)=Rango: @1 (@2)
 This tool can serve as a smelting fuel with a burning time of @1.=Esta herramienta se puede utilizar como combustible para @1.
 This block can serve as a smelting fuel with a burning time of @1.=Este bloque se puede utilizar como combustible para @1.
@@ -112,15 +110,10 @@ This block will drop the following when mined: @1.=Este bloque recompensará lo 
 This block will drop the following items when mined: @1.=Este bloque recompensará los siguientes ítems al ser minado: @1.
 This block will randomly drop one of the following when mined: @1.=Este bloque recompensará aleatoriamente uno de los siguientes ítems al ser minado: @1.
 This block will randomly drop up to @1 drops of the following possible drops when mined: @2.=Este bloque recompensará aleatoriamente hasta @1 de los siguientes ítems cuando se mine: @2.
-# Final list separator (e.g. “One, two and three”)
  and = y 
-# Item count times item name
 @1×@2=@1×@2
-# Itemname (<0.5%)
 @1 (<0.5%)=@1 (<0.5%)
-# Itemname (ca. 25%)
 @1 (ca. @2%)=@1 (aprox. @2%)
-# Itemname (25%)
 @1 (@2%)=@1 (@2%)
 Tools and weapons=Herramientas y armas
 Item reference of all wieldable tools and weapons=Referencia de ítems de todas las herramientas y armas que se pueden usar

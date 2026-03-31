@@ -9,7 +9,6 @@ Hand=Kéz
 Air=Levegő
 Yes=Igen
 No=Nem
-# List separator (e.g. “one, two, three”)
 , =, 
 Unknown item (@1)=Ismeretlen tárgy (@1)
 unknown=ismeretlen
@@ -38,7 +37,6 @@ This block can be mined by mining tools which match any of the following mining 
 Mining ratings:=Bányászási minősítések:
 Toughness level: @1=Keménységi fok: @1
 Range: @1=Hatótáv: @1
-# Range: <Hand> (<Range>)
 Range: @1 (@2)=Hatótáv: @1 (@2)
 This tool can serve as a smelting fuel with a burning time of @1.=Ez az eszköz használható olvasztóban tüzelőanyagként, @1 égési idővel.
 This block can serve as a smelting fuel with a burning time of @1.=Ez a blokk használható olvasztóban tüzelőanyagként, @1 égési idővel.
@@ -112,15 +110,10 @@ This block will drop the following when mined: @1.=Ez a blokk a következőt adj
 This block will drop the following items when mined: @1.=Ez a blokk a következő tárgyakat adja kibányászáskor: @1.
 This block will randomly drop one of the following when mined: @1.=Ez a blokk kibányászáskor véletlenszerűen az alábbiak egyikét adja: @1.
 This block will randomly drop up to @1 drops of the following possible drops when mined: @2.=Ez a blokk kibányászáskor véletlenszerűen legfeljebb @1 darabot ad a következő lehetséges tárgyakból: @2.
-# Final list separator (e.g. “One, two and three”)
  and = és 
-# Item count times item name
 @1×@2=@1×@2
-# Itemname (<0.5%)
 @1 (<0.5%)=@1 (<0,5%)
-# Itemname (ca. 25%)
 @1 (ca. @2%)=@1 (kb. @2%)
-# Itemname (25%)
 @1 (@2%)=@1 (@2%)
 Tools and weapons=Szerszámok és fegyverek
 Item reference of all wieldable tools and weapons=Minden olyan tárgy gyűjtőneve, amelyek kézbe vehető szerszámok és fegyverek

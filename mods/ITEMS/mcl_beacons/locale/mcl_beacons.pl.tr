@@ -1,13 +1,13 @@
 # textdomain: mcl_beacons
-Unavailable=
-Active=
-Beacon=
-Primary Power:=
-Secondary Power:=
-Swiftness=
-Haste=
-Resistance=
-Leaping=
-Strength=
-Regeneration=
-Inventory=
+Unavailable=Niedostępna
+Active=Aktywna
+Beacon=Latarnia
+Primary Power:=Podstawowa moc:
+Secondary Power:=Drugorzędna moc:
+Swiftness=Szybkość
+Haste=Przyspieszenie
+Resistance=Odporność
+Leaping=Skakanie
+Strength=Siła
+Regeneration=Regeneracja
+Inventory=Ekwipunek

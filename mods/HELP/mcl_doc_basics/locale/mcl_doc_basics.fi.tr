@@ -1,7 +1,6 @@
 # textdomain: mcl_doc_basics
 Advanced usage=Edistyneet toiminnot
 Advanced information which may be nice to know, but is not crucial to gameplay=Edistynyttä tietoa, joka saattaa olla hyödyllistä mutta ei kuitenkaan pelin kannalta välttämätöntä
-# MCL2 extensions
 Creative Mode=Luova tila
 Enabling Creative Mode in MineClonia applies the following changes:=Luovan tilan aktivoiminen muuttaa MineCloniaa seuraavilla tavoilla:
 • You keep the things you've placed=• Sijoittamasi asiat säilyvät sinulla

@@ -1,8 +1,8 @@
 # textdomain: mcl_commandblock
 Command blocks are not enabled on this server=Os blocos de comando não estão habilitados neste servidor
 Error: The command “@1” does not exist; your command block has not been changed. Use the “help” chat command for a list of available commands.=Erro: O comando “@1” não existe; seu bloco de comandos não foi alterado. Use o comando de chat “help” para obter uma lista dos comandos disponíveis.
-Error: The command “@1” does not exist; your command block has not been changed. Use the “help” chat command for a list of available commands. Hint: Try to remove the leading slash.=
-Error: You have insufficient privileges to use the command “@1” (missing privilege: @2)! The command block has not been changed.=
+Error: The command “@1” does not exist; your command block has not been changed. Use the “help” chat command for a list of available commands. Hint: Try to remove the leading slash.=Erro: O comando “@1” não existe; seu bloco de comandos não foi alterado. Use o comando de chat “help” para obter uma lista dos comandos disponíveis. Dica: Tente remover a barra inicial.
+Error: You have insufficient privileges to use the command “@1” (missing privilege: @2)! The command block has not been changed.=Erro: Você não tem privilégios suficientes para usar o comando “@1” (privilégio ausente: @2)! O bloco de comando não foi alterado.
 Error: No commander! Block must be replaced.=
 Commander: @1=
 Submit=Enviar
