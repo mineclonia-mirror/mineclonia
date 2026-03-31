@@ -1,5 +1,0 @@
-# textdomain: mcl_bossbars
-None=없음
-Unlimited=무제한
-Maximum number of boss bars to display simultaneously=동시에 표시될 보스 바의 최대 수
-Multiple bosses can be active at the same time. To not clutter your screen, you may limit the number of simultaneously displayed boss bars.=여러 보스가 동시에 활성화될 수 있습니다. 화면이 복잡해지는 것을 방지하기 위해, 한 번에 표시되는 보스 바의 개수를 제한할 수 있습니다.

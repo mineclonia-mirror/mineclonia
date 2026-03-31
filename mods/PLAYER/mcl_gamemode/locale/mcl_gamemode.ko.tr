@@ -1,7 +1,0 @@
-# textdomain: mcl_gamemode
-[<gamemode>] [<player>]=[<게임 모드>] [<플레이어>]
-Change gamemode (survival/creative/0/1/s/c) for yourself or player=자신 또는 플레이어의 게임 모드를 변경(survival/creative/0/1/s/c)
-Player not online=플레이어 오프라인
-Failed to set gamemode @1 for player @2=플레이어 @2의 게임 모드를 @1로 설정하는 데 실패했습니다
-Player @1 is still in creative mode because world is in creative mode=
-Gamemode for player @1: @2=

@@ -1,5 +1,0 @@
-# textdomain: mcl_liquids
-Allows to change the runtime behaviour of liquids=액체의 런타임 동작 변경
-This command is used to debug liquid transformation=이 명령은 액체 변환을 디버깅하는 데 사용됩니다
-This command sets the time passed between Luanti ticks.=이 명령은 루안티 틱 사이에 경과한 시간을 설정합니다.
-If this value is larger than the actual tick, liquids become faster than specified.=이 값이 실제 틱보다 크면 액체의 속도가 설정값보다 빨라집니다.

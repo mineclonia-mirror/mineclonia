@@ -1,4 +1,0 @@
-# textdomain: mcl_target
-Target=과녁
-A target is a block that provides a temporary redstone charge when hit by a projectile.=과녁은 발사체에 맞으면 일시적으로 레드스톤 신호를 출력하는 블록입니다.
-Throw a projectile on the target to activate it.=과녁에 발사체를 던져 활성화합니다.

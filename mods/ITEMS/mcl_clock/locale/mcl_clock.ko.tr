@@ -1,5 +1,0 @@
-# textdomain: mcl_clock
-Clock=시계
-Displays the time of day in the Overworld=오버월드의 현재 시각 표시
-Clocks are tools which shows the current time of day in the Overworld.=시계는 오버월드의 현재 시간을 표시하는 도구입니다.
-The clock contains a rotating disc with a sun symbol (yellow disc) and moon symbol and a little “pointer” which shows the current time of day by estimating the real position of the sun and the moon in the sky. Noon is represented by the sun symbol and midnight is represented by the moon symbol.=이 시계는 해를 상징하는 원판과 달 기호가 새겨진 회전 디스크와, 하늘에서 해와 달의 실제 위치를 추정해 현재 시간을 표시하는 작은 포인터로 구성되어 있습니다. 정오를 해 기호로, 자정은 달 기호로 표시됩니다.

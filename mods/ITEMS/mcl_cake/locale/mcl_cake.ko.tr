@@ -1,5 +1,0 @@
-# textdomain: mcl_cake
-Cake=케이크
-With 7 tasty slices! Hunger points: +@1 per slice=맛있는 7조각이 있습니다! 배고픔 포인트: 조각당 +@1
-Cakes can be placed and eaten to restore hunger points. A cake has 7 slices. Each slice restores @1 hunger points and @2 saturation points. Cakes will be destroyed when dug or when the block below them is broken.=케이크는 배치하고 먹으면 허기 포인트를 회복합니다. 케이크는 7조각으로 구성되어 있습니다. 한 조각당 허기 +@1 포인트와 포화 +@2 포인트를 회복합니다. 케이크는 파낼 때나 아래 블록이 파손되면 파괴됩니다.
-Place the cake anywhere, then rightclick it to eat a single slice. You can't eat from the cake when your hunger bar is full.=케이크를 아무 곳에나 놓은 뒤, 우클릭으로 한 조각을 먹습니다. 허기 바가 꽉 차 있으면 케이크에서 먹을 수 없습니다.

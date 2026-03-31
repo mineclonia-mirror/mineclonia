@@ -1,8 +1,0 @@
-# textdomain: mcl_signs
-Can be written=Pode ser escrito
-Signs can be written and come in two variants: Wall sign and sign on a sign post. Signs can be placed on the top and the sides of other blocks, but not below them.=Placas podem ser escritas e vêm em duas variantes: Placa de parede e placa de poste. Placas podem ser posicionadas na parte superior e nas laterais de outros blocos, mas não abaixo deles.
-After placing the sign, you can write something on it. You have @1 lines of text with up to @2 characters for each line; anything beyond these limits is lost. Not all characters are supported. The text can be changed after it's written by rightclicking the sign. Can be colored and made to glow. Use bone meal to remove color and glow.=Depois de posicionar a placa, você pode escrever algo nela. Você tem @1 linha de texto com até @2 caracteres por linha; qualquer texto que ultrapasse esses limites será perdido. Nem todos os caracteres são suportados. O texto pode ser alterado após ser escrito clicando com o botão direito do mouse na placa. A placa pode ser colorida e brilhar. Use farinha de osso para remover a cor e o brilho.
-Enter sign text:=Insira o texto da placa:
-Maximum line length: @1=
-Maximum lines: @1=
-Done=Concluído

@@ -1,6 +1,0 @@
-# textdomain: mcl_structures
-Generate a pre-defined structure near your position.=자신의 위치 근처에 미리 정의된 구조물을 생성합니다.
-Structure placed.=구조물을 배치했습니다.
-Error: No structure type given. Please use “/spawnstruct <type>”.=오류: 구조물 타입이 지정되지 않았습니다. “/spawnstruct <type>”를 사용하십시오.
-Error: Unknown structure type. Please use “/spawnstruct <type>”.=오류: 알 수 없는 구조물 타입입니다. “/spawnstruct <type>”를 사용하세요.
-Use /help spawnstruct to see a list of available types.=

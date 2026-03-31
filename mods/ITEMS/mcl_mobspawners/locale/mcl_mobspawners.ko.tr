@@ -1,6 +1,0 @@
-# textdomain: mcl_mobspawners
-Mob Spawner=몹 생성기
-Makes mobs appear=몹 생성
-A mob spawner regularily causes mobs to appear around it while a player is nearby. Some mob spawners are disabled while in light.=몹 생성기는 플레이어가 근처에 있을 때 주기적으로 주변에 몹을 생성합니다. 일부 몹 생성기는 빛이 있을 때 비활성화됩니다.
-If you have a spawn egg, you can use it to change the mob to spawn. Just place the item on the mob spawner. Player-set mob spawners always spawn mobs regardless of the light level.=생성 알이 있다면, 그것으로 소환될 몹의 종류를 바꿀 수 있습니다. 그 아이템을 몹 생성기에 우클릭하면 됩니다. 플레이어가 설정한 몹 생성기는 빛 레벨에 관계없이 항상 몹을 생성합니다.
-You need the “maphack” privilege to change the mob spawner.=몹 생성기를 변경하려면 “maphack” 권한이 필요합니다.

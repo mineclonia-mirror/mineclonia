@@ -1,8 +1,0 @@
-# textdomain: mcl_signs
-Can be written=쓰기 가능
-Signs can be written and come in two variants: Wall sign and sign on a sign post. Signs can be placed on the top and the sides of other blocks, but not below them.=표지판은 쓸 수 있으며 두 가지 형태가 있습니다: 벽걸이 표지판과 기둥 위의 표지판. 표지판은 다른 블록의 위쪽과 측면에 배치할 수 있지만 아래쪽에는 배치할 수 없습니다.
-After placing the sign, you can write something on it. You have @1 lines of text with up to @2 characters for each line; anything beyond these limits is lost. Not all characters are supported. The text can be changed after it's written by rightclicking the sign. Can be colored and made to glow. Use bone meal to remove color and glow.=
-Enter sign text:=
-Maximum line length: @1=
-Maximum lines: @1=
-Done=완료

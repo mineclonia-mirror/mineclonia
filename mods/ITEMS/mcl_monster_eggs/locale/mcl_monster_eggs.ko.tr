@@ -1,9 +1,0 @@
-# textdomain: mcl_monster_eggs
-Hides a silverfish=좀벌레 숨김
-Infested Stone=벌레 먹은 돌
-Infested Cobblestone=벌레 먹은 조약돌
-Infested Stone Bricks=벌레 먹은 석재 벽돌
-Infested Cracked Stone Bricks=
-Infested Mossy Stone Bricks=
-Infested Chiseled Stone Bricks=
-@n			An infested block is a block from which a silverfish will pop out when it is broken.@n			It looks identical to its normal counterpart.@n		=

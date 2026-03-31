@@ -1,9 +1,0 @@
-# textdomain: mcl_weather
-Enable dust particles in the nether=네더에서 먼지 입자 활성화
-Gives ability to control weather=날씨 제어 능력 부여
-Changes the weather to the specified parameter.=지정된 매개변수의 날씨로 변경합니다.
-Error: No weather specified.=오류: 날씨가 지정되지 않았습니다.
-Error: Invalid parameters.=오류: 매개변수가 올바르지 않습니다.
-Error: Duration can't be less than 1 second.=
-Error: Invalid weather specified. Use “clear”, “rain”, or “thunder”.=
-Toggles between clear weather and weather with downfall (randomly rain, thunderstorm or snow)=

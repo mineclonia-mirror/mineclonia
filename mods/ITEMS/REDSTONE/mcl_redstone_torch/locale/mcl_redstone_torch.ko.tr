@@ -1,8 +1,0 @@
-# textdomain: mcl_redstone_torch
-Redstone Torch (off)=레드스톤 횃불(꺼짐)
-A redstone torch is a redstone component which can be used to invert a redstone signal. It supplies its surrounding blocks with redstone power, except for the block it is attached to. A redstone torch is normally lit, but it can also be turned off by powering the block it is attached to. While unlit, a redstone torch does not power anything.=레드스톤 횃불은 레드스톤 신호를 반전시키는 데 사용할 수 있는 레드스톤 부품입니다. 그건 부착된 블록을 제외한 주변 블록에 레드스톤 신호를 공급합니다. 레드스톤 횃불은 일반적으로 점등되어 있지만, 부착된 블록에 동력을 공급하면 꺼질 수 있습니다. 꺼져있을 때 레드스톤 횃불은 아무 신호를 출력하지 않습니다.
-Redstone torches can be placed at the side and on the top of full solid opaque blocks.=레드스톤 횃불은 완전 불투명 블록의 옆면과 위쪽에 설치할 수 있습니다.
-Redstone Torch=레드스톤 횃불
-Block of Redstone=
-Provides redstone power=
-A block of redstone permanently supplies redstone power to its surrounding blocks.=

@@ -1,7 +1,0 @@
-# textdomain: mcl_composters
-Composter=퇴비통
-Composters can convert various organic items into bonemeal.=퇴비통은 다양한 유기물을 뼛가루로 변환할 수 있습니다.
-Use organic items on the composter to fill it with layers of compost. Every time an item is put in the composter, there is a chance that the composter adds another layer of compost.  Some items have a bigger chance of adding an extra layer than other items.  After filling up with 7 layers of compost, the composter is full.  After a delay of approximately one second the composter becomes ready and bone meal can be retrieved from it. Right-clicking the composter takes out the bone meal empties the composter.=퇴비통에 유기물을 사용하면 퇴비 층이 차곡차곡 쌓입니다. 아이템을 퇴비통에 넣을 때마다 퇴비통은 퇴비 층을 하나 더 추가할 확률이 있습니다. 어떤 아이템은 다른 아이템보다 추가 층이 더 많이 생길 확률이 큽니다. 7층의 퇴비가 차면 퇴비통은 가득 찬 상태가 됩니다. 약 1초 정도의 지연 후 퇴비통이 준비되며 뼛가루를 얻을 수 있습니다. 퇴비통을 우클릭하면 뼛가루를 꺼내고 퇴비통을 비웁니다.
-Converts organic items into bonemeal=유기물을 뼛가루로 변환
-filled=
-ready for harvest=

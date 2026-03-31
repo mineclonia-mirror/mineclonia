@@ -1,4 +1,0 @@
-# textdomain: mcl_trial_spawners
-Trial spawner=Gerador do Desafio
-Spawns mobs when players are nearby=Gera mobs quando jogadores estão perto
-Spawns mobs when there are players in eyesight, when the player has the ominous trial effect, gets converted to the ominous trial spawner=Gera mobs quando há jogadores à vista, quando o jogador possui o efeito de Presságio de Desafio, ele se transforma no Gerador Sombrio do Desafio

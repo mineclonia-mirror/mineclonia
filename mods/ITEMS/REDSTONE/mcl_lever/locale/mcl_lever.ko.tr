@@ -1,5 +1,0 @@
-# textdomain: mcl_lever
-Lever=레버
-Provides redstone power while it's turned on=켜져 있을 때 레드스톤 신호 출력
-A lever is a redstone component which can be flipped on and off. It supplies redstone power to adjacent blocks while it is in the “on” state.=레버는 ON/OFF로 전환 가능한 레드스톤 구성요소입니다. 켜져 있는 상태일 때 인접한 블록에 레드스톤 신호를 출력합니다.
-Use the lever to flip it on or off.=레버를 사용해 켜고 끕니다.

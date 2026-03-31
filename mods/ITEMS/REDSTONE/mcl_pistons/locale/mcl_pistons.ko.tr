@@ -1,8 +1,0 @@
-# textdomain: mcl_pistons
-This block can have one of 6 possible orientations.=이 블록은 6가지 가능한 방향 중 하나를 가질 수 있습니다.
-Piston=피스톤
-Pushes block when powered by redstone power=레드스톤 신호으로 작동되면 블록을 밀어냄
-A piston is a redstone component with a pusher which pushes the block or blocks in front of it when it is supplied with redstone power. Not all blocks can be pushed, however.=피스톤은 앞의 하나 또는 다수의 블록을 레드스톤 신호으로 밀어내는 추진기가 달린 레드스톤 구성 요소입니다. 다만 모든 블록이 밀릴 수 있는 것은 아닙니다.
-Sticky Piston=
-Pushes or pulls block when powered by redstone power=
-A sticky piston is a redstone component with a sticky pusher which can be extended and retracted. It extends when it is supplied with redstone power. When the pusher extends, it pushes the block or blocks in front of it. When it retracts, it pulls back the single block in front of it. Note that not all blocks can be pushed or pulled.=

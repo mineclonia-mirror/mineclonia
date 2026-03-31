@@ -1,8 +1,0 @@
-# textdomain: mcl_maps
-Empty Map=빈 지도
-Empty maps are not useful as maps, but they can be stacked and turned to maps which can be used.=빈 지도는 지도로서는 쓸모가 없지만, 쌓아 올려서 사용할 수 있는 지도로 바꿀 수 있습니다.
-Rightclick to create a filled map (which can't be stacked anymore).=우클릭하여 채워진 지도를 만듭니다(더 이상 쌓을 수 없습니다).
-Map=지도
-Shows a map image.=
-When created, the map saves the nearby area as an image that can be viewed any time by holding the map.=
-Hold the map in your hand. This will display a map on your screen.=

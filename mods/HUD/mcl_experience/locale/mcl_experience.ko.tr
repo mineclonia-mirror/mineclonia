@@ -1,8 +1,0 @@
-# textdomain: mcl_experience
-Bottle o' Enchanting=경험치 병
-[[<player>] <xp>]=[[<player>] <xp>]
-Gives a player some XP=플레이어에게 경험치를 부여
-Error: Too many parameters!=오류: 매개변수가 너무 많습니다!
-Error: Incorrect value of XP=오류: 경험치 값이 올바르지 않습니다
-Error: Player not found=
-Added @1 XP to @2, total: @3, experience level: @4=

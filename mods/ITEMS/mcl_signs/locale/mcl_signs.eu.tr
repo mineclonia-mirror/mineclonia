@@ -1,8 +1,0 @@
-# textdomain: mcl_signs
-Can be written=Bertan idatz daiteke
-Signs can be written and come in two variants: Wall sign and sign on a sign post. Signs can be placed on the top and the sides of other blocks, but not below them.=Seinaleak idazteko dira eta bi aldaeratan ikus daitezke: horma-seinalea eta zutoin-seinalea. Seinaleak beste bloke batzuen goialdean eta alboetan jar daitezke, baina ez haue azpian.
-After placing the sign, you can write something on it. You have @1 lines of text with up to @2 characters for each line; anything beyond these limits is lost. Not all characters are supported. The text can be changed after it's written by rightclicking the sign. Can be colored and made to glow. Use bone meal to remove color and glow.=
-Enter sign text:=Idatzi seinalearen testua:
-Maximum line length: @1=
-Maximum lines: @1=
-Done=Eginda

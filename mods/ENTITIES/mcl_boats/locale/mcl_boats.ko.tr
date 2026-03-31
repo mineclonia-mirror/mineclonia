@@ -1,9 +1,0 @@
-# textdomain: mcl_boats
-Sneak to dismount=웅크리기로 내리기
-Boats are used to travel on the surface of water.=보트는 물 표면 위를 이동하는 데 사용됩니다.
-Rightclick on a water source to place the boat. Rightclick the boat to enter it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] to slow down or move backwards. Use [Sneak] to leave the boat, punch the boat to make it drop as an item.=물 원천에 보트를 놓으려면 우클릭합니다. 보트를 우클릭하면 탑승합니다. [왼쪽으로 걷기]와 [오른쪽으로 걷기]로 방향을 조정하고, [앞으로 걷기]로 속도를 올리며 [뒤로 걷기]로 속도를 줄이거나 뒤로 이동합니다. [웅크리기]로 보트에서 내리고, 보트를 때려서 아이템으로 떨어뜨립니다.
-Boat=보트
-Water vehicle=수상 이동 수단
-Chest Boats are used to travel on the surface of water. And transport goods=
-Rightclick on a water source to place the boat. Rightclick the boat to enter it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] to slow down or move backwards. Use [Sneak] to leave the boat, punch the boat to make it drop as an item. Use [Sneak] + [Rightclick] to open the boat's chest=
-Chest Boat=

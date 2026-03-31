@@ -1,8 +1,0 @@
-# textdomain: mcl_signs
-Can be written=可以写字
-Signs can be written and come in two variants: Wall sign and sign on a sign post. Signs can be placed on the top and the sides of other blocks, but not below them.=告示牌可以书写内容，并有两种变体：墙上告示牌和立在告示牌柱上的告示牌。告示牌可放置在其他方块的顶部和侧面，但不能放置在它们的下方。
-After placing the sign, you can write something on it. You have @1 lines of text with up to @2 characters for each line; anything beyond these limits is lost. Not all characters are supported. The text can be changed after it's written by rightclicking the sign. Can be colored and made to glow. Use bone meal to remove color and glow.=
-Enter sign text:=输入文字：
-Maximum line length: @1=
-Maximum lines: @1=
-Done=完成

@@ -1,8 +1,0 @@
-# textdomain: mcl_daylight_detector
-Daylight Sensor=햇빛 감지기
-Provides redstone power when in sunlight=햇빛 아래에서 레드스톤 신호를 출력
-Can be inverted=반전 가능
-Daylight detectors are redstone components which provide redstone power when they are in sunlight and no power otherwise. They can also be inverted.=햇빛 감지기는 레드스톤 부품으로, 햇빛을 받을 때 레드스톤 전원을 공급하며 그 외의 경우에는 전원을 공급하지 않습니다. 또한 반전될 수 있습니다.
-In inverted state, they provide redstone power when they are not in sunlight and no power otherwise.=
-Use the daylight detector to toggle its state.=
-Inverted Daylight Sensor=

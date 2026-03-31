@@ -1,7 +1,0 @@
-# textdomain: mcl_vaults
-Vault=금고
-Ejects loot when opened with the key=열쇠로 열면 전리품이 방출됨
-A vault ejects loot when opened with the right key. It can only be opened once by each player.=올바른 열쇠로 열 때 금고에서 전리품이 방출됩니다. 각 플레이어는 한 번만 열 수 있습니다.
-Trial Key=시련 열쇠
-Ominous Trial Key=
-Ominous Vault=

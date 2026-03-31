@@ -1,4 +1,0 @@
-# textdomain: mcl_trial_spawners
-Trial spawner=시련 생성기
-Spawns mobs when players are nearby=주변에 플레이어가 있을 때 몹 소환
-Spawns mobs when there are players in eyesight, when the player has the ominous trial effect, gets converted to the ominous trial spawner=시야에 플레이어가 있을 때 몹을 소환하고, 플레이어가 불길한 시련 효과를 가진 경우 해당 시련 생성기로 변환됩니다
