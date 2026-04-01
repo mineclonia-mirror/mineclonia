@@ -1,69 +1,27 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the mineclonia package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Luanti textdomain mcl_dyes x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: mineclonia\n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:53+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_dyes/init.lua:167
 msgid "This item is a dye which is used for dyeing and crafting."
 msgstr ""
 
-msgid "Rightclick on a sheep to dye its wool. Other things are dyed by crafting."
+#: mods/ITEMS/mcl_dyes/init.lua:168
+msgid ""
+"Rightclick on a sheep to dye its wool. Other things are dyed by crafting."
 msgstr ""
-
-msgid "Black Dye"
-msgstr ""
-
-msgid "Blue Dye"
-msgstr ""
-
-msgid "Brown Dye"
-msgstr ""
-
-msgid "Cyan Dye"
-msgstr ""
-
-msgid "Green Dye"
-msgstr ""
-
-msgid "Grey Dye"
-msgstr ""
-
-msgid "Light Blue Dye"
-msgstr ""
-
-msgid "Light Grey Dye"
-msgstr ""
-
-msgid "Lime Dye"
-msgstr ""
-
-msgid "Magenta Dye"
-msgstr ""
-
-msgid "Orange Dye"
-msgstr ""
-
-msgid "Pink Dye"
-msgstr ""
-
-msgid "Purple Dye"
-msgstr ""
-
-msgid "Red Dye"
-msgstr ""
-
-msgid "White Dye"
-msgstr ""
-
-msgid "Yellow Dye"
-msgstr ""
-

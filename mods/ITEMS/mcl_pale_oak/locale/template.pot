@@ -1,138 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the mineclonia package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Luanti textdomain mcl_pale_oak x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: mineclonia\n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:53+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: mtt_convert 0.1.1\n"
 
-msgid "Pale Oak Bark"
-msgstr ""
-
-msgid "Pale Oak Bark Slab"
-msgstr ""
-
-msgid "Pale Oak Bark Stairs"
-msgstr ""
-
-msgid "Pale Oak Boat"
-msgstr ""
-
-msgid "Pale Oak Button"
-msgstr ""
-
-msgid "Pale Oak Chest Boat"
-msgstr ""
-
-msgid "Pale Oak Door"
-msgstr ""
-
-msgid "Pale Oak Fence"
-msgstr ""
-
-msgid "Pale Oak Fence Gate"
-msgstr ""
-
-msgid "Pale Oak Hanging Sign"
-msgstr ""
-
-msgid "Pale Oak Leaves"
-msgstr ""
-
-msgid "Pale Oak Log"
-msgstr ""
-
-msgid "Pale Oak Planks"
-msgstr ""
-
-msgid "Pale Oak Pressure Plate"
-msgstr ""
-
-msgid "Pale Oak Sapling"
-msgstr ""
-
-msgid "Pale Oak Sign"
-msgstr ""
-
-msgid "Pale Oak Slab"
-msgstr ""
-
-msgid "Pale Oak Stairs"
-msgstr ""
-
-msgid "Pale Oak Trapdoor"
-msgstr ""
-
-msgid "Pale Oak leaves are grown from Pale Oak trees."
-msgstr ""
-
-msgid "Stripped Pale Oak Bark"
-msgstr ""
-
-msgid "Stripped Pale Oak Log"
-msgstr ""
-
-msgid "The stripped trunk of an Pale Oak tree."
-msgstr ""
-
-msgid "The stripped wood of an Pale Oak tree."
-msgstr ""
-
-msgid "The trunk of a Pale Oak tree."
-msgstr ""
-
+#: mods/ITEMS/mcl_pale_oak/plants.lua:19
 msgid "Pale Hanging Moss"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:74
 msgid "Closed Eyeblossom"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:85
 msgid "Open Eyeblossom"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:101
 msgid "Eyeblossom activation"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:113
 msgid "Eyeblossom in a pot activation"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:125
 msgid "Eyeblossom deactivation"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:137
 msgid "Eyeblossom in a pot deactivation"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:209
+#: mods/ITEMS/mcl_pale_oak/plants.lua:211
 msgid "Pale Moss"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:210
 msgid "Moss is a grey block found in pale garden"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:225
 msgid "Pale Moss Carpet"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/plants.lua:226
 msgid "A pale moss carpet is a flat variant of the pale moss block."
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:4
 msgid "Resin Clump"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:14
 msgid "Resin Brick"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:25
 msgid "Block of Resin"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:35
 msgid "Resin Bricks"
 msgstr ""
 
+#: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:43
 msgid "Chiseled Resin Brick"
 msgstr ""
-

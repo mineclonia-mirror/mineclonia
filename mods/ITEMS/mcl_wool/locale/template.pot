@@ -1,123 +1,34 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the mineclonia package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Luanti textdomain mcl_wool x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: mineclonia\n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:53+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_wool/init.lua:25
 msgid "Carpet"
 msgstr ""
 
+#: mods/ITEMS/mcl_wool/init.lua:26
 msgid "Wool"
 msgstr ""
 
+#: mods/ITEMS/mcl_wool/init.lua:27
 msgid "Wool is a decorative block which comes in many different colors."
 msgstr ""
 
+#: mods/ITEMS/mcl_wool/init.lua:28
 msgid "Carpets are thin floor covers which come in many different colors."
 msgstr ""
-
-msgid "Black Carpet"
-msgstr ""
-
-msgid "Black Wool"
-msgstr ""
-
-msgid "Blue Carpet"
-msgstr ""
-
-msgid "Blue Wool"
-msgstr ""
-
-msgid "Brown Carpet"
-msgstr ""
-
-msgid "Brown Wool"
-msgstr ""
-
-msgid "Cyan Carpet"
-msgstr ""
-
-msgid "Cyan Wool"
-msgstr ""
-
-msgid "Green Carpet"
-msgstr ""
-
-msgid "Green Wool"
-msgstr ""
-
-msgid "Grey Carpet"
-msgstr ""
-
-msgid "Grey Wool"
-msgstr ""
-
-msgid "Light Blue Carpet"
-msgstr ""
-
-msgid "Light Blue Wool"
-msgstr ""
-
-msgid "Light Grey Carpet"
-msgstr ""
-
-msgid "Light Grey Wool"
-msgstr ""
-
-msgid "Lime Carpet"
-msgstr ""
-
-msgid "Lime Wool"
-msgstr ""
-
-msgid "Magenta Carpet"
-msgstr ""
-
-msgid "Magenta Wool"
-msgstr ""
-
-msgid "Orange Carpet"
-msgstr ""
-
-msgid "Orange Wool"
-msgstr ""
-
-msgid "Pink Carpet"
-msgstr ""
-
-msgid "Pink Wool"
-msgstr ""
-
-msgid "Purple Carpet"
-msgstr ""
-
-msgid "Purple Wool"
-msgstr ""
-
-msgid "Red Carpet"
-msgstr ""
-
-msgid "Red Wool"
-msgstr ""
-
-msgid "White Carpet"
-msgstr ""
-
-msgid "White Wool"
-msgstr ""
-
-msgid "Yellow Carpet"
-msgstr ""
-
-msgid "Yellow Wool"
-msgstr ""
-

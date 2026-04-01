@@ -1,174 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the mineclonia package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Luanti textdomain mcl_crimson x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: mineclonia\n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:53+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_crimson/init.lua:233 mods/ITEMS/mcl_crimson/init.lua:265
 msgid "Warped Fungus"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:234 mods/ITEMS/mcl_crimson/init.lua:235
 msgid "Warped fungus is a mushroom found in the nether's warped forest."
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:352
 msgid "Twisting Vines"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:362
 msgid "Weeping Vines"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:373
 msgid "Nether Sprouts"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:398 mods/ITEMS/mcl_crimson/init.lua:422
 msgid "Warped Roots"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:428
 msgid "Warped Wart Block"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:440
 msgid "Shroomlight"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:453
 msgid "Warped Nylium"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:471 mods/ITEMS/mcl_crimson/init.lua:503
 msgid "Crimson Fungus"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:472 mods/ITEMS/mcl_crimson/init.lua:473
 msgid "Crimson fungus is a mushroom found in the nether's crimson forest."
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:508 mods/ITEMS/mcl_crimson/init.lua:532
 msgid "Crimson Roots"
 msgstr ""
 
+#: mods/ITEMS/mcl_crimson/init.lua:537
 msgid "Crimson Nylium"
 msgstr ""
-
-msgid "Crimson Bark"
-msgstr ""
-
-msgid "Crimson Bark Slab"
-msgstr ""
-
-msgid "Crimson Bark Stairs"
-msgstr ""
-
-msgid "Crimson Button"
-msgstr ""
-
-msgid "Crimson Door"
-msgstr ""
-
-msgid "Crimson Fence"
-msgstr ""
-
-msgid "Crimson Fence Gate"
-msgstr ""
-
-msgid "Crimson Hanging Sign"
-msgstr ""
-
-msgid "Crimson Log"
-msgstr ""
-
-msgid "Crimson Planks"
-msgstr ""
-
-msgid "Crimson Pressure Plate"
-msgstr ""
-
-msgid "Crimson Sign"
-msgstr ""
-
-msgid "Crimson Slab"
-msgstr ""
-
-msgid "Crimson Stairs"
-msgstr ""
-
-msgid "Crimson Trapdoor"
-msgstr ""
-
-msgid "Stripped Crimson Bark"
-msgstr ""
-
-msgid "Stripped Crimson Log"
-msgstr ""
-
-msgid "Stripped Warped Bark"
-msgstr ""
-
-msgid "Stripped Warped Log"
-msgstr ""
-
-msgid "The stripped trunk of an Crimson tree."
-msgstr ""
-
-msgid "The stripped trunk of an Warped tree."
-msgstr ""
-
-msgid "The stripped wood of an Crimson tree."
-msgstr ""
-
-msgid "The stripped wood of an Warped tree."
-msgstr ""
-
-msgid "The trunk of a Crimson tree."
-msgstr ""
-
-msgid "The trunk of a Warped tree."
-msgstr ""
-
-msgid "Warped Bark"
-msgstr ""
-
-msgid "Warped Bark Slab"
-msgstr ""
-
-msgid "Warped Bark Stairs"
-msgstr ""
-
-msgid "Warped Button"
-msgstr ""
-
-msgid "Warped Door"
-msgstr ""
-
-msgid "Warped Fence"
-msgstr ""
-
-msgid "Warped Fence Gate"
-msgstr ""
-
-msgid "Warped Hanging Sign"
-msgstr ""
-
-msgid "Warped Log"
-msgstr ""
-
-msgid "Warped Planks"
-msgstr ""
-
-msgid "Warped Pressure Plate"
-msgstr ""
-
-msgid "Warped Sign"
-msgstr ""
-
-msgid "Warped Slab"
-msgstr ""
-
-msgid "Warped Stairs"
-msgstr ""
-
-msgid "Warped Trapdoor"
-msgstr ""
-
