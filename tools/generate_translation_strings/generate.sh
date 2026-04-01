@@ -81,7 +81,8 @@ cat ${tmpdir}/world/mcla_translate/mod_dirs.txt |while read f; do
 done
 
 echo Running $1 on ${mcladir}/mods
-"$1" -r "${mcladir}/mods"
+"$1" pot #"${mcladir}/mods"
+"$1" po #-r "${mcladir}/mods"
 
 cat ${tmpdir}/world/mcla_translate/mod_dirs.txt |while read f; do
 	mod=$(echo $f|cut -d " " -f1)
