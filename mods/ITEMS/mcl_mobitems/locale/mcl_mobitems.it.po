@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobitems x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,306 +13,470 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:5
 msgid "Rotten Flesh"
 msgstr "Carne Marcia"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:6
 msgid "80% chance of food poisoning"
 msgstr "80% di probabilità di intossicazione alimentare"
 
-msgid "Yuck! This piece of flesh clearly has seen better days. If you're really desperate, you can eat it to restore a few hunger points, but there's a 80% chance it causes food poisoning, which increases your hunger for a while."
-msgstr "Bleah! Questo pezzo di carne ha chiaramente visto tempi migliori. Se sei davvero disperata(o), puoi mangiarlo per ripristinare qualche punto di fame, ma c'è un 80% di probabilità che causi l'intossicazione alimentare, che aumenta la tua fame per un pò di tempo."
+#: mods/ITEMS/mcl_mobitems/init.lua:7
+msgid ""
+"Yuck! This piece of flesh clearly has seen better days. If you're really "
+"desperate, you can eat it to restore a few hunger points, but there's a 80% "
+"chance it causes food poisoning, which increases your hunger for a while."
+msgstr ""
+"Bleah! Questo pezzo di carne ha chiaramente visto tempi migliori. Se sei "
+"davvero disperata(o), puoi mangiarlo per ripristinare qualche punto di fame, "
+"ma c'è un 80% di probabilità che causi l'intossicazione alimentare, che "
+"aumenta la tua fame per un pò di tempo."
 
+#: mods/ITEMS/mcl_mobitems/init.lua:20
 msgid "Raw Mutton"
 msgstr "Carne ovina cruda"
 
-msgid "Raw mutton is the flesh from a sheep and can be eaten safely. Cooking it will greatly increase its nutritional value."
+#: mods/ITEMS/mcl_mobitems/init.lua:21
+msgid ""
+"Raw mutton is the flesh from a sheep and can be eaten safely. Cooking it "
+"will greatly increase its nutritional value."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:30
 msgid "Cooked Mutton"
 msgstr "Carne ovina cotta"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:31
 msgid "Cooked mutton is the cooked flesh from a sheep and is used as food."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:39
 msgid "Raw Beef"
 msgstr "Manzo crudo"
 
-msgid "Raw beef is the flesh from cows and can be eaten safely. Cooking it will greatly increase its nutritional value."
+#: mods/ITEMS/mcl_mobitems/init.lua:40
+msgid ""
+"Raw beef is the flesh from cows and can be eaten safely. Cooking it will "
+"greatly increase its nutritional value."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:49
 msgid "Steak"
 msgstr "Bistecca"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:50
 msgid "Steak is cooked beef from cows and can be eaten."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:58
 msgid "Raw Chicken"
 msgstr "Pollo crudo"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:59
 msgid "30% chance of food poisoning"
 msgstr ""
 
-msgid "Raw chicken is a food item which is not safe to consume. You can eat it to restore a few hunger points, but there's a 30% chance to suffer from food poisoning, which increases your hunger rate for a while. Cooking raw chicken will make it safe to eat and increases its nutritional value."
+#: mods/ITEMS/mcl_mobitems/init.lua:60
+msgid ""
+"Raw chicken is a food item which is not safe to consume. You can eat it to "
+"restore a few hunger points, but there's a 30% chance to suffer from food "
+"poisoning, which increases your hunger rate for a while. Cooking raw chicken "
+"will make it safe to eat and increases its nutritional value."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:74
 msgid "Cooked Chicken"
 msgstr "Pollo cotto"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:75
 msgid "A cooked chicken is a healthy food item which can be eaten."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:83
 msgid "Raw Porkchop"
 msgstr "Costoletta di maiale cruda"
 
-msgid "A raw porkchop is the flesh from a pig and can be eaten safely. Cooking it will greatly increase its nutritional value."
+#: mods/ITEMS/mcl_mobitems/init.lua:84
+msgid ""
+"A raw porkchop is the flesh from a pig and can be eaten safely. Cooking it "
+"will greatly increase its nutritional value."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:93
 msgid "Cooked Porkchop"
 msgstr "Costoletta di maiale cotta"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:94
 msgid "Cooked porkchop is the cooked flesh of a pig and is used as food."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:102
 msgid "Raw Rabbit"
 msgstr "Coniglio crudo"
 
-msgid "Raw rabbit is a food item from a dead rabbit. It can be eaten safely. Cooking it will increase its nutritional value."
+#: mods/ITEMS/mcl_mobitems/init.lua:103
+msgid ""
+"Raw rabbit is a food item from a dead rabbit. It can be eaten safely. "
+"Cooking it will increase its nutritional value."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:112
 msgid "Cooked Rabbit"
 msgstr "Coniglio cotto"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:113
 msgid "This is a food item which can be eaten."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:121
 msgid "Milk"
 msgstr "Latte"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:122
 msgid "Removes all status effects"
 msgstr "Rimuove tutti gli effetti di stato"
 
-msgid "Milk is very refreshing and can be obtained by using a bucket on a cow. Drinking it will remove all status effects, but restores no hunger points."
+#: mods/ITEMS/mcl_mobitems/init.lua:123
+msgid ""
+"Milk is very refreshing and can be obtained by using a bucket on a cow. "
+"Drinking it will remove all status effects, but restores no hunger points."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:124
 msgid "Use the placement key to drink the milk."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:136
 msgid "Spider Eye"
 msgstr "Occhio di ragno"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:137
 msgid "Poisonous"
 msgstr "Velenoso"
 
-msgid "Spider eyes are used mainly in crafting. If you're really desperate, you can eat a spider eye, but it will poison you briefly."
+#: mods/ITEMS/mcl_mobitems/init.lua:138
+msgid ""
+"Spider eyes are used mainly in crafting. If you're really desperate, you can "
+"eat a spider eye, but it will poison you briefly."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:146
 msgid "Bone"
 msgstr "Osso"
 
-msgid "Bones can be used to tame wolves so they will protect you. They are also useful as a crafting ingredient."
+#: mods/ITEMS/mcl_mobitems/init.lua:147
+msgid ""
+"Bones can be used to tame wolves so they will protect you. They are also "
+"useful as a crafting ingredient."
 msgstr ""
 
-msgid "Wield the bone near wolves to attract them. Use the “Place” key on the wolf to give it a bone and tame it. You can then give commands to the tamed wolf by using the “Place” key on it."
+#: mods/ITEMS/mcl_mobitems/init.lua:148
+msgid ""
+"Wield the bone near wolves to attract them. Use the “Place” key on the wolf "
+"to give it a bone and tame it. You can then give commands to the tamed wolf "
+"by using the “Place” key on it."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:156
 msgid "Squid Ink Sac"
 msgstr "Sacca d'inchiostro"
 
-msgid "This item is dropped by dead squids. Squid ink can be used to as an ingredient to craft book and quill or black dye."
+#: mods/ITEMS/mcl_mobitems/init.lua:157
+msgid ""
+"This item is dropped by dead squids. Squid ink can be used to as an "
+"ingredient to craft book and quill or black dye."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:164
 msgid "String"
 msgstr "Cordicella"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:165
 msgid "Strings are used in crafting."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:172
 msgid "Blaze Rod"
 msgstr "Verga di blaze"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:173
 msgid "This is a crafting component dropped from dead blazes."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:182
 msgid "Breeze Rod"
 msgstr "Verga di brezza"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:183
 msgid "This is a crafting item dropped from breezes."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:191
 msgid "Blaze Powder"
 msgstr "Polvere di blaze"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:192
 msgid "This item is mainly used for crafting."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:199
 msgid "Magma Cream"
 msgstr "Crema di magma"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:200
 msgid "Magma cream is a crafting component."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:208
 msgid "Ghast Tear"
 msgstr "Lacrima di ghast"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:209
 msgid "Place this item in an item frame as decoration."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:216
 msgid "Nether Star"
 msgstr "Stella del Nether"
 
-msgid "A nether star is dropped when the Wither dies. Place it in an item frame to show the world how hardcore you are! Or just as decoration."
+#: mods/ITEMS/mcl_mobitems/init.lua:217
+msgid ""
+"A nether star is dropped when the Wither dies. Place it in an item frame to "
+"show the world how hardcore you are! Or just as decoration."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:225
 msgid "Leather"
 msgstr "Cuoio"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:226
 msgid "Leather is a versatile crafting component."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:233
 msgid "Feather"
 msgstr "Piuma"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:234
 msgid "Feathers are used in crafting and are dropped from chickens."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:241
 msgid "Rabbit Hide"
 msgstr "Pelle di coniglio"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:242
 msgid "Rabbit hide is used to create leather."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:250
 msgid "Rabbit's Foot"
 msgstr "Zampa di coniglio"
 
-msgid "Must be your lucky day! Place this item in an item frame for decoration."
+#: mods/ITEMS/mcl_mobitems/init.lua:251
+msgid ""
+"Must be your lucky day! Place this item in an item frame for decoration."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:258
 msgid "Saddle"
 msgstr "Sella"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:259
 msgid "Can be placed on animals to ride them"
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:260
 msgid "Saddles can be put on some animals in order to mount them."
 msgstr ""
 
-msgid "Use the placement key with the saddle in your hand to try to put on the saddle. Saddles fit on horses, mules, donkeys and pigs. Horses, mules and donkeys need to be tamed first, otherwise they'll reject the saddle. Saddled animals can be mounted by using the placement key on them again."
+#: mods/ITEMS/mcl_mobitems/init.lua:261
+msgid ""
+"Use the placement key with the saddle in your hand to try to put on the "
+"saddle. Saddles fit on horses, mules, donkeys and pigs. Horses, mules and "
+"donkeys need to be tamed first, otherwise they'll reject the saddle. Saddled "
+"animals can be mounted by using the placement key on them again."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:269
 msgid "Rabbit Stew"
 msgstr "Stufato di coniglio"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:270
 msgid "Rabbit stew is a very nutricious food item."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:280
 msgid "Shulker Shell"
 msgstr "Guscio di shulker"
 
-msgid "Shulker shells are used in crafting. They are dropped from dead shulkers."
+#: mods/ITEMS/mcl_mobitems/init.lua:281
+msgid ""
+"Shulker shells are used in crafting. They are dropped from dead shulkers."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:287
 msgid "Slimeball"
 msgstr "Palla di gelatina"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:288
 msgid "Slimeballs are used in crafting. They are dropped from slimes."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:295
 msgid "Gunpowder"
 msgstr "Polvere da sparo"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:302
 msgid "Carrot on a Stick"
 msgstr "Bastonne e carota"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:303
 msgid "Lets you ride a saddled pig"
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:304
 msgid "A carrot on a stick can be used on saddled pigs to ride them."
 msgstr ""
 
-msgid "Place it on a saddled pig to mount it. You can now ride the pig like a horse. Pigs will also walk towards you when you just wield the carrot on a stick."
+#: mods/ITEMS/mcl_mobitems/init.lua:305
+msgid ""
+"Place it on a saddled pig to mount it. You can now ride the pig like a "
+"horse. Pigs will also walk towards you when you just wield the carrot on a "
+"stick."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:314
 msgid "Warped Fungus on a Stick"
 msgstr "Bastonne e fungo distorto"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:315
 msgid "Lets you ride a strider"
 msgstr ""
 
-msgid "A warped fungus on a stick can be used on saddled striders to ride them."
+#: mods/ITEMS/mcl_mobitems/init.lua:316
+msgid ""
+"A warped fungus on a stick can be used on saddled striders to ride them."
 msgstr ""
 
-msgid "Place it on a saddled strider to mount it. You can now ride the strider like a horse. Striders will also walk towards you when you just wield the fungus on a stick."
+#: mods/ITEMS/mcl_mobitems/init.lua:317
+msgid ""
+"Place it on a saddled strider to mount it. You can now ride the strider like "
+"a horse. Striders will also walk towards you when you just wield the fungus "
+"on a stick."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:326
 msgid "Nautilus Shell"
 msgstr "Conchiglia di nautilo"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:327 mods/ITEMS/mcl_mobitems/init.lua:335
 msgid "Used to craft a conduit"
 msgstr ""
 
-msgid "The Nautilus Shell is used to craft a conduit. They can be obtained by fishing or killing a drowned that is wielding a shell."
+#: mods/ITEMS/mcl_mobitems/init.lua:328
+msgid ""
+"The Nautilus Shell is used to craft a conduit. They can be obtained by "
+"fishing or killing a drowned that is wielding a shell."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:334
 msgid "Heart of the Sea"
 msgstr "Cuore del mare"
 
-msgid "The Heart of the Sea is used to craft a conduit. They can be obtained by finding them in a buried treasure chest."
+#: mods/ITEMS/mcl_mobitems/init.lua:336
+msgid ""
+"The Heart of the Sea is used to craft a conduit. They can be obtained by "
+"finding them in a buried treasure chest."
 msgstr ""
 
-msgid "Place it on a horse to put on the horse armor. Donkeys and mules can't wear horse armor."
+#: mods/ITEMS/mcl_mobitems/init.lua:341
+msgid ""
+"Place it on a horse to put on the horse armor. Donkeys and mules can't wear "
+"horse armor."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:346
 msgid "Leather Horse Armor"
 msgstr "Bardatura di cuoio"
 
-msgid "Leather horse armor can be worn by horses to increase their protection from harm a little."
+#: mods/ITEMS/mcl_mobitems/init.lua:347
+msgid ""
+"Leather horse armor can be worn by horses to increase their protection from "
+"harm a little."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:360
 msgid "Copper Horse Armor"
 msgstr ""
 
-msgid "Copper horse armor can be worn by horses to increase their protection from harm a bit."
+#: mods/ITEMS/mcl_mobitems/init.lua:361
+msgid ""
+"Copper horse armor can be worn by horses to increase their protection from "
+"harm a bit."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:376
 msgid "Iron Horse Armor"
 msgstr "Bardatura di ferro"
 
-msgid "Iron horse armor can be worn by horses to increase their protection from harm a bit."
+#: mods/ITEMS/mcl_mobitems/init.lua:377
+msgid ""
+"Iron horse armor can be worn by horses to increase their protection from "
+"harm a bit."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:391
 msgid "Golden Horse Armor"
 msgstr "Bardatura d'oro"
 
-msgid "Golden horse armor can be worn by horses to increase their protection from harm."
+#: mods/ITEMS/mcl_mobitems/init.lua:392
+msgid ""
+"Golden horse armor can be worn by horses to increase their protection from "
+"harm."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:405
 msgid "Diamond Horse Armor"
 msgstr "Bardatura di diamante"
 
-msgid "Diamond horse armor can be worn by horses to greatly increase their protection from harm."
+#: mods/ITEMS/mcl_mobitems/init.lua:406
+msgid ""
+"Diamond horse armor can be worn by horses to greatly increase their "
+"protection from harm."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:422
 msgid "Glow Ink Sac"
 msgstr "Sacca d'inchiostro luminescente"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:423
 msgid "Use it to craft the Glow Item Frame."
 msgstr ""
 
-msgid "Use the Glow Ink Sac and the normal Item Frame to craft the Glow Item Frame."
+#: mods/ITEMS/mcl_mobitems/init.lua:424
+msgid ""
+"Use the Glow Ink Sac and the normal Item Frame to craft the Glow Item Frame."
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:430
 msgid "Name Tag"
 msgstr "Targhetta"
 
+#: mods/ITEMS/mcl_mobitems/init.lua:431
 msgid "Give names to mobs"
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:431
 msgid "Set name at anvil"
 msgstr ""
 
+#: mods/ITEMS/mcl_mobitems/init.lua:432
 msgid "A name tag is an item to name a mob."
 msgstr ""
 
-msgid "Before you use the name tag, you need to set a name at an anvil. Then you can use the name tag to name a mob. This uses up the name tag."
+#: mods/ITEMS/mcl_mobitems/init.lua:433
+msgid ""
+"Before you use the name tag, you need to set a name at an anvil. Then you "
+"can use the name tag to name a mob. This uses up the name tag."
 msgstr ""
-

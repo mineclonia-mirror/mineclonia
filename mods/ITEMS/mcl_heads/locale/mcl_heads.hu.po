@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_heads x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,45 +13,96 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_heads/init.lua:254
 msgid "Zombie Head"
 msgstr "Zombi fej"
 
-msgid "A zombie head is a small decorative block which resembles the head of a zombie. It can also be worn as a helmet, which reduces the detection range of zombies by 50%."
-msgstr "A zombi fej egy kis díszítő blokk, amely a zombi fejére hasonlít. Sisakként is viselhető, ami 50%-kal csökkenti a zombik érzékelési távolságát."
+#: mods/ITEMS/mcl_heads/init.lua:255
+msgid ""
+"A zombie head is a small decorative block which resembles the head of a "
+"zombie. It can also be worn as a helmet, which reduces the detection range "
+"of zombies by 50%."
+msgstr ""
+"A zombi fej egy kis díszítő blokk, amely a zombi fejére hasonlít. Sisakként "
+"is viselhető, ami 50%-kal csökkenti a zombik érzékelési távolságát."
 
+#: mods/ITEMS/mcl_heads/init.lua:264
 msgid "Creeper Head"
 msgstr "Creeper fej"
 
-msgid "A creeper head is a small decorative block which resembles the head of a creeper. It can also be worn as a helmet, which reduces the detection range of creepers by 50%."
-msgstr "A creeper fej egy kis díszítő blokk, amely a creeper fejére hasonlít. Sisakként is viselhető, ami 50%-kal csökkenti a creeper érzékelési távolságát."
+#: mods/ITEMS/mcl_heads/init.lua:265
+msgid ""
+"A creeper head is a small decorative block which resembles the head of a "
+"creeper. It can also be worn as a helmet, which reduces the detection range "
+"of creepers by 50%."
+msgstr ""
+"A creeper fej egy kis díszítő blokk, amely a creeper fejére hasonlít. "
+"Sisakként is viselhető, ami 50%-kal csökkenti a creeper érzékelési "
+"távolságát."
 
+#: mods/ITEMS/mcl_heads/init.lua:275
 msgid "Human Head"
 msgstr "Emberi fej"
 
-msgid "A human head is a small decorative block which resembles the head of a human (i.e. a player character). It can also be worn as a helmet for fun, but does not offer any protection."
-msgstr "Az emberi fej egy kis díszítő blokk, amely egy ember (pl. játékos karakter) fejére hasonlít. Sisakként is viselhető szórakozásból, de nem nyújt védelmet."
+#: mods/ITEMS/mcl_heads/init.lua:276
+msgid ""
+"A human head is a small decorative block which resembles the head of a human "
+"(i.e. a player character). It can also be worn as a helmet for fun, but does "
+"not offer any protection."
+msgstr ""
+"Az emberi fej egy kis díszítő blokk, amely egy ember (pl. játékos karakter) "
+"fejére hasonlít. Sisakként is viselhető szórakozásból, de nem nyújt védelmet."
 
+#: mods/ITEMS/mcl_heads/init.lua:283
 msgid "Skeleton Skull"
 msgstr "Csontváz koponya"
 
-msgid "A skeleton skull is a small decorative block which resembles the skull of a skeleton. It can also be worn as a helmet, which reduces the detection range of skeletons by 50%."
-msgstr "A csontváz koponya egy kis díszítő blokk, amely a csontváz koponyájára hasonlít. Sisakként is viselhető, ami 50%-kal csökkenti a csontvázak érzékelési távolságát."
+#: mods/ITEMS/mcl_heads/init.lua:284
+msgid ""
+"A skeleton skull is a small decorative block which resembles the skull of a "
+"skeleton. It can also be worn as a helmet, which reduces the detection range "
+"of skeletons by 50%."
+msgstr ""
+"A csontváz koponya egy kis díszítő blokk, amely a csontváz koponyájára "
+"hasonlít. Sisakként is viselhető, ami 50%-kal csökkenti a csontvázak "
+"érzékelési távolságát."
 
+#: mods/ITEMS/mcl_heads/init.lua:293
 msgid "Wither Skeleton Skull"
 msgstr "Wither csontváz koponya"
 
-msgid "A wither skeleton skull is a small decorative block which resembles the skull of a wither skeleton. It can also be worn as a helmet for fun, but does not offer any protection."
-msgstr "A wither csontváz koponya egy kis díszítő blokk, amely a wither csontváz koponyájára hasonlít. Sisakként is viselhető szórakozásból, de nem nyújt védelmet."
+#: mods/ITEMS/mcl_heads/init.lua:294
+msgid ""
+"A wither skeleton skull is a small decorative block which resembles the "
+"skull of a wither skeleton. It can also be worn as a helmet for fun, but "
+"does not offer any protection."
+msgstr ""
+"A wither csontváz koponya egy kis díszítő blokk, amely a wither csontváz "
+"koponyájára hasonlít. Sisakként is viselhető szórakozásból, de nem nyújt "
+"védelmet."
 
+#: mods/ITEMS/mcl_heads/init.lua:303
 msgid "Piglin Head"
 msgstr "Piglin fej"
 
-msgid "A piglin head is a small decorative block which resembles the head of a piglin. It can also be worn as a helmet, which reduces the detection range of piglins by 50%."
-msgstr "A piglin fej egy kis díszítő blokk, amely a piglin fejére hasonlít. Sisakként is viselhető, ami 50%-kal csökkenti a piglinek érzékelési távolságát."
+#: mods/ITEMS/mcl_heads/init.lua:304
+msgid ""
+"A piglin head is a small decorative block which resembles the head of a "
+"piglin. It can also be worn as a helmet, which reduces the detection range "
+"of piglins by 50%."
+msgstr ""
+"A piglin fej egy kis díszítő blokk, amely a piglin fejére hasonlít. "
+"Sisakként is viselhető, ami 50%-kal csökkenti a piglinek érzékelési "
+"távolságát."
 
+#: mods/ITEMS/mcl_heads/init.lua:326
 msgid "Dragon Head"
 msgstr "Sárkány fej"
 
-msgid "A dragon head is a decorative block which resembles the head of a dragon. It can also be worn as a helmet."
-msgstr "A sárkány fej egy díszítő blokk, amely a sárkány fejére hasonlít. Sisakként is viselhető."
-
+#: mods/ITEMS/mcl_heads/init.lua:327
+msgid ""
+"A dragon head is a decorative block which resembles the head of a dragon. It "
+"can also be worn as a helmet."
+msgstr ""
+"A sárkány fej egy díszítő blokk, amely a sárkány fejére hasonlít. Sisakként "
+"is viselhető."

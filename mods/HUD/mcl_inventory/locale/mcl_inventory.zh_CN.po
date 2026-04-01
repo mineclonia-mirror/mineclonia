@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_inventory x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,84 +13,114 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/HUD/mcl_inventory/creative.lua:13
 msgid "Scrollbar"
 msgstr "滚动条"
 
+#: mods/HUD/mcl_inventory/creative.lua:14
 msgid "Pagination buttons"
 msgstr ""
 
+#: mods/HUD/mcl_inventory/creative.lua:17
 msgid "Creative inventory scrolling"
 msgstr ""
 
+#: mods/HUD/mcl_inventory/creative.lua:329
 msgid "Building Blocks"
 msgstr "建筑方块"
 
+#: mods/HUD/mcl_inventory/creative.lua:330
 msgid "Decoration Blocks"
 msgstr "装饰方块"
 
+#: mods/HUD/mcl_inventory/creative.lua:331
 msgid "Redstone"
 msgstr "红石"
 
+#: mods/HUD/mcl_inventory/creative.lua:332
 msgid "Transportation"
 msgstr "交通"
 
+#: mods/HUD/mcl_inventory/creative.lua:333
 msgid "Miscellaneous"
 msgstr "杂项"
 
+#: mods/HUD/mcl_inventory/creative.lua:334
 msgid "Search Items"
 msgstr "搜索物品"
 
+#: mods/HUD/mcl_inventory/creative.lua:335
 msgid "Foodstuffs"
 msgstr "食物"
 
+#: mods/HUD/mcl_inventory/creative.lua:336
 msgid "Tools"
 msgstr "工具"
 
+#: mods/HUD/mcl_inventory/creative.lua:337
 msgid "Combat"
 msgstr "战斗"
 
+#: mods/HUD/mcl_inventory/creative.lua:338
 msgid "Mobs"
 msgstr "生物"
 
+#: mods/HUD/mcl_inventory/creative.lua:339
 msgid "Brewing"
 msgstr "酿造"
 
+#: mods/HUD/mcl_inventory/creative.lua:340
 msgid "Materials"
 msgstr "材料"
 
+#: mods/HUD/mcl_inventory/creative.lua:341
 msgid "Survival Inventory"
 msgstr "生存模式物品栏"
 
+#: mods/HUD/mcl_inventory/creative.lua:342
 msgid "Not in Creative Inventory"
 msgstr "不在创造模式物品栏中"
 
-msgid "Switch stack size"
-msgstr "切换堆叠数量"
-
-msgid "@1 / @2"
-msgstr "@1 / @2"
-
+#: mods/HUD/mcl_inventory/creative.lua:488
+#: mods/HUD/mcl_inventory/survival.lua:139
 msgid "Recipe book"
 msgstr "配方书"
 
+#: mods/HUD/mcl_inventory/creative.lua:492
+#: mods/HUD/mcl_inventory/survival.lua:143
 msgid "Help"
 msgstr "帮助"
 
+#: mods/HUD/mcl_inventory/creative.lua:497
+#: mods/HUD/mcl_inventory/survival.lua:151
 msgid "Advancements"
 msgstr "进度"
 
+#: mods/HUD/mcl_inventory/creative.lua:502
+msgid "Switch stack size"
+msgstr "切换堆叠数量"
+
+#: mods/HUD/mcl_inventory/creative.lua:506
+#: mods/HUD/mcl_inventory/survival.lua:147
 msgid "Player settings"
 msgstr "玩家设置"
 
+#: mods/HUD/mcl_inventory/creative.lua:534
+msgid "@1 / @2"
+msgstr "@1 / @2"
+
+#: mods/HUD/mcl_inventory/init.lua:192
 msgid "Return to player inventory"
 msgstr "返回玩家背包"
 
+#: mods/HUD/mcl_inventory/init.lua:239
 msgid "Crafting table out of range!"
 msgstr "离工作台太远！"
 
+#: mods/HUD/mcl_inventory/survival.lua:123
 msgid "Crafting"
 msgstr "制作"
 
+#: mods/HUD/mcl_inventory/survival.lua:135
 msgid "Fill Craft Grid"
 msgstr "填充合成网格"
-

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:53+0200\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: mods/PLAYER/mcl_player/mcl_player_translations_tmp.lua:1
+msgid "Graphics"
+msgstr ""
+
+#: mods/PLAYER/mcl_player/mcl_player_translations_tmp.lua:2
+msgid "HUD"
+msgstr ""
+
+#: mods/PLAYER/mcl_player/mcl_player_translations_tmp.lua:3
+msgid "Inventory"
+msgstr ""
 
 #: mods/PLAYER/mcl_player/settings.lua:88
 msgid "Misc"

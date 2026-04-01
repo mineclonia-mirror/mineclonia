@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:53+0200\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -512,6 +512,194 @@ msgstr ""
 #: mods/ITEMS/mcl_potions/lingering.lua:212
 #: mods/ITEMS/mcl_potions/splash.lua:45
 msgid "Use the “Place” key to throw it."
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:1
+msgid "Arrow of Bad Luck"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:2
+msgid "Arrow of Decay"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:3
+msgid "Arrow of Fire Resistance"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:4
+msgid "Arrow of Harming"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:5
+msgid "Arrow of Healing"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:6
+msgid "Arrow of Infestation"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:7
+msgid "Arrow of Invisibility"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:8
+msgid "Arrow of Leaping"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:9
+msgid "Arrow of Luck"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:10
+msgid "Arrow of Night Vision"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:11
+msgid "Arrow of Oozing"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:12
+msgid "Arrow of Poison"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:13
+msgid "Arrow of Regeneration"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:14
+msgid "Arrow of Slow Falling"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:15
+msgid "Arrow of Slowness"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:16
+msgid "Arrow of Strength"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:17
+msgid "Arrow of Swiftness"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:18
+msgid "Arrow of Water Breathing"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:19
+msgid "Arrow of Weakness"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:20
+msgid "Arrow of Weaving"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:21
+msgid "Arrow of Wind Charging"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:22
+msgid "Arrow of the Turtle Master"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:23
+msgid "Awkward Potion"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:24
+msgid "Mundane Potion"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:25
+msgid "Potion of Bad Luck"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:26
+msgid "Potion of Decay"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:27
+msgid "Potion of Fire Resistance"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:28
+msgid "Potion of Harming"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:29
+msgid "Potion of Healing"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:30
+msgid "Potion of Infestation"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:31
+msgid "Potion of Invisibility"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:32
+msgid "Potion of Leaping"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:33
+msgid "Potion of Luck"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:34
+msgid "Potion of Night Vision"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:35
+msgid "Potion of Oozing"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:36
+msgid "Potion of Poison"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:37
+msgid "Potion of Regeneration"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:38
+msgid "Potion of Slow Falling"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:39
+msgid "Potion of Slowness"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:40
+msgid "Potion of Strength"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:41
+msgid "Potion of Swiftness"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:42
+msgid "Potion of Water Breathing"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:43
+msgid "Potion of Weakness"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:44
+msgid "Potion of Weaving"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:45
+msgid "Potion of Wind Charging"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:46
+msgid "Potion of the Turtle Master"
+msgstr ""
+
+#: mods/ITEMS/mcl_potions/mcl_potions_translations_tmp.lua:47
+msgid "Thick Potion"
 msgstr ""
 
 #: mods/ITEMS/mcl_potions/potions.lua:12

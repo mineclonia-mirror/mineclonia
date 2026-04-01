@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_panes x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,24 +13,38 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-msgid "Glass panes are thin layers of glass which neatly connect to their neighbors as you build them."
-msgstr "ガラス板は、薄い層状のガラスで、組み立てると隣のガラスときれいにつながっていきます。"
+#: mods/ITEMS/mcl_panes/init.lua:209
+msgid ""
+"Glass panes are thin layers of glass which neatly connect to their neighbors "
+"as you build them."
+msgstr ""
+"ガラス板は、薄い層状のガラスで、組み立てると隣のガラスときれいにつながってい"
+"きます。"
 
-msgid "Stained glass panes are thin layers of stained glass which neatly connect to their neighbors as you build them. They come in many different colors."
-msgstr "色ガラス板は、薄い層状の色ガラスで、組み立てると隣のガラスときれいにつながっていきます。カラーバリエーションも豊富です。"
+#: mods/ITEMS/mcl_panes/init.lua:214
+msgid ""
+"Stained glass panes are thin layers of stained glass which neatly connect to "
+"their neighbors as you build them. They come in many different colors."
+msgstr ""
+"色ガラス板は、薄い層状の色ガラスで、組み立てると隣のガラスときれいにつながっ"
+"ていきます。カラーバリエーションも豊富です。"
 
+#: mods/ITEMS/mcl_panes/init.lua:215
 msgid "Stained Glass Pane"
 msgstr "色ガラス板"
 
+#: mods/ITEMS/mcl_panes/init.lua:247
 msgid "Iron Bars"
 msgstr "鉄格子"
 
+#: mods/ITEMS/mcl_panes/init.lua:248
 msgid "Iron bars neatly connect to their neighbors as you build them."
 msgstr "鉄格子は、組み立てると隣の格子ときれいにつながっていきます。"
 
+#: mods/ITEMS/mcl_panes/init.lua:262
 msgid "Glass Pane"
 msgstr "ガラス板"
 
+#: mods/ITEMS/mcl_panes/mcl_panes_translations_tmp.lua:1
 msgid "@1 Glass Pane"
 msgstr "@1ガラス板"
-

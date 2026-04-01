@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_fences x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,15 +13,22 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-msgid "Fences are structures which block the way. Fences will connect to each other and solid blocks. They cannot be jumped over with a simple jump."
+#: mods/ITEMS/mcl_fences/init.lua:74
+msgid ""
+"Fences are structures which block the way. Fences will connect to each other "
+"and solid blocks. They cannot be jumped over with a simple jump."
 msgstr ""
 
+#: mods/ITEMS/mcl_fences/init.lua:99
 msgid "Openable by players and redstone power"
 msgstr ""
 
-msgid "Fence gates can be opened or closed and can't be jumped over. Fences will connect nicely to fence gates."
+#: mods/ITEMS/mcl_fences/init.lua:100
+msgid ""
+"Fence gates can be opened or closed and can't be jumped over. Fences will "
+"connect nicely to fence gates."
 msgstr ""
 
+#: mods/ITEMS/mcl_fences/init.lua:101
 msgid "Right-click the fence gate to open or close it."
 msgstr ""
-

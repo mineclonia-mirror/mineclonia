@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_fences x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,15 +13,26 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-msgid "Fences are structures which block the way. Fences will connect to each other and solid blocks. They cannot be jumped over with a simple jump."
-msgstr "울타리는 길을 막는 구조물입니다. 울타리는 서로 연결되며 단단한 블록에 연결됩니다. 간단한 점프로는 넘어갈 수 없습니다."
+#: mods/ITEMS/mcl_fences/init.lua:74
+msgid ""
+"Fences are structures which block the way. Fences will connect to each other "
+"and solid blocks. They cannot be jumped over with a simple jump."
+msgstr ""
+"울타리는 길을 막는 구조물입니다. 울타리는 서로 연결되며 단단한 블록에 연결됩"
+"니다. 간단한 점프로는 넘어갈 수 없습니다."
 
+#: mods/ITEMS/mcl_fences/init.lua:99
 msgid "Openable by players and redstone power"
 msgstr "플레이어와 레드스톤 신호로 열 수 있음"
 
-msgid "Fence gates can be opened or closed and can't be jumped over. Fences will connect nicely to fence gates."
-msgstr "울타리 문은 열거나 닫을 수 있으며, 뛰어넘을 수 없습니다. 울타리와 설치하면 자연스럽게 연결됩니다."
+#: mods/ITEMS/mcl_fences/init.lua:100
+msgid ""
+"Fence gates can be opened or closed and can't be jumped over. Fences will "
+"connect nicely to fence gates."
+msgstr ""
+"울타리 문은 열거나 닫을 수 있으며, 뛰어넘을 수 없습니다. 울타리와 설치하면 자"
+"연스럽게 연결됩니다."
 
+#: mods/ITEMS/mcl_fences/init.lua:101
 msgid "Right-click the fence gate to open or close it."
 msgstr "울타리 문을 우클릭하여 열거나 닫습니다."
-

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_smithing_table x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,22 +13,41 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_smithing_table/init.lua:36
 msgid "Upgrade Gear"
 msgstr "装備の強化"
 
+#: mods/ITEMS/mcl_smithing_table/init.lua:135
 msgid "Smithing Table"
 msgstr "鍛冶台"
 
-msgid "A smithing table is a utility block used to alter tools and armor at the cost of a smithing template and the appropriate material. This is the only way to obtain trimmed armor or upgrade diamond equipment with netherite. It also serves as a toolsmith's job site block."
+#: mods/ITEMS/mcl_smithing_table/init.lua:136
+msgid ""
+"A smithing table is a utility block used to alter tools and armor at the "
+"cost of a smithing template and the appropriate material. This is the only "
+"way to obtain trimmed armor or upgrade diamond equipment with netherite. It "
+"also serves as a toolsmith's job site block."
 msgstr ""
 
-msgid "Rightclick on a smithing table to access its interface. Put armor or tools in the upper left slot. The top right slot is reserved for mineral items. The bottom slot is for smithing templates. To upgrade your diamond armor and tools to netherite, the netherite upgrade template is required."
+#: mods/ITEMS/mcl_smithing_table/init.lua:137
+msgid ""
+"Rightclick on a smithing table to access its interface. Put armor or tools "
+"in the upper left slot. The top right slot is reserved for mineral items. "
+"The bottom slot is for smithing templates. To upgrade your diamond armor and "
+"tools to netherite, the netherite upgrade template is required."
 msgstr ""
 
-msgid "To trim your armor, you need a mineral item and a smithing template. Each piece of armor can be given an trimming pattern. The items are consumed after trimming and the armor piece receives the pattern defined by the template."
+#: mods/ITEMS/mcl_smithing_table/init.lua:138
+msgid ""
+"To trim your armor, you need a mineral item and a smithing template. Each "
+"piece of armor can be given an trimming pattern. The items are consumed "
+"after trimming and the armor piece receives the pattern defined by the "
+"template."
 msgstr ""
 
-msgid "List of mineral items:\n"
+#: mods/ITEMS/mcl_smithing_table/init.lua:139
+msgid ""
+"List of mineral items:\n"
 "• Amethyst Shard\n"
 "• Copper Ingot\n"
 "• Diamond\n"
@@ -40,4 +59,3 @@ msgid "List of mineral items:\n"
 "• Quartz\n"
 "• Redstone"
 msgstr ""
-

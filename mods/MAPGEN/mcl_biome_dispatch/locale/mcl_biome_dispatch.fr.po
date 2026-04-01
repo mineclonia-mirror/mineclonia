@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_biome_dispatch x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,39 +13,84 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:791
 msgid "Loading terrain"
 msgstr "Chargement du terrain"
 
-msgid "Locate a structure, biome, or point of interest identified by ID in the current dimension."
-msgstr "Localisez une structure, un biome ou un point d'intérêt identifié par un identifiant dans la dimension actuelle."
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1103
+msgid ""
+"Locate a structure, biome, or point of interest identified by ID in the "
+"current dimension."
+msgstr ""
+"Localisez une structure, un biome ou un point d'intérêt identifié par un "
+"identifiant dans la dimension actuelle."
 
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1109
+msgid ""
+"/locate structure requires a structure ID.\n"
+"These structures are available: "
+msgstr ""
+"/locate structure nécessite l'identifiant d'une structure.\n"
+"Les structures suivantes sont disponibles : "
+
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1121
+msgid ""
+"The nearest structure of type @1 is located at (@2,@3,@4) (@5 block away)"
+msgid_plural ""
+"The nearest structure of type @1 is located at (@2,@3,@4) (@5 blocks away)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1126
 msgid "No structure of type @1 exists near your position"
 msgstr "Aucune structure de type @1 n'existe à proximité de votre position"
 
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1135
+msgid ""
+"/locate biome requires a biome ID or a tag prefixed with `#'.\n"
+"These biomes and tags are available: "
+msgstr ""
+"/locate biome nécessite un identifiant de biome ou une balise préfixée par "
+"`#'.\n"
+"Les biomes et balises suivantes sont disponibles : "
+
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1147
+msgid "The nearest biome matching @1 is located at (@2,@3,@4) (@5 block away)"
+msgid_plural ""
+"The nearest biome matching @1 is located at (@2,@3,@4) (@5 blocks away)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1152
 msgid "No biome matching @1 exists near your position"
 msgstr "Aucun biome de type @1 n'existe à proximité de votre position"
 
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1159
+msgid ""
+"/locate poi requires an identifier designating a valid point of interest.\n"
+"These points of interest are available: "
+msgstr ""
+"/locate poi nécessite un identifiant désignant un point d'intérêt valide.\n"
+"Les points d'intérêt suivants sont disponibles : "
+
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1168
 msgid "@1 does not identify a valid point of interest"
 msgstr "@1 n'identifie pas un point d'intérêt valide"
 
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1195
 msgid "No point of interest named @1 exists near your position"
 msgstr "Il n'y a aucun point d'intérêt nommé @1 à proximité de votre position"
 
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1200
+msgid ""
+"The nearest point of interest named @1 is located at (@2,@3,@4) (@5 block "
+"away)"
+msgid_plural ""
+"The nearest point of interest named @1 is located at (@2,@3,@4) (@5 blocks "
+"away)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1207
 msgid "Usage: /locate [structure | biome | poi] <ID>"
 msgstr "Utilisation : /locate [structure | biome | poi] <ID>"
-
-msgid "/locate structure requires a structure ID.\n"
-"These structures are available: "
-msgstr "/locate structure nécessite l'identifiant d'une structure.\n"
-"Les structures suivantes sont disponibles : "
-
-msgid "/locate biome requires a biome ID or a tag prefixed with `#'.\n"
-"These biomes and tags are available: "
-msgstr "/locate biome nécessite un identifiant de biome ou une balise préfixée par `#'.\n"
-"Les biomes et balises suivantes sont disponibles : "
-
-msgid "/locate poi requires an identifier designating a valid point of interest.\n"
-"These points of interest are available: "
-msgstr "/locate poi nécessite un identifiant désignant un point d'intérêt valide.\n"
-"Les points d'intérêt suivants sont disponibles : "
-

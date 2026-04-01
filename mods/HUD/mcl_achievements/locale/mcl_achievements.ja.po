@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_achievements x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,434 +13,613 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/HUD/mcl_achievements/init.lua:30
 msgid "Benchmarking"
 msgstr "土台作り"
 
+#: mods/HUD/mcl_achievements/init.lua:31
 msgid "Craft a crafting table from 4 wooden planks."
 msgstr "作業台を作ろう。 材料：木材４つ"
 
+#: mods/HUD/mcl_achievements/init.lua:42
 msgid "Time to Mine!"
 msgstr "いざ採掘！"
 
-msgid "Use a crafting table to craft a wooden pickaxe from wooden planks and sticks."
+#: mods/HUD/mcl_achievements/init.lua:43
+msgid ""
+"Use a crafting table to craft a wooden pickaxe from wooden planks and sticks."
 msgstr "作業台を使って、木製の斧を作ろう。 材料：木の棒、木材"
 
+#: mods/HUD/mcl_achievements/init.lua:54
 msgid "Hot Topic"
 msgstr "ホット・トピック"
 
+#: mods/HUD/mcl_achievements/init.lua:55
 msgid "Use 8 cobblestones to craft a furnace."
 msgstr "８個の丸石を使って、かまどを作ろう。"
 
+#: mods/HUD/mcl_achievements/init.lua:66
 msgid "Time to Farm!"
 msgstr "いざ農業！"
 
-msgid "Use a crafting table to craft a wooden hoe from wooden planks and sticks."
+#: mods/HUD/mcl_achievements/init.lua:67
+msgid ""
+"Use a crafting table to craft a wooden hoe from wooden planks and sticks."
 msgstr "作業台を使って、木製のクワを作ろう。 材料：木の棒、木材"
 
+#: mods/HUD/mcl_achievements/init.lua:78
 msgid "Bake Bread"
 msgstr "パンを焼く"
 
+#: mods/HUD/mcl_achievements/init.lua:79
 msgid "Use wheat to craft a bread."
 msgstr "小麦を使ってパンを作ろう。"
 
+#: mods/HUD/mcl_achievements/init.lua:91
 msgid "The Lie"
 msgstr "絵に描いた○○○"
 
+#: mods/HUD/mcl_achievements/init.lua:92
 msgid "Craft a cake using wheat, sugar, milk and an egg."
 msgstr "ケーキを焼こう。 材料：小麦、砂糖、ミルク、タマゴ"
 
+#: mods/HUD/mcl_achievements/init.lua:103
 msgid "Getting an Upgrade"
 msgstr "アップグレードを取得"
 
+#: mods/HUD/mcl_achievements/init.lua:105
 msgid "Craft a stone pickaxe using sticks and cobblestone."
 msgstr "石のツルハシを作ろう。 材料：木の棒、丸石"
 
+#: mods/HUD/mcl_achievements/init.lua:116
 msgid "Time to Strike!"
 msgstr "いざ突撃！"
 
-msgid "Craft a wooden sword using wooden planks and sticks on a crafting table."
+#: mods/HUD/mcl_achievements/init.lua:117
+msgid ""
+"Craft a wooden sword using wooden planks and sticks on a crafting table."
 msgstr "作業台で木製の剣を作ろう。 材料：木の棒、木材"
 
+#: mods/HUD/mcl_achievements/init.lua:129
 msgid "Librarian"
 msgstr "司書"
 
+#: mods/HUD/mcl_achievements/init.lua:130
 msgid "Craft a bookshelf."
 msgstr "本棚を作ろう。"
 
+#: mods/HUD/mcl_achievements/init.lua:142
 msgid "Isn't It Iron Pick"
 msgstr "鉄のツルハシで決まり"
 
+#: mods/HUD/mcl_achievements/init.lua:143
 msgid "Craft a iron pickaxe using sticks and iron."
 msgstr "鉄のツルハシを作ろう。 材料：木の棒、丸石"
 
+#: mods/HUD/mcl_achievements/init.lua:155
 msgid "Bullseye"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:156
 msgid "Hit the bullseye of a target block from at least 30 blocks away."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:165
 msgid "DIAMONDS!"
 msgstr "ダイヤモンド！"
 
+#: mods/HUD/mcl_achievements/init.lua:166
 msgid "Pick up a diamond from the floor."
 msgstr "床からダイヤモンドを拾おう。"
 
+#: mods/HUD/mcl_achievements/init.lua:171
 msgid "Into Fire"
 msgstr "炎の中へ"
 
+#: mods/HUD/mcl_achievements/init.lua:172
 msgid "Pick up a blaze rod from the floor."
 msgstr "床からブレイズロッドを拾おう。"
 
+#: mods/HUD/mcl_achievements/init.lua:179
 msgid "Cow Tipper"
 msgstr "牛転がし"
 
-msgid "Pick up leather from the floor.\n"
+#: mods/HUD/mcl_achievements/init.lua:180
+msgid ""
+"Pick up leather from the floor.\n"
 "Hint: Cows and some other animals have a chance to drop leather, when killed."
-msgstr "床から革を拾おう。\n"
+msgstr ""
+"床から革を拾おう。\n"
 "ヒント：牛や一部の動物は、仕留めると革を落とすことがあります。"
 
+#: mods/HUD/mcl_achievements/init.lua:186
 msgid "Getting Wood"
 msgstr "木を取得"
 
-msgid "Pick up a wood item from the ground.\n"
+#: mods/HUD/mcl_achievements/init.lua:187
+msgid ""
+"Pick up a wood item from the ground.\n"
 "Hint: Punch a tree trunk until it pops out as an item."
-msgstr "地面から木のアイテムを拾おう。\n"
+msgstr ""
+"地面から木のアイテムを拾おう。\n"
 "ヒント：アイテムとして飛び出すまで木の幹をパンチします。"
 
+#: mods/HUD/mcl_achievements/init.lua:194
 msgid "Who is Cutting Onions?"
 msgstr "タマネギ切ってるの誰？"
 
+#: mods/HUD/mcl_achievements/init.lua:195
 msgid "Pick up a crying obsidian from the floor."
 msgstr "床から泣く黒曜石を拾おう。"
 
+#: mods/HUD/mcl_achievements/init.lua:202
 msgid "Hidden in the Depths"
 msgstr "未知なる深海"
 
+#: mods/HUD/mcl_achievements/init.lua:203
 msgid "Pick up an Ancient Debris from the floor."
 msgstr "床から古代の残骸を拾おう。"
 
+#: mods/HUD/mcl_achievements/init.lua:210
 msgid "The Next Generation"
 msgstr "ザ・ネクスト・ジェネレーション"
 
-msgid "Hold the Dragon Egg.\n"
+#: mods/HUD/mcl_achievements/init.lua:211
+msgid ""
+"Hold the Dragon Egg.\n"
 "Hint: Pick up the egg from the ground and have it in your inventory."
-msgstr "ドラゴンの卵を所持しよう。\n"
+msgstr ""
+"ドラゴンの卵を所持しよう。\n"
 "ヒント：地面から卵を拾って、インベントリにしまいます。"
 
+#: mods/HUD/mcl_achievements/init.lua:218
 msgid "Sky's the Limit"
 msgstr "空はどこまでも高く"
 
+#: mods/HUD/mcl_achievements/init.lua:219
 msgid "Find the elytra and prepare to fly above and beyond!"
 msgstr "エリトラを見つけ、空の彼方へ飛び立つ準備をしよう！"
 
+#: mods/HUD/mcl_achievements/init.lua:228
 msgid "Acquire Hardware"
 msgstr "金属を入手"
 
-msgid "Take an iron ingot from a furnace's output slot.\n"
-"Hint: To smelt an iron ingot, put a fuel (like coal) and iron ore into a furnace."
-msgstr "かまどの出力スロットから鉄インゴットを取り出そう。\n"
-"ヒント：鉄インゴットを製錬するには、かまどに（石炭などの）燃料と鉄の原石を入れます。"
+#: mods/HUD/mcl_achievements/init.lua:229
+msgid ""
+"Take an iron ingot from a furnace's output slot.\n"
+"Hint: To smelt an iron ingot, put a fuel (like coal) and iron ore into a "
+"furnace."
+msgstr ""
+"かまどの出力スロットから鉄インゴットを取り出そう。\n"
+"ヒント：鉄インゴットを製錬するには、かまどに（石炭などの）燃料と鉄の原石を入"
+"れます。"
 
+#: mods/HUD/mcl_achievements/init.lua:235
 msgid "Delicious Fish"
 msgstr "美味しい魚"
 
-msgid "Take any cooked fish after cooking it in a furnace, smoker, campfire or soul campfire.\n"
+#: mods/HUD/mcl_achievements/init.lua:236
+msgid ""
+"Take any cooked fish after cooking it in a furnace, smoker, campfire or soul "
+"campfire.\n"
 "Hint: Use a fishing rod to catch a fish and cook it in a furnace."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:246
 msgid "On A Rail"
 msgstr "レールの上で"
 
-msgid "Travel by minecart for at least 1000 meters from your starting point in a single ride."
+#: mods/HUD/mcl_achievements/init.lua:247
+msgid ""
+"Travel by minecart for at least 1000 meters from your starting point in a "
+"single ride."
 msgstr "一回のトロッコ乗車で、1000m以上を走り抜けよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:255
 msgid "Sniper Duel"
 msgstr "スナイパー対決"
 
-msgid "Kill a skeleton, wither skeleton or stray by bow and arrow from a distance of at least 20 meters."
+#: mods/HUD/mcl_achievements/init.lua:257
+msgid ""
+"Kill a skeleton, wither skeleton or stray by bow and arrow from a distance "
+"of at least 20 meters."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:267
 msgid "Monster Hunter"
 msgstr "モンスターハンター"
 
+#: mods/HUD/mcl_achievements/init.lua:268
 msgid "Kill a monster."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:276
 msgid "We Need to Go Deeper"
 msgstr "より深く潜る必要がある"
 
+#: mods/HUD/mcl_achievements/init.lua:277
 msgid "Use obsidian and a fire starter to construct a Nether portal."
 msgstr "黒曜石と火打ち石を使って、ネザーポータルを構築しよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:284
 msgid "The End?"
 msgstr "おしまい？"
 
-msgid "Or the beginning?\n"
+#: mods/HUD/mcl_achievements/init.lua:285
+msgid ""
+"Or the beginning?\n"
 "Hint: Enter an end portal."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:292
 msgid "The Nether"
 msgstr "ネザー"
 
-msgid "Bring summer clothes.\n"
+#: mods/HUD/mcl_achievements/init.lua:293
+msgid ""
+"Bring summer clothes.\n"
 "Hint: Enter the Nether."
-msgstr "夏服を持っていこう。\n"
+msgstr ""
+"夏服を持っていこう。\n"
 "ヒント：ネザーにのりこみます。"
 
+#: mods/HUD/mcl_achievements/init.lua:301
 msgid "Postmortal"
 msgstr "死後"
 
+#: mods/HUD/mcl_achievements/init.lua:302
 msgid "Use a Totem of Undying to cheat death."
 msgstr "不死のトーテムを使って、死を免れよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:310
 msgid "Sweet Dreams"
 msgstr "よい夢を"
 
+#: mods/HUD/mcl_achievements/init.lua:311
 msgid "Sleep in a bed to change your respawn point."
 msgstr "ベッドで寝て、リスポーン地点を変えよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:318
 msgid "Not Quite \"Nine\" Lives"
 msgstr "九生とまではいかない"
 
+#: mods/HUD/mcl_achievements/init.lua:319
 msgid "Charge a Respawn Anchor to the maximum."
 msgstr "リスポーンアンカーを最大までチャージしよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:327
 msgid "What A Deal!"
 msgstr "なんて良い取引だ！"
 
+#: mods/HUD/mcl_achievements/init.lua:328
 msgid "Successfully trade with a Villager."
 msgstr "村人との交易を成功させよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:335
 msgid "Tactical Fishing"
 msgstr "戦術的漁業"
 
+#: mods/HUD/mcl_achievements/init.lua:336
 msgid "Catch a fish... without a fishing rod!"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:343
 msgid "The Cutest Predator"
 msgstr "いちばんカワイイ捕食者"
 
+#: mods/HUD/mcl_achievements/init.lua:344
 msgid "Catch an Axolotl with a bucket!"
 msgstr "バケツでウーパールーパーを捕まえよう！"
 
+#: mods/HUD/mcl_achievements/init.lua:351
 msgid "Withering Heights"
 msgstr "ウィザーリング・ハイツ"
 
+#: mods/HUD/mcl_achievements/init.lua:352
 msgid "Summon the wither from the dead."
 msgstr "死者からウィザーを召喚しよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:359
 msgid "Free the End"
 msgstr "エンドの解放"
 
+#: mods/HUD/mcl_achievements/init.lua:360
 msgid "Kill the ender dragon. Good Luck!"
 msgstr "エンダードラゴンを討伐しよう。幸運を祈る！"
 
+#: mods/HUD/mcl_achievements/init.lua:368
 msgid "Fishy Business"
 msgstr "フィッシー・ビジネス"
 
-msgid "Catch a fish.\n"
+#: mods/HUD/mcl_achievements/init.lua:369
+msgid ""
+"Catch a fish.\n"
 "Hint: Catch a fish, salmon, clownfish, or pufferfish."
-msgstr "魚を獲ろう。\n"
+msgstr ""
+"魚を獲ろう。\n"
 "ヒント：タラ、サケ、クマノミ、フグ等を釣ります。"
 
+#: mods/HUD/mcl_achievements/init.lua:377
 msgid "Country Lode, Take Me Home"
 msgstr "この道をずっとゆけば"
 
+#: mods/HUD/mcl_achievements/init.lua:378
 msgid "Use a compass on a Lodestone."
 msgstr "ロードストーンにコンパスを使おう。"
 
+#: mods/HUD/mcl_achievements/init.lua:386
 msgid "Serious Dedication"
 msgstr "真摯な取り組み"
 
-msgid "Use a Netherite Ingot to upgrade a hoe, and then completely reevaluate your life choices."
-msgstr "ネザライトインゴットでクワをアップグレードしたら、人生設計の完全な見直しを図ろう。"
+#: mods/HUD/mcl_achievements/init.lua:387
+msgid ""
+"Use a Netherite Ingot to upgrade a hoe, and then completely reevaluate your "
+"life choices."
+msgstr ""
+"ネザライトインゴットでクワをアップグレードしたら、人生設計の完全な見直しを図"
+"ろう。"
 
+#: mods/HUD/mcl_achievements/init.lua:395
 msgid "Local Brewery"
 msgstr "地酒処"
 
-msgid "Brew a Potion.\n"
+#: mods/HUD/mcl_achievements/init.lua:396
+msgid ""
+"Brew a Potion.\n"
 "Hint: Take a potion or glass bottle out of the brewing stand."
-msgstr "ポーションを醸造しよう。\n"
+msgstr ""
+"ポーションを醸造しよう。\n"
 "ヒント：醸造台からポーションかガラス瓶を取り出します。"
 
+#: mods/HUD/mcl_achievements/init.lua:404
 msgid "Enchanter"
 msgstr "エンチャンター"
 
+#: mods/HUD/mcl_achievements/init.lua:405
 msgid "Enchant an item using an Enchantment Table."
 msgstr "エンチャントテーブルを使って、アイテムを一つエンチャントしよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:413
 msgid "Bring Home the Beacon"
 msgstr "ブリング・ホーム・ザ・ビーコン"
 
+#: mods/HUD/mcl_achievements/init.lua:414
 msgid "Use a beacon."
 msgstr "ビーコンを使おう。"
 
+#: mods/HUD/mcl_achievements/init.lua:421
 msgid "Beaconator"
 msgstr "ビーコネーター"
 
+#: mods/HUD/mcl_achievements/init.lua:422
 msgid "Use a fully powered beacon."
 msgstr "フルパワーのビーコンを作ろう。"
 
+#: mods/HUD/mcl_achievements/init.lua:430
 msgid "The End... Again..."
 msgstr "おしまい…再び…"
 
+#: mods/HUD/mcl_achievements/init.lua:431
 msgid "Respawn the Ender Dragon."
 msgstr "エンダードラゴンを復活させよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:439
 msgid "Bee Our Guest"
 msgstr "秘蜜の晩餐会"
 
-msgid "Use a campfire to collect a bottle of honey from a beehive without aggrivating the bees inside."
-msgstr "焚き火を使って、ハチの巣の中のハチを怒らせることなく、瓶にハチミツを採ろう。"
+#: mods/HUD/mcl_achievements/init.lua:440
+msgid ""
+"Use a campfire to collect a bottle of honey from a beehive without "
+"aggrivating the bees inside."
+msgstr ""
+"焚き火を使って、ハチの巣の中のハチを怒らせることなく、瓶にハチミツを採ろう。"
 
+#: mods/HUD/mcl_achievements/init.lua:447
 msgid "Total Beelocation"
 msgstr "綿蜜に引越し"
 
+#: mods/HUD/mcl_achievements/init.lua:448
 msgid "Move a bee nest, with 3 bees inside, using a silk touch enchanted tool."
-msgstr "シルクタッチをエンチャントした道具を使って、中に3匹のハチがいるハチの巣を移動させよう。"
+msgstr ""
+"シルクタッチをエンチャントした道具を使って、中に3匹のハチがいるハチの巣を移動"
+"させよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:459
 msgid "Wax On"
 msgstr "錆止め"
 
+#: mods/HUD/mcl_achievements/init.lua:460
 msgid "Apply honeycomb to a copper block to protect it from the elements."
 msgstr "銅ブロックにハニカムを塗り、風雨から保護しよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:467
 msgid "Wax Off"
 msgstr "錆止め落とし"
 
+#: mods/HUD/mcl_achievements/init.lua:468
 msgid "Scrape wax off of a copper block."
 msgstr "銅ブロックから錆止めを削り落とそう。"
 
+#: mods/HUD/mcl_achievements/init.lua:476
 msgid "Crafting a New Look"
 msgstr "おニューの衣装"
 
+#: mods/HUD/mcl_achievements/init.lua:477
 msgid "Craft a trimmed armor at a Smithing Table"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:484
 msgid "Smithing with Style"
 msgstr "オシャレな鍛冶職人"
 
-msgid "Apply these smithing templates at least once: Spire, Snout, Rib, Ward, Silence, Vex, Tide, Wayfinder"
+#: mods/HUD/mcl_achievements/init.lua:485
+msgid ""
+"Apply these smithing templates at least once: Spire, Snout, Rib, Ward, "
+"Silence, Vex, Tide, Wayfinder"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:499
 msgid "Dispense With This"
 msgstr "これを省く"
 
+#: mods/HUD/mcl_achievements/init.lua:500
 msgid "Place a dispenser."
 msgstr "ディスペンサーを置こう。"
 
+#: mods/HUD/mcl_achievements/init.lua:511
 msgid "Pork Chop"
 msgstr "ポークチョップ"
 
+#: mods/HUD/mcl_achievements/init.lua:512
 msgid "Eat a cooked porkchop."
 msgstr "豚肉を焼いて食べよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:521
 msgid "Rabbit Season"
 msgstr "ウサギの季節"
 
+#: mods/HUD/mcl_achievements/init.lua:523
 msgid "Eat a cooked rabbit."
 msgstr "ウサギを焼いて食べよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:531
 msgid "Iron Belly"
 msgstr "鉄の胃袋"
 
+#: mods/HUD/mcl_achievements/init.lua:532
 msgid "Get really desperate and eat rotten flesh."
 msgstr "やけになって腐肉を喰らおう。"
 
+#: mods/HUD/mcl_achievements/init.lua:541
 msgid "Pot Planter"
 msgstr "鉢植え家"
 
+#: mods/HUD/mcl_achievements/init.lua:542
 msgid "Place a flower pot."
 msgstr "植木鉢を置こう。"
 
+#: mods/HUD/mcl_achievements/init.lua:552
 msgid "The Haggler"
 msgstr "商売人"
 
+#: mods/HUD/mcl_achievements/init.lua:553
 msgid "Mine emerald ore."
 msgstr "エメラルド鉱石を発掘しよう。"
 
+#: mods/HUD/mcl_achievements/init.lua:573
 msgid "Stone Age"
 msgstr "石器時代"
 
+#: mods/HUD/mcl_achievements/init.lua:574
 msgid "Mine a stone with new pickaxe."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:580
 msgid "Hot Stuff"
 msgstr "ホットスタッフ"
 
+#: mods/HUD/mcl_achievements/init.lua:581
 msgid "Put lava in a bucket."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:587
 msgid "Ice Bucket Challenge"
 msgstr "アイス・バケツ・チャレンジ"
 
+#: mods/HUD/mcl_achievements/init.lua:588
 msgid "Obtain an obsidian block."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:595
 msgid "Hero of the Village"
 msgstr "村の英雄"
 
+#: mods/HUD/mcl_achievements/init.lua:596
 msgid "Successfully defend a village from a raid"
 msgstr "襲撃から村を守る"
 
+#: mods/HUD/mcl_achievements/init.lua:605
 msgid "Voluntary Exile"
 msgstr "自主的な亡命"
 
-msgid "Kill a raid captain. Maybe consider staying away from the local villages for the time being..."
+#: mods/HUD/mcl_achievements/init.lua:606
+msgid ""
+"Kill a raid captain. Maybe consider staying away from the local villages for "
+"the time being..."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:614
 msgid "Return to Sender"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:615
 msgid "Destroy a Ghast with a Fireball"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:623
 msgid "Zombie Doctor"
 msgstr ""
 
-msgid "Use a golden apple on a zombie villager under the Weakness effect; the advancement is granted when the zombie villager converts into a villager."
+#: mods/HUD/mcl_achievements/init.lua:624
+msgid ""
+"Use a golden apple on a zombie villager under the Weakness effect; the "
+"advancement is granted when the zombie villager converts into a villager."
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:634
 msgid "A Terrible Fortress"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:635
 msgid "Break your way into a Nether Fortress"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:646
 msgid "Eye Spy"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:647
 msgid "Follow an Eye of Ender"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:658
 msgid "The City at the End of the Game"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:659
 msgid "Go on in, what could happen?"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:670
 msgid "Those Were The Days"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:671
 msgid "Enter a Bastion Remnant"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:682
 msgid "Mineclonia: Trial(s) edition"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:683
 msgid "Step foot in a Trial Chamber"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:695
 msgid "A Throwaway Joke"
 msgstr ""
 
-msgid "Very Very Frightening"
-msgstr ""
-
-msgid "Throw a Trident at something.\n"
+#: mods/HUD/mcl_achievements/init.lua:696
+msgid ""
+"Throw a Trident at something.\n"
 "Note: Throwing away your only weapon is not a good idea."
 msgstr ""
 
-msgid "Strike a Villager with lightning."
+#: mods/HUD/mcl_achievements/init.lua:704
+msgid "Very Very Frightening"
 msgstr ""
 
+#: mods/HUD/mcl_achievements/init.lua:705
+msgid "Strike a Villager with lightning."
+msgstr ""

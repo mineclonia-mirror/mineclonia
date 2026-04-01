@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_weather x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,27 +13,38 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ENVIRONMENT/mcl_weather/nether_dust.lua:71
 msgid "Enable dust particles in the nether"
 msgstr "Permitir particulas de polvo en el nether"
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:219
 msgid "Gives ability to control weather"
 msgstr "Da la capacidad de controlar el clima"
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
 msgid "Changes the weather to the specified parameter."
 msgstr "Cambia el clima al parámetro especificado."
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:230
 msgid "Error: No weather specified."
 msgstr "Error: no se especificó el clima."
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:241
 msgid "Error: Invalid parameters."
 msgstr "Error: parámetros no válidos."
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:247
 msgid "Error: Duration can't be less than 1 second."
 msgstr "Error: la duración no puede ser inferior a 1 segundo."
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:257
 msgid "Error: Invalid weather specified. Use “clear”, “rain”, or “thunder”."
 msgstr ""
 
-msgid "Toggles between clear weather and weather with downfall (randomly rain, thunderstorm or snow)"
-msgstr "Alterna entre clima despejado y clima con caída (lluvia al azar, tormenta o nieve)"
-
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:264
+msgid ""
+"Toggles between clear weather and weather with downfall (randomly rain, "
+"thunderstorm or snow)"
+msgstr ""
+"Alterna entre clima despejado y clima con caída (lluvia al azar, tormenta o "
+"nieve)"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,360 +13,571 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ENTITIES/mobs_mc/axolotl.lua:10 mods/ENTITIES/mobs_mc/axolotl.lua:331
 msgid "Axolotl"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/axolotl.lua:325
 msgid "Spawning will only be successful on clay."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/bat.lua:7 mods/ENTITIES/mobs_mc/bat.lua:162
 msgid "Bat"
 msgstr ""
 
-msgid "Spawning will only be successful between light levels of 0 and 3 at most times of the year, or 0 and 6 between 20 October and 3 November."
+#: mods/ENTITIES/mobs_mc/bat.lua:204
+msgid ""
+"Spawning will only be successful between light levels of 0 and 3 at most "
+"times of the year, or 0 and 6 between 20 October and 3 November."
 msgstr ""
 
+#. ~jordan4ibanez
+#. blaze.lua partial copy of mobs_mc/ghast.lua
+#. ###################
+#. ################### BLAZE
+#. ###################
+#: mods/ENTITIES/mobs_mc/blaze.lua:14 mods/ENTITIES/mobs_mc/blaze.lua:317
 msgid "Blaze"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/chicken.lua:11 mods/ENTITIES/mobs_mc/chicken.lua:183
 msgid "Chicken"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/cod.lua:14 mods/ENTITIES/mobs_mc/cod.lua:105
 msgid "Cod"
 msgstr ""
 
-msgid "Each mob spawned will form a school with the remainder of the mobs in the group."
+#: mods/ENTITIES/mobs_mc/cod.lua:130 mods/ENTITIES/mobs_mc/salmon.lua:125
+#: mods/ENTITIES/mobs_mc/tropical_fish.lua:227
+msgid ""
+"Each mob spawned will form a school with the remainder of the mobs in the "
+"group."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:7
+#: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:228
 msgid "Cow"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:114
+#: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:229
 msgid "Mooshroom"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/creeper.lua:273 mods/ENTITIES/mobs_mc/creeper.lua:313
 msgid "Creeper"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/creeper.lua:296
 msgid "Charged Creeper"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/dolphin.lua:13 mods/ENTITIES/mobs_mc/dolphin.lua:642
 msgid "Dolphin"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/drowned.lua:30 mods/ENTITIES/mobs_mc/drowned.lua:864
 msgid "Drowned"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/drowned.lua:750
 msgid "Baby Drowned"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/drowned.lua:837
 msgid "Drowned will spawn more frequently in this biome."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:13
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:184
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1989
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1997
 msgid "Ender Dragon"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/enderman.lua:235
+#: mods/ENTITIES/mobs_mc/enderman.lua:755
 msgid "Enderman"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/endermite.lua:9 mods/ENTITIES/mobs_mc/endermite.lua:65
 msgid "Endermite"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/ghast.lua:17 mods/ENTITIES/mobs_mc/ghast.lua:233
 msgid "Ghast"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/ghast.lua:339
 msgid "Ghast Fireball"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:462
 msgid "Guardian"
 msgstr ""
 
-msgid "Guardians spawn less frequently in regions of the ocean which are exposed to the sky at the surface."
+#: mods/ENTITIES/mobs_mc/guardian.lua:423
+msgid ""
+"Guardians spawn less frequently in regions of the ocean which are exposed to "
+"the sky at the surface."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/guardian_elder.lua:11
+#: mods/ENTITIES/mobs_mc/guardian_elder.lua:124
 msgid "Elder Guardian"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:15
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:508
 msgid "Hoglin"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:479
 msgid "Baby Hoglin"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:551
 msgid "Hoglins do not spawn above Nether Wart blocks."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:552
 msgid "20% of Hoglins spawn as their baby variants."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:562
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:622
 msgid "Zoglin"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/horse.lua:7
 msgid "Sneak to dismount"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/horse.lua:67 mods/ENTITIES/mobs_mc/horse.lua:1333
 msgid "Horse"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/horse.lua:1066 mods/ENTITIES/mobs_mc/horse.lua:1334
 msgid "Skeleton Horse"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/horse.lua:1203 mods/ENTITIES/mobs_mc/horse.lua:1335
 msgid "Zombie Horse"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/horse.lua:1234 mods/ENTITIES/mobs_mc/horse.lua:1336
 msgid "Donkey"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/horse.lua:1304 mods/ENTITIES/mobs_mc/horse.lua:1337
 msgid "Mule"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/iron_golem.lua:15
+#: mods/ENTITIES/mobs_mc/iron_golem.lua:514
 msgid "Iron Golem"
 msgstr ""
 
+#. ~= nil
+#. Attempt to locate a llama within a 9 block radius
+#. that leashed or is fewer than 7 llamas removed from
+#. its leasher.
+#. Minecraft punts very readily if the closest
+#. straggler is unavailable.
+#. Cancel this attack after one shot has been
+#. discharged.
+#. For Trader Llamas.
+#. ----------------------------------------------------------------------------
+#. Llama inventories.
+#. ----------------------------------------------------------------------------
+#. Main inventory.
+#. Hotbar.
+#. ----------------------------------------------------------------------
+#. Llama mounting.
+#. ----------------------------------------------------------------------
+#. ----------------------------------------------------------------------
+#. Llama spawning.
+#. ----------------------------------------------------------------------
+#: mods/ENTITIES/mobs_mc/llama.lua:13 mods/ENTITIES/mobs_mc/llama.lua:487
 msgid "Llama"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/ocelot.lua:25 mods/ENTITIES/mobs_mc/ocelot.lua:1082
 msgid "Ocelot"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/ocelot.lua:433 mods/ENTITIES/mobs_mc/ocelot.lua:1083
 msgid "Cat"
 msgstr ""
 
-msgid "This mob will spawn infrequently on grass or leaves when no obstructions exist within a volume @1 nodes in size around the center of such a node's upper surface."
+#: mods/ENTITIES/mobs_mc/ocelot.lua:1135
+msgid ""
+"This mob will spawn infrequently on grass or leaves when no obstructions "
+"exist within a volume @1 nodes in size around the center of such a node's "
+"upper surface."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:348
 msgid "Parrot"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/parrot.lua:365
 msgid "on grass, leaves, or logs"
 msgstr ""
 
+#. ~= "mcl_mobitems:carrot_on_a_stick" then -- Note: This is for when the ability to make the pig go faster is implemented
+#. Detach if already attached
+#. Initialize attachment properties.
+#. Ride pig if it has a saddle
+#. Make saddle load upon rejoin
+#. base
+#. saddle
+#. ----------------------------------------------------------------------
+#. Pig AI.
+#. ----------------------------------------------------------------------
+#. ----------------------------------------------------------------------
+#. Pig spawning.
+#. ----------------------------------------------------------------------
+#. spawn eggs
+#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:256
 msgid "Pig"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1941
 msgid "Piglin"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/piglin.lua:1562 mods/ENTITIES/mobs_mc/piglin.lua:1942
 msgid "Piglin Brute"
 msgstr ""
 
-msgid "Zombie Piglin"
-msgstr ""
-
+#: mods/ENTITIES/mobs_mc/piglin.lua:1714 mods/ENTITIES/mobs_mc/zombiepig.lua:5
 msgid "Zombified Piglin"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/piglin.lua:1943
+msgid "Zombie Piglin"
+msgstr ""
+
+#: mods/ENTITIES/mobs_mc/pillager.lua:9 mods/ENTITIES/mobs_mc/pillager.lua:305
 msgid "Pillager"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/polar_bear.lua:11
+#: mods/ENTITIES/mobs_mc/polar_bear.lua:269
 msgid "Polar Bear"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/polar_bear.lua:311
 msgid "on grass or snow blocks"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/polar_bear.lua:317
 msgid "The second polar bear in a group will always be spawned as a cub."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/pufferfish.lua:37
+#: mods/ENTITIES/mobs_mc/pufferfish.lua:282
 msgid "Pufferfish"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/rabbit.lua:7 mods/ENTITIES/mobs_mc/rabbit.lua:469
 msgid "Rabbit"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/rabbit.lua:427
 msgid "Killer Bunny"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/ravager.lua:19 mods/ENTITIES/mobs_mc/ravager.lua:518
 msgid "Ravager"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/salmon.lua:14 mods/ENTITIES/mobs_mc/salmon.lua:98
 msgid "Salmon"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/sheep.lua:58 mods/ENTITIES/mobs_mc/sheep.lua:341
 msgid "Sheep"
 msgstr ""
 
+#. ~= 0 then
+#. ----------------------------------------------------------------------
+#. Shulker spawning.
+#. ----------------------------------------------------------------------
+#: mods/ENTITIES/mobs_mc/shulker.lua:15 mods/ENTITIES/mobs_mc/shulker.lua:850
 msgid "Shulker"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/silverfish.lua:14
+#: mods/ENTITIES/mobs_mc/silverfish.lua:176
 msgid "Silverfish"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:15
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:402
 msgid "Skeleton"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:360
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:403
 msgid "Stray"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/skeleton+stray.lua:489
 msgid "Moreover, the block where the mob is to spawn must be exposed to sky."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/skeleton_wither.lua:15
+#: mods/ENTITIES/mobs_mc/skeleton_wither.lua:184
 msgid "Wither Skeleton"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:21
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:345
 msgid "Slime"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:451
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:587
 msgid "Magma Cube"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/snowman.lua:22 mods/ENTITIES/mobs_mc/snowman.lua:239
 msgid "Snow Golem"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/spawning.lua:157
 msgid "on grass nodes"
 msgstr ""
 
-msgid "This mob will spawn infrequently @1 with a surface occupying a full node when no obstructions exist within a volume @2 nodes in size around the center of such a node's upper surface, in light levels of 8 or greater."
+#: mods/ENTITIES/mobs_mc/spawning.lua:161
+msgid ""
+"This mob will spawn infrequently @1 with a surface occupying a full node "
+"when no obstructions exist within a volume @2 nodes in size around the "
+"center of such a node's upper surface, in light levels of 8 or greater."
 msgstr ""
 
-msgid "This mob will spawn between sea level and Y level -12 when the nodes above and below are water and no obstructions exist within a volume @1 nodes in size around the center of the base of the fluid node where spawning is being attempted."
+#: mods/ENTITIES/mobs_mc/spawning.lua:214
+msgid ""
+"This mob will spawn between sea level and Y level -12 when the nodes above "
+"and below are water and no obstructions exist within a volume @1 nodes in "
+"size around the center of the base of the fluid node where spawning is being "
+"attempted."
 msgstr ""
 
-msgid "Spawning will only succeed in the absence of artificial lighting and if the natural light is @1 or dimmer."
+#: mods/ENTITIES/mobs_mc/spawning.lua:264
+msgid ""
+"Spawning will only succeed in the absence of artificial lighting and if the "
+"natural light is @1 or dimmer."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/spawning.lua:266
 msgid "Spawning will only succeed between artificial light levels of 0 and @1."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/spawning.lua:268
 msgid "Spawning will only succeed between natural light levels of 0 and @1."
 msgstr ""
 
-msgid "Spawning will only succeed between artificial light levels of 0 and @1, and natural light levels of 0 and @2."
+#: mods/ENTITIES/mobs_mc/spawning.lua:270
+msgid ""
+"Spawning will only succeed between artificial light levels of 0 and @1, and "
+"natural light levels of 0 and @2."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:370
 msgid "Spider"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/spider.lua:331 mods/ENTITIES/mobs_mc/spider.lua:371
 msgid "Cave Spider"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:11
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:484
 msgid "Squid"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:411
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:485
 msgid "Glow Squid"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:600
 msgid "Glow Squid only spawn in absolute darkness at Y levels of 33 or below."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:480
 msgid "Strider"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/strider.lua:519
 msgid "Baby Strider"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/tropical_fish.lua:6
+#: mods/ENTITIES/mobs_mc/tropical_fish.lua:200
 msgid "Tropical Fish"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/vex.lua:15 mods/ENTITIES/mobs_mc/vex.lua:323
 msgid "Vex"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:973
+#: mods/ENTITIES/mobs_mc/villager.lua:6770
 msgid "Villager"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1021
 msgid "Armorer"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1029
 msgid "Butcher"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1037
 msgid "Cartographer"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1045
 msgid "Cleric"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1053
 msgid "Farmer"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1066
 msgid "Fisherman"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1074
 msgid "Fletcher"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1082
 msgid "Leatherworker"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1090
 msgid "Librarian"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1098
 msgid "Mason"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1106
 msgid "Shepherd"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1114
 msgid "Toolsmith"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1122
 msgid "Weaponsmith"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1130
 msgid "Nitwit"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1953
 msgid "Novice"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1954
 msgid "Apprentice"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1955
 msgid "Journeyman"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1956
 msgid "Expert"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager.lua:1957
 msgid "Master"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager_evoker.lua:20
+#: mods/ENTITIES/mobs_mc/villager_evoker.lua:559
 msgid "Evoker"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:19
+#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:645
 msgid "Illusioner"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager_vindicator.lua:17
+#: mods/ENTITIES/mobs_mc/villager_vindicator.lua:283
 msgid "Vindicator"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/villager_zombie.lua:26
+#: mods/ENTITIES/mobs_mc/villager_zombie.lua:583
 msgid "Zombie Villager"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:12
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:543
 msgid "Wandering Trader"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:560
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:678
 msgid "Trader Llama"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/witch.lua:59 mods/ENTITIES/mobs_mc/witch.lua:397
 msgid "Witch"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:339
+#: mods/ENTITIES/mobs_mc/wither.lua:973
 msgid "Wither"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/wolf.lua:13 mods/ENTITIES/mobs_mc/wolf.lua:904
 msgid "Wolf"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/wolf.lua:928
 msgid "on grass, snow blocks, coarse dirt, or podzol"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/zombie.lua:62 mods/ENTITIES/mobs_mc/zombie.lua:863
 msgid "Zombie"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/zombie.lua:783
 msgid "Baby Zombie"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/zombie.lua:809 mods/ENTITIES/mobs_mc/zombie.lua:862
 msgid "Husk"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/zombie.lua:838
 msgid "Baby Husk"
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/zombie.lua:897
 msgid "5% of Zombies will spawn as their baby variants."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/zombie.lua:936
 msgid "5% of Husks will spawn as their baby variants."
 msgstr ""
 
+#: mods/ENTITIES/mobs_mc/zombie.lua:937
 msgid "Husks will only spawn on nodes that are exposed to sky."
 msgstr ""
-

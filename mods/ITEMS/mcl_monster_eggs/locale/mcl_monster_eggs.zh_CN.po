@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_monster_eggs x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,33 +13,43 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_monster_eggs/init.lua:14
 msgid "Hides a silverfish"
 msgstr "藏有一只蠹鱼"
 
-msgid "Infested Stone"
-msgstr "虫蚀石头"
-
-msgid "Infested Cobblestone"
-msgstr "虫蚀圆石"
-
-msgid "Infested Stone Bricks"
-msgstr "虫蚀石砖"
-
-msgid "Infested Cracked Stone Bricks"
-msgstr "虫蚀裂纹石砖"
-
-msgid "Infested Mossy Stone Bricks"
-msgstr "虫蚀苔石砖"
-
-msgid "Infested Chiseled Stone Bricks"
-msgstr "虫蚀錾制石砖"
-
-msgid "\n"
-"			An infested block is a block from which a silverfish will pop out when it is broken.\n"
-"			It looks identical to its normal counterpart.\n"
-"		"
-msgstr "\n"
+#: mods/ITEMS/mcl_monster_eggs/init.lua:15
+#, fuzzy
+msgid ""
+"\t\t\tAn infested block is a block from which a silverfish will pop out when "
+"it is broken.\n"
+"\t\t\tIt looks identical to its normal counterpart.\n"
+"\t\t"
+msgstr ""
+"\n"
 "\t\t\t被虫蚀的方块是一种在被破坏时会有蠹虫蹦出来的方块。\n"
 "它看上去与其普通形态一模一样。\n"
 "\t\t"
 
+#: mods/ITEMS/mcl_monster_eggs/init.lua:48
+msgid "Infested Stone"
+msgstr "虫蚀石头"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:49
+msgid "Infested Cobblestone"
+msgstr "虫蚀圆石"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:50
+msgid "Infested Stone Bricks"
+msgstr "虫蚀石砖"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:51
+msgid "Infested Cracked Stone Bricks"
+msgstr "虫蚀裂纹石砖"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:52
+msgid "Infested Mossy Stone Bricks"
+msgstr "虫蚀苔石砖"
+
+#: mods/ITEMS/mcl_monster_eggs/init.lua:53
+msgid "Infested Chiseled Stone Bricks"
+msgstr "虫蚀錾制石砖"

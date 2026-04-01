@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_boats x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,27 +13,55 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ENTITIES/mcl_boats/init.lua:164
 msgid "Sneak to dismount"
 msgstr "潜行以离开"
 
+#: mods/ENTITIES/mcl_boats/init.lua:630
 msgid "Boats are used to travel on the surface of water."
 msgstr "船用于在水面上航行。"
 
-msgid "Rightclick on a water source to place the boat. Rightclick the boat to enter it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] to slow down or move backwards. Use [Sneak] to leave the boat, punch the boat to make it drop as an item."
-msgstr "右键点击水源来放置船，右键点击船进入船内。使用【左】和【右】键操控方向，使用【前】键加速，使用【后】键减速或向后移动。使用【潜行】键离开船，击打船使其变为物品掉落。"
+#: mods/ENTITIES/mcl_boats/init.lua:631
+msgid ""
+"Rightclick on a water source to place the boat. Rightclick the boat to enter "
+"it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] "
+"to slow down or move backwards. Use [Sneak] to leave the boat, punch the "
+"boat to make it drop as an item."
+msgstr ""
+"右键点击水源来放置船，右键点击船进入船内。使用【左】和【右】键操控方向，使用"
+"【前】键加速，使用【后】键减速或向后移动。使用【潜行】键离开船，击打船使其变"
+"为物品掉落。"
 
+#: mods/ENTITIES/mcl_boats/init.lua:632
 msgid "Boat"
 msgstr "船"
 
+#: mods/ENTITIES/mcl_boats/init.lua:638
 msgid "Water vehicle"
 msgstr "水上运输工具"
 
-msgid "Chest Boats are used to travel on the surface of water. And transport goods"
+#: mods/ENTITIES/mcl_boats/init.lua:647
+msgid ""
+"Chest Boats are used to travel on the surface of water. And transport goods"
 msgstr "驶于水上，运输货物"
 
-msgid "Rightclick on a water source to place the boat. Rightclick the boat to enter it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] to slow down or move backwards. Use [Sneak] to leave the boat, punch the boat to make it drop as an item. Use [Sneak] + [Rightclick] to open the boat's chest"
-msgstr "右键点击水源来放置小船。右键点击小船便可进入其中。使用[向左]和[向右]键来操控方向，使用[向前]键来加速，使用[向后]键来减速或者向后移动。使用[潜行]键离开小船，击打小船可使其掉落成为一个物品。使用[潜行]+[右键点击]来打开小船的储物箱"
+#: mods/ENTITIES/mcl_boats/init.lua:648
+msgid ""
+"Rightclick on a water source to place the boat. Rightclick the boat to enter "
+"it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] "
+"to slow down or move backwards. Use [Sneak] to leave the boat, punch the "
+"boat to make it drop as an item. Use [Sneak] + [Rightclick] to open the "
+"boat's chest"
+msgstr ""
+"右键点击水源来放置小船。右键点击小船便可进入其中。使用[向左]和[向右]键来操控"
+"方向，使用[向前]键来加速，使用[向后]键来减速或者向后移动。使用[潜行]键离开小"
+"船，击打小船可使其掉落成为一个物品。使用[潜行]+[右键点击]来打开小船的储物箱"
 
+#: mods/ENTITIES/mcl_boats/init.lua:649
 msgid "Chest Boat"
 msgstr "运输船"
 
+#: mods/ENTITIES/mcl_boats/init.lua:661
+#, fuzzy
+msgid " Boat"
+msgstr "船"

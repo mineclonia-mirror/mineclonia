@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:53+0200\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -199,6 +199,670 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:182
 msgid "Enchanted Golden Apple"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:1
+msgid "Acacia Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:2
+msgid "Acacia Bark Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:3
+msgid "Acacia Bark Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:4
+msgid "Acacia Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:5
+msgid "Acacia Button"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:6
+msgid "Acacia Chest Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:7
+msgid "Acacia Door"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:8
+msgid "Acacia Fence"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:9
+msgid "Acacia Fence Gate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:10
+msgid "Acacia Hanging Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:11
+msgid "Acacia Leaves"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:12
+msgid "Acacia Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:13
+msgid "Acacia Planks"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:14
+msgid "Acacia Pressure Plate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:15
+msgid "Acacia Sapling"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:16
+msgid "Acacia Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:17
+msgid "Acacia Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:18
+msgid "Acacia Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:19
+msgid "Acacia Trapdoor"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:20
+msgid "Acacia leaves are grown from Acacia trees."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:21
+msgid "Birch Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:22
+msgid "Birch Bark Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:23
+msgid "Birch Bark Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:24
+msgid "Birch Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:25
+msgid "Birch Button"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:26
+msgid "Birch Chest Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:27
+msgid "Birch Door"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:28
+msgid "Birch Fence"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:29
+msgid "Birch Fence Gate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:30
+msgid "Birch Hanging Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:31
+msgid "Birch Leaves"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:32
+msgid "Birch Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:33
+msgid "Birch Planks"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:34
+msgid "Birch Pressure Plate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:35
+msgid "Birch Sapling"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:36
+msgid "Birch Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:37
+msgid "Birch Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:38
+msgid "Birch Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:39
+msgid "Birch Trapdoor"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:40
+msgid "Birch leaves are grown from Birch trees."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:41
+msgid "Black Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:42
+msgid "Blue Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:43
+msgid "Brown Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:44
+msgid "Cyan Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:45
+msgid "Dark Oak Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:46
+msgid "Dark Oak Bark Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:47
+msgid "Dark Oak Bark Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:48
+msgid "Dark Oak Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:49
+msgid "Dark Oak Button"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:50
+msgid "Dark Oak Chest Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:51
+msgid "Dark Oak Door"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:52
+msgid "Dark Oak Fence"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:53
+msgid "Dark Oak Fence Gate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:54
+msgid "Dark Oak Hanging Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:55
+msgid "Dark Oak Leaves"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:56
+msgid "Dark Oak Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:57
+msgid "Dark Oak Planks"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:58
+msgid "Dark Oak Pressure Plate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:59
+msgid "Dark Oak Sapling"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:60
+msgid "Dark Oak Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:61
+msgid "Dark Oak Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:62
+msgid "Dark Oak Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:63
+msgid "Dark Oak Trapdoor"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:64
+msgid "Dark Oak leaves are grown from Dark Oak trees."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:65
+msgid "Green Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:66
+msgid "Grey Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:67
+msgid "Jungle Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:68
+msgid "Jungle Bark Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:69
+msgid "Jungle Bark Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:70
+msgid "Jungle Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:71
+msgid "Jungle Button"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:72
+msgid "Jungle Chest Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:73
+msgid "Jungle Door"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:74
+msgid "Jungle Fence"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:75
+msgid "Jungle Fence Gate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:76
+msgid "Jungle Hanging Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:77
+msgid "Jungle Leaves"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:78
+msgid "Jungle Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:79
+msgid "Jungle Planks"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:80
+msgid "Jungle Pressure Plate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:81
+msgid "Jungle Sapling"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:82
+msgid "Jungle Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:83
+msgid "Jungle Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:84
+msgid "Jungle Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:85
+msgid "Jungle Trapdoor"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:86
+msgid "Jungle leaves are grown from Jungle trees."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:87
+msgid "Light Blue Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:88
+msgid "Light Grey Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:89
+msgid "Lime Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:90
+msgid "Magenta Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:91
+msgid "Oak Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:92
+msgid "Oak Bark Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:93
+msgid "Oak Bark Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:94
+msgid "Oak Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:95
+msgid "Oak Button"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:96
+msgid "Oak Chest Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:97
+msgid "Oak Door"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:98
+msgid "Oak Fence"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:99
+msgid "Oak Fence Gate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:100
+msgid "Oak Hanging Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:101
+msgid "Oak Leaves"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:102
+msgid "Oak Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:103
+msgid "Oak Planks"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:104
+msgid "Oak Pressure Plate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:105
+msgid "Oak Sapling"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:106
+msgid "Oak Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:107
+msgid "Oak Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:108
+msgid "Oak Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:109
+msgid "Oak Trapdoor"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:110
+msgid "Oak leaves are grown from Oak trees."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:111
+msgid "Orange Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:112
+msgid "Pink Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:113
+msgid "Purple Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:114
+msgid "Red Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:115
+msgid "Spruce Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:116
+msgid "Spruce Bark Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:117
+msgid "Spruce Bark Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:118
+msgid "Spruce Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:119
+msgid "Spruce Button"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:120
+msgid "Spruce Chest Boat"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:121
+msgid "Spruce Door"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:122
+msgid "Spruce Fence"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:123
+msgid "Spruce Fence Gate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:124
+msgid "Spruce Hanging Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:125
+msgid "Spruce Leaves"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:126
+msgid "Spruce Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:127
+msgid "Spruce Planks"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:128
+msgid "Spruce Pressure Plate"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:129
+msgid "Spruce Sapling"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:130
+msgid "Spruce Sign"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:131
+msgid "Spruce Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:132
+msgid "Spruce Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:133
+msgid "Spruce Trapdoor"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:134
+msgid "Spruce leaves are grown from Spruce trees."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:135
+msgid "Stripped Acacia Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:136
+msgid "Stripped Acacia Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:137
+msgid "Stripped Birch Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:138
+msgid "Stripped Birch Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:139
+msgid "Stripped Dark Oak Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:140
+msgid "Stripped Dark Oak Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:141
+msgid "Stripped Jungle Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:142
+msgid "Stripped Jungle Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:143
+msgid "Stripped Oak Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:144
+msgid "Stripped Oak Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:145
+msgid "Stripped Spruce Bark"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:146
+msgid "Stripped Spruce Log"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:147
+msgid "The stripped trunk of an Acacia tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:148
+msgid "The stripped trunk of an Birch tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:149
+msgid "The stripped trunk of an Dark Oak tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:150
+msgid "The stripped trunk of an Jungle tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:151
+msgid "The stripped trunk of an Oak tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:152
+msgid "The stripped trunk of an Spruce tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:153
+msgid "The stripped wood of an Acacia tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:154
+msgid "The stripped wood of an Birch tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:155
+msgid "The stripped wood of an Dark Oak tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:156
+msgid "The stripped wood of an Jungle tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:157
+msgid "The stripped wood of an Oak tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:158
+msgid "The stripped wood of an Spruce tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:159
+msgid "The trunk of a Acacia tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:160
+msgid "The trunk of a Birch tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:161
+msgid "The trunk of a Dark Oak tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:162
+msgid "The trunk of a Jungle tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:163
+msgid "The trunk of a Oak tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:164
+msgid "The trunk of a Spruce tree."
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:165
+msgid "White Stained Glass"
+msgstr ""
+
+#: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:166
+msgid "Yellow Stained Glass"
 msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:16

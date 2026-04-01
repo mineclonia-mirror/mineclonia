@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_weather x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,27 +13,36 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ENVIRONMENT/mcl_weather/nether_dust.lua:71
 msgid "Enable dust particles in the nether"
 msgstr ""
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:219
 msgid "Gives ability to control weather"
 msgstr "天候操作能力を付与"
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
 msgid "Changes the weather to the specified parameter."
 msgstr "指定されたパラメータの天気を変更します。"
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:230
 msgid "Error: No weather specified."
 msgstr "エラー：天候が指定されていません。"
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:241
 msgid "Error: Invalid parameters."
 msgstr "エラー：パラメータが無効です。"
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:247
 msgid "Error: Duration can't be less than 1 second."
 msgstr "エラー：持続時間は1秒以下にはできません。"
 
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:257
 msgid "Error: Invalid weather specified. Use “clear”, “rain”, or “thunder”."
 msgstr ""
 
-msgid "Toggles between clear weather and weather with downfall (randomly rain, thunderstorm or snow)"
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:264
+msgid ""
+"Toggles between clear weather and weather with downfall (randomly rain, "
+"thunderstorm or snow)"
 msgstr "晴天と荒天（ランダムに降雨・雷雨・降雪）を切替"
-

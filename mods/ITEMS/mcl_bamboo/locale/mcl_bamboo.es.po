@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_bamboo x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,78 +13,107 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_bamboo/init.lua:14
 msgid "A Block made of Bamboo stalks. Can be crafted into Bamboo Planks."
-msgstr "Un Bloque hecho de tallos de Bambú. puede ser fabricado en Tablones de Bambú."
+msgstr ""
+"Un Bloque hecho de tallos de Bambú. puede ser fabricado en Tablones de Bambú."
 
+#: mods/ITEMS/mcl_bamboo/init.lua:29
 msgid "Block of Bamboo"
 msgstr "Bloque de bambú"
 
+#: mods/ITEMS/mcl_bamboo/init.lua:36
 msgid "Block of Stripped Bamboo"
 msgstr "Bloque de bambú sin corteza"
 
+#: mods/ITEMS/mcl_bamboo/init.lua:58
 msgid "Bamboo Raft"
 msgstr "Balsa de Bambú"
 
+#: mods/ITEMS/mcl_bamboo/init.lua:66
 msgid "Chest Bamboo Raft"
 msgstr "Balsa de bambú con cofre"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:1
 msgid "Bamboo Button"
 msgstr "Botón de bambú"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:2
 msgid "Bamboo Door"
 msgstr "Puerta de bambú"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:3
 msgid "Bamboo Fence"
 msgstr "Valla de bambú"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:4
 msgid "Bamboo Fence Gate"
 msgstr "Puerta de valla de bambú"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:5
 msgid "Bamboo Hanging Sign"
 msgstr ""
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:6
 msgid "Bamboo Planks"
 msgstr "Tablones de bambú"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:7
 msgid "Bamboo Pressure Plate"
 msgstr "Placa de presión de bambú"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:8
 msgid "Bamboo Sign"
 msgstr "Cartel de bambú"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:9
 msgid "Bamboo Slab"
 msgstr "Losa de bambú"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:10
 msgid "Bamboo Stairs"
 msgstr "Escaleras de bambú"
 
+#: mods/ITEMS/mcl_bamboo/mcl_bamboo_translations_tmp.lua:11
 msgid "Bamboo Trapdoor"
 msgstr "Trampilla de bambú"
 
+#: mods/ITEMS/mcl_bamboo/nodes.lua:67
 msgid "Bamboo"
 msgstr "Bambú"
 
+#: mods/ITEMS/mcl_bamboo/nodes.lua:185
 msgid "Bamboo Plant"
 msgstr "Planta de bambú"
 
+#: mods/ITEMS/mcl_bamboo/nodes.lua:190 mods/ITEMS/mcl_bamboo/nodes.lua:191
 msgid "Bamboo Mosaic Plank"
 msgstr "Madera de bambú de mosaico"
 
+#: mods/ITEMS/mcl_bamboo/nodes.lua:204
 msgid "Bamboo Mosaic Stairs"
 msgstr "Escaleras de mosaico de bambú"
 
+#: mods/ITEMS/mcl_bamboo/nodes.lua:210
 msgid "Bamboo Mosaic Slab"
 msgstr "Losa de mosaico de bambú"
 
+#: mods/ITEMS/mcl_bamboo/nodes.lua:382
 msgid "Scaffolding"
 msgstr "Andamio"
 
-msgid "Scaffolding is a temporary structure to easily climb up while building that is easily removed"
-msgstr "Un andamio es una estructura temporal que permite subir fácilmente durante la construcción y se puede quitar fácilmente"
+#: mods/ITEMS/mcl_bamboo/nodes.lua:383
+msgid ""
+"Scaffolding is a temporary structure to easily climb up while building that "
+"is easily removed"
+msgstr ""
+"Un andamio es una estructura temporal que permite subir fácilmente durante "
+"la construcción y se puede quitar fácilmente"
 
+#: mods/ITEMS/mcl_bamboo/nodes.lua:477
 msgid "Scaffolding horizontal"
 msgstr "Andamios horizontales"
 
+#: mods/ITEMS/mcl_bamboo/nodes.lua:478
 msgid "Scaffolding block..."
 msgstr "Bloque de andamio..."
-

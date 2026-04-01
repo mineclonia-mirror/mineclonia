@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_maps x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,24 +13,40 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_maps/init.lua:175
 msgid "Empty Map"
 msgstr "Tyhjä kartta"
 
-msgid "Empty maps are not useful as maps, but they can be stacked and turned to maps which can be used."
-msgstr "Tyhjä kartta ei toimi karttana, mutta niitä voi pinota ja muuttaa käytettäviksi kartoiksi."
+#: mods/ITEMS/mcl_maps/init.lua:176
+msgid ""
+"Empty maps are not useful as maps, but they can be stacked and turned to "
+"maps which can be used."
+msgstr ""
+"Tyhjä kartta ei toimi karttana, mutta niitä voi pinota ja muuttaa "
+"käytettäviksi kartoiksi."
 
+#: mods/ITEMS/mcl_maps/init.lua:177
 msgid "Rightclick to create a filled map (which can't be stacked anymore)."
-msgstr "Klikkaa oikeaa hiirennäppäintä luodaksesi täytetyn kartan (joita ei voi enää pinota)."
+msgstr ""
+"Klikkaa oikeaa hiirennäppäintä luodaksesi täytetyn kartan (joita ei voi enää "
+"pinota)."
 
+#: mods/ITEMS/mcl_maps/init.lua:184
 msgid "Map"
 msgstr "Kartta"
 
+#: mods/ITEMS/mcl_maps/init.lua:185
 msgid "Shows a map image."
 msgstr "Näyttää karttakuvan."
 
-msgid "When created, the map saves the nearby area as an image that can be viewed any time by holding the map."
-msgstr "Kun kartta on luotu, se tallentaa lähialueen kuvaksi, jota voi katsella milloin vain pitämällä karttaa kädessä."
+#: mods/ITEMS/mcl_maps/init.lua:186
+msgid ""
+"When created, the map saves the nearby area as an image that can be viewed "
+"any time by holding the map."
+msgstr ""
+"Kun kartta on luotu, se tallentaa lähialueen kuvaksi, jota voi katsella "
+"milloin vain pitämällä karttaa kädessä."
 
+#: mods/ITEMS/mcl_maps/init.lua:187
 msgid "Hold the map in your hand. This will display a map on your screen."
 msgstr "Pidä karttaa kädessäsi, jolloin näytölläsi näkyy kartta."
-

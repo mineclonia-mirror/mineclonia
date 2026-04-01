@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_boats x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,27 +13,60 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ENTITIES/mcl_boats/init.lua:164
 msgid "Sneak to dismount"
 msgstr "Lopakodással szállj le"
 
+#: mods/ENTITIES/mcl_boats/init.lua:630
 msgid "Boats are used to travel on the surface of water."
 msgstr "Csónakkal a víz felszínén közlekedhetsz."
 
-msgid "Rightclick on a water source to place the boat. Rightclick the boat to enter it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] to slow down or move backwards. Use [Sneak] to leave the boat, punch the boat to make it drop as an item."
-msgstr "Jobb gombbal kattints egy vízgócra, hogy ráhelyezd a csónakot. Jobb gombbal kattints a csónakra a beszálláshoz. Nyomj [Bal] és [Jobb] gombot a forgáshoz, [Előre] gombot a gyorsításhoz és [Hátra] gombot az lassításhoz vagy hátramenethez. Használd a [Lopakodás] gombot a kiszálláshoz, üsd meg a csónakot, hogy felvehető tárggyá váljon."
+#: mods/ENTITIES/mcl_boats/init.lua:631
+msgid ""
+"Rightclick on a water source to place the boat. Rightclick the boat to enter "
+"it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] "
+"to slow down or move backwards. Use [Sneak] to leave the boat, punch the "
+"boat to make it drop as an item."
+msgstr ""
+"Jobb gombbal kattints egy vízgócra, hogy ráhelyezd a csónakot. Jobb gombbal "
+"kattints a csónakra a beszálláshoz. Nyomj [Bal] és [Jobb] gombot a "
+"forgáshoz, [Előre] gombot a gyorsításhoz és [Hátra] gombot az lassításhoz "
+"vagy hátramenethez. Használd a [Lopakodás] gombot a kiszálláshoz, üsd meg a "
+"csónakot, hogy felvehető tárggyá váljon."
 
+#: mods/ENTITIES/mcl_boats/init.lua:632
 msgid "Boat"
 msgstr "Csónak"
 
+#: mods/ENTITIES/mcl_boats/init.lua:638
 msgid "Water vehicle"
 msgstr "Vízi jármű"
 
-msgid "Chest Boats are used to travel on the surface of water. And transport goods"
+#: mods/ENTITIES/mcl_boats/init.lua:647
+msgid ""
+"Chest Boats are used to travel on the surface of water. And transport goods"
 msgstr "Ládás csónakkal árut szállíthatsz a vízen"
 
-msgid "Rightclick on a water source to place the boat. Rightclick the boat to enter it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] to slow down or move backwards. Use [Sneak] to leave the boat, punch the boat to make it drop as an item. Use [Sneak] + [Rightclick] to open the boat's chest"
-msgstr "Jobb gombbal kattints egy vízgócra, hogy ráhelyezd a csónakot. Jobb gombbal kattints a csónakra a beszálláshoz. Nyomj [Bal] és [Jobb] gombot a forgáshoz, [Előre] gombot a gyorsításhoz és [Hátra] gombot az lassításhoz vagy hátramenethez. Használd a [Lopakodás] gombot a kiszálláshoz, üsd meg a csónakot, hogy felvehető tárggyá váljon. A [Lopakodás] + [Jobb kattintás] kombinációval megnyitható a csónak ládája"
+#: mods/ENTITIES/mcl_boats/init.lua:648
+msgid ""
+"Rightclick on a water source to place the boat. Rightclick the boat to enter "
+"it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] "
+"to slow down or move backwards. Use [Sneak] to leave the boat, punch the "
+"boat to make it drop as an item. Use [Sneak] + [Rightclick] to open the "
+"boat's chest"
+msgstr ""
+"Jobb gombbal kattints egy vízgócra, hogy ráhelyezd a csónakot. Jobb gombbal "
+"kattints a csónakra a beszálláshoz. Nyomj [Bal] és [Jobb] gombot a "
+"forgáshoz, [Előre] gombot a gyorsításhoz és [Hátra] gombot az lassításhoz "
+"vagy hátramenethez. Használd a [Lopakodás] gombot a kiszálláshoz, üsd meg a "
+"csónakot, hogy felvehető tárggyá váljon. A [Lopakodás] + [Jobb kattintás] "
+"kombinációval megnyitható a csónak ládája"
 
+#: mods/ENTITIES/mcl_boats/init.lua:649
 msgid "Chest Boat"
 msgstr "Ládás csónak"
 
+#: mods/ENTITIES/mcl_boats/init.lua:661
+#, fuzzy
+msgid " Boat"
+msgstr "Csónak"

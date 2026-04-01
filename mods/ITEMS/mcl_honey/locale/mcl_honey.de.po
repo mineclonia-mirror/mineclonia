@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_honey x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,33 +13,49 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_honey/init.lua:23
 msgid "Honeycomb"
 msgstr "Honigwabe"
 
-msgid "Used to craft beehives and protect copper blocks from further oxidation."
-msgstr "Wird zur Herstellung von Bienenstöcken und zum Schutz von Kupferblöcken vor weiterer Oxidation verwendet."
+#: mods/ITEMS/mcl_honey/init.lua:24
+msgid ""
+"Used to craft beehives and protect copper blocks from further oxidation."
+msgstr ""
+"Wird zur Herstellung von Bienenstöcken und zum Schutz von Kupferblöcken vor "
+"weiterer Oxidation verwendet."
 
+#: mods/ITEMS/mcl_honey/init.lua:25
 msgid "Use on copper blocks to prevent further oxidation."
 msgstr "Benutze es auf Kupferblöcken um weitere Oxidation zu vermeiden."
 
+#: mods/ITEMS/mcl_honey/init.lua:32
 msgid "Honeycomb Block"
 msgstr ""
 
+#: mods/ITEMS/mcl_honey/init.lua:33
 msgid "Honeycomb Block. Used as a decoration."
 msgstr ""
 
+#: mods/ITEMS/mcl_honey/init.lua:44
 msgid "Honey Bottle"
 msgstr ""
 
-msgid "Honey Bottle is used to craft honey blocks and to restore hunger points."
+#: mods/ITEMS/mcl_honey/init.lua:45
+msgid ""
+"Honey Bottle is used to craft honey blocks and to restore hunger points."
 msgstr ""
 
-msgid "Drinking will restore 6 hunger points. Can also be used to craft honey blocks."
+#: mods/ITEMS/mcl_honey/init.lua:46
+msgid ""
+"Drinking will restore 6 hunger points. Can also be used to craft honey "
+"blocks."
 msgstr ""
 
+#: mods/ITEMS/mcl_honey/init.lua:72
 msgid "Honey Block"
 msgstr ""
 
-msgid "Honey Block. Used as a decoration and in redstone. Is sticky on some sides."
+#: mods/ITEMS/mcl_honey/init.lua:73
+msgid ""
+"Honey Block. Used as a decoration and in redstone. Is sticky on some sides."
 msgstr ""
-

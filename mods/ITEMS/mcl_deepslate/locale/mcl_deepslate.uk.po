@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_deepslate x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,177 +13,245 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:12
 msgid "Deepslate"
 msgstr ""
 
-msgid "Deepslate is a stone type found deep underground in the Overworld that functions similar to regular stone but is harder than the stone."
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:13
+msgid ""
+"Deepslate is a stone type found deep underground in the Overworld that "
+"functions similar to regular stone but is harder than the stone."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:27
 msgid "Infested Deepslate"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:31
 msgid "Reinforced Deepslate"
 msgstr ""
 
-msgid "Reinforced deepslate is a very hard block undestructable by even wither explosions. It is unobtainable in survival mode."
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:32
+msgid ""
+"Reinforced deepslate is a very hard block undestructable by even wither "
+"explosions. It is unobtainable in survival mode."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:51
 msgid "Deepslate Coal Ore"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:52
 msgid "Deepslate Iron Ore"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:53
 msgid "Deepslate Gold Ore"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:54
 msgid "Deepslate Emerald Ore"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:55
 msgid "Deepslate Diamond Ore"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:56
 msgid "Deepslate Lapis Lazuli Ore"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:57
 msgid "Deepslate Redstone Ore"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:62
 msgid "Lit Deepslate Redstone Ore"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:69
 msgid "Deepslate Copper Ore"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:73
 msgid "Cobbled Deepslate"
 msgstr ""
 
-msgid "Cobbled deepslate is a stone variant that functions similar to cobblestone or blackstone."
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:74
+msgid ""
+"Cobbled deepslate is a stone variant that functions similar to cobblestone "
+"or blackstone."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:80
 msgid "Cobbled Deepslate Stairs"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:84
 msgid "Cobbled Deepslate Slab"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:88
 msgid "Cobbled Deepslate Wall"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:95
 msgid "Polished Deepslate"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:96
 msgid "Polished deepslate is the stone-like polished version of deepslate."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:102
 msgid "Polished Deepslate Stairs"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:106
 msgid "Polished Deepslate Slab"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:110
 msgid "Polished Deepslate Wall"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:117
 msgid "Deepslate Bricks"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:118
 msgid "Deepslate bricks are the brick version of deepslate."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:125
 msgid "Deepslate Brick Stairs"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:129
 msgid "Deepslate Brick Slab"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:133
 msgid "Deepslate Brick Wall"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:137
 msgid "Cracked Deepslate Bricks"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:143
 msgid "Deepslate Tiles"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:144
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:169
 msgid "Deepslate tiles are a decorative variant of deepslate."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:150
 msgid "Deepslate Tile Stairs"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:154
 msgid "Deepslate Tile Slab"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:158
 msgid "Deepslate Tiles Wall"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:162
 msgid "Cracked Deepslate Tiles"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:168
 msgid "Chiseled Deepslate"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/init.lua:13
 msgid "@1 is a variant of @2 that can generate in deepslate and tuff blobs."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/init.lua:52
 msgid "@1 are a cracked variant."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:14
 msgid "Chiseled Tuff"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:15
 msgid "Chiseled tuff is a chiseled variant of tuff."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:26
 msgid "Chiseled Tuff Bricks"
 msgstr ""
 
-msgid "Chiseled tuff bricks are a variant of tuff bricks, featuring a large brick in the center of the block, with geometric design above and below."
+#: mods/ITEMS/mcl_deepslate/tuff.lua:27
+msgid ""
+"Chiseled tuff bricks are a variant of tuff bricks, featuring a large brick "
+"in the center of the block, with geometric design above and below."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:39
 msgid "Tuff"
 msgstr ""
 
-msgid "Tuff is an ornamental rock formed from volcanic ash, occurring in underground blobs below Y=16."
+#: mods/ITEMS/mcl_deepslate/tuff.lua:40
+msgid ""
+"Tuff is an ornamental rock formed from volcanic ash, occurring in "
+"underground blobs below Y=16."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:47
 msgid "Tuff Stairs"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:51
 msgid "Tuff Slab"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:55
 msgid "Tuff Wall"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:62
 msgid "Polished Tuff"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:63
 msgid "Polished tuff is a polished variant of the tuff block."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:68
 msgid "Polished Tuff Stairs"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:72
 msgid "Polished Tuff Slab"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:76
 msgid "Polished Tuff Wall"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:83
 msgid "Tuff Bricks"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:84
 msgid "Tuff bricks are a brick variant of tuff."
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:89
 msgid "Tuff Bricks Stairs"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:93
 msgid "Tuff Bricks Slab"
 msgstr ""
 
+#: mods/ITEMS/mcl_deepslate/tuff.lua:97
 msgid "Tuff Bricks Wall"
 msgstr ""
-

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_heads x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,45 +13,98 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_heads/init.lua:254
 msgid "Zombie Head"
 msgstr "Cabeça de Zumbi"
 
-msgid "A zombie head is a small decorative block which resembles the head of a zombie. It can also be worn as a helmet, which reduces the detection range of zombies by 50%."
-msgstr "Uma cabeça de zumbi é um pequeno bloco decorativo ao qual remete a cabeça de um zumbi. Também pode ser usado como um capacete, o que reduz o alcançe de detecção dos zumbis em 50%."
+#: mods/ITEMS/mcl_heads/init.lua:255
+msgid ""
+"A zombie head is a small decorative block which resembles the head of a "
+"zombie. It can also be worn as a helmet, which reduces the detection range "
+"of zombies by 50%."
+msgstr ""
+"Uma cabeça de zumbi é um pequeno bloco decorativo ao qual remete a cabeça de "
+"um zumbi. Também pode ser usado como um capacete, o que reduz o alcançe de "
+"detecção dos zumbis em 50%."
 
+#: mods/ITEMS/mcl_heads/init.lua:264
 msgid "Creeper Head"
 msgstr "Cabeça de Creeper"
 
-msgid "A creeper head is a small decorative block which resembles the head of a creeper. It can also be worn as a helmet, which reduces the detection range of creepers by 50%."
-msgstr "Uma cabeça de creeper é um pequeno bloco decorativo ao qual remete a cabeça de um creeper. Também pode ser usado como um capacete, o que reduz o alcançe de detecção dos creepers em 50%."
+#: mods/ITEMS/mcl_heads/init.lua:265
+msgid ""
+"A creeper head is a small decorative block which resembles the head of a "
+"creeper. It can also be worn as a helmet, which reduces the detection range "
+"of creepers by 50%."
+msgstr ""
+"Uma cabeça de creeper é um pequeno bloco decorativo ao qual remete a cabeça "
+"de um creeper. Também pode ser usado como um capacete, o que reduz o alcançe "
+"de detecção dos creepers em 50%."
 
+#: mods/ITEMS/mcl_heads/init.lua:275
 msgid "Human Head"
 msgstr "Cabeça Humana"
 
-msgid "A human head is a small decorative block which resembles the head of a human (i.e. a player character). It can also be worn as a helmet for fun, but does not offer any protection."
-msgstr "Uma cabeça de humano é um pequeno bloco decorativo ao qual remete a cabeça de um humano (ou seja, o personagem do jogador). Também pode ser usado como um capacete por diversão, mas não oferece nenhuma proteção."
+#: mods/ITEMS/mcl_heads/init.lua:276
+msgid ""
+"A human head is a small decorative block which resembles the head of a human "
+"(i.e. a player character). It can also be worn as a helmet for fun, but does "
+"not offer any protection."
+msgstr ""
+"Uma cabeça de humano é um pequeno bloco decorativo ao qual remete a cabeça "
+"de um humano (ou seja, o personagem do jogador). Também pode ser usado como "
+"um capacete por diversão, mas não oferece nenhuma proteção."
 
+#: mods/ITEMS/mcl_heads/init.lua:283
 msgid "Skeleton Skull"
 msgstr "Cabeça de Esqueleto"
 
-msgid "A skeleton skull is a small decorative block which resembles the skull of a skeleton. It can also be worn as a helmet, which reduces the detection range of skeletons by 50%."
-msgstr "Uma cabeça de esqueleto é um pequeno bloco decorativo ao qual remete a cabeça de um esqueleto. Também pode ser usado como um capacete, o que reduz o alcançe de detecção dos esqueletos em 50%."
+#: mods/ITEMS/mcl_heads/init.lua:284
+msgid ""
+"A skeleton skull is a small decorative block which resembles the skull of a "
+"skeleton. It can also be worn as a helmet, which reduces the detection range "
+"of skeletons by 50%."
+msgstr ""
+"Uma cabeça de esqueleto é um pequeno bloco decorativo ao qual remete a "
+"cabeça de um esqueleto. Também pode ser usado como um capacete, o que reduz "
+"o alcançe de detecção dos esqueletos em 50%."
 
+#: mods/ITEMS/mcl_heads/init.lua:293
 msgid "Wither Skeleton Skull"
 msgstr "Cabeça de Esqueleto Wither"
 
-msgid "A wither skeleton skull is a small decorative block which resembles the skull of a wither skeleton. It can also be worn as a helmet for fun, but does not offer any protection."
-msgstr "Uma cabeça de esqueleto wither é um pequeno bloco decorativo ao qual remete a cabeça de um esqueleto wither. Também pode ser usado como um capacete por diversão, mas não oferece nenhuma proteção."
+#: mods/ITEMS/mcl_heads/init.lua:294
+msgid ""
+"A wither skeleton skull is a small decorative block which resembles the "
+"skull of a wither skeleton. It can also be worn as a helmet for fun, but "
+"does not offer any protection."
+msgstr ""
+"Uma cabeça de esqueleto wither é um pequeno bloco decorativo ao qual remete "
+"a cabeça de um esqueleto wither. Também pode ser usado como um capacete por "
+"diversão, mas não oferece nenhuma proteção."
 
+#: mods/ITEMS/mcl_heads/init.lua:303
 msgid "Piglin Head"
 msgstr "Cabeça de Piglin"
 
-msgid "A piglin head is a small decorative block which resembles the head of a piglin. It can also be worn as a helmet, which reduces the detection range of piglins by 50%."
-msgstr "A cabeça de piglin é um pequeno bloco decorativo que se assemelha à cabeça de um piglin. Também pode ser usada como capacete, reduzindo o alcance de detecção dos piglins em 50%."
+#: mods/ITEMS/mcl_heads/init.lua:304
+msgid ""
+"A piglin head is a small decorative block which resembles the head of a "
+"piglin. It can also be worn as a helmet, which reduces the detection range "
+"of piglins by 50%."
+msgstr ""
+"A cabeça de piglin é um pequeno bloco decorativo que se assemelha à cabeça "
+"de um piglin. Também pode ser usada como capacete, reduzindo o alcance de "
+"detecção dos piglins em 50%."
 
+#: mods/ITEMS/mcl_heads/init.lua:326
 msgid "Dragon Head"
 msgstr "Cabeça de Dragão"
 
-msgid "A dragon head is a decorative block which resembles the head of a dragon. It can also be worn as a helmet."
-msgstr "A cabeça de dragão é um bloco decorativo que lembra a cabeça de um dragão. Também pode ser usada como capacete."
-
+#: mods/ITEMS/mcl_heads/init.lua:327
+msgid ""
+"A dragon head is a decorative block which resembles the head of a dragon. It "
+"can also be worn as a helmet."
+msgstr ""
+"A cabeça de dragão é um bloco decorativo que lembra a cabeça de um dragão. "
+"Também pode ser usada como capacete."

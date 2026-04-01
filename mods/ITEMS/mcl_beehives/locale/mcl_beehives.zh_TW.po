@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_beehives x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,15 +13,24 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_beehives/init.lua:90 mods/ITEMS/mcl_beehives/init.lua:110
+#: mods/ITEMS/mcl_beehives/init.lua:128
 msgid "Beehive"
 msgstr "蜂箱"
 
+#: mods/ITEMS/mcl_beehives/init.lua:91 mods/ITEMS/mcl_beehives/init.lua:111
+#: mods/ITEMS/mcl_beehives/init.lua:129
 msgid "Artificial bee nest."
 msgstr "人工蜂窩。"
 
+#: mods/ITEMS/mcl_beehives/init.lua:147 mods/ITEMS/mcl_beehives/init.lua:167
+#: mods/ITEMS/mcl_beehives/init.lua:185
 msgid "Bee Nest"
 msgstr "蜂窩"
 
-msgid "A naturally generating block that houses bees and a tasty treat...if you can get it."
+#: mods/ITEMS/mcl_beehives/init.lua:148 mods/ITEMS/mcl_beehives/init.lua:168
+#: mods/ITEMS/mcl_beehives/init.lua:186
+msgid ""
+"A naturally generating block that houses bees and a tasty treat...if you can "
+"get it."
 msgstr "一個自然生成的方塊，裏面有蜜蜂和美味佳餚…如果你能夠得到的話。"
-

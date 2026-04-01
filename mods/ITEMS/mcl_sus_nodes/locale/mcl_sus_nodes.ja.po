@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_sus_nodes x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,18 +13,27 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_sus_nodes/init.lua:344
+#, fuzzy
+msgid "Suspicious "
+msgstr "怪しげな砂"
+
+#: mods/ITEMS/mcl_sus_nodes/init.lua:435
 msgid "Brush"
 msgstr "ブラシ"
 
+#: mods/ITEMS/mcl_sus_nodes/init.lua:436
 msgid "Brushes are used in archeology to discover hidden items"
 msgstr "ブラシはアイテムを発掘するのに使われる道具である。"
 
+#: mods/ITEMS/mcl_sus_nodes/init.lua:437
 msgid "Use the brush on a suspicious node to uncover its secrets"
 msgstr ""
 
+#: mods/ITEMS/mcl_sus_nodes/init.lua:457
 msgid "Suspicious Sand"
 msgstr "怪しげな砂"
 
+#: mods/ITEMS/mcl_sus_nodes/init.lua:461
 msgid "Suspicious Gravel"
 msgstr "怪しげな砂利"
-

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_signs x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,24 +13,40 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/ITEMS/mcl_signs/init.lua:90
 msgid "Can be written"
 msgstr "可以写字"
 
-msgid "Signs can be written and come in two variants: Wall sign and sign on a sign post. Signs can be placed on the top and the sides of other blocks, but not below them."
-msgstr "告示牌可以书写内容，并有两种变体：墙上告示牌和立在告示牌柱上的告示牌。告示牌可放置在其他方块的顶部和侧面，但不能放置在它们的下方。"
+#: mods/ITEMS/mcl_signs/init.lua:91
+msgid ""
+"Signs can be written and come in two variants: Wall sign and sign on a sign "
+"post. Signs can be placed on the top and the sides of other blocks, but not "
+"below them."
+msgstr ""
+"告示牌可以书写内容，并有两种变体：墙上告示牌和立在告示牌柱上的告示牌。告示牌"
+"可放置在其他方块的顶部和侧面，但不能放置在它们的下方。"
 
-msgid "After placing the sign, you can write something on it. You have @1 lines of text with up to @2 characters for each line; anything beyond these limits is lost. Not all characters are supported. The text can be changed after it's written by rightclicking the sign. Can be colored and made to glow. Use bone meal to remove color and glow."
+#: mods/ITEMS/mcl_signs/init.lua:92
+msgid ""
+"After placing the sign, you can write something on it. You have @1 lines of "
+"text with up to @2 characters for each line; anything beyond these limits is "
+"lost. Not all characters are supported. The text can be changed after it's "
+"written by rightclicking the sign. Can be colored and made to glow. Use bone "
+"meal to remove color and glow."
 msgstr ""
 
+#: mods/ITEMS/mcl_signs/init.lua:355
 msgid "Enter sign text:"
 msgstr "输入文字："
 
+#: mods/ITEMS/mcl_signs/init.lua:357
 msgid "Maximum line length: @1"
 msgstr ""
 
+#: mods/ITEMS/mcl_signs/init.lua:358
 msgid "Maximum lines: @1"
 msgstr ""
 
+#: mods/ITEMS/mcl_signs/init.lua:360
 msgid "Done"
 msgstr "完成"
-

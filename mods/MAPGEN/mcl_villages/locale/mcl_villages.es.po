@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_villages x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-04-01 20:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,21 +13,30 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: mtt_convert 0.1.1\n"
 
+#: mods/MAPGEN/mcl_villages/api.lua:236
 msgid "Crop type @1 is not supported"
 msgstr "El tipo de cultivo @1 no es compatible"
 
+#: mods/MAPGEN/mcl_villages/buildings.lua:536
 msgid "The timer for this @1 has not run yet!"
 msgstr "¡El cronómetro para este @1 aún no se ha ejecutado!"
 
-msgid "Prevent paths from being placed during villager generation. Replaced by air after village path generation"
-msgstr "Evita que se coloquen caminos durante la generación de aldeanos. Reemplazado con aire después de generar caminos de aldea"
+#: mods/MAPGEN/mcl_villages/init.lua:188
+msgid ""
+"Prevent paths from being placed during villager generation. Replaced by air "
+"after village path generation"
+msgstr ""
+"Evita que se coloquen caminos durante la generación de aldeanos. Reemplazado "
+"con aire después de generar caminos de aldea"
 
+#: mods/MAPGEN/mcl_villages/init.lua:200
 msgid "Mark the node as a good place for paths to connect to"
 msgstr "Marque el nodo como un buen lugar para que las rutas se conecten"
 
+#: mods/MAPGEN/mcl_villages/init.lua:441
 msgid "A place to plant @1 crops"
 msgstr "Un lugar para plantar cultivos de @1"
 
+#: mods/MAPGEN/mcl_villages/pois.lua:444
 msgid "Example POI"
 msgstr "Ejemplo de POI"
-
