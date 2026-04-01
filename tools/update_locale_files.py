@@ -65,7 +65,7 @@ def invoke_xgettext(template_file, mod_folder, modname):
     lua_files = [os.path.join(mod_folder, "*.lua")]
     for root, dirs, files in os.walk(os.path.join(mod_folder)):
        for dirname in dirs:
-           if dirname != "sounds" and dirname != "textures" and dirname != "models" and dirname != "locale" and dirname != "media" and dirname != "schematics":
+           if os.path.exists(os.path.join(mod_folder, dirname)) and dirname != "sounds" and dirname != "textures" and dirname != "models" and dirname != "locale" and dirname != "media" and dirname != "schematics" and dirname != "src" and dirname != "templates":
                lua_path = os.path.join(mod_folder, dirname)
                lua_files.append(os.path.join(lua_path, "*.lua"))
 
