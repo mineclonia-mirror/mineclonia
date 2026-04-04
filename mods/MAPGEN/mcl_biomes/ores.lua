@@ -442,7 +442,12 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				{  4096, 4, 2, -80, -49 },
 			},
 			["emerald"] = {
-				{ 16384, 1, 1, mcl_worlds.layer_to_y(4), deepslate_max, mountains },
+				-- spawnsize 3, max 4 nodes
+				-- -> num = 2, size = 2 (~87% 1-4 nodes, ~10% 0 nodes)
+				-- 100 tries per chunk, triangular, 232+-248, mountains
+				-- -> ~50 tries in deepslate (+ 2475 tries in stone)
+				-- 50 tries   [-16,  15]
+				{ 4096, 2, 2,  -80, -49, mountains },
 			},
 			["copper"] = {
 				-- spawnsize 20 (in deepslate, 10 in stone), max 52 nodes
@@ -635,7 +640,28 @@ if core.settings:get_bool("mcl_generate_ores", true) then
 				{ 4096, 5, 3,  32,  47, dripstone},
 			},
 			["emerald"] = {
-				{ 16384, 1, 1, mcl_worlds.layer_to_y(4), mcl_worlds.layer_to_y(32), mountains }
+				-- spawnsize 3, max 4 nodes
+				-- -> num = 2, size = 2 (~87% 1-4 nodes, ~10% 0 nodes)
+				-- 100 tries per chunk, triangular, 232+-248, mountains
+				-- -> ~2475 tries in stone (+ 50 tries in deepslate)
+				-- increase to 2625 tries to offset 0 (and 5) node clusters
+				-- (the distribution below is one block off chunksize 5
+				-- luanti chunk borders, but all numbers are adequate for
+				-- 16 layer ores, so it doesn't matter)
+				-- 50 tries   [  0,  31]
+				{ 4096, 2, 2,  -64, -33, mountains },
+				-- 250 tries  [ 32, 111]
+				{ 2048, 2, 2,  -32,  47, mountains },
+				-- 500 tries  [112, 191]
+				{ 1024, 2, 2,   48, 127, mountains },
+				-- 1000 tries [192, 271]
+				{ 512, 2, 2,   128, 207, mountains },
+				-- 500 tries  [272, 351]
+				{ 1024, 2, 2,  208, 287, mountains },
+				-- 250 tries  [352, 431]
+				{ 2048, 2, 2,  288, 367, mountains },
+				-- 75 tries   [432, 479]
+				{ 4096, 2, 2,  368, 415, mountains },
 			},
 		}
 	}
