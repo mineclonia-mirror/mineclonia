@@ -83,6 +83,12 @@ def invoke_xgettext(template_file, mod_folder, modname):
         exit(1)
 
 def update_locale_template(folder, modname, mode):
+    locale_dir = os.path.join(folder, 'locale')
+    if not os.path.exists(locale_dir):
+        os.makedirs(locale_dir, exist_ok = True)
+        pot_path = os.path.join(locale_dir, 'template.pot')
+        invoke_xgettext(pot_path, folder, modname)
+
     for root, dirs, files in os.walk(os.path.join(folder, 'locale')):
         for name in files:
             code_match = pattern_pot.match(name)
