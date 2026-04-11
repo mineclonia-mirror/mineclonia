@@ -346,6 +346,25 @@ function mcl_redstone._notify_observer_neighbours(pos)
 	end
 end
 
+-- Update components affected by a wire shape change at pos.
+function mcl_redstone._update_wire_shape_neighbours(pos)
+	for _, dir in pairs(sixdirs) do
+		local pos2 = pos:add(dir)
+		local node2 = core.get_node(pos2)
+		set_pending_update(pos2, node2.name)
+
+		if opaque_tab[node2.name] then
+			for _, dir2 in pairs(sixdirs) do
+				local pos3 = pos2:add(dir2)
+				local node3 = core.get_node(pos3)
+				set_pending_update(pos3, node3.name)
+			end
+		end
+	end
+
+	mcl_redstone._notify_observer_neighbours(pos)
+end
+
 -- Update neighbouring wires and components at pos. Oldnode is the previous
 -- node at the position.
 local function update_neighbours(pos, oldnode, newnode)
@@ -547,6 +566,7 @@ core.register_on_mods_loaded(function()
 
 		if ndef._mcl_redstone then
 			local init = ndef._mcl_redstone.init or ndef._mcl_redstone.update
+			local is_opaque = opaque_tab[name]
 			get_power_tab[name]          = ndef._mcl_redstone.get_power
 			init_tab[name]               = init
 			update_tab[name]             = ndef._mcl_redstone.update
@@ -566,10 +586,16 @@ core.register_on_mods_loaded(function()
 					if ndef._mcl_redstone.connects_to then
 						mcl_redstone._connect_with_wires(pos)
 					end
+					if is_opaque then
+						mcl_redstone._update_opaque_connections(pos)
+					end
 					mcl_redstone._abort_pending_update(pos)
 					mcl_redstone.after(0, function()
 						if init then
 							call_init(pos)
+						end
+						if is_opaque then
+							opaque_update_neighbours(pos, false)
 						end
 						if ndef._mcl_redstone.get_power then
 							update_neighbours(pos)
@@ -584,9 +610,15 @@ core.register_on_mods_loaded(function()
 					if ndef._mcl_redstone.connects_to then
 						mcl_redstone._connect_with_wires(pos)
 					end
+					if is_opaque then
+						mcl_redstone._update_opaque_connections(pos)
+					end
 					if ndef._mcl_redstone.get_power then
 						mcl_redstone._abort_pending_update(pos)
 						mcl_redstone.after(0, function()
+							if is_opaque then
+								opaque_update_neighbours(pos, false)
+							end
 							update_neighbours(pos, oldnode)
 							mcl_redstone._notify_observer_neighbours(pos)
 						end)

@@ -63,6 +63,14 @@ local function wireflags_to_name(wireflags)
 		"mcl_redstone:wire_"..(bit.tohex(wireflags, 2))
 end
 
+local function updated_wire_name(node, wireflags)
+	wireflags = make_legal(wireflags)
+	if wireflags == 0 and node.name == "mcl_redstone:wire_0f" then
+		return node.name
+	end
+	return wireflags_to_name(wireflags)
+end
+
 -- Update connections for wire at position.
 local function update_wire(pos)
 	local update_tab = {
@@ -120,7 +128,7 @@ local function update_wire(pos)
 
 	if present then
 		core.swap_node(pos, {
-			name = wireflags_to_name(make_legal(wireflags)),
+			name = updated_wire_name(node, wireflags),
 			param2 = node.param2,
 		})
 	end
@@ -228,6 +236,7 @@ do
 					name = "mcl_redstone:wire_0f",
 					param2 = core.get_node(pos).param2,
 				})
+				mcl_redstone._update_wire_shape_neighbours(pos)
 			end
 		elseif bit.band(wire, 0xf) == 0xf then
 			on_rightclick = function(pos)
@@ -235,7 +244,7 @@ do
 					name = "mcl_redstone:redstone",
 					param2 = core.get_node(pos).param2,
 				})
-				update_wire_connections(pos)
+				mcl_redstone._update_wire_shape_neighbours(pos)
 			end
 		end
 
