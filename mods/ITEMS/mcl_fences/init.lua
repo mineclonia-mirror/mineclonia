@@ -29,6 +29,7 @@ local function update_gate(pos, node)
 		node.name = node.name.."_open"
 	end
 	core.set_node(pos, node)
+	mcl_redstone._notify_observer_neighbours(pos)
 end
 
 local function play_sound(pos, node, state)

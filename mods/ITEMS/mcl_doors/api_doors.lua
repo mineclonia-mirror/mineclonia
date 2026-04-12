@@ -93,10 +93,15 @@ function mcl_doors:register_door(name, def)
 
 		local p2 = core.get_node(pos).param2
 		local np2 = params[p2 + 1]
+		local pos_top = vector.copy(pos)
 
 		core.swap_node(pos, {name = replace_dir, param2 = np2})
 		pos.y = pos.y - dir
 		core.swap_node(pos, {name = replace, param2 = np2})
+		local pos_bottom = vector.copy(pos)
+
+		mcl_redstone._notify_observer_neighbours(pos_top)
+		mcl_redstone._notify_observer_neighbours(pos_bottom)
 
 		local door_switching_sound
 		if meta1:get_int("is_open") == 1 then

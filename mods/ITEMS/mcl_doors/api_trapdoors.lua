@@ -34,6 +34,7 @@ local function close(pos, sound_close)
 	if not closed then return end
 	core.sound_play(sound_close, {pos = pos, gain = 0.3, max_hear_distance = 16}, true)
 	core.set_node(pos, {name = closed, param1 = node.param1, param2 = node.param2})
+	mcl_redstone._notify_observer_neighbours(pos)
 end
 
 local function open(pos, sound_open)
@@ -44,6 +45,7 @@ local function open(pos, sound_open)
 	if not open then return end
 	core.sound_play(sound_open, {pos = pos, gain = 0.3, max_hear_distance = 16}, true)
 	core.set_node(pos, {name = open, param1 = node.param1, param2 = node.param2})
+	mcl_redstone._notify_observer_neighbours(pos)
 end
 
 function mcl_doors:register_trapdoor(name, def)
