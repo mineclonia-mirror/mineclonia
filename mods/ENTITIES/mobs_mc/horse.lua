@@ -626,8 +626,8 @@ function horse:complete_attachment (player, state)
 	end
 end
 
-function horse:detach (player)
-	mob_class.detach (self, player)
+function horse:detach (player, offset)
+	mob_class.detach (self, player, offset)
 	if not self.tamed then
 		return
 	end
