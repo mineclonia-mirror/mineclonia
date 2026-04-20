@@ -28,6 +28,7 @@ local hoglin = {
 	collisionbox = {-.6, 0, -.6, .6, 1.4, .6},
 	visual = "mesh",
 	mesh = "extra_mobs_hoglin.b3d",
+	_child_mesh = "mobs_mc_baby_hoglin.b3d",
 	textures = { {
 		"extra_mobs_hoglin.png",
 	} },
@@ -36,6 +37,7 @@ local hoglin = {
 		random = "extra_mobs_hoglin",
 		damage = "extra_mobs_hoglin_hurt",
 		death = "extra_mobs_hoglin_hurt",
+		eat = "mobs_mc_animal_eat_generic",
 		distance = 16,
 	},
 	makes_footstep_sound = true,
@@ -91,8 +93,35 @@ local hoglin = {
 }
 
 ------------------------------------------------------------------------
+-- Hoglin visuals.
+------------------------------------------------------------------------
+
+-- A separate mesh is applied to Baby Hoglins in order to guarantee
+-- that they may be rendered with a visual_size of 1, to facilitate
+-- riding by Piglins.
+
+function hoglin:get_child_visual_size (scale)
+	return {
+		x = scale * 2,
+		y = scale * 2,
+	}
+end
+
+------------------------------------------------------------------------
 -- Hoglin AI.
 ------------------------------------------------------------------------
+
+local MELEE_INTERVAL_MODIFIER = "mobs_mc:baby_hoglin_melee_interval"
+
+function hoglin:mob_activate (staticdata, dtime)
+	if not mob_class.mob_activate (self, staticdata, dtime) then
+		return false
+	end
+
+	if self.child then
+		self:add_physics_factor ("melee_interval", MELEE_INTERVAL_MODIFIER, 0.375)
+	end
+end
 
 function hoglin:ai_step (dtime)
 	mob_class.ai_step (self, dtime)
@@ -308,7 +337,7 @@ function hoglin:acceptable_pacing_target (pos)
 end
 
 function hoglin:breeding_possible ()
-	return not self._stay_passive_for
+	return not self._stay_passive_for and mob_class.breeding_possible (self)
 end
 
 local function get_knockback_resistance (object)
@@ -325,6 +354,8 @@ function hoglin:custom_attack ()
 	local damage = self.damage
 	if not self.child and damage > 0 then
 		damage = damage / 2.0 + math.random (0, damage - 1)
+	elseif damage > 0 then
+		damage = 0.5
 	end
 	mcl_util.deal_damage (self.attack, damage, {
 		type = "mob",
@@ -419,7 +450,7 @@ hoglin._targeting_rules = {
 ------------------------------------------------------------------------
 
 function hoglin:on_rightclick (clicker)
-	if self.child or not clicker or not clicker:is_player () then
+	if not clicker or not clicker:is_player () then
 		return
 	end
 	local item = clicker:get_wielded_item ()
@@ -428,18 +459,22 @@ function hoglin:on_rightclick (clicker)
 	end
 end
 
-function hoglin:on_breed (parent1)
-	local pos = parent1.object:get_pos ()
-	local child = core.add_entity (pos, "mobs_mc:baby_hoglin")
+function hoglin:on_breed (parent2)
+	local pos = self.object:get_pos ()
+	local child = mcl_mobs.spawn_child (pos, self.name)
 	if not child then
 		return
 	end
 
+	local entity = child:get_luaentity ()
+	entity.persistent = true
+	entity.can_ride_boat = true
 	mcl_mobs.effect (pos, 15, "mcl_particles_smoke.png", 1, 2, 2, 15, 5)
 end
 
 function hoglin:on_grown ()
-	mcl_util.replace_mob (self.object, "mobs_mc:hoglin")
+	self.can_ride_boat = false
+	self:remove_physics_factor ("melee_interval", MELEE_INTERVAL_MODIFIER)
 	self.object:set_detach ()
 end
 
@@ -472,40 +507,11 @@ end
 mcl_mobs.register_mob ("mobs_mc:hoglin", hoglin)
 
 ------------------------------------------------------------------------
--- Baby Hoglins.
-------------------------------------------------------------------------
-
-mcl_mobs.register_mob ("mobs_mc:baby_hoglin", table.merge (hoglin, {
-	description = S("Baby Hoglin"),
-	collisionbox = {-.3, -0.01, -.3, .3, 0.94, .3},
-	xp_min = 20,
-	xp_max = 20,
-	visual_size = {
-		x = 1,
-		y = 1,
-	},
-	mesh = "mobs_mc_baby_hoglin.b3d",
-	textures = {
-		{
-			"extra_mobs_hoglin.png",
-			"blank.png",
-		},
-	},
-	movement_speed = 6.0,
-	child = 1,
-	reach = 1.0,
-	damage = 0.5,
-	melee_interval = 0.75,
-	_convert_to = "mobs_mc:baby_zoglin",
-	can_ride_boat = true,
-}))
-
-------------------------------------------------------------------------
 -- Hoglin spawning.
 ------------------------------------------------------------------------
 
 -- Spawn eggs.
-mcl_mobs.register_egg("mobs_mc:hoglin", S("Hoglin"), "#85682e", "#2b2140", 0)
+mcl_mobs.register_egg ("mobs_mc:hoglin", S("Hoglin"), "#85682e", "#2b2140", 0)
 
 ------------------------------------------------------------------------
 -- Modern Hoglin spawning.
@@ -525,11 +531,15 @@ local hoglin_spawner = table.merge (monster_spawner, {
 	weight = 9,
 })
 
-function hoglin_spawner:spawn (spawn_pos, _)
+local child_sdata = core.serialize ({
+	child = true,
+})
+
+function hoglin_spawner:spawn (spawn_pos, _, _, _)
 	if math.random () >= 0.2 then
 		return core.add_entity (spawn_pos, "mobs_mc:hoglin")
 	else
-		return core.add_entity (spawn_pos, "mobs_mc:baby_hoglin")
+		return core.add_entity (spawn_pos, "mobs_mc:hoglin", child_sdata)
 	end
 end
 
@@ -582,12 +592,15 @@ local zoglin = table.merge (hoglin, {
 	runaway_from = nil,
 })
 
+function zoglin:tick_breeding (_)
+	-- Prevent this from ever growing up
+end
+
 local function zoglin_attack_predicate (self, self_pos, obj, entity)
 	return not entity -- Players.
 		or (entity.name ~= "mobs_mc:creeper"
 		    and entity.name ~= "mobs_mc:creeper_charged"
-		    and entity.name ~= "mobs_mc:zoglin"
-		    and entity.name ~= "mobs_mc:baby_zoglin")
+		    and entity.name ~= "mobs_mc:zoglin")
 end
 
 zoglin._targeting_rules = {
@@ -596,57 +609,40 @@ zoglin._targeting_rules = {
 }
 
 zoglin.ai_step = nil
+zoglin.on_rightclick = nil
 zoglin.get_staticdata_table = mob_class.get_staticdata_table
 
 mcl_mobs.register_mob ("mobs_mc:zoglin", zoglin)
 
 ------------------------------------------------------------------------
--- Baby Zoglins.
+-- Legacy baby mobs.
 ------------------------------------------------------------------------
 
-local baby_zoglin = table.merge (zoglin, {
-	collisionbox = {-.3, -0.01, -.3, .3, 0.94, .3},
-	xp_min = 20,
-	xp_max = 20,
-	visual_size = {
-		x = 1,
-		y = 1,
-	},
-	mesh = "mobs_mc_baby_hoglin.b3d",
-	movement_speed = 6.0,
-	child = 1,
-	reach = 1.0,
-	damage = 0.5,
-	melee_interval = 0.75,
-	can_ride_boat = true,
-	description = S("Zoglin"),
-	fire_resistant = true,
-	_fire_resistant = true,
-	textures = {"extra_mobs_zoglin.png"},
-	armor = {
-		undead = 90,
-		fleshy = 90,
-	},
-	harmed_by_heal = true,
-	sounds = {
-		random = "extra_mobs_hoglin",
-		damage = "extra_mobs_hoglin_hurt",
-		death = "extra_mobs_hoglin_hurt",
-		distance = 16,
-	},
-	ai_functions = {
-		mob_class.check_attack,
-		mob_class.check_pace,
-	},
-	group_attack = false,
-	avoid_nodes = nil,
+local old_baby_hoglin = table.merge (hoglin, {
+	child = true,
 })
 
-function baby_zoglin:tick_breeding ()
-	-- Prevent this from ever growing up
+function old_baby_hoglin:mob_activate (staticdata, dtime)
+	if not mob_class.mob_activate (self, staticdata, dtime) then
+		return false
+	end
+	self.child = true
+	self:replace_with ("mobs_mc:hoglin", true)
+	return true
 end
 
-baby_zoglin.ai_step = nil
-baby_zoglin.get_staticdata_table = mob_class.get_staticdata_table
+local old_baby_zoglin = table.merge (zoglin, {
+	child = true,
+})
 
-mcl_mobs.register_mob ("mobs_mc:baby_zoglin", baby_zoglin)
+function old_baby_zoglin:mob_activate (staticdata, dtime)
+	if not mob_class.mob_activate (self, staticdata, dtime) then
+		return false
+	end
+	self.child = true
+	self:replace_with ("mobs_mc:zoglin", true)
+	return true
+end
+
+mcl_mobs.register_mob ("mobs_mc:baby_hoglin", old_baby_hoglin)
+mcl_mobs.register_mob ("mobs_mc:baby_zoglin", old_baby_zoglin)

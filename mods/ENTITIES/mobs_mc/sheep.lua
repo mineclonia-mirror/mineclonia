@@ -83,7 +83,7 @@ local sheep = {
 		random = {name="mobs_sheep", gain=0.4},
 		death = "mobs_sheep",
 		damage = "mobs_sheep",
-		sounds = "mobs_mc_animal_eat_generic",
+		eat = "mobs_mc_animal_eat_generic",
 		distance = 16,
 	},
 	animation = {
@@ -188,12 +188,12 @@ function sheep:on_rightclick (clicker)
 	end
 end
 
-function sheep:on_breed (parent1, parent2)
-	local pos = parent1.object:get_pos()
-	local child = mcl_mobs.spawn_child(pos, parent1.name)
+function sheep:on_breed (parent2)
+	local pos = self.object:get_pos ()
+	local child = mcl_mobs.spawn_child(pos, self.name)
 	if child then
 		local ent_c = child:get_luaentity()
-		local color = { parent1.color, parent2.color }
+		local color = { self.color, parent2.color }
 
 		local dye1 = mcl_dyes.unicolor_to_dye(color[1])
 		local dye2 = mcl_dyes.unicolor_to_dye(color[2])
@@ -213,9 +213,8 @@ function sheep:on_breed (parent1, parent2)
 		ent_c.base_texture = sheep_texture(ent_c.color)
 		ent_c.initial_color_set = true
 		ent_c.tamed = true
-		ent_c.owner = parent1.owner
+		ent_c.owner = self.owner
 		ent_c:set_textures (ent_c.base_texture)
-		return false
 	end
 end
 
@@ -283,8 +282,7 @@ local function sheep_graze (self, self_pos, dtime)
 
 			if consumed then
 				if self.child then
-					self.hornytimer
-						= self.hornytimer + 1200
+					self._mob_age = self._mob_age + 1200
 				end
 
 				-- Reset textures.

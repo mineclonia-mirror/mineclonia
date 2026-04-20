@@ -154,7 +154,7 @@ core.register_on_mods_loaded (function ()
 	end
 end)
 
-function wolf:on_breed (parent1, parent2)
+function wolf:on_breed (parent2)
 	local self_pos = self.object:get_pos ()
 	local child = mcl_mobs.spawn_child (self_pos, self.name)
 	if child then
@@ -162,8 +162,8 @@ function wolf:on_breed (parent1, parent2)
 		-- Use texture of one of the parents
 		local p = math.random (1, 2)
 		if p == 1 then
-			ent_c._wolf_variant = parent1._wolf_variant
-			ent_c._collar_color = parent1._collar_color
+			ent_c._wolf_variant = self._wolf_variant
+			ent_c._collar_color = self._collar_color
 		else
 			ent_c._wolf_variant = parent2._wolf_variant
 			ent_c._collar_color = parent2._collar_color
@@ -173,7 +173,6 @@ function wolf:on_breed (parent1, parent2)
 		ent_c.base_texture = ent_c:compute_textures ()
 		ent_c:set_textures (ent_c.base_texture)
 		ent_c:after_tame ()
-		return false
 	end
 end
 
@@ -699,6 +698,7 @@ end
 
 function wolf:breeding_possible ()
 	return self.tamed and self._active_activity ~= "sit_if_ordered"
+		and mob_class.breeding_possible (self)
 end
 
 function wolf:get_staticdata_table ()

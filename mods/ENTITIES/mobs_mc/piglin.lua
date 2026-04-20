@@ -455,7 +455,7 @@ function piglin:post_load_staticdata ()
 	self._piglin_initialized = true
 end
 
-function piglin:tick_breeding ()
+function piglin:tick_breeding (_)
 	-- Baby Piglins never mature.
 end
 
@@ -686,11 +686,11 @@ function piglin:step_sensors (self_pos)
 			if entity.name == "mobs_mc:wither"
 				or entity.name == "mobs_mc:witherskeleton" then
 				nearest_witherlike = obj
-			elseif entity.name == "mobs_mc:hoglin" then
+			elseif entity.name == "mobs_mc:hoglin" and not entity.child then
 				nearest_prey = obj
 				n_visible_adult_hoglins
 					= n_visible_adult_hoglins + 1
-			elseif entity.name == "mobs_mc:baby_hoglin" then
+			elseif entity.name == "mobs_mc:hoglin" then
 				nearest_baby_hoglin = obj
 			elseif entity.name == "mobs_mc:piglin_brute" then
 				table.insert (nearby_adults, obj)
@@ -1244,7 +1244,10 @@ local function baby_piglin_mount_baby_hoglin (self, self_pos, dtime)
 			-- Disband piglin pile if the member beneath
 			-- is no longer riding anything.
 				or (entity.name == "mobs_mc:piglin"
-					and not entity.jockey_vehicle) then
+				    and not entity.jockey_vehicle)
+			-- Or if the mount has grown up.
+				or (entity.name == "mobs_mc:hoglin"
+				    and not entity.child) then
 				self:dismount_jockey ()
 				self._ride_target = nil
 				return nil
@@ -1809,7 +1812,7 @@ function zombified_piglin:zombie_post_spawn ()
 	self:set_physics_factor_base ("_spawn_reinforcements_chance", 0.0)
 end
 
-function zombified_piglin:tick_breeding ()
+function zombified_piglin:tick_breeding (_)
 end
 
 function zombified_piglin:generate_default_equipment (mob_factor, do_armor, do_wielditems)

@@ -349,13 +349,17 @@ ocelot._targeting_rules = {
 
 function ocelot:breeding_possible ()
 	return self._trusts_players or self.tamed
+		and mob_class.breeding_possible (self)
 end
 
-function ocelot:on_breed (parent1, parent2)
-	local pos = parent1.object:get_pos ()
-	mcl_mobs.spawn_child (pos, parent1.name)
+function ocelot:on_breed (parent2)
+	local pos = self.object:get_pos ()
+	local obj = mcl_mobs.spawn_child (pos, self.name)
+	if obj then
+		local entity = obj:get_luaentity ()
+		entity.persistent = true
+	end
 	-- Sidestep texture assignment or default spawning mechanics.
-	return false
 end
 
 function ocelot:on_rightclick (clicker)
@@ -860,7 +864,7 @@ end
 -- Cat breeding.
 ------------------------------------------------------------------------
 
-function cat:on_breed (parent1, parent2)
+function cat:on_breed (parent2)
 	local self_pos = self.object:get_pos ()
 	local child = mcl_mobs.spawn_child (self_pos, self.name)
 	if child then
@@ -868,9 +872,9 @@ function cat:on_breed (parent1, parent2)
 		-- Use texture of one of the parents
 		local p = math.random (1, 2)
 		if p == 1 then
-			ent_c.base_texture = parent1.base_texture
-			ent_c._default_texture = parent1._default_texture
-			ent_c._collar_color = parent1._collar_color
+			ent_c.base_texture = self.base_texture
+			ent_c._default_texture = self._default_texture
+			ent_c._collar_color = self._collar_color
 		else
 			ent_c.base_texture = parent2.base_texture
 			ent_c._default_texture = parent2._default_texture
@@ -879,7 +883,6 @@ function cat:on_breed (parent1, parent2)
 		ent_c:set_textures (ent_c.base_texture)
 		ent_c.tamed = true
 		ent_c.owner = self.owner
-		return false
 	end
 end
 

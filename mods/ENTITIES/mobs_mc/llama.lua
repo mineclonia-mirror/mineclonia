@@ -95,15 +95,15 @@ local llama = table.merge (horse, {
 local pr = PcgRandom (os.time () + 410)
 local r = 1 / 2147483647
 
-function llama:on_breed (parent1, parent2)
-	local pos = parent1.object:get_pos()
+function llama:on_breed (parent2)
+	local pos = self.object:get_pos()
 	local child, parent
 	if math.random(1,2) == 1 then
-		parent = parent1
+		parent = self
 	else
 		parent = parent2
 	end
-	child = mcl_mobs.spawn_child(pos, parent.name)
+	child = mcl_mobs.spawn_child (pos, parent.name)
 	if child then
 		local ent_c = child:get_luaentity()
 		ent_c.base_texture = table.copy(ent_c.base_texture)
@@ -111,7 +111,7 @@ function llama:on_breed (parent1, parent2)
 		ent_c:set_textures (ent_c.base_texture)
 		ent_c.owner = parent.owner
 
-		local s1 = parent1._llama_strength
+		local s1 = self._llama_strength
 		local s2 = parent2._llama_strength
 		local child_strength = pr:next (1, math.max (s1, s2))
 		if pr:next (0, 2147483647) * r < 0.05
@@ -120,12 +120,11 @@ function llama:on_breed (parent1, parent2)
 		end
 		ent_c._llama_strength = child_strength
 		ent_c._inv_size = child_strength * 5
-		return false
 	end
 end
 
 function llama:breeding_possible ()
-	return self.tamed
+	return self.tamed and mob_class.breeding_possible (self)
 end
 
 function llama:initial_movement_properties ()

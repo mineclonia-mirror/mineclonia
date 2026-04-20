@@ -1,9 +1,9 @@
 local mob_class = mcl_mobs.mob_class
 local is_valid = mcl_util.is_valid_objectref
 
-local HORNY_TIME = 30*20
-local HORNY_AGAIN_TIME = 30*20 -- was 300 or 15*20
-local CHILD_GROW_TIME = 24000
+local mathmax = math.max
+
+local CHILD_GROW_TICKS = 24000
 
 function mob_class:use_shears (new_textures, shears_stack)
 	if core.get_item_group(shears_stack:get_name(), "shears") > 0 then
@@ -27,6 +27,10 @@ function mob_class:_on_dispense(dropitem)
 	end
 end
 
+------------------------------------------------------------------------
+-- Husbandry interface.
+------------------------------------------------------------------------
+
 function mob_class:just_tame (self_pos, owner)
 	local x, z = self_pos.x, self_pos.z
 	self.tamed = true
@@ -35,7 +39,16 @@ function mob_class:just_tame (self_pos, owner)
 		5, "heart.png", 2, 4, 2.0, 0.1)
 end
 
-function mob_class:feed_tame(clicker, heal, breed, tame, notake, tamechance)
+function mob_class:breed_interact ()
+	if not self:is_breeding () and self:breeding_possible () then
+		self._mob_breeding = 300
+		self.persistent = true
+		return true
+	end
+	return false
+end
+
+function mob_class:feed_tame (clicker, heal, breed, tame, notake, tamechance)
 	local consume_food = false
 	local tamechance = tamechance or 1.0
 
@@ -69,16 +82,12 @@ function mob_class:feed_tame(clicker, heal, breed, tame, notake, tamechance)
 
 	if not consume_food and self.child == true then
 		consume_food = true
-		self.hornytimer = self.hornytimer + ((CHILD_GROW_TIME - self.hornytimer) * 0.1)
+		local remaining_age = (CHILD_GROW_TICKS - self._mob_age)
+		self._mob_age = self._mob_age + (remaining_age * 0.1)
 	end
 
-	if breed and not consume_food and self.hornytimer == 0 and not self.horny then
-		if not self.breeding_possible
-			or self:breeding_possible () then
-			consume_food = true
-			self.horny = true
-			self.persistent = true
-		end
+	if breed and not consume_food and self:breed_interact () then
+		consume_food = true
 	end
 
 	self:update_tag()
@@ -97,7 +106,7 @@ function mob_class:feed_tame(clicker, heal, breed, tame, notake, tamechance)
 	return consume_food
 end
 
-function mcl_mobs.spawn_child(pos, mob_type)
+function mcl_mobs.spawn_child (pos, mob_type)
 	local staticdata = core.serialize ({
 		child = true,
 	})
@@ -110,56 +119,76 @@ function mcl_mobs.spawn_child(pos, mob_type)
 	return child
 end
 
-function mob_class:tick_breeding ()
-	if self.child == true then
-		-- When a child, hornytimer is used to count age until adulthood
-		self.hornytimer = self.hornytimer + 1
-		if self.hornytimer >= CHILD_GROW_TIME then
-			self.child = false
-			self.hornytimer = 0
-			local visual_size = self.base_size
-			if self.jockey_vehicle
-				and is_valid (self.jockey_vehicle) then
-				local props = self.jockey_vehicle:get_properties ()
-				local vehicle_size = props.visual_size
-				visual_size = {
-					x = visual_size.x / vehicle_size.x,
-					y = visual_size.y / vehicle_size.y,
-				}
-			end
-			self:set_properties({
-				mesh = self.base_mesh,
-				visual_size = visual_size,
-				collisionbox = self.base_colbox,
-				selectionbox = self.base_selbox,
-			})
-			if self._adult_head_eye_height then
-				self.head_eye_height = self._adult_head_eye_height
-			end
-			self:set_textures (self.base_texture)
-			if self.on_grown then
-				self.on_grown(self)
-			end
-			self.animation = nil
-			local anim = self._current_animation
-			self._current_animation = nil
-			self:set_animation(anim)
-		end
-		return
-	else
-		if self.horny == true or self.hornytimer ~= 0 then
-			self.hornytimer = self.hornytimer + 1
+------------------------------------------------------------------------
+-- Breeding callbacks.
+------------------------------------------------------------------------
 
-			if self.hornytimer >= HORNY_TIME + HORNY_AGAIN_TIME then
-				self.hornytimer = 0
-			end
-			if self.hornytimer >= HORNY_TIME then
-				self.horny = false
-			elseif self.horny and (self.hornytimer % 20) == 0 then
-				local pos = self.object:get_pos ()
-				mcl_mobs.effect({x = pos.x, y = pos.y + 1, z = pos.z}, 8, "heart.png", 3, 4, 1, 0.1)
-			end
+function mob_class:grow_into_adult ()
+	self.child = false
+	self._mob_breeding = nil
+	self._mob_age = 0
+	local visual_size = self.base_size
+	if self.jockey_vehicle
+		and is_valid (self.jockey_vehicle) then
+		local props = self.jockey_vehicle:get_properties ()
+		local vehicle_size = props.visual_size
+		visual_size = {
+			x = visual_size.x / vehicle_size.x,
+			y = visual_size.y / vehicle_size.y,
+		}
+	end
+	self:set_properties({
+		mesh = self.base_mesh,
+		visual_size = visual_size,
+		collisionbox = self.base_colbox,
+		selectionbox = self.base_selbox,
+	})
+	self.collisionbox = self.base_colbox
+	if self._adult_head_eye_height then
+		self.head_eye_height = self._adult_head_eye_height
+	end
+	self:set_textures (self.base_texture)
+	if self.on_grown then
+		self.on_grown (self)
+	end
+	self.animation = nil
+	local anim = self._current_animation
+	self._current_animation = nil
+	self:set_animation (anim)
+end
+
+function mob_class:tick_breeding (dtime)
+	-- A value of 1 inhibits aging.
+	if self.child == true then
+		self._mob_age = self._mob_age + dtime * 20
+		if self._mob_age > CHILD_GROW_TICKS then
+			self:grow_into_adult ()
 		end
+	elseif not self.child and self._mob_age > 0 then
+		self._mob_age = mathmax (0, self._mob_age - dtime * 20)
+	end
+
+	if self._mob_breeding > 0 then
+		local t = self._mob_breeding - dtime * 20
+		self._mob_breeding = mathmax (0, t)
+	end
+end
+
+function mob_class:on_breed (mate)
+	local self_pos = self.object:get_pos ()
+	local child = mcl_mobs.spawn_child (self_pos, self.name)
+	if child then
+		local ent_c = child:get_luaentity()
+		-- Use texture of one of the parents
+		local p = math.random (1, 2)
+		if p == 1 then
+			ent_c.base_texture = self.base_texture
+		else
+			ent_c.base_texture = mate.base_texture
+		end
+		ent_c:set_textures (ent_c.base_texture)
+		ent_c.tamed = true
+		ent_c.owner = self.owner
 	end
 end
 
@@ -176,37 +205,28 @@ function mob_class:beget_child (pos)
 	-- breed once.
 	self.mate = nil
 	mate.mate = nil
+	self._mate_time = nil
+	mate._mate_time = nil
+	self._mob_breeding = nil
+	mate._mob_breeding = nil
+	-- Prevent mobs from breeding for another five minutes.
+	-- `_mob_age' is a cooldown period which is decremented when
+	-- this mob is not a child.
+	self._mob_age = 6000
+	mate._mob_age = 6000
 	mcl_experience.throw_xp (pos, math.random (1, 7))
 	self:set_animation ("stand")
 	mate:set_animation ("stand")
-	if self.on_breed then
-		if self:on_breed (self, mate) == false then
-			return
-		end
-	end
-	local child = mcl_mobs.spawn_child(pos, self.name)
-	if child then
-		local ent_c = child:get_luaentity()
-		-- Use texture of one of the parents
-		local p = math.random(1, 2)
-		if p == 1 then
-			ent_c.base_texture = self.base_texture
-		else
-			ent_c.base_texture = mate.base_texture
-		end
-		ent_c:set_textures (ent_c.base_texture)
-		ent_c.tamed = true
-		ent_c.owner = self.owner
-	end
+	self:on_breed (mate)
 end
 
-function mob_class:can_mate (with)
+function mob_class:can_mate_with (with)
 	if with == self.object then
 		return false
 	end
 	local ent = with:get_luaentity ()
-	if ent and ent.horny and ent.is_mob then
-		if self:same_species (ent) then
+	if ent and ent.is_mob and ent:is_breeding () then
+		if self:same_species_p (ent) then
 			-- Don't attempt to mate with mobs already
 			-- taken.
 			return not ent.mate or ent.mate == self.object
@@ -215,70 +235,102 @@ function mob_class:can_mate (with)
 	return false
 end
 
-function mob_class:same_species (ent)
-	-- Match different variants of one mob.
-	-- FIXME: hideous code.
-	local entname = string.split (ent.name, ":")
-	local selfname = string.split (self.name, ":")
-	if entname[1] == selfname[1] then
-		entname = string.split (entname[2], "_")
-		selfname = string.split (selfname[2], "_")
-		if entname[1] == selfname[1] then
-			return true
-		end
-	end
-	return false
+function mob_class:is_breeding ()
+	return self._mob_breeding > 0
 end
 
-function mob_class:check_breeding (pos)
+function mob_class:breeding_possible ()
+	return not self.child and self._mob_age == 0
+end
+
+function mob_class:same_species_p (ent)
+	return ent.name == self.name
+end
+
+function mob_class:start_mating (mate)
+	self.mate = mate
+	self._mate_time = 0.0
+
+	-- Prevent duplicate calls to core.after, and claim the mate
+	-- also.
+	local entity = mate:get_luaentity ()
+	entity:replace_activity ("mate")
+	entity.mate = self.object
+	entity._mate_time = 0.0
+end
+
+function mob_class:check_breeding (pos, dtime)
 	if self.mate then
-		if not is_valid (self.mate) then
-			self:set_animation ("stand")
+		local t = self._mate_time + dtime
+		self._mate_time = self._mate_time + dtime
+		if not self.mate:is_valid () then
+			self:cancel_navigation ()
+			self:halt_in_tracks ()
 			self.mate = nil
+			self._mate_time = nil
 			return false
 		end
 		local entity = self.mate:get_luaentity ()
 		if entity.mate ~= self.object then
+			self:cancel_navigation ()
+			self:halt_in_tracks ()
 			self.mate = nil
+			self._mate_time = nil
 			return false
 		end
 		local matepos = self.mate:get_pos ()
-		if vector.distance (pos, matepos) < 3.0
-			and self:target_visible (pos, self.mate)
-			and self.hornytimer
-			and not self.begetting then
-			self.begetting = true
-			core.after (5, mob_class.beget_child, self, pos)
-		end
-		self:gopath (matepos, self.breed_bonus)
-		return true
-	elseif self.horny and self.hornytimer < HORNY_TIME then
-			local ax, ay, az, bx, by, bz
-			ax = self.collisionbox[1]
-			ay = self.collisionbox[2]
-			az = self.collisionbox[3]
-			bx = self.collisionbox[4]
-			by = self.collisionbox[5]
-			bz = self.collisionbox[6]
-			local aa = { x = pos.x + ax - 8, y = pos.y + ay - 4, z = pos.z + az - 8 }
-			local bb = { x = pos.x + bx + 8, y = pos.y + by + 4, z = pos.z + bz + 8 }
-			local objects = core.get_objects_in_area (aa, bb)
-			for _, object in ipairs (objects) do
-				if self:can_mate (object) then
-					local entity = object:get_luaentity ()
-					entity:replace_activity ("mate")
-					self.mate = object
-					entity.mate = self.object
-					self.begetting = false
-					self.horny = false
-					-- Prevent duplicate calls to
-					-- core.after.
-					entity.begetting = true
-					-- Taken, sorry!
-					entity.horny = false
-					return "mate"
-				end
+		-- If the relation between this mob and its mate as
+		-- established by `self:same_species_p' is
+		-- asymmetrical, then defer breeding to the mob which
+		-- considers this mob compatible, as there may be
+		-- specialized code in the latter providing for such
+		-- combinations.
+		if t > 3.5 and self:same_species_p (entity) then
+			if vector.distance (pos, matepos) < 3.0
+				and self:target_visible (pos, self.mate) then
+				self:beget_child (pos)
+			else
+				-- Desert the current mate so that
+				-- there may be an attempt to locate
+				-- another, if the breeding timeout
+				-- has yet to elapse.
+				self.mate = nil
+				self._mate_time = nil
+				return false
 			end
+		else
+			self:gopath (matepos, self.breed_bonus)
+		end
+		return true
+	elseif self:is_breeding () then
+		local ax, ay, az, bx, by, bz
+		ax = self.collisionbox[1]
+		ay = self.collisionbox[2]
+		az = self.collisionbox[3]
+		bx = self.collisionbox[4]
+		by = self.collisionbox[5]
+		bz = self.collisionbox[6]
+		local aa = {
+			x = pos.x + ax - 8,
+			y = pos.y + ay - 4,
+			z = pos.z + az - 8,
+		}
+		local bb = {
+			x = pos.x + bx + 8,
+			y = pos.y + by + 4,
+			z = pos.z + bz + 8,
+		}
+		if self:check_timer ("breeding_particles", 1.0) then
+			local v = vector.offset (pos, 0, 1, 0)
+			mcl_mobs.effect (v, 8, "heart.png", 3, 4, 1, 0.1)
+		end
+		local objects = core.get_objects_in_area (aa, bb)
+		for _, object in ipairs (objects) do
+			if self:can_mate_with (object) then
+				self:start_mating (object)
+				return "mate"
+			end
+		end
 	end
 end
 
@@ -330,7 +382,7 @@ function mob_class:follow_herd (pos)
 			if dist < distmin then
 				local entity = object:get_luaentity ()
 				if entity and entity.is_mob and not entity.child
-					and self:same_species (entity) then
+					and self:same_species_p (entity) then
 					distmin = dist
 					selected = object
 				end

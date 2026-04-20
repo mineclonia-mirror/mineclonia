@@ -1192,7 +1192,7 @@ function mob_class:ai_step (dtime)
 			self._last_attacker = nil
 		end
 	end
-	self:tick_breeding ()
+	self:tick_breeding (dtime)
 	if self.can_wield_items then
 		self:wielditem_step (dtime)
 	end

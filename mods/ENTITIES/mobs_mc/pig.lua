@@ -76,13 +76,12 @@ function pig:_on_lightning_strike ()
 	return true
 end
 
-function pig:on_breed (parent1, parent2)
-	local pos = parent1.object:get_pos ()
-	local child = mcl_mobs.spawn_child (pos, parent1.name)
+function pig:on_breed (parent2)
+	local pos = self.object:get_pos ()
+	local child = mcl_mobs.spawn_child (pos, self.name)
 	if child then
 		local ent_c = child:get_luaentity ()
 		ent_c.persistent = true
-		return false
 	end
 end
 

@@ -561,7 +561,7 @@ end
 -- Zombie Villager AI.
 ------------------------------------------------------------------------
 
-function zombie_villager:tick_breeding ()
+function zombie_villager:tick_breeding (_)
 	-- Zombie Villagers may be children, but do not breed or
 	-- mature.
 	return

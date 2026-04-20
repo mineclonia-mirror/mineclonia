@@ -183,6 +183,7 @@ function mob_class:get_staticdata_table ()
 	tmp._direct_sunlight = nil
 	tmp._cached_rain_exposure = nil
 	tmp._collision_count = nil
+	tmp._mate_time = nil
 
 	-- Remove physics factors that are not persistent and revert
 	-- fields that were modified and disapply them.
@@ -282,6 +283,14 @@ function mob_class:update_textures()
 	end
 end
 
+function mob_class:get_child_visual_size (scale)
+	local initial_size = self.initial_properties.visual_size
+	return self._child_mesh and initial_size or {
+		x = self.base_size.x * scale,
+		y = self.base_size.y * scale,
+	}
+end
+
 function mob_class:scale_size_of_child (scale)
 	local collisionbox = {
 		self.base_colbox[1] * scale,
@@ -292,12 +301,8 @@ function mob_class:scale_size_of_child (scale)
 		self.base_colbox[6] * scale,
 	}
 	self.collisionbox = collisionbox
-	local initial_size = self.initial_properties.visual_size
 	self:set_properties ({
-		visual_size = self._child_mesh and initial_size or {
-			x = self.base_size.x * scale,
-			y = self.base_size.y * scale,
-		},
+		visual_size = self:get_child_visual_size (scale),
 		collisionbox = collisionbox,
 		selectionbox = {
 			self.base_selbox[1] * scale,

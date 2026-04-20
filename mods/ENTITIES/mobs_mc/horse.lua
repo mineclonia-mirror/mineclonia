@@ -192,6 +192,7 @@ function horse:breeding_possible ()
 	return (entity_id == "mobs_mc:horse"
 		or entity_id == "mobs_mc:donkey")
 		and self.tamed
+		and mob_class.breeding_possible (self)
 end
 
 function horse:enrage ()
@@ -806,7 +807,7 @@ function horse:on_rightclick (clicker)
 			consume = true
 		end
 		if self.child and age > 0 then
-			self.hornytimer = self.hornytimer + age
+			self._mob_age = self._mob_age + age
 			consume = true
 		end
 		if temper and not self.child then
@@ -818,9 +819,11 @@ function horse:on_rightclick (clicker)
 				consume = true
 			end
 		end
-		if breed and not self.child
-			and self:feed_tame (clicker, 0, true, false) then
+		if breed and not self.child and self:breed_interact () then
 			consume = true
+		end
+		if consume then
+			self:mob_sound ("eat", nil, true)
 		end
 		if consume and not creative then
 			item:take_item ()
@@ -1006,18 +1009,18 @@ function horse:on_grown ()
 	self.object:set_detach ()
 end
 
-function horse:on_breed (parent1, parent2)
-	local pos = parent1.object:get_pos()
-	local child = mcl_mobs.spawn_child(pos, parent1.name)
+function horse:on_breed (parent2)
+	local pos = self.object:get_pos()
+	local child = mcl_mobs.spawn_child(pos, self.name)
 	if child then
 		local ent_c = child:get_luaentity()
 		local p = math.random(1, 2)
 		local child_texture
 		if p == 1 then
-			if parent1._naked_texture then
-				child_texture = parent1._naked_texture
+			if self._naked_texture then
+				child_texture = self._naked_texture
 			else
-				child_texture = parent1.base_texture[2]
+				child_texture = self.base_texture[2]
 			end
 		else
 			if parent2._naked_texture then
@@ -1048,10 +1051,8 @@ function horse:on_breed (parent1, parent2)
 		ent_c.base_texture = { "blank.png", child_texture, "blank.png" }
 		ent_c._naked_texture = child_texture
 		ent_c:set_textures (ent_c.base_texture)
-		ent_c:derive_child_properties (parent1, parent2)
+		ent_c:derive_child_properties (self, parent2)
 		ent_c.can_ride_boat = true
-
-		return false
 	end
 end
 
@@ -1272,23 +1273,23 @@ function donkey:initial_movement_properties ()
 	self.health = hp_max
 end
 
-function donkey:same_species (ent)
+function donkey:same_species_p (ent)
 	return ent.name == self.name
 		or ent.name == "mobs_mc:horse"
 end
 
-function donkey:on_breed (parent1, parent2)
-	-- parent1 (self) is guaranteed to be a donkey, because only
-	-- `same_species' is only overridden for them.
-
+function donkey:on_breed (parent2)
+	-- `donkey:on_breed' is guaranteed to be invoked during
+	-- matings between horses and donkeys, as only
+	-- `donkey:same_species_p' is defined to accept both species.
+	-- See `mcl_mobs.check_breeding'.
 	local name = parent2.name == "mobs_mc:horse"
-		and "mobs_mc:mule" or parent1.name
-	local pos = parent1.object:get_pos ()
+		and "mobs_mc:mule" or self.name
+	local pos = self.object:get_pos ()
 	local child = mcl_mobs.spawn_child (pos, name)
 	if child then
 		local ent_c = child:get_luaentity ()
-		ent_c:derive_child_properties (parent1, parent2)
-		return false
+		ent_c:derive_child_properties (self, parent2)
 	end
 end
 

@@ -297,13 +297,12 @@ end
 
 -- The default breeding routine is unsuitable as it is apt to
 -- propagate the textures of saddled striders to their offspring.
-function strider:on_breed (parent1, parent2)
-	local pos = parent1.object:get_pos ()
-	local child = mcl_mobs.spawn_child (pos, parent1.name)
+function strider:on_breed (parent2)
+	local pos = self.object:get_pos ()
+	local child = mcl_mobs.spawn_child (pos, self.name)
 	if child then
 		local ent_c = child:get_luaentity ()
 		ent_c.persistent = true
-		return false
 	end
 end
 
