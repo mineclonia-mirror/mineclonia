@@ -57,4 +57,4 @@ mcl_stairs.register_stair_and_slab("resin_brick", {
 	}
 })
 
-mcl_walls.register_wall("mcl_pale_oak:resin_brick_wall", "Resin Brick Wall", "mcl_pale_oak:resin_brick", {"mcl_pale_oak_resin_brick_block.png"})
+mcl_walls.register_wall("mcl_pale_oak:resinbrick", "Resin Brick Wall", "mcl_pale_oak:resin_brick", {"mcl_pale_oak_resin_brick_block.png"})
