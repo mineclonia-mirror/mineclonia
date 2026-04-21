@@ -112,8 +112,8 @@ local stem_def = {
 
 -- Template for pumpkin
 local pumpkin_base_def = {
-	description = S("Faceless Pumpkin"),
-	_doc_items_longdesc = S("A faceless pumpkin is a decorative block. It can be carved with shears to obtain pumpkin seeds."),
+	description = S("Pumpkin"),
+	_doc_items_longdesc = S("A pumpkin is a decorative block. It can be carved with shears to obtain pumpkin seeds."),
 	_doc_items_usagehelp = S("To carve a face into the pumpkin, use the shears on the side you want to carve."),
 	paramtype2 = "facedir",
 	tiles = {"farming_pumpkin_top.png", "farming_pumpkin_top.png", "farming_pumpkin_side.png"},
@@ -129,8 +129,8 @@ local pumpkin_base_def = {
 }
 
 local pumpkin_face_base_def = table.copy(pumpkin_base_def)
-pumpkin_face_base_def.description = S("Pumpkin")
-pumpkin_face_base_def._doc_items_longdesc = S("A pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, which in turn grow from pumpkin seeds.")
+pumpkin_face_base_def.description = S("Carved Pumpkin")
+pumpkin_face_base_def._doc_items_longdesc = S("A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, which in turn grow from pumpkin seeds.")
 pumpkin_face_base_def._doc_items_usagehelp = nil
 pumpkin_face_base_def.tiles = {"farming_pumpkin_top.png", "farming_pumpkin_top.png", "farming_pumpkin_side.png", "farming_pumpkin_side.png", "farming_pumpkin_side.png", "farming_pumpkin_face.png"}
 pumpkin_face_base_def.groups.armor=1
