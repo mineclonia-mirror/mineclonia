@@ -150,6 +150,38 @@ local horse = {
 			looting = "common",
 		},
 	},
+	_dispenser_actions = {
+		{
+			groups = {
+				"horse_armor",
+			},
+			fn = function (self, item)
+				if self._horse_armor_stack == ""
+					and not self.child and self.tamed then
+					self:set_armor_1 (item:get_name (), item)
+					self:update_armor_inv ()
+					item:take_item ()
+					return item
+				end
+				return nil
+			end,
+		},
+		{
+			names = {
+				"mcl_mobitems:saddle",
+			},
+			fn = function (self, item)
+				if self._saddle == ""
+					and not self.child and self.tamed then
+					self:set_saddle (item, nil)
+					self:update_armor_inv ()
+					item:take_item ()
+					return item
+				end
+				return nil
+			end,
+		},
+	},
 	jump_height = 14,
 	fall_damage_multiplier = 0.5,
 	_safe_fall_distance = 6.0,

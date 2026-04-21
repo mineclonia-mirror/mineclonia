@@ -61,6 +61,21 @@ local pig = {
 		"mcl_mobitems:carrot_on_a_stick",
 		"mcl_mobitems:carrot_on_a_stick_enchanted"
 	},
+	_dispenser_actions = {
+		{
+			names = {
+				"mcl_mobitems:saddle",
+			},
+			fn = function (self, item)
+				if self.saddle ~= "yes" and not self.child then
+					item:take_item ()
+					self:equip_saddle ()
+					return item
+				end
+				return nil
+			end,
+		},
+	},
 	steer_class = "follow_item",
 	steer_item = "group:controls_pig",
 	follow_herd_bonus = 1.1,
@@ -103,6 +118,39 @@ function pig:on_die ()
 	end
 end
 
+local saddle_equip_sound = {
+	name = "mcl_armor_equip_leather",
+}
+
+function pig:equip_saddle ()
+	self.base_texture = {
+		"mobs_mc_pig.png", -- base
+		"mobs_mc_pig_saddle.png", -- saddle
+	}
+	self:set_textures (self.base_texture)
+	self.saddle = "yes"
+	self.tamed = true
+	self.drops = {
+		{
+			name = "mcl_mobitems:porkchop",
+			chance = 1,
+			min = 1,
+			max = 3,
+		},
+		{
+			name = "mcl_mobitems:saddle",
+			chance = 1,
+			min = 1,
+			max = 1,
+		},
+	}
+	core.sound_play (saddle_equip_sound, {
+		gain = 0.5,
+		max_hear_distance = 8,
+		pos = self.object:get_pos (),
+	}, true)
+end
+
 function pig:on_rightclick (clicker)
 	if not clicker or not clicker:is_player() then
 		return
@@ -124,30 +172,13 @@ function pig:on_rightclick (clicker)
 
 	-- Put saddle on pig
 	if item_name == "mcl_mobitems:saddle" and self.saddle ~= "yes" then
-		self.base_texture = {
-			"mobs_mc_pig.png", -- base
-			"mobs_mc_pig_saddle.png", -- saddle
-		}
-		self:set_textures (self.base_texture)
-		self.saddle = "yes"
-		self.tamed = true
-		self.drops = {
-			{name = "mcl_mobitems:porkchop",
-			 chance = 1,
-			 min = 1,
-			 max = 3,},
-			{name = "mcl_mobitems:saddle",
-			 chance = 1,
-			 min = 1,
-			 max = 1,},
-		}
+		self:equip_saddle ()
 		if not core.is_creative_enabled(clicker:get_player_name()) then
 			local inv = clicker:get_inventory()
 			local stack = inv:get_stack("main", clicker:get_wield_index())
 			stack:take_item()
 			inv:set_stack("main", clicker:get_wield_index(), stack)
 		end
-		core.sound_play({name = "mcl_armor_equip_leather"}, {gain=0.5, max_hear_distance=8, pos=self.object:get_pos()}, true)
 		return
 	elseif core.get_item_group(item_name, "shears") > 0 and self.saddle == "yes" and not self.driver then
 		self.base_texture = {"mobs_mc_pig.png", "blank.png"}

@@ -234,6 +234,16 @@ mcl_mobs.mob_class = {
 	_safe_fall_distance = 3.0,
 	reset_fall_damage = false,
 	_no_fall_damage = false,
+	_dispenser_actions = {
+		{
+			groups = {
+				"armor",
+			},
+			fn = function (self, item)
+				return self:dispense_armor (item)
+			end,
+		},
+	},
 
 	-- Field consulted by new spawning routines.
 	_spawn_category = "misc",

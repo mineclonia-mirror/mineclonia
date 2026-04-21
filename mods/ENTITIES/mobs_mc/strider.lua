@@ -67,6 +67,21 @@ local strider = {
 		"mcl_mobitems:warped_fungus_on_a_stick",
 		"mcl_mobitems:warped_fungus_on_a_stick_enchanted",
 	},
+	_dispenser_actions = {
+		{
+			names = {
+				"mcl_mobitems:saddle",
+			},
+			fn = function (self, item)
+				if self.saddle ~= "yes" and not self.child then
+					item:take_item ()
+					self:equip_saddle ()
+					return item
+				end
+				return nil
+			end,
+		},
+	},
 	_water_sensitive = true,
 	_fire_resistant = true,
 	fire_resistant = true,
@@ -188,6 +203,38 @@ function strider:do_custom (dtime)
 	end
 end
 
+local saddle_equip_sound = {
+	name = "mcl_armor_equip_leather",
+}
+
+function strider:equip_saddle ()
+	self.base_texture = {
+		"extra_mobs_strider.png",
+		"mobs_mc_pig_saddle.png",
+	}
+	self:set_textures (self:get_strider_textures ())
+	self.saddle = "yes"
+	self.drops = {
+		{
+			name = "mcl_mobitems:string",
+			chance = 1,
+			min = 1,
+			max = 3,
+		},
+		{
+			name = "mcl_mobitems:saddle",
+			chance = 1,
+			min = 1,
+			max = 1,
+		},
+	}
+	core.sound_play (saddle_equip_sound, {
+		gain = 0.5,
+		max_hear_distance = 8,
+		pos = self.object:get_pos (),
+	}, true)
+end
+
 function strider:on_rightclick (clicker)
 	local item = clicker:get_wielded_item ()
 	local name = item:get_name ()
@@ -204,36 +251,18 @@ function strider:on_rightclick (clicker)
 	end
 
 	if name == "mcl_mobitems:saddle" and self.saddle ~= "yes" then
-		self.base_texture = {
-			"extra_mobs_strider.png",
-			"mobs_mc_pig_saddle.png",
-		}
-		self:set_textures (self.base_texture)
-		self.saddle = "yes"
-		self.drops = {
-			{
-				name = "mcl_mobitems:string",
-				chance = 1,
-				min = 1,
-				max = 3,
-			},
-			{
-				name = "mcl_mobitems:saddle",
-				chance = 1,
-				min = 1,
-				max = 1,
-			},
-		}
+		self:equip_saddle ()
 		local clicker_name = clicker:get_player_name ()
 		if not core.is_creative_enabled (clicker_name) then
 			item:take_item ()
 			clicker:set_wielded_item (item)
-			core.sound_play ({name = "mcl_armor_equip_leather"},
-				{gain=0.5, max_hear_distance=8, pos=self.object:get_pos()}, true)
 		end
 	elseif core.get_item_group(name, "shears") > 0 and self.saddle == "yes" and not self.driver then
-		self.base_texture = {"extra_mobs_strider.png", "blank.png"}
-		self:set_textures(self.base_texture)
+		self.base_texture = {
+			"extra_mobs_strider.png",
+			"blank.png",
+		}
+		self:set_textures (self:get_strider_textures ())
 		self.saddle = "false"
 		self.drops = {
 			{
@@ -306,6 +335,15 @@ function strider:on_breed (parent2)
 	end
 end
 
+function strider:get_strider_textures ()
+	return {
+		self._aground
+			and "extra_mobs_strider_cold.png"
+			or "extra_mobs_strider.png",
+		self.base_texture[2],
+	}
+end
+
 function strider:ai_step (dtime)
 	mob_class.ai_step (self, dtime)
 
@@ -325,8 +363,10 @@ function strider:ai_step (dtime)
 
 	if self._aground and not was_aground then
 		self:add_physics_factor ("movement_speed", "mobs_mc:strider_out_of_water", 0.66)
-		local textures = table.copy (self.base_texture)
-		textures[0] = "extra_mobs_strider_cold.png"
+		local textures = {
+			"extra_mobs_strider_cold.png",
+			self.base_texture[2],
+		}
 		self:set_textures (textures)
 		self.shaking = true
 		self.drive_bonus = 0.35

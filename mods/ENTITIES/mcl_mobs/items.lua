@@ -398,3 +398,55 @@ function mob_class:drop_inventory (self_pos)
 		end
 	end
 end
+
+------------------------------------------------------------------------
+-- Dispenser interface.
+------------------------------------------------------------------------
+
+function mob_class:_on_dispense (dropitem)
+	local name = dropitem:get_name ()
+
+	for _, action in ipairs (self._dispenser_actions) do
+		local finished = false
+		if action.names
+			and table.indexof (action.names, name) ~= -1 then
+			local item = action.fn (self, dropitem)
+			if item then
+				return item
+			end
+			finished = true
+		end
+		if action.groups and not finished then
+			for _, group in ipairs (action.groups) do
+				if core.get_item_group (name, group) > 0 then
+					local item = action.fn (self, dropitem)
+					if item then
+						return item
+					end
+					break
+				end
+			end
+		end
+	end
+end
+
+function mob_class:dispense_armor (armor_item)
+	if not self.wears_armor then
+		return nil
+	end
+
+	local item = armor_item:take_item ()
+	local def = item:get_definition ()
+	if def._mcl_armor_element then
+		-- N.B. that existing armor is not dropped when a mob
+		-- is equipped by a dispenser.
+		local slot = def._mcl_armor_element
+		self.persistent = true
+		self.armor_list[slot] = item:to_string ()
+		self:set_armor_drop_probability (slot, 2.0)
+		self:set_armor_texture ()
+		return armor_item
+	end
+
+	return nil
+end

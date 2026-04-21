@@ -1,5 +1,6 @@
 local mob_class = mcl_mobs.mob_class
 local is_valid = mcl_util.is_valid_objectref
+local ipairs = ipairs
 
 local mathmax = math.max
 
@@ -15,16 +16,6 @@ function mob_class:use_shears (new_textures, shears_stack)
 		shears_stack:add_wear(65535 / shears_def._mcl_diggroups.shearsy.uses)
 	end
 	return shears_stack
-end
-
-function mob_class:_on_dispense(dropitem)
-	local item = dropitem.get_name and dropitem:get_name() or dropitem
-	if self.follow and ((type(self.follow) == "table" and table.indexof(self.follow, item) ~= -1) or item == self.follow) then
-		if self:feed_tame(nil, 1, true, false) then
-			dropitem:take_item()
-			return dropitem
-		end
-	end
 end
 
 ------------------------------------------------------------------------
