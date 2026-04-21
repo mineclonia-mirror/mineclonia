@@ -248,6 +248,24 @@ end
 
 local scale_chance = mcl_mobs.scale_chance
 
+local function sound_play_graze (self, self_pos, node_graze)
+	--[=[
+	In Minecraft, the sound when sheep graze is `block.grass.break`
+	which is equivalent in Mineclonia to the `dug` sound of
+	`mcl_core:dirt_with_grass` and `mcl_trees:leaves_oak`.
+	- https://minecraft.wiki/w/Sheep#Sounds
+	- https://minecraft.wiki/w/Grass_Block#Sounds
+	- https://minecraft.wiki/w/Leaves#Sounds
+	--]=]
+	if core.registered_nodes[node_graze.name].sounds.dug then
+		local sound_graze = core.registered_nodes[node_graze.name].sounds.dug
+		core.sound_play(
+			{name = sound_graze.name, gain = sound_graze.gain},
+			{pos = self_pos, max_hear_distance = self.sounds.distance}
+		)
+	end
+end
+
 local function sheep_graze (self, self_pos, dtime)
 	local base_chance = self.child and 50 or 1000
 	if self._grazing then
@@ -264,6 +282,7 @@ local function sheep_graze (self, self_pos, dtime)
 				if mob_griefing then
 					core.remove_node (self_pos)
 				end
+				sound_play_graze (self, self_pos, node)
 				consumed = true
 			else
 				local offset = vector.copy (self_pos)
@@ -275,6 +294,7 @@ local function sheep_graze (self, self_pos, dtime)
 							name = "mcl_core:dirt",
 						})
 					end
+					sound_play_graze (self, self_pos, below)
 					consumed = true
 				end
 			end
