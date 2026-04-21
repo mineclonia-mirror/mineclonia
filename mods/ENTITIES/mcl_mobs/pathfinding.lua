@@ -1,5 +1,6 @@
 local mob_class = mcl_mobs.mob_class
 local floor = math.floor
+local ipairs = ipairs
 local luajit_present = core.global_exists ("jit")
 local is_valid = mcl_util.is_valid_objectref
 
@@ -358,8 +359,8 @@ function mob_class:gwp_corner_check_1 (context, self_pos, penalties)
 		end
 	end
 	table.sort (nearest, function (a, b)
-		    return vector.distance (a, self_pos)
-			    < vector.distance (b, self_pos)
+		return vector.distance (a, self_pos)
+			< vector.distance (b, self_pos)
 	end)
 	for i = 1, 3 do
 		local node = nearest[i]
@@ -583,7 +584,7 @@ function mob_class:gwp_cycle (context, timeout)
 	local maxnodes = context.maxnodes
 
 	-- Convert this timeout to us.
-	timeout = math.round (timeout * 1e6)
+	timeout = floor (timeout * 1e6 + 0.5)
 	context.fall_distance = self:gwp_safe_fall_distance ()
 	repeat
 		if set:empty () or n_total + 1 > maxnodes then
