@@ -19,11 +19,11 @@ SCRIPT REGISTRATION
 
 Function: mcl_levelgen.register_levelgen_script (SCRIPT, ERSATZ)
 
-Register SCRIPT to execute in every context where structure or feature
-placement is processed; registered scripts are executed in the same
-sequence as they are defined.  All facilities documented after this
-function, unless otherwise stated, are only safe to invoke from within
-such a mapgen script.
+Register SCRIPT (a file name) to execute in every context where
+structure or feature placement is processed; registered scripts are
+executed in the same sequence as they are defined.  All facilities
+documented after this function, unless otherwise stated, are only safe
+to invoke from within such a mapgen script.
 
 If ERSATZ is non-nil, SCRIPT will also be loaded when the structure
 generator is operating in an "ersatz" configuration; that is, when the
@@ -351,8 +351,7 @@ be converted into Luanti's native coordinate system, but no further
 validation or transformations are applied.
 
 Function: mcl_levelgen.place_schematic (X, Y, Z, SCHEMATIC, ROTATION,
-					REPLACEMENTS, FORCE_PLACEMENT,
-					FLAGS, RNG)
+					FORCE_PLACEMENT, FLAGS, RNG)
 
 Place the schematic identified by SCHEMATIC (which must have
 previously been imported by means of
