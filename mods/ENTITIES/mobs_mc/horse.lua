@@ -157,6 +157,7 @@ local horse = {
 			},
 			fn = function (self, item)
 				if self._horse_armor_stack == ""
+					and can_equip_horse_armor (self.name)
 					and not self.child and self.tamed then
 					self:set_armor_1 (item:get_name (), item)
 					self:update_armor_inv ()

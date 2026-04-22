@@ -76,6 +76,7 @@ local llama = table.merge (horse, {
 			true,
 		},
 	},
+	_dispenser_actions = {},
 	_max_temper = 30,
 	pace_bonus = 0.7,
 	follow_bonus = 1.25,

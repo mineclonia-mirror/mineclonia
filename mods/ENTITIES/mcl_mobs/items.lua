@@ -435,17 +435,29 @@ function mob_class:dispense_armor (armor_item)
 		return nil
 	end
 
-	local item = armor_item:take_item ()
+	local item = armor_item:peek_item ()
 	local def = item:get_definition ()
 	if def._mcl_armor_element then
-		-- N.B. that existing armor is not dropped when a mob
-		-- is equipped by a dispenser.
 		local slot = def._mcl_armor_element
-		self.persistent = true
-		self.armor_list[slot] = item:to_string ()
-		self:set_armor_drop_probability (slot, 2.0)
-		self:set_armor_texture ()
-		return armor_item
+		if self.armor_list[slot] == "" then
+			armor_item:take_item ()
+			self.persistent = true
+			self.armor_list[slot] = item:to_string ()
+			self:set_armor_drop_probability (slot, 2.0)
+			self:set_armor_texture ()
+
+			if def.sounds and def.sounds._mcl_armor_equip then
+				local sound = {
+					name = def.sounds._mcl_armor_equip,
+				}
+				core.sound_play (sound, {
+					gain = 0.5,
+					max_hear_distance = 12,
+					pos=self.object:get_pos (),
+				}, true)
+			end
+			return armor_item
+		end
 	end
 
 	return nil
