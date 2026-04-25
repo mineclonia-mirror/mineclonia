@@ -92,7 +92,7 @@ local sign_tpl = {
 	_doc_items_usagehelp = S("After placing the sign, you can write something on it. You have @1 lines of text with up to @2 characters for each line; anything beyond these limits is lost. Not all characters are supported. The text can be changed after it's written by rightclicking the sign. Can be colored and made to glow. Use bone meal to remove color and glow.", NUMBER_OF_LINES, LINE_LENGTH),
 	use_texture_alpha = "opaque",
 	sunlight_propagates = true,
-	walkable = false,
+	walkable = true,
 	is_ground_content = false,
 	paramtype2 = "degrotate",
 	drawtype = "mesh",
@@ -101,6 +101,10 @@ local sign_tpl = {
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {0, 0, 0, 0, 0, 0}
 	},
 	groups = {axey = 1, handy = 2, sign = 1, supported_node = 1, not_in_creative_inventory = 1, breaking_cactus = 1},
 	stack_max = 16,
