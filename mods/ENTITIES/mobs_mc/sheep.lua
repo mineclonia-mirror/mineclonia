@@ -249,15 +249,8 @@ end
 local scale_chance = mcl_mobs.scale_chance
 
 local function sound_play_graze (self, self_pos, node_graze)
-	--[=[
-	In Minecraft, the sound when sheep graze is `block.grass.break`
-	which is equivalent in Mineclonia to the `dug` sound of
-	`mcl_core:dirt_with_grass` and `mcl_trees:leaves_oak`.
-	- https://minecraft.wiki/w/Sheep#Sounds
-	- https://minecraft.wiki/w/Grass_Block#Sounds
-	- https://minecraft.wiki/w/Leaves#Sounds
-	--]=]
-	if core.registered_nodes[node_graze.name].sounds.dug then
+	local def = core.registered_nodes[node_graze.name]
+	if def and def.sounds and def.sounds.dug then
 		local sound_graze = core.registered_nodes[node_graze.name].sounds.dug
 		core.sound_play(
 			{name = sound_graze.name, gain = sound_graze.gain},
