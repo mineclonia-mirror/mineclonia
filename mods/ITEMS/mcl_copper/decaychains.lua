@@ -302,7 +302,23 @@ core.register_on_mods_loaded(function()
 		action = function(pos, node)
 			local dc = mcl_copper.get_decayed(node.name)
 			if not dc then return end
+
+			-- For doors, only process the bottom half to keep both halves in sync
+			if core.get_item_group(node.name, "door") > 0 and node.name:find("_t_") then
+				return
+			end
+
 			core.swap_node(pos, {name = dc, param2 = node.param2})
+
+			-- Synchronize the top half for copper doors
+			if core.get_item_group(dc, "door") > 0 then
+				local other_pos = vector.offset(pos, 0, 1, 0)
+				local other_name = dc:gsub("_b_", "_t_")
+				local other_node = core.get_node(other_pos)
+				if core.get_item_group(other_node.name, "door") > 0 and core.registered_nodes[other_name] then
+					core.swap_node(other_pos, {name = other_name, param2 = other_node.param2})
+				end
+			end
 		end,
 	})
 	for _,v in pairs(mcl_copper.registered_decaychains) do
