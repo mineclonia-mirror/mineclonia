@@ -106,7 +106,7 @@ local sign_tpl = {
 		type = "fixed",
 		fixed = {0, 0, 0, 0, 0, 0}
 	},
-	groups = {axey = 1, handy = 2, sign = 1, supported_node = 1, not_in_creative_inventory = 1, breaking_cactus = 1},
+	groups = {axey = 1, handy = 2, sign = 1, supported_node = 1, not_in_creative_inventory = 1, breaking_cactus = 1, falling_ghost = 1},
 	stack_max = 16,
 	sounds = mcl_sounds.node_sound_wood_defaults(),
 	node_placement_prediction = "",
@@ -532,7 +532,7 @@ local sign_wall = table.merge(sign_tpl, {
 		type = "wallmounted",
 		wall_side = {-0.5, -7/28, -0.5, -23/56, 7/28, 0.5}
 	},
-	groups = {axey = 1, handy = 2, sign = 1, supported_node_wallmounted = 1, deco_block = 1, breaking_cactus = 1},
+	groups = {axey = 1, handy = 2, sign = 1, supported_node_wallmounted = 1, deco_block = 1, breaking_cactus = 1, falling_ghost = 1},
 	_mcl_sign_type = "wall",
 })
 

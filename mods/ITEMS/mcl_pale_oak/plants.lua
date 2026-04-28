@@ -230,7 +230,7 @@ core.register_node("mcl_pale_oak:pale_moss_carpet", {
 	wield_scale = { x=1, y=1, z=0.5 },
 	groups = {
 		handy=1, carpet=1, supported_node=1, deco_block=1, compostability=30, dig_by_water=1,
-		dig_by_piston=1, fire_encouragement = 5, fire_flammability = 100
+		dig_by_piston=1, fire_encouragement = 5, fire_flammability = 100, falling_breaks = 1
 	},
 	sounds = mcl_sounds.node_sound_wool_defaults(),
 	paramtype = "light",

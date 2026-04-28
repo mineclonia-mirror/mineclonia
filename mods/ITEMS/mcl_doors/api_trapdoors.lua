@@ -121,6 +121,7 @@ function mcl_doors:register_trapdoor(name, def)
 	local groups_closed = groups
 	groups_closed.trapdoor = 1
 	groups_closed.deco_block = 1
+	groups_closed.falling_breaks = 1
 
 	local tpl_trapdoor = {
 		_mcl_blast_resistance = def._mcl_blast_resistance,
@@ -198,6 +199,7 @@ function mcl_doors:register_trapdoor(name, def)
 
 	groups_open.trapdoor = 2
 	groups_open.not_in_creative_inventory = 1
+	groups_open.falling_breaks = 0
 
 	core.register_node(":"..name.."_open", table.merge(tpl_trapdoor, {
 		_mcl_baseitem = name,

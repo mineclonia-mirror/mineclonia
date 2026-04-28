@@ -98,6 +98,7 @@ function mcl_lanterns.register_lantern(name, def)
 	groups.lantern = 1
 	groups.attaches_to_top = 1
 	groups.attaches_to_base = 1
+	groups.falling_breaks = 1
 
 	core.register_node(":"..itemstring_floor, {
 		description = def.description,

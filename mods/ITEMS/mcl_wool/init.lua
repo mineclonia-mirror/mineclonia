@@ -57,7 +57,7 @@ for color,colordef in pairs(mcl_dyes.colors) do
 		tiles = {texcolor..".png"},
 		wield_image = texcolor..".png",
 		wield_scale = { x=1, y=1, z=0.5 },
-		groups = {handy=1, carpet=1,supported_node=1,flammable=1,fire_encouragement=60, fire_flammability=20, dig_by_water=1,deco_block=1,["unicolor_"..color]=1, not_breaking_cactus=1},
+		groups = {handy=1, carpet=1,supported_node=1,flammable=1,fire_encouragement=60, fire_flammability=20, dig_by_water=1,deco_block=1,["unicolor_"..color]=1, not_breaking_cactus=1, falling_breaks = 1},
 		sounds = mcl_sounds.node_sound_wool_defaults(),
 		paramtype = "light",
 		sunlight_propagates = true,

@@ -29,6 +29,7 @@ mcl_heads.deftemplate = {
 		unsticky = 1,
 		pathfinder_partial = 2,
 		not_breaking_cactus = 1,
+		falling_breaks = 1
 	},
 
 	sunlight_propagates = true,
@@ -192,6 +193,7 @@ local function register_wall(head_def)
 			dig_by_piston = 1,
 			not_in_creative_inventory = 1,
 			pathfinder_partial = 2,
+			falling_breaks = 1,
 		},
 		_doc_items_create_entry = false,
 		-- Note: -x coords go right per-pixel, -y coords go down per-pixel

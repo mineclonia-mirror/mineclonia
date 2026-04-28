@@ -99,6 +99,7 @@ function mcl_torches.register_torch(def)
 	groups.attaches_to_side = 1
 	groups.offhand_item = 1
 	groups.offhand_placeable = 1
+	groups.falling_ghost = 1
 
 	local floordef = {
 		description = def.description,
@@ -115,7 +116,7 @@ function mcl_torches.register_torch(def)
 		paramtype2 = "wallmounted",
 		sunlight_propagates = true,
 		is_ground_content = false,
-		walkable = false,
+		walkable = true,
 		light_source = def.light,
 		groups = groups,
 		drop = def.drop or itemstring,
@@ -123,6 +124,10 @@ function mcl_torches.register_torch(def)
 		selection_box = {
 			type = "wallmounted",
 			wall_bottom = {-2/16, -0.5, -2/16, 2/16, 1/16, 2/16},
+		},
+			collision_box = {
+			type = "fixed",
+			fixed = {0, 0, 0, 0, 0, 0}
 		},
 		sounds = def.sounds,
 		node_placement_prediction = "",
@@ -198,7 +203,7 @@ function mcl_torches.register_torch(def)
 		paramtype2 = "wallmounted",
 		sunlight_propagates = true,
 		is_ground_content = false,
-		walkable = false,
+		walkable = true,
 		light_source = def.light,
 		groups = groups_wall,
 		drop = def.drop or itemstring,
@@ -207,6 +212,10 @@ function mcl_torches.register_torch(def)
 		selection_box = {
 			type = "wallmounted",
 			wall_side = {-0.5, -0.3, -0.1, -0.2, 0.325, 0.1},
+		},
+			collision_box = {
+			type = "fixed",
+			fixed = {0, 0, 0, 0, 0, 0}
 		},
 		sounds = def.sounds,
 		on_rotate = false,

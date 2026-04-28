@@ -90,6 +90,9 @@ Please read <https://minecraft.wiki/w/Breaking> to learn how digging times work 
 * `compostability=X`: Item can be used on a composter block; X (1-100) is the % chance of adding a level of compost
 * `leaves=X`: Node will spotaneously decay if no tree trunk nodes remain within 6 blocks distance.
 * `leaves_orphan`: See above, these nodes are in the process of decayed.
+* `falling_breaks=1`: For walkable nodes like flower pots & enchanting tables which break falling nodes, but don't let them pass through or stop.
+* `falling_ghost=1`: For nodes that were made walkable with no collision, but shouldn't be. Like torches, and signs; but now allow falling nodes to pass through when falling.
+
 
 #### Footnotes
 

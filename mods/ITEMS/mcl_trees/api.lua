@@ -221,7 +221,7 @@ local tpl_sapling = {
 		attached_node = 1,
 		deco_block = 1,
 		plant = 1, sapling = 1, non_mycelium_plant = 1,
-		compostability = 30
+		compostability = 30, falling_breaks = 1
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	on_construct = function(pos)

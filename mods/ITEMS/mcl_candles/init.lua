@@ -101,7 +101,7 @@ local tpl_candle = {
 	drop = "",
 	groups = {
 		axey = 1, candles = 1, deco_block = 1, dig_by_piston = 1, handy = 1, not_solid = 1,
-		pickaxey = 1, shearsy = 1, shovely = 1, swordy = 1, unlit_candles = 1
+		pickaxey = 1, shearsy = 1, shovely = 1, swordy = 1, unlit_candles = 1, falling_breaks = 1
 	},
 	inventory_image = "mcl_candles_item.png",
 	is_ground_content = false,
@@ -122,7 +122,7 @@ local tpl_lit_candle = {
 	groups = {
 		axey = 1, candles = 1, dig_by_piston = 1, handy = 1, lit_candles = 1,
 		not_in_creative_inventory = 1, not_solid = 1, pickaxey = 1, shearsy = 1,
-		shovely = 1, swordy = 1
+		shovely = 1, swordy = 1, falling_breaks = 1
 	},
     tiles = {
         "mcl_candles_candle.png",

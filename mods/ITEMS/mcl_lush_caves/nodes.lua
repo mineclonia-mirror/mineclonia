@@ -93,7 +93,7 @@ core.register_node("mcl_lush_caves:moss_carpet", {
 	tiles = {"mcl_lush_caves_moss_carpet.png"},
 	wield_image ="mcl_lush_caves_moss_carpet.png",
 	wield_scale = { x=1, y=1, z=0.5 },
-	groups = {handy=1, carpet=1, supported_node=1, deco_block=1, compostability=30, dig_by_water=1, dig_by_piston=1},
+	groups = {handy=1, carpet=1, supported_node=1, deco_block=1, compostability=30, dig_by_water=1, dig_by_piston=1, falling_breaks = 1},
 	sounds = mcl_sounds.node_sound_wool_defaults(),
 	paramtype = "light",
 	sunlight_propagates = true,

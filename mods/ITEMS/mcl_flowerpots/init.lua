@@ -62,7 +62,7 @@ core.register_node("mcl_flowerpots:flower_pot", table.merge(tpl_pots, {
 	tiles = {"mcl_flowerpots_flowerpot.png"},
 	wield_image = "mcl_flowerpots_flowerpot_inventory.png",
 	inventory_image = "mcl_flowerpots_flowerpot_inventory.png",
-	groups = { dig_immediate = 3, deco_block = 1, attached_node = 1, dig_by_piston = 1, flower_pot = 1, unsticky = 1, pathfinder_partial = 2, not_breaking_cactus = 1, },
+	groups = { dig_immediate = 3, deco_block = 1, attached_node = 1, dig_by_piston = 1, flower_pot = 1, unsticky = 1, pathfinder_partial = 2, not_breaking_cactus = 1, falling_breaks = 1 },
 	on_rightclick = function(pos, _, clicker, itemstack)
 		local player_name = check_player_protection(pos, clicker)
 		if not player_name then
@@ -102,7 +102,7 @@ function mcl_flowerpots.register_potted_flower(name, def)
 		tiles = {
 			{name = "mcl_flowerpots_flowerpot.png", color = "white"}, def.image
 		},
-		groups = { dig_immediate = 3, attached_node = 1, dig_by_piston = 1, not_in_creative_inventory = 1, flower_pot = 2, unsticky = 1, not_breaking_cactus = 1, },
+		groups = { dig_immediate = 3, attached_node = 1, dig_by_piston = 1, not_in_creative_inventory = 1, flower_pot = 2, unsticky = 1, not_breaking_cactus = 1, falling_breaks = 1 },
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player_name = check_player_protection(pos, clicker)
 			if not player_name then
@@ -149,7 +149,7 @@ function mcl_flowerpots.register_potted_cube(name, def)
 		tiles = {
 			def.image,
 		},
-		groups = { dig_immediate = 3, attached_node = 1, dig_by_piston = 1, not_in_creative_inventory = 1, flower_pot = 2, unsticky = 1},
+		groups = { dig_immediate = 3, attached_node = 1, dig_by_piston = 1, not_in_creative_inventory = 1, flower_pot = 2, unsticky = 1, falling_breaks = 1},
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local player_name = check_player_protection(pos, clicker)
 			if not player_name then

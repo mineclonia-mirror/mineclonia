@@ -12,7 +12,8 @@ core.register_node("mcl_core:cactus", {
 	tiles = {"mcl_core_cactus_top.png", "mcl_core_cactus_bottom.png", "mcl_core_cactus_side.png"},
 	groups = {
 		handy = 1, attached_node = 1, deco_block = 1, dig_by_piston = 1,
-		plant = 1, enderman_takable = 1, compostability = 50, unsticky = 1
+		plant = 1, enderman_takable = 1, compostability = 50, unsticky = 1,
+		falling_breaks = 1
 	},
 	sounds = mcl_sounds.node_sound_wood_defaults(),
 	paramtype = "light",

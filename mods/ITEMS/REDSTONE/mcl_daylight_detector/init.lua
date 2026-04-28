@@ -27,7 +27,7 @@ local commdef = {
 		type = "fixed",
 		fixed = boxes
 	},
-	groups = {handy=1,axey=1, material_wood=1, flammable=-1, daylight_detector=1, unmovable_by_piston = 1},
+	groups = {handy=1,axey=1, material_wood=1, flammable=-1, daylight_detector=1, unmovable_by_piston = 1, falling_breaks = 1},
 	sounds = mcl_sounds.node_sound_glass_defaults(),
 	on_construct = function(pos)
 		update_detector(pos)

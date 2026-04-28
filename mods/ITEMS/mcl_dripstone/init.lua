@@ -266,6 +266,7 @@ for i = 1, #dripstone_stages do
 			dripstone_stage = i,
 			pathfinder_partial = 2,
 			dig_by_trident = 1,
+			falling_breaks = 1
 		},
 		sunlight_propagates = true,
 		paramtype = "light",

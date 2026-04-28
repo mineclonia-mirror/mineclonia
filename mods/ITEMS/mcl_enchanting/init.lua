@@ -247,7 +247,7 @@ core.register_node("mcl_enchanting:table", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0.25, 0.5},
 	},
 	sounds = mcl_sounds.node_sound_stone_defaults(),
-	groups = {pickaxey = 2, deco_block = 1, unmovable_by_piston = 1, pathfinder_partial = 2},
+	groups = {pickaxey = 2, deco_block = 1, unmovable_by_piston = 1, pathfinder_partial = 2, falling_breaks = 1},
 	on_rotate = screwdriver.rotate_simple,
 	on_rightclick = function(pos, _, clicker)
 		local player_meta = clicker:get_meta()

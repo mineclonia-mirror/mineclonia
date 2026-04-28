@@ -159,7 +159,18 @@ core.register_entity(":__builtin:falling_node", {
 		-- TODO: At this point, we did 2 get_nodes in 1 tick.
 		-- Figure out how to improve that (if it is a problem).
 
-		if bcn and (not bcd or bcd.walkable or
+		if core.get_item_group(bcn.name, "falling_breaks") == 1 then
+			local drops = core.get_node_drops(self.node.name, "")
+			for _, dropped_item in pairs(drops) do
+				core.add_item(np, dropped_item)
+			end
+			self.object:remove()
+			return
+		elseif core.get_item_group(bcn.name, "falling_ghost") == 1 then
+			if core.get_item_group(np.name, "solid") == 1 then
+				return
+			end
+		elseif bcn and (not bcd or bcd.walkable or
 				(core.get_item_group(self.node.name, "float") ~= 0 and
 				bcd.liquidtype ~= "none")) then
 			if bcd and bcd.leveled and

@@ -116,6 +116,7 @@ for size, def in pairs(bud_def) do
 			deco_block = 1,
 			amethyst_buds = 1,
 			attached_node = 1,
+			falling_breaks = 1,
 		},
 		sounds = sounds,
 		_mcl_hardness = 1.5,
