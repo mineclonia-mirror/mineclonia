@@ -335,6 +335,11 @@ local function overlay_tiles(orig,overlay)
 	return tiles
 end
 
+local function sus_node_falls(pos)
+	core.sound_play("default_break_glass", {pos=pos, gain=0.5}, true)
+	core.remove_node(pos)
+end
+
 function mcl_sus_nodes.register_sus_node(name,source,overrides)
 	local sdef = core.registered_nodes[source]
 	assert(sdef, "[mcl_sus_nodes] trying to register "..tostring(name).." but source node "..tostring(source).."doesn't exist")
@@ -347,7 +352,8 @@ function mcl_sus_nodes.register_sus_node(name,source,overrides)
 		_mcl_sus_nodes_parent = source,
 		_mcl_sus_nodes_main = main_itemstring,
 		_mcl_sus_nodes_drops = table.copy(sus_drops_default),
-		_mcl_falling_node_alternative = source,
+		_mcl_falling_node_alternative = main_itemstring,
+		_mcl_after_falling = sus_node_falls,
 	}, overrides or {})
 	def.groups = table.merge(sdef.groups, tpl.groups, overrides and overrides.groups or {})
 	core.register_node(main_itemstring,def)

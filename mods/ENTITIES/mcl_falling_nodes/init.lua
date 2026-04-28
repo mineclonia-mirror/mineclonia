@@ -50,6 +50,9 @@ local function deal_falling_damage(self, _)
 	end
 end
 
+-- If falling for more than 30 seconds turn into item drop.
+local time_to_live = 31
+
 core.register_entity(":__builtin:falling_node", {
 	initial_properties = {
 		visual = "wielditem",
@@ -64,6 +67,7 @@ core.register_entity(":__builtin:falling_node", {
 	meta = {},
 	_mcl_fishing_hookable = true,
 	_mcl_fishing_reelable = true,
+	age = 0,
 	set_node = function(self, node, meta)
 		local def = core.registered_nodes[node.name]
 		-- Change falling node if definition tells us to
@@ -135,9 +139,12 @@ core.register_entity(":__builtin:falling_node", {
 	on_step = function(self, dtime)
 		-- Set gravity
 		local acceleration = self.object:get_acceleration()
-		if not vector.equals(acceleration, {x = 0, y = -10, z = 0}) then
+		if not vector.equals(acceleration, {x = 0, y = -10, z = 0}) and not self._slowed then
 			self.object:set_acceleration({x = 0, y = -10, z = 0})
 		end
+
+		self.age = self.age + dtime
+
 		-- Turn to actual node when colliding with ground, or continue to move
 		local pos = self.object:get_pos()
 
@@ -170,6 +177,12 @@ core.register_entity(":__builtin:falling_node", {
 			if core.get_item_group(np.name, "solid") == 1 then
 				return
 			end
+		elseif core.get_item_group(bcn.name, "swordy_cobweb") == 1 then
+			if vector.equals(acceleration, {x = 0, y = -10, z = 0}) then
+				self.object:set_velocity({x=0,y=0,z=0})
+			end
+			self.object:set_acceleration({x = 0, y = -0.0020, z = 0})
+			self._slowed = true
 		elseif bcn and (not bcd or bcd.walkable or
 				(core.get_item_group(self.node.name, "float") ~= 0 and
 				bcd.liquidtype ~= "none")) then
@@ -229,6 +242,25 @@ core.register_entity(":__builtin:falling_node", {
 			core.check_for_falling(np)
 			return
 		end
+		self._slowed = false
+
+		-- Drop the *falling node* as an item if alive too long.
+		if time_to_live > 0 and self.age > time_to_live then
+			local def = core.registered_nodes[self.node.name]
+			-- Change falling node if definition tells us to
+			if def and def._mcl_falling_node_alternative then
+				self.node.name = def._mcl_falling_node_alternative
+				core.add_item(np, self.node.name)
+			else
+				local drops = core.get_node_drops(self.node.name, "")
+				for _, dropped_item in pairs(drops) do
+					core.add_item(np, dropped_item)
+				end
+			end
+			self.object:remove()
+			return
+		end
+
 		local vel = self.object:get_velocity()
 		-- Fix position if entity does not move
 		if vector.equals(vel, {x = 0, y = 0, z = 0}) then
