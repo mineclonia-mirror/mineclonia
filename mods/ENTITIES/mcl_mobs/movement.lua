@@ -1441,10 +1441,10 @@ function mob_class:replace_activity (activity_name, uninterruptible)
 end
 
 local mathmax = math.max
-local mathfloor = math.floor
+local mathmin = math.min
 
 function mcl_mobs.scale_chance (frequency, dtime)
-	return mathmax (2, mathfloor (frequency * (0.05 / dtime) + 0.5))
+	return mathmax (2, floor (frequency * (0.05 / dtime) + 0.5))
 end
 
 local function run_ai_1 (self, self_pos, dtime, moveresult)
@@ -1973,4 +1973,368 @@ function mob_class:get_nodepos ()
 		return pos
 	end
 	return nil
+end
+
+local function unpack_cbox (x, self_pos)
+	local bx = self_pos.x
+	local by = self_pos.y
+	local bz = self_pos.z
+	return x[1] + bx, x[2] + by, x[3] + bz,
+		x[4] + bx, x[5] + by, x[6] + bz
+end
+
+local mathabs = math.abs
+
+local v = vector.zero ()
+
+local nearest_x, nearest_x_max, nearest_x_min
+local nearest_y, nearest_y_max, nearest_y_min
+local nearest_z, nearest_z_max, nearest_z_min
+local cx, cy, cz
+
+local function test_level_collision (x1, y1, z1, x2, y2, z2, x, y, z)
+	v.x = x
+	v.y = y
+	v.z = z
+	local cid, _, _ = core.get_node_raw (x, y, z)
+	if mcl_levelgen.walkable_p (cid) then
+		local boxes = core.get_node_boxes ("collision_box", v)
+		for _, box in ipairs (boxes) do
+			local x1b, y1b, z1b, x2b, y2b, z2b = unpack_cbox (box, v)
+			if x1 <= x2b
+				and y1 <= y2b
+				and z1 <= z2b
+				and x2 >= x1b
+				and y2 >= y1b
+				and z2 >= z1b then
+
+				local dx1b = mathabs (x1b - cx)
+				local dx2b = mathabs (x2b - cx)
+				local dy1b = mathabs (y1b - cy)
+				local dy2b = mathabs (y2b - cy)
+				local dz1b = mathabs (z1b - cz)
+				local dz2b = mathabs (z2b - cz)
+
+				if dx1b < mathabs (nearest_x - cx) then
+					nearest_x = x1b
+				end
+				if x1b < cx and dx1b < cx - nearest_x_min then
+					nearest_x_min = x1b
+				elseif x1b >= cx and dx1b < nearest_x_max - cx then
+					nearest_x_max = x1b
+				end
+				if dx2b < mathabs (nearest_x - cx) then
+					nearest_x = x2b
+				end
+				if x2b < cx and dx2b < cx - nearest_x_min then
+					nearest_x_min = x2b
+				elseif x2b >= cx and dx2b < nearest_x_max - cx then
+					nearest_x_max = x2b
+				end
+				if dy1b < mathabs (nearest_y - cy) then
+					nearest_y = y1b
+				end
+				if y1b < cy and dy1b < cy - nearest_y_min then
+					nearest_y_min = y1b
+				elseif y1b >= cy and dy1b < nearest_y_max - cy then
+					nearest_y_max = y1b
+				end
+				if dy2b < mathabs (nearest_y - cy) then
+					nearest_y = y2b
+				end
+				if y2b < cy and dy2b < cy - nearest_y_min then
+					nearest_y_min = y2b
+				elseif y2b >= cy and dy2b < nearest_y_max - cy then
+					nearest_y_max = y2b
+				end
+				if dz1b < mathabs (nearest_z - cz) then
+					nearest_z = z1b
+				end
+				if z1b < cz and dz1b < cz - nearest_z_min then
+					nearest_z_min = z1b
+				elseif z1b >= cz and dz1b < nearest_z_max - cz then
+					nearest_z_max = z1b
+				end
+				if dz2b < mathabs (nearest_z - cz) then
+					nearest_z = z2b
+				end
+				if z2b < cz and dz2b < cz - nearest_z_min then
+					nearest_z_min = z2b
+				elseif z2b >= cz and dz2b < nearest_z_max - cz then
+					nearest_z_max = z2b
+				end
+				return true
+			end
+		end
+	end
+	return false
+end
+
+local huge = math.huge
+
+local function any_collision_p (x1, y1, z1, x2, y2, z2, v)
+	local sx = floor (x1 + 0.5)
+	local sy = floor (y1 + 0.5)
+	local sz = floor (z1 + 0.5)
+	local tx = floor (x2 + 0.5)
+	local ty = floor (y2 + 0.5)
+	local tz = floor (z2 + 0.5)
+	local collides = false
+
+	nearest_x = huge
+	nearest_x_max = huge
+	nearest_x_min = -huge
+	nearest_y = huge
+	nearest_y_max = huge
+	nearest_y_min = -huge
+	nearest_z = huge
+	nearest_z_max = huge
+	nearest_z_min = -huge
+
+	for z = sz, tz do
+		for y = sy, ty do
+			for x = sx, tx do
+				if test_level_collision (x1, y1, z1, x2, y2, z2,
+							 x, y, z) then
+					collides = true
+				end
+			end
+		end
+	end
+	return collides
+end
+
+local function axis_precedence_p (fn, i, fns)
+	for i = i + 1, 3 do
+		if fns[i] == fn then
+			return true
+		end
+	end
+	return false
+end
+
+local collision_test_x
+local collision_test_y
+local collision_test_z
+
+function collision_test_y (v, self_pos, new_cbox, i, fns)
+	local x1, y1, z1, x2, y2, z2 = unpack_cbox (new_cbox, self_pos)
+
+	-- Collect all vertices around the complete collision box in
+	-- order to anticipate the amount of movement which might be
+	-- applied on other axes.
+	if any_collision_p (x1, y1, z1, x2, y2, z2) then
+		-- Perform another collision test with axes other than
+		-- this one, adjusted so as to exclude any
+		-- obstructions which might subsequently be evaded by
+		-- such movement.
+		if axis_precedence_p (collision_test_x, i, fns) then
+			x1 = mathmax (x1, nearest_x_min + 0.01)
+			x2 = mathmin (x2, nearest_x_max - 0.01)
+		end
+		if axis_precedence_p (collision_test_z, i, fns) then
+			z1 = mathmax (z1, nearest_z_min + 0.01)
+			z2 = mathmin (z2, nearest_z_max - 0.01)
+		end
+
+		if any_collision_p (x1, y1, z1, x2, y2, z2) then
+			-- Move the bbox for subsequent tests.
+			if nearest_y < cy then
+				v.y = 1.0
+				local dy = mathmax (0, nearest_y - y1)
+				cy = cy + dy + 0.01
+				self_pos.y = self_pos.y + dy + 0.01
+			else
+				v.y = -1.0
+				local dy = mathmax (0, y2 - nearest_y)
+				cy = cy - dy - 0.01
+				self_pos.y = self_pos.y - dy + 0.01
+			end
+		end
+	end
+end
+
+function collision_test_x (v, self_pos, new_cbox, i, fns)
+	local x1, y1, z1, x2, y2, z2 = unpack_cbox (new_cbox, self_pos)
+
+	if any_collision_p (x1, y1, z1, x2, y2, z2) then
+		if axis_precedence_p (collision_test_z, i, fns) then
+			z1 = mathmax (z1, nearest_z_min + 0.01)
+			z2 = mathmin (z2, nearest_z_max - 0.01)
+		end
+		if axis_precedence_p (collision_test_y, i, fns) then
+			y1 = mathmax (y1, nearest_y_min + 0.01)
+			y2 = mathmin (y2, nearest_y_max - 0.01)
+		end
+
+		if any_collision_p (x1, y1, z1, x2, y2, z2) then
+			-- Move the bbox for subsequent tests.
+			if nearest_x < cx then
+				v.x = 1.0
+				local dx = mathmax (0, nearest_x - x1)
+				cx = cx + dx + 0.01
+				self_pos.x = self_pos.x + dx + 0.01
+			else
+				v.x = -1.0
+				local dx = mathmax (0, x2 - nearest_x)
+				cx = cx - dx - 0.01
+				self_pos.x = self_pos.x - dx + 0.01
+			end
+		end
+	end
+end
+
+function collision_test_z (v, self_pos, new_cbox, i, fns)
+	local x1, y1, z1, x2, y2, z2 = unpack_cbox (new_cbox, self_pos)
+
+	if any_collision_p (x1, y1, z1, x2, y2, z2) then
+		if axis_precedence_p (collision_test_x, i, fns) then
+			x1 = mathmax (x1, nearest_x_min + 0.01)
+			x2 = mathmin (x2, nearest_x_max - 0.01)
+		end
+		if axis_precedence_p (collision_test_y, i, fns) then
+			y1 = mathmax (y1, nearest_y_min + 0.01)
+			y2 = mathmin (y2, nearest_y_max - 0.01)
+		end
+
+		if any_collision_p (x1, y1, z1, x2, y2, z2) then
+			-- Move the bbox for subsequent tests.
+			if nearest_z < cz then
+				v.z = 1.0
+				local dz = mathmax (0, nearest_z - z1)
+				cz = cz + dz + 0.01
+				self_pos.z = self_pos.z + dz + 0.01
+			else
+				v.z = -1.0
+				local dz = mathmax (0, z2 - nearest_z)
+				cz = cz - dz - 0.01
+				self_pos.z = self_pos.z - dz + 0.01
+			end
+		end
+	end
+end
+
+function mob_class:prevent_phasing_1 (self_pos, new_cbox, fns)
+	local v = vector.zero ()
+	local self_pos = vector.copy (self_pos)
+
+	cx = self_pos.x + (new_cbox[1] + new_cbox[4]) * 0.5
+	cy = self_pos.y + (new_cbox[2] + new_cbox[5]) * 0.5
+	cz = self_pos.z + (new_cbox[3] + new_cbox[6]) * 0.5
+
+	for i, fn in ipairs (fns) do
+		fn (v, self_pos, new_cbox, i, fns)
+	end
+	return v, self_pos
+end
+
+local TESTS_XYZ = {
+	collision_test_x,
+	collision_test_y,
+	collision_test_z,
+}
+
+local TESTS_XZY = {
+	collision_test_x,
+	collision_test_z,
+	collision_test_y,
+}
+
+local TESTS_YXZ = {
+	collision_test_y,
+	collision_test_x,
+	collision_test_z,
+}
+
+local TESTS_YZX = {
+	collision_test_y,
+	collision_test_z,
+	collision_test_x,
+}
+
+local TESTS_ZXY = {
+	collision_test_z,
+	collision_test_x,
+	collision_test_y,
+}
+
+local TESTS_ZYX = {
+	collision_test_z,
+	collision_test_y,
+	collision_test_x,
+}
+
+local function dist_sqr (a, b)
+	local dx = b.x - a.x
+	local dy = b.y - a.y
+	local dz = b.z - a.z
+	return dx * dx + dy * dy + dz * dz
+end
+
+function mob_class:prevent_phasing (new_cbox, accelerate)
+	local self_pos = self.object:get_pos ()
+	local v_xyz, pos_xyz
+		= self:prevent_phasing_1 (self_pos, new_cbox, TESTS_XYZ)
+	-- No collisions were detected.
+	if v_xyz.x == 0 and v_xyz.y == 0 and v_xyz.z == 0 then
+		return
+	end
+	local v_xzy, pos_xzy
+		= self:prevent_phasing_1 (self_pos, new_cbox, TESTS_XZY)
+	local v_yxz, pos_yxz
+		= self:prevent_phasing_1 (self_pos, new_cbox, TESTS_YXZ)
+	local v_yzx, pos_yzx
+		= self:prevent_phasing_1 (self_pos, new_cbox, TESTS_YZX)
+	local v_zxy, pos_zxy
+		= self:prevent_phasing_1 (self_pos, new_cbox, TESTS_ZXY)
+	local v_zyx, pos_zyx
+		= self:prevent_phasing_1 (self_pos, new_cbox, TESTS_ZYX)
+
+	local v_min = v_xyz
+	local pos_min = pos_xyz
+	local dst_min = dist_sqr (pos_xyz, self_pos)
+
+	local d = dist_sqr (pos_xzy, self_pos)
+	if d < dst_min then
+		v_min = v_xzy
+		pos_min = pos_xzy
+		dst_min = d
+	end
+
+	local d = dist_sqr (pos_yxz, self_pos)
+	if d < dst_min then
+		v_min = v_yxz
+		pos_min = pos_yxz
+		dst_min = d
+	end
+
+	local d = dist_sqr (pos_yzx, self_pos)
+	if d < dst_min then
+		v_min = v_yzx
+		pos_min = pos_yzx
+		dst_min = d
+	end
+
+	local d = dist_sqr (pos_zxy, self_pos)
+	if d < dst_min then
+		v_min = v_zxy
+		pos_min = pos_zxy
+		dst_min = d
+	end
+
+	local d = dist_sqr (pos_zyx, self_pos)
+	if d < dst_min then
+		v_min = v_zyx
+		pos_min = pos_zyx
+	end
+
+	if accelerate then
+		local acc = vector.normalize (v_min)
+		acc.x = acc.x * accelerate
+		acc.y = acc.y * accelerate
+		acc.z = acc.z * accelerate
+		self.object:add_velocity (acc)
+	else
+		self.object:set_pos (pos_min)
+	end
 end

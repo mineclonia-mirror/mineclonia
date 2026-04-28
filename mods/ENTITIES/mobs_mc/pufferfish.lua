@@ -1,4 +1,5 @@
 local S = core.get_translator ("mobs_mc")
+local mob_class = mcl_mobs.mob_class
 
 ------------------------------------------------------------------------
 -- Pufferfish.
@@ -44,7 +45,7 @@ local pufferfish = {
 	xp_max = 3,
 	armor = 100,
 	rotate = 0,
-	collisionbox = large_collision_box,
+	collisionbox = small_collision_box,
 	visual_size = { x = 1, y = 1, },
 	visual = "mesh",
 	head_eye_height = 0.455,
@@ -79,7 +80,7 @@ local pufferfish = {
 	makes_footstep_sound = false,
 	swims = true,
 	pace_height = 1.0,
-	do_go_pos = mcl_mobs.mob_class.fish_do_go_pos,
+	do_go_pos = mob_class.fish_do_go_pos,
 	flops = true,
 	breathes_in_water = true,
 	runaway = true,
@@ -105,9 +106,7 @@ end
 -- Pufferfish visuals.
 ------------------------------------------------------------------------
 
-local mob_class = mcl_mobs.mob_class
-
-function pufferfish:apply_puff_state (puff_state)
+function pufferfish:apply_puff_state (puff_state, prevent_phasing)
 	local cbox, mesh
 	if puff_state == 0 then
 		cbox = small_collision_box
@@ -119,6 +118,9 @@ function pufferfish:apply_puff_state (puff_state)
 		cbox = large_collision_box
 		mesh = "mobs_mc_pufferfish_big.b3d"
 	end
+	if prevent_phasing then
+		self:prevent_phasing (cbox, 2.0)
+	end
 	self.object:set_properties ({
 		collisionbox = cbox,
 		mesh = mesh,
@@ -129,7 +131,7 @@ function pufferfish:apply_puff_state (puff_state)
 end
 
 function pufferfish:update_textures ()
-	self:apply_puff_state (self._puff_state)
+	self:apply_puff_state (self._puff_state, false)
 	self.base_texture = {
 		"mobs_mc_pufferfish.png",
 	}
@@ -149,7 +151,7 @@ function pufferfish:do_custom (dtime)
 		end
 		if next_state ~= self._puff_state then
 			self._puff_state = next_state
-			self:apply_puff_state (next_state)
+			self:apply_puff_state (next_state, true)
 		end
 		self._puff_time = puff + dtime
 	else
@@ -164,7 +166,7 @@ function pufferfish:do_custom (dtime)
 			end
 			if next_state ~= self._puff_state then
 				self._puff_state = next_state
-				self:apply_puff_state (next_state)
+				self:apply_puff_state (next_state, false)
 			end
 			self._unpuff_time = unpuff + dtime
 		end

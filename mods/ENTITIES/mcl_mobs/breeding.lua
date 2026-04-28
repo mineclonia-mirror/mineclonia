@@ -128,6 +128,7 @@ function mob_class:grow_into_adult ()
 			y = visual_size.y / vehicle_size.y,
 		}
 	end
+	self:prevent_phasing (self.base_colbox, false)
 	self:set_properties({
 		mesh = self.base_mesh,
 		visual_size = visual_size,
