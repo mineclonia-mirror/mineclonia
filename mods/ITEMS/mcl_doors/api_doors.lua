@@ -223,6 +223,11 @@ function mcl_doors:register_door(name, def)
 		use_texture_alpha = "clip"
 	}
 
+	local groups_bottom = table.copy(def.groups)
+	groups_bottom.door_bottom = 1
+	local groups_top = table.copy(def.groups)
+	groups_top.door_top = 1
+
 	local tpl_bottom = {
 		_mcl_redstone = {
 			connects_to = redstone_connects_to,
@@ -235,6 +240,7 @@ function mcl_doors:register_door(name, def)
 			if mcl_doors.is_open(pos) then close(pos) else open(pos) end
 			return true
 		end,
+		groups = groups_bottom,
 		node_box = {
 			fixed = def.node_box_bottom,
 			type = "fixed"
@@ -258,6 +264,7 @@ function mcl_doors:register_door(name, def)
 			if mcl_doors.is_open(pos) then close(pos) else open(pos) end
 			return true
 		end,
+		groups = groups_top,
 		node_box = {
 			fixed = def.node_box_top,
 			type = "fixed"

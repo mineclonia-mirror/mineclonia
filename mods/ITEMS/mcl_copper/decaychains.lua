@@ -110,12 +110,12 @@ end
 
 local function swap_door_part(pos, node)
 	if core.get_item_group(node.name, "door") > 0 then
-		if node.name:find("_t_") then
+		if core.get_item_group(node.name, "door_top") > 0 then
 			core.swap_node(vector.offset(pos,0,-1,0), {
 				name = node.name:gsub("_t_", "_b_"),
 				param2 = node.param2
 			})
-		else
+		elseif core.get_item_group(node.name, "door_bottom") > 0 then
 			core.swap_node(vector.offset(pos,0,1,0), {
 				name = node.name:gsub("_b_", "_t_"),
 				param2 = node.param2
@@ -304,7 +304,7 @@ core.register_on_mods_loaded(function()
 			if not dc then return end
 
 			-- For doors, only process the bottom half to keep both halves in sync
-			if core.get_item_group(node.name, "door") > 0 and node.name:find("_t_") then
+			if core.get_item_group(node.name, "door_top") > 0 then
 				return
 			end
 
