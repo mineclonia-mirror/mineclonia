@@ -105,6 +105,10 @@ function mcl_mobs.spawn_child (pos, mob_type)
 	if not child then
 		return
 	end
+	local entity = child:get_luaentity ()
+	if entity.collisionbox then
+		entity:prevent_phasing (entity.collisionbox)
+	end
 
 	mcl_mobs.effect (pos, 15, "mcl_particles_smoke.png", 1, 2, 2, 15, 5)
 	return child
