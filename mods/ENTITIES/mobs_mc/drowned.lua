@@ -550,11 +550,12 @@ local function object_targetable_p (object, pos)
 	return true
 end
 
-function drowned:discharge_ranged (self_pos, target_pos)
+function drowned:discharge_ranged (_, _)
 	local stack = self:get_wielditem ()
+	local target_pos = mcl_util.target_eye_pos (self.attack)
 	local inaccuracy = 14 - mcl_vars.difficulty * 4
-	local diff = vector.subtract (target_pos, self_pos)
 	local shoot_pos = mcl_util.target_eye_pos (self.object)
+	local diff = vector.subtract (target_pos, shoot_pos)
 	mcl_tridents.shoot_trident (stack, self.object, shoot_pos, nil, nil, diff,
 				    false, 0, inaccuracy, nil)
 end

@@ -569,7 +569,7 @@ function mob_class:on_step (dtime, moveresult)
 			self._driving_sent = true
 			mcl_serverplayer.update_vehicle (self.driver, {
 				_driving = true,
-			})
+			}, pos, vector.zero ())
 		elseif not should_drive and self._driving_sent then
 			self._driving_sent = false
 			if self.driver then

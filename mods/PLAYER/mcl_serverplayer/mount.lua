@@ -107,8 +107,8 @@ function mcl_serverplayer.handle_acknowledge_vehicle (player, state, objid)
 	end
 	entity._pending_rider = nil
 	player:set_attach (entity.object, state.attach_params.bone,
-			state.attach_params.position,
-			state.attach_params.rotation)
+			   state.attach_params.position,
+			   state.attach_params.rotation)
 	state.vehicle = entity.object
 	state.vehicle_id = objid
 	state.vehicle_pos = entity.object:get_pos ()
@@ -290,6 +290,8 @@ function mcl_serverplayer.update_vehicle (driver, caps, pos, velocity)
 	if state and state.vehicle then
 		local id = state.vehicle_id
 		if pos and velocity then
+			state.vehicle_pos = pos
+			state.vehicle_vel = velocity
 			mcl_serverplayer.send_vehicle_position (driver, id, pos, velocity)
 		end
 		if caps then

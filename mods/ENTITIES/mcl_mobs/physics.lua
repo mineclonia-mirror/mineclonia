@@ -1633,12 +1633,12 @@ function mob_class:check_one_immersion_depth (node, param2, base_y, pos, current
 						and LAVA_FORCE_NETHER or LAVA_FORCE
 					current.x = current.x + v.x * force
 					current.y = current.y + v.y * force
-					current.z = current.y + v.z * force
+					current.z = current.z + v.z * force
 				else
 					fluidtype = "water"
 					current.x = current.x + v.x * LIQUID_FORCE
 					current.y = current.y + v.y * LIQUID_FORCE
-					current.z = current.y + v.z * LIQUID_FORCE
+					current.z = current.z + v.z * LIQUID_FORCE
 				end
 				return depth, fluidtype
 			end
