@@ -189,7 +189,6 @@ mcl_mobs.mob_class = {
 	pace_height = 7,
 	pace_width = 10,
 	flops = false,
-	initialize_group = nil,
 	_hovers = false,
 	airborne_speed = 8.0,
 	_airborne_agile = false,

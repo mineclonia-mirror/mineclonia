@@ -1002,9 +1002,21 @@ local function convert_top_snow (node)
 	return node
 end
 
+local aa = vector.new ()
+local bb = vector.new ()
+local floor = math.floor
+
+local function set_search_bounds (pos, width, height)
+	aa.x = floor (pos.x + 0.5) - width
+	aa.y = floor (pos.y + 0.5) - height
+	aa.z = floor (pos.z + 0.5) - width
+	bb.x = floor (pos.x + 0.5) + width
+	bb.y = floor (pos.y + 0.5) + height
+	bb.z = floor (pos.z + 0.5) + width
+end
+
 function mob_class:pacing_target (pos, width, height, groups)
-	local aa = vector.new (pos.x - width, pos.y - height, pos.z - width)
-	local bb = vector.new (pos.x + width, pos.y + height, pos.z + width)
+	set_search_bounds (pos, width, height)
 	local nodes = core.find_nodes_in_area_under_air (aa, bb, groups)
 
 	if (self._restrict_center or self.acceptable_pacing_target)
@@ -1027,8 +1039,7 @@ end
 
 function mob_class:target_in_shade (pos, width, height)
 	local groups = {"group:solid", "group:water"}
-	local aa = vector.new (pos.x - width, pos.y - height, pos.z - width)
-	local bb = vector.new (pos.x + width, pos.y + height, pos.z + width)
+	set_search_bounds (pos, width, height)
 	local nodes = core.find_nodes_in_area_under_air (aa, bb, groups)
 
 	-- Minecraft tries ten times every tick.
@@ -1093,7 +1104,6 @@ local IDLE_TIME_MAX = 250
 local levelgen_enabled = mcl_levelgen.levelgen_enabled
 local conv_pos_dimension = mcl_levelgen.conv_pos_dimension
 local is_generated = mcl_levelgen.is_generated
-local floor = math.floor
 
 function mcl_mobs.is_position_completely_generated (pos)
 	if levelgen_enabled then
@@ -1364,7 +1374,7 @@ local SOLID_PACING_GROUPS = {
 }
 mcl_mobs.SOLID_PACING_GROUPS = SOLID_PACING_GROUPS
 
-function mob_class:check_frightened (pos)
+function mob_class:check_frightened (pos, dtime)
 	if self.frightened then
 		-- Still frightened?
 		if self:navigation_finished () then
@@ -1394,7 +1404,7 @@ function mob_class:check_frightened (pos)
 	return false
 end
 
-function mob_class:check_pace (pos)
+function mob_class:check_pace (pos, dtime)
 	if self.pacing then
 		-- Still pacing?
 		if self:navigation_finished () then
@@ -1522,8 +1532,7 @@ end
 ------------------------------------------------------------------------
 
 local function aquatic_pacing_target (self, pos, width, height, groups)
-	local aa = vector.new (pos.x - width, pos.y - height, pos.z - width)
-	local bb = vector.new (pos.x + width, pos.y + height, pos.z + width)
+	set_search_bounds (pos, width, height)
 	local nodes = core.find_nodes_in_area (aa, bb, groups)
 
 	if self._restrict_center and #nodes >= 1 then
@@ -1631,7 +1640,7 @@ local function find_school_leader (list, species, cluster)
 	end
 end
 
-function mob_class:check_schooling (self_pos, list)
+function mob_class:check_schooling (self_pos, dtime)
 	if self._leader then
 		if not is_valid (self._leader) then
 			self._leader = nil
@@ -1657,7 +1666,10 @@ function mob_class:check_schooling (self_pos, list)
 		local cleaned = {}
 		for _, follower in pairs (self._school) do
 			if is_valid (follower) then
-				table.insert (cleaned, follower)
+				local entity = follower:get_luaentity ()
+				if entity._leader == self.object then
+					table.insert (cleaned, follower)
+				end
 			end
 		end
 		self._school = cleaned

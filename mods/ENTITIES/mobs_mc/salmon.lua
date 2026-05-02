@@ -55,7 +55,6 @@ local salmon = {
 	swims = true,
 	pace_height = 1.0,
 	do_go_pos = mob_class.fish_do_go_pos,
-	initialize_group = mob_class.school_init_group,
 	_school_size = 5,
 	breathes_in_water = true,
 	flops = true,

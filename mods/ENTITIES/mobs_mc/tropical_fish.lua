@@ -40,13 +40,6 @@ local tropical_fish = {
 	runaway_bonus_near = 1.6,
 	runaway_bonus_far = 1.4,
 	runaway_view_range = 8,
-	initialize_group = mob_class.school_init_group,
-	ai_functions = {
-		mob_class.check_schooling,
-		mob_class.check_avoid,
-		mob_class.check_frightened,
-		mob_class.check_pace,
-	},
 	visual_size = {x=3, y=3},
 	makes_footstep_sound = false,
 	can_ride_boat = false,

@@ -54,7 +54,6 @@ local cod = {
 			max = 1,
 		},
 	},
-	initialize_group = mob_class.school_init_group,
 	runaway_from = {"players"},
 	runaway_bonus_near = 1.6,
 	runaway_bonus_far = 1.4,
