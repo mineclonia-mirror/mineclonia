@@ -1,5 +1,6 @@
 local mob_class = mcl_mobs.mob_class
 local is_valid = mcl_util.is_valid_objectref
+local ipairs = ipairs
 
 function mob_class:target_visible(origin, target)
 	-- This cache is flushed on each call to on_step.
@@ -1618,7 +1619,7 @@ function mob_class.school_init_group (list)
 
 	entity._school = {}
 	entity._desired_school_size = #list - 1
-	for _, item in pairs (list) do
+	for _, item in ipairs (list) do
 		if item ~= leader then
 			local mob = item:get_luaentity ()
 			table.insert (entity._school, item)
@@ -1629,7 +1630,7 @@ function mob_class.school_init_group (list)
 end
 
 local function find_school_leader (list, species, cluster)
-	for _, mob in pairs (list) do
+	for _, mob in ipairs (list) do
 		local entity = mob:get_luaentity ()
 		if entity and entity.name == species
 			and entity._school
@@ -1664,7 +1665,7 @@ function mob_class:check_schooling (self_pos, dtime)
 		-- This fish already leads a school.  Remove invalid
 		-- entries from its list of members.
 		local cleaned = {}
-		for _, follower in pairs (self._school) do
+		for _, follower in ipairs (self._school) do
 			if is_valid (follower) then
 				local entity = follower:get_luaentity ()
 				if entity._leader == self.object then
@@ -1682,7 +1683,7 @@ function mob_class:check_schooling (self_pos, dtime)
 
 		-- Assign nearby unassigned mobs other than the
 		-- selected leader to its school.
-		for _, mob in pairs (nearby) do
+		for _, mob in ipairs (nearby) do
 			local entity = mob:get_luaentity ()
 			if entity
 				and entity.object ~= leader.object
@@ -1692,6 +1693,10 @@ function mob_class:check_schooling (self_pos, dtime)
 				entity._leader = leader.object
 				entity:replace_activity ("_leader")
 				table.insert (leader._school, mob)
+
+				if #leader._school >= cluster then
+					break
+				end
 			end
 		end
 
