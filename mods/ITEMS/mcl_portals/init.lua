@@ -1,8 +1,6 @@
 -- Load files
 
-mcl_portals = {
-	storage = core.get_mod_storage(),
-}
+mcl_portals = {}
 
 ------------------------------------------------------------------------
 -- Utility functions.

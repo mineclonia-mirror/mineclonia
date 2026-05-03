@@ -67,6 +67,7 @@ core.register_entity(":__builtin:falling_node", {
 	meta = {},
 	_mcl_fishing_hookable = true,
 	_mcl_fishing_reelable = true,
+	object_teleport_allowed_1 = true,
 	age = 0,
 	set_node = function(self, node, meta)
 		local def = core.registered_nodes[node.name]
@@ -151,11 +152,6 @@ core.register_entity(":__builtin:falling_node", {
 		-- Portal check
 		local np = {x = pos.x, y = pos.y + 0.3, z = pos.z}
 		local n2 = core.get_node(np)
-		if n2.name == "mcl_portals:portal_end" then
-			-- TODO: Teleport falling node.
-			self.object:remove()
-			return
-		end
 
 		-- Position of bottom center point
 		local bcp = {x = pos.x, y = pos.y - 0.7, z = pos.z}
@@ -166,7 +162,20 @@ core.register_entity(":__builtin:falling_node", {
 		-- TODO: At this point, we did 2 get_nodes in 1 tick.
 		-- Figure out how to improve that (if it is a problem).
 
-		if core.get_item_group(bcn.name, "falling_breaks") == 1 then
+		if n2.name == "mcl_portals:portal_end" then
+			mcl_portals.end_teleport(self.object)
+			return
+		--nether portal teleport
+		elseif n2.name == "mcl_portals:portal" then
+			-- Prevent anvil griefing portals
+			if core.get_item_group(self.node.name, "crush_after_fall") ~= 0 then
+				self.object:remove()
+				core.add_item(np,self.node.name)
+			else
+				mcl_portals.teleport(self.object)
+			end
+			return
+		elseif core.get_item_group(bcn.name, "falling_breaks") == 1 then
 			local drops = core.get_node_drops(self.node.name, "")
 			for _, dropped_item in pairs(drops) do
 				core.add_item(np, dropped_item)
@@ -174,9 +183,8 @@ core.register_entity(":__builtin:falling_node", {
 			self.object:remove()
 			return
 		elseif core.get_item_group(bcn.name, "falling_ghost") == 1 then
-			if core.get_item_group(np.name, "solid") == 1 then
-				return
-			end
+			return
+		--Todo: implement slow falling for items in cobwebs
 		elseif core.get_item_group(bcn.name, "swordy_cobweb") == 1 then
 			if vector.equals(acceleration, {x = 0, y = -10, z = 0}) then
 				self.object:set_velocity({x=0,y=0,z=0})

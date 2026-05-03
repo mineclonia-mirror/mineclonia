@@ -236,9 +236,17 @@ local sus_node_loot = {
 	},
 }
 
+local function on_sus_place(pos, placer, itemstack, pointed_thing)
+	local meta = core.get_meta(pos)
+	if placer and placer:is_player() then
+		meta:set_string("mcl_sus_nodes:placed_node","player_placed")
+	end
+end
+
 function mcl_sus_nodes.get_random_item(pos)
 	local meta = core.get_meta(pos)
 	local str = meta:get_string ("mcl_sus_nodes:desert_well_loot_seed")
+
 	if str ~= "" then
 		local seed = tonumber (str) or 0
 		local pr = PcgRandom (seed)
@@ -276,13 +284,17 @@ local function brush_node(itemstack, user, pointed_thing)
 		local ph = core.hash_node_position(vector.round(pos))
 		local dir = vector.direction(pointed_thing.under,pointed_thing.above)
 		local def = core.registered_nodes[node.name]
+		local meta = core.get_meta(pos)
+		local did_player_place = meta:get_string ("mcl_sus_nodes:placed_node")
+
 
 		if not item_entities[ph] then
 			local o = core.add_entity(pos + (dir * 0.38),"mcl_sus_nodes:item_entity")
 			local l = o:get_luaentity()
 			l._item = mcl_sus_nodes.get_random_item(pos)
-			if not l._item then
+			if not l._item or did_player_place == "player_placed" then
 				o:remove()
+				core.swap_node(pos,{name = def._mcl_sus_nodes_parent})
 				return
 			end
 			l._stage = 1
@@ -354,6 +366,7 @@ function mcl_sus_nodes.register_sus_node(name,source,overrides)
 		_mcl_sus_nodes_drops = table.copy(sus_drops_default),
 		_mcl_falling_node_alternative = main_itemstring,
 		_mcl_after_falling = sus_node_falls,
+		after_place_node = on_sus_place,
 	}, overrides or {})
 	def.groups = table.merge(sdef.groups, tpl.groups, overrides and overrides.groups or {})
 	core.register_node(main_itemstring,def)

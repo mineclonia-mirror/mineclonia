@@ -10,11 +10,13 @@ mcl_structures.register_structure("end_spawn_obsidian_platform",{
 		for x = -2, 2 do for z = -2, 2 do
 			table.insert(obby, vector.offset(pos, x, 0, z))
 		end end
-		for x = -2, 2 do for y = 1, 3 do for z = -2, 2 do
+	--[[for x = -2, 2 do for y = 1, 3 do for z = -2, 2 do
 			table.insert(air, vector.offset(pos, x, y, z))
 		end end end
+	--]]
 		mcl_util.bulk_swap_node(obby,{name="mcl_core:obsidian"})
-		mcl_util.bulk_swap_node(air,{name="air"})
+		-- Don't erase any teleported/built nodes with air.
+		--mcl_util.bulk_swap_node(air,{name="air"})
 		return true
 	end,
 })

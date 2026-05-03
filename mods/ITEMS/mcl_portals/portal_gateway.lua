@@ -1,5 +1,5 @@
 local S = core.get_translator(core.get_current_modname())
-local storage = mcl_portals.storage
+local mod_storage = core.get_mod_storage()
 local portal_y = mcl_vars.mg_end_min + 75
 
 local gateway_positions = {
@@ -34,10 +34,10 @@ local function spawn_gateway_portal(pos, dest_str)
 end
 
 function mcl_portals.spawn_gateway_portal()
-	local id = storage:get_int("gateway_last_id") + 1
+	local id = mod_storage:get_int("gateway_last_id") + 1
 	local pos = gateway_positions[id]
 	if not pos then return end
-	storage:set_int("gateway_last_id", id)
+	mod_storage:set_int("gateway_last_id", id)
 	spawn_gateway_portal(pos)
 end
 

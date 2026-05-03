@@ -4,6 +4,7 @@ local modname = core.get_current_modname()
 local modpath = core.get_modpath(modname)
 local portal_search_groups = { "group:building_block", "group:dig_by_water", "group:liquid" }
 
+local mod_storage = core.get_mod_storage()
 local TELEPORT_DELAY = 3
 local TELEPORT_COOLOFF = 4
 
@@ -26,7 +27,7 @@ local portals = {
 }
 local portal_count = 0
 for dim, key in pairs(mod_storage_keys) do
-	for _, portal in pairs(core.deserialize(mcl_portals.storage:get_string(key)) or {}) do
+	for _, portal in pairs(core.deserialize(mod_storage:get_string(key)) or {}) do
 		portal = vector.copy(portal)
 		portals[dim][core.hash_node_position(portal)] = portal
 		portal_count = portal_count + 1
@@ -68,7 +69,7 @@ local function get_portals(dim)
 end
 
 local function update_mod_storage(dim)
-	mcl_portals.storage:set_string(mod_storage_keys[dim], core.serialize(get_portals(dim)))
+	mod_storage:set_string(mod_storage_keys[dim], core.serialize(get_portals(dim)))
 end
 
 local function register_portal(pos)
@@ -566,7 +567,7 @@ local function portal_emerge_area (player, param)
 	teleport_finished(obj)
 end
 
-local function teleport(obj)
+function mcl_portals.teleport(obj)
 	local portal, node = in_portal(obj)
 	if not portal or portal_cooloff[obj] then
 		return
@@ -614,10 +615,10 @@ local function initiate_teleport(obj)
 	local creative = core.is_creative_enabled(obj:is_player() and obj:get_player_name() or nil)
 	local l = obj:get_luaentity()
 	if l and l.is_mob and not l._just_portaled then
-		teleport(obj) -- mobs always teleported instantly
+		mcl_portals.teleport(obj) -- mobs always teleported instantly
 	elseif obj:is_player() then
 		core.after(creative and 0 or TELEPORT_DELAY, function()
-			teleport(obj)
+			mcl_portals.teleport(obj)
 		end)
 	end
 end
@@ -783,7 +784,7 @@ core.register_node("mcl_portals:portal", {
 			{-0.5, -0.5, -0.1,  0.5, 0.5, 0.1},
 		},
 	},
-	groups = { creative_breakable = 1, portal = 1, not_in_creative_inventory = 1, unmovable_by_piston = 1},
+	groups = { creative_breakable = 1, portal = 1, not_in_creative_inventory = 1, unmovable_by_piston = 1,falling_breaks=1},
 	sounds = mcl_sounds.node_sound_glass_defaults(),
 	on_destruct = destroy_portal,
 	on_rotate = screwdriver.disallow,

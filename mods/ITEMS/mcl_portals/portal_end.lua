@@ -237,7 +237,11 @@ function mcl_portals.end_teleport(obj, pos)
 		mcl_structures.place_structure(mcl_vars.mg_end_platform_pos,
 					       mcl_structures.registered_structures["end_spawn_obsidian_platform"],
 					       PcgRandom (core.get_mapgen_setting("seed")),-1)
-		teleport_object(obj, vector.offset(mcl_vars.mg_end_platform_pos, 0, 1, 0), dim)
+		if obj:is_player() then
+			teleport_object(obj, vector.offset(mcl_vars.mg_end_platform_pos, 0, 1, 0), dim)
+		else
+			teleport_object(obj, vector.offset(mcl_vars.mg_end_platform_pos, 0, 16, 0), dim)
+		end
 	end
 end
 
