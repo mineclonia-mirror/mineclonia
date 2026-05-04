@@ -21,7 +21,7 @@ local function deal_falling_damage(self, _)
 	for obj in core.objects_inside_radius(pos, 1) do
 		local entity = obj:get_luaentity()
 		if entity and entity.name == "__builtin:item" then
-			obj:remove()
+			return
 		elseif mcl_util.get_hp(obj) > 0 and not self._hit[obj] then
 			self._hit[obj] = true
 			local way = self._startpos.y - pos.y

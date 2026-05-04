@@ -6,7 +6,7 @@ mcl_structures.register_structure("end_spawn_obsidian_platform",{
 	static_pos ={mcl_vars.mg_end_platform_pos},
 	place_func = function(pos, _, _)
 		local obby = {}
-		local air = {}
+		--local air = {}
 		for x = -2, 2 do for z = -2, 2 do
 			table.insert(obby, vector.offset(pos, x, 0, z))
 		end end

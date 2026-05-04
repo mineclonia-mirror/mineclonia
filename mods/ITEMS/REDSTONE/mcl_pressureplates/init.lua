@@ -98,6 +98,7 @@ function mcl_pressureplates.register_pressure_plate(basename, def)
 	groups_off.dig_by_piston = 1
 	groups_off.unsticky = 1
 	groups_off.pressure_plate = 1
+	groups_off.falling_breaks = 1
 	local groups_on = table.copy(groups_off)
 	groups_on.not_in_creative_inventory = 1
 	groups_on.dig_by_piston = 1

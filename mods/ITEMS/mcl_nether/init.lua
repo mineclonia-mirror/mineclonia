@@ -147,7 +147,7 @@ core.register_node("mcl_nether:soul_sand", {
 	_tt_help = S("Reduces walking speed"),
 	_doc_items_longdesc = S("Soul sand is a block from the Nether. It has a slowing effect when walked on."),
 	tiles = {"mcl_nether_soul_sand.png"},
-	groups = {handy = 1, shovely = 1, building_block = 1, soil_nether_wart = 1, material_sand = 1, soul_block = 1, pathfinder_partial = 2 },
+	groups = {handy = 1, shovely = 1, building_block = 1, soil_nether_wart = 1, material_sand = 1, soul_block = 1, pathfinder_partial = 2, falling_breaks=1 },
 	collision_box = {
 		type = "fixed",
 		fixed = { -0.5, -0.5, -0.5, 0.5, 0.5 - 2/16, 0.5 },
