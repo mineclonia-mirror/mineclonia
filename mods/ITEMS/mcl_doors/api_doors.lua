@@ -223,10 +223,8 @@ function mcl_doors:register_door(name, def)
 		use_texture_alpha = "clip"
 	}
 
-	local groups_bottom = table.copy(def.groups)
-	groups_bottom.door_bottom = 1
-	local groups_top = table.copy(def.groups)
-	groups_top.door_top = 1
+	local groups_bottom = table.update(table.copy(def.groups), { door_bottom = 1 })
+	local groups_top = table.update(table.copy(def.groups), { door_top = 1 })
 
 	local tpl_bottom = {
 		_mcl_redstone = {
