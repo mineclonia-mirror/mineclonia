@@ -85,9 +85,7 @@ function elytra_entity:check_horiz_collision(moveresult)
 	self._damage_immune = damage_immune
 
 	local old, new
-	if not self._horiz_collision then
-		self._horiz_collision, old, new = horiz_collision (moveresult)
-	end
+	self._horiz_collision, old, new = horiz_collision (moveresult)
 
 	-- Apply "kinetic damage" when the player collides
 	-- with a wall while fall flying.
@@ -380,8 +378,8 @@ local function attach_elytra (player, itemstack, self_pos)
 		end
 	end
 	local obj = core.add_entity(self_pos, "mcl_armor:elytra_entity")
-	local ent = obj:get_luaentity()
-	if obj and ent then
+	if obj then
+		local ent = obj:get_luaentity()
 		player:set_pos(vector.offset(self_pos,0,1,0))
 		ent:attach(player)
 	end

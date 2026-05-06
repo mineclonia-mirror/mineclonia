@@ -194,7 +194,7 @@ function ARROW_ENTITY:arrow_knockback (object, damage)
 		-- And a vertical force of 2.0 * 0.91.
 		v.y = v.y + 2.0 * 0.91 * (1.0 - resistance)
 
-		if object:is_player () then
+		if not mcl_util.object_has_mc_physics (object) then
 			v.x = v.x * 0.25
 			v.z = v.z * 0.25
 		end
