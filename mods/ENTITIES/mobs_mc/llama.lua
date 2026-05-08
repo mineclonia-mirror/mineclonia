@@ -478,7 +478,7 @@ end
 
 mcl_mobs.register_mob ("mobs_mc:llama", llama)
 mobs_mc.llama = llama
-mcl_entity_invs.register_inv ("mobs_mc:llama", "Llama", nil, true)
+mcl_entity_invs.register_inv ("mobs_mc:llama", S ("Llama"), nil, true)
 
 ------------------------------------------------------------------------
 -- Llama spawning.

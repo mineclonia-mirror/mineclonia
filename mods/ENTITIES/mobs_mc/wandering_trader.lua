@@ -671,11 +671,12 @@ trader_llama.ai_functions = {
 }
 
 ------------------------------------------------------------------------
--- Trader Llama spawning.
+-- Trader Llama spawning & registration.
 ------------------------------------------------------------------------
 
 mcl_mobs.register_mob ("mobs_mc:trader_llama", trader_llama)
 mcl_mobs.register_egg ("mobs_mc:trader_llama", S("Trader Llama"), "#eaa430", "#456296", 0)
+mcl_entity_invs.register_inv ("mobs_mc:trader_llama", S ("Trader Llama"), nil, true)
 
 local trader_llama_spawner = table.merge (mcl_mobs.default_spawner, {
 	name = "mobs_mc:trader_llama",

@@ -1325,7 +1325,7 @@ function donkey:on_breed (parent2)
 end
 
 mcl_mobs.register_mob ("mobs_mc:donkey", donkey)
-mcl_entity_invs.register_inv ("mobs_mc:donkey", "Donkey", 15, true)
+mcl_entity_invs.register_inv ("mobs_mc:donkey", S ("Donkey"), 15, true)
 
 ------------------------------------------------------------------------
 -- Mules.
@@ -1356,7 +1356,7 @@ mule.ai_functions = {
 }
 
 mcl_mobs.register_mob ("mobs_mc:mule", mule)
-mcl_entity_invs.register_inv ("mobs_mc:mule", "Mule", 15, true)
+mcl_entity_invs.register_inv ("mobs_mc:mule", S ("Mule"), 15, true)
 
 ------------------------------------------------------------------------
 -- Horse Spawning.
