@@ -483,7 +483,7 @@ function golem:on_rightclick (clicker)
 			item:take_item()
 			clicker:set_wielded_item(item)
 		end
-		self.health = math.min(self.health + 25, self.object:get_properties().hp_max)
+		self:heal_mob (25)
 		return
 	end
 end

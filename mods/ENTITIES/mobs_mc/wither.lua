@@ -198,7 +198,7 @@ function wither_def:mob_activate (staticdata, dtime)
 	-- lost when the object is unloaded.
 	if self.hp_max then
 		self.object:set_properties ({
-				hp_max = self.hp_max,
+			hp_max = self.hp_max,
 		})
 		self.health = math.min (self.health, self.hp_max)
 	end
@@ -377,15 +377,16 @@ function wither_def:do_custom (dtime, moveresult)
 	if self._custom_timer > 1 then
 		-- Only heal if there are no players in a 100 block
 		-- radius.
+		local self_pos = self.object:get_pos ()
 		local player
-		for object in core.objects_inside_radius (self.object:get_pos (), 100) do
-			if object:is_player () then
-				player = object
+		for obj, player_pos in mcl_player.iterate_connected_players () do
+			if vector.distance (player_pos, self_pos) <= 100.0 then
+				player = obj
 				break
 			end
 		end
 		if not player then
-			self.health = math.min(self.health + 1, self.object:get_properties().hp_max)
+			self:heal_mob (1)
 		end
 		self._custom_timer = self._custom_timer - 1
 	end
@@ -885,9 +886,9 @@ local skull_def = {
 							  duration)
 		end
 		mcl_util.deal_damage (player, 8.0, {
-					      source = self._shooter,
-					      direct = self.object,
-					      type = "wither_skull",
+			source = self._shooter,
+			direct = self.object,
+			type = "wither_skull",
 		})
 		-- This must come before mcl_explosions.explode, which
 		-- is liable to remove this object.
@@ -901,7 +902,9 @@ local skull_def = {
 		end
 		if player:get_hp() <= 0 then
 			local shooter = self._shooter:get_luaentity()
-			if shooter then shooter.health = shooter.health + 5 end
+			if shooter then
+				shooter:heal (5)
+			end
 			spawn_wither_rose(player)
 		else
 			mcl_player.player_knockback (player, self.object, dir, nil, 8.0)
@@ -931,7 +934,9 @@ local skull_def = {
 		local l = mob:get_luaentity()
 		if l and l.health - 8 <= 0 then
 			local shooter = self._shooter:get_luaentity()
-			if shooter then shooter.health = shooter.health + 5 end
+			if shooter then
+				shooter:heal_mob (5)
+			end
 			spawn_wither_rose(mob)
 		end
 		if l then

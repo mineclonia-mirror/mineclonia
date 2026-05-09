@@ -1,8 +1,11 @@
 local mob_class = mcl_mobs.mob_class
 
 local function force_detach(player)
-	if not player or not player:get_pos() or not player:is_player() then return end
-	mcl_player.set_inventory_formspec (player, nil, 100)
+	if not player
+		or not player:is_player ()
+		or not player:is_valid () then
+		return
+	end
 
 	local attached_to = player:get_attach()
 	if not attached_to then
@@ -12,6 +15,7 @@ local function force_detach(player)
 	local entity = attached_to:get_luaentity()
 	if entity and entity.driver and entity.driver == player then
 		entity.driver = nil
+		entity:driver_detached (player, false)
 	end
 
 	-- Otherwise this player might already have left.
@@ -60,7 +64,7 @@ function mob_class:attach (player, force_server_side)
 	attach_at = self.driver_attach_at
 	eye_offset = self.driver_eye_offset
 	self.driver = player
-	self.driving_by_csm = false
+	self._csm_driving = false
 
 	force_detach(player)
 
@@ -83,6 +87,7 @@ function mob_class:attach (player, force_server_side)
 	end, player:get_player_name())
 
 	player:set_look_horizontal(self:get_yaw () - rot_view)
+	self:update_driving_hud (player)
 	return true
 end
 
@@ -99,8 +104,10 @@ end
 
 function mob_class:should_drive ()
 	-- Remove invalid drivers.
-	if self.driver and not self.driver:get_pos () then
+	if self.driver and not self.driver:is_valid () then
+		local driver = self.driver
 		self.driver = nil
+		self:driver_detached (driver, false)
 		return nil
 	end
 	if self.steer_class == "controls" then
@@ -111,7 +118,8 @@ function mob_class:should_drive ()
 		end
 		local item = self.driver:get_wielded_item ()
 		local itemname = item and item:get_name ()
-		return self.steer_item == nil or mcl_util.is_item_or_in_group(itemname, self.steer_item)
+		return self.steer_item == nil
+			or mcl_util.is_item_or_in_group (itemname, self.steer_item)
 	end
 end
 
@@ -262,14 +270,20 @@ function mob_class:hog_boost ()
 	return true
 end
 
-function mob_class:on_detach_child(child)
-	if self.detach_child then
-		if self.detach_child(self, child) then
-			return
-		end
+-- N.B. that this callback may be executed with DRIVER an invalid
+-- object (if the driver was detached for this reason), or during
+-- deactivation, in which case IS_DEACTIVATION is non-nil.
+
+function mob_class:driver_detached (driver, is_deactivation)
+	if driver:is_valid () then
+		mcl_mobs.remove_driving_hud (driver)
 	end
+end
+
+function mob_class:on_detach_child (child)
 	if self.driver == child then
 		self.driver = nil
+		self:driver_detached (child, false)
 	end
 end
 
@@ -294,9 +308,10 @@ function mob_class:complete_attachment (player, state)
 	player:set_properties ({
 		visual_size = {
 			x = self.driver_scale.x,
-			y = self.driver_scale.y
-		}
+			y = self.driver_scale.y,
+		},
 	})
+	self:update_driving_hud (player)
 end
 
 function mob_class:fallback_attach (player, state)
@@ -306,6 +321,7 @@ end
 function mob_class:detach_client_driver (player)
 	if player == self.driver then
 		self.driver = nil
+		self:driver_detached (player)
 		self._csm_driving = false
 		self:detach (player)
 	end
@@ -358,3 +374,103 @@ function mob_class:remove_status_effect (id)
 	end
 end
 
+
+------------------------------------------------------------------------
+-- Health indicator HUDs.
+------------------------------------------------------------------------
+
+local player_hud_bars = {}
+local floor = math.floor
+local ceil = math.ceil
+
+core.register_on_leaveplayer (function (player)
+	player_hud_bars[player] = nil
+end)
+
+local function refresh_player_health_hud (player, value, total)
+	local hp = ceil (value) -- HP to display.
+	local bars_total = floor ((total + 19) / 20) -- Number of HUD bars required.
+	local bars_filled = floor ((hp + 19) / 20)
+
+	-- Reconfigure this player's HUD bars if necessary.
+	local hud_bars = player_hud_bars[player] or {}
+	if #hud_bars > bars_total then
+		for i = #hud_bars, bars_total + 1, -1 do
+			player:hud_remove (hud_bars[i])
+			hud_bars[i] = nil
+		end
+	elseif #hud_bars < bars_total then
+		for i = #hud_bars + 1, bars_total do
+			-- Taken from hb.register_hudbar.
+			local offset_x
+				= hb.settings.start_offset_right.x
+			local offset_y
+				= hb.settings.start_offset_right.y - hb.settings.vmargin * ((i-1))
+			hud_bars[i] = player:hud_add ({
+				type = "statbar",
+				position = hb.settings.pos_right,
+				offset = {
+					x = offset_x,
+					y = offset_y,
+				},
+				text = "mcl_mobs_hud_vehicle_full.png",
+				text2 = "mcl_mobs_hud_vehicle_container.png",
+				number = 0,
+				item = 20,
+				direction = 0,
+				size = {
+					x = 24,
+					y = 24,
+				},
+				alignment = {
+					x = -1,
+					y = -1,
+				},
+			})
+		end
+	end
+	for i = 1, bars_total do
+		if i < bars_filled then
+			player:hud_change (hud_bars[i], "number", 20)
+		elseif i == bars_filled then
+			local remainder = hp - (bars_filled - 1) * 20
+			player:hud_change (hud_bars[i], "number", remainder)
+		else
+			player:hud_change (hud_bars[i], "number", 0)
+		end
+		if i == bars_total then
+			local remainder = total - (bars_total - 1) * 20
+			player:hud_change (hud_bars[i], "item", remainder)
+		else
+			player:hud_change (hud_bars[i], "item", 20)
+		end
+	end
+	player_hud_bars[player] = hud_bars
+end
+
+function mob_class:update_driving_hud (player, max_hp)
+	local hp_max = max_hp or self.object:get_properties ().hp_max
+	hb.hide_hudbar (player, "hunger")
+	refresh_player_health_hud (player, self.health, hp_max)
+end
+
+function mcl_mobs.remove_driving_hud (player)
+	-- Do not remove existing driving HUDs if PLAYER is being
+	-- detached to facilitate mounting another mob.
+	local attach = player:get_attach ()
+	if attach then
+		local luaentity = attach:get_luaentity ()
+		if luaentity._is_mob and player == luaentity.driver then
+			return
+		end
+	end
+
+	local hud_bars = player_hud_bars[player]
+	if hud_bars then
+		for _, id in ipairs (hud_bars) do
+			player:hud_remove (id)
+		end
+		player_hud_bars[player] = nil
+		hb.unhide_hudbar (player, "hunger")
+	end
+end

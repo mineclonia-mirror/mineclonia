@@ -297,11 +297,7 @@ function horse:ai_step (dtime)
 	mob_class.ai_step (self, dtime)
 	-- Regenerate health when idle.
 	if pr:next (1, math.round (900 * dtime / 0.05)) == 1 then
-		self.health = self.health + 1
-		local maxhp = self.object:get_properties ().hp_max
-		if self.health > maxhp then
-			self.health = maxhp
-		end
+		self:heal_mob (1)
 	end
 
 	if self._eats then
@@ -536,11 +532,14 @@ function horse:mob_activate (staticdata, dtime)
 	return true
 end
 
-function horse:on_deactivate (removal)
-	if self.driver then
-		mcl_player.set_inventory_formspec (self.driver, nil, 100)
+function horse:driver_detached (player, is_deactivation)
+	if player:is_valid () then
+		mcl_player.set_inventory_formspec (player, nil, 100)
 	end
+	mob_class.driver_detached (self, player, is_deactivation)
+end
 
+function horse:on_deactivate (removal)
 	mob_class.on_deactivate (self, removal)
 
 	if self._armor_inv_name then
@@ -665,7 +664,6 @@ function horse:detach (player, offset)
 	if not self.tamed then
 		return
 	end
-	mcl_player.set_inventory_formspec (player, nil, 100)
 	mcl_entity_invs.save_inv (self)
 	if self._armor_inv_name then
 		core.remove_detached_inventory (self._armor_inv_name)
@@ -836,7 +834,7 @@ function horse:on_rightclick (clicker)
 		-- Heal and/or age mob if necessary.
 		local maxhp = self.object:get_properties ().hp_max
 		if heal and self.health < maxhp then
-			self.health = math.min (maxhp, self.health + heal)
+			self:heal_mob (heal, maxhp)
 			consume = true
 		end
 		if self.child and age > 0 then

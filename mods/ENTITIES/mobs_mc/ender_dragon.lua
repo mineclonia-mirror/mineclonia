@@ -1973,8 +1973,7 @@ function dragon:check_crystals (dtime, self_pos)
 			self._current_crystal:remove ()
 			self._current_crystal = nil
 		elseif self:check_timer ("crystal_heal", 0.5) then
-			local hp_max = self.initial_properties.hp_max
-			self.health = math.min (self.health + 1.0, hp_max)
+			self:heal_mob (1.0, self.initial_properties.hp_max)
 		end
 	end
 	self._crystals_remaining = #living

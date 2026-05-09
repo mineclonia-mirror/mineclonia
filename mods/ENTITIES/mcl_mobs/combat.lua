@@ -444,6 +444,10 @@ function mob_class:receive_damage (mcl_reason, damage)
 	local source = mcl_reason.source
 	self.health = self.health - damage
 
+	if self.driver and self.driver:is_valid () then
+		self:update_driving_hud (self.driver)
+	end
+
 	if not source then
 		self:check_for_death (mcl_reason, damage)
 		return true
@@ -485,6 +489,19 @@ function mob_class:receive_damage (mcl_reason, damage)
 	self:check_for_death (mcl_reason, damage)
 	self._inactivity_timer = 0
 	return true
+end
+
+function mob_class:heal_mob (amount, hp_max)
+	self.health = self.health + amount
+	-- Permit specifying an HP_MAX if already available, as
+	-- `get_properties' is quite an expensive operation.
+	local maxhp = hp_max or self.object:get_properties ().hp_max
+	if self.health > maxhp then
+		self.health = maxhp
+	end
+	if self.driver and self.driver:is_valid () then
+		self:update_driving_hud (self.driver, maxhp)
+	end
 end
 
 -- deal damage and effects when mob punched
@@ -558,8 +575,8 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir)
 	end
 
 	-- healing
-	if damage <= -1 then
-		self.health = self.health - damage
+	if damage < 0 then
+		self:heal_mob (-damage)
 		return
 	end
 

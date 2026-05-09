@@ -485,8 +485,7 @@ function wolf:on_rightclick (clicker)
 		local heal = wolf_food[name]
 		local props = self.object:get_properties ()
 		if heal and self.health < props.hp_max then
-			local hp_max = props.hp_max
-			self.health = math.min (hp_max, self.health + heal)
+			self:heal_mob (heal, props.hp_max)
 
 			if not creative then
 				stack:take_item ()
