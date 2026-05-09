@@ -312,11 +312,11 @@ function mcl_armor.register_protection_enchantment(def)
 	if def.damage_flag then
 		local tbl = mcl_armor.protection_enchantments.flags[def.damage_flag] or {}
 		table.insert(tbl, prot_def)
-		mcl_armor.protection_enchantments.flags = tbl
+		mcl_armor.protection_enchantments.flags[def.damage_flag] = tbl
 	elseif def.damage_type then
 		local tbl = mcl_armor.protection_enchantments.types[def.damage_type] or {}
 		table.insert(tbl, prot_def)
-		mcl_armor.protection_enchantments.types = tbl
+		mcl_armor.protection_enchantments.types[def.damage_type] = tbl
 	else
 		table.insert(mcl_armor.protection_enchantments.wildcard, prot_def)
 	end
