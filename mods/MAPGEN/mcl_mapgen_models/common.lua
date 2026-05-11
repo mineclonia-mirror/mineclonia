@@ -23,7 +23,7 @@ function mcl_mapgen_models.ersatz_model ()
 		get_biome_override = function (x, z)
 			return nil
 		end,
-		get_column_height = function (x, z)
+		get_column_height = function (x, z, _)
 			return sea_level + 1
 		end,
 	}

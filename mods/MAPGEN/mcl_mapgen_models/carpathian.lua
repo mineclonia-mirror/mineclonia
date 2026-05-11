@@ -198,6 +198,11 @@ function mcl_mapgen_models.carpathian_mapgen_model ()
 
 			local y_max = ceil ((base_level + mathmax (mountains_max,
 								   mountains_min) + 1) / 2)
+
+			if fluids_solid_p and y_max <= water_level then
+				return water_level + 1
+			end
+
 			local y_min = floor ((base_level + mathmin (mountains_min,
 								    mountains_max) + 2) / 2)
 

@@ -79,6 +79,9 @@ function mcl_mapgen_models.v5_mapgen_model ()
 			end
 
 			local max_y = ceil (ceil (max_ground * f) + height)
+			if fluids_solid_p and max_y <= sea_level then
+				return sea_level + 1
+			end
 			local min_y = floor (floor (-max_ground * f) + height)
 			pos.z = z
 			for y = max_y, min_y, -1 do

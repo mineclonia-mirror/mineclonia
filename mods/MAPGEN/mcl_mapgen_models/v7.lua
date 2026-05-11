@@ -205,10 +205,13 @@ function mcl_mapgen_models.v7_mapgen_model ()
 				end
 			end
 
+			local y_start = mathmax (base_height, mountmax, river_max)
+			if liquids_solid and y_start <= sea_level then
+				return sea_level + 1
+			end
 			pos.x = x
 			pos.z = z
-			for y = mathmax (base_height, mountmax, river_max),
-				mg_overworld_min, -1 do
+			for y = y_start, mg_overworld_min, -1 do
 				pos.y = y
 				if (liquids_solid and y <= sea_level)
 					or v7_sampler (y, pos) then

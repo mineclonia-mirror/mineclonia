@@ -58,7 +58,7 @@ function mcl_mapgen_models.flat_mapgen_model ()
 			end
 			return nil
 		end,
-		get_column_height = function (x, z, fluids_solid_p, dbg)
+		get_column_height = function (x, z, fluids_solid_p)
 			pos.x = x
 			pos.y = z
 			local n_terrain = terrain and terrain:get_2d (pos) or 0.0
