@@ -432,26 +432,28 @@ function ARROW_ENTITY:on_intersect(ray_hit)
 				result = self:on_hit_object(obj, obj:get_luaentity(), ray_hit)
 			end
 		end
-		if result and result ~= "break" then
-			table.insert(ignored, obj)
-			local shooter = self._shooter
-			local self_pos = selfobj:get_pos()
-			if obj:is_player() and shooter and shooter:is_valid() and shooter:is_player() then
-				-- “Ding” sound for hitting another player
-				core.sound_play({name="mcl_bows_hit_player", gain=0.1}, {to_player=shooter:get_player_name()}, true)
-			end
-			damage_particles(vector.add(self_pos, vector.multiply(selfobj:get_velocity(), 0.1)), self._is_critical)
-			core.sound_play({name="mcl_bows_hit_other", gain=0.3}, {pos=self_pos, max_hear_distance=16}, true)
-			-- Reduce piercing if not stopped
-			if result ~= "stop" then
-				local piercing = self._piercing or 0
-				if piercing <= 1 then
-					self:remove()
-					result = "stop"
-				elseif piercing > 1 then
-					self._piercing = piercing - 1
+		if result then
+			if result ~= "break" then
+				local shooter = self._shooter
+				local self_pos = selfobj:get_pos()
+				if obj:is_player() and shooter and shooter:is_valid() and shooter:is_player() then
+					-- “Ding” sound for hitting another player
+					core.sound_play({name="mcl_bows_hit_player", gain=0.1}, {to_player=shooter:get_player_name()}, true)
+				end
+				damage_particles(vector.add(self_pos, vector.multiply(selfobj:get_velocity(), 0.1)), self._is_critical)
+				core.sound_play({name="mcl_bows_hit_other", gain=0.3}, {pos=self_pos, max_hear_distance=16}, true)
+				-- Reduce piercing if not stopped
+				if result ~= "stop" then
+					local piercing = self._piercing or 0
+					if piercing <= 1 then
+						self:remove()
+						result = "stop"
+					elseif piercing > 1 then
+						self._piercing = piercing - 1
+					end
 				end
 			end
+			table.insert(ignored, obj)
 		end
 	elseif ray_hit.type == "node" then
 		local hit_node_pos = core.get_pointed_thing_position(ray_hit)
