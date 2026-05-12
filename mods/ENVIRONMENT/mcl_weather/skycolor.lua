@@ -1,4 +1,12 @@
 local NIGHT_VISION_RATIO = 0.45
+local S = core.get_translator(core.get_current_modname())
+
+mcl_player.register_player_setting("mcl_weather:enable_clouds", {
+	type = "boolean",
+	section = "Graphics",
+	short_desc = S("Enable clouds"),
+	ui_default = "true",
+})
 
 function mcl_weather.set_sky_box_clear(player, sky, fog)
 	if mcl_serverplayer.is_csm_at_least (player, 2) then
@@ -30,7 +38,7 @@ function mcl_weather.set_sky_box_clear(player, sky, fog)
 	player:set_sky({
 		type = "regular",
 		sky_color = sc,
-		clouds = true,
+		clouds =  mcl_player.get_player_setting(player, "mcl_weather:enable_clouds", true),
 	})
 end
 
@@ -198,7 +206,7 @@ mcl_weather.skycolor = {
 							night_sky = night_color,
 							night_horizon = night_color,
 						},
-						clouds = true,
+						clouds =  mcl_player.get_player_setting(player, "mcl_weather:enable_clouds", true),
 					})
 					player:set_sun({visible = false, sunrise_visible = false})
 					player:set_moon({visible = false})
@@ -218,7 +226,7 @@ mcl_weather.skycolor = {
 							night_sky = night_color,
 							night_horizon = night_color,
 						},
-						clouds = true,
+						clouds =  mcl_player.get_player_setting(player, "mcl_weather:enable_clouds", true),
 					})
 					player:set_sun({visible = false, sunrise_visible = false})
 					player:set_moon({visible = false})
