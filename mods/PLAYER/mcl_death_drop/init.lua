@@ -39,7 +39,9 @@ core.register_on_dieplayer(function(player)
 				table.insert(dropspots,pos)
 			end
 			if inv then
-				for _, stack in pairs(inv:get_list(listname)) do
+				local items = inv:get_list(listname)
+				inv:set_list(listname, {})
+				for _, stack in pairs(items) do
 					local p = vector.offset(dropspots[math.random(#dropspots)], mcl_util.float_random(-0.25, 0.25), mcl_util.float_random(-0.25, 0.25), mcl_util.float_random(-0.25, 0.25))
 					if not void_deadly and drop and not mcl_enchanting.has_enchantment(stack, "curse_of_vanishing") then
 						local def = core.registered_items[stack:get_name()]
@@ -49,7 +51,6 @@ core.register_on_dieplayer(function(player)
 						core.add_item(p, stack)
 					end
 				end
-				inv:set_list(listname, {})
 			end
 		end
 		mcl_armor.update(player)
