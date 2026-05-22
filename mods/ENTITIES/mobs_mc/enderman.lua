@@ -650,7 +650,7 @@ local function enderman_player_rule (self, self_pos, dtime, obj, is_current)
 	eye_pos.z = self_pos.z
 
 	if not self._pending_target then
-		local view_range = self.view_range
+		local view_range = self.view_range * self.view_range
 		local d = huge
 		local target = nil
 		for player, pos1 in mcl_player.iterate_connected_players () do
