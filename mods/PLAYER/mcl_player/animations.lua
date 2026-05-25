@@ -12,7 +12,7 @@ local player_props_elytra = {
 }
 local player_props_riding = {
 	collisionbox = { -0.312, 0, -0.312, 0.312, 1.795, 0.312 },
-	eye_height = 1.62,
+	eye_height = 1.0,
 	nametag_color = { r = 225, b = 225, a = 225, g = 225 }
 }
 local player_props_sneaking = {

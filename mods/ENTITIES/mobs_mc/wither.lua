@@ -494,7 +494,7 @@ local function may_discharge (self, ws)
 		and ws.charge_time == 0
 		and ws.charge_buildup == 0
 		and ws.shoot_delay == 0
-		and (self.attack and self.attack:get_pos ())
+		and (self.attack and self.attack:is_valid ())
 end
 
 local function wither_strafe_above_target (self, self_pos, dtime)
@@ -516,7 +516,7 @@ local function wither_strafe_above_target (self, self_pos, dtime)
 	elseif ws.wants_to_move
 		and self.attack
 		and is_valid (self.attack) then
-		local target_pos = self.attack:get_pos ()
+		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		local rx, rz = math.random (0, 20) - 10, math.random (0, 20) - 10
 		local dest = vector.offset (target_pos, rx, 0, rz)
 		dest.y = self_pos.y
@@ -724,7 +724,7 @@ function wither_def:run_ai (dtime, moveresult)
 				local other_head = idx == 1 and 2 or 1
 				local other_name = "_wither_target_" .. other_head
 				for object in core.objects_inside_radius (self_pos, 20) do
-					local pos = object:get_pos ()
+					local pos = mcl_attachments.get_attachment_pos (object)
 					local entity = object:get_luaentity ()
 					if object_targetable_p (object)
 						and (not entity or not entity.harmed_by_heal)

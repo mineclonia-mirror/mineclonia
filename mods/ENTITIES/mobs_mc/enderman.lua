@@ -575,7 +575,7 @@ function enderman:check_attack (self_pos, dtime, moveresult)
 		self:set_animation ("attack")
 	end
 	if attack and self.attack and self.attack:is_player () then
-		local target_pos = self.attack:get_pos ()
+		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		local distance = vector.distance (self_pos, target_pos)
 		local self_eye_pos = {
 			x = self_pos.x,

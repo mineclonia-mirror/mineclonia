@@ -358,7 +358,8 @@ function raid_mob:step_locked_target (self_pos, dtime)
 	elseif target and not is_valid (target) then
 		target = nil
 	elseif target then
-		local target_pos = target:get_pos ()
+		local target_pos
+			= mcl_attachments.get_attachment_pos (target)
 		local dist = vector.distance (self_pos, target_pos)
 		if dist > d or dist < 10.0 then
 			target = nil
@@ -743,7 +744,7 @@ function mobs_mc.build_raid_player_detection_rule (predicate)
 		local d = huge
 		local view_range = self.view_range * self.view_range
 		local target = nil
-		for player, pos1 in mcl_player.iterate_connected_players () do
+		for player, pos1 in mcl_player.iterate_connected_players (true) do
 			local d1 = dist_sqr (self_pos, pos1)
 			local m = self:detection_multiplier_for_object (player)
 			if d1 <= view_range * m * m and d1 < d

@@ -181,7 +181,7 @@ local witch_potion_items = {
 				if mcl_potions.has_effect (self.object, "swiftness") then
 					return false
 				end
-				local pos = self.attack:get_pos ()
+				local pos = mcl_attachments.get_attachment_pos (self.attack)
 				local dist
 					= pos and vector.distance (pos, self.object:get_pos ())
 				if pos and dist > 11 then
@@ -227,7 +227,7 @@ function witch:shoot_arrow (p, vec)
 	-- near, disable them with weakness 25% of the time.
 	local entity
 	target_hp = self.attack:is_player () and self.attack:get_hp ()
-	target_pos = self.attack:get_pos ()
+	target_pos = mcl_attachments.get_attachment_pos (self.attack)
 	if not target_hp then
 		entity = self.attack:get_luaentity ()
 		target_hp = entity.is_mob and entity.health or 0
@@ -352,7 +352,7 @@ local function witch_heal_raider_rule (self, self_pos, dtime, obj, is_current)
 			local target = nil
 			for _, obj in ipairs (objects) do
 				if self.object ~= obj and is_raid_mob (obj) then
-					local obj_pos = obj:get_pos ()
+					local obj_pos = mcl_attachments.get_attachment_pos (obj)
 					if self:test_object_and_restriction (obj, obj_pos)
 						and self:target_visible (self_pos, obj) then
 						local d1 = dist_sqr (self_pos, obj_pos)
@@ -386,6 +386,7 @@ witch._targeting_rules = {
 	}),
 	mcl_mobs.build_nearest_target_rule ("player", nil, witch_attack_player_p,
 					    nil, nil),
+	mcl_mobs.build_alert_receiver_rule (),
 }
 
 mcl_mobs.register_mob ("mobs_mc:witch", witch)

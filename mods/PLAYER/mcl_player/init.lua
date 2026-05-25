@@ -81,6 +81,7 @@ end
 local connected_player_cache = {}
 
 local iterator_idx
+local iterator_coordtype
 
 local function connected_players_iterator ()
 	local player
@@ -91,11 +92,12 @@ local function connected_players_iterator ()
 		end
 		iterator_idx = iterator_idx + 1
 	until player[1]:is_valid ()
-	return player[1], player[2]
+	return player[1], player[iterator_coordtype]
 end
 
-function mcl_player.iterate_connected_players ()
+function mcl_player.iterate_connected_players (attached)
 	iterator_idx = 1
+	iterator_coordtype = attached and 3 or 2
 	return connected_players_iterator
 end
 
@@ -111,6 +113,7 @@ core.register_globalstep(function(dtime)
 		table.insert (connected_player_cache, {
 			player,
 			player:get_pos (),
+			mcl_attachments.get_attachment_pos (player),
 		})
 	end
 

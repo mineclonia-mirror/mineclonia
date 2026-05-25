@@ -168,7 +168,8 @@ function vex:do_go_pos (dtime, moveresult)
 		self.object:add_velocity (fv)
 
 		if self.attack and is_valid (self.attack) then
-			self:look_at (self.attack:get_pos ())
+			local target_pos = mcl_attachments.get_attachment_pos (self.attack)
+			self:look_at (target_pos)
 		else
 			local v = vector.add (fv, v)
 			local yaw = math.atan2 (v.z, v.x) - math.pi / 2
@@ -291,7 +292,8 @@ local function vex_adopt_owner_target (self, self_pos, dtime, obj, is_current)
 	elseif self._summoned_by and self._summoned_by:is_valid () then
 		local entity = self._summoned_by:get_luaentity ()
 		local target = entity._active_target
-		local pos = target and target:get_pos ()
+		local pos = target
+			and mcl_attachments.get_attachment_pos (target)
 		if pos
 			and self:test_object_and_restriction (target, pos)
 			and vector.distance (self_pos, pos) < self.view_range then

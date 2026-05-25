@@ -298,7 +298,7 @@ function guardian:attack_null (self_pos, dtime, target_pos, line_of_sight)
 	self:cancel_navigation ()
 	self:halt_in_tracks ()
 	self._laser_delay = self._laser_delay - dtime
-	self:look_at (self.attack:get_pos ())
+	self:look_at (target_pos)
 	if self._laser_delay <= 0 then
 		local magic_damage = 1.0
 		if mcl_vars.difficulty == 3 then

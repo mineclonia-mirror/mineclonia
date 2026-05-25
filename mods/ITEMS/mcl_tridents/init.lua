@@ -171,8 +171,9 @@ local function is_zero_vector (v)
 end
 
 function trident_entity:raycast_entities (v, pos1, pos2)
-	local raycast = core.raycast (pos1, pos2, true, false, nil)
+	local raycast = mcl_attachments.raycast (pos1, pos2, true, false)
 	for pointed_thing in raycast do
+		mcl_attachments.raycast_intercept (pos1, pos2, pointed_thing)
 		local object = pointed_thing.ref
 		if pointed_thing.type == "object"
 			and object ~= self.object

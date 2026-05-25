@@ -678,7 +678,7 @@ end
 function wolf:should_attack_owner_assailant_or_target (object)
 	local entity = object:get_luaentity ()
 	if entity then
-		local obj_pos = object:get_pos ()
+		local obj_pos = mcl_attachments.get_attachment_pos (object)
 		return entity.is_mob
 			and entity.name ~= "mobs_mc:creeper"
 			and entity.name ~= "mobs_mc:creeper_charged"
@@ -688,7 +688,7 @@ function wolf:should_attack_owner_assailant_or_target (object)
 			and not entity.tamed
 			and self:test_object_and_restriction (object, obj_pos)
 	elseif object:is_player () then
-		local obj_pos = object:get_pos ()
+		local obj_pos = mcl_attachments.get_attachment_pos (object)
 		return object:get_player_name () ~= self.owner
 			and self:test_object_and_restriction (object, obj_pos)
 	end

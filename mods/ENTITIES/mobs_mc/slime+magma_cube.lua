@@ -202,7 +202,7 @@ local function slime_turn (self, dtime, self_pos)
 		end
 		self._next_turn = remaining
 	else
-		local target_pos = self.attack:get_pos ()
+		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		local dz, dx = target_pos.z - self_pos.z, target_pos.x - self_pos.x
 		local yaw = math.atan2 (dz, dx) - math.pi / 2
 
@@ -228,7 +228,7 @@ local function slime_check_attack (self, self_pos, dtime)
 		return
 	end
 	self._attack_cooldown = math.max (self._attack_cooldown - dtime, 0)
-	local target_pos = self.attack:get_pos ()
+	local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 	local girth = self.collisionbox[6] - self.collisionbox[3]
 	if vector.distance (target_pos, self_pos) <= girth + 0.25
 	   and self._attack_cooldown == 0 then

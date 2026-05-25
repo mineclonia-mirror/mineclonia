@@ -90,18 +90,22 @@ end
 
 function creeper_defs:update_swell ()
 	local self_pos = self.object:get_pos ()
-	local target_pos = self.attack and self.attack:get_pos ()
 	local visual_size = self.initial_properties.visual_size
 	self:cancel_navigation ()
 	self:halt_in_tracks ()
 
 	if not self.attack
 		or not is_valid (self.attack)
-		or self._swell_time <= 0
-		or vector.distance (self_pos, target_pos) > 7.0
-		or not self:target_visible (self_pos, self.attack) then
-		-- Cancel swelling if the target is no longer valid.
+		or self._swell_time <= 0 then
 		self._swell_dir = -1
+	else
+		local target_pos
+			= mcl_attachments.get_attachment_pos (self.attack)
+		if vector.distance (self_pos, target_pos) > 7.0
+			or not self:target_visible (self_pos, self.attack) then
+			-- Cancel swelling if the target is no longer valid.
+			self._swell_dir = -1
+		end
 	end
 
 	if self._swell_time >= CREEPER_SWELL_TIME then
@@ -116,10 +120,10 @@ function creeper_defs:update_swell ()
 	local xz = (1.0 + swell * 0.4) * interpolated
 	local y = (1.0 + swell * 0.1) / interpolated
 	self:set_properties ({
-			visual_size = {
-				x = visual_size.x * xz,
-				y = visual_size.y * y,
-			},
+		visual_size = {
+			x = visual_size.x * xz,
+			y = visual_size.y * y,
+		},
 	})
 
 	local t = math.floor (self._swell_time * 20)

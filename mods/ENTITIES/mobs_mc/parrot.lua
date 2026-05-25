@@ -207,6 +207,7 @@ local function perch(self,player)
 		if not shoulder then return true end
 		self.object:set_attach(player,"",shoulder,vector.new(0,0,0),true)
 		self:set_animation ("stand")
+		mcl_attachments.spawn_attachment_entity (self.object)
 	end
 end
 
@@ -223,6 +224,7 @@ function parrot:check_perch (self_pos, dtime)
 			-- Perching was interrupted, and therefore
 			-- this object must be detached.
 			self.object:set_detach ()
+			mcl_attachments.remove_attachment_entity (self.object)
 			return false
 		end
 		local n1 = core.get_node (vector.offset (self_pos, 0, -0.6, 0)).name
@@ -230,6 +232,7 @@ function parrot:check_perch (self_pos, dtime)
 		if n1 == "air" or core.get_item_group (n2,"water") > 0
 			or core.get_item_group (n2,"lava") > 0 then
 			self.object:set_detach()
+			mcl_attachments.remove_attachment_entity (self.object)
 			self.perching = false
 			self.perch_cooldown = 1.0
 			return false
@@ -268,6 +271,7 @@ function parrot:ai_step (dtime)
 	-- Lest sit_if_ordered should interrupt perching.
 	if self.object:get_attach () and not self.perching then
 		self.object:set_detach ()
+		mcl_attachments.remove_attachment_entity (self.object)
 	end
 end
 

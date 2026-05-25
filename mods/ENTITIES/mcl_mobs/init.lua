@@ -588,12 +588,14 @@ function mcl_mobs.register_arrow(name, def)
 			end
 
 			if self.hit_player or self.hit_mob or self.hit_object then
+				local pos_dst = pos + self.object:get_velocity () * 0.04
 				local raycast
-				= core.raycast (pos, pos + self.object:get_velocity () * 0.04)
+					= mcl_attachments.raycast (pos, pos_dst)
 				local ok = false
 				local closest_object
 				local closest_distance
 				for hitpoint in raycast do
+					mcl_attachments.raycast_intercept (pos, pos_dst, hitpoint)
 				if hitpoint.type == "object" and hitpoint.ref ~= self.object then
 					local player = hitpoint.ref
 					if self.hit_player and player:is_player() then

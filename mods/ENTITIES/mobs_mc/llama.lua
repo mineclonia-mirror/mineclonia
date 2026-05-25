@@ -392,7 +392,7 @@ local function llama_retaliate_rule (self, self_pos, dtime, obj, is_current)
 
 	local attacker = self:read_last_attacker ()
 	if attacker then
-		local obj_pos = attacker:get_pos ()
+		local obj_pos = mcl_attachments.get_attachment_pos (attacker)
 		if self:test_object_and_restriction (attacker, obj_pos)
 			and vector.distance (obj_pos, self_pos) < self.tracking_distance then
 			self._has_spit = false
@@ -469,7 +469,6 @@ end
 function llama:init_attachment_position ()
 	local vsize = self.object:get_properties().visual_size
 	self.driver_attach_at = {x = 0, y = 12.7, z = -5}
-	self.driver_eye_offset = {x = 0, y = 6, z = 0}
 	self.driver_scale = {x = 1/vsize.x, y = 1/vsize.y}
 end
 
@@ -596,8 +595,9 @@ function llama_spit:on_step (dtime, moveresult)
 	local self_pos = self.object:get_pos ()
 	local prev_pos = self._prev_pos
 
-	local raycast = core.raycast (prev_pos, self_pos, true, false)
+	local raycast = mcl_attachments.raycast (prev_pos, self_pos, true, false)
 	for hitpoint in raycast do
+		mcl_attachments.raycast_intercept (prev_pos, self_pos, hitpoint)
 		if hitpoint.type == "object" then
 			local object = hitpoint.ref
 			local entity = object:get_luaentity ()

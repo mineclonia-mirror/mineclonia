@@ -359,11 +359,11 @@ function mob_class:jock_to_existing (jock, bone, relative_pos, rot,
 	local jock_properties = jock:get_properties ()
 	local properties = self.object:get_properties ()
 	self._original_visual_size = properties.visual_size
-	-- CAUTION: it is far too involved to get this to function
-	-- correctly in the presence of nested attachments that differ
-	-- in visual size, and consequently, if multiple objects are
-	-- to be jocked above each other, they _must_ share a
-	-- visual_size of 1.
+	-- Caveat emptor: it is far too involved to get this to
+	-- function correctly in the presence of nested attachments
+	-- that differ in visual size, and consequently, if multiple
+	-- objects are to be jocked above each other, they _must_
+	-- share a visual_size of 1.
 	self.object:set_properties ({
 			static_save = false,
 			visual_size = {
@@ -394,6 +394,7 @@ function mob_class:jock_to_existing (jock, bone, relative_pos, rot,
 		self._jockey_eye_offset = 0
 	end
 	self.object:set_attach (jock, bone, relative_pos, rot)
+	mcl_attachments.spawn_attachment_entity (self.object)
 	self:set_animation ("jockey")
 	return jock
 end

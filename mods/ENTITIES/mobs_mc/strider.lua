@@ -286,7 +286,6 @@ function strider:on_rightclick (clicker)
 		and self.saddle == "yes" then
 		local vsize = self.object:get_properties ().visual_size
 		self.driver_attach_at = {x = 0, y = 5.1, z = -1.75}
-		self.driver_eye_offset = {x = 0, y = 10, z = 0}
 		self.driver_scale = {x = 1/vsize.x, y = 1/vsize.y}
 		self:attach (clicker)
 	elseif self.driver and clicker == self.driver then

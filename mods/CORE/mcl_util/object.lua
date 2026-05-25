@@ -122,11 +122,11 @@ end
 
 function mcl_util.target_eye_pos (attack)
 	local luaentity = attack:get_luaentity ()
-	local pos = attack:get_pos ()
+	local pos = mcl_attachments.get_attachment_pos (attack)
 
 	if luaentity and luaentity.is_mob then
 		pos.y = pos.y + luaentity:get_eye_height ()
-	elseif attack:is_player() then
+	elseif attack:is_player () then
 		pos.y = pos.y + attack:get_properties ().eye_height
 	end
 	return pos

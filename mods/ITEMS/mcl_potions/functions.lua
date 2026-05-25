@@ -1990,56 +1990,58 @@ function mcl_potions.detect_hit (obj, pos, moveresult, velocity)
 	local entity = obj:get_luaentity ()
 	local in_thrower_body = entity and not entity._exited_thrower
 	for _, item in ipairs (moveresult.collisions) do
-	if item.type == "node" then
-		-- Detect targets.
-		local node = core.get_node (item.node_pos)
-		if node and node.name == "mcl_target:target_off" then
-		val = { target = item.node_pos, }
-		elseif node then
-		-- Next, detect walkable nodes.
-		local def = core.registered_nodes[node.name]
-		if def.walkable then
-			val = val or {}
+		if item.type == "node" then
+			-- Detect targets.
+			local node = core.get_node (item.node_pos)
+			if node and node.name == "mcl_target:target_off" then
+				val = { target = item.node_pos, }
+			elseif node then
+				-- Next, detect walkable nodes.
+				local def = core.registered_nodes[node.name]
+				if def.walkable then
+					val = val or {}
+				end
+			end
 		end
-		end
-	end
 	end
 	-- Mobs and objects are currently non-colliding, so supplement the
 	-- move results with a raycast as in mcl_bows.
 	if not val or in_thrower_body then
-	local raycast = core.raycast (pos, vector.add (pos, velocity * 0.04),
-					  true, false)
-	local still_inside = false
-	local thrower = entity._thrower
+		local raycast_dst = vector.add (pos, velocity * 0.04)
+		local raycast = mcl_attachments.raycast (pos, raycast_dst,
+							 true, false)
+		local still_inside = false
+		local thrower = entity._thrower
 
-	-- If the thrower should be a string, try to look up the
-	-- player by that name.
-	if type (thrower) == "string" then
-		thrower = core.get_player_by_name (thrower)
-	end
+		-- If the thrower should be a string, try to look up the
+		-- player by that name.
+		if type (thrower) == "string" then
+			thrower = core.get_player_by_name (thrower)
+		end
 
-	for hitpoint in raycast do
-		if hitpoint.type == "object" and hitpoint.ref ~= obj then
-		if hitpoint.ref:is_player ()
-			or (hitpoint.ref:get_luaentity ()
-			and hitpoint.ref:get_luaentity ().is_mob) then
-			-- Don't return the thrower if the potion was
-			-- launched from within it and has not yet
-			-- exited.
-			if in_thrower_body and hitpoint.ref == thrower then
-			still_inside = true
+		for hitpoint in raycast do
+			mcl_attachments.raycast_intercept (pos, raycast_dst, hitpoint)
+			if hitpoint.type == "object" and hitpoint.ref ~= obj then
+				if hitpoint.ref:is_player ()
+					or (hitpoint.ref:get_luaentity ()
+					    and hitpoint.ref:get_luaentity ().is_mob) then
+					-- Don't return the thrower if the potion was
+					-- launched from within it and has not yet
+					-- exited.
+					if in_thrower_body and hitpoint.ref == thrower then
+						still_inside = true
+					else
+						val = {}
+					end
+				end
 			else
-			val = {}
+				break
 			end
 		end
-		else
-		break
-		end
-	end
 
-	if entity then
-		entity._exited_thrower = not still_inside
-	end
+		if entity then
+			entity._exited_thrower = not still_inside
+		end
 	end
 	return val
 end

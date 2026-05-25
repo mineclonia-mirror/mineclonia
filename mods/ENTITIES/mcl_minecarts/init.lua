@@ -291,6 +291,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 					if entity and entity.is_mob and entity.can_ride_cart then
 						self._passenger = entity
 						mob:set_attach(self.object, "", passenger_attach_position, vector.zero())
+						mcl_attachments.spawn_attachment_entity (mob)
 						break
 					end
 				end
@@ -316,7 +317,6 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 					end
 					mcl_player.players[player].attached = nil
 					player:set_detach()
-					player:set_eye_offset({x=0, y=0, z=0},{x=0, y=0, z=0})
 				end
 
 				-- Explode if already ignited
@@ -755,7 +755,7 @@ register_minecart(
 			self._start_pos = self.object:get_pos()
 			mcl_player.players[clicker].attached = true
 			clicker:set_attach(self.object, "", {x=0, y=-1.75, z=-2}, {x=0, y=0, z=0})
-			clicker:set_eye_offset({x=0, y=-5.5, z=0},{x=0, y=-4, z=0})
+			mcl_attachments.spawn_attachment_entity (clicker)
 			core.after(0.2, function(name)
 				local player = core.get_player_by_name(name)
 				if player then

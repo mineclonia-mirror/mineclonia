@@ -115,8 +115,8 @@ function mcl_serverplayer.post_load_model (player, model)
 			mine = model.animations.sit_mount,
 			walk_bow = model.animations.sit_mount,
 			walk_mine = model.animations.sit_mount,
-			collisionbox = mcl_player.player_props_normal.collisionbox,
-			eye_height = mcl_player.player_props_normal.eye_height,
+			collisionbox = mcl_player.player_props_riding.collisionbox,
+			eye_height = mcl_player.player_props_riding.eye_height,
 		},
 		[POSE_MOUNTED] = {
 			stand = model.animations.sit,
@@ -124,8 +124,8 @@ function mcl_serverplayer.post_load_model (player, model)
 			mine = model.animations.sit,
 			walk_bow = model.animations.sit,
 			walk_mine = model.animations.sit,
-			collisionbox = mcl_player.player_props_normal.collisionbox,
-			eye_height = mcl_player.player_props_normal.eye_height,
+			collisionbox = mcl_player.player_props_riding.collisionbox,
+			eye_height = mcl_player.player_props_riding.eye_height,
 		},
 		[POSE_DEATH] = {
 			stand = model.animations.die,

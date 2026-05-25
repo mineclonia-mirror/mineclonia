@@ -38,10 +38,16 @@ core.register_on_leaveplayer(force_detach)
 core.register_on_dieplayer(force_detach)
 
 function mob_class:attach (player, force_server_side)
-	self.player_rotation = self.player_rotation or {x = 0, y = 0, z = 0}
-	self.driver_attach_at = self.driver_attach_at or {x = 0, y = 0, z = 0}
-	self.driver_eye_offset = self.driver_eye_offset or {x = 0, y = 0, z = 0}
-	self.driver_scale = self.driver_scale or {x = 1, y = 1}
+	if self._jockey_rider then
+		return false
+	end
+
+	self.player_rotation
+		= self.player_rotation or vector.zero ()
+	self.driver_attach_at
+		= self.driver_attach_at or vector.zero ()
+	self.driver_scale
+		= self.driver_scale or {x = 1, y = 1}
 	if not force_server_side
 		and self._csm_driving_enabled
 		and mcl_serverplayer.is_csm_capable (player) then
@@ -53,7 +59,7 @@ function mob_class:attach (player, force_server_side)
 		return false
 	end
 
-	local attach_at, eye_offset
+	local attach_at
 	self._last_jump = 0
 
 	local rot_view = 0
@@ -63,16 +69,14 @@ function mob_class:attach (player, force_server_side)
 	end
 
 	attach_at = self.driver_attach_at
-	eye_offset = self.driver_eye_offset
 	self.driver = player
 	self._csm_driving = false
 
 	force_detach(player)
 
 	player:set_attach(self.object, "", attach_at, self.player_rotation)
+	mcl_attachments.spawn_attachment_entity (player)
 	mcl_player.players[player].attached = true
-	player:set_eye_offset(eye_offset, {x = 0, y = 0, z = 0})
-
 	player:set_properties({
 		visual_size = {
 			x = self.driver_scale.x,
@@ -278,6 +282,7 @@ end
 function mob_class:driver_detached (driver, is_deactivation)
 	if driver:is_valid () then
 		mcl_mobs.remove_driving_hud (driver)
+		mcl_attachments.remove_attachment_entity (driver)
 	end
 end
 
@@ -286,6 +291,10 @@ function mob_class:on_detach_child (child)
 		self.driver = nil
 		self:driver_detached (child, false)
 	end
+end
+
+function mob_class:on_detach ()
+	mcl_attachments.remove_attachment_entity (self.object)
 end
 
 ------------------------------------------------------------------------
@@ -313,6 +322,7 @@ function mob_class:complete_attachment (player, state)
 		},
 	})
 	self:update_driving_hud (player)
+	mcl_attachments.spawn_attachment_entity (player)
 end
 
 function mob_class:fallback_attach (player, state)

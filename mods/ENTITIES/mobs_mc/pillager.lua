@@ -150,7 +150,7 @@ end
 function pillager:get_rightarm_with_pitch ()
 	local pitch = 0
 	if self.attack then
-		local target_pos = self.attack:get_pos ()
+		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		if target_pos then
 			local self_pos = self.object:get_pos ()
 			local dx = target_pos.x - self_pos.x
@@ -166,7 +166,7 @@ end
 function pillager:get_leftarm_with_pitch ()
 	local pitch = 0
 	if self.attack then
-		local target_pos = self.attack:get_pos ()
+		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		if target_pos then
 			local self_pos = self.object:get_pos ()
 			local dx = target_pos.x - self_pos.x

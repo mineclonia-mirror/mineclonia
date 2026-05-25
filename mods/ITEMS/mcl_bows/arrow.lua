@@ -538,7 +538,8 @@ function ARROW_ENTITY:on_step(dtime, moveresult)
 	local shooter_located = false
 	-- Raycasting movement during dtime to handle lava, water, and hits.
 	local attach = self._shooter and self._shooter:get_attach ()
-	for ray_hit in core.raycast(last_pos, self_pos, true, true) do
+	for ray_hit in mcl_attachments.raycast(last_pos, self_pos, true, true) do
+		mcl_attachments.raycast_intercept (last_pos, self_pos, ray_hit)
 		if (self._shooter and ray_hit.ref == self._shooter)
 			or (attach and ray_hit.ref == attach) then
 			shooter_located = true
@@ -573,7 +574,8 @@ function ARROW_ENTITY:on_step(dtime, moveresult)
 		local vel = selfobj:get_velocity()
 		self_pos = selfobj:get_pos()
 		local predict = vector.add(self_pos, vector.multiply(vector.copy(vel), 0.05))
-		for ray_hit in core.raycast(self_pos, predict, true, true) do
+		for ray_hit in mcl_attachments.raycast(self_pos, predict, true, true) do
+			mcl_attachments.raycast_intercept (self_pos, predict, ray_hit)
 			if ray_hit.type == "node" then
 				local hit_node_pos
 					= core.get_pointed_thing_position (ray_hit)

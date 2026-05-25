@@ -368,7 +368,7 @@ function hoglin:custom_attack ()
 	local knockback = 1.0 - get_knockback_resistance (self.attack)
 	if knockback > 0 and not self.child then
 		local self_pos = self.object:get_pos ()
-		local attack_pos = self.attack:get_pos ()
+		local attack_pos = mcl_attachments.get_attachment_pos (self.attack)
 		local dx = attack_pos.x - self_pos.x
 		local dz = attack_pos.z - self_pos.z
 		local random = math.rad (math.random (21) - 10)
@@ -420,7 +420,7 @@ local function hoglin_strategize_rule (self, self_pos, dtime, obj, is_current)
 	local attacker = self:read_last_attacker ()
 	local do_attack = nil
 	if attacker then
-		local obj_pos = attacker:get_pos ()
+		local obj_pos = mcl_attachments.get_attachment_pos (attacker)
 		-- If this attacker is a valid target.
 		if self:test_object_and_restriction (attacker, obj_pos)
 		-- ... and reinforcements are in fact summoned.

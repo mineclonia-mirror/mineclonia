@@ -74,6 +74,7 @@ local function attach_driver(boat)
 		boat._driver:set_attach(boat.object, "",
 			{x = 0, y = 1.5, z = 1}, {x = 0, y = 0, z = 0})
 	end
+	mcl_attachments.spawn_attachment_entity (boat._driver)
 end
 
 local function attach_passenger(boat)
@@ -92,6 +93,7 @@ local function attach_passenger(boat)
 
 	boat._passenger:set_attach(boat._passenger_seat, "",
 		{x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+	mcl_attachments.spawn_attachment_entity (boat._passenger)
 end
 
 local function attach_non_player_passenger(boat)
@@ -102,6 +104,7 @@ local function attach_non_player_passenger(boat)
 		boat._passenger:set_attach(boat.object, "",
 			{x = 0, y = 1.5, z = -4.5}, {x = 0, y = 270, z = 0})
 	end
+	mcl_attachments.spawn_attachment_entity (boat._passenger)
 end
 
 local function set_attach(boat)
@@ -153,7 +156,6 @@ local function attach_object(self, obj)
 	if obj:is_player() then
 		local name = obj:get_player_name()
 		mcl_player.players[obj].attached = true
-		obj:set_eye_offset({x=0, y=-5.5, z=0},{x=0, y=-4, z=0})
 		core.after(0.2, function(name)
 			local player = core.get_player_by_name(name)
 			if player then

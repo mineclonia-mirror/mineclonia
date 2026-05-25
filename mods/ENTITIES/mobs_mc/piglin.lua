@@ -281,7 +281,7 @@ end
 
 function piglin:get_pitch_of_target ()
 	if self.attack then
-		local target_pos = self.attack:get_pos ()
+		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		if target_pos then
 			local self_pos = self.object:get_pos ()
 			local dx = target_pos.x - self_pos.x
@@ -1017,10 +1017,12 @@ function piglin:broadcast_anger (source, is_hoglin)
 	end
 end
 
+local attach_pos = mcl_attachments.get_attachment_pos
+
 function piglin:enrage (source, broadcast)
 	local self_pos = self.object:get_pos ()
 	if source:is_valid ()
-		and self:test_object_and_restriction (source, source:get_pos ())
+		and self:test_object_and_restriction (source, attach_pos (source))
 		and self:default_rangecheck (self_pos, source) then
 		self._piglin_provoker = source
 		self._piglin_provoker_timeout = 30
@@ -1041,7 +1043,7 @@ end
 local function check_provoker_distance (self, candidate_target)
 	local pos = candidate_target:get_pos ()
 	local self_pos = self.object:get_pos ()
-	local attack_pos = self.attack:get_pos ()
+	local attack_pos = attach_pos (self.attack)
 
 	return vector.distance (self_pos, attack_pos) + 4
 		>= vector.distance (self_pos, pos)
@@ -1188,7 +1190,7 @@ local function get_jock_target (object, n)
 	return object
 end
 
-local function get_attachment_pos (object)
+local function child_attachment_pos (object)
 	local entity = object:get_luaentity ()
 	if entity.name == "mobs_mc:piglin" then
 		return {
@@ -1244,7 +1246,7 @@ local function baby_piglin_mount_baby_hoglin (self, self_pos, dtime)
 				self:gopath (target_pos, 0.8)
 			elseif distance <= 1.0 then
 				self:jock_to_existing (jock_target, "",
-						       get_attachment_pos (jock_target))
+						       child_attachment_pos (jock_target))
 				self._ride_target_mounted = true
 			end
 		else
@@ -1482,7 +1484,7 @@ local function piglin_attack_provoker_rule (self, self_pos, dtime, obj, is_curre
 	end
 
 	local provoker = self._piglin_provoker
-	local pos = provoker and provoker:get_pos ()
+	local pos = provoker and attach_pos (provoker)
 	if pos
 		and self:test_object_and_restriction (provoker, pos)
 		and self:target_visible (self_pos, provoker)
@@ -1504,7 +1506,8 @@ local function piglin_attack_witherlike_rule (self, self_pos, dtime, obj, is_cur
 	end
 
 	local nearest_witherlike = self._nearest_witherlike
-	local pos = nearest_witherlike and nearest_witherlike:get_pos ()
+	local pos = nearest_witherlike
+		and attach_pos (nearest_witherlike)
 
 	-- The sensing callback decides whether to continue targeting
 	-- this object.
@@ -1652,7 +1655,7 @@ end
 function piglin_brute:enrage (source, broadcast)
 	local self_pos = self.object:get_pos ()
 	if source:is_valid ()
-		and self:test_object_and_restriction (source, source:get_pos ())
+		and self:test_object_and_restriction (source, attach_pos (source))
 		and self:default_rangecheck (self_pos, source) then
 		self._piglin_provoker = source
 		self._piglin_provoker_timeout = 30
@@ -1692,7 +1695,7 @@ local function piglin_brute_attack_provoker_rule (self, self_pos, dtime, obj, is
 	end
 
 	local provoker = self._piglin_provoker
-	local pos = provoker and provoker:get_pos ()
+	local pos = provoker and attach_pos (provoker)
 	if pos
 		and self:test_object_and_restriction (provoker, pos)
 		and self:target_visible (self_pos, provoker)

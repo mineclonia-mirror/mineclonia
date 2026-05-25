@@ -297,7 +297,7 @@ function golem:locate_undesirable (self_pos)
 	end
 
 	local undesirable, dist = nil, nil
-	for player, pos1 in mcl_player.iterate_connected_players (self_pos, 64) do
+	for player, pos1 in mcl_player.iterate_connected_players (true) do
 		if self:test_object_and_restriction (player, pos1) then
 			local name = player:get_player_name ()
 			local rep = player_rep[name] or 0

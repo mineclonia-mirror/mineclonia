@@ -134,7 +134,7 @@ end
 function mob_class:track_current_target (self_pos, dtime, obj, dist, persistence)
 	-- This object is the current target; decide whether or not to
 	-- cease attacking it for having moved out of range...
-	local pos = obj:get_pos ()
+	local pos = mcl_attachments.get_attachment_pos (obj)
 	if dist_sqr (self_pos, pos) > dist
 		or not self:test_object_and_restriction (obj, pos) then
 		return nil
@@ -208,7 +208,7 @@ function mcl_mobs.build_nearest_target_rule (base_type, predicate, start_predica
 					local luaentity = obj:get_luaentity ()
 					if predicate (self, self_pos, obj, luaentity)
 						and self:target_visible (self_pos, obj) then
-						local pos = obj:get_pos ()
+						local pos = mcl_attachments.get_attachment_pos (obj)
 						if self:test_object_and_restriction (obj, pos) then
 							local d1 = dist_sqr (self_pos, pos)
 							local m = self:detection_multiplier_for_object (obj)
@@ -222,7 +222,7 @@ function mcl_mobs.build_nearest_target_rule (base_type, predicate, start_predica
 			end
 		else
 			local d = huge
-			for player, pos1 in mcl_player.iterate_connected_players () do
+			for player, pos1 in mcl_player.iterate_connected_players (true) do
 				local d1 = dist_sqr (self_pos, pos1)
 				local m = self:detection_multiplier_for_object (player)
 				if d1 <= view_range * m * m and d1 < d
@@ -308,7 +308,7 @@ function mcl_mobs.build_retaliation_target_rule (ignore, alert_others, alert_pre
 		if attacker then
 			local luaentity = attacker:get_luaentity ()
 			if not ignore (self, self_pos, attacker, luaentity) then
-				local obj_pos = attacker:get_pos ()
+				local obj_pos = mcl_attachments.get_attachment_pos (attacker)
 				if self:test_object_and_restriction (attacker, obj_pos)
 					and not self:target_owner_p (attacker) then
 					if alert_others then
@@ -364,7 +364,7 @@ local function alert_receiver_rule (self, self_pos, dtime, obj, is_current)
 	else
 		local target = self._alert_receiver_target
 		if target and object_targetable_p (target) then
-			local target_pos = target:get_pos ()
+			local target_pos = mcl_attachments.get_attachment_pos (target)
 			if self:test_object_and_restriction (target, target_pos)
 				and dist_sqr (self_pos, target_pos) < 5184.0 then
 				-- Afford this mob a maximum of 20
@@ -679,7 +679,8 @@ function mob_class:test_object_and_restriction (object, obj_pos)
 end
 
 function mob_class:should_continue_to_attack (object)
-	return self:test_object_and_restriction (object, object:get_pos ())
+	local obj_pos = mcl_attachments.get_attachment_pos (object)
+	return self:test_object_and_restriction (object, obj_pos)
 end
 
 ------------------------------------------------------------------------
@@ -1220,7 +1221,7 @@ function mob_class:valid_enemy ()
 end
 
 function mob_class:default_rangecheck (self_pos, object)
-	local pos = object:get_pos ()
+	local pos = mcl_attachments.get_attachment_pos (object)
 	local factor = self:detection_multiplier_for_object (object)
 	local distance = vector.distance (self_pos, pos)
 	return distance <= self.view_range * factor
@@ -1253,7 +1254,7 @@ function mob_class:check_attack (self_pos, dtime)
 			self:attack_end ()
 			return true
 		end
-		target_pos = self.attack:get_pos ()
+		target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		local line_of_sight = self:target_visible (self_pos, self.attack)
 		local attack_type = self.attack_type
 		if attack_type == "null" then

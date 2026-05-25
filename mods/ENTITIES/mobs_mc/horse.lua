@@ -3,11 +3,12 @@ local mob_class = mcl_mobs.mob_class
 local is_valid = mcl_util.is_valid_objectref
 
 local function attach_driver(self, clicker)
-	mcl_title.set(clicker, "actionbar", {
-		text=S("Sneak to dismount"),
-		color="white", stay = 60,
-	})
-	self:attach(clicker)
+	if self:attach (clicker) then
+		mcl_title.set(clicker, "actionbar", {
+			text=S("Sneak to dismount"),
+			color="white", stay = 60,
+		})
+	end
 end
 
 local function detach_driver(self)
@@ -754,9 +755,8 @@ function horse:post_apply_driver_input (velocity, self_pos, moveresult, dtime)
 end
 
 function horse:init_attachment_position ()
-	local vsize = self.object:get_properties().visual_size
+	local vsize = self.object:get_properties ().visual_size
 	self.driver_attach_at = {x = 0, y = 4.17, z = -1.75}
-	self.driver_eye_offset = {x = 0, y = 3, z = 0}
 	self.driver_scale = {x = 1/vsize.x, y = 1/vsize.y}
 end
 
