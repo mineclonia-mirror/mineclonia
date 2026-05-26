@@ -233,7 +233,7 @@ local function trace_explode(pos, strength, raydirs, radius, info, direct, sourc
 		local immortal = tonumber(obj:get_armor_groups().immortal) or 0
 
 		-- Ignore immortal entities to lower lag
-		if obj:get_hp() > 0 and ((ent and ent.is_mob) or immortal == 0)
+		if obj:get_hp() > 0 and ((ent and ent.is_mob) or immortal == 0) or obj:is_player() or ent.tnt_knockback 
 		-- It doesn't make sense to damage the direct source.
 			and obj ~= direct then
 			local opos = obj:get_pos()

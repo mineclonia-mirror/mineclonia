@@ -178,7 +178,7 @@ function TNT:on_activate(_, _)
 	local phi = math.random(0, 65535) / 65535 * 2 * math.pi
 	local hdir_x = math.cos(phi) * 0.02
 	local hdir_z = math.sin(phi) * 0.02
-	self.object:set_velocity(vector.new(hdir_x, 2, hdir_z))
+	self.object:add_velocity(vector.new(hdir_x, 2, hdir_z))
 	self.object:set_acceleration(vector.new(0, -10, 0))
 	self.object:set_texture_mod("^mcl_tnt_blink.png")
 end
