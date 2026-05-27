@@ -113,7 +113,7 @@ local function lerp_rotation_scaled (u, dtime, s1, s2)
 	return norm_radians (s)
 end
 
-function ravager:check_head_swivel (self_pos, dtime, clear)
+function ravager:check_head_swivel (attach_pos, dtime, clear)
 	if clear then
 		self._locked_object = nil
 	else
@@ -131,9 +131,9 @@ function ravager:check_head_swivel (self_pos, dtime, clear)
 		xrot = 0
 	else
 		local pos = mcl_util.target_eye_pos (object)
-		local dx = pos.x - self_pos.x
-		local dz = pos.z - self_pos.z
-		local dy = pos.y - self_pos.y
+		local dx = pos.x - attach_pos.x
+		local dz = pos.z - attach_pos.z
+		local dy = pos.y - attach_pos.y
 		local yaw = mathatan2 (dz, dx)
 			- NINETY_DEG - self:get_yaw ()
 		local yaw = norm_radians (-yaw)

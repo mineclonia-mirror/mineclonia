@@ -581,13 +581,13 @@ local Y_DRAG = 0.91
 local YAW_DRAG = 0.8
 local pow_by_step = mcl_mobs.pow_by_step
 
-function dragon:motion_step (dtime, moveresult, self_pos)
+function dragon:motion_step (dtime, moveresult, attach_pos)
 	local target = self._dragon_target
 	if target then
 		local v = self._start_velocity
-		local dx = target.x - self_pos.x
-		local dy = target.y - self_pos.y
-		local dz = target.z - self_pos.z
+		local dx = target.x - attach_pos.x
+		local dy = target.y - attach_pos.y
+		local dz = target.z - attach_pos.z
 		local speed = self:get_flight_speed ()
 		local horiz = math.sqrt (dx * dx + dz * dz)
 		local magnitude = math.sqrt (dx * dx + dz * dz + dy * dy)
@@ -602,7 +602,7 @@ function dragon:motion_step (dtime, moveresult, self_pos)
 		v.y = v.y + dy * 0.01 * y_scale
 
 		local yaw = self:get_yaw ()
-		local dir = vector.direction (self_pos, target)
+		local dir = vector.direction (attach_pos, target)
 		local forward = vector.new (-math.sin (yaw), v.y, math.cos (yaw))
 		forward = vector.normalize (forward)
 		local turn_penalty
@@ -647,7 +647,7 @@ function dragon:motion_step (dtime, moveresult, self_pos)
 
 	-- Sample position and yaw.
 	local yaw = self:get_yaw ()
-	self:sample_heading (dtime, self_pos, yaw)
+	self:sample_heading (dtime, attach_pos, yaw)
 end
 
 function dragon:get_part_bounding_box (name)

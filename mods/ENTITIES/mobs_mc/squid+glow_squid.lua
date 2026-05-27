@@ -105,8 +105,9 @@ function squid:spawn_ink_jet ()
 	pos = vector.rotate_around_axis (pos, Y_AXIS, yaw)
 	pos = vector.rotate_around_axis (pos, X_AXIS, pitch)
 	pos.y = pos.y + 0.25
-	local self_pos = self.object:get_pos ()
-	pos = vector.add (pos, self_pos)
+	local attach_pos
+		= mcl_attachments.get_attachment_pos (self.object)
+	pos = vector.add (pos, attach_pos)
 
 	local particlespawner = {
 		amount = 240,
@@ -187,7 +188,7 @@ function squid:set_body_roll (roll)
 	return 0
 end
 
-function squid:motion_step (dtime, moveresult, self_pos)
+function squid:motion_step (dtime, moveresult, attach_pos)
 	if self.stupefied then
 		return
 	end
@@ -242,7 +243,7 @@ function squid:motion_step (dtime, moveresult, self_pos)
 		}
 
 		local v = self.object:get_velocity ()
-		self:check_collision (self_pos, new_v, 1.0)
+		self:check_collision (attach_pos, new_v, 1.0)
 		self.object:set_velocity (new_v)
 
 		-- Animate this mob according to the previous velocity
@@ -283,7 +284,7 @@ function squid:motion_step (dtime, moveresult, self_pos)
 		v.x = 0
 		v.y = new_y
 		v.z = 0
-		self:check_collision (self_pos, v, 1.0)
+		self:check_collision (attach_pos, v, 1.0)
 		self.object:set_velocity (v)
 
 		if moveresult.touching_ground

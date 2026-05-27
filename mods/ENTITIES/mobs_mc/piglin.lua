@@ -279,14 +279,15 @@ function piglin:select_arm_pose ()
 	return "default"
 end
 
-function piglin:get_pitch_of_target ()
+local get_attach_pos = mcl_attachments.get_attachment_pos
+
+function piglin:get_pitch_of_target (attach_pos)
 	if self.attack then
-		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
+		local target_pos = get_attach_pos (self.attack)
 		if target_pos then
-			local self_pos = self.object:get_pos ()
-			local dx = target_pos.x - self_pos.x
-			local dy = target_pos.y - (self_pos.y + self:get_eye_height ())
-			local dz = target_pos.z - self_pos.z
+			local dx = target_pos.x - attach_pos.x
+			local dy = target_pos.y - (attach_pos.y + self:get_eye_height ())
+			local dz = target_pos.z - attach_pos.z
 			local xz_mag = math.sqrt (dx * dx + dz * dz)
 			local pitch = math.atan2 (dy, xz_mag)
 			return vector.new (pitch, 0, 0)
@@ -419,19 +420,12 @@ function piglin:ai_step (dtime)
 	end
 end
 
-function piglin:check_head_swivel (self_pos, dtime, clear)
-	-- Not supported on 5.8.0 or earlier, where bone overrides
-	-- cannot be cleared.
-	if not self.object or not self.object.set_bone_override then
-		mob_class.check_head_swivel (self, self_pos, dtime, clear)
-		return
-	end
-
+function piglin:check_head_swivel (attach_pos, dtime, clear)
 	if self._arm_pose == "admire"
 		or self._arm_pose == "gloat" then
 		return
 	end
-	mob_class.check_head_swivel (self, self_pos, dtime, clear)
+	mob_class.check_head_swivel (self, attach_pos, dtime, clear)
 end
 
 ------------------------------------------------------------------------
@@ -1017,12 +1011,10 @@ function piglin:broadcast_anger (source, is_hoglin)
 	end
 end
 
-local attach_pos = mcl_attachments.get_attachment_pos
-
 function piglin:enrage (source, broadcast)
 	local self_pos = self.object:get_pos ()
 	if source:is_valid ()
-		and self:test_object_and_restriction (source, attach_pos (source))
+		and self:test_object_and_restriction (source, get_attach_pos (source))
 		and self:default_rangecheck (self_pos, source) then
 		self._piglin_provoker = source
 		self._piglin_provoker_timeout = 30
@@ -1043,7 +1035,7 @@ end
 local function check_provoker_distance (self, candidate_target)
 	local pos = candidate_target:get_pos ()
 	local self_pos = self.object:get_pos ()
-	local attack_pos = attach_pos (self.attack)
+	local attack_pos = get_attach_pos (self.attack)
 
 	return vector.distance (self_pos, attack_pos) + 4
 		>= vector.distance (self_pos, pos)
@@ -1484,7 +1476,7 @@ local function piglin_attack_provoker_rule (self, self_pos, dtime, obj, is_curre
 	end
 
 	local provoker = self._piglin_provoker
-	local pos = provoker and attach_pos (provoker)
+	local pos = provoker and get_attach_pos (provoker)
 	if pos
 		and self:test_object_and_restriction (provoker, pos)
 		and self:target_visible (self_pos, provoker)
@@ -1507,7 +1499,7 @@ local function piglin_attack_witherlike_rule (self, self_pos, dtime, obj, is_cur
 
 	local nearest_witherlike = self._nearest_witherlike
 	local pos = nearest_witherlike
-		and attach_pos (nearest_witherlike)
+		and get_attach_pos (nearest_witherlike)
 
 	-- The sensing callback decides whether to continue targeting
 	-- this object.
@@ -1655,7 +1647,7 @@ end
 function piglin_brute:enrage (source, broadcast)
 	local self_pos = self.object:get_pos ()
 	if source:is_valid ()
-		and self:test_object_and_restriction (source, attach_pos (source))
+		and self:test_object_and_restriction (source, get_attach_pos (source))
 		and self:default_rangecheck (self_pos, source) then
 		self._piglin_provoker = source
 		self._piglin_provoker_timeout = 30
@@ -1695,7 +1687,7 @@ local function piglin_brute_attack_provoker_rule (self, self_pos, dtime, obj, is
 	end
 
 	local provoker = self._piglin_provoker
-	local pos = provoker and attach_pos (provoker)
+	local pos = provoker and get_attach_pos (provoker)
 	if pos
 		and self:test_object_and_restriction (provoker, pos)
 		and self:target_visible (self_pos, provoker)

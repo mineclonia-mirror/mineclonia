@@ -67,9 +67,9 @@ local vex = {
 		bone = "wield_item",
 		rotate_bone = true,
 	},
-	suffocation = false,
 	-- Yes, vexes really ascend in water.
 	floats = 1,
+	_vex_attack_timeout = 0,
 }
 
 ------------------------------------------------------------------------
@@ -130,7 +130,7 @@ local AIR_FRICTION = mcl_mobs.AIR_FRICTION
 local AIR_FRICTION_Y = 0.98
 local pow_by_step = mcl_mobs.pow_by_step
 
-function vex:motion_step (dtime, moveresult, self_pos)
+function vex:motion_step (dtime, moveresult, attach_pos)
 	if not moveresult then
 		return
 	end
@@ -184,7 +184,7 @@ end
 
 local pr = PcgRandom (os.time () + 40)
 
-function vex:attack_null (self_pos, dtime, target_pos, line_of_sight)
+function vex:attack_null (attach_pos, self_pos, dtime, target_pos, line_of_sight)
 	local target = self.attack
 	local eye_pos = mcl_util.target_eye_pos (target)
 
@@ -193,11 +193,16 @@ function vex:attack_null (self_pos, dtime, target_pos, line_of_sight)
 		self:go_to_stupidly (eye_pos, 1.0)
 	end
 
-	local d = vector.distance (self_pos, eye_pos)
-	if d <= self.reach then
+	local d = vector.distance (attach_pos, eye_pos)
+	if d <= self.reach and self._vex_attack_timeout <= 0.0 then
 		self:custom_attack ()
 		self.attack = nil
 		self:attack_end ()
+
+		-- Prevent further attacks for 0.5 seconds lest damage
+		-- should be rapidly inflicted if the target does not
+		-- sustain knockback.
+		self._vex_attack_timeout = 0.5
 		return
 	end
 
@@ -226,6 +231,9 @@ function vex:ai_step (dtime)
 			self._damagetimer = 1
 		end
 	end
+
+	local t = self._vex_attack_timeout - dtime
+	self._vex_attack_timeout = math.max (t, 0.0)
 end
 
 local function is_clear (node)

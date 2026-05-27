@@ -2,7 +2,9 @@ local mob_class = mcl_mobs.mob_class
 local active_particlespawners = {}
 local enable_blood = core.settings:get_bool("mcl_damage_particles", true)
 local DEFAULT_FALL_SPEED = -9.81*1.5
+
 local is_valid = mcl_util.is_valid_objectref
+local get_attachment_pos = mcl_attachments.get_attachment_pos
 
 local player_transfer_distance = tonumber(core.settings:get("player_transfer_distance")) or 128
 if player_transfer_distance == 0 then player_transfer_distance = math.huge end
@@ -322,7 +324,7 @@ end
 
 local ZERO_VECTOR = vector.zero ()
 
-function mob_class:check_head_swivel (self_pos, dtime, clear)
+function mob_class:check_head_swivel (attach_pos, dtime, clear)
 	if not self.head_swivel
 		or type (self.head_swivel) ~= "string" then
 		return
@@ -336,62 +338,58 @@ function mob_class:check_head_swivel (self_pos, dtime, clear)
 
 	local oldr = self._old_head_swivel_vector
 	local oldp = self._old_head_swivel_pos
-	local newr, axis_scale = ZERO_VECTOR, self._head_axis_scale
+	local axis_scale, newr = self._head_axis_scale
 
 	local locked_object = self._locked_object
 	if locked_object
 		and is_valid (locked_object)
 		and locked_object:get_hp () > 0 then
-		local _locked_object_eye_height
+		local locked_object_eye_height
 			= mcl_util.target_eye_height (locked_object)
+		local self_yaw
+		-- It so transpires that ObjectRef:get_rotation does
+		-- not return the rotation of the parent if there is
+		-- an attachment.
+		local attach = self.object:get_attach ()
+		if attach then
+			self_yaw = attach:get_yaw () or 0
+		else
+			self_yaw = self.object:get_yaw ()
+		end
+		local ps = attach_pos
+		local old_y = ps.y
+		ps.y = ps.y + self:get_eye_height ()
+		local pt = get_attachment_pos (locked_object)
+		pt.y = pt.y + locked_object_eye_height
+		local dir = vector.direction (ps, pt)
+		ps.y = old_y
+		local mob_yaw_raw = self_yaw
+			+ math.atan2 (dir.x, dir.z)
+		local mob_yaw = mcl_util.norm_radians (mob_yaw_raw)
+		local mob_pitch = math.asin(-dir.y) * self.head_pitch_multiplier
+			+ self._head_pitch_offset
+		local out_of_view
+			= (mob_yaw < -self._head_rot_limit
+			   or mob_yaw > self._head_rot_limit)
+			and not (self.attack and not self.runaway)
+		if self.adjust_head_swivel then
+			mob_yaw, mob_pitch, out_of_view
+				= self:adjust_head_swivel (mob_yaw, mob_pitch, out_of_view)
+		end
 
-		if _locked_object_eye_height then
-			local self_yaw
-			-- It so transpires that
-			-- ObjectRef:get_rotation does not return the
-			-- rotation of the parent if there is an
-			-- attachment.
-			local attach = self.object:get_attach ()
-			if attach then
-				self_yaw = attach:get_yaw () or 0
-			else
-				self_yaw = self.object:get_yaw ()
+		if out_of_view then
+			newr = vector.multiply(oldr, 0.9)
+		elseif self.attack and not self.runaway then
+			if self.head_yaw == "y" then
+				newr = vector.new (mob_pitch, mob_yaw, 0)
+			else -- if self.head_yaw == "z" then
+				newr = vector.new (mob_pitch, 0, -mob_yaw)
 			end
-			local ps = self_pos
-			local old_y = ps.y
-			ps.y = ps.y + self:get_eye_height ()
-			local pt = locked_object:get_pos ()
-			pt.y = pt.y + _locked_object_eye_height
-			local dir = vector.direction (ps, pt)
-			ps.y = old_y
-			local mob_yaw_raw = self_yaw
-				+ math.atan2 (dir.x, dir.z)
-			local mob_yaw = mcl_util.norm_radians (mob_yaw_raw)
-			local mob_pitch = math.asin(-dir.y) * self.head_pitch_multiplier
-				+ self._head_pitch_offset
-			local out_of_view
-				= (mob_yaw < -self._head_rot_limit
-				   or mob_yaw > self._head_rot_limit)
-					and not (self.attack and not self.runaway)
-			if self.adjust_head_swivel then
-				mob_yaw, mob_pitch, out_of_view
-					= self:adjust_head_swivel (mob_yaw, mob_pitch, out_of_view)
-			end
-
-			if out_of_view then
-				newr = vector.multiply(oldr, 0.9)
-			elseif self.attack and not self.runaway then
-				if self.head_yaw == "y" then
-					newr = vector.new (mob_pitch, mob_yaw, 0)
-				else -- if self.head_yaw == "z" then
-					newr = vector.new (mob_pitch, 0, -mob_yaw)
-				end
-			else
-				if self.head_yaw == "y" then
-					newr = vector.new ((mob_pitch-oldr.x)*.3+oldr.x, (mob_yaw-oldr.y)*.3+oldr.y, 0)
-				else -- if self.head_yaw == "z" then
-					newr = vector.new ((mob_pitch-oldr.x)*.3+oldr.x, 0, ((mob_yaw-oldr.y)*.3+oldr.y)*-3)
-				end
+		else
+			if self.head_yaw == "y" then
+				newr = vector.new ((mob_pitch-oldr.x)*.3+oldr.x, (mob_yaw-oldr.y)*.3+oldr.y, 0)
+			else -- if self.head_yaw == "z" then
+				newr = vector.new ((mob_pitch-oldr.x)*.3+oldr.x, 0, ((mob_yaw-oldr.y)*.3+oldr.y)*-3)
 			end
 		end
 	elseif not locked_object
@@ -540,6 +538,19 @@ end
 local rotate_step_scratch = vector.zero ()
 
 function mob_class:rotate_step (dtime)
+	-- If this object is attached, conform the rotation to that
+	-- which the engine will actually apply.
+	local attach = self.object:get_attach ()
+	self._yaw_fixed = false
+	if attach then
+		-- XXX: apply any rotation specified in the attachment
+		-- parameters also, and read the yaw from the topmost
+		-- parent.
+		self._target_yaw = attach:get_yaw ()
+		self._target_pitch = 0
+		self._yaw_fixed = true
+	end
+
 	local yaw, pitch
 	local info = self:rotation_info ()
 	yaw = self:rotate_gradually (info, "yaw", dtime)
@@ -555,9 +566,16 @@ function mob_class:rotate_step (dtime)
 end
 
 function mob_class:set_yaw (yaw)
-	self:rotate_axis ("yaw", yaw)
-	self._target_yaw = yaw
-	return yaw
+	if not self._yaw_fixed then
+		self:rotate_axis ("yaw", yaw)
+		self._target_yaw = yaw
+		return yaw
+	else
+		-- The yaw cannot be adjusted when the mob is
+		-- attached.
+		return self._target_yaw
+			or (self.object:get_yaw () + self.rotate)
+	end
 end
 
 function mob_class:get_yaw (yaw)
@@ -645,14 +663,23 @@ end
 
 function posing_humanoid:apply_arm_pose (pose)
 	local pose = self._arm_poses[pose]
+	local attach_pos = nil
 	if pose then
 		for k, v in pairs (pose) do
 			if v[1] or v[2] or v[3] then
+				-- Don't load attachment-adjusted
+				-- position unless necessary.
+				if (type (v[1]) == "function" or type (v[2]) == "function")
+					and not attach_pos then
+					attach_pos = get_attachment_pos (self.object)
+				end
+
 				local pos = v[1] and (type (v[1]) ~= "function"
-						      and v[1] or v[1] (self))
+						      and v[1]
+						      or v[1] (self, attach_pos))
 				local rot = v[2] and (type (v[2]) ~= "function"
 						      and vector.apply (v[2], math.rad)
-						      or v[2] (self))
+						      or v[2] (self, attach_pos))
 				local scale = v[3]
 				local pos = pos
 				local rot = rot

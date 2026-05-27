@@ -18,7 +18,8 @@ mcl_attachments = {}
 --  [X] Test all of the mobs which have been modified.
 --  [X] Restore compatibility with older CSM clients.
 --  [ ] Implement support for object iterators.
---  [ ] Environmental damage for players & mobs.
+--  [X] Environmental damage for mobs.
+--  [ ] Environmental damage for players.
 ------------------------------------------------------------------------
 
 local mathsin = math.sin
@@ -461,4 +462,29 @@ function mcl_attachments.get_attachment_pos (attack)
 		return pos
 	end
 	return attack:get_pos ()
+end
+
+function mcl_attachments.get_attachment_offsets (attack)
+	local obj = interceptors_by_obj[attack]
+	if obj then
+		local entity = obj:get_luaentity ()
+		local x = entity._selection_box_offset.x
+		local y = entity._selection_box_offset.y
+		local z = entity._selection_box_offset.z
+		return x, y, z
+	end
+	return 0, 0, 0
+end
+
+function mcl_attachments.maybe_get_attached_object (object)
+	local entity = object:get_luaentity ()
+	if entity
+		and entity.name == "mcl_attachments:interceptor"
+		and entity._attached_obj
+		and entity._attached_obj:is_valid () then
+		return entity._attached_obj
+	elseif not interceptors_by_obj[object] then
+		return object
+	end
+	return nil
 end

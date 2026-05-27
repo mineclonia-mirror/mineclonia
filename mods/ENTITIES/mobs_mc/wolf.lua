@@ -347,9 +347,9 @@ function wolf:add_shake_particles ()
 	})
 end
 
-function wolf:check_head_swivel (self_pos, dtime, clear)
+function wolf:check_head_swivel (attach_pos, dtime, clear)
 	if not self._interested_in then
-		mob_class.check_head_swivel (self, self_pos, dtime, clear)
+		mob_class.check_head_swivel (self, attach_pos, dtime, clear)
 	end
 end
 
@@ -380,37 +380,37 @@ local function visually_display_interest_1 (self, yaw, dx, dy, dz)
 end
 
 function wolf:visually_display_interest (dtime, self_pos, target_pos)
-	if self.object.set_bone_override then
-		local dz = target_pos.z - self_pos.z
-		local dx = target_pos.x - self_pos.x
-		local dy = target_pos.y - (self_pos.y + self:get_eye_height ())
-		local yaw = self.object:get_yaw ()
+	local ax, ay, az
+		= mcl_attachments.get_attachment_offsets (self.object)
+	local dz = target_pos.z - self_pos.z + ax
+	local dx = target_pos.x - self_pos.x + ay
+	local dy = target_pos.y - (self_pos.y + az + self:get_eye_height ())
+	local yaw = self:get_yaw ()
 
-		if not self._beg_vector
-			or self._beg_yaw ~= yaw
-			or self._beg_vector.x ~= dx
-			or self._beg_vector.y ~= dy
-			or self._beg_vector.z ~= dz then
-			self._beg_vector = vector.new (dx, dy, dz)
-			self._beg_yaw = yaw
-			visually_display_interest_1 (self, yaw, dx, dy, dz)
-			self._beg_rotate_time = nil
-		elseif not self._active_activity
-			or self._active_activity == "sit_if_ordered" then
-			if not self._beg_rotate_time then
-				self._beg_rotate_time = 0.0
-			elseif self._beg_rotate_time then
-				local t = self._beg_rotate_time + dtime
+	if not self._beg_vector
+		or self._beg_yaw ~= yaw
+		or self._beg_vector.x ~= dx
+		or self._beg_vector.y ~= dy
+		or self._beg_vector.z ~= dz then
+		self._beg_vector = vector.new (dx, dy, dz)
+		self._beg_yaw = yaw
+		visually_display_interest_1 (self, yaw, dx, dy, dz)
+		self._beg_rotate_time = nil
+	elseif not self._active_activity
+		or self._active_activity == "sit_if_ordered" then
+		if not self._beg_rotate_time then
+			self._beg_rotate_time = 0.0
+		elseif self._beg_rotate_time then
+			local t = self._beg_rotate_time + dtime
 
-				if t > 0.5 then
-					self:look_at (target_pos)
-					t = 0
-				end
-				self._beg_rotate_time = t
+			if t > 0.5 then
+				self:look_at (target_pos)
+				t = 0
 			end
-		else
-			self._beg_rotate_time = nil
+			self._beg_rotate_time = t
 		end
+	else
+		self._beg_rotate_time = nil
 	end
 end
 
@@ -747,7 +747,7 @@ function wolf:get_wolf_owner_target ()
 	return nil
 end
 
-function wolf:attack_melee (self_pos, dtime, target_pos, line_of_sight)
+function wolf:attack_melee (attach_pos, self_pos, dtime, target_pos, line_of_sight)
 	if not self.attacking then
 		self._leaping = false
 	end
@@ -765,7 +765,7 @@ function wolf:attack_melee (self_pos, dtime, target_pos, line_of_sight)
 	end
 
 	-- Possibly leap at the target.
-	local dist = vector.distance (self_pos, target_pos)
+	local dist = vector.distance (attach_pos, target_pos)
 	local chance = math.round (5 * dtime / 0.05)
 	local r = math.random (chance)
 
@@ -776,7 +776,7 @@ function wolf:attack_melee (self_pos, dtime, target_pos, line_of_sight)
 		self._leaping = true
 		self:cancel_navigation ()
 		self:halt_in_tracks ()
-		local leap = vector.direction (self_pos, target_pos)
+		local leap = vector.direction (attach_pos, target_pos)
 		local v = self.object:get_velocity ()
 		leap.x = leap.x * 8.0 + v.x * 0.2
 		leap.y = 8.0
@@ -786,7 +786,7 @@ function wolf:attack_melee (self_pos, dtime, target_pos, line_of_sight)
 		return
 	end
 
-	mob_class.attack_melee (self, self_pos, dtime, target_pos, line_of_sight)
+	mob_class.attack_melee (self, attach_pos, self_pos, dtime, target_pos, line_of_sight)
 end
 
 local function wolf_check_beg (self, self_pos, dtime)

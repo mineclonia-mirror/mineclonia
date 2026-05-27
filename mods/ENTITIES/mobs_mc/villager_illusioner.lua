@@ -598,9 +598,11 @@ illusioner._combat_spells = {
 	illusioner_blindness_spell,
 }
 
-function illusioner:attack_bowshoot (self_pos, dtime, target_pos, line_of_sight)
+function illusioner:attack_bowshoot (attach_pos, self_pos, dtime, target_pos,
+				     line_of_sight)
 	if not self._casting_spell then
-		mob_class.attack_bowshoot (self, self_pos, dtime, target_pos, line_of_sight)
+		mob_class.attack_bowshoot (self, attach_pos, self_pos, dtime,
+					   target_pos, line_of_sight)
 	else
 		-- Halt for the duration of the spell.
 		self:release_wielditem ()

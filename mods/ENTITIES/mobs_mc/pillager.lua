@@ -147,15 +147,14 @@ end
 -- Pillager visuals.
 ------------------------------------------------------------------------
 
-function pillager:get_rightarm_with_pitch ()
+function pillager:get_rightarm_with_pitch (attach_pos)
 	local pitch = 0
 	if self.attack then
 		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		if target_pos then
-			local self_pos = self.object:get_pos ()
-			local dx = target_pos.x - self_pos.x
-			local dy = target_pos.y - (self_pos.y + self:get_eye_height ())
-			local dz = target_pos.z - self_pos.z
+			local dx = target_pos.x - attach_pos.x
+			local dy = target_pos.y - (attach_pos.y + self:get_eye_height ())
+			local dz = target_pos.z - attach_pos.z
 			local xz_mag = math.sqrt (dx * dx + dz * dz)
 			pitch = math.atan2 (dy, xz_mag)
 		end
@@ -163,15 +162,14 @@ function pillager:get_rightarm_with_pitch ()
 	return vector.new (math.rad (-110), -pitch, math.rad (90))
 end
 
-function pillager:get_leftarm_with_pitch ()
+function pillager:get_leftarm_with_pitch (attach_pos)
 	local pitch = 0
 	if self.attack then
 		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		if target_pos then
-			local self_pos = self.object:get_pos ()
-			local dx = target_pos.x - self_pos.x
-			local dy = target_pos.y - (self_pos.y + self:get_eye_height ())
-			local dz = target_pos.z - self_pos.z
+			local dx = target_pos.x - attach_pos.x
+			local dy = target_pos.y - (attach_pos.y + self:get_eye_height ())
+			local dz = target_pos.z - attach_pos.z
 			local xz_mag = math.sqrt (dx * dx + dz * dz)
 			pitch = math.atan2 (dy, xz_mag)
 		end

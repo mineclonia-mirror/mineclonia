@@ -167,10 +167,10 @@ function chicken:mob_activate (staticdata, dtime)
 	return mob_class.mob_activate (self, staticdata, dtime)
 end
 
-function chicken:motion_step (dtime, moveresult, self_pos)
+function chicken:motion_step (dtime, moveresult, attach_pos)
 	local v = self.object:get_velocity ()
 	self._flapping = v.y < 0
-	mob_class.motion_step (self, dtime, moveresult, self_pos)
+	mob_class.motion_step (self, dtime, moveresult, attach_pos)
 end
 
 mcl_mobs.register_mob ("mobs_mc:chicken", chicken)

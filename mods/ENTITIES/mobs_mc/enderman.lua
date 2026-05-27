@@ -553,11 +553,12 @@ local function enderman_ungrief (self, self_pos, dtime)
 	return false
 end
 
-function enderman:attack_melee (self_pos, dtime, target_pos, line_of_sight)
+function enderman:attack_melee (attach_pos, self_pos, dtime, target_pos,
+				line_of_sight)
 	local self_eye_pos = {
-		x = self_pos.x,
-		y = self_pos.y + self:get_eye_height (),
-		z = self_pos.z,
+		x = attach_pos.x,
+		y = attach_pos.y + self:get_eye_height (),
+		z = attach_pos.z,
 	}
 	-- Freeze if the target is looking directly at this enderman.
 	if self.attack:is_player ()
@@ -565,7 +566,8 @@ function enderman:attack_melee (self_pos, dtime, target_pos, line_of_sight)
 		self:cancel_navigation ()
 		self:halt_in_tracks ()
 	else
-		mob_class.attack_melee (self, self_pos, dtime, target_pos, line_of_sight)
+		mob_class.attack_melee (self, attach_pos, self_pos, dtime, target_pos,
+					line_of_sight)
 	end
 end
 

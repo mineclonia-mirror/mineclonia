@@ -552,7 +552,8 @@ local function wither_ascend (self, self_pos, target_pos)
 	self.object:set_velocity (v)
 end
 
-function wither_def:attack_null (self_pos, dtime, target_pos, line_of_sight)
+function wither_def:attack_null (attach_pos, self_pos, dtime, target_pos,
+				 line_of_sight)
 	-- Initialize attack state.
 	if not self.attacking then
 		self.attacking = true

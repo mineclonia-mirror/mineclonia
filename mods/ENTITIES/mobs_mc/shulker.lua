@@ -508,7 +508,7 @@ end
 -- Shulker visuals.
 ------------------------------------------------------------------------
 
-function shulker:check_head_swivel (self_pos, dtime, clear)
+function shulker:check_head_swivel (attach_pos, dtime, clear)
 	if clear then
 		self._locked_object = nil
 	else
@@ -522,8 +522,8 @@ function shulker:check_head_swivel (self_pos, dtime, clear)
 			and vector.equals (self._look_target, target_pos) then
 			return
 		end
-		self_pos.y = self_pos.y + self:get_eye_height ()
-		self:shulker_look_at (self_pos, target_pos)
+		attach_pos.y = attach_pos.y + self:get_eye_height ()
+		self:shulker_look_at (attach_pos, target_pos)
 		self._look_target = target_pos
 	elseif self._look_target then
 		self:stop_looking ()
@@ -584,7 +584,7 @@ end
 -- Shulker AI.
 ------------------------------------------------------------------------
 
-function shulker:attack_null (self_pos, dtime, target_pos, line_of_sight)
+function shulker:attack_null (attach_pos, self_pos, dtime, target_pos, line_of_sight)
 	if not self.attacking then
 		self._attack_cooldown = 1.0
 		self:open ()
@@ -594,7 +594,7 @@ function shulker:attack_null (self_pos, dtime, target_pos, line_of_sight)
 	self._attack_cooldown = self._attack_cooldown - dtime
 
 	if mcl_vars.difficulty > 0 then
-		local distance = vector.distance (self_pos, target_pos)
+		local distance = vector.distance (attach_pos, target_pos)
 		if distance < 20 then
 			if self._attack_cooldown <= 0 then
 				local next_cooldown
@@ -602,8 +602,8 @@ function shulker:attack_null (self_pos, dtime, target_pos, line_of_sight)
 				self._attack_cooldown
 					= next_cooldown / 20
 
-				local dir = vector.direction (self_pos, target_pos)
-				local shoot_pos = vector.copy (self_pos)
+				local dir = vector.direction (attach_pos, target_pos)
+				local shoot_pos = vector.copy (attach_pos)
 				if self._face == "up" or self._face == "down" then
 					local yaw = math.atan2 (dir.z, dir.x) - math.pi / 2
 					local x, z = mcl_util.get_2d_block_direction (yaw)
@@ -1021,29 +1021,32 @@ function shulker_bullet:check_hit (self_pos, moveresult, v, dtime)
 	cbox[4] = cbox[4] + self_pos.x - v.x * dtime
 	cbox[5] = cbox[5] + self_pos.y - v.y * dtime
 	cbox[6] = cbox[6] + self_pos.z - v.z * dtime
-	for object in core.objects_in_area (aa, bb) do
-		local entity = object:get_luaentity ()
-		if ((entity and entity.is_mob) or object:is_player ())
-			and (self._lifetime > 1.0 or object ~= self._shooter) then
-			local cbox1 = object:get_properties ().collisionbox
-			local pos = object:get_pos ()
+	for cbox_object in core.objects_in_area (aa, bb) do
+		local object = mcl_attachments.maybe_get_attached_object (cbox_object)
+		if object then
+			local entity = object:get_luaentity ()
+			if ((entity and entity.is_mob) or object:is_player ())
+				and (self._lifetime > 1.0 or object ~= self._shooter) then
+				local cbox1 = cbox_object:get_properties ().collisionbox
+				local pos = cbox_object:get_pos ()
 
-			cbox1[1] = cbox1[1] + pos.x
-			cbox1[2] = cbox1[2] + pos.y
-			cbox1[3] = cbox1[3] + pos.z
-			cbox1[4] = cbox1[4] + pos.x
-			cbox1[5] = cbox1[5] + pos.y
-			cbox1[6] = cbox1[6] + pos.z
+				cbox1[1] = cbox1[1] + pos.x
+				cbox1[2] = cbox1[2] + pos.y
+				cbox1[3] = cbox1[3] + pos.z
+				cbox1[4] = cbox1[4] + pos.x
+				cbox1[5] = cbox1[5] + pos.y
+				cbox1[6] = cbox1[6] + pos.z
 
-			local movement = {
-				v.x * dtime,
-				v.y * dtime,
-				v.z * dtime,
-			}
-			if box_box_collision (movement, cbox, cbox1) then
-				self:hit_object (object)
-				self.object:remove ()
-				return true
+				local movement = {
+					v.x * dtime,
+					v.y * dtime,
+					v.z * dtime,
+				}
+				if box_box_collision (movement, cbox, cbox1) then
+					self:hit_object (object)
+					self.object:remove ()
+					return true
+				end
 			end
 		end
 	end

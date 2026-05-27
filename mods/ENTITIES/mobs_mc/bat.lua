@@ -64,14 +64,14 @@ end
 
 local scale_chance = mcl_mobs.scale_chance
 
-function bat:motion_step (dtime, moveresult, self_pos)
+function bat:motion_step (dtime, moveresult, attach_pos)
 	local h_scale, v_scale
-		= mob_class.motion_step (self, dtime, moveresult, self_pos)
-	local old_y = self_pos.y
+		= mob_class.motion_step (self, dtime, moveresult, attach_pos)
+	local old_y = attach_pos.y
 	local abovepos = {
-		x = math.floor (self_pos.x + 0.5),
-		y = math.floor (self_pos.y + 0.5) + 1,
-		z = math.floor (self_pos.z + 0.5),
+		x = math.floor (attach_pos.x + 0.5),
+		y = math.floor (attach_pos.y + 0.5) + 1,
+		z = math.floor (attach_pos.z + 0.5),
 	}
 
 	if self._resting then
@@ -82,7 +82,7 @@ function bat:motion_step (dtime, moveresult, self_pos)
 			self:set_animation ("stand")
 		else
 			-- Be startled off by players wihin 4 nodes.
-			for player in mcl_util.connected_players (self_pos, 4) do
+			for player in mcl_util.connected_players (attach_pos, 4) do
 				self._resting = false
 				self:set_animation ("stand")
 				break
@@ -92,9 +92,9 @@ function bat:motion_step (dtime, moveresult, self_pos)
 		if self._resting then
 			self:set_animation ("hang")
 			self.object:set_pos ({
-				x = self_pos.x,
+				x = attach_pos.x,
 				y = abovepos.y - 0.5 - 0.9,
-				z = self_pos.z,
+				z = attach_pos.z,
 			})
 			self.object:set_velocity (vector.zero ())
 			-- Rotate randomly.
@@ -105,7 +105,7 @@ function bat:motion_step (dtime, moveresult, self_pos)
 		end
 	end
 
-	self_pos.y = self_pos.y + (self.collisionbox[5] - self.collisionbox[2]) / 2
+	attach_pos.y = attach_pos.y + (self.collisionbox[5] - self.collisionbox[2]) / 2
 	-- Bats feature no true AI and simply float aimlessly,
 	-- applying input directly to their velocity.
 	local target_pos = self._target_pos
@@ -113,24 +113,24 @@ function bat:motion_step (dtime, moveresult, self_pos)
 	if not target_pos
 		or is_walkable (target_pos)
 		or math.random (scale_chance (30, dtime)) == 1
-		or vector.distance (self_pos, target_pos) <= 2.0 then
+		or vector.distance (attach_pos, target_pos) <= 2.0 then
 		-- Switch target positions.
 		local x = math.random (0, 6) - math.random (0, 6)
 		local z = math.random (0, 6) - math.random (0, 6)
 		local y = math.random (0, 5) - 2.0
-		self_pos.y = old_y
-		target_pos = vector.offset (self_pos, x, y, z)
+		attach_pos.y = old_y
+		target_pos = vector.offset (attach_pos, x, y, z)
 		target_pos.x = math.floor (target_pos.x + 0.5)
 		target_pos.y = math.floor (target_pos.y)
 		target_pos.z = math.floor (target_pos.z + 0.5)
 	end
 
-	self_pos.y = old_y
+	attach_pos.y = old_y
 	self._target_pos = target_pos
 	local v = self.object:get_velocity ()
-	local dx = target_pos.x + 0.5 - self_pos.x
-	local dy = target_pos.y + 0.1 - self_pos.y
-	local dz = target_pos.z + 0.5 - self_pos.z
+	local dx = target_pos.x + 0.5 - attach_pos.x
+	local dy = target_pos.y + 0.1 - attach_pos.y
+	local dz = target_pos.z + 0.5 - attach_pos.z
 	local x_mod = (signum (dx) * 10 - v.x) * 0.1 * h_scale
 	local y_mod = (signum (dy) * 14 - v.y) * 0.1 * v_scale
 	local z_mod = (signum (dz) * 10 - v.z) * 0.1 * h_scale

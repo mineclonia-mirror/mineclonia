@@ -229,7 +229,7 @@ end
 -- Spider AI.
 ------------------------------------------------------------------------
 
-function spider:attack_melee (self_pos, dtime, target_pos, line_of_sight)
+function spider:attack_melee (attach_pos, self_pos, dtime, target_pos, line_of_sight)
 	if not self.attacking then
 		self._leaping = false
 	end
@@ -247,7 +247,7 @@ function spider:attack_melee (self_pos, dtime, target_pos, line_of_sight)
 	end
 
 	-- Possibly leap at the target.
-	local dist = vector.distance (self_pos, target_pos)
+	local dist = vector.distance (attach_pos, target_pos)
 	local chance = math.round (5 * dtime / 0.05)
 	local r = math.random (chance)
 
@@ -258,7 +258,7 @@ function spider:attack_melee (self_pos, dtime, target_pos, line_of_sight)
 		self._leaping = true
 		self:cancel_navigation ()
 		self:halt_in_tracks ()
-		local leap = vector.direction (self_pos, target_pos)
+		local leap = vector.direction (attach_pos, target_pos)
 		local v = self.object:get_velocity ()
 		leap.x = leap.x * 8.0 + v.x * 0.2
 		leap.y = 8.0
@@ -268,7 +268,8 @@ function spider:attack_melee (self_pos, dtime, target_pos, line_of_sight)
 		return
 	end
 
-	mob_class.attack_melee (self, self_pos, dtime, target_pos, line_of_sight)
+	mob_class.attack_melee (self, attach_pos, self_pos, dtime, target_pos,
+				line_of_sight)
 end
 
 function spider:track_current_target (self_pos, dtime, obj, dist, persistence)

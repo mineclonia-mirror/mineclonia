@@ -11,6 +11,8 @@ local mathpow = math.pow
 local ENTITY_CRAMMING_MAX = 24
 local DEATH_DELAY = 0.5
 
+local get_attachment_pos = mcl_attachments.get_attachment_pos
+
 local mobs_drop_items = core.settings:get_bool ("mobs_drop_items") ~= false
 
 function mob_class:item_drop(cooked, looting_level, mcl_reason)
@@ -394,9 +396,9 @@ function mob_class:step_drowning (dtime, is_in_water)
 				return true
 			end
 
-			local self_pos = self.object:get_pos ()
-			self_pos.y = self_pos.y + self:get_eye_height ()
-			mcl_mobs.effect (self_pos, 8, "bubble.png", nil, nil, 1, nil)
+			local attach_pos = get_attachment_pos (self.object)
+			attach_pos.y = attach_pos.y + self:get_eye_height ()
+			mcl_mobs.effect (attach_pos, 8, "bubble.png", nil, nil, 1, nil)
 		else
 			self.breath = t
 		end
@@ -426,7 +428,7 @@ function mob_class:is_exposed_to_rain (node_pos)
 	return value
 end
 
-function mob_class:apply_environment_damage (self_pos, immersion_depth,
+function mob_class:apply_environment_damage (attach_pos, immersion_depth,
 					     liquidtype, params, dtime)
 	local damage = 0.0
 	local damagetype = nil
@@ -434,9 +436,9 @@ function mob_class:apply_environment_damage (self_pos, immersion_depth,
 	local skip_burning = false
 	local node_pos = v1
 
-	node_pos.x = mathfloor (self_pos.x + 0.5)
-	node_pos.y = mathfloor (self_pos.y + 0.5)
-	node_pos.z = mathfloor (self_pos.z + 0.5)
+	node_pos.x = mathfloor (attach_pos.x + 0.5)
+	node_pos.y = mathfloor (attach_pos.y + 0.5)
+	node_pos.z = mathfloor (attach_pos.z + 0.5)
 
 	if params.dps > 0.0
 		and self:check_timer ("environment_damage", 0.5) then
@@ -553,7 +555,7 @@ function mob_class:apply_environment_damage (self_pos, immersion_depth,
 		and math.random (scale_chance (dtime, 30)) == 1 then
 		local _, dim = mcl_worlds.y_to_layer (node_pos.y)
 		if dim == "overworld" then
-			node_pos.y = mathfloor (self_pos.y + eye_height + 0.5)
+			node_pos.y = mathfloor (attach_pos.y + eye_height + 0.5)
 
 			local tod = mcl_util.get_current_time_of_day ()
 			local sunlight, direct_sunlight, has_rain
@@ -607,7 +609,7 @@ mcl_mobs.node_name_with_fallback = node_name_with_fallback
 -- Fall damage.
 ------------------------------------------------------------------------
 
-function mob_class:check_fall_damage (dtime, self_pos, moveresult)
+function mob_class:check_fall_damage (dtime, attach_pos, moveresult)
 	if self._no_fall_damage or self.dead then
 		return
 	elseif self._csm_driving then
@@ -617,10 +619,10 @@ function mob_class:check_fall_damage (dtime, self_pos, moveresult)
 	end
 
 	-- Integrate fall damage.
-	local fall_y = self._last_fall_y or self_pos.y
-	local d = self._fall_distance + (fall_y - self_pos.y)
+	local fall_y = self._last_fall_y or attach_pos.y
+	local d = self._fall_distance + (fall_y - attach_pos.y)
 	self._fall_distance = mathmax (d, 0)
-	self._last_fall_y = self_pos.y
+	self._last_fall_y = attach_pos.y
 
 	if self.reset_fall_damage then
 		self._fall_distance = 0
@@ -678,7 +680,7 @@ end
 -- Miscellaneous functions.
 ------------------------------------------------------------------------
 
-function mob_class:check_water_flow (self_pos)
+function mob_class:check_water_flow (attach_pos)
 	return self._water_current
 end
 
@@ -1025,10 +1027,10 @@ function mob_class:immersion_depth (liquidgroup, pos, max)
 	return ymax and ymax - start or 0
 end
 
-function mob_class:check_collision (self_pos, v, h_scale)
+function mob_class:check_collision (attach_pos, v, h_scale)
 	-- can mob be pushed, if so calculate direction
 	if self.pushable and not self.object:get_attach () then
-		local c_x, c_z, count = self:collision (self_pos)
+		local c_x, c_z, count = self:collision (attach_pos)
 		v.x = v.x + c_x * h_scale
 		v.z = v.z + c_z * h_scale
 		self._collision_count = count
@@ -1073,14 +1075,14 @@ end
 local will_breach_water_scratch = vector.zero ()
 local scratch_cbox = {}
 
-function mob_class:will_breach_water (self_pos, dx, dy, dz)
+function mob_class:will_breach_water (attach_pos, dx, dy, dz)
 	local cbox = self.collisionbox
-	scratch_cbox[1] = cbox[1] + self_pos.x + dx
-	scratch_cbox[2] = cbox[2] + self_pos.y + dy
-	scratch_cbox[3] = cbox[3] + self_pos.z + dz
-	scratch_cbox[4] = cbox[4] + self_pos.x + dx
-	scratch_cbox[5] = cbox[5] + self_pos.y + dy
-	scratch_cbox[6] = cbox[6] + self_pos.z + dz
+	scratch_cbox[1] = cbox[1] + attach_pos.x + dx
+	scratch_cbox[2] = cbox[2] + attach_pos.y + dy
+	scratch_cbox[3] = cbox[3] + attach_pos.z + dz
+	scratch_cbox[4] = cbox[4] + attach_pos.x + dx
+	scratch_cbox[5] = cbox[5] + attach_pos.y + dy
+	scratch_cbox[6] = cbox[6] + attach_pos.z + dz
 
 	-- Crude collision detection that does not take movement into
 	-- account.
@@ -1107,7 +1109,7 @@ function mob_class:will_breach_water (self_pos, dx, dy, dz)
 	return true
 end
 
-function mob_class:motion_step (dtime, moveresult, self_pos)
+function mob_class:motion_step (dtime, moveresult, attach_pos)
 	if not moveresult then
 		return
 	end
@@ -1191,7 +1193,7 @@ function mob_class:motion_step (dtime, moveresult, self_pos)
 		gravity_drag = self.gravity_drag
 	end
 
-	local water_vec = self:check_water_flow (self_pos)
+	local water_vec = self:check_water_flow (attach_pos)
 	local velocity_factor = 1.0
 	local liquidtype = self._last_liquidtype
 		or (self.floats_on_lava and self._liquidtype == "lava"
@@ -1263,7 +1265,7 @@ function mob_class:motion_step (dtime, moveresult, self_pos)
 			local dy = diff_tick + 0.6 - traveled
 			local dz = v.z * 0.05
 			local will_breach_water
-				= self:will_breach_water (self_pos, dx, dy, dz)
+				= self:will_breach_water (attach_pos, dx, dy, dz)
 			if will_breach_water then
 				v.y = 6.0
 			end
@@ -1308,7 +1310,7 @@ function mob_class:motion_step (dtime, moveresult, self_pos)
 				local dy = diff_tick + 0.6 - traveled
 				local dz = v.z * 0.05
 				local will_breach_lava
-					= self:will_breach_water (self_pos, dx, dy, dz)
+					= self:will_breach_water (attach_pos, dx, dy, dz)
 				if will_breach_lava then
 					v.y = 6.0
 				end
@@ -1431,7 +1433,7 @@ function mob_class:motion_step (dtime, moveresult, self_pos)
 	-- Clear the jump flag even when jumping is not yet possible.
 	self._jump = false
 	self._was_touching_ground = touching_ground
-	self:check_collision (self_pos, v, h_scale)
+	self:check_collision (attach_pos, v, h_scale)
 	self.object:set_velocity (v)
 	return h_scale, v_scale
 end
@@ -1439,7 +1441,7 @@ end
 -- Simplified `motion_step' for true (i.e., not birds or blazes)
 -- flying mobs unaffected by gravity (i.e., not ghasts).
 
-function mob_class:flying_step (dtime, moveresult, self_pos)
+function mob_class:flying_step (dtime, moveresult, attach_pos)
 	if not moveresult then
 		return
 	end
@@ -1492,7 +1494,7 @@ function mob_class:flying_step (dtime, moveresult, self_pos)
 	v.z = v.z * p + fv_z
 	self._previously_floating = true
 	self.object:set_properties ({stepheight = 0.0})
-	self:check_collision (self_pos, v, scale)
+	self:check_collision (attach_pos, v, scale)
 	self.object:set_velocity (v)
 end
 
@@ -1501,7 +1503,7 @@ end
 
 local default_motion_step = mob_class.motion_step
 
-function mob_class:aquatic_step (dtime, moveresult, self_pos)
+function mob_class:aquatic_step (dtime, moveresult, attach_pos)
 	if not moveresult then
 		return
 	end
@@ -1531,12 +1533,12 @@ function mob_class:aquatic_step (dtime, moveresult, self_pos)
 			v.y = v.y + AQUATIC_GRAVITY * scale
 		end
 
-		self:check_collision (self_pos, v, scale)
+		self:check_collision (attach_pos, v, scale)
 		self.object:set_velocity (v)
 		self._previously_floating = true
 		self.object:set_properties ({stepheight = 0.0})
 	else
-		default_motion_step (self, dtime, moveresult, self_pos)
+		default_motion_step (self, dtime, moveresult, attach_pos)
 	end
 end
 
@@ -1661,14 +1663,14 @@ local function check_node_group (def, group)
 	return (def and def.groups[group] or 0) > 0
 end
 
-function mob_class:check_standin (dtime, pos)
+function mob_class:check_standin (dtime, attach_pos)
 	local cbox = self.collisionbox
-	local x0 = mathfloor (cbox[1] + pos.x + 0.5 + 0.01)
-	local x1 = mathfloor (cbox[4] + pos.x + 0.5 - 0.01)
-	local y0 = mathfloor (cbox[2] + pos.y + 0.5 + 0.01)
-	local y1 = mathfloor (cbox[5] + pos.y + 0.5 - 0.01)
-	local z0 = mathfloor (cbox[3] + pos.z + 0.5 + 0.01)
-	local z1 = mathfloor (cbox[6] + pos.z + 0.5 - 0.01)
+	local x0 = mathfloor (cbox[1] + attach_pos.x + 0.5 + 0.01)
+	local x1 = mathfloor (cbox[4] + attach_pos.x + 0.5 - 0.01)
+	local y0 = mathfloor (cbox[2] + attach_pos.y + 0.5 + 0.01)
+	local y1 = mathfloor (cbox[5] + attach_pos.y + 0.5 - 0.01)
+	local z0 = mathfloor (cbox[3] + attach_pos.z + 0.5 + 0.01)
+	local z1 = mathfloor (cbox[6] + attach_pos.z + 0.5 - 0.01)
 	local immersion_depth = 0.0
 	local worst_type = nil
 	local v = check_standin_scratch
@@ -1677,7 +1679,7 @@ function mob_class:check_standin (dtime, pos)
 	current.y = 0
 	current.z = 0
 	local n_fluids = 0
-	local dimension = mcl_worlds.pos_to_dimension (pos)
+	local dimension = mcl_worlds.pos_to_dimension (attach_pos)
 
 	params.in_powder_snow = false
 	params.in_fire_node = false
@@ -1685,7 +1687,7 @@ function mob_class:check_standin (dtime, pos)
 	params.in_solid_node = false
 	params.dps = 0
 
-	local eye_height = self:get_eye_height () + pos.y
+	local eye_height = self:get_eye_height () + attach_pos.y
 
 	for y = y0, y1 do
 		local in_eyeline = y - 0.5 <= eye_height
@@ -1697,8 +1699,10 @@ function mob_class:check_standin (dtime, pos)
 				v.z = z
 				local node, param2 = get_node (v)
 				local depth, liquidtype
-					= self:check_one_immersion_depth (node, param2, pos.y,
-									  v, current, dimension)
+					= self:check_one_immersion_depth (node, param2,
+									  attach_pos.y,
+									  v, current,
+									  dimension)
 				immersion_depth = mathmax (depth, immersion_depth)
 				if liquidtype then
 					n_fluids = n_fluids + 1
@@ -1738,11 +1742,11 @@ function mob_class:check_standin (dtime, pos)
 		current.y = current.y / n_fluids
 		current.z = current.z / n_fluids
 	end
-	self:apply_environment_damage (pos, immersion_depth, worst_type, params, dtime)
+	self:apply_environment_damage (attach_pos, immersion_depth, worst_type, params, dtime)
 	return immersion_depth, worst_type
 end
 
-function mob_class:post_motion_step (self_pos, dtime, moveresult)
+function mob_class:post_motion_step (attach_pos, dtime, moveresult)
 	-- Apply slowdowns from blocks that should impede movement.
 	local slowdown = self._stuck_in
 	if slowdown then
@@ -1821,10 +1825,12 @@ function mob_class:post_motion_step (self_pos, dtime, moveresult)
 	local def = core.registered_nodes[self.standing_in]
 	if def._on_object_in then
 		-- This is a workaround to prevent excess table allocations
-		local saved_y_pos = self_pos.y
-		self_pos.y = math.floor (self_pos.y + self.collisionbox[2] + 0.5 + 1.0e-2)
+		local saved_y_pos = attach_pos.y
+		local foot_pos = self.collisionbox[2] + 1.0e-2
+		attach_pos.y = mathfloor (attach_pos.y + foot_pos + 0.5)
 		local def = core.registered_nodes[self.standing_in]
-		def._on_object_in (self_pos, mcl_mobs.node_ok (self_pos, "air"), self.object)
-		self_pos.y = saved_y_pos
+		local node = mcl_mobs.node_ok (attach_pos, "air")
+		def._on_object_in (attach_pos, node, self.object)
+		attach_pos.y = saved_y_pos
 	end
 end

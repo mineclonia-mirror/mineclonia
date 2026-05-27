@@ -177,7 +177,7 @@ local function lerp1d_scaled (u, dtime, s1, s2)
 	return v
 end
 
-function blaze:attack_null (self_pos, dtime, target_pos, line_of_sight)
+function blaze:attack_null (attach_pos, self_pos, dtime, target_pos, line_of_sight)
 	if not self.attacking then
 		-- Initialize fields used during the attack.
 		self._visible_for = 0
@@ -199,14 +199,14 @@ function blaze:attack_null (self_pos, dtime, target_pos, line_of_sight)
 	local target_eye_height
 		= target_pos.y + mcl_util.target_eye_height (self.attack)
 	local self_eye_height
-		= self_pos.y + self:get_eye_height ()
+		= attach_pos.y + self:get_eye_height ()
 	if target_eye_height > self_eye_height + self._height_diff_tolerance then
 		local v = self.object:get_velocity ()
 		v.y = lerp1d_scaled (0.3, dtime, v.y, 6.0)
 		self.object:set_velocity (v)
 	end
 
-	local distance = vector.distance (self_pos, target_pos)
+	local distance = vector.distance (attach_pos, target_pos)
 	-- Resort to melee attacks if the target has approached too
 	-- near.
 	if distance < 2.0 then
@@ -221,7 +221,7 @@ function blaze:attack_null (self_pos, dtime, target_pos, line_of_sight)
 				damage_groups = {
 					fleshy = self.damage,
 				},
-			}, vector.direction (self_pos, target_pos))
+			}, vector.direction (attach_pos, target_pos))
 		end
 		self:go_to_pos (target_pos)
 	elseif distance < self.tracking_distance and line_of_sight then
@@ -240,10 +240,10 @@ function blaze:attack_null (self_pos, dtime, target_pos, line_of_sight)
 			local dx, dy, dz
 			local props = self.attack:get_properties ()
 			local cbox = props.collisionbox
-			dx = target_pos.x - self_pos.x
+			dx = target_pos.x - attach_pos.x
 			dy = (target_pos.y + cbox[2] + (cbox[5] - cbox[2]) / 2)
-				- (self_pos.y + 0.9)
-			dz = target_pos.z - self_pos.z
+				- (attach_pos.y + 0.9)
+			dz = target_pos.z - attach_pos.z
 
 			local scatter = math.sqrt (distance) / 2
 			local vec = vector.normalize ({
@@ -251,7 +251,7 @@ function blaze:attack_null (self_pos, dtime, target_pos, line_of_sight)
 				y = dy,
 				z = mcl_util.dist_triangular (dz, 2.297 * scatter),
 			})
-			local pos = vector.offset (self_pos, 0, 0.9, 0)
+			local pos = vector.offset (attach_pos, 0, 0.9, 0)
 			local arrow = core.add_entity (pos, self.arrow)
 			if arrow then
 				local luaentity = arrow:get_luaentity ()
@@ -260,7 +260,7 @@ function blaze:attack_null (self_pos, dtime, target_pos, line_of_sight)
 				luaentity.switch = 1
 				luaentity.owner_id = tostring (self.object)
 				luaentity._shooter = self.object
-				luaentity._saved_shooter_pos = vector.copy (self_pos)
+				luaentity._saved_shooter_pos = vector.copy (attach_pos)
 			end
 			self._phase_remaining = 0.3
 		else

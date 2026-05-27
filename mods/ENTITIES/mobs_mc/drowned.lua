@@ -323,7 +323,7 @@ local AIR_DRAG = 0.98
 
 local pow_by_step = mcl_mobs.pow_by_step
 
-function drowned:motion_step (dtime, moveresult, self_pos)
+function drowned:motion_step (dtime, moveresult, attach_pos)
 	if self._swimming and self._immersion_depth > 0 then
 		local p = pow_by_step (AIR_DRAG, dtime)
 		local acc_dir = self.acc_dir
@@ -348,7 +348,7 @@ function drowned:motion_step (dtime, moveresult, self_pos)
 		self.object:set_velocity (v)
 	else
 		self:set_pitch (0)
-		mob_class.motion_step (self, dtime, moveresult, self_pos)
+		mob_class.motion_step (self, dtime, moveresult, attach_pos)
 	end
 end
 

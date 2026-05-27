@@ -89,10 +89,7 @@ local MAX_POS_2 = vector.new (0.6 + 0.2, 1.62, 0.2)
 local Y_AXIS = vector.new (0, 1, 0)
 
 function evoker:add_particlespawner (min_pos, max_pos)
-	local self_pos = self.object:get_pos ()
-	if self.jockey_vehicle then
-		self_pos.y = self_pos.y + self._jockey_eye_offset
-	end
+	local attach_pos = mcl_attachments.get_attachment_pos (self.object)
 	local yaw = self:get_yaw ()
 	local min_pos = vector.rotate_around_axis (min_pos, Y_AXIS, yaw)
 	local max_pos = vector.rotate_around_axis (max_pos, Y_AXIS, yaw)
@@ -105,8 +102,8 @@ function evoker:add_particlespawner (min_pos, max_pos)
 			max = 0.4,
 		},
 		pos = {
-			min = vector.add (self_pos, min_pos),
-			max = vector.add (self_pos, max_pos),
+			min = vector.add (attach_pos, min_pos),
+			max = vector.add (attach_pos, max_pos),
 		},
 		vel = {
 			min = MIN_VEL,
@@ -185,7 +182,7 @@ function evoker:ai_step (dtime)
 	end
 end
 
-function evoker:attack_null (self_pos, dtime, target_pos, line_of_sight)
+function evoker:attack_null (attach_pos, self_pos, dtime, target_pos, line_of_sight)
 	if not self.attacking then
 		self.attacking = true
 	end
@@ -196,14 +193,14 @@ function evoker:attack_null (self_pos, dtime, target_pos, line_of_sight)
 	if not self._casting_spell and self.attack:is_player () then
 		if self:navigation_finished () then
 			local target
-				= self:target_away_from (self_pos, target_pos)
+				= self:target_away_from (attach_pos, target_pos)
 
 			if target then
 				local bonus = self.runaway_bonus_near
 				self:gopath (target, bonus)
 			end
 		else
-			local distance = vector.distance (self_pos, target_pos)
+			local distance = vector.distance (attach_pos, target_pos)
 			local mob = self:mob_controlling_movement ()
 			if distance < 7.0 then
 				mob.gowp_velocity

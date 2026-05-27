@@ -1,17 +1,20 @@
 local mob_class = mcl_mobs.mob_class
 local is_valid = mcl_util.is_valid_objectref
 local ipairs = ipairs
+local get_attachment_offsets = mcl_attachments.get_attachment_offsets
 
-function mob_class:target_visible(origin, target)
+function mob_class:target_visible (self_pos, target)
 	-- This cache is flushed on each call to on_step.
 	if self._targets_visible[target] then
 		return true
 	end
 
 	local target_pos = mcl_util.target_eye_pos (target)
-	local origin_eye_pos = vector.offset (origin, 0, self.head_eye_height, 0)
+	local dx, dy, dz = get_attachment_offsets (self.object)
+	local eye_height = self:get_eye_height ()
+	local eye_pos = vector.offset (self_pos, dx, dy + eye_height, dz)
 
-	if self:line_of_sight (origin_eye_pos, target_pos) then
+	if self:line_of_sight (eye_pos, target_pos) then
 		self._targets_visible[target] = true
 		return true
 	end
@@ -340,17 +343,13 @@ end
 -- Jockeys.
 ------------------------------------------------------------------------
 
-local MODEL_RECIPROCAL = 1.0 / 10.0
-
-function mob_class:jock_to (mob, relative_pos, rot, fix_eye_height)
+function mob_class:jock_to (mob, relative_pos, rot)
 	local jock = core.add_entity (self.object:get_pos (), mob)
 	if not jock then return end
-	return self:jock_to_existing (jock, "", relative_pos, rot,
-				      fix_eye_height)
+	return self:jock_to_existing (jock, "", relative_pos, rot)
 end
 
-function mob_class:jock_to_existing (jock, bone, relative_pos, rot,
-				     fix_eye_height)
+function mob_class:jock_to_existing (jock, bone, relative_pos, rot)
 	local entity = jock:get_luaentity ()
 	-- Controlling mobs in jockeys are not saved directly, but in
 	-- the staticdata of their vehicles.
@@ -378,21 +377,6 @@ function mob_class:jock_to_existing (jock, bone, relative_pos, rot,
 	entity._jockey_bone = bone
 	entity._jockey_rot = rot
 	entity._jockey_rider_non_dominant = not self._dominant_in_jockeys
-	entity._jockey_fix_eye_height = fix_eye_height
-	if fix_eye_height then
-		-- Caveat emptor: FIX_EYE_HEIGHT when specified will
-		-- not prompt eye height to be readjusted when the
-		-- mob's parent's eye height is adjusted, or account
-		-- for more than one mob in the attachment chain.
-		-- Neither will it function if BONE is not the base of
-		-- the object, as bone offsets are unavailable to
-		-- server-side programs.
-		local pos = relative_pos.y * MODEL_RECIPROCAL
-		self._jockey_eye_offset
-			= pos / jock_properties.visual_size.y
-	else
-		self._jockey_eye_offset = 0
-	end
 	self.object:set_attach (jock, bone, relative_pos, rot)
 	mcl_attachments.spawn_attachment_entity (self.object)
 	self:set_animation ("jockey")
@@ -524,9 +508,7 @@ function mob_class:restore_jockey ()
 			local relative_pos = self._jockey_relative_pos
 			local rot = self._jockey_rot
 			local bone = self._jockey_bone
-			local fix_eye_height = self._jockey_fix_eye_height
-			entity:jock_to_existing (self.object, bone, relative_pos, rot,
-						 fix_eye_height)
+			entity:jock_to_existing (self.object, bone, relative_pos, rot)
 		end
 		self._jockey_staticdata = nil
 	end

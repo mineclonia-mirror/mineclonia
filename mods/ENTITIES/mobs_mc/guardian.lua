@@ -162,8 +162,8 @@ function guardian:mob_activate (staticdata, dtime)
 	return true
 end
 
-function guardian:motion_step (dtime, moveresult, self_pos)
-	mob_class.aquatic_step (self, dtime, moveresult, self_pos)
+function guardian:motion_step (dtime, moveresult, attach_pos)
+	mob_class.aquatic_step (self, dtime, moveresult, attach_pos)
 	self._acc_seed = self._acc_seed + dtime
 end
 
@@ -187,17 +187,11 @@ end
 
 local EYE_LATITUDE = 0.4
 
-function guardian:check_head_swivel (self_pos, dtime, clear)
-	-- This is not readily supported on Minetest 5.8.0 and
-	-- earlier.
-	if not self.object.set_bone_override then
-		return
-	end
-
+function guardian:check_head_swivel (attach_pos, dtime, clear)
 	if clear then
-	   self._locked_object = nil
+		self._locked_object = nil
 	else
-	   self:who_are_you_looking_at ()
+		self:who_are_you_looking_at ()
 	end
 
 	if self._locked_object then
@@ -207,7 +201,7 @@ function guardian:check_head_swivel (self_pos, dtime, clear)
 		end
 		local yaw = self.object:get_yaw ()
 		local forward_vector = core.yaw_to_dir (yaw)
-		local diff = vector.offset (self_pos, 0, self:get_eye_height (), 0)
+		local diff = vector.offset (attach_pos, 0, self:get_eye_height (), 0)
 		local eye_vector = {
 			x = math.cos (yaw) * EYE_LATITUDE,
 			y = 0,
@@ -231,10 +225,10 @@ function guardian:check_head_swivel (self_pos, dtime, clear)
 			end
 			local position = proj * -EYE_LATITUDE
 			self.object:set_bone_override ("eye", {
-							       position = {
-								       vec = vector.new (position, 0, 0),
-								       absolute = false,
-							       },
+				position = {
+					vec = vector.new (position, 0, 0),
+					absolute = false,
+				},
 			})
 			local x_mag_sqr = diff.x * diff.x + diff.z * diff.z
 			local pitch = math.atan2 (-diff.y, math.sqrt (x_mag_sqr))
@@ -285,7 +279,7 @@ function guardian:attack_end ()
 	self._pace_asap = true
 end
 
-function guardian:attack_null (self_pos, dtime, target_pos, line_of_sight)
+function guardian:attack_null (attach_pos, self_pos, dtime, target_pos, line_of_sight)
 	if not self.attacking then
 		self._laser_delay = self._default_laser_delay
 		self.attacking = true
@@ -323,7 +317,7 @@ local dist_sqr = mcl_mobs.dist_sqr
 
 function guardian:get_active_target (self_pos)
 	if not self._pace_asap then
-		local target = mob_class.get_active_target (self)
+		local target = mob_class.get_active_target (self, self_pos)
 		local pos = target and target:get_pos ()
 		if pos and dist_sqr (self_pos, pos) > 9.0 then
 			return target

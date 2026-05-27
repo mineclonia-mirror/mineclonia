@@ -3,6 +3,7 @@ local S = core.get_translator("mcl_mobs")
 local pairs = pairs
 local mob_class = mcl_mobs.mob_class
 local is_valid = mcl_util.is_valid_objectref
+local get_attachment_pos = mcl_attachments.get_attachment_pos
 
 local only_peaceful_mobs = core.settings:get_bool("only_peaceful_mobs", false)
 
@@ -85,10 +86,8 @@ function mob_class:replace_with (successor_type, propagate_equipment, mob_static
 		local bone = vehicle._jockey_bone
 		local pos = vehicle._jockey_pos
 		local rot = vehicle._jockey_rot
-		local fix_eye_height = vehicle._jockey_fix_eye_height
 		self:dismount_jockey ()
-		luaentity:jock_to_existing (vehicle, bone, pos, rot,
-					    fix_eye_height)
+		luaentity:jock_to_existing (vehicle, bone, pos, rot)
 	end
 	luaentity:set_yaw (yaw)
 	self:safe_remove ()
@@ -184,6 +183,7 @@ function mob_class:get_staticdata_table ()
 	tmp._cached_rain_exposure = nil
 	tmp._collision_count = nil
 	tmp._mate_time = nil
+	tmp._yaw_fixed = nil
 
 	-- Remove physics factors that are not persistent and revert
 	-- fields that were modified and disapply them.
@@ -556,14 +556,15 @@ local function vector_copy_into (v, src)
 end
 
 function mob_class:on_step (dtime, moveresult)
-	local pos = self.object:get_pos ()
-	if not pos or self.removed then
-		self:safe_remove()
+	if self.removed then
+		self:safe_remove ()
 		return
 	end
+
+	local pos = self.object:get_pos ()
+
 	self._targets_visible = {}
 	local should_drive = self:should_drive ()
-
 	if self._csm_driving then
 		if should_drive and not self._driving_sent then
 			self._driving_sent = true
@@ -610,9 +611,13 @@ function mob_class:on_step (dtime, moveresult)
 		self._was_stuck = false
 	end
 
+	-- This is the position of the mob as it may appear to players
+	-- if it is attached to a vehicle.
+	local attach_pos = get_attachment_pos (self.object)
+
 	-- Get nodes early for use in other functions
 	local cbox = self.collisionbox
-	local feet = vector_copy_into (v, pos)
+	local feet = vector_copy_into (v, attach_pos)
 	local bbase = pos.y + self.collisionbox[2] + 0.5
 	feet.y = floor (bbase + 1.0e-2)
 	if bbase - feet.y <= 1.0e-2 then
@@ -638,7 +643,7 @@ function mob_class:on_step (dtime, moveresult)
 	if self:check_jockey_status () then
 		return
 	end
-	self:check_fall_damage (dtime, pos, moveresult)
+	self:check_fall_damage (dtime, attach_pos, moveresult)
 	self:check_dying (dtime)
 
 	if self.stupefied then
@@ -650,19 +655,20 @@ function mob_class:on_step (dtime, moveresult)
 			self:halt_in_tracks ()
 		end
 		self:pre_motion_step (dtime)
-		self:motion_step (dtime, moveresult, pos)
+		self:motion_step (dtime, moveresult, attach_pos)
 		self:rotate_step (dtime)
 		return
 	end
 
 	-- Compute fluid immersion.
-	local immersion_depth, liquidtype = self:check_standin (dtime, pos)
+	local immersion_depth, liquidtype
+		= self:check_standin (dtime, attach_pos)
 	self._immersion_depth = immersion_depth
 	self._liquidtype = liquidtype
 
 	if self.dead then
 		self:pre_motion_step (dtime)
-		self:motion_step (dtime, moveresult, pos)
+		self:motion_step (dtime, moveresult, attach_pos)
 		self:rotate_step (dtime)
 		return
 	end
@@ -672,7 +678,7 @@ function mob_class:on_step (dtime, moveresult)
 		self:navigation_step (dtime, moveresult)
 		self:movement_step (dtime, moveresult)
 		self:pre_motion_step (dtime)
-		self:motion_step (phys_dtime, moveresult, pos)
+		self:motion_step (phys_dtime, moveresult, attach_pos)
 	else
 		-- At times damage is applied and kills this mob
 		-- (removing its driver) between `should_drive' and
@@ -682,7 +688,7 @@ function mob_class:on_step (dtime, moveresult)
 		end
 	end
 
-	self:post_motion_step (pos, dtime, moveresult)
+	self:post_motion_step (attach_pos, dtime, moveresult)
 
 	self:update_timers (dtime)
 	self:ai_step (dtime)
@@ -697,7 +703,7 @@ function mob_class:on_step (dtime, moveresult)
 
 	self:rotate_step (dtime)
 	self:set_animation_speed ()
-	self:check_head_swivel (pos, dtime)
+	self:check_head_swivel (attach_pos, dtime)
 
 	-- Expel drivers riding submerged mobs.
 	self:expel_underwater_drivers ()

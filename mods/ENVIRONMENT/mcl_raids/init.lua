@@ -744,7 +744,7 @@ local function spawn_group (self, pos)
 							local entity = rider:get_luaentity ()
 							local pos = RAVAGER_ATTACHMENT_POS
 							local rot = RAVAGER_ATTACHMENT_ROT
-							entity:jock_to_existing (obj, "", pos, rot, true)
+							entity:jock_to_existing (obj, "", pos, rot)
 							max_hp = max_hp + entity.initial_properties.hp_max
 							table.insert (raiders_spawned, rider)
 						end

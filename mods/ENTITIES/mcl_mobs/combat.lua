@@ -1,6 +1,7 @@
 local mob_class = mcl_mobs.mob_class
 local is_valid = mcl_util.is_valid_objectref
 local ipairs = ipairs
+local get_attachment_pos = mcl_attachments.get_attachment_pos
 
 ------------------------------------------------------------------------
 -- Target acquisition.
@@ -134,7 +135,7 @@ end
 function mob_class:track_current_target (self_pos, dtime, obj, dist, persistence)
 	-- This object is the current target; decide whether or not to
 	-- cease attacking it for having moved out of range...
-	local pos = mcl_attachments.get_attachment_pos (obj)
+	local pos = get_attachment_pos (obj)
 	if dist_sqr (self_pos, pos) > dist
 		or not self:test_object_and_restriction (obj, pos) then
 		return nil
@@ -208,7 +209,7 @@ function mcl_mobs.build_nearest_target_rule (base_type, predicate, start_predica
 					local luaentity = obj:get_luaentity ()
 					if predicate (self, self_pos, obj, luaentity)
 						and self:target_visible (self_pos, obj) then
-						local pos = mcl_attachments.get_attachment_pos (obj)
+						local pos = get_attachment_pos (obj)
 						if self:test_object_and_restriction (obj, pos) then
 							local d1 = dist_sqr (self_pos, pos)
 							local m = self:detection_multiplier_for_object (obj)
@@ -308,7 +309,7 @@ function mcl_mobs.build_retaliation_target_rule (ignore, alert_others, alert_pre
 		if attacker then
 			local luaentity = attacker:get_luaentity ()
 			if not ignore (self, self_pos, attacker, luaentity) then
-				local obj_pos = mcl_attachments.get_attachment_pos (attacker)
+				local obj_pos = get_attachment_pos (attacker)
 				if self:test_object_and_restriction (attacker, obj_pos)
 					and not self:target_owner_p (attacker) then
 					if alert_others then
@@ -364,7 +365,7 @@ local function alert_receiver_rule (self, self_pos, dtime, obj, is_current)
 	else
 		local target = self._alert_receiver_target
 		if target and object_targetable_p (target) then
-			local target_pos = mcl_attachments.get_attachment_pos (target)
+			local target_pos = get_attachment_pos (target)
 			if self:test_object_and_restriction (target, target_pos)
 				and dist_sqr (self_pos, target_pos) < 5184.0 then
 				-- Afford this mob a maximum of 20
@@ -679,7 +680,7 @@ function mob_class:test_object_and_restriction (object, obj_pos)
 end
 
 function mob_class:should_continue_to_attack (object)
-	local obj_pos = mcl_attachments.get_attachment_pos (object)
+	local obj_pos = get_attachment_pos (object)
 	return self:test_object_and_restriction (object, obj_pos)
 end
 
@@ -688,22 +689,15 @@ end
 ------------------------------------------------------------------------
 
 function mob_class:get_eye_height ()
-	if not self.jockey_vehicle then
-		return self.head_eye_height
-	else
-		return self.head_eye_height + self._jockey_eye_offset
-	end
+	return self.head_eye_height
 end
 
 function mob_class:get_shoot_offset ()
-	if not self.jockey_vehicle then
-		return self.shoot_offset
-	else
-		return self.shoot_offset + self._jockey_eye_offset
-	end
+	return self.shoot_offset
 end
 
-function mob_class:attack_bowshoot (self_pos, dtime, target_pos, line_of_sight)
+function mob_class:attack_bowshoot (attach_pos, self_pos, dtime, target_pos,
+				    line_of_sight)
 	if not self.attacking then
 		-- Initialize parameters consulted during the attack.
 		self._target_visible_time = 0
@@ -714,11 +708,11 @@ function mob_class:attack_bowshoot (self_pos, dtime, target_pos, line_of_sight)
 		self.attacking = true
 	end
 	local vistime = self._target_visible_time
-	local dist = vector.distance (self_pos, target_pos)
+	local dist = vector.distance (attach_pos, target_pos)
 	local shoot_pos = {
-		x = self_pos.x,
-		y = self_pos.y + self:get_shoot_offset (),
-		z = self_pos.z,
+		x = attach_pos.x,
+		y = attach_pos.y + self:get_shoot_offset (),
+		z = attach_pos.z,
 	}
 	local target_bb = self.attack:get_properties ()
 	local collisionbox = target_bb.collisionbox
@@ -807,7 +801,7 @@ function mob_class:attack_bowshoot (self_pos, dtime, target_pos, line_of_sight)
 
 				if self.shoot_arrow then
 					local offset = self:get_shoot_offset ()
-					local origin = vector.offset (self_pos, 0, offset, 0)
+					local origin = vector.offset (attach_pos, 0, offset, 0)
 					vec = vector.normalize (vec)
 					self:shoot_arrow (origin, vec)
 				end
@@ -902,7 +896,7 @@ function mob_class:pre_melee_attack (distance, delay, line_of_sight)
 	return distance <= self.reach and delay == 0 and line_of_sight
 end
 
-function mob_class:attack_melee (self_pos, dtime, target_pos, line_of_sight)
+function mob_class:attack_melee (attach_pos, self_pos, dtime, target_pos, line_of_sight)
 	local initial_attack = false
 	if not self.attacking then
 		-- Initialize attack parameters.
@@ -928,6 +922,11 @@ function mob_class:attack_melee (self_pos, dtime, target_pos, line_of_sight)
 	end
 
 	local delay = math.max (self._gopath_delay - dtime, 0)
+
+	-- The distance should be that between the vehicle (i.e.,
+	-- SELF_POS) and the target, for otherwise mobs on tall
+	-- vehicles (such as ravagers) will be incapable of attacking
+	-- players at ground level.
 	local distance = vector.distance (self_pos, target_pos)
 
 	-- If the target is detectable or this attack has just
@@ -968,11 +967,11 @@ function mob_class:attack_melee (self_pos, dtime, target_pos, line_of_sight)
 	self._attack_delay = delay
 end
 
-function mob_class:discharge_ranged (self_pos, target_pos)
+function mob_class:discharge_ranged (attach_pos, target_pos)
 	local p = target_pos
 	local cb_center = (self.collisionbox[2] + self.collisionbox[5]) / 2
 	local shoot_offset = cb_center + self:get_shoot_offset ()
-	local s = vector.offset (self_pos, 0, shoot_offset, 0)
+	local s = vector.offset (attach_pos, 0, shoot_offset, 0)
 	local vec = vector.subtract (p, s)
 
 	self:mob_sound ("shoot_attack")
@@ -994,7 +993,7 @@ function mob_class:discharge_ranged (self_pos, target_pos)
 			end
 			self.firing = true
 			core.after(1, function(self)
-					       self.firing = false
+				self.firing = false
 			end, self)
 			local ent = arrow:get_luaentity()
 			ent.switch = 1
@@ -1011,7 +1010,8 @@ function mob_class:discharge_ranged (self_pos, target_pos)
 	end
 end
 
-function mob_class:attack_ranged (self_pos, dtime, target_pos, line_of_sight)
+function mob_class:attack_ranged (attach_pos, self_pos, dtime, target_pos,
+				  line_of_sight)
 	local vistime, min_distance
 	if not self.attacking then
 		self._target_visible_time = 0
@@ -1028,7 +1028,7 @@ function mob_class:attack_ranged (self_pos, dtime, target_pos, line_of_sight)
 	self._target_visible_time = vistime
 	min_distance = self.ranged_attack_radius
 
-	local distance = vector.distance (self_pos, target_pos)
+	local distance = vector.distance (attach_pos, target_pos)
 	if distance < min_distance and vistime > 0.25 then
 		self:cancel_navigation ()
 		self:halt_in_tracks ()
@@ -1045,7 +1045,7 @@ function mob_class:attack_ranged (self_pos, dtime, target_pos, line_of_sight)
 	if shoot_time == 0 then
 		if line_of_sight then
 			-- Attack target.
-			self:discharge_ranged (self_pos, target_pos)
+			self:discharge_ranged (attach_pos, target_pos)
 
 			-- Derive the delay from the distance to the
 			-- target.
@@ -1095,7 +1095,7 @@ function mob_class:is_crossbow_loaded ()
 		or name == "mcl_bows:crossbow_loaded_enchanted"
 end
 
-function mob_class:attack_crossbow (self_pos, dtime, target_pos, line_of_sight)
+function mob_class:attack_crossbow (attach_pos, self_pos, dtime, target_pos, line_of_sight)
 	if not self.attacking then
 		self._vistime = 0
 		self._time_to_next_repath = 0
@@ -1118,7 +1118,7 @@ function mob_class:attack_crossbow (self_pos, dtime, target_pos, line_of_sight)
 		vistime = math.min (vistime, 0) - dtime
 	end
 
-	local dist = vector.distance (self_pos, target_pos)
+	local dist = vector.distance (attach_pos, target_pos)
 	local should_pathfind = vistime < 0.25 or dist > self.ranged_attack_radius
 
 	if self._crossbow_backoff_threshold
@@ -1176,7 +1176,7 @@ function mob_class:attack_crossbow (self_pos, dtime, target_pos, line_of_sight)
 	elseif self._crossbow_state == 3 and line_of_sight then
 		self._crossbow_state = 0
 		self:unload_crossbow ()
-		self:discharge_ranged (self_pos, target_pos)
+		self:discharge_ranged (attach_pos, target_pos)
 	end
 
 	self._vistime = vistime
@@ -1221,7 +1221,7 @@ function mob_class:valid_enemy ()
 end
 
 function mob_class:default_rangecheck (self_pos, object)
-	local pos = mcl_attachments.get_attachment_pos (object)
+	local pos = get_attachment_pos (object)
 	local factor = self:detection_multiplier_for_object (object)
 	local distance = vector.distance (self_pos, pos)
 	return distance <= self.view_range * factor
@@ -1254,25 +1254,27 @@ function mob_class:check_attack (self_pos, dtime)
 			self:attack_end ()
 			return true
 		end
-		target_pos = mcl_attachments.get_attachment_pos (self.attack)
+		target_pos = get_attachment_pos (self.attack)
 		local line_of_sight = self:target_visible (self_pos, self.attack)
 		local attack_type = self.attack_type
-		if attack_type == "null" then
-			if self.attack_null then
-				self:attack_null (self_pos, dtime, target_pos, line_of_sight)
-			end
+		local attach_pos = get_attachment_pos (self.object)
+		if attack_type == "null" and self.attack_null then
+			self:attack_null (attach_pos, self_pos, dtime, target_pos,
+					  line_of_sight)
 		elseif attack_type == "bowshoot" then
-			self:attack_bowshoot (self_pos, dtime, target_pos,
+			self:attack_bowshoot (attach_pos, self_pos, dtime, target_pos,
 					      line_of_sight)
 		elseif attack_type == "crossbow" then
-			self:attack_crossbow (self_pos, dtime, target_pos,
+			self:attack_crossbow (attach_pos, self_pos, dtime, target_pos,
 					      line_of_sight)
 		elseif attack_type == "ranged" then
-			self:attack_ranged (self_pos, dtime, target_pos, line_of_sight)
+			self:attack_ranged (attach_pos, self_pos, dtime, target_pos,
+					    line_of_sight)
 		elseif attack_type == "melee" then
-			self:attack_melee (self_pos, dtime, target_pos, line_of_sight)
+			self:attack_melee (attach_pos, self_pos, dtime, target_pos,
+					   line_of_sight)
 		else
-			core.log ("warning", "unknown attack type " .. self.attack_type)
+			core.log ("warning", "Attack type undefined: " .. self.attack_type)
 		end
 
 		return true
