@@ -8,36 +8,40 @@ msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 21:41+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-05-06 09:58+0000\n"
+"Last-Translator: Jenkings <jenkings@noreply.codeberg.org>\n"
+"Language-Team: Czech <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_core/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
-msgstr ""
+msgstr "Tyčka"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:5
 msgid ""
 "Sticks are a very versatile crafting material; used in countless crafting "
 "recipes."
 msgstr ""
+"Tyčky jsou velmi univerzální materiál pro craftění; používají se ve spoustě "
+"receptů."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:14
 msgid "Paper"
-msgstr ""
+msgstr "Papír"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:15
 msgid "Paper is used to craft books and maps."
-msgstr ""
+msgstr "Papír se používá k výrobě knih a map."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:21
 msgid "Coal"
-msgstr ""
+msgstr "Uhlí"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:22
 msgid ""
@@ -45,10 +49,13 @@ msgid ""
 "underground. Coal is your standard furnace fuel, but it can also be used to "
 "make torches, coal blocks and a few other things."
 msgstr ""
+"„Uhlí“ označuje kusy uhlí získané těžbou uhelné rudy, která se nachází pod "
+"zemí. Uhlí je běžné palivo do pecí, ale lze z něj také vyrábět pochodně, "
+"uhelné bloky a několik dalších věcí."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:31
 msgid "Charcoal"
-msgstr ""
+msgstr "Dřevěné uhlí"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:32
 msgid ""
@@ -56,278 +63,290 @@ msgid ""
 "furnace. It has the same burning time as coal and also shares many of its "
 "crafting recipes, but it can not be used to create coal blocks."
 msgstr ""
+"Dřevěné uhlí je alternativní palivo do pecí, které vzniká vypalováním dřeva "
+"v peci. Má stejnou dobu hoření jako uhlí a lze ho použít ve většině rceptů "
+"místo uhlí. Nelze z něj však vyrábět bloky uhlí."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:40
 msgid "Iron Nugget"
-msgstr ""
+msgstr "železné ruda"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:41
 msgid ""
 "Iron nuggets are very small pieces of molten iron; the main purpose is to "
 "create iron ingots."
 msgstr ""
+"Železné nugety jsou velmi malé kousky roztaveného železa; jejich hlavním "
+"účelem je výroba železných ingotů."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:48
 msgid "Gold Nugget"
-msgstr ""
+msgstr "Zlatý nuget"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:49
 msgid ""
 "Gold nuggets are very small pieces of molten gold; the main purpose is to "
 "create gold ingots."
 msgstr ""
+"Zlaté nugety jsou velmi malé kousky roztaveného zlata; jejich hlavním účelem "
+"je výroba zlatých ingotů."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:56
 msgid "Diamond"
-msgstr ""
+msgstr "Diamant"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:57
 msgid ""
 "Diamonds are precious minerals and useful to create the highest tier of "
 "armor and tools."
 msgstr ""
+"Diamanty jsou vzácné minerály, které se hodí k výrobě nejlepších brnění a "
+"nástrojů."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:61
 msgid "Diamond Material"
-msgstr ""
+msgstr "Diamantový materiál"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:66
 msgid "Clay Ball"
-msgstr ""
+msgstr "Jílová kulička"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:67
 msgid ""
 "Clay balls are a raw material, mainly used to create bricks in the furnace."
 msgstr ""
+"Jílové kuličky jsou surovinou, která se používá hlavně k výrobě cihel v peci."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:76
 msgid "Iron Ingot"
-msgstr ""
+msgstr "Železný ingot"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:77
 msgid "Molten iron. It is used to craft armor, tools, and whatnot."
 msgstr ""
+"Roztavené železo. Používá se k výrobě brnění, nástrojů a podobných věcí."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:81
 msgid "Iron Material"
-msgstr ""
+msgstr "Železný materiál"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:89
 msgid "Gold Ingot"
-msgstr ""
+msgstr "Zlatý ingot"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:90
 msgid "Molten gold. It is used to craft armor, tools, and whatnot."
-msgstr ""
+msgstr "Roztavené zlato. Používá se k výrobě brnění, nástrojů a podobných věcí."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:94
 msgid "Gold Material"
-msgstr ""
+msgstr "Zlatý materiál"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:102
 msgid "Emerald"
-msgstr ""
+msgstr "Smaragd"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:103
 msgid "Emeralds are used in villager trades as currency."
-msgstr ""
+msgstr "Smaragdy se používají jako platidlo při obchodování s vesničany."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:107
 msgid "Emerald Material"
-msgstr ""
+msgstr "Smaragdový materiál"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:112
 msgid "Lapis Lazuli"
-msgstr ""
+msgstr "Lapis Lazuli"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:113
 msgid "Lapis Lazuli are required for enchanting items on an enchanting table."
-msgstr ""
+msgstr "Lapis lazuli se používá k očarování předmětů na čarovném stole."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:117
 msgid "Lapis Material"
-msgstr ""
+msgstr "Lapisová materiál"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:125
 msgid "Brick"
-msgstr ""
+msgstr "Cihla"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:126
 msgid "Bricks are used to craft brick blocks."
-msgstr ""
+msgstr "Cihly se používají k výrobě cihlových bloků."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:133
 msgid "Flint"
-msgstr ""
+msgstr "Pazourek"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:134
 msgid "Flint is a raw material."
-msgstr ""
+msgstr "Parourek je surovina."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:140
 msgid "Sugar"
-msgstr ""
+msgstr "Cukr"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:141
 msgid "Sugar comes from sugar canes and is used to make sweet foods."
 msgstr ""
+"Cukr se získává z cukrové třtiny a používá se k výrobě sladkých potravin."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:147
 msgid "Bowl"
-msgstr ""
+msgstr "Miska"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:148
 msgid "Bowls are mainly used to hold tasty soups."
-msgstr ""
+msgstr "Misky se používají hlavně k podávání chutných polévek."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:155
 msgid "Apple"
-msgstr ""
+msgstr "Jablko"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:156
 msgid "Apples are food items which can be eaten."
-msgstr ""
+msgstr "Jablka jsou potraviny, které se dají jíst."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:165
 msgid "Golden Apple"
-msgstr ""
+msgstr "Zlaté jablko"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:166
 #: mods/ITEMS/mcl_core/craftitems.lua:183
 msgid "Golden apples are precious food items which can be eaten."
-msgstr ""
+msgstr "Zlatá jablka jsou vzácné potraviny, které se dají jíst."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:182
 msgid "Enchanted Golden Apple"
-msgstr ""
+msgstr "Čarovné zlaté jablko"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:1
 msgid "Acacia Bark"
-msgstr ""
+msgstr "Kůra akácie"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:2
 msgid "Acacia Bark Slab"
-msgstr ""
+msgstr "Deska z akáciové kůry"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:3
 msgid "Acacia Bark Stairs"
-msgstr ""
+msgstr "Schody z akáciové kůry"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:4
 msgid "Acacia Boat"
-msgstr ""
+msgstr "Akáciová loď"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:5
 msgid "Acacia Button"
-msgstr ""
+msgstr "Akáciové tlačítko"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:6
 msgid "Acacia Chest Boat"
-msgstr ""
+msgstr "Loď s truhlou z akácie"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:7
 msgid "Acacia Door"
-msgstr ""
+msgstr "Akáciové dveře"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:8
 msgid "Acacia Fence"
-msgstr ""
+msgstr "Akáciový plot"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:9
 msgid "Acacia Fence Gate"
-msgstr ""
+msgstr "Brána z akáciového plotu"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:10
 msgid "Acacia Hanging Sign"
-msgstr ""
+msgstr "Závěsná tabulka z akácie"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:11
 msgid "Acacia Leaves"
-msgstr ""
+msgstr "Akáciové listy"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:12
 msgid "Acacia Log"
-msgstr ""
+msgstr "Akáciový kmen"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:13
 msgid "Acacia Planks"
-msgstr ""
+msgstr "Akáciová prkna"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:14
 msgid "Acacia Pressure Plate"
-msgstr ""
+msgstr "Akáciová nášlapná deska"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:15
 msgid "Acacia Sapling"
-msgstr ""
+msgstr "Sazenice akácie"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:16
 msgid "Acacia Sign"
-msgstr ""
+msgstr "Akáciová tabulka"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:17
 msgid "Acacia Slab"
-msgstr ""
+msgstr "Akáciový půlblok"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:18
 msgid "Acacia Stairs"
-msgstr ""
+msgstr "Akáciové schody"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:19
 msgid "Acacia Trapdoor"
-msgstr ""
+msgstr "Akáciové padací dveře"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:20
 msgid "Acacia leaves are grown from Acacia trees."
-msgstr ""
+msgstr "Listy akácie pocházejí ze stromů akácie."
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:21
 msgid "Birch Bark"
-msgstr ""
+msgstr "březová kůra"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:22
 msgid "Birch Bark Slab"
-msgstr ""
+msgstr "Deska z březové kůry"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:23
 msgid "Birch Bark Stairs"
-msgstr ""
+msgstr "Schody z březové kůry"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:24
 msgid "Birch Boat"
-msgstr ""
+msgstr "Březová loď"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:25
 msgid "Birch Button"
-msgstr ""
+msgstr "Březové tlačítko"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:26
 msgid "Birch Chest Boat"
-msgstr ""
+msgstr "Březová loď s truhlou"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:27
 msgid "Birch Door"
-msgstr ""
+msgstr "Březové dveře"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:28
 msgid "Birch Fence"
-msgstr ""
+msgstr "Březový plot"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:29
 msgid "Birch Fence Gate"
-msgstr ""
+msgstr "Březová branka"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:30
 msgid "Birch Hanging Sign"
-msgstr ""
+msgstr "Březová závěsná tabulka"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:31
 msgid "Birch Leaves"
-msgstr ""
+msgstr "Březové listy"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:32
 msgid "Birch Log"
-msgstr ""
+msgstr "Březová kmen"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:33
 msgid "Birch Planks"
