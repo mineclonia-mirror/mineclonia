@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_potions x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-04-27 06:18+0000\n"
+"Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_potions/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 #: mods/ITEMS/mcl_potions/commands.lua:11
 msgid ""
@@ -38,6 +40,24 @@ msgid ""
 "do not depend on level/factor. NOPART at the end means no particles will be "
 "shown for this effect."
 msgstr ""
+"Fügt dir selber einen Statuseffekt hinzu. Argumente: <effect>: Name des "
+"Statuseffektes. Das Übergeben von \"list\" als Effektname zeigt die "
+"verfügbaren Effekte. Das Übergeben von \"heal\" als Effektname heilt (oder "
+"schadet) um den im nächsten Parameter festgelegten Wert. Das Übergeben von "
+"\"clear\" als Effektname entfernt alle Effekte. Das Übergeben von \"remove\" "
+"als Effektname entfernt den im nächsten Parameter festgelegten Effekt. "
+"<duration>: Die Dauer in Sekunden. Das Übergeben von \"INF\" als Dauer macht "
+"den Effekt unendlich. (<heal-amount>: Die Anzahl des Heilens wenn der Effekt "
+"\"heal\" ist, das Übergeben eines negativen Wertes subtrahiert "
+"Lebensenergie. <effect>: Der Name eines Statuseffektes, welcher entfernt "
+"werden soll, wenn \"remove\" als vorheriger Parameter übergeben wird.) "
+"<level>: Effektkraftbestimmender Faktor, höhere Level führen zu einer "
+"stärkeren Wirkung bei Effekten, welche vom Level abhängen (keine Veränderung "
+"für andere Effekte), Standard bei 1, übergebe stattdessen F um einen "
+"niedrigen Levelfaktor zu benutzen. <factor>: Effektstärkemodifikator, kann "
+"verschiedene Dinge meinen, abhängig von dem Effekt, keine Änderungen für "
+"Effekte, welche nicht von level/factor abhängen. NOPART zum Schluss "
+"bedeutet, dass keine Partikel gezeigt werden für diesen Effekt."
 
 #: mods/ITEMS/mcl_potions/commands.lua:24
 #: mods/ITEMS/mcl_potions/commands.lua:50
@@ -50,19 +70,19 @@ msgstr ""
 
 #: mods/ITEMS/mcl_potions/commands.lua:39
 msgid "Player @1 healed by @2 HP."
-msgstr ""
+msgstr "Spieler @1 wurde @2 HP geheilt."
 
 #: mods/ITEMS/mcl_potions/commands.lua:42
 msgid "Player @1 harmed by @2 HP."
-msgstr ""
+msgstr "Spieler @1 wurde um @2 HP verletzt."
 
 #: mods/ITEMS/mcl_potions/commands.lua:47
 msgid "Effects cleared for player @1"
-msgstr ""
+msgstr "Effekte gelöscht für Spieler @1"
 
 #: mods/ITEMS/mcl_potions/commands.lua:54
 msgid "Removed effect @1 from player @2"
-msgstr ""
+msgstr "Effekt @1 von Spieler @2 gelöscht"
 
 #: mods/ITEMS/mcl_potions/commands.lua:56
 #: mods/ITEMS/mcl_potions/commands.lua:108
@@ -93,7 +113,7 @@ msgstr "Effekt @1 beeinflußt Spieler @2 für @3 Sekunden."
 #: mods/ITEMS/mcl_potions/commands.lua:93
 #: mods/ITEMS/mcl_potions/commands.lua:104
 msgid "Giving effect @1 to player @2 failed."
-msgstr "Die Anwendung von Effekt @1 auf Spieler @2 ist fehlgeschlagen."
+msgstr "Das Geben von Effekt @1 auf Spieler @2 ist fehlgeschlagen."
 
 #: mods/ITEMS/mcl_potions/commands.lua:99
 msgid "@1 effect on level @2 given to player @3 for @4 seconds."
