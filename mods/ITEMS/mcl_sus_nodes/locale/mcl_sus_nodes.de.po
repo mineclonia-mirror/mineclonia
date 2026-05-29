@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_sus_nodes x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-04-26 18:57+0000\n"
+"PO-Revision-Date: 2026-05-01 08:57+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_sus_nodes/de/>\n"
@@ -31,10 +31,11 @@ msgstr ""
 #: mods/ITEMS/mcl_sus_nodes/init.lua:437
 msgid "Use the brush on a suspicious node to uncover its secrets"
 msgstr ""
+"Benutze den Pinsel auf verdächtigem Sand, um die Geheimnisse aufzudecken"
 
 #: mods/ITEMS/mcl_sus_nodes/init.lua:457
 msgid "Suspicious Sand"
-msgstr ""
+msgstr "Verdächtiger Sand"
 
 #: mods/ITEMS/mcl_sus_nodes/init.lua:461
 msgid "Suspicious Gravel"

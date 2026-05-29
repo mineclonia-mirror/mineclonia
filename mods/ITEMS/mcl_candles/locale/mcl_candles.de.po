@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_candles x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-04-26 18:57+0000\n"
+"PO-Revision-Date: 2026-05-01 08:57+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_candles/de/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Eine Kerze ist ein Block der Licht ausstrahlt, wenn er mit einem Feuerzeug "
 "angezündet wird. Es gibt sie in 16 verschiedenen Färbungen. Es können bis zu "
 "vier Kerzen der selben Farbe auf einen Block platziert werden, welches den "
-"produzierten Lichtlevel beeinflußt."
+"produzierten Lichtlevel beeinflusst."
 
 #: mods/ITEMS/mcl_candles/init.lua:99
 msgid "Candle"
@@ -39,64 +39,64 @@ msgstr "Kuchen"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:1
 msgid "Black Candle"
-msgstr ""
+msgstr "Schwarze Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:2
 msgid "Blue Candle"
-msgstr ""
+msgstr "Blaue Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:3
 msgid "Brown Candle"
-msgstr ""
+msgstr "Braune Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:4
 msgid "Cyan Candle"
-msgstr ""
+msgstr "Türkise Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:5
 msgid "Green Candle"
-msgstr ""
+msgstr "Grüne Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:6
 msgid "Grey Candle"
-msgstr ""
+msgstr "Graue Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:7
 msgid "Light Blue Candle"
-msgstr ""
+msgstr "Hellblaue Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:8
 msgid "Light Grey Candle"
-msgstr ""
+msgstr "Hellgraue Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:9
 msgid "Lime Candle"
-msgstr ""
+msgstr "Limetten Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:10
 msgid "Magenta Candle"
-msgstr ""
+msgstr "Magenta Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:11
 msgid "Orange Candle"
-msgstr ""
+msgstr "Orangene Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:12
 msgid "Pink Candle"
-msgstr ""
+msgstr "Pinke Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:13
 msgid "Purple Candle"
-msgstr ""
+msgstr "Violette Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:14
 msgid "Red Candle"
-msgstr ""
+msgstr "Rote Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:15
 msgid "White Candle"
-msgstr ""
+msgstr "Weiße Kerze"
 
 #: mods/ITEMS/mcl_candles/mcl_candles_translations_tmp.lua:16
 msgid "Yellow Candle"
-msgstr ""
+msgstr "Gelbe Kerze"

@@ -3,31 +3,31 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_monster_eggs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-04-30 19:57+0000\n"
+"Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_monster_eggs/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 #: mods/ITEMS/mcl_monster_eggs/init.lua:14
 msgid "Hides a silverfish"
 msgstr "Verbirgt ein Silberfischchen"
 
 #: mods/ITEMS/mcl_monster_eggs/init.lua:15
-#, fuzzy
 msgid ""
 "\t\t\tAn infested block is a block from which a silverfish will pop out when "
 "it is broken.\n"
 "\t\t\tIt looks identical to its normal counterpart.\n"
 "\t\t"
 msgstr ""
-"\n"
 "\t\t\tEin befallener Block ist ein Block, aus dem ein Silberfischchen "
 "herausspringt, wenn er zerbrochen wird.\n"
-"Er sieht genauso aus wie sein normales Gegenstück.\n"
+"\t\t\tEr sieht genauso aus wie sein normales Gegenstück.\n"
 "\t\t"
 
 #: mods/ITEMS/mcl_monster_eggs/init.lua:48

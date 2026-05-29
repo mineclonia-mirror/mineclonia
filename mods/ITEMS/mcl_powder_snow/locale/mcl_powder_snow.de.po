@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_powder_snow x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-04-28 19:57+0000\n"
+"PO-Revision-Date: 2026-05-28 14:07+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_powder_snow/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_powder_snow/init.lua:4
 msgid "Powder Snow"
@@ -30,13 +30,16 @@ msgstr "Puderschnee-Eimer"
 
 #: mods/ITEMS/mcl_powder_snow/init.lua:49
 msgid "This bucket is filled powder snow"
-msgstr ""
+msgstr "Dieser Eimer ist gefüllt mir Puderschnee"
 
 #: mods/ITEMS/mcl_powder_snow/init.lua:50
 msgid ""
 "Place it to empty the bucket and place powder snow. Obtain by right clicking "
 "on a block of powder snow with an empty bucket."
 msgstr ""
+"Platziere es, um den Eimer zu leeren und den Puderschnee zu platzieren. Nimm "
+"es auf, indem du einen Rechtsklick mit einem leeren Eimer auf einen Block "
+"aus Puderschnee ausführst."
 
 #: mods/ITEMS/mcl_powder_snow/init.lua:51
 msgid "Places a powder snow block"

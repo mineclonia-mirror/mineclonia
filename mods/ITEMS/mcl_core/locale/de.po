@@ -8,36 +8,40 @@ msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 21:41+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-05-28 14:07+0000\n"
+"Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_core/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
-msgstr ""
+msgstr "Stock"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:5
 msgid ""
 "Sticks are a very versatile crafting material; used in countless crafting "
 "recipes."
 msgstr ""
+"Stöcke sind ein sehr vielfältiges Fertigungsmaterial; benutzt in unzählbaren "
+"Fertigungsrezepten."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:14
 msgid "Paper"
-msgstr ""
+msgstr "Papier"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:15
 msgid "Paper is used to craft books and maps."
-msgstr ""
+msgstr "Papier wird benutzt, um Bücher und Karten herzustellen."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:21
 msgid "Coal"
-msgstr ""
+msgstr "Kohle"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:22
 msgid ""
@@ -48,7 +52,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:31
 msgid "Charcoal"
-msgstr ""
+msgstr "Holzkohle"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:32
 msgid ""
@@ -56,10 +60,14 @@ msgid ""
 "furnace. It has the same burning time as coal and also shares many of its "
 "crafting recipes, but it can not be used to create coal blocks."
 msgstr ""
+"Holzkohle ist ein alternativer Ofenbrennstoff, welcher beim Brennen von Holz "
+"im Ofen hergestellt wird. Es hat die gleiche Brennzeit wie normale Kohle und "
+"teilt sich auch viele Fertigungsrezepte mit ihr, aber kann nicht verwendet "
+"werden, um Kohleblöcke herzustellen."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:40
 msgid "Iron Nugget"
-msgstr ""
+msgstr "Eisennugget"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:41
 msgid ""
@@ -69,7 +77,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:48
 msgid "Gold Nugget"
-msgstr ""
+msgstr "Goldnugget"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:49
 msgid ""
@@ -79,7 +87,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:56
 msgid "Diamond"
-msgstr ""
+msgstr "Diamant"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:57
 msgid ""
@@ -102,7 +110,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:76
 msgid "Iron Ingot"
-msgstr ""
+msgstr "Eisenbarren"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:77
 msgid "Molten iron. It is used to craft armor, tools, and whatnot."
@@ -114,7 +122,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:89
 msgid "Gold Ingot"
-msgstr ""
+msgstr "Goldbarren"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:90
 msgid "Molten gold. It is used to craft armor, tools, and whatnot."
@@ -138,7 +146,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:112
 msgid "Lapis Lazuli"
-msgstr ""
+msgstr "Lapislazuli"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:113
 msgid "Lapis Lazuli are required for enchanting items on an enchanting table."
@@ -1751,11 +1759,11 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:105
 msgid "Stone Brick Stairs"
-msgstr ""
+msgstr "Steinziegel Treppe"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:106
 msgid "Stone Brick Slab"
-msgstr ""
+msgstr "Steinziegel Stufe"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:112
 msgid "Polished Andesite Stairs"

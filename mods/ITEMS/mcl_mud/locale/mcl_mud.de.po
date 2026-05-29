@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mud x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-04-28 19:57+0000\n"
+"PO-Revision-Date: 2026-05-28 14:07+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_mud/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_mud/init.lua:4
 msgid "Mud"
@@ -29,15 +29,17 @@ msgstr ""
 
 #: mods/ITEMS/mcl_mud/init.lua:24
 msgid "Packed Mud"
-msgstr "Gepresster Dreck"
+msgstr "Gepresster Schlamm"
 
 #: mods/ITEMS/mcl_mud/init.lua:25
 msgid "Packed mud is a decorative block used to craft mud bricks."
 msgstr ""
+"Gepresster Dreck ist ein dekorativer Block, welcher benutzt wird, um "
+"Dreckziegel herzustellen."
 
 #: mods/ITEMS/mcl_mud/init.lua:37
 msgid "Mud Bricks"
-msgstr ""
+msgstr "Schlammziegel"
 
 #: mods/ITEMS/mcl_mud/init.lua:38
 msgid "Decorative block crafted from packed mud."

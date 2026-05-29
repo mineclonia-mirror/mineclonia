@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_potions x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-04-27 06:18+0000\n"
+"PO-Revision-Date: 2026-05-01 06:57+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_potions/de/>\n"
@@ -66,7 +66,7 @@ msgstr "Fehlender Effektparameter!"
 
 #: mods/ITEMS/mcl_potions/commands.lua:34
 msgid "Missing or invalid heal amount parameter!"
-msgstr ""
+msgstr "Fehlender oder ungültiger Heilmengen-Parameter!"
 
 #: mods/ITEMS/mcl_potions/commands.lua:39
 msgid "Player @1 healed by @2 HP."
