@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_core x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-18 14:58+0000\n"
+"Last-Translator: newrizen <newrizen@noreply.codeberg.org>\n"
+"Language-Team: Portuguese (Brazil) <https://translate.codeberg.org/projects/"
+"mineclonia/mcl_core-1/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
@@ -21,7 +23,7 @@ msgid ""
 "Sticks are a very versatile crafting material; used in countless crafting "
 "recipes."
 msgstr ""
-"Gravetos são materiais de produção muito versáteis; usados em inúmeras "
+"Gravetos são um material de produção muito versátil, usado em inúmeras "
 "receitas de produção."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:14
@@ -30,11 +32,11 @@ msgstr "Papel"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:15
 msgid "Paper is used to craft books and maps."
-msgstr "Papel é usado para produzir livros e mapas."
+msgstr "O papel é usado para criar livros e mapas."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:21
 msgid "Coal"
-msgstr "Carvão"
+msgstr "Carvão mineral"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:22
 msgid ""
@@ -42,10 +44,10 @@ msgid ""
 "underground. Coal is your standard furnace fuel, but it can also be used to "
 "make torches, coal blocks and a few other things."
 msgstr ""
-"\"Carvão\" se refere a pedaços de carvão obtidos quando escavados minérios "
-"de carvão, que podem ser encontrados no subsolo. Carvão é seu combustível de "
-"fornalha padrão, mas também pode ser usado para fazer tochas, blocos de "
-"carvão e outras coisas."
+"\"Carvão Mineral\" se refere a pedaços de carvão obtidos pela extração de "
+"minério encontrado no subsolo. O carvão é o combustível padrão para fornos, "
+"mas também pode ser usado para fazer tochas, blocos de carvão e algumas "
+"outras coisas."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:31
 msgid "Charcoal"
@@ -57,10 +59,10 @@ msgid ""
 "furnace. It has the same burning time as coal and also shares many of its "
 "crafting recipes, but it can not be used to create coal blocks."
 msgstr ""
-"Carvão vegetal é um combustível alternativo de fornalha produzido ao "
-"cozinhar madeira em uma fornalha. Possui o mesmo tempo de queima que o "
-"carvão e também compartilha diversas receitas de produção, mas não pode ser "
-"usado para produzir blocos de carvão."
+"Carvão Vegetal é um combustível alternativo para fornos, criado pela queima "
+"de madeira em uma fornalha. Ele tem o mesmo tempo de queima que o carvão "
+"mineral e também compartilha muitas de suas receitas de produção, mas não "
+"pode ser usado para criar blocos de carvão."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:40
 msgid "Iron Nugget"
@@ -71,8 +73,8 @@ msgid ""
 "Iron nuggets are very small pieces of molten iron; the main purpose is to "
 "create iron ingots."
 msgstr ""
-"Pepitas de ferro são pequenas peças de ferro fundido; seu principal "
-"propósito é na criação de lingotes de ferro."
+"Pepitas de ferro são pedaços muito pequenos de ferro fundido; seu principal "
+"objetivo é criar lingotes de ferro."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:48
 msgid "Gold Nugget"
@@ -83,8 +85,8 @@ msgid ""
 "Gold nuggets are very small pieces of molten gold; the main purpose is to "
 "create gold ingots."
 msgstr ""
-"Pepitas de ouro são pequenas peças de ouro fundido; sua principal finalidade "
-"é criar lingotes de ouro."
+"As pepitas de ouro são pedaços muito pequenos de ouro fundido; seu principal "
+"objetivo é criar lingotes de ouro."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:56
 msgid "Diamond"
@@ -95,8 +97,8 @@ msgid ""
 "Diamonds are precious minerals and useful to create the highest tier of "
 "armor and tools."
 msgstr ""
-"Diamantes são minerais preciosos e úteis para criar as armaduras e "
-"ferramentas do mais alto nível."
+"Os diamantes são minerais preciosos e úteis para criar armaduras e "
+"ferramentas da mais alta qualidade."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:61
 msgid "Diamond Material"
@@ -110,8 +112,8 @@ msgstr "Bola de Argila"
 msgid ""
 "Clay balls are a raw material, mainly used to create bricks in the furnace."
 msgstr ""
-"Bolas de argila são materiais não processados, principalmente utilizados "
-"para fabricar tijolos quando cozidos."
+"As bolas de argila são uma matéria-prima, utilizada principalmente para a "
+"produção de tijolos em fornos."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:76
 msgid "Iron Ingot"
@@ -1411,12 +1413,12 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:869
 msgid "Blue Ice"
-msgstr ""
+msgstr "Gelo Azul"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:870
 msgid ""
 "Blue Ice is a still more compressed form of ice.  It is opaque and solid."
-msgstr ""
+msgstr "O gelo azul é uma forma ainda mais compacta de gelo.  É opaco e sólido."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:913
 msgid ""
@@ -1510,15 +1512,15 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:77
 msgid "Cactus Flower"
-msgstr ""
+msgstr "Flor de Cacto"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:78
 msgid "Grows on cacti"
-msgstr ""
+msgstr "Cresce em cactos"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:100
 msgid "Sugar Canes"
-msgstr "Cana de Açúcar"
+msgstr "Cana-de-Açúcar"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:101
 msgid "Grows on sand or dirt next to water"
@@ -1593,17 +1595,19 @@ msgstr "Vidro Tingido"
 
 #: mods/ITEMS/mcl_core/nodes_glow_lichen.lua:60
 msgid "Glow Lichen"
-msgstr ""
+msgstr "Líquen Brilhante"
 
 #: mods/ITEMS/mcl_core/nodes_glow_lichen.lua:61
 msgid ""
 "Naturally generating non-solid block that emits a faint light and can attach "
 "to any surface of a solid block."
 msgstr ""
+"Bloco não sólido gerado naturalmente que emite uma luz fraca e pode se fixar "
+"em qualquer superfície de um bloco sólido."
 
 #: mods/ITEMS/mcl_core/nodes_liquid.lua:11
 msgid "Flowing Water"
-msgstr "Água Fluíndo"
+msgstr "Água Corrente"
 
 #: mods/ITEMS/mcl_core/nodes_liquid.lua:55
 msgid "Water Source"
@@ -1745,6 +1749,10 @@ msgid ""
 "barriers, and fences do not connect to barriers. Other blocks can be built "
 "on barriers like on any other block."
 msgstr ""
+"Barreiras são blocos invisíveis e caminháveis. Elas são usadas para criar "
+"limites em mapas de aventura e similares. Monstros e animais não aparecem "
+"sobre barreiras, e cercas não se conectam a elas. Outros blocos podem ser "
+"construídos sobre barreiras como em qualquer outro bloco."
 
 #: mods/ITEMS/mcl_core/nodes_misc.lua:124
 msgid ""
@@ -1767,12 +1775,16 @@ msgid ""
 "Lights are invisible blocks. They are used to light up adventure maps and "
 "the like."
 msgstr ""
+"As luzes são blocos invisíveis. Elas são usadas para iluminar mapas de "
+"aventura e coisas do tipo."
 
 #: mods/ITEMS/mcl_core/nodes_misc.lua:211
 msgid ""
 "When you hold a light in hand, you reveal all placed lights in a short "
 "distance around you."
 msgstr ""
+"Ao segurar uma luz na mão, você revela todas as luzes colocadas em um curto "
+"raio ao seu redor."
 
 #: mods/ITEMS/mcl_core/nodes_misc.lua:263
 msgid "Void"
@@ -1788,7 +1800,7 @@ msgstr "Laje de Pedra"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:12
 msgid "Smooth Stone Slab"
-msgstr ""
+msgstr "Laje de Pedra Lisa"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:19
 msgid "Andesite Stairs"
@@ -1824,11 +1836,11 @@ msgstr "Laje de Pedregulho"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:44
 msgid "Mossy Cobblestone Stairs"
-msgstr ""
+msgstr "Escadaria de Pedregulho Musgoso"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:45
 msgid "Mossy Cobblestone Slab"
-msgstr ""
+msgstr "Laje de Pedregulho Musgoso"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:51
 msgid "Brick Stairs"
@@ -1848,39 +1860,39 @@ msgstr "Laje de Arenito"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:65
 msgid "Smooth Sandstone Stairs"
-msgstr ""
+msgstr "Escadaria de Arenito Liso"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:66
 msgid "Smooth Sandstone Slab"
-msgstr ""
+msgstr "Laje de Arenito Liso"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:71
 msgid "Cut Sandstone Stairs"
-msgstr ""
+msgstr "Escadaria de Arenito Talhado"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:72
 msgid "Cut Sandstone Slab"
-msgstr ""
+msgstr "Laje de Arenito Talhado"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:82
 msgid "Red Sandstone Stairs"
-msgstr ""
+msgstr "Escadaria de Arenito Vermelho"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:83
 msgid "Red Sandstone Slab"
-msgstr ""
+msgstr "Laje de Arenito Vermelho"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:88
 msgid "Smooth Red Sandstone Stairs"
-msgstr ""
+msgstr "Escadaria Lisa de Arenito Vermelho"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:89
 msgid "Smooth Red Sandstone Slab"
-msgstr ""
+msgstr "Laje de Arenito Vermelho Liso"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:94
 msgid "Cut Red Sandstone Stairs"
-msgstr ""
+msgstr "Escadaria de Arenito Vermelho Talhado"
 
 #: mods/ITEMS/mcl_core/nodes_stairs.lua:95
 msgid "Cut Red Sandstone Slab"

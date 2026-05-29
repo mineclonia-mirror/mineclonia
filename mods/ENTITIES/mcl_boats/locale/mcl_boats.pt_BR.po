@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_boats x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-18 14:58+0000\n"
+"Last-Translator: newrizen <newrizen@noreply.codeberg.org>\n"
+"Language-Team: Portuguese (Brazil) <https://translate.codeberg.org/projects/"
+"mineclonia/mcl_boats/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ENTITIES/mcl_boats/init.lua:164
 msgid "Sneak to dismount"
@@ -18,7 +20,7 @@ msgstr "Agache para sair"
 
 #: mods/ENTITIES/mcl_boats/init.lua:630
 msgid "Boats are used to travel on the surface of water."
-msgstr "Barcos são usados para viajar na superfície da água."
+msgstr "Botes são usados para viajar na superfície da água."
 
 #: mods/ENTITIES/mcl_boats/init.lua:631
 msgid ""
@@ -27,15 +29,15 @@ msgid ""
 "to slow down or move backwards. Use [Sneak] to leave the boat, punch the "
 "boat to make it drop as an item."
 msgstr ""
-"Clique com o botão direito em uma fonte de água para posicionar o barco. "
-"Clique com o botão direito no barco para entrar nele. Use [Esquerda] e "
+"Clique com o botão direito em uma fonte de água para posicionar o bote. "
+"Clique com o botão direito no bote para entrar nele. Use [Esquerda] e "
 "[Direita] para fazer curva, [Frente] para acelerar e [Trás] para frear e ir "
-"para trás. Use [Agachar] para deixar o barco, soque-o para fazê-lo largar "
+"para trás. Use [Agachar] para deixar o bote, soque-o para fazê-lo largar "
 "como um item."
 
 #: mods/ENTITIES/mcl_boats/init.lua:632
 msgid "Boat"
-msgstr "Barco"
+msgstr "Bote"
 
 #: mods/ENTITIES/mcl_boats/init.lua:638
 msgid "Water vehicle"
@@ -45,7 +47,7 @@ msgstr "Veículo aquático"
 msgid ""
 "Chest Boats are used to travel on the surface of water. And transport goods"
 msgstr ""
-"Barcos com baú são usados para viajar na superfície da água. E transportar "
+"Botes com baú são usados para viajar na superfície da água. E transportar "
 "coisas"
 
 #: mods/ENTITIES/mcl_boats/init.lua:648
@@ -56,18 +58,17 @@ msgid ""
 "boat to make it drop as an item. Use [Sneak] + [Rightclick] to open the "
 "boat's chest"
 msgstr ""
-"Clique com o botão direito em uma fonte de água para posicionar o barco. "
-"Clique com o botão direito no barco para entrar nele. Use [Esquerda] e "
-"[Direita] para esterçar, [Frente] para acelerar e [Trás] para desacelerar e "
-"mover-se para trás. Use [Agachar] para deixar o barco, soque o barco para "
-"fazê-lo largar como um item. Use [Agachar] + [Botão Direito] para abrir o "
-"baú do barco"
+"Clique com o botão direito em uma fonte de água para posicionar o bote. "
+"Clique com o botão direito no bote para entrar nele. Use [Esquerda] e "
+"[Direita] para conduzir, [Frente] para acelerar e [Trás] para desacelerar e "
+"se mover para trás. Use [Agachar] para deixar o bote, soque o bote para o "
+"fazer soltar como um item. Use [Agachar] + [Botão Direito] para abrir o baú "
+"do bote"
 
 #: mods/ENTITIES/mcl_boats/init.lua:649
 msgid "Chest Boat"
-msgstr "Barco com Baú"
+msgstr "Bote com Baú"
 
 #: mods/ENTITIES/mcl_boats/init.lua:661
-#, fuzzy
 msgid " Boat"
-msgstr "Barco"
+msgstr " Bote"
