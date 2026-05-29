@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doc_basics x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-05-02 20:57+0000\n"
-"Last-Translator: Tirifto <tirifto@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-05-15 22:58+0000\n"
+"Last-Translator: Gergej <gergej@noreply.codeberg.org>\n"
 "Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_doc_basics/eo/>\n"
 "Language: eo\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:9
 msgid "Advanced usage"
@@ -301,7 +301,7 @@ msgstr ""
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:104
 msgid "Privileges"
-msgstr ""
+msgstr "Privilegioj"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:106
 msgid ""
@@ -2101,11 +2101,11 @@ msgstr ""
 
 #: mods/HELP/mcl_doc_basics/basics.lua:544
 msgid "Blocks:"
-msgstr ""
+msgstr "Blokoj:"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:545
 msgid "• Block: Cubes that the worlds are made of"
-msgstr ""
+msgstr "• Bloko: Kuboj el kiuj la mondoj estas faritaj"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:546
 msgid "• Mining/digging: Using a mining tool to break a block"
@@ -2125,15 +2125,15 @@ msgstr ""
 
 #: mods/HELP/mcl_doc_basics/basics.lua:551
 msgid "Items:"
-msgstr ""
+msgstr "Portaĵoj:"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:552
 msgid "• Item: A single thing that players can possess"
-msgstr ""
+msgstr "• Portaĵo: Unuopa aĵo kiun ludantoj povas posedi"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:553
 msgid "• Item stack: A collection of items of the same kind"
-msgstr ""
+msgstr "• Portaĵaro: Kolekto de portaĵoj de la sama tipo"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:554
 msgid "• Maximum stack size: Maximum amount of items in an item stack"

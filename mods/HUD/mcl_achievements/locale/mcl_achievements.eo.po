@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_achievements x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-05-02 18:57+0000\n"
-"Last-Translator: Tirifto <tirifto@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-05-15 20:58+0000\n"
+"Last-Translator: Gergej <gergej@noreply.codeberg.org>\n"
 "Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_achievements/eo/>\n"
 "Language: eo\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/HUD/mcl_achievements/init.lua:30
 msgid "Benchmarking"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:54
 msgid "Hot Topic"
-msgstr ""
+msgstr "Varmega Temo"
 
 #: mods/HUD/mcl_achievements/init.lua:55
 msgid "Use 8 cobblestones to craft a furnace."
@@ -52,7 +52,7 @@ msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:78
 msgid "Bake Bread"
-msgstr ""
+msgstr "Baku Panon"
 
 #: mods/HUD/mcl_achievements/init.lua:79
 msgid "Use wheat to craft a bread."
@@ -60,7 +60,7 @@ msgstr "Uzu tritikon por fari panon."
 
 #: mods/HUD/mcl_achievements/init.lua:91
 msgid "The Lie"
-msgstr ""
+msgstr "La Mensogo"
 
 #: mods/HUD/mcl_achievements/init.lua:92
 msgid "Craft a cake using wheat, sugar, milk and an egg."
@@ -89,7 +89,7 @@ msgstr "Libristo"
 
 #: mods/HUD/mcl_achievements/init.lua:130
 msgid "Craft a bookshelf."
-msgstr ""
+msgstr "Faru librobreton."
 
 #: mods/HUD/mcl_achievements/init.lua:142
 msgid "Isn't It Iron Pick"
@@ -109,11 +109,11 @@ msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:165
 msgid "DIAMONDS!"
-msgstr ""
+msgstr "DIAMANTOJ!"
 
 #: mods/HUD/mcl_achievements/init.lua:166
 msgid "Pick up a diamond from the floor."
-msgstr ""
+msgstr "Prenu diamanton de la planko."
 
 #: mods/HUD/mcl_achievements/init.lua:171
 msgid "Into Fire"
@@ -265,7 +265,7 @@ msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:310
 msgid "Sweet Dreams"
-msgstr ""
+msgstr "Dolĉaj Sonĝoj"
 
 #: mods/HUD/mcl_achievements/init.lua:311
 msgid "Sleep in a bed to change your respawn point."
@@ -281,15 +281,15 @@ msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:327
 msgid "What A Deal!"
-msgstr ""
+msgstr "Kia Oferto!"
 
 #: mods/HUD/mcl_achievements/init.lua:328
 msgid "Successfully trade with a Villager."
-msgstr ""
+msgstr "Komercu sukcese kun vilaĝano."
 
 #: mods/HUD/mcl_achievements/init.lua:335
 msgid "Tactical Fishing"
-msgstr ""
+msgstr "Taktika Fiŝkaptado"
 
 #: mods/HUD/mcl_achievements/init.lua:336
 msgid "Catch a fish... without a fishing rod!"

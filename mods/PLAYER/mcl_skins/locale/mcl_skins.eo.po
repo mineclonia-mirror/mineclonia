@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_skins x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-05-15 17:58+0000\n"
-"Last-Translator: Notxor <notxor@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-05-15 20:58+0000\n"
+"Last-Translator: Gergej <gergej@noreply.codeberg.org>\n"
 "Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_skins/eo/>\n"
 "Language: eo\n"
@@ -24,39 +24,39 @@ msgstr "Brakgrandeco"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:12
 msgid "Bases"
-msgstr ""
+msgstr "Bazoj"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:13
 msgid "Footwears"
-msgstr ""
+msgstr "Piedvestoj"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:14
 msgid "Eyes"
-msgstr ""
+msgstr "Okuloj"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:15
 msgid "Mouths"
-msgstr ""
+msgstr "Buŝoj"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:16
 msgid "Bottoms"
-msgstr ""
+msgstr "Subo"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:17
 msgid "Tops"
-msgstr ""
+msgstr "Supro"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:18
 msgid "Hairs"
-msgstr ""
+msgstr "Hararoj"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:19
 msgid "Headwears"
-msgstr ""
+msgstr "Kapvestoj"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:20
 msgid "Skins"
-msgstr ""
+msgstr "Haŭtoj"
 
 #: mods/PLAYER/mcl_skins/edit_skin.lua:97
 msgid "Open skin configuration screen."
