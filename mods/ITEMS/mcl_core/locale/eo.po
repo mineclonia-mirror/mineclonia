@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 21:41+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-05-02 18:57+0000\n"
+"Last-Translator: Tirifto <tirifto@noreply.codeberg.org>\n"
+"Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_core/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
@@ -48,7 +50,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:31
 msgid "Charcoal"
-msgstr ""
+msgstr "Lignokarbo"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:32
 msgid ""
@@ -170,7 +172,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:141
 msgid "Sugar comes from sugar canes and is used to make sweet foods."
-msgstr ""
+msgstr "Sukero fariĝas el sukerkano, kaj uziĝas en dolĉaj manĝaĵoj."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:147
 msgid "Bowl"
@@ -1418,7 +1420,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:100
 msgid "Sugar Canes"
-msgstr ""
+msgstr "Sukerkanoj"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:101
 msgid "Grows on sand or dirt next to water"
@@ -1431,12 +1433,18 @@ msgid ""
 "grass block, dirt, sand, red sand, podzol or coarse dirt. When a sugar cane "
 "is broken, all sugar canes connected above will break as well."
 msgstr ""
+"Sukerkano estas kreskaĵo uzebla en kunmetado. Sukerkano malrapide kreskos "
+"ĝis 3-mondera alteco apud akvo, se ĝi estas plantita sur herbo, tero, sablo, "
+"ruĝa sablo, podzolo, aŭ malsubtila tero. Kiam sukerkano rompiĝas, ĉiuj supre "
+"elkreskintaj monderoj ankaŭ rompiĝas."
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:103
 msgid ""
 "Sugar canes can only be placed top of other sugar canes and on top of blocks "
 "on which they would grow."
 msgstr ""
+"Sukerkanoj povas plantiĝi nur sur aliaj sukerkanoj, kaj sur monderoj, sur "
+"kiuj ili povas kreski."
 
 #: mods/ITEMS/mcl_core/nodes_climb.lua:15
 msgid "Ladder"

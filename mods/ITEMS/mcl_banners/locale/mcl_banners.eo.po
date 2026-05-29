@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_banners x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-02 20:57+0000\n"
+"Last-Translator: Tirifto <tirifto@noreply.codeberg.org>\n"
+"Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_banners/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 #: mods/ITEMS/mcl_banners/init.lua:132
 msgid "And one additional layer"
@@ -22,7 +24,7 @@ msgstr "Kaj @1 pliaj tavoloj"
 
 #: mods/ITEMS/mcl_banners/init.lua:347
 msgid "Banner"
-msgstr ""
+msgstr "Standardo"
 
 #: mods/ITEMS/mcl_banners/init.lua:349
 msgid ""
@@ -30,6 +32,9 @@ msgid ""
 "and at walls. Banners can be emblazoned with a variety of patterns by "
 "placing it with a dye in the loom, or with lots of dyes in crafting table."
 msgstr ""
+"Standardoj estas altaj, koloraj, ornamaj monderoj. Oni povas meti ilin sur "
+"plankon aŭ muron. Standardoj povas koloriĝi diversmaniere, se oni metas ilin "
+"kun farbo sur teksilon, aŭ kun multaj farboj sur labortablon."
 
 #: mods/ITEMS/mcl_banners/init.lua:350
 msgid ""
@@ -51,15 +56,15 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/items.lua:27
 msgid "Can be used to craft special banner designs on the loom"
-msgstr ""
+msgstr "Uzeblas por krei specialajn desegnojn sur standardoj sur teksilo"
 
 #: mods/ITEMS/mcl_banners/items.lua:28
 msgid "Special Banner Pattern"
-msgstr ""
+msgstr "Speciala ripetaĵo por standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:1
 msgid "Black Banner"
-msgstr ""
+msgstr "Nigra standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:2
 msgid "Black Base"
@@ -231,7 +236,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:44
 msgid "Blue Banner"
-msgstr ""
+msgstr "Blua standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:45
 msgid "Blue Base"
@@ -403,11 +408,11 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:87
 msgid "Bricks Banner Pattern"
-msgstr ""
+msgstr "Standardo kun brika ripetaĵo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:88
 msgid "Brown Banner"
-msgstr ""
+msgstr "Bruna standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:89
 msgid "Brown Base"
@@ -587,7 +592,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:133
 msgid "Cyan Banner"
-msgstr ""
+msgstr "Bluverda standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:134
 msgid "Cyan Base"
@@ -763,7 +768,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:177
 msgid "Flower Banner Pattern"
-msgstr ""
+msgstr "Standardo kun flora ripetaĵo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:178
 msgid "Globe Banner Pattern"
@@ -771,7 +776,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:179
 msgid "Green Banner"
-msgstr ""
+msgstr "Verda standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:180
 msgid "Green Base"
@@ -943,7 +948,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:222
 msgid "Grey Banner"
-msgstr ""
+msgstr "Griza standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:223
 msgid "Grey Base"
@@ -1119,7 +1124,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:266
 msgid "Light Blue Banner"
-msgstr ""
+msgstr "Hele blua standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:267
 msgid "Light Blue Base"
@@ -1291,7 +1296,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:309
 msgid "Light Grey Banner"
-msgstr ""
+msgstr "Hele griza standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:310
 msgid "Light Grey Base"
@@ -1463,7 +1468,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:352
 msgid "Lime Banner"
-msgstr ""
+msgstr "Hele verda standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:353
 msgid "Lime Base"
@@ -1635,7 +1640,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:395
 msgid "Magenta Banner"
-msgstr ""
+msgstr "Fuĥsia standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:396
 msgid "Magenta Base"
@@ -1807,7 +1812,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:438
 msgid "Orange Banner"
-msgstr ""
+msgstr "Oranĝa standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:439
 msgid "Orange Base"
@@ -1983,7 +1988,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:482
 msgid "Pink Banner"
-msgstr ""
+msgstr "Roza standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:483
 msgid "Pink Base"
@@ -2155,7 +2160,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:525
 msgid "Purple Banner"
-msgstr ""
+msgstr "Viola standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:526
 msgid "Purple Base"
@@ -2327,7 +2332,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:568
 msgid "Red Banner"
-msgstr ""
+msgstr "Ruĝa standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:569
 msgid "Red Base"
@@ -2507,7 +2512,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:613
 msgid "White Banner"
-msgstr ""
+msgstr "Blanka standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:614
 msgid "White Base"
@@ -2679,7 +2684,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:656
 msgid "Yellow Banner"
-msgstr ""
+msgstr "Flava standardo"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:657
 msgid "Yellow Base"

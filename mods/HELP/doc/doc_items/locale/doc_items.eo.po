@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain doc_items x.x.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-02 18:57+0000\n"
+"Last-Translator: Tirifto <tirifto@noreply.codeberg.org>\n"
+"Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
+"doc_items/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 msgid "This is a decorational block."
 msgstr "Ĉi tiu estas ornama bloko."
@@ -31,16 +33,16 @@ msgid "This block's rotation is affected by the way you place it: Place it on th
 msgstr ""
 
 msgid "Hand"
-msgstr ""
+msgstr "Mano"
 
 msgid "Air"
-msgstr ""
+msgstr "Aero"
 
 msgid "Yes"
-msgstr ""
+msgstr "Jes"
 
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 msgid ", "
 msgstr ""
@@ -395,4 +397,3 @@ msgstr ""
 
 msgid "Whenever you are not wielding any item, you use the hand which acts as a tool with its own capabilities. When you are wielding an item which is not a mining tool or a weapon it will behave as if it would be the hand."
 msgstr ""
-
