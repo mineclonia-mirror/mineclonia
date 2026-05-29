@@ -3,14 +3,17 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_copper x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-07 10:19+0000\n"
+"Last-Translator: Nana M <nana_m@noreply.codeberg.org>\n"
+"Language-Team: Russian <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_copper/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/ITEMS/mcl_copper/items.lua:4
 msgid "Copper Ingot"
@@ -684,6 +687,7 @@ msgstr "Блок используется для компактного хран
 #: mods/ITEMS/mcl_copper/nodes.lua:247
 msgid "Copper Bars neatly connect to their neighbors as you build them."
 msgstr ""
+"Медная решётка аккуратно соединяется с соседними, когда вы её устанавливаете."
 
 #: mods/ITEMS/mcl_copper/nodes.lua:294
 msgid "Copper Torch"
