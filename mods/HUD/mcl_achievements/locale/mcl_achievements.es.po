@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_achievements x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-04-28 21:57+0000\n"
+"Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
+"Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_achievements/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 #: mods/HUD/mcl_achievements/init.lua:30
 msgid "Benchmarking"
@@ -95,7 +97,7 @@ msgstr "Fabrica una estantería."
 
 #: mods/HUD/mcl_achievements/init.lua:142
 msgid "Isn't It Iron Pick"
-msgstr "¿No es hierrónico?"
+msgstr "¿No es un pico de hierro?"
 
 #: mods/HUD/mcl_achievements/init.lua:143
 msgid "Craft a iron pickaxe using sticks and iron."
@@ -103,11 +105,12 @@ msgstr "Fabrica un pico de hierro usando palos y hierro."
 
 #: mods/HUD/mcl_achievements/init.lua:155
 msgid "Bullseye"
-msgstr ""
+msgstr "Diana"
 
 #: mods/HUD/mcl_achievements/init.lua:156
 msgid "Hit the bullseye of a target block from at least 30 blocks away."
 msgstr ""
+"Da en el centro de una diana situada a una distancia mínima de 30 bloques."
 
 #: mods/HUD/mcl_achievements/init.lua:165
 msgid "DIAMONDS!"
@@ -180,7 +183,7 @@ msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:218
 msgid "Sky's the Limit"
-msgstr "Hasta el infinito... ¡y más allá!"
+msgstr "El cielo es el límite"
 
 #: mods/HUD/mcl_achievements/init.lua:219
 msgid "Find the elytra and prepare to fly above and beyond!"
@@ -537,7 +540,7 @@ msgstr "Mina piedra con tu nuevo pico."
 
 #: mods/HUD/mcl_achievements/init.lua:580
 msgid "Hot Stuff"
-msgstr "¡La cosa está que arde!"
+msgstr "Lo más destacado"
 
 #: mods/HUD/mcl_achievements/init.lua:581
 msgid "Put lava in a bucket."
@@ -573,76 +576,80 @@ msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:614
 msgid "Return to Sender"
-msgstr ""
+msgstr "Devolver al remitente"
 
 #: mods/HUD/mcl_achievements/init.lua:615
 msgid "Destroy a Ghast with a Fireball"
-msgstr ""
+msgstr "Destruye a un Ghast con una bola de fuego"
 
 #: mods/HUD/mcl_achievements/init.lua:623
 msgid "Zombie Doctor"
-msgstr ""
+msgstr "Dr. Zombi"
 
 #: mods/HUD/mcl_achievements/init.lua:624
 msgid ""
 "Use a golden apple on a zombie villager under the Weakness effect; the "
 "advancement is granted when the zombie villager converts into a villager."
 msgstr ""
+"Usa una manzana dorada en un aldeano zombi que esté bajo el efecto «Debilidad"
+"»; la mejora se obtendrá cuando el aldeano zombi se convierta en un aldeano."
 
 #: mods/HUD/mcl_achievements/init.lua:634
 msgid "A Terrible Fortress"
-msgstr ""
+msgstr "Una fortaleza terrible"
 
 #: mods/HUD/mcl_achievements/init.lua:635
 msgid "Break your way into a Nether Fortress"
-msgstr ""
+msgstr "Ábrete paso hasta una fortaleza del Nether"
 
 #: mods/HUD/mcl_achievements/init.lua:646
 msgid "Eye Spy"
-msgstr ""
+msgstr "¿Dónde está?"
 
 #: mods/HUD/mcl_achievements/init.lua:647
 msgid "Follow an Eye of Ender"
-msgstr ""
+msgstr "Sigue un Ojo de Ender"
 
 #: mods/HUD/mcl_achievements/init.lua:658
 msgid "The City at the End of the Game"
-msgstr ""
+msgstr "La ciudad al final del juego"
 
 #: mods/HUD/mcl_achievements/init.lua:659
 msgid "Go on in, what could happen?"
-msgstr ""
+msgstr "Entra, ¿qué puede pasar?"
 
 #: mods/HUD/mcl_achievements/init.lua:670
 msgid "Those Were The Days"
-msgstr ""
+msgstr "¡Qué tiempos aquellos!"
 
 #: mods/HUD/mcl_achievements/init.lua:671
 msgid "Enter a Bastion Remnant"
-msgstr ""
+msgstr "Entra en un bastión en ruinas"
 
 #: mods/HUD/mcl_achievements/init.lua:682
 msgid "Mineclonia: Trial(s) edition"
-msgstr ""
+msgstr "Mineclonia: Edición de prueba"
 
 #: mods/HUD/mcl_achievements/init.lua:683
 msgid "Step foot in a Trial Chamber"
-msgstr ""
+msgstr "Entra en una sala de pruebas"
 
 #: mods/HUD/mcl_achievements/init.lua:695
 msgid "A Throwaway Joke"
-msgstr ""
+msgstr "Chiste desechable"
 
 #: mods/HUD/mcl_achievements/init.lua:696
 msgid ""
 "Throw a Trident at something.\n"
 "Note: Throwing away your only weapon is not a good idea."
 msgstr ""
+"Lanza un tridente a algo.\n"
+"Nota: Deshacerte de tu única arma no es una buena idea."
 
 #: mods/HUD/mcl_achievements/init.lua:704
 msgid "Very Very Frightening"
-msgstr ""
+msgstr "Muy, muy aterrador"
 
 #: mods/HUD/mcl_achievements/init.lua:705
 msgid "Strike a Villager with lightning."
-msgstr ""
+msgstr "Golpea a un aldeano con un rayo."

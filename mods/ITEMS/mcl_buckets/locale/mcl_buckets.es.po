@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_buckets x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-03 10:57+0000\n"
+"Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
+"Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_buckets/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 #: mods/ITEMS/mcl_buckets/init.lua:255
 msgid "Empty Bucket"
@@ -42,7 +44,7 @@ msgstr "Cubo con bacalao"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:3
 msgid "Bucket of Pufferfish"
-msgstr ""
+msgstr "Cubo con pez globo"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:4
 msgid "Bucket of Salmon"
@@ -65,6 +67,8 @@ msgid ""
 "Place it to empty the bucket and place a Pufferfish. Obtain by right "
 "clicking on a Pufferfish with a bucket of water."
 msgstr ""
+"Colócalo para vaciar el cubo y meter un pez globo. Para conseguirlo, haz "
+"clic con el botón derecho sobre un pez globo con un cubo de agua."
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:8
 msgid ""
@@ -96,7 +100,7 @@ msgstr "Coloca una fuente de agua y un Bacalao."
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:12
 msgid "Places a water source and a Pufferfish."
-msgstr ""
+msgstr "Coloca una fuente de agua y un pez globo."
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:13
 msgid "Places a water source and a Salmon."
@@ -116,7 +120,7 @@ msgstr "Este cubo está lleno con agua y un Bacalao."
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:17
 msgid "This bucket is filled with water and a Pufferfish."
-msgstr ""
+msgstr "Este cubo está lleno de agua y un pez globo."
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:18
 msgid "This bucket is filled with water and a Salmon."

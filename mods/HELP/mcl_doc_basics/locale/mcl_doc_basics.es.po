@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doc_basics x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-04-27 09:04+0000\n"
+"Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
+"Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_doc_basics/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:9
 msgid "Advanced usage"
@@ -616,6 +618,8 @@ msgid ""
 "There is a large variety of settings to configure Luanti. Pretty much every "
 "aspect can be changed that way."
 msgstr ""
+"Hay una gran variedad de opciones para configurar Luanti. Prácticamente se "
+"puede modificar cualquier aspecto de esta manera."
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:182
 msgid "These are a few of the most important gameplay settings:"
@@ -678,11 +682,11 @@ msgstr "El lugar principal para encontrar la versión más reciente de Luanti."
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:199
 msgid "Luanti Documentation: <https://docs.luanti.org/>"
-msgstr ""
+msgstr "Documentación de Luanti: <https://docs.luanti.org/>"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:200
 msgid "A official documentation website for Luanti."
-msgstr ""
+msgstr "Una página web con la documentación oficial de Luanti."
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:202
 msgid "Web forums: <https://forum.luanti.org/>"
@@ -702,7 +706,7 @@ msgstr ""
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:205
 msgid "Chat: <irc://irc.libera.chat/#luanti>"
-msgstr ""
+msgstr "Chat: <irc://irc.libera.chat/#luanti>"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:206
 msgid ""
@@ -710,6 +714,10 @@ msgid ""
 "people can meet to discuss in real-time. If you do not understand IRC, see "
 "the Luanti Documentation for help."
 msgstr ""
+"Un canal genérico de Internet Relay Chat (IRC) dedicado a todo lo "
+"relacionado con Luanti, donde los usuarios pueden reunirse para debatir en "
+"tiempo real. Si no sabes cómo funciona el IRC, consulta la documentación de "
+"Luanti para obtener ayuda."
 
 #: mods/HELP/mcl_doc_basics/basics.lua:9
 msgid "Basics"
@@ -2886,3 +2894,7 @@ msgid ""
 "other games for Luanti however, that can be installed from the main menu "
 "content browser."
 msgstr ""
+"MineClonia es un juego desarrollado con el motor Luanti cuyo objetivo es "
+"crear un juego lo más parecido posible a Minecraft. Sin embargo, hay muchos "
+"otros juegos para Luanti que se pueden instalar desde el navegador de "
+"contenidos del menú principal."

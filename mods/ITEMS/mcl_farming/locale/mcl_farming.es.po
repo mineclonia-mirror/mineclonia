@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-04-28 09:42+0000\n"
+"Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
+"Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_farming/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:10
 msgid "Beetroot Seeds"
@@ -209,7 +211,7 @@ msgstr "Azada de piedra"
 
 #: mods/ITEMS/mcl_farming/hoes.lua:82
 msgid "Copper Hoe"
-msgstr ""
+msgstr "Azada de cobre"
 
 #: mods/ITEMS/mcl_farming/hoes.lua:91
 msgid "Iron Hoe"
@@ -576,7 +578,6 @@ msgstr ""
 "trigo."
 
 #: mods/ITEMS/mcl_farming/wheat.lua:12
-#, fuzzy
 msgid ""
 "\t\tPlace the wheat seeds on farmland (which can be created with a hoe) to "
 "plant a wheat plant.\n"
@@ -584,12 +585,11 @@ msgid ""
 "an animal to feed it wheat seeds.\n"
 "\t"
 msgstr ""
-"\n"
-"\t\tColoque las semillas de trigo en tierras de cultivo (que se pueden crear "
+"\t\tColoca las semillas de trigo en un terreno de cultivo (que puedes crear "
 "con una azada) para plantar una planta de trigo.\n"
-"\t\tCrecen bajo la luz del sol y crecen más rápido en tierras de cultivo "
-"mojada. Haz clic derecho en un animal para alimentarlo con semillas de "
-"trigo.\n"
+"        Crecen con la luz del sol y crecen más rápido en terrenos de cultivo "
+"regados. Haz clic con el botón derecho sobre un animal para darle de comer "
+"semillas de trigo.\n"
 "\t"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:39
@@ -597,18 +597,16 @@ msgid "Premature Wheat Plant"
 msgstr "Planta de trigo prematuro"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:40
-#, fuzzy
 msgid ""
 "\t\t\tPremature wheat plants grow on farmland under sunlight in 8 stages.\n"
 "\t\t\tOn hydrated farmland, they grow faster. They can be harvested at any "
 "time but will only yield a profit when mature.\n"
 "\t\t"
 msgstr ""
-"\n"
-"\t\t\tLas plantas prematuras de trigo crecen en tierras de cultivo bajo la "
-"luz del sol en 8 etapas.\n"
-"\t\t\tEn tierras de cultivo mojada, crecen más rápido. Se pueden cosechar en "
-"cualquier momento, pero solo darán beneficios cuando estén maduros.\n"
+"\t\t\tLas plantas de trigo inmaduras crecen en los campos bajo la luz del "
+"sol en ocho etapas.\n"
+"            En terrenos bien regados, crecen más rápido. Se pueden cosechar "
+"en cualquier momento, pero solo generarán beneficios cuando estén maduras.\n"
 "\t\t"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:49
@@ -620,17 +618,15 @@ msgid "Mature Wheat Plant"
 msgstr "Planta de trigo maduro"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:80
-#, fuzzy
 msgid ""
 "\t\tMature wheat plants are ready to be harvested for wheat and wheat "
 "seeds.\n"
 "\t\tThey won't grow any further.\n"
 "\t"
 msgstr ""
-"\n"
-"\t\tLas plantas de trigo maduras están listas para ser cosechadas para "
-"obtener trigo y semillas de trigo.\n"
-"\t\tNo crecerán más\n"
+"\t\tLas plantas de trigo maduras están listas para ser cosechadas, tanto "
+"para obtener trigo como semillas de trigo.\n"
+"        Ya no crecerán más.\n"
 "\t"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:120

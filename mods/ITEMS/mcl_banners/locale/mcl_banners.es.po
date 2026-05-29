@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_banners x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-02 11:57+0000\n"
+"Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
+"Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_banners/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17\n"
 
 #: mods/ITEMS/mcl_banners/init.lua:132
 msgid "And one additional layer"
@@ -30,6 +32,10 @@ msgid ""
 "and at walls. Banners can be emblazoned with a variety of patterns by "
 "placing it with a dye in the loom, or with lots of dyes in crafting table."
 msgstr ""
+"Las pancartas son bloques decorativos altos y coloridos. Se pueden colocar "
+"en el suelo y en las paredes. Las pancartas se pueden decorar con diversos "
+"motivos colocándolas con un tinte en el telar, o con varios tintes en la "
+"mesa de trabajo."
 
 #: mods/ITEMS/mcl_banners/init.lua:350
 msgid ""
@@ -37,6 +43,9 @@ msgid ""
 "patterns can be layered on a banner. To wash off a banner's top-most layer, "
 "use it on a cauldron with water."
 msgstr ""
+"Los estandartes decorados se pueden volver a decorar para combinar motivos. "
+"Se pueden superponer hasta @1 motivos en un estandarte. Para eliminar la "
+"capa superior de un estandarte, utilízalo en un caldero con agua."
 
 #: mods/ITEMS/mcl_banners/init.lua:351
 msgid ""
@@ -44,6 +53,9 @@ msgid ""
 "color in the crafting table — one needs to be emblazoned, the other one must "
 "be clean."
 msgstr ""
+"Para copiar una bandera con escudo, hay que colocar dos banderas del mismo "
+"color de fondo en la mesa de trabajo: una debe tener el escudo y la otra "
+"debe estar en blanco."
 
 #: mods/ITEMS/mcl_banners/init.lua:465
 msgid "Paintable decoration"
@@ -583,7 +595,7 @@ msgstr "Estandarte con estampado de creeper"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:132
 msgid "Curly border Banner Pattern"
-msgstr ""
+msgstr "Patrón de banner con borde rizado"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:133
 msgid "Cyan Banner"
