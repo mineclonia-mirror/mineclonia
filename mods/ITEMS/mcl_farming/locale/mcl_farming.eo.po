@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-15 17:58+0000\n"
+"Last-Translator: Notxor <notxor@noreply.codeberg.org>\n"
+"Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_farming/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:10
 msgid "Beetroot Seeds"
@@ -21,7 +23,7 @@ msgstr "Betaj Semoj"
 #: mods/ITEMS/mcl_farming/potatoes.lua:102
 #: mods/ITEMS/mcl_farming/pumpkin.lua:29 mods/ITEMS/mcl_farming/wheat.lua:10
 msgid "Grows on farmland"
-msgstr ""
+msgstr "Kreskas sur kultivata grundo"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:12
 msgid "Grows into a beetroot plant. Chickens like beetroot seeds."

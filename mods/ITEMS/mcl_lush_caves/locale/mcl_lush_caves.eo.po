@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_lush_caves x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-05-02 18:57+0000\n"
-"Last-Translator: Tirifto <tirifto@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-05-15 17:58+0000\n"
+"Last-Translator: Notxor <notxor@noreply.codeberg.org>\n"
 "Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_lush_caves/eo/>\n"
 "Language: eo\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/ITEMS/mcl_lush_caves/dripleaf.lua:113
 #: mods/ITEMS/mcl_lush_caves/dripleaf.lua:114
@@ -26,7 +26,7 @@ msgstr "Gutfolieto"
 #: mods/ITEMS/mcl_lush_caves/dripleaf.lua:205
 #: mods/ITEMS/mcl_lush_caves/dripleaf.lua:206
 msgid "Big Dripleaf"
-msgstr ""
+msgstr "Granda Gutofolio"
 
 #: mods/ITEMS/mcl_lush_caves/init.lua:223
 msgid "Azalea Plant"

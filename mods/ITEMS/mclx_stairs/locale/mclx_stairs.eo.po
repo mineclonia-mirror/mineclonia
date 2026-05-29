@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mclx_stairs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-15 17:58+0000\n"
+"Last-Translator: Notxor <notxor@noreply.codeberg.org>\n"
+"Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
+"mclx_stairs/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/ITEMS/mclx_stairs/init.lua:7
 msgid "Lapis Lazuli Stairs"
@@ -18,7 +20,7 @@ msgstr "Ŝtuparo el lazurŝtono"
 
 #: mods/ITEMS/mclx_stairs/init.lua:13
 msgid "Lapis Lazuli Slab"
-msgstr ""
+msgstr "Slabo el lazurito"
 
 #: mods/ITEMS/mclx_stairs/init.lua:21
 msgid "Gold Stairs"
