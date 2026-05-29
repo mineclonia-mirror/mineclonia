@@ -684,12 +684,18 @@ function mob_class:check_water_flow (attach_pos)
 	return self._water_current
 end
 
+local pi = math.pi
+
 function mob_class:check_dying (dtime)
 	if self.dead and not self.animation.die_end then
 		if self.object then
-			local rot = self.object:get_rotation()
-			rot.z = ((math.pi/2-rot.z)*.2)+rot.z
-			self.object:set_rotation(rot)
+			local rot = self.object:get_rotation ()
+			local x = dtime * 20.0
+			local y = (mathpow (4, x) * rot.z) / mathpow (5, x)
+				- (mathpow (4, x) * pi) / (2 * mathpow (5, x))
+				+ pi * 0.5
+			rot.z = y
+			self.object:set_rotation (rot)
 		end
 		return true
 	end

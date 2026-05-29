@@ -443,6 +443,13 @@ local attack_id = 0
 
 function mob_class:receive_damage (mcl_reason, damage)
 	local source = mcl_reason.source
+
+	-- Don't suffer damage to be applied redundantly to mobs
+	-- already dead.
+	if self.dead then
+		return false
+	end
+
 	self.health = self.health - damage
 
 	if self.driver and self.driver:is_valid () then
