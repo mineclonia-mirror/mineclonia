@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_achievements x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-05 09:59+0000\n"
+"Last-Translator: josuigoa <josuigoa@noreply.codeberg.org>\n"
+"Language-Team: Basque <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_achievements/eu/>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/HUD/mcl_achievements/init.lua:30
 msgid "Benchmarking"
@@ -623,11 +625,11 @@ msgstr "Sartu Gotorlekuaren Hondakinetan"
 
 #: mods/HUD/mcl_achievements/init.lua:682
 msgid "Mineclonia: Trial(s) edition"
-msgstr ""
+msgstr "Mineclonia: Proba edizioa"
 
 #: mods/HUD/mcl_achievements/init.lua:683
 msgid "Step foot in a Trial Chamber"
-msgstr ""
+msgstr "Sar zaitez Proba Ganberan"
 
 #: mods/HUD/mcl_achievements/init.lua:695
 msgid "A Throwaway Joke"

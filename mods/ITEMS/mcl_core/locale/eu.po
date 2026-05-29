@@ -8,36 +8,38 @@ msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 21:41+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-05-05 09:59+0000\n"
+"Last-Translator: josuigoa <josuigoa@noreply.codeberg.org>\n"
+"Language-Team: Basque <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_core/eu/>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
-msgstr ""
+msgstr "Makila"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:5
 msgid ""
 "Sticks are a very versatile crafting material; used in countless crafting "
 "recipes."
-msgstr ""
+msgstr "Makilak material oso erabilgarria dira; errezeta piloan erabiliak."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:14
 msgid "Paper"
-msgstr ""
+msgstr "Papera"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:15
 msgid "Paper is used to craft books and maps."
-msgstr ""
+msgstr "Papera liburuak eta mapak egiteko erabiltzen da."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:21
 msgid "Coal"
-msgstr ""
+msgstr "Ikatza"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:22
 msgid ""
@@ -45,10 +47,13 @@ msgid ""
 "underground. Coal is your standard furnace fuel, but it can also be used to "
 "make torches, coal blocks and a few other things."
 msgstr ""
+"“Ikatza” esatean, lurpeko ustiaketaren ondoren lortutako materialaz ari "
+"gara. Ikatza zure labearen erregai estandarra da, baina zuziak, ikatz "
+"blokeak eta beste gauza batzuk egiteko erabili daiteke."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:31
 msgid "Charcoal"
-msgstr ""
+msgstr "Egur-ikatza"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:32
 msgid ""
@@ -56,30 +61,37 @@ msgid ""
 "furnace. It has the same burning time as coal and also shares many of its "
 "crafting recipes, but it can not be used to create coal blocks."
 msgstr ""
+"Egur-ikatza labearen erregai alternatiboa da, egurra labean errez lortzen "
+"dena. Ikatzaren erretze denbora bera du eta errezeta batzuk partekatzen "
+"dituzte, baina ezin da ikatz blokeak sortzeko erabili."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:40
 msgid "Iron Nugget"
-msgstr ""
+msgstr "Burdin-pipita"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:41
 msgid ""
 "Iron nuggets are very small pieces of molten iron; the main purpose is to "
 "create iron ingots."
 msgstr ""
+"Burdin-pipitak burdin zati oso txikiak dira, normalean burdin-lingoteak "
+"sortzeko erabiltzen da."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:48
 msgid "Gold Nugget"
-msgstr ""
+msgstr "Urre-pipita"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:49
 msgid ""
 "Gold nuggets are very small pieces of molten gold; the main purpose is to "
 "create gold ingots."
 msgstr ""
+"Urre-pipitak urre zati oso txikiak dira, normalean urre-lingoteak sortzeko "
+"erabiltzen da."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:56
 msgid "Diamond"
-msgstr ""
+msgstr "Diamantea"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:57
 msgid ""
