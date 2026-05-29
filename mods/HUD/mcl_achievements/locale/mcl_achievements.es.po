@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_achievements x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-04-28 21:57+0000\n"
+"PO-Revision-Date: 2026-05-04 22:59+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_achievements/es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/HUD/mcl_achievements/init.lua:30
 msgid "Benchmarking"
@@ -97,7 +97,7 @@ msgstr "Fabrica una estantería."
 
 #: mods/HUD/mcl_achievements/init.lua:142
 msgid "Isn't It Iron Pick"
-msgstr "¿No es un pico de hierro?"
+msgstr "Isn't It Iron Pick (¡No es hierrónico!)"
 
 #: mods/HUD/mcl_achievements/init.lua:143
 msgid "Craft a iron pickaxe using sticks and iron."
@@ -604,7 +604,7 @@ msgstr "Ábrete paso hasta una fortaleza del Nether"
 
 #: mods/HUD/mcl_achievements/init.lua:646
 msgid "Eye Spy"
-msgstr "¿Dónde está?"
+msgstr "Ojo espía"
 
 #: mods/HUD/mcl_achievements/init.lua:647
 msgid "Follow an Eye of Ender"
@@ -620,7 +620,7 @@ msgstr "Entra, ¿qué puede pasar?"
 
 #: mods/HUD/mcl_achievements/init.lua:670
 msgid "Those Were The Days"
-msgstr "¡Qué tiempos aquellos!"
+msgstr "Those Were The Days\" (Aquellos fueron los días)"
 
 #: mods/HUD/mcl_achievements/init.lua:671
 msgid "Enter a Bastion Remnant"

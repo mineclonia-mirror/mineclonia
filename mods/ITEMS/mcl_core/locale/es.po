@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 21:41+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-05-04 18:59+0000\n"
+"Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
+"Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_core/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
@@ -89,7 +91,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:61
 msgid "Diamond Material"
-msgstr ""
+msgstr "Material de diamante"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:66
 msgid "Clay Ball"
@@ -110,7 +112,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:81
 msgid "Iron Material"
-msgstr ""
+msgstr "Material de hierro"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:89
 msgid "Gold Ingot"
@@ -122,7 +124,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:94
 msgid "Gold Material"
-msgstr ""
+msgstr "Material de oro"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:102
 msgid "Emerald"
@@ -134,7 +136,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:107
 msgid "Emerald Material"
-msgstr ""
+msgstr "Material de esmeralda"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:112
 msgid "Lapis Lazuli"
@@ -146,7 +148,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:117
 msgid "Lapis Material"
-msgstr ""
+msgstr "Material de lapislázuli"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:125
 msgid "Brick"
@@ -186,7 +188,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/craftitems.lua:156
 msgid "Apples are food items which can be eaten."
-msgstr ""
+msgstr "Las manzanas se pueden comer."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:165
 msgid "Golden Apple"
@@ -239,7 +241,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:10
 msgid "Acacia Hanging Sign"
-msgstr ""
+msgstr "Letrero colgante de acacia"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:11
 msgid "Acacia Leaves"
@@ -319,7 +321,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:30
 msgid "Birch Hanging Sign"
-msgstr ""
+msgstr "Letrero colgante de abedul"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:31
 msgid "Birch Leaves"
@@ -415,7 +417,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:54
 msgid "Dark Oak Hanging Sign"
-msgstr ""
+msgstr "Letrero colgante de roble oscuro"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:55
 msgid "Dark Oak Leaves"
@@ -503,7 +505,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:76
 msgid "Jungle Hanging Sign"
-msgstr ""
+msgstr "Letrero colgante de la jungla"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:77
 msgid "Jungle Leaves"
@@ -591,7 +593,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:98
 msgid "Oak Fence"
-msgstr ""
+msgstr "Valla de roble"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:99
 msgid "Oak Fence Gate"
@@ -599,7 +601,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:100
 msgid "Oak Hanging Sign"
-msgstr ""
+msgstr "Letrero colgante de roble"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:101
 msgid "Oak Leaves"
@@ -695,7 +697,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:124
 msgid "Spruce Hanging Sign"
-msgstr ""
+msgstr "Letrero colgante de abeto"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:125
 msgid "Spruce Leaves"
@@ -1276,6 +1278,8 @@ msgid ""
 "A lapis lazuli block is mostly a decorative block but also useful as a "
 "compact storage of lapis lazuli."
 msgstr ""
+"Un bloque de lapislázuli es principalmente un bloque decorativo , pero "
+"también resulta útil como recipiente compacto para almacenar lapislázuli."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:799
 msgid "Block of Emerald"
@@ -1328,12 +1332,13 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:869
 msgid "Blue Ice"
-msgstr ""
+msgstr "Hielo azul"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:870
 msgid ""
 "Blue Ice is a still more compressed form of ice.  It is opaque and solid."
 msgstr ""
+"El hielo azul es una forma de hielo aún más comprimida.  Es opaco y sólido."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:913
 msgid ""
@@ -1410,11 +1415,11 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:77
 msgid "Cactus Flower"
-msgstr ""
+msgstr "Flor del cactus"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:78
 msgid "Grows on cacti"
-msgstr ""
+msgstr "Crece en los cactus"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:100
 msgid "Sugar Canes"
@@ -1479,13 +1484,15 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_glow_lichen.lua:60
 msgid "Glow Lichen"
-msgstr ""
+msgstr "Líquen luminoso"
 
 #: mods/ITEMS/mcl_core/nodes_glow_lichen.lua:61
 msgid ""
 "Naturally generating non-solid block that emits a faint light and can attach "
 "to any surface of a solid block."
 msgstr ""
+"Se genera de forma natural un bloque no sólido que emite una luz tenue y "
+"puede adherirse a cualquier superficie de un bloque sólido ."
 
 #: mods/ITEMS/mcl_core/nodes_liquid.lua:11
 msgid "Flowing Water"
