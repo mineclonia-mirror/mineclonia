@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_achievements x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-05-29 13:14+0000\n"
+"Last-Translator: cuche <cuche@noreply.codeberg.org>\n"
+"Language-Team: Italian <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_achievements/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/HUD/mcl_achievements/init.lua:30
 msgid "Benchmarking"
@@ -97,11 +99,11 @@ msgstr "Assembla un piccone di ferro utilizzando bastoni e ferro."
 
 #: mods/HUD/mcl_achievements/init.lua:155
 msgid "Bullseye"
-msgstr ""
+msgstr "Preso in pieno!"
 
 #: mods/HUD/mcl_achievements/init.lua:156
 msgid "Hit the bullseye of a target block from at least 30 blocks away."
-msgstr ""
+msgstr "Colpisci il centro di un bersaglio da almeno 30 metri di distanza."
 
 #: mods/HUD/mcl_achievements/init.lua:165
 msgid "DIAMONDS!"
@@ -567,11 +569,11 @@ msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:614
 msgid "Return to Sender"
-msgstr ""
+msgstr "Ritorno al mittente"
 
 #: mods/HUD/mcl_achievements/init.lua:615
 msgid "Destroy a Ghast with a Fireball"
-msgstr ""
+msgstr "Distruggi un ghast con una palla di fuoco"
 
 #: mods/HUD/mcl_achievements/init.lua:623
 msgid "Zombie Doctor"
@@ -587,58 +589,60 @@ msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:634
 msgid "A Terrible Fortress"
-msgstr ""
+msgstr "Una fortezza terribile"
 
 #: mods/HUD/mcl_achievements/init.lua:635
 msgid "Break your way into a Nether Fortress"
-msgstr ""
+msgstr "Addentrati in una fortezza del Nether"
 
 #: mods/HUD/mcl_achievements/init.lua:646
 msgid "Eye Spy"
-msgstr ""
+msgstr "A colpo d'occhio"
 
 #: mods/HUD/mcl_achievements/init.lua:647
 msgid "Follow an Eye of Ender"
-msgstr ""
+msgstr "Segui un occhio di ender"
 
 #: mods/HUD/mcl_achievements/init.lua:658
 msgid "The City at the End of the Game"
-msgstr ""
+msgstr "Città al termine del gioco"
 
 #: mods/HUD/mcl_achievements/init.lua:659
 msgid "Go on in, what could happen?"
-msgstr ""
+msgstr "Entra pure. Cosa mai potrebbe succedere?"
 
 #: mods/HUD/mcl_achievements/init.lua:670
 msgid "Those Were The Days"
-msgstr ""
+msgstr "Reame caduto"
 
 #: mods/HUD/mcl_achievements/init.lua:671
 msgid "Enter a Bastion Remnant"
-msgstr ""
+msgstr "Entra nei resti di un bastione"
 
 #: mods/HUD/mcl_achievements/init.lua:682
 msgid "Mineclonia: Trial(s) edition"
-msgstr ""
+msgstr "Sfida accettata!"
 
 #: mods/HUD/mcl_achievements/init.lua:683
 msgid "Step foot in a Trial Chamber"
-msgstr ""
+msgstr "Metti piede in una camera della sfida"
 
 #: mods/HUD/mcl_achievements/init.lua:695
 msgid "A Throwaway Joke"
-msgstr ""
+msgstr "Usa e getta"
 
 #: mods/HUD/mcl_achievements/init.lua:696
 msgid ""
 "Throw a Trident at something.\n"
 "Note: Throwing away your only weapon is not a good idea."
 msgstr ""
+"Scaglia un tridente contro qualcosa.\n"
+"Nota bene: Gettare via la tua unica arma non è una grande idea."
 
 #: mods/HUD/mcl_achievements/init.lua:704
 msgid "Very Very Frightening"
-msgstr ""
+msgstr "Molto molto spaventoso"
 
 #: mods/HUD/mcl_achievements/init.lua:705
 msgid "Strike a Villager with lightning."
-msgstr ""
+msgstr "Colpisci un villico con un fulmine."
