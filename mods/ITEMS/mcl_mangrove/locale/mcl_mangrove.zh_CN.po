@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mangrove x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -83,7 +83,8 @@ msgid "Muddy Mangrove Roots"
 msgstr "泥泞的红树林树根"
 
 #: mods/ITEMS/mcl_mangrove/init.lua:366
-msgid "crafted with Mud and Mangrove roots"
+#, fuzzy
+msgid "Crafted with Mud and Mangrove roots"
 msgstr "用泥巴和红树林树根制作而成"
 
 #: mods/ITEMS/mcl_mangrove/init.lua:367

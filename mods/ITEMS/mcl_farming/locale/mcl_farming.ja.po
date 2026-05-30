@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -430,13 +430,14 @@ msgstr ""
 "次のカボチャが実るようになります。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:115
-msgid "Faceless Pumpkin"
-msgstr "顔のないカボチャ"
+msgid "Pumpkin"
+msgstr "カボチャ"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
+#, fuzzy
 msgid ""
-"A faceless pumpkin is a decorative block. It can be carved with shears to "
-"obtain pumpkin seeds."
+"A pumpkin is a decorative block. It can be carved with shears to obtain "
+"pumpkin seeds."
 msgstr ""
 "顔のないカボチャは装飾ブロックです。これをハサミで彫ると、カボチャの種が得ら"
 "れます。"
@@ -448,13 +449,15 @@ msgid ""
 msgstr "カボチャに顔を彫るには、彫りたい方の面にハサミを使います。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-msgid "Pumpkin"
-msgstr "カボチャ"
+#, fuzzy
+msgid "Carved Pumpkin"
+msgstr "成熟したカボチャの茎"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
+#, fuzzy
 msgid ""
-"A pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, which "
-"in turn grow from pumpkin seeds."
+"A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
+"which in turn grow from pumpkin seeds."
 msgstr ""
 "カボチャは、カボチャの種から育つ茎を経て実ります。ハサミで彫るとヘルメットと"
 "して被る事もできます。"
@@ -613,3 +616,6 @@ msgstr "干草の俵"
 #: mods/ITEMS/mcl_farming/wheat.lua:156
 msgid "Hay bales are decorative blocks made from wheat."
 msgstr "干草の俵とは、小麦から作られた装飾ブロックのことです。"
+
+#~ msgid "Faceless Pumpkin"
+#~ msgstr "顔のないカボチャ"

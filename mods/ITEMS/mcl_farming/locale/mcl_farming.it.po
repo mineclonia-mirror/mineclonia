@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -372,13 +372,13 @@ msgid ""
 msgstr ""
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:115
-msgid "Faceless Pumpkin"
-msgstr "Zucca senza faccia"
+msgid "Pumpkin"
+msgstr "Zucca"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
 msgid ""
-"A faceless pumpkin is a decorative block. It can be carved with shears to "
-"obtain pumpkin seeds."
+"A pumpkin is a decorative block. It can be carved with shears to obtain "
+"pumpkin seeds."
 msgstr ""
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:117
@@ -388,13 +388,14 @@ msgid ""
 msgstr ""
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-msgid "Pumpkin"
-msgstr "Zucca"
+#, fuzzy
+msgid "Carved Pumpkin"
+msgstr "Zucca senza faccia"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
 msgid ""
-"A pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, which "
-"in turn grow from pumpkin seeds."
+"A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
+"which in turn grow from pumpkin seeds."
 msgstr ""
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:228

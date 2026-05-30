@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 21:41+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -86,7 +86,7 @@ msgid "Muddy Mangrove Roots"
 msgstr ""
 
 #: mods/ITEMS/mcl_mangrove/init.lua:366
-msgid "crafted with Mud and Mangrove roots"
+msgid "Crafted with Mud and Mangrove roots"
 msgstr ""
 
 #: mods/ITEMS/mcl_mangrove/init.lua:367

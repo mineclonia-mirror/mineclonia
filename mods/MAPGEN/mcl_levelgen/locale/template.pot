@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 21:41+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,39 +104,39 @@ msgstr ""
 msgid "Template `@1' is not available: @2"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:522
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:520
 msgid "Invalid dimensions: @1,@2,@3"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:576
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:574
 msgid "Metadata storage limit exceeded"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:614
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:612
 msgid "Creating file @1: @2"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:804
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:918
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1018
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1059
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:802
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:916
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1016
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1057
 msgid "`server' privileges are required to utilize structure blocks"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:963
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:961
 msgid ""
 "Unable to detect structure size.  Add corners with matching structure names."
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1219
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1217
 msgid "Jigsaw Block"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1220
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1218
 msgid "Facilitates generation of multiple-piece structures"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1354
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1352
 msgid "`server' privileges are required to interact with jigsaw blocks"
 msgstr ""
 

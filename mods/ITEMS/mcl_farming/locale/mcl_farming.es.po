@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: 2026-05-04 22:59+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
@@ -462,13 +462,14 @@ msgstr ""
 "del tallo, pierde la conexión y está lista para cultivar otra calabaza."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:115
-msgid "Faceless Pumpkin"
-msgstr "Calabaza sin rostro"
+msgid "Pumpkin"
+msgstr "Calabaza"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
+#, fuzzy
 msgid ""
-"A faceless pumpkin is a decorative block. It can be carved with shears to "
-"obtain pumpkin seeds."
+"A pumpkin is a decorative block. It can be carved with shears to obtain "
+"pumpkin seeds."
 msgstr ""
 "Una calabaza sin rostro es un bloque decorativo. Se puede tallar con tijeras "
 "para obtener semillas de calabaza."
@@ -482,13 +483,15 @@ msgstr ""
 "tallar."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-msgid "Pumpkin"
-msgstr "Calabaza"
+#, fuzzy
+msgid "Carved Pumpkin"
+msgstr "Tallo maduro de calabaza"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
+#, fuzzy
 msgid ""
-"A pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, which "
-"in turn grow from pumpkin seeds."
+"A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
+"which in turn grow from pumpkin seeds."
 msgstr ""
 "Se puede usar una calabaza como casco. Las calabazas crecen a partir de "
 "tallos de calabaza, que a su vez crecen a partir de semillas de calabaza."
@@ -658,3 +661,6 @@ msgstr "Fardo de heno"
 #: mods/ITEMS/mcl_farming/wheat.lua:156
 msgid "Hay bales are decorative blocks made from wheat."
 msgstr "Las balas de heno son bloques decorativos hechos de trigo."
+
+#~ msgid "Faceless Pumpkin"
+#~ msgstr "Calabaza sin rostro"

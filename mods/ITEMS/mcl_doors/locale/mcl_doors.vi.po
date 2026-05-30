@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 21:41+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -40,16 +40,16 @@ msgid ""
 msgstr ""
 
 #: mods/ITEMS/mcl_doors/api_doors.lua:61
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:104
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:106
 msgid "Openable by redstone power"
 msgstr ""
 
 #: mods/ITEMS/mcl_doors/api_doors.lua:63
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:106
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:108
 msgid "Openable by players and redstone power"
 msgstr ""
 
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:93
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:95
 msgid ""
 "Trapdoors are horizontal barriers which can be opened or closed and climbed "
 "like a ladder when open. They occupy the upper or lower part of a block, "
@@ -57,7 +57,7 @@ msgid ""
 "closed by redstone power."
 msgstr ""
 
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:95
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:97
 msgid ""
 "Trapdoors are horizontal barriers which can be opened or closed and climbed "
 "like a ladder when open. They occupy the upper or lower part of a block, "
@@ -65,7 +65,7 @@ msgid ""
 "closed by hand or redstone power."
 msgstr ""
 
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:100
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:102
 msgid ""
 "To open or close this trapdoor, rightclick it or send a redstone signal to "
 "it."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -450,13 +450,14 @@ msgstr ""
 "desfeita e ele fica pronto para gerar outra abóbora."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:115
-msgid "Faceless Pumpkin"
-msgstr "Abóbora sem Rosto"
+msgid "Pumpkin"
+msgstr "Abóbora"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
+#, fuzzy
 msgid ""
-"A faceless pumpkin is a decorative block. It can be carved with shears to "
-"obtain pumpkin seeds."
+"A pumpkin is a decorative block. It can be carved with shears to obtain "
+"pumpkin seeds."
 msgstr ""
 "A abóbora sem rosto é um bloco decorativo. Ela pode ser esculpida com "
 "tesoura para se obter as sementes."
@@ -470,13 +471,15 @@ msgstr ""
 "esculpir."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-msgid "Pumpkin"
-msgstr "Abóbora"
+#, fuzzy
+msgid "Carved Pumpkin"
+msgstr "Caule de Abóbora Maduro"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
+#, fuzzy
 msgid ""
-"A pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, which "
-"in turn grow from pumpkin seeds."
+"A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
+"which in turn grow from pumpkin seeds."
 msgstr ""
 "Uma abóbora pode ser usada como capacete. As abóboras crescem a partir de "
 "caules, que por sua vez crescem a partir de sementes."
@@ -651,3 +654,6 @@ msgstr "Fardo de Feno"
 #: mods/ITEMS/mcl_farming/wheat.lua:156
 msgid "Hay bales are decorative blocks made from wheat."
 msgstr "Os fardos de feno são blocos decorativos feitos de trigo."
+
+#~ msgid "Faceless Pumpkin"
+#~ msgstr "Abóbora sem Rosto"

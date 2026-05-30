@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mangrove x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: 2026-04-30 19:57+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
@@ -83,7 +83,7 @@ msgid "Muddy Mangrove Roots"
 msgstr ""
 
 #: mods/ITEMS/mcl_mangrove/init.lua:366
-msgid "crafted with Mud and Mangrove roots"
+msgid "Crafted with Mud and Mangrove roots"
 msgstr ""
 
 #: mods/ITEMS/mcl_mangrove/init.lua:367

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_bamboo x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -96,20 +96,18 @@ msgstr "竹马赛克楼梯"
 msgid "Bamboo Mosaic Slab"
 msgstr "竹马赛克台阶"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:382
+#: mods/ITEMS/mcl_bamboo/nodes.lua:383
 msgid "Scaffolding"
 msgstr "脚手架"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:383
+#: mods/ITEMS/mcl_bamboo/nodes.lua:384
 msgid ""
 "Scaffolding is a temporary structure to easily climb up while building that "
 "is easily removed"
 msgstr "一种便于攀爬的临时架构，同时也易于拆除"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:477
-msgid "Scaffolding horizontal"
-msgstr "脚手架横杆"
+#~ msgid "Scaffolding horizontal"
+#~ msgstr "脚手架横杆"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:478
-msgid "Scaffolding block..."
-msgstr "脚手架方块..."
+#~ msgid "Scaffolding block..."
+#~ msgstr "脚手架方块..."

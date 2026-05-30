@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_sus_nodes x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: 2026-05-18 14:58+0000\n"
 "Last-Translator: newrizen <newrizen@noreply.codeberg.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.codeberg.org/projects/"
@@ -18,22 +18,22 @@ msgstr ""
 msgid "Suspicious "
 msgstr "Suspeita "
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:435
+#: mods/ITEMS/mcl_sus_nodes/init.lua:434
 msgid "Brush"
 msgstr "Pincel"
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:436
+#: mods/ITEMS/mcl_sus_nodes/init.lua:435
 msgid "Brushes are used in archeology to discover hidden items"
 msgstr "Pincéis são utilizados na arqueologia para descobrir itens escondidos"
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:437
+#: mods/ITEMS/mcl_sus_nodes/init.lua:436
 msgid "Use the brush on a suspicious node to uncover its secrets"
 msgstr "Use o pincel em um nó suspeito para descobrir seus segredos"
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:457
+#: mods/ITEMS/mcl_sus_nodes/init.lua:456
 msgid "Suspicious Sand"
 msgstr "Areia Suspeita"
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:461
+#: mods/ITEMS/mcl_sus_nodes/init.lua:460
 msgid "Suspicious Gravel"
 msgstr "Cascalho Suspeito"

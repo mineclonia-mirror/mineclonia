@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_sus_nodes x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,22 +17,22 @@ msgstr ""
 msgid "Suspicious "
 msgstr "可疑的沙子"
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:435
+#: mods/ITEMS/mcl_sus_nodes/init.lua:434
 msgid "Brush"
 msgstr "刷子"
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:436
+#: mods/ITEMS/mcl_sus_nodes/init.lua:435
 msgid "Brushes are used in archeology to discover hidden items"
 msgstr "在考古学中，刷子被用于发现隐藏的物品"
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:437
+#: mods/ITEMS/mcl_sus_nodes/init.lua:436
 msgid "Use the brush on a suspicious node to uncover its secrets"
 msgstr "在可疑的节点上使用刷子，以揭开它的秘密"
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:457
+#: mods/ITEMS/mcl_sus_nodes/init.lua:456
 msgid "Suspicious Sand"
 msgstr "可疑的沙子"
 
-#: mods/ITEMS/mcl_sus_nodes/init.lua:461
+#: mods/ITEMS/mcl_sus_nodes/init.lua:460
 msgid "Suspicious Gravel"
 msgstr "可疑的砾石"

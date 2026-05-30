@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_weather x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,6 +14,10 @@ msgstr ""
 
 #: mods/ENVIRONMENT/mcl_weather/nether_dust.lua:71
 msgid "Enable dust particles in the nether"
+msgstr ""
+
+#: mods/ENVIRONMENT/mcl_weather/skycolor.lua:7
+msgid "Enable clouds"
 msgstr ""
 
 #: mods/ENVIRONMENT/mcl_weather/weather_core.lua:219

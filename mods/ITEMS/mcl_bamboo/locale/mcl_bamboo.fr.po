@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_bamboo x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -97,11 +97,11 @@ msgstr "Escalier en mosaïque de bambou"
 msgid "Bamboo Mosaic Slab"
 msgstr "Dalle en mosaïque de bambou"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:382
+#: mods/ITEMS/mcl_bamboo/nodes.lua:383
 msgid "Scaffolding"
 msgstr "Échafaudage"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:383
+#: mods/ITEMS/mcl_bamboo/nodes.lua:384
 msgid ""
 "Scaffolding is a temporary structure to easily climb up while building that "
 "is easily removed"
@@ -109,10 +109,8 @@ msgstr ""
 "L'échafaudage est une structure temporaire qui permet de grimper facilement "
 "pendant la construction d'un bâtiment et qui peut être facilement démontée"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:477
-msgid "Scaffolding horizontal"
-msgstr "Échafaudage horizontal"
+#~ msgid "Scaffolding horizontal"
+#~ msgstr "Échafaudage horizontal"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:478
-msgid "Scaffolding block..."
-msgstr "Bloc d'échafaudage..."
+#~ msgid "Scaffolding block..."
+#~ msgstr "Bloc d'échafaudage..."

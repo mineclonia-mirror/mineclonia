@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_bamboo x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -96,11 +96,11 @@ msgstr "Schody z mozaiką z bambusa"
 msgid "Bamboo Mosaic Slab"
 msgstr "Płyta z mozaiką z bambusa"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:382
+#: mods/ITEMS/mcl_bamboo/nodes.lua:383
 msgid "Scaffolding"
 msgstr "Rusztowanie"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:383
+#: mods/ITEMS/mcl_bamboo/nodes.lua:384
 msgid ""
 "Scaffolding is a temporary structure to easily climb up while building that "
 "is easily removed"
@@ -108,10 +108,8 @@ msgstr ""
 "Rusztowanie jest tymczasową konstrukcją, łatwą w demontażu. Umożliwiającą "
 "łatwe wspinanie się podczas budowy"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:477
-msgid "Scaffolding horizontal"
-msgstr "Rusztowanie poziome"
+#~ msgid "Scaffolding horizontal"
+#~ msgstr "Rusztowanie poziome"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:478
-msgid "Scaffolding block..."
-msgstr "Blok rusztowań..."
+#~ msgid "Scaffolding block..."
+#~ msgstr "Blok rusztowań..."

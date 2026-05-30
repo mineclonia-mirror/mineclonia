@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -432,13 +432,14 @@ msgstr ""
 "eltávolították, a csatlakozás megszűnik és új tököt termelhet."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:115
-msgid "Faceless Pumpkin"
-msgstr "Tök"
+msgid "Pumpkin"
+msgstr "Tökfej"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
+#, fuzzy
 msgid ""
-"A faceless pumpkin is a decorative block. It can be carved with shears to "
-"obtain pumpkin seeds."
+"A pumpkin is a decorative block. It can be carved with shears to obtain "
+"pumpkin seeds."
 msgstr ""
 "A faragatlan tök egy díszítő elem. Nyíró ollóval faragható, így hozzá lehet "
 "jutni a magokhoz."
@@ -450,13 +451,15 @@ msgid ""
 msgstr "A tök arcának faragásához használd a nyíró ollót a kívánt oldalon."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-msgid "Pumpkin"
-msgstr "Tökfej"
+#, fuzzy
+msgid "Carved Pumpkin"
+msgstr "Érett tökszár"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
+#, fuzzy
 msgid ""
-"A pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, which "
-"in turn grow from pumpkin seeds."
+"A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
+"which in turn grow from pumpkin seeds."
 msgstr "A tököt viselheted sisakként. A tök a tökszárból nő, ami tökmagból nő."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:228
@@ -618,3 +621,6 @@ msgstr "Szénabála"
 #: mods/ITEMS/mcl_farming/wheat.lua:156
 msgid "Hay bales are decorative blocks made from wheat."
 msgstr "A szénabála búzából készített díszítő elem."
+
+#~ msgid "Faceless Pumpkin"
+#~ msgstr "Tök"

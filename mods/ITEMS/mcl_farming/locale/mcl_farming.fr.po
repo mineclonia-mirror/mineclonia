@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: 2026-05-13 14:58+0000\n"
 "Last-Translator: syl <syl@noreply.codeberg.org>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/mineclonia/"
@@ -463,13 +463,14 @@ msgstr ""
 "est prête à faire pousser une autre citrouille."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:115
-msgid "Faceless Pumpkin"
-msgstr "Citrouille sans visage"
+msgid "Pumpkin"
+msgstr "Citrouille"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
+#, fuzzy
 msgid ""
-"A faceless pumpkin is a decorative block. It can be carved with shears to "
-"obtain pumpkin seeds."
+"A pumpkin is a decorative block. It can be carved with shears to obtain "
+"pumpkin seeds."
 msgstr ""
 "Une citrouille sans visage est un bloc décoratif. Il peut être sculpté avec "
 "une cisaille pour obtenir des graines de citrouille."
@@ -483,13 +484,15 @@ msgstr ""
 "que vous souhaitez sculpter."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-msgid "Pumpkin"
-msgstr "Citrouille"
+#, fuzzy
+msgid "Carved Pumpkin"
+msgstr "Tige de citrouille mature"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
+#, fuzzy
 msgid ""
-"A pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, which "
-"in turn grow from pumpkin seeds."
+"A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
+"which in turn grow from pumpkin seeds."
 msgstr ""
 "Une citrouille peut être portée comme un casque. Les citrouilles poussent à "
 "partir de tiges de citrouille, qui à leur tour poussent à partir de graines "
@@ -665,3 +668,6 @@ msgstr "Botte de paille"
 #: mods/ITEMS/mcl_farming/wheat.lua:156
 msgid "Hay bales are decorative blocks made from wheat."
 msgstr "Les balles de foin sont des blocs décoratifs en blé."
+
+#~ msgid "Faceless Pumpkin"
+#~ msgstr "Citrouille sans visage"

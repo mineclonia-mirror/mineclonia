@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -43,12 +43,12 @@ msgstr "Blaze"
 msgid "Chicken"
 msgstr "Pollo"
 
-#: mods/ENTITIES/mobs_mc/cod.lua:14 mods/ENTITIES/mobs_mc/cod.lua:105
+#: mods/ENTITIES/mobs_mc/cod.lua:14 mods/ENTITIES/mobs_mc/cod.lua:104
 msgid "Cod"
 msgstr "Bacalao"
 
-#: mods/ENTITIES/mobs_mc/cod.lua:130 mods/ENTITIES/mobs_mc/salmon.lua:125
-#: mods/ENTITIES/mobs_mc/tropical_fish.lua:227
+#: mods/ENTITIES/mobs_mc/cod.lua:129 mods/ENTITIES/mobs_mc/salmon.lua:124
+#: mods/ENTITIES/mobs_mc/tropical_fish.lua:220
 msgid ""
 "Each mob spawned will form a school with the remainder of the mobs in the "
 "group."
@@ -76,22 +76,22 @@ msgstr "Creeper Cargado"
 msgid "Dolphin"
 msgstr "Delfín"
 
-#: mods/ENTITIES/mobs_mc/drowned.lua:30 mods/ENTITIES/mobs_mc/drowned.lua:864
+#: mods/ENTITIES/mobs_mc/drowned.lua:30 mods/ENTITIES/mobs_mc/drowned.lua:865
 msgid "Drowned"
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/drowned.lua:750
+#: mods/ENTITIES/mobs_mc/drowned.lua:751
 msgid "Baby Drowned"
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/drowned.lua:837
+#: mods/ENTITIES/mobs_mc/drowned.lua:838
 msgid "Drowned will spawn more frequently in this biome."
 msgstr ""
 
 #: mods/ENTITIES/mobs_mc/ender_dragon.lua:13
 #: mods/ENTITIES/mobs_mc/ender_dragon.lua:184
-#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1989
-#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1997
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1988
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1996
 msgid "Ender Dragon"
 msgstr "Enderdragón"
 
@@ -128,24 +128,19 @@ msgid "Elder Guardian"
 msgstr "Guardián anciano"
 
 #: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:15
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:508
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:514
 msgid "Hoglin"
 msgstr "Hoglin"
 
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:479
-msgid "Baby Hoglin"
-msgstr "Bebe Hoglin"
-
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:551
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:561
 msgid "Hoglins do not spawn above Nether Wart blocks."
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:552
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:562
 msgid "20% of Hoglins spawn as their baby variants."
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:562
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:622
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:572
 msgid "Zoglin"
 msgstr "Zoglin"
 
@@ -153,23 +148,25 @@ msgstr "Zoglin"
 msgid "Sneak to dismount"
 msgstr "Agáchate para desmontar"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:67 mods/ENTITIES/mobs_mc/horse.lua:1333
+#: mods/ENTITIES/mobs_mc/horse.lua:67 mods/ENTITIES/mobs_mc/horse.lua:1365
 msgid "Horse"
 msgstr "Caballo"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1066 mods/ENTITIES/mobs_mc/horse.lua:1334
+#: mods/ENTITIES/mobs_mc/horse.lua:1098 mods/ENTITIES/mobs_mc/horse.lua:1366
 msgid "Skeleton Horse"
 msgstr "Caballo esqueleto"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1203 mods/ENTITIES/mobs_mc/horse.lua:1335
+#: mods/ENTITIES/mobs_mc/horse.lua:1235 mods/ENTITIES/mobs_mc/horse.lua:1367
 msgid "Zombie Horse"
 msgstr "Caballo zombi"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1234 mods/ENTITIES/mobs_mc/horse.lua:1336
+#: mods/ENTITIES/mobs_mc/horse.lua:1266 mods/ENTITIES/mobs_mc/horse.lua:1328
+#: mods/ENTITIES/mobs_mc/horse.lua:1368
 msgid "Donkey"
 msgstr "Burro"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1304 mods/ENTITIES/mobs_mc/horse.lua:1337
+#: mods/ENTITIES/mobs_mc/horse.lua:1336 mods/ENTITIES/mobs_mc/horse.lua:1359
+#: mods/ENTITIES/mobs_mc/horse.lua:1369
 msgid "Mule"
 msgstr "Mula"
 
@@ -195,22 +192,20 @@ msgstr "Golem de hierro"
 #. ----------------------------------------------------------------------
 #. Llama mounting.
 #. ----------------------------------------------------------------------
-#. ----------------------------------------------------------------------
-#. Llama spawning.
-#. ----------------------------------------------------------------------
-#: mods/ENTITIES/mobs_mc/llama.lua:13 mods/ENTITIES/mobs_mc/llama.lua:487
+#: mods/ENTITIES/mobs_mc/llama.lua:13 mods/ENTITIES/mobs_mc/llama.lua:481
+#: mods/ENTITIES/mobs_mc/llama.lua:487
 msgid "Llama"
 msgstr "Llama"
 
-#: mods/ENTITIES/mobs_mc/ocelot.lua:25 mods/ENTITIES/mobs_mc/ocelot.lua:1082
+#: mods/ENTITIES/mobs_mc/ocelot.lua:25 mods/ENTITIES/mobs_mc/ocelot.lua:1085
 msgid "Ocelot"
 msgstr "Ocelote"
 
-#: mods/ENTITIES/mobs_mc/ocelot.lua:433 mods/ENTITIES/mobs_mc/ocelot.lua:1083
+#: mods/ENTITIES/mobs_mc/ocelot.lua:437 mods/ENTITIES/mobs_mc/ocelot.lua:1086
 msgid "Cat"
 msgstr "Gato"
 
-#: mods/ENTITIES/mobs_mc/ocelot.lua:1135
+#: mods/ENTITIES/mobs_mc/ocelot.lua:1138
 msgid ""
 "This mob will spawn infrequently on grass or leaves when no obstructions "
 "exist within a volume @1 nodes in size around the center of such a node's "
@@ -239,23 +234,23 @@ msgstr ""
 #. Pig spawning.
 #. ----------------------------------------------------------------------
 #. spawn eggs
-#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:256
+#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:286
 msgid "Pig"
 msgstr "Cerdo"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1941
+#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1944
 msgid "Piglin"
 msgstr "Piglin"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1562 mods/ENTITIES/mobs_mc/piglin.lua:1942
+#: mods/ENTITIES/mobs_mc/piglin.lua:1565 mods/ENTITIES/mobs_mc/piglin.lua:1945
 msgid "Piglin Brute"
 msgstr "Piglin bruto"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1714 mods/ENTITIES/mobs_mc/zombiepig.lua:5
+#: mods/ENTITIES/mobs_mc/piglin.lua:1717 mods/ENTITIES/mobs_mc/zombiepig.lua:5
 msgid "Zombified Piglin"
 msgstr "Piglin Zombificado"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1943
+#: mods/ENTITIES/mobs_mc/piglin.lua:1946
 msgid "Zombie Piglin"
 msgstr "Piglin zombi"
 
@@ -276,8 +271,8 @@ msgstr ""
 msgid "The second polar bear in a group will always be spawned as a cub."
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/pufferfish.lua:37
-#: mods/ENTITIES/mobs_mc/pufferfish.lua:282
+#: mods/ENTITIES/mobs_mc/pufferfish.lua:38
+#: mods/ENTITIES/mobs_mc/pufferfish.lua:284
 msgid "Pufferfish"
 msgstr ""
 
@@ -293,11 +288,11 @@ msgstr "Conejo asesino"
 msgid "Ravager"
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/salmon.lua:14 mods/ENTITIES/mobs_mc/salmon.lua:98
+#: mods/ENTITIES/mobs_mc/salmon.lua:14 mods/ENTITIES/mobs_mc/salmon.lua:97
 msgid "Salmon"
 msgstr "Salmón"
 
-#: mods/ENTITIES/mobs_mc/sheep.lua:58 mods/ENTITIES/mobs_mc/sheep.lua:341
+#: mods/ENTITIES/mobs_mc/sheep.lua:58 mods/ENTITIES/mobs_mc/sheep.lua:352
 msgid "Sheep"
 msgstr "Oveja"
 
@@ -408,16 +403,16 @@ msgstr "Calamar brillante"
 msgid "Glow Squid only spawn in absolute darkness at Y levels of 33 or below."
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:480
+#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:519
 msgid "Strider"
 msgstr "Lavagante"
 
-#: mods/ENTITIES/mobs_mc/strider.lua:519
+#: mods/ENTITIES/mobs_mc/strider.lua:558
 msgid "Baby Strider"
 msgstr "Lavagante Bebé"
 
 #: mods/ENTITIES/mobs_mc/tropical_fish.lua:6
-#: mods/ENTITIES/mobs_mc/tropical_fish.lua:200
+#: mods/ENTITIES/mobs_mc/tropical_fish.lua:193
 msgid "Tropical Fish"
 msgstr "Pez Tropical"
 
@@ -533,6 +528,7 @@ msgstr "Comerciante errante"
 
 #: mods/ENTITIES/mobs_mc/wandering_trader.lua:560
 #: mods/ENTITIES/mobs_mc/wandering_trader.lua:678
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:679
 msgid "Trader Llama"
 msgstr "Llama comerciante"
 
@@ -541,15 +537,15 @@ msgid "Witch"
 msgstr "Bruja"
 
 #: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:339
-#: mods/ENTITIES/mobs_mc/wither.lua:973
+#: mods/ENTITIES/mobs_mc/wither.lua:978
 msgid "Wither"
 msgstr "Wither"
 
-#: mods/ENTITIES/mobs_mc/wolf.lua:13 mods/ENTITIES/mobs_mc/wolf.lua:904
+#: mods/ENTITIES/mobs_mc/wolf.lua:13 mods/ENTITIES/mobs_mc/wolf.lua:903
 msgid "Wolf"
 msgstr "Lobo"
 
-#: mods/ENTITIES/mobs_mc/wolf.lua:928
+#: mods/ENTITIES/mobs_mc/wolf.lua:927
 msgid "on grass, snow blocks, coarse dirt, or podzol"
 msgstr ""
 
@@ -580,3 +576,6 @@ msgstr ""
 #: mods/ENTITIES/mobs_mc/zombie.lua:937
 msgid "Husks will only spawn on nodes that are exposed to sky."
 msgstr ""
+
+#~ msgid "Baby Hoglin"
+#~ msgstr "Bebe Hoglin"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -407,13 +407,14 @@ msgstr ""
 "接，准备再长出一个南瓜。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:115
-msgid "Faceless Pumpkin"
-msgstr "无脸南瓜"
+msgid "Pumpkin"
+msgstr "南瓜"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
+#, fuzzy
 msgid ""
-"A faceless pumpkin is a decorative block. It can be carved with shears to "
-"obtain pumpkin seeds."
+"A pumpkin is a decorative block. It can be carved with shears to obtain "
+"pumpkin seeds."
 msgstr "无脸南瓜是一种装饰性方块。可用剪刀雕刻它来获取南瓜种子。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:117
@@ -423,13 +424,15 @@ msgid ""
 msgstr "要在南瓜上雕刻面容，在想要雕刻的那一面使用剪刀。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-msgid "Pumpkin"
-msgstr "南瓜"
+#, fuzzy
+msgid "Carved Pumpkin"
+msgstr "成熟南瓜蔓"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
+#, fuzzy
 msgid ""
-"A pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, which "
-"in turn grow from pumpkin seeds."
+"A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
+"which in turn grow from pumpkin seeds."
 msgstr "可作为头盔佩戴。南瓜籽可长成南瓜蔓，南瓜蔓可长出南瓜。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:228
@@ -588,3 +591,6 @@ msgstr "干草捆"
 #: mods/ITEMS/mcl_farming/wheat.lua:156
 msgid "Hay bales are decorative blocks made from wheat."
 msgstr "干草捆是由小麦制成的装饰性方块。"
+
+#~ msgid "Faceless Pumpkin"
+#~ msgstr "无脸南瓜"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -147,41 +147,41 @@ msgstr "Mallin nimeä ei ole määritetty"
 msgid "Template `@1' is not available: @2"
 msgstr "Mallia \"@1\" ei ole saatavilla: @2"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:522
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:520
 msgid "Invalid dimensions: @1,@2,@3"
 msgstr "Virheelliset mitat: @1, @2, @3"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:576
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:574
 msgid "Metadata storage limit exceeded"
 msgstr "Metatietojen tallennusrajoitus ylitetty"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:614
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:612
 msgid "Creating file @1: @2"
 msgstr "Luodaan tiedosto @1: @2"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:804
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:918
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1018
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1059
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:802
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:916
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1016
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1057
 msgid "`server' privileges are required to utilize structure blocks"
 msgstr "Rakennelmakuution käyttämiseen vaaditaan \"server\"-oikeus"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:963
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:961
 msgid ""
 "Unable to detect structure size.  Add corners with matching structure names."
 msgstr ""
 "Rakennelman koon määrittäminen ei onnistu. Lisää nurkkia, joilla on sama "
 "rakennelmanimi."
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1219
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1217
 msgid "Jigsaw Block"
 msgstr "Palapelikuutio"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1220
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1218
 msgid "Facilitates generation of multiple-piece structures"
 msgstr "Helpottaa moniosaisen rakennelman luontia"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1354
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1352
 msgid "`server' privileges are required to interact with jigsaw blocks"
 msgstr "Palapelikuution käyttämiseen vaaditaan \"server\"-oikeus"
 

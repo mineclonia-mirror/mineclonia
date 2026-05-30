@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,22 +12,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:733
+#: mods/ENTITIES/mcl_mobs/api.lua:738
 msgid ""
 "Remove all, nametagged or tamed mobs within the specified distance or "
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
 "ones."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/api.lua:746 mods/ENTITIES/mcl_mobs/api.lua:753
+#: mods/ENTITIES/mcl_mobs/api.lua:751 mods/ENTITIES/mcl_mobs/api.lua:758
 msgid "Invalid syntax."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/init.lua:670
+#: mods/ENTITIES/mcl_mobs/init.lua:679
 msgid "This allows you to place a single mob."
 msgstr "これにより、1体のMOBを配置できます。"
 
-#: mods/ENTITIES/mcl_mobs/init.lua:671
+#: mods/ENTITIES/mcl_mobs/init.lua:680
 msgid ""
 "Just place it where you want the mob to appear. Animals will spawn tamed, "
 "unless you hold down the sneak key while placing. If you place this on a mob "
@@ -57,8 +57,9 @@ msgstr ""
 #. Precompute reciprocal.
 #. Read the height of every colliding node in moveresult,
 #. and the node above.
-#. Verify that the direction of the collision measured as a
-#. force substantially matches the direction of movement.
+#. Verify that the direction from which the collision
+#. is registered substantially matches the direction
+#. of movement.
 #. ~40 deg.
 #. should mob follow what I'm holding ?
 #. ----------------------------------------------------------------------
@@ -235,6 +236,17 @@ msgstr ""
 #. for minor deviations below the surface of any colliding supporting
 #. node that may have been produced by imprecisions in collision
 #. detection.
+#. Collect all vertices around the complete collision box in
+#. order to anticipate the amount of movement which might be
+#. applied on other axes.
+#. Perform another collision test with axes other than
+#. this one, adjusted so as to exclude any
+#. obstructions which might subsequently be evaded by
+#. such movement.
+#. Move the bbox for subsequent tests.
+#. Move the bbox for subsequent tests.
+#. Move the bbox for subsequent tests.
+#. No collisions were detected.
 #. Swap node positions.
 #. idx is now the proper depth of this node in the tree.
 #. Break early if it is known that no nodes exist
@@ -810,8 +822,8 @@ msgid ""
 " spawn_mob skeleton:var<jump_height=NUM10>:\n"
 " this setting the skelly's jump height to 10. if you want to make multiple "
 "changes to a mob, you can, example: \n"
-" spawn_mob "
-"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
+" spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::"
+"var<fly_in=air>::var<fly=true>:\n"
 " etc."
 msgstr ""
 

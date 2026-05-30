@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_bamboo x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -96,11 +96,11 @@ msgstr ""
 msgid "Bamboo Mosaic Slab"
 msgstr ""
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:382
+#: mods/ITEMS/mcl_bamboo/nodes.lua:383
 msgid "Scaffolding"
 msgstr "Perancah"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:383
+#: mods/ITEMS/mcl_bamboo/nodes.lua:384
 msgid ""
 "Scaffolding is a temporary structure to easily climb up while building that "
 "is easily removed"
@@ -108,10 +108,8 @@ msgstr ""
 "Perancah adalah struktur sementara yang mudah dinaiki saat membangun dan "
 "mudah dipindahkan"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:477
-msgid "Scaffolding horizontal"
-msgstr "Perancah Horizontal"
+#~ msgid "Scaffolding horizontal"
+#~ msgstr "Perancah Horizontal"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:478
-msgid "Scaffolding block..."
-msgstr "Blok perancah..."
+#~ msgid "Scaffolding block..."
+#~ msgstr "Blok perancah..."

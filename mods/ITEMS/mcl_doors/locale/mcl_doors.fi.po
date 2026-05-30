@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doors x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -41,16 +41,16 @@ msgstr ""
 "alaosaan punakivivirtaa."
 
 #: mods/ITEMS/mcl_doors/api_doors.lua:61
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:104
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:106
 msgid "Openable by redstone power"
 msgstr "Voidaan avata punakivivirralla"
 
 #: mods/ITEMS/mcl_doors/api_doors.lua:63
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:106
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:108
 msgid "Openable by players and redstone power"
 msgstr "Voidaan avata käsin tai punakivivirralla"
 
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:93
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:95
 msgid ""
 "Trapdoors are horizontal barriers which can be opened or closed and climbed "
 "like a ladder when open. They occupy the upper or lower part of a block, "
@@ -62,7 +62,7 @@ msgstr ""
 "kuution ylä- tai alaosassa riippuen siitä, miten se asetetaan. Tämän "
 "lattialuukun voi avata tai sulkea vain punakivivirralla."
 
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:95
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:97
 msgid ""
 "Trapdoors are horizontal barriers which can be opened or closed and climbed "
 "like a ladder when open. They occupy the upper or lower part of a block, "
@@ -74,7 +74,7 @@ msgstr ""
 "kuution ylä- tai alaosassa riippuen siitä, miten se asetetaan. Tämän "
 "lattialuukun voi avata tai sulkea käsin tai punakivivirralla."
 
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:100
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:102
 msgid ""
 "To open or close this trapdoor, rightclick it or send a redstone signal to "
 "it."

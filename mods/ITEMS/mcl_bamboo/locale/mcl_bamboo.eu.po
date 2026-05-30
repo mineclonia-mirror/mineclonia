@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_bamboo x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -96,11 +96,11 @@ msgstr "Banbuzko Mosaiko Eskailerak"
 msgid "Bamboo Mosaic Slab"
 msgstr "Banbuzko Mosaiko Lauza"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:382
+#: mods/ITEMS/mcl_bamboo/nodes.lua:383
 msgid "Scaffolding"
 msgstr "Aldamioa"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:383
+#: mods/ITEMS/mcl_bamboo/nodes.lua:384
 msgid ""
 "Scaffolding is a temporary structure to easily climb up while building that "
 "is easily removed"
@@ -108,10 +108,8 @@ msgstr ""
 "Aldamio bat egitura tenporal bat da, eraikuntzan zehar erraz igotzeko aukera "
 "ematen duena eta erraz ken daitekeena"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:477
-msgid "Scaffolding horizontal"
-msgstr "Aldamio horizontalak"
+#~ msgid "Scaffolding horizontal"
+#~ msgstr "Aldamio horizontalak"
 
-#: mods/ITEMS/mcl_bamboo/nodes.lua:478
-msgid "Scaffolding block..."
-msgstr "Aldamio-blokea..."
+#~ msgid "Scaffolding block..."
+#~ msgstr "Aldamio-blokea..."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doors x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -35,16 +35,16 @@ msgid ""
 msgstr "要打开或关闭这扇门，可以右键点击它，或者向其下半部分发送一个红石信号。"
 
 #: mods/ITEMS/mcl_doors/api_doors.lua:61
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:104
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:106
 msgid "Openable by redstone power"
 msgstr "可由红石能量打开"
 
 #: mods/ITEMS/mcl_doors/api_doors.lua:63
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:106
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:108
 msgid "Openable by players and redstone power"
 msgstr "可由玩家和红石能量打开"
 
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:93
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:95
 msgid ""
 "Trapdoors are horizontal barriers which can be opened or closed and climbed "
 "like a ladder when open. They occupy the upper or lower part of a block, "
@@ -55,7 +55,7 @@ msgstr ""
 "爬。活板门占据一个方块的上部或下部，具体取决于它们是如何放置的。这种活板门只"
 "能通过红石能量来打开或关闭。"
 
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:95
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:97
 msgid ""
 "Trapdoors are horizontal barriers which can be opened or closed and climbed "
 "like a ladder when open. They occupy the upper or lower part of a block, "
@@ -66,7 +66,7 @@ msgstr ""
 "们会占据一个方块的上部或下部，这取决于它们是如何放置的。这种活板门可以用手操"
 "作或者通过红石能量来打开或关闭。"
 
-#: mods/ITEMS/mcl_doors/api_trapdoors.lua:100
+#: mods/ITEMS/mcl_doors/api_trapdoors.lua:102
 msgid ""
 "To open or close this trapdoor, rightclick it or send a redstone signal to "
 "it."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_flowers x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-05-30 18:07+0200\n"
 "PO-Revision-Date: 2026-05-02 18:57+0000\n"
 "Last-Translator: Tirifto <tirifto@noreply.codeberg.org>\n"
 "Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "It can only be placed on a block on which it would also survive."
 msgstr "Ĝi nur povas esti metita sur blokon, sur kiu ĝi ankaŭ povus postvivi."
 
-#: mods/ITEMS/mcl_flowers/init.lua:383
+#: mods/ITEMS/mcl_flowers/init.lua:385
 msgid "@1 (Top Part)"
 msgstr ""
 
