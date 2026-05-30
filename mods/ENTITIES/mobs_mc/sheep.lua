@@ -251,7 +251,7 @@ local scale_chance = mcl_mobs.scale_chance
 local function play_graze_sound (self, self_pos, node_graze)
 	local def = core.registered_nodes[node_graze.name]
 	if def and def.sounds and def.sounds.dug then
-		local sound_graze = core.registered_nodes[node_graze.name].sounds.dug
+		local sound_graze = def.sounds.dug
 		core.sound_play(
 			{name = sound_graze.name, gain = sound_graze.gain},
 			{pos = self_pos, max_hear_distance = self.sounds.distance}
