@@ -248,7 +248,7 @@ end
 
 local scale_chance = mcl_mobs.scale_chance
 
-local function sound_play_graze (self, self_pos, node_graze)
+local function play_graze_sound (self, self_pos, node_graze)
 	local def = core.registered_nodes[node_graze.name]
 	if def and def.sounds and def.sounds.dug then
 		local sound_graze = core.registered_nodes[node_graze.name].sounds.dug
@@ -275,7 +275,7 @@ local function sheep_graze (self, self_pos, dtime)
 				if mob_griefing then
 					core.remove_node (self_pos)
 				end
-				sound_play_graze (self, self_pos, node)
+				play_graze_sound (self, self_pos, node)
 				consumed = true
 			else
 				local offset = vector.copy (self_pos)
@@ -287,7 +287,7 @@ local function sheep_graze (self, self_pos, dtime)
 							name = "mcl_core:dirt",
 						})
 					end
-					sound_play_graze (self, self_pos, below)
+					play_graze_sound (self, self_pos, below)
 					consumed = true
 				end
 			end
