@@ -11,70 +11,67 @@
 * davedevils
 
 ## Active Contributors
-* Brama Udi
-* ellesheepy
-* Jürgen Rühle
 * Po Lu
-* JoseDouglas26
-* Raylight
-* Miguel_PL
-* B. Stack
-* cosinus
-* Codiac
 * xox
+* bramaudi
 * Marek Jędrzejewski
 * amino
-* epCode
-* hezemisverydumb
+* josedouglas26
+* Mikita Wiśniewski
 * nixnoxus
 * Saintliy
-* Mikita Wiśniewski
+* hezemisverydumb
+* codiac
+* Jürgen Rühle
 * cloudCover
+* epCode
 
 ## Previous Contributors
 * Lizzy Fleckenstein
 * AFCMS
 * NO11
+* davedevils
 * Brandon
 * kay27
 * marcin-serwin
 * Michieal
-* epCode
 * PrairieWind
 * chmodsayshello
+* JoseDouglas26
 * iliekprogrammar
+* the-real-herowl
+* rubenwardy
 * ancientmarinerdev
-* TheOnlyJoeEnderman
+* goblin_mode
 * jordan4ibanez
+* cosinus
+* SumianVoice
+* TheOnlyJoeEnderman
+* ellesheepy
 * FossFanatic
 * rubenwardy
-* SumianVoice
 * MysticTempest
 * HimbeerserverDE
 * MrRar
 * kabou
 * FaceDeer
+* Ælla Chiana Moskopp
 * ChrisPHP
 * 3raven
 * ShadowRoi
-* amino
-* teknomunk
-* laireia
-* Eliy21
-* ROllerozxa
 * BlockMen
 * debiankaios
+* epCode
 * debian044
-* zitanyang
-* Code-Sploit
-* Rootyjr
-* codiac
-* kno10
-* Lars Müller
-* the-real-herowl
 * DragonWrangler1
+* ROllerozxa
+* ztianyang
+* Code-Sploit
+* Miguel_PL
+* Thunder1035
+* Raylight
+* Rootyjr
 * nooneatall
-* Ælla Chiana Moskopp
 
 ## Original Mod Authors
 * Wuzzy
