@@ -260,7 +260,7 @@ function mcl_util.deal_damage(target, damage, mcl_reason)
 			end
 			if luaentity.health > 0 then
 				mcl_damage.run_damage_callbacks(target, damage, mcl_reason or {type = "generic"})
-			elseif not luaentity.dead then
+			else
 				mcl_damage.run_death_callbacks(target, mcl_reason or {type = "generic"})
 			end
 			return damage
