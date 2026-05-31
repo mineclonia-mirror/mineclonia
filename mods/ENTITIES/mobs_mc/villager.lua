@@ -175,8 +175,18 @@ function mobs_mc.trade_from_table (pr, trade, reward_xp)
 		wanted2:set_count (pr:next (trade[1][5], trade[1][6]))
 	end
 
-	local offered = ItemStack (eval_item (trade[2][1]))
-	offered:set_count (pr:next (trade[2][2], trade[2][3]))
+	local offered_item = eval_item (trade[2][1])
+	local offered
+
+	if type(offered_item) == "userdata" and offered_item:is_empty() == false then
+		offered = offered_item
+	else
+		offered = ItemStack (offered_item)
+	end
+
+	if not offered:is_empty() then
+		offered:set_count (pr:next (trade[2][2], trade[2][3]))
+	end
 
 	local name = offered:get_name ()
 	if mcl_enchanting.is_enchanted (name) then
@@ -1651,7 +1661,20 @@ local villager_trades = {
 
 		{
 			{ { "mcl_core:emerald", 5, 45, "mcl_books:book", 1, 1 }, { "mcl_enchanting:book_enchanted", 1 ,1 }, 12, 30 },
-			{ E(20), { "mcl_mobs:nametag", 1, 1 }, 12, 30 },
+			{ E(4), {function()
+					local stack = ItemStack("mcl_candles:candle_1")
+					if mcl_candles then
+						mcl_candles.set_candle_properties(stack, "red")
+					end
+					return stack
+				end, 1, 1 }, 12, 1},
+			{E(4), {function()
+					local stack = ItemStack("mcl_candles:candle_1")
+					if mcl_candles then
+						mcl_candles.set_candle_properties(stack, "yellow")
+					end
+					return stack
+				end, 1, 1 }, 12, 1}
 		}
 	},
 	cartographer = {
@@ -2062,8 +2085,12 @@ function villager:trading_stopped ()
 end
 
 function villager:level_up ()
+
+	if self._tier >= MAX_TIER then
+		return
+	end
+
 	self._tier = self._tier + 1
-	assert (self._tier <= MAX_TIER)
 
 	self:activate_trades ()
 	mcl_potions.give_effect_by_level ("regeneration", self.object, 1, 10)
