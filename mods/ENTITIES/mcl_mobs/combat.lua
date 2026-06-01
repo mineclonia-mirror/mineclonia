@@ -572,6 +572,15 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir)
 		if fire_aspect_level > 0 then
 			mcl_burning.set_on_fire(self.object, fire_aspect_level * 4)
 		end
+
+		if armor.arthropod > 0 then
+			local bane_of_arthropods_level = mcl_enchanting.get_enchantment(weapon, "bane_of_arthropods")
+			if bane_of_arthropods_level > 0 then
+				-- Inflict slowness 4 for random time between 1 and 1 + level/2 seconds
+				local slowness_time = 1 + math.random() * bane_of_arthropods_level / 2
+				mcl_potions.give_effect_by_level("slowness", self.object, 4, slowness_time)
+			end
+		end
 	end
 
 	-- healing
