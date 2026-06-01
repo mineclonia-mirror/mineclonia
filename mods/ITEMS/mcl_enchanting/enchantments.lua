@@ -10,7 +10,7 @@ local function increase_damage(damage_group, factor)
 	end
 end
 
--- implemented via on_enchant and additions in mobs_mc; Slowness IV part unimplemented
+-- Implemented via on_enchant and additions in mcl_mobs
 mcl_enchanting.register_enchantment("bane_of_arthropods", {
 	name = S("Bane of Arthropods"),
 	max_level = 5,
