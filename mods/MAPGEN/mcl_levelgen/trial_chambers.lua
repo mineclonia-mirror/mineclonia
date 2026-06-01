@@ -126,7 +126,7 @@ mcl_levelgen.register_loot_table ("mcl_levelgen:trial_chambers_barrel_intersecti
 			{ itemstring = "mcl_tools:axe_gold", weight = 4 },
 			{ itemstring = "mcl_tools:pick_gold", weight = 4 },
 			{ itemstring = "mcl_core:diamond", weight = 1, amount_min = 1, amount_max = 3 },
-			{ itemstring = "mcl_buckets:bucket", weight = 1, amount_min = 1, amount_max = 2 },
+			{ itemstring = "mcl_buckets:bucket_empty", weight = 1, amount_min = 1, amount_max = 2 },
 			{ itemstring = "mcl_compass:compass", weight = 1 },
 			{ itemstring = "mcl_tools:pick_diamond", weight = 1 },
 			{
