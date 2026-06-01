@@ -37,7 +37,7 @@ mcl_stairs.register_stair_and_slab("cobble", {
 	baseitem = "mcl_core:cobble",
 	description_stair = S("Cobblestone Stairs"),
 	description_slab = S("Cobblestone Slab"),
-	overrides = {_mcl_stonecutter_recipes = {"mcl_core:cobble"}},
+	overrides = {_mcl_stonecutter_recipes = {"mcl_core:cobble", "mcl_core:stone"}},
 })
 mcl_stairs.register_stair_and_slab("mossycobble", {
 	baseitem = "mcl_core:mossycobble",

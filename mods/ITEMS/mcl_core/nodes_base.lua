@@ -721,7 +721,8 @@ core.register_node("mcl_core:cobble", {
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 2,
-	_mcl_cooking_output = "mcl_core:stone"
+	_mcl_cooking_output = "mcl_core:stone",
+	_mcl_stonecutter_recipes = { "mcl_core:stone" }
 })
 
 core.register_node("mcl_core:mossycobble", {

@@ -6,7 +6,7 @@ mcl_walls.register_wall_def("mcl_walls:cobble",{
 	source = "mcl_core:cobble",
 	description = S("Cobblestone Wall"),
 	tiles = {"mcl_walls_cobble_wall_top.png", "default_cobble.png", "mcl_walls_cobble_wall_side.png"},
-	_mcl_stonecutter_recipes = { "mcl_core:cobble" },
+	_mcl_stonecutter_recipes = { "mcl_core:cobble", "mcl_core:stone" },
 })
 mcl_walls.register_wall_def("mcl_walls:mossycobble", {
 	source = "mcl_core:mossycobble",
