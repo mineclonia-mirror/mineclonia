@@ -108,7 +108,7 @@ for size, def in pairs(bud_def) do
 		drawtype = "plantlike",
 		use_texture_alpha = "clip",
 		sunlight_propagates = true,
-		walkable = false,
+		walkable = true,
 		groups = {
 			dig_by_piston = 1,
 			unsticky = 1,
