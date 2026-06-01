@@ -6282,7 +6282,7 @@ local function register_decorations()
 
 	register_flower("dandelion", flower_biomes1, 8)
 	register_flower("poppy", flower_biomes1, 9439)
-	register_flower("eyeblossom", {"PaleGarden"}, 4832)
+	register_flower("eyeblossom", {"PaleGarden"}, 4832, false)
 
 	local flower_biomes2 = {"Plains", "SunflowerPlains"}
 	register_flower("tulip_red", flower_biomes2, 436)
