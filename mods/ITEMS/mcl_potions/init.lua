@@ -84,6 +84,9 @@ core.register_craftitem("mcl_potions:glass_bottle", {
 		nodes = {
 			["group:liquid_source"] = true,
 		},
+		objects = {
+			["mobs_mc:dragon_effect_cloud"] = true,
+		},
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		local node = core.get_node(pointed_thing.under)

@@ -2007,6 +2007,7 @@ local dragon_effect_cloud = {
 			z = 0,
 		},
 		physical = false,
+		pointable = false,
 		collide_with_objects = false,
 		visual = "cube",
 		textures = {
@@ -2094,21 +2095,15 @@ local function is_mob (object)
 	return entity and entity.is_mob
 end
 
-function dragon_effect_cloud:on_step (dtime)
-	local ttl = self._ttl - dtime
-	self._ttl = ttl
-	if ttl <= 0 then
-		self.object:remove ()
-		return
-	end
-	local self_pos = self.object:get_pos ()
-	local t = self._time_to_refresh - dtime
-	if t <= 0 then
-		t = 1.0
-		self:create_particlespawner (self_pos)
-	end
-	self._time_to_refresh = t
-	local cbox = table.copy (self._collisionbox)
+function dragon_effect_cloud:apply_damage (self_pos)
+	local cbox = {
+		self._collisionbox[1],
+		self._collisionbox[2],
+		self._collisionbox[3],
+		self._collisionbox[4],
+		self._collisionbox[5],
+		self._collisionbox[6],
+	}
 	local aa = vector.new (cbox[1] + self_pos.x - 2.0,
 			       cbox[2] + self_pos.y - 2.0,
 			       cbox[3] + self_pos.z - 2.0)
@@ -2136,7 +2131,25 @@ function dragon_effect_cloud:on_step (dtime)
 			end
 		end
 	end
+end
+
+function dragon_effect_cloud:on_step (dtime)
+	local ttl = self._ttl - dtime
+	self._ttl = ttl
+	if ttl <= 0 then
+		self.object:remove ()
+		return
+	end
+	local self_pos = self.object:get_pos ()
+	local t = self._time_to_refresh - dtime
+	if t <= 0 then
+		t = 1.0
+		self:create_particlespawner (self_pos)
+		self:apply_damage (self_pos)
+	end
+	self._time_to_refresh = t
 	self._radius = self._radius + self._radius_per_second * dtime
+	self:configure ()
 end
 
 function dragon_effect_cloud:init (params)
@@ -2156,7 +2169,10 @@ function dragon_effect_cloud:on_rightclick (clicker)
 	local item = clicker:get_wielded_item ()
 	if item and item:get_name () == "mcl_potions:glass_bottle" then
 		local inv = clicker:get_inventory ()
-		inv:remove_item ("main", "mcl_potions:glass_bottle")
+		if not core.is_creative_enabled (clicker:get_player_name ()) then
+			item:take_item ()
+			clicker:set_wielded_item (item)
+		end
 		-- If room exists add dragon's breath to inventory,
 		-- and otherwise drop it as an item.
 		if inv:room_for_item ("main", { name = "mcl_potions:dragon_breath", }) then
@@ -2169,6 +2185,9 @@ function dragon_effect_cloud:on_rightclick (clicker)
 			})
 		end
 		self._radius = math.max (0, self._radius - 0.5)
+		if self._radius <= 0 then
+			self.object:remove ()
+		end
 	end
 end
 
