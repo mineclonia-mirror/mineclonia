@@ -224,15 +224,15 @@ local piglin = table.merge (piglin_base, table.merge (posing_humanoid, {
 		death = "mobs_mc_zombiepig_death",
 		distance = 16,
 	},
-    drops = {
-    	{
+	drops = {
+		{
 			name = "mcl_heads:piglin",
 			chance = 1,
 			min = 0,
 			max = 0,
 			mob_head = true,
 		},
-    },
+	},
 	movement_speed = 7.0,
 	attack_type = "crossbow",
 	_admire_cooldown = 0,
