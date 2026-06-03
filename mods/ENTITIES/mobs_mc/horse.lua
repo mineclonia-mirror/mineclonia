@@ -201,9 +201,7 @@ local horse = {
 }
 
 function horse:on_spawn ()
-	if not self._props_initialized then
-		self:initial_movement_properties ()
-	end
+	self:initial_movement_properties ()
 	local tex = self:extra_textures ()
 	self:set_textures (tex)
 end
@@ -1298,7 +1296,7 @@ function donkey:initial_movement_properties ()
 	local hp_max = self:generate_hp_max ()
 
 	self.object:set_properties ({
-			hp_max = hp_max,
+		hp_max = hp_max,
 	})
 	self.hp_max = hp_max
 	self.health = hp_max

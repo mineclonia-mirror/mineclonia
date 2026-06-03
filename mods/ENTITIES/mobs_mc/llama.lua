@@ -87,6 +87,7 @@ local llama = table.merge (horse, {
 	view_range = 40,
 	tracking_distance = 40,
 	_default_decor_texture = "blank.png",
+	_llama_strength = 1,
 })
 
 ------------------------------------------------------------------------------
@@ -132,7 +133,7 @@ function llama:initial_movement_properties ()
 	local hp_max = self:generate_hp_max ()
 
 	self.object:set_properties ({
-			hp_max = hp_max,
+		hp_max = hp_max,
 	})
 	self.hp_max = hp_max
 	self.health = hp_max
