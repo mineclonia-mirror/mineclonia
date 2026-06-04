@@ -287,15 +287,28 @@ core.register_craft({
 	}
 })
 
+--
+-- Lava vs Blue ice and soul soil interaction
+--
+local cid_soul_soil = core.get_content_id ("mcl_blackstone:soul_soil")
+local cid_blue_ice = core.get_content_id ("mcl_core:blue_ice")
+
 core.register_abm({
-	label = "Lava cooling (basalt)",
-	nodenames = { "mcl_core:lava_flowing", "mcl_nether:nether_lava_flowing" },
-	neighbors = {"mcl_core:ice"},
+	label = "Basalt generation",
+	nodenames = {"group:lava"},
+	neighbors = {"mcl_core:blue_ice"},
 	interval = 1,
 	chance = 1,
-	action = function(pos)
-		if core.get_node(vector.offset(pos, 0, -1, 0)).name == "mcl_blackstone:soul_soil" then
-			core.set_node(pos, { name = "mcl_blackstone:basalt" })
+	min_y = mcl_vars.mg_end_min,
+	action = function(pos, node)
+		if core.get_node_raw(pos.x, pos.y-1, pos.z) ~= cid_soul_soil then return end
+
+		if core.get_node_raw(pos.x-1, pos.y, pos.z) == cid_blue_ice
+			or core.get_node_raw(pos.x+1, pos.y, pos.z) == cid_blue_ice
+			or core.get_node_raw(pos.x, pos.y+1, pos.z) == cid_blue_ice
+			or core.get_node_raw(pos.x, pos.y, pos.z-1) == cid_blue_ice
+			or core.get_node_raw(pos.x, pos.y, pos.z+1) == cid_blue_ice then
+			core.set_node(pos, {name="mcl_blackstone:basalt"})
 		end
 	end,
 })
