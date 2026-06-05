@@ -43,7 +43,7 @@ mcl_enchanting.register_enchantment("curse_of_vanishing", {
 	name = S("Curse of Vanishing"),
 	secondary = {
 		armor_head = true, armor_torso = true, armor_legs = true, armor_feet = true,
-		tool = true, weapon = true, trident = true, spear = true,\
+		tool = true, weapon = true, trident = true, spear = true,
 	},
 	weight = 1,
 	description = S("Item destroyed on death."),
@@ -604,7 +604,7 @@ mcl_enchanting.enchantments.density = {
 	inv_combat_tab = true,
 	anvil_item_factor = 8,
 	anvil_book_factor = 4,
-})
+}
 
 -- implemented in mcl_armor
 mcl_enchanting.register_enchantment("breach", {
