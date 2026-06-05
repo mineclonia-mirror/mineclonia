@@ -116,6 +116,7 @@ function mcl_tools.register_spear(name, spear_def)
 		groups = { weapon = 1, enchantability = spear_def.enchantability, spear = 1, tool = 1, uses = spear_def.uses},
 		_repair_material = spear_def.repair_material,
 		range = spear_reach,
+		wield_scale = vector.new(2.4, 2.4, 1),
 
 		-- this is only used so that mods that the damage is modified by mods that change tool capabilities (eg. mcl_enchanting)
 		-- will proportionally increase the damage
