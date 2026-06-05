@@ -575,7 +575,7 @@ function mcl_levelgen.index_heightmap (x, z, generation_only)
 	local run_z = run_min_z
 	if z - run_z >= HEIGHTMAP_SIZE_NODES
 		or x - run_x >= HEIGHTMAP_SIZE_NODES
-		or z - run_z <= 0 or x - run_x <= 0 then
+		or z - run_z < 0 or x - run_x < 0 then
 		error ("Heightmap index out of bounds")
 	end
 	local idx = heightmap_index (x, z)
@@ -634,7 +634,7 @@ function mcl_levelgen.index_biome (x, y, z)
 	local run_z = run_min_z
 	if z - run_z >= HEIGHTMAP_SIZE_NODES
 		or x - run_x >= HEIGHTMAP_SIZE_NODES
-		or z - run_z <= 0 or x - run_x <= 0 then
+		or z - run_z < 0 or x - run_x < 0 then
 		error ("Heightmap index out of bounds")
 	end
 	return index_biome_1 (x, y, z)
@@ -645,8 +645,8 @@ function mcl_levelgen.get_block (x, y, z)
 	local run_z = run_min_z
 	if z - run_z >= HEIGHTMAP_SIZE_NODES
 		or x - run_x >= HEIGHTMAP_SIZE_NODES
-		or z - run_z <= 0
-		or x - run_x <= 0
+		or z - run_z < 0
+		or x - run_x < 0
 		or y > run_max_y
 		or y < run_min_y then
 		return nil, nil
@@ -746,7 +746,7 @@ function mcl_levelgen.set_block (x, y, z, cid, param2)
 	local run_z = run_min_z
 	if z - run_z >= HEIGHTMAP_SIZE_NODES
 		or x - run_x >= HEIGHTMAP_SIZE_NODES
-		or z - run_z <= 0 or x - run_x <= 0 then
+		or z - run_z < 0 or x - run_x < 0 then
 		core.log ("warning", "A feature placement function is writing "
 			  .. " outside the placement run")
 		core.log ("warning", debug.traceback ())
