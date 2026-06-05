@@ -214,7 +214,9 @@ function mcl_itemframes.tpl_entity:set_item(itemstack, pos)
 		mcl_maps.load_map(self._map_id, function(texture)
 			unran_callback = false
 			if self.object and self.object:get_pos() then
-				self.object:set_properties(table.merge(map_props, {textures = {texture}}))
+				self.object:set_properties(table.merge(map_props, {
+					textures = {texture},
+				}, def.object_properties or {}))
 			end
 		end)
 		-- dirty recursive hack because dynamic_add_media is unreliable
