@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-05 16:07+0000\n"
+"Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
+"Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
+"mobs_mc/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ENTITIES/mobs_mc/axolotl.lua:10 mods/ENTITIES/mobs_mc/axolotl.lua:331
 msgid "Axolotl"
@@ -18,7 +20,7 @@ msgstr "Ajolote"
 
 #: mods/ENTITIES/mobs_mc/axolotl.lua:325
 msgid "Spawning will only be successful on clay."
-msgstr ""
+msgstr "La reproducción solo tendrá éxito en suelos arcillosos."
 
 #: mods/ENTITIES/mobs_mc/bat.lua:7 mods/ENTITIES/mobs_mc/bat.lua:162
 msgid "Bat"
@@ -29,6 +31,8 @@ msgid ""
 "Spawning will only be successful between light levels of 0 and 3 at most "
 "times of the year, or 0 and 6 between 20 October and 3 November."
 msgstr ""
+"Se genera únicamente cuando el nivel de brillo está entre 0 y 3, y del 20 de "
+"octubre al 3 de noviembre se permiten niveles entre 0 y 6."
 
 #. ~jordan4ibanez
 #. blaze.lua partial copy of mobs_mc/ghast.lua
@@ -53,6 +57,8 @@ msgid ""
 "Each mob spawned will form a school with the remainder of the mobs in the "
 "group."
 msgstr ""
+"Cada criatura que aparece forma un enjambre con las demás criaturas del "
+"grupo."
 
 #: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:7
 #: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:228
@@ -78,15 +84,15 @@ msgstr "Delfín"
 
 #: mods/ENTITIES/mobs_mc/drowned.lua:30 mods/ENTITIES/mobs_mc/drowned.lua:865
 msgid "Drowned"
-msgstr ""
+msgstr "Ahogue"
 
 #: mods/ENTITIES/mobs_mc/drowned.lua:751
 msgid "Baby Drowned"
-msgstr ""
+msgstr "Bebé ahogado"
 
 #: mods/ENTITIES/mobs_mc/drowned.lua:838
 msgid "Drowned will spawn more frequently in this biome."
-msgstr ""
+msgstr "Los ahogados desovarán con más frecuencia en este bioma."
 
 #: mods/ENTITIES/mobs_mc/ender_dragon.lua:13
 #: mods/ENTITIES/mobs_mc/ender_dragon.lua:184
@@ -121,6 +127,8 @@ msgid ""
 "Guardians spawn less frequently in regions of the ocean which are exposed to "
 "the sky at the surface."
 msgstr ""
+"Los guardianes aparecen con menos frecuencia en las regiones del océano que "
+"están expuestas al cielo en la superficie."
 
 #: mods/ENTITIES/mobs_mc/guardian_elder.lua:11
 #: mods/ENTITIES/mobs_mc/guardian_elder.lua:124
@@ -134,11 +142,11 @@ msgstr "Hoglin"
 
 #: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:561
 msgid "Hoglins do not spawn above Nether Wart blocks."
-msgstr ""
+msgstr "Los Hoglins no aparecen por encima de los bloques de Verruga Abisal."
 
 #: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:562
 msgid "20% of Hoglins spawn as their baby variants."
-msgstr ""
+msgstr "El 20% de los Hoglins aparecen como sus variantes bebés."
 
 #: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:572
 msgid "Zoglin"
@@ -211,6 +219,9 @@ msgid ""
 "exist within a volume @1 nodes in size around the center of such a node's "
 "upper surface."
 msgstr ""
+"Esta criatura aparecerá con poca frecuencia en la hierba o las hojas cuando "
+"no existan obstrucciones dentro de un volumen de tamaño @1 nodo alrededor "
+"del centro de la superficie superior de dicho nodo."
 
 #: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:348
 msgid "Parrot"
@@ -218,7 +229,7 @@ msgstr "Loro"
 
 #: mods/ENTITIES/mobs_mc/parrot.lua:365
 msgid "on grass, leaves, or logs"
-msgstr ""
+msgstr "sobre hierba, hojas o troncos"
 
 #. ~= "mcl_mobitems:carrot_on_a_stick" then -- Note: This is for when the ability to make the pig go faster is implemented
 #. Detach if already attached
@@ -265,16 +276,16 @@ msgstr "Oso polar"
 
 #: mods/ENTITIES/mobs_mc/polar_bear.lua:311
 msgid "on grass or snow blocks"
-msgstr ""
+msgstr "sobre bloques de hierba o nieve"
 
 #: mods/ENTITIES/mobs_mc/polar_bear.lua:317
 msgid "The second polar bear in a group will always be spawned as a cub."
-msgstr ""
+msgstr "El segundo oso polar de un grupo siempre nacerá como cachorro."
 
 #: mods/ENTITIES/mobs_mc/pufferfish.lua:38
 #: mods/ENTITIES/mobs_mc/pufferfish.lua:284
 msgid "Pufferfish"
-msgstr ""
+msgstr "Pez globo"
 
 #: mods/ENTITIES/mobs_mc/rabbit.lua:7 mods/ENTITIES/mobs_mc/rabbit.lua:469
 msgid "Rabbit"
@@ -286,7 +297,7 @@ msgstr "Conejo asesino"
 
 #: mods/ENTITIES/mobs_mc/ravager.lua:19 mods/ENTITIES/mobs_mc/ravager.lua:518
 msgid "Ravager"
-msgstr ""
+msgstr "Destructor"
 
 #: mods/ENTITIES/mobs_mc/salmon.lua:14 mods/ENTITIES/mobs_mc/salmon.lua:97
 msgid "Salmon"
@@ -322,6 +333,7 @@ msgstr "Esqueleto glacial"
 #: mods/ENTITIES/mobs_mc/skeleton+stray.lua:489
 msgid "Moreover, the block where the mob is to spawn must be exposed to sky."
 msgstr ""
+"Además, el bloque donde aparecerá la criatura debe estar expuesto al cielo."
 
 #: mods/ENTITIES/mobs_mc/skeleton_wither.lua:15
 #: mods/ENTITIES/mobs_mc/skeleton_wither.lua:184
@@ -344,7 +356,7 @@ msgstr "Golem de nieve"
 
 #: mods/ENTITIES/mobs_mc/spawning.lua:157
 msgid "on grass nodes"
-msgstr ""
+msgstr "en nodos de pasto"
 
 #: mods/ENTITIES/mobs_mc/spawning.lua:161
 msgid ""
@@ -352,6 +364,10 @@ msgid ""
 "when no obstructions exist within a volume @2 nodes in size around the "
 "center of such a node's upper surface, in light levels of 8 or greater."
 msgstr ""
+"Esta criatura aparecerá con poca frecuencia @1 con una superficie que ocupe "
+"un nodo completo cuando no existan obstrucciones dentro de un volumen @2 "
+"nodos de tamaño alrededor del centro de la superficie superior de dicho "
+"nodo, en niveles de luz de 8 o más."
 
 #: mods/ENTITIES/mobs_mc/spawning.lua:214
 msgid ""
@@ -360,26 +376,37 @@ msgid ""
 "size around the center of the base of the fluid node where spawning is being "
 "attempted."
 msgstr ""
+"Esta criatura aparecerá entre el nivel del mar y el nivel Y -12 cuando los "
+"nodos superior e inferior sean agua y no existan obstrucciones dentro de un "
+"volumen de tamaño @1 nodo alrededor del centro de la base del nodo de fluido "
+"donde se está intentando generarla."
 
 #: mods/ENTITIES/mobs_mc/spawning.lua:264
 msgid ""
 "Spawning will only succeed in the absence of artificial lighting and if the "
 "natural light is @1 or dimmer."
 msgstr ""
+"La reproducción solo tendrá éxito en ausencia de iluminación artificial y si "
+"la luz natural es de nivel @1 o inferior."
 
 #: mods/ENTITIES/mobs_mc/spawning.lua:266
 msgid "Spawning will only succeed between artificial light levels of 0 and @1."
 msgstr ""
+"La reproducción solo tendrá éxito entre los niveles de luz artificial de 0 y "
+"@1."
 
 #: mods/ENTITIES/mobs_mc/spawning.lua:268
 msgid "Spawning will only succeed between natural light levels of 0 and @1."
 msgstr ""
+"La puesta de huevos solo tendrá éxito entre niveles de luz natural de 0 y @1."
 
 #: mods/ENTITIES/mobs_mc/spawning.lua:270
 msgid ""
 "Spawning will only succeed between artificial light levels of 0 and @1, and "
 "natural light levels of 0 and @2."
 msgstr ""
+"La reproducción solo tendrá éxito entre niveles de luz artificial de 0 y @1, "
+"y niveles de luz natural de 0 y @2."
 
 #: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:370
 msgid "Spider"
@@ -402,6 +429,8 @@ msgstr "Calamar brillante"
 #: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:600
 msgid "Glow Squid only spawn in absolute darkness at Y levels of 33 or below."
 msgstr ""
+"Los calamares luminosos solo aparecen en la oscuridad absoluta, con niveles "
+"Y de 33 o inferiores."
 
 #: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:519
 msgid "Strider"
@@ -547,7 +576,7 @@ msgstr "Lobo"
 
 #: mods/ENTITIES/mobs_mc/wolf.lua:927
 msgid "on grass, snow blocks, coarse dirt, or podzol"
-msgstr ""
+msgstr "sobre hierba, bloques de nieve, tierra gruesa o podzol"
 
 #: mods/ENTITIES/mobs_mc/zombie.lua:62 mods/ENTITIES/mobs_mc/zombie.lua:863
 msgid "Zombie"
@@ -567,15 +596,16 @@ msgstr "Bebé Zombi Momificado"
 
 #: mods/ENTITIES/mobs_mc/zombie.lua:897
 msgid "5% of Zombies will spawn as their baby variants."
-msgstr ""
+msgstr "El 5% de los zombis aparecerán como sus variantes bebés."
 
 #: mods/ENTITIES/mobs_mc/zombie.lua:936
 msgid "5% of Husks will spawn as their baby variants."
-msgstr ""
+msgstr "El 5% de los Husks aparecerán como sus variantes bebés."
 
 #: mods/ENTITIES/mobs_mc/zombie.lua:937
 msgid "Husks will only spawn on nodes that are exposed to sky."
 msgstr ""
+"Los cascarones solo aparecerán en los nodos que estén expuestos al cielo."
 
 #~ msgid "Baby Hoglin"
 #~ msgstr "Bebe Hoglin"
