@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_banners x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-01 13:07+0000\n"
+"Last-Translator: cuche <cuche@noreply.codeberg.org>\n"
+"Language-Team: Italian <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_banners/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_banners/init.lua:132
 msgid "And one additional layer"
@@ -30,6 +32,9 @@ msgid ""
 "and at walls. Banners can be emblazoned with a variety of patterns by "
 "placing it with a dye in the loom, or with lots of dyes in crafting table."
 msgstr ""
+"Gli stendardi sono alti blocchi decorativi che si possono posizionare su "
+"muri e pavimenti. Gli stendardi si possono personalizzare con una varietà di "
+"motivi utilizzando coloranti ed un telaio."
 
 #: mods/ITEMS/mcl_banners/init.lua:350
 msgid ""
@@ -37,6 +42,9 @@ msgid ""
 "patterns can be layered on a banner. To wash off a banner's top-most layer, "
 "use it on a cauldron with water."
 msgstr ""
+"Gli stendardi si possono personalizzare più volte per combinarne i vari "
+"motivi. Si possono applicare fino a @1 motivi su uno stendardo. Per "
+"rimuovere lo strato più superficiale, usalo su un calderone pieno d'acqua."
 
 #: mods/ITEMS/mcl_banners/init.lua:351
 msgid ""
@@ -44,18 +52,21 @@ msgid ""
 "color in the crafting table — one needs to be emblazoned, the other one must "
 "be clean."
 msgstr ""
+"Uno stendardo personalizzato può essere copiato posizionandone due con lo "
+"stesso colore di sfondo in una griglia d'assemblaggio. Uno dei due deve "
+"essere personalizzato, l'altro deve essere \"pulito\"."
 
 #: mods/ITEMS/mcl_banners/init.lua:465
 msgid "Paintable decoration"
-msgstr ""
+msgstr "Decorazione personalizzabile"
 
 #: mods/ITEMS/mcl_banners/items.lua:27
 msgid "Can be used to craft special banner designs on the loom"
-msgstr ""
+msgstr "Può essere usato per realizzare motivi speciali in un telaio"
 
 #: mods/ITEMS/mcl_banners/items.lua:28
 msgid "Special Banner Pattern"
-msgstr ""
+msgstr "Motivo speciale"
 
 #: mods/ITEMS/mcl_banners/mcl_banners_translations_tmp.lua:1
 msgid "Black Banner"
