@@ -17,6 +17,11 @@ local S = core.get_translator("mcl_tools")
 --
 -- Yet another thing is the spear visual, the engine doesn't provide a way to animate the wield item like that
 
+-- Fake translation strings for phases (shown under the crosshair):
+-- S("activation")
+-- S("engaged")
+-- S("disengaged")
+
 local spear_charge_data = {}
 
 local spear_jab_data = {}
@@ -187,7 +192,7 @@ mcl_player.register_globalstep(function(player, dtime)
 				type = "text",
 				position = {x = 0.5, y = 0.5},
 				offset = {x = 0, y = 24},
-				text = core.colorize("#FFFFFF", "activation")
+				text = core.colorize("#FFFFFF", S("activation"))
 			})
 		}
 
@@ -205,7 +210,7 @@ mcl_player.register_globalstep(function(player, dtime)
 				return
 			end
 
-			player:hud_change(data.hud_id, "text", core.colorize("#FFFFFF", data.phase))
+			player:hud_change(data.hud_id, "text", core.colorize("#FFFFFF", S(data.phase)))
 		end
 
 		local ray = core.raycast(data.spear_head_pos, spear_head_pos, true, false)
