@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_core x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-01 10:14+0000\n"
+"Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.codeberg.org/projects/mineclonia/mcl_core-1/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
@@ -185,7 +187,7 @@ msgstr "苹果"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:156
 msgid "Apples are food items which can be eaten."
-msgstr "可食用，解饥饿。"
+msgstr "苹果是可食用的食物。"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:165
 msgid "Golden Apple"
@@ -758,7 +760,7 @@ msgstr "剥落的深色橡木树皮"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:140
 msgid "Stripped Dark Oak Log"
-msgstr "去皮的深色橡木原木"
+msgstr "去皮深色橡木原木"
 
 #: mods/ITEMS/mcl_core/mcl_core_translations_tmp.lua:141
 msgid "Stripped Jungle Bark"
@@ -1035,7 +1037,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:368
 msgid "Dirt with Snow"
-msgstr "带有雪的泥土"
+msgstr "覆雪泥土"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:372
 msgid "Grass Path"
@@ -1288,7 +1290,7 @@ msgstr "青金石块"
 msgid ""
 "A lapis lazuli block is mostly a decorative block but also useful as a "
 "compact storage of lapis lazuli."
-msgstr "青金石块主要是一种装饰性方块，但也可用作紧凑存放青金石的实用方式。"
+msgstr "青金石块主要用作装饰方块，也可用来集中存放青金石。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:799
 msgid "Block of Emerald"
@@ -1469,7 +1471,7 @@ msgstr "甘蔗只能放置在其他甘蔗的顶部，以及它们能够生长的
 
 #: mods/ITEMS/mcl_core/nodes_climb.lua:15
 msgid "Ladder"
-msgstr "梯子"
+msgstr "192.168.101.51梯子"
 
 #: mods/ITEMS/mcl_core/nodes_climb.lua:16
 msgid ""

@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-01 10:14+0000\n"
+"Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.codeberg.org/projects/mineclonia/mcl_farming/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:10
 msgid "Beetroot Seeds"
@@ -511,7 +513,6 @@ msgid "Grows into a wheat plant. Chickens like wheat seeds."
 msgstr "种植后长出小麦。鸡喜欢吃小麦种子。"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:12
-#, fuzzy
 msgid ""
 "\t\tPlace the wheat seeds on farmland (which can be created with a hoe) to "
 "plant a wheat plant.\n"
@@ -519,9 +520,8 @@ msgid ""
 "an animal to feed it wheat seeds.\n"
 "\t"
 msgstr ""
-"\n"
-"\t\t将小麦种子放置在农田（可用锄头开垦出来）上以种植小麦植株。\n"
-"它们在阳光下生长，在湿润的农田上生长速度更快。右键点击动物可给它喂食小麦种"
+"\t\t将小麦种子播撒在耕地（可用锄头开垦而成）上，即可种植小麦。\n"
+"小麦需要光照才能生长，在湿润的耕地上长势会更快。右键点击动物，便可喂食小麦种"
 "子。\n"
 "\t"
 
@@ -530,17 +530,15 @@ msgid "Premature Wheat Plant"
 msgstr "小麦幼苗"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:40
-#, fuzzy
 msgid ""
 "\t\t\tPremature wheat plants grow on farmland under sunlight in 8 stages.\n"
 "\t\t\tOn hydrated farmland, they grow faster. They can be harvested at any "
 "time but will only yield a profit when mature.\n"
 "\t\t"
 msgstr ""
-"\n"
-"\t\t\t小麦幼苗在阳光下的农田里会经历8个生长阶段。\n"
-"在湿润的农田上，它们生长得更快。可以在任何时候收割，但只有成熟时才会有产出"
-"（才会有收益）。\n"
+"\t\t\t幼苗状态的小麦在光照下的耕地上分八个生长阶段逐步成熟。\n"
+"小麦在湿润耕地上生长速度更快。玩家可随时收割，但只有完全成熟后才能获得收成"
+"。\n"
 "\t\t"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:49
@@ -552,16 +550,13 @@ msgid "Mature Wheat Plant"
 msgstr "成熟小麦植株"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:80
-#, fuzzy
 msgid ""
 "\t\tMature wheat plants are ready to be harvested for wheat and wheat "
 "seeds.\n"
 "\t\tThey won't grow any further.\n"
 "\t"
 msgstr ""
-"\n"
-"\t\t成熟的小麦植株已可以收割，能收获小麦和小麦种子了。\n"
-"它们不会再继续生长了。\n"
+"\t\t成熟的小麦可以收割，能获得小麦和小麦种子，植株此后不再继续生长。\n"
 "\t"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:120
