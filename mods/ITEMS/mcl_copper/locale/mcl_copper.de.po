@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_copper x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-05-28 14:07+0000\n"
+"PO-Revision-Date: 2026-05-31 09:07+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_copper/de/>\n"
@@ -50,11 +50,11 @@ msgstr "Baue Kupfererz ab, um Rohkupfer zu erhalten."
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:1
 msgid "Block of Copper"
-msgstr ""
+msgstr "Kupferblock"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:2
 msgid "Block of Copper is mostly a decorative block."
-msgstr ""
+msgstr "Der Kupferblock ist größtenteils ein dekorativer Block."
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:3
 msgid "Chiseled Copper"
@@ -98,7 +98,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:13
 msgid "Copper Door"
-msgstr ""
+msgstr "Kupfertür"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:14
 msgid "Copper Grate"
@@ -110,7 +110,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:16
 msgid "Copper Lantern"
-msgstr ""
+msgstr "Kupferlaterne"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:17
 msgid ""
@@ -120,7 +120,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:18
 msgid "Copper Trapdoor"
-msgstr ""
+msgstr "Kupferfalltür"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:19
 msgid "Cut Copper"

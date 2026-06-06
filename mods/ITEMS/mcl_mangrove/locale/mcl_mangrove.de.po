@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mangrove x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: 2026-04-30 19:57+0000\n"
+"PO-Revision-Date: 2026-05-31 19:07+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_mangrove/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_mangrove/init.lua:99
 msgid "Mangrove Roots"
@@ -130,7 +130,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:10
 msgid "Mangrove Hanging Sign"
-msgstr ""
+msgstr "Mangrovenhängeschild"
 
 #: mods/ITEMS/mcl_mangrove/mcl_mangrove_translations_tmp.lua:11
 msgid "Mangrove Leaves"

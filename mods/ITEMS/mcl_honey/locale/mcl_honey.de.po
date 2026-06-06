@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_honey x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-04-30 19:57+0000\n"
+"PO-Revision-Date: 2026-06-04 09:07+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_honey/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_honey/init.lua:23
 msgid "Honeycomb"
@@ -35,28 +35,34 @@ msgstr "Honigwabenblock"
 
 #: mods/ITEMS/mcl_honey/init.lua:33
 msgid "Honeycomb Block. Used as a decoration."
-msgstr ""
+msgstr "Honigwabenblock. Benutzt für Dekoration."
 
 #: mods/ITEMS/mcl_honey/init.lua:44
 msgid "Honey Bottle"
-msgstr ""
+msgstr "Honigflasche"
 
 #: mods/ITEMS/mcl_honey/init.lua:45
 msgid ""
 "Honey Bottle is used to craft honey blocks and to restore hunger points."
 msgstr ""
+"Die Honigflasche wird benutzt, um Honigblöcke herzustellen und Hungerpunkte "
+"wiederherzustellen."
 
 #: mods/ITEMS/mcl_honey/init.lua:46
 msgid ""
 "Drinking will restore 6 hunger points. Can also be used to craft honey "
 "blocks."
 msgstr ""
+"Trinken wird 6 Hungerpunkte wiederherstellen. Kann zudem benutzt werden, um "
+"Honigblöcke herzustellen."
 
 #: mods/ITEMS/mcl_honey/init.lua:72
 msgid "Honey Block"
-msgstr ""
+msgstr "Honigblock"
 
 #: mods/ITEMS/mcl_honey/init.lua:73
 msgid ""
 "Honey Block. Used as a decoration and in redstone. Is sticky on some sides."
 msgstr ""
+"Honigblock. Benutzt für Dekoration und Redstone. Er ist klebrig an manchen "
+"Stellen."
