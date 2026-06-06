@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain doc_items x.x.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-05 10:07+0000\n"
+"Last-Translator: bo_chan <bo_chan@noreply.codeberg.org>\n"
+"Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
+"doc_items/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.5\n"
 
 msgid "This is a decorational block."
 msgstr "これは装飾用のブロックです。"
@@ -43,7 +45,7 @@ msgid "No"
 msgstr "いいえ"
 
 msgid ", "
-msgstr "、"
+msgstr ", "
 
 msgid "Unknown item (@1)"
 msgstr "不明なアイテム (@1)"
@@ -139,7 +141,7 @@ msgid "This item can serve as a smelting fuel with a burning time of @1."
 msgstr "このアイテムは、燃焼時間@1の製錬燃料として使用できます。"
 
 msgid " Using it as fuel turns it into: @1."
-msgstr ""
+msgstr " 燃料として使用すると、@1になります。"
 
 msgid "Itemstring: \"@1\""
 msgstr "アイテム文字列：\"@1\""
@@ -181,13 +183,13 @@ msgid "This item belongs to the @1 group."
 msgstr "このアイテムは、@1グループに属しています。"
 
 msgid "This block belongs to these groups: @1."
-msgstr "このブロックは、次のグループに属しています：@1"
+msgstr "このブロックは、次のグループに属しています：@1。"
 
 msgid "This tool belongs to these groups: @1."
-msgstr "この道具は、次のグループに属しています：@1"
+msgstr "この道具は、次のグループに属しています：@1。"
 
 msgid "This item belongs to these groups: @1."
-msgstr "このアイテムは、次のグループに属しています：@1"
+msgstr "このアイテムは、次のグループに属しています：@1。"
 
 msgid "Blocks"
 msgstr "ブロック"
@@ -226,16 +228,16 @@ msgid "• Viscosity: @1"
 msgstr "・粘度：@1"
 
 msgid "This block causes a damage of @1 hit points per second."
-msgstr "このブロックは、毎秒@1HPのダメージを生じます。"
+msgstr "このブロックは毎秒@1ダメージを与えます。"
 
 msgid "This block causes a damage of @1 hit point per second."
-msgstr "このブロックは、毎秒@1HPのダメージを生じます。"
+msgstr "このブロックは毎秒@1ダメージを与えます。"
 
 msgid "This block decreases your breath and causes a drowning damage of @1 hit points every 2 seconds."
-msgstr "このブロックは呼吸を減少させ, 2秒毎に@1HPの窒息ダメージを与えます."
+msgstr "このブロックは呼吸を減少させ、2秒ごとに@1ダメージ（溺れダメージ）を与えます。"
 
 msgid "This block decreases your breath and causes a drowning damage of @1 hit point every 2 seconds."
-msgstr "このブロックは呼吸を減少させ, 2秒毎に@1HPの窒息ダメージを与えます."
+msgstr "このブロックは呼吸を減少させ、2秒ごとに@1ダメージ（溺れダメージ）を与えます。"
 
 msgid "The fall damage on this block is increased by @1%."
 msgstr "このブロックでの落下ダメージが@1%増加する。"
@@ -337,7 +339,7 @@ msgid "This block will drop the following when mined: @1."
 msgstr "このブロックを掘ると、次のものをドロップします：@1"
 
 msgid "This block will drop the following items when mined: @1."
-msgstr "このブロックを掘ると、次のアイテムをドロップします：@1"
+msgstr "このブロックを掘ると、次のアイテムをドロップします：@1。"
 
 msgid "This block will randomly drop one of the following when mined: @1."
 msgstr "このブロックを掘ると、次のいずれかがランダムにドロップされます：@1"
@@ -395,4 +397,3 @@ msgstr "透明なブロックで、基本的には何もない空間です。た
 
 msgid "Whenever you are not wielding any item, you use the hand which acts as a tool with its own capabilities. When you are wielding an item which is not a mining tool or a weapon it will behave as if it would be the hand."
 msgstr "アイテムを手に持っていない時は、なんどきでも素手を道具として使えます。採掘道具でも武器でもないアイテムを手に持っている時は、あたかも素手であるかのように振る舞います。"
-
