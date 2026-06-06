@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -68,11 +68,11 @@ msgstr "Lehmä"
 msgid "Mooshroom"
 msgstr "Sienilehmä"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:273 mods/ENTITIES/mobs_mc/creeper.lua:313
+#: mods/ENTITIES/mobs_mc/creeper.lua:277 mods/ENTITIES/mobs_mc/creeper.lua:317
 msgid "Creeper"
 msgstr "Hiipijä"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:296
+#: mods/ENTITIES/mobs_mc/creeper.lua:300
 msgid "Charged Creeper"
 msgstr "Latautunut hiipijä"
 
@@ -100,7 +100,7 @@ msgid "Ender Dragon"
 msgstr "Äärilisko"
 
 #: mods/ENTITIES/mobs_mc/enderman.lua:235
-#: mods/ENTITIES/mobs_mc/enderman.lua:755
+#: mods/ENTITIES/mobs_mc/enderman.lua:757
 msgid "Enderman"
 msgstr "Ääreläinen"
 
@@ -116,11 +116,11 @@ msgstr "Hornanhenki"
 msgid "Ghast Fireball"
 msgstr "Hornanhengen tulipallo"
 
-#: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:462
+#: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:456
 msgid "Guardian"
 msgstr "Vartija"
 
-#: mods/ENTITIES/mobs_mc/guardian.lua:423
+#: mods/ENTITIES/mobs_mc/guardian.lua:417
 msgid ""
 "Guardians spawn less frequently in regions of the ocean which are exposed to "
 "the sky at the surface."
@@ -150,29 +150,29 @@ msgstr "20 % hornapahkasioista syntyy vauvoina."
 msgid "Zoglin"
 msgstr "Hornapahkasikazombi"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:7
+#: mods/ENTITIES/mobs_mc/horse.lua:8
 msgid "Sneak to dismount"
 msgstr "Hiivi noustaksesi kyydistä"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:67 mods/ENTITIES/mobs_mc/horse.lua:1365
+#: mods/ENTITIES/mobs_mc/horse.lua:68 mods/ENTITIES/mobs_mc/horse.lua:1363
 msgid "Horse"
 msgstr "Hevonen"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1098 mods/ENTITIES/mobs_mc/horse.lua:1366
+#: mods/ENTITIES/mobs_mc/horse.lua:1096 mods/ENTITIES/mobs_mc/horse.lua:1364
 msgid "Skeleton Horse"
 msgstr "Luurankohevonen"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1235 mods/ENTITIES/mobs_mc/horse.lua:1367
+#: mods/ENTITIES/mobs_mc/horse.lua:1233 mods/ENTITIES/mobs_mc/horse.lua:1365
 msgid "Zombie Horse"
 msgstr "Zombihevonen"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1266 mods/ENTITIES/mobs_mc/horse.lua:1328
-#: mods/ENTITIES/mobs_mc/horse.lua:1368
+#: mods/ENTITIES/mobs_mc/horse.lua:1264 mods/ENTITIES/mobs_mc/horse.lua:1326
+#: mods/ENTITIES/mobs_mc/horse.lua:1366
 msgid "Donkey"
 msgstr "Aasi"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1336 mods/ENTITIES/mobs_mc/horse.lua:1359
-#: mods/ENTITIES/mobs_mc/horse.lua:1369
+#: mods/ENTITIES/mobs_mc/horse.lua:1334 mods/ENTITIES/mobs_mc/horse.lua:1357
+#: mods/ENTITIES/mobs_mc/horse.lua:1367
 msgid "Mule"
 msgstr "Muuli"
 
@@ -221,11 +221,11 @@ msgstr ""
 "yläpinnan keskikohdan ympärillä ei ole estettä tilavuudeltaan @1 kuution "
 "kokoisella alueella."
 
-#: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:348
+#: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:352
 msgid "Parrot"
 msgstr "Papukaija"
 
-#: mods/ENTITIES/mobs_mc/parrot.lua:365
+#: mods/ENTITIES/mobs_mc/parrot.lua:369
 msgid "on grass, leaves, or logs"
 msgstr "ruoholle, lehville tai tukeille"
 
@@ -243,27 +243,27 @@ msgstr "ruoholle, lehville tai tukeille"
 #. Pig spawning.
 #. ----------------------------------------------------------------------
 #. spawn eggs
-#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:286
+#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:285
 msgid "Pig"
 msgstr "Sika"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1944
+#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1941
 msgid "Piglin"
 msgstr "Ihmissika"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1565 mods/ENTITIES/mobs_mc/piglin.lua:1945
+#: mods/ENTITIES/mobs_mc/piglin.lua:1569 mods/ENTITIES/mobs_mc/piglin.lua:1942
 msgid "Piglin Brute"
 msgstr "Ihmissikaraakalainen"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1717 mods/ENTITIES/mobs_mc/zombiepig.lua:5
+#: mods/ENTITIES/mobs_mc/piglin.lua:1721 mods/ENTITIES/mobs_mc/zombiepig.lua:5
 msgid "Zombified Piglin"
 msgstr "Zombiksi muuttunut ihmissika"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1946
+#: mods/ENTITIES/mobs_mc/piglin.lua:1943
 msgid "Zombie Piglin"
 msgstr "Ihmissikazombi"
 
-#: mods/ENTITIES/mobs_mc/pillager.lua:9 mods/ENTITIES/mobs_mc/pillager.lua:305
+#: mods/ENTITIES/mobs_mc/pillager.lua:9 mods/ENTITIES/mobs_mc/pillager.lua:303
 msgid "Pillager"
 msgstr "Ryöväri"
 
@@ -402,33 +402,33 @@ msgstr ""
 "Syntyminen onnistuu vain, kun keinovalon määrä on 0 - @1 ja luonnonvalon "
 "määrä on 0 - @2."
 
-#: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:370
+#: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:371
 msgid "Spider"
 msgstr "Hämähäkki"
 
-#: mods/ENTITIES/mobs_mc/spider.lua:331 mods/ENTITIES/mobs_mc/spider.lua:371
+#: mods/ENTITIES/mobs_mc/spider.lua:332 mods/ENTITIES/mobs_mc/spider.lua:372
 msgid "Cave Spider"
 msgstr "Luolahämähäkki"
 
 #: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:11
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:484
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:485
 msgid "Squid"
 msgstr "Kalmari"
 
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:411
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:485
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:412
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:486
 msgid "Glow Squid"
 msgstr "Hehkukalmari"
 
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:600
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:601
 msgid "Glow Squid only spawn in absolute darkness at Y levels of 33 or below."
 msgstr "Hehkukalmari syntyy vain täysin pimeässä Y-tasolla 33 tai alempana."
 
-#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:519
+#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:518
 msgid "Strider"
 msgstr "Astelija"
 
-#: mods/ENTITIES/mobs_mc/strider.lua:558
+#: mods/ENTITIES/mobs_mc/strider.lua:557
 msgid "Baby Strider"
 msgstr "Astelijavauva"
 
@@ -437,7 +437,7 @@ msgstr "Astelijavauva"
 msgid "Tropical Fish"
 msgstr "Trooppinen kala"
 
-#: mods/ENTITIES/mobs_mc/vex.lua:15 mods/ENTITIES/mobs_mc/vex.lua:323
+#: mods/ENTITIES/mobs_mc/vex.lua:15 mods/ENTITIES/mobs_mc/vex.lua:333
 msgid "Vex"
 msgstr "Kiusanhenki"
 
@@ -523,12 +523,12 @@ msgid "Master"
 msgstr "Mestari"
 
 #: mods/ENTITIES/mobs_mc/villager_evoker.lua:20
-#: mods/ENTITIES/mobs_mc/villager_evoker.lua:559
+#: mods/ENTITIES/mobs_mc/villager_evoker.lua:556
 msgid "Evoker"
 msgstr "Manaaja"
 
 #: mods/ENTITIES/mobs_mc/villager_illusioner.lua:19
-#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:645
+#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:647
 msgid "Illusioner"
 msgstr "Harhauttaja"
 
@@ -553,12 +553,12 @@ msgstr "Vaeltava kauppias"
 msgid "Trader Llama"
 msgstr "Kauppiaan laama"
 
-#: mods/ENTITIES/mobs_mc/witch.lua:59 mods/ENTITIES/mobs_mc/witch.lua:397
+#: mods/ENTITIES/mobs_mc/witch.lua:59 mods/ENTITIES/mobs_mc/witch.lua:398
 msgid "Witch"
 msgstr "Noita"
 
 #: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:339
-#: mods/ENTITIES/mobs_mc/wither.lua:978
+#: mods/ENTITIES/mobs_mc/wither.lua:979
 msgid "Wither"
 msgstr "Näivettäjä"
 

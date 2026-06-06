@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 21:41+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: 2026-05-15 17:58+0000\n"
 "Last-Translator: Notxor <notxor@noreply.codeberg.org>\n"
 "Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
@@ -1418,15 +1418,15 @@ msgstr ""
 msgid "Grows on cacti"
 msgstr ""
 
-#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:100
+#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:101
 msgid "Sugar Canes"
 msgstr "Sukerkanoj"
 
-#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:101
+#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:102
 msgid "Grows on sand or dirt next to water"
 msgstr ""
 
-#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:102
+#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:103
 msgid ""
 "Sugar canes are a plant which has some uses in crafting. Sugar canes will "
 "slowly grow up to 3 blocks when they are next to water and are placed on a "
@@ -1438,7 +1438,7 @@ msgstr ""
 "ruĝa sablo, podzolo, aŭ malsubtila tero. Kiam sukerkano rompiĝas, ĉiuj supre "
 "elkreskintaj monderoj ankaŭ rompiĝas."
 
-#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:103
+#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:104
 msgid ""
 "Sugar canes can only be placed top of other sugar canes and on top of blocks "
 "on which they would grow."

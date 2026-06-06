@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -66,11 +66,11 @@ msgstr "Корова"
 msgid "Mooshroom"
 msgstr "Грибная корова"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:273 mods/ENTITIES/mobs_mc/creeper.lua:313
+#: mods/ENTITIES/mobs_mc/creeper.lua:277 mods/ENTITIES/mobs_mc/creeper.lua:317
 msgid "Creeper"
 msgstr "Крипер"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:296
+#: mods/ENTITIES/mobs_mc/creeper.lua:300
 msgid "Charged Creeper"
 msgstr "Заряженный крипер"
 
@@ -98,7 +98,7 @@ msgid "Ender Dragon"
 msgstr "Дракон Края"
 
 #: mods/ENTITIES/mobs_mc/enderman.lua:235
-#: mods/ENTITIES/mobs_mc/enderman.lua:755
+#: mods/ENTITIES/mobs_mc/enderman.lua:757
 msgid "Enderman"
 msgstr "Эндермен"
 
@@ -114,11 +114,11 @@ msgstr "Гаст"
 msgid "Ghast Fireball"
 msgstr "Огненный шар Гаста"
 
-#: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:462
+#: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:456
 msgid "Guardian"
 msgstr "Страж"
 
-#: mods/ENTITIES/mobs_mc/guardian.lua:423
+#: mods/ENTITIES/mobs_mc/guardian.lua:417
 msgid ""
 "Guardians spawn less frequently in regions of the ocean which are exposed to "
 "the sky at the surface."
@@ -148,29 +148,29 @@ msgstr "20% хоглинов спавняться в варианте детён
 msgid "Zoglin"
 msgstr "Зоглин"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:7
+#: mods/ENTITIES/mobs_mc/horse.lua:8
 msgid "Sneak to dismount"
 msgstr "Нажмите [Красться] для высадки"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:67 mods/ENTITIES/mobs_mc/horse.lua:1365
+#: mods/ENTITIES/mobs_mc/horse.lua:68 mods/ENTITIES/mobs_mc/horse.lua:1363
 msgid "Horse"
 msgstr "Лошадь"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1098 mods/ENTITIES/mobs_mc/horse.lua:1366
+#: mods/ENTITIES/mobs_mc/horse.lua:1096 mods/ENTITIES/mobs_mc/horse.lua:1364
 msgid "Skeleton Horse"
 msgstr "Лошадь-скелет"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1235 mods/ENTITIES/mobs_mc/horse.lua:1367
+#: mods/ENTITIES/mobs_mc/horse.lua:1233 mods/ENTITIES/mobs_mc/horse.lua:1365
 msgid "Zombie Horse"
 msgstr "Лошадь-зомби"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1266 mods/ENTITIES/mobs_mc/horse.lua:1328
-#: mods/ENTITIES/mobs_mc/horse.lua:1368
+#: mods/ENTITIES/mobs_mc/horse.lua:1264 mods/ENTITIES/mobs_mc/horse.lua:1326
+#: mods/ENTITIES/mobs_mc/horse.lua:1366
 msgid "Donkey"
 msgstr "Ослик"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1336 mods/ENTITIES/mobs_mc/horse.lua:1359
-#: mods/ENTITIES/mobs_mc/horse.lua:1369
+#: mods/ENTITIES/mobs_mc/horse.lua:1334 mods/ENTITIES/mobs_mc/horse.lua:1357
+#: mods/ENTITIES/mobs_mc/horse.lua:1367
 msgid "Mule"
 msgstr "Мул"
 
@@ -219,11 +219,11 @@ msgstr ""
 "отсутствия препятствий в объёме размером @1 блоков вокруг центра верхней "
 "поверхности такого блока."
 
-#: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:348
+#: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:352
 msgid "Parrot"
 msgstr "Попугай"
 
-#: mods/ENTITIES/mobs_mc/parrot.lua:365
+#: mods/ENTITIES/mobs_mc/parrot.lua:369
 msgid "on grass, leaves, or logs"
 msgstr "на блоках травы, листьев или брёвнах"
 
@@ -241,27 +241,27 @@ msgstr "на блоках травы, листьев или брёвнах"
 #. Pig spawning.
 #. ----------------------------------------------------------------------
 #. spawn eggs
-#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:286
+#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:285
 msgid "Pig"
 msgstr "Свинья"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1944
+#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1941
 msgid "Piglin"
 msgstr "Пиглин"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1565 mods/ENTITIES/mobs_mc/piglin.lua:1945
+#: mods/ENTITIES/mobs_mc/piglin.lua:1569 mods/ENTITIES/mobs_mc/piglin.lua:1942
 msgid "Piglin Brute"
 msgstr "Брутальный пиглин"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1717 mods/ENTITIES/mobs_mc/zombiepig.lua:5
+#: mods/ENTITIES/mobs_mc/piglin.lua:1721 mods/ENTITIES/mobs_mc/zombiepig.lua:5
 msgid "Zombified Piglin"
 msgstr "Зомбированный пиглин"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1946
+#: mods/ENTITIES/mobs_mc/piglin.lua:1943
 msgid "Zombie Piglin"
 msgstr "Зомби-пиглин"
 
-#: mods/ENTITIES/mobs_mc/pillager.lua:9 mods/ENTITIES/mobs_mc/pillager.lua:305
+#: mods/ENTITIES/mobs_mc/pillager.lua:9 mods/ENTITIES/mobs_mc/pillager.lua:303
 msgid "Pillager"
 msgstr "Разбойник"
 
@@ -402,34 +402,34 @@ msgstr ""
 "Спавн произойдёт только при уровне искусственного освещения от 0 до @1 и при "
 "уровне естественного света от 0 до @2."
 
-#: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:370
+#: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:371
 msgid "Spider"
 msgstr "Паук"
 
-#: mods/ENTITIES/mobs_mc/spider.lua:331 mods/ENTITIES/mobs_mc/spider.lua:371
+#: mods/ENTITIES/mobs_mc/spider.lua:332 mods/ENTITIES/mobs_mc/spider.lua:372
 msgid "Cave Spider"
 msgstr "Пещерный паук"
 
 #: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:11
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:484
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:485
 msgid "Squid"
 msgstr "Спрут"
 
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:411
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:485
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:412
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:486
 msgid "Glow Squid"
 msgstr "Светящийся спрут"
 
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:600
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:601
 msgid "Glow Squid only spawn in absolute darkness at Y levels of 33 or below."
 msgstr ""
 "Светящиеся спруты появляются только в полной темноте на уровнях Y 33 и ниже."
 
-#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:519
+#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:518
 msgid "Strider"
 msgstr "Страйдер"
 
-#: mods/ENTITIES/mobs_mc/strider.lua:558
+#: mods/ENTITIES/mobs_mc/strider.lua:557
 msgid "Baby Strider"
 msgstr "Детёныш страйдера"
 
@@ -438,7 +438,7 @@ msgstr "Детёныш страйдера"
 msgid "Tropical Fish"
 msgstr "Тропическая рыба"
 
-#: mods/ENTITIES/mobs_mc/vex.lua:15 mods/ENTITIES/mobs_mc/vex.lua:323
+#: mods/ENTITIES/mobs_mc/vex.lua:15 mods/ENTITIES/mobs_mc/vex.lua:333
 msgid "Vex"
 msgstr "Досаждатель"
 
@@ -524,12 +524,12 @@ msgid "Master"
 msgstr "Мастер"
 
 #: mods/ENTITIES/mobs_mc/villager_evoker.lua:20
-#: mods/ENTITIES/mobs_mc/villager_evoker.lua:559
+#: mods/ENTITIES/mobs_mc/villager_evoker.lua:556
 msgid "Evoker"
 msgstr "Вызыватель"
 
 #: mods/ENTITIES/mobs_mc/villager_illusioner.lua:19
-#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:645
+#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:647
 msgid "Illusioner"
 msgstr "Иллюзор"
 
@@ -554,12 +554,12 @@ msgstr "Бродячий торговец"
 msgid "Trader Llama"
 msgstr "Лама торговца"
 
-#: mods/ENTITIES/mobs_mc/witch.lua:59 mods/ENTITIES/mobs_mc/witch.lua:397
+#: mods/ENTITIES/mobs_mc/witch.lua:59 mods/ENTITIES/mobs_mc/witch.lua:398
 msgid "Witch"
 msgstr "Ведьма"
 
 #: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:339
-#: mods/ENTITIES/mobs_mc/wither.lua:978
+#: mods/ENTITIES/mobs_mc/wither.lua:979
 msgid "Wither"
 msgstr "Иссушитель"
 

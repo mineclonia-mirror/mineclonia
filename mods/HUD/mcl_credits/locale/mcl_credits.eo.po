@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_credits x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: 2026-05-02 18:57+0000\n"
 "Last-Translator: Tirifto <tirifto@noreply.codeberg.org>\n"
 "Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
@@ -46,26 +46,26 @@ msgstr "Kreinto de MineClone"
 msgid "Active Contributors"
 msgstr ""
 
-#: mods/HUD/mcl_credits/people.lua:36
+#: mods/HUD/mcl_credits/people.lua:31
 msgid "Previous Contributors"
 msgstr ""
 
-#: mods/HUD/mcl_credits/people.lua:81
+#: mods/HUD/mcl_credits/people.lua:78
 msgid "Original Mod Authors"
 msgstr ""
 
-#: mods/HUD/mcl_credits/people.lua:113
+#: mods/HUD/mcl_credits/people.lua:110
 msgid "3D Models"
 msgstr ""
 
-#: mods/HUD/mcl_credits/people.lua:119
+#: mods/HUD/mcl_credits/people.lua:116
 msgid "Textures and menu images"
 msgstr ""
 
-#: mods/HUD/mcl_credits/people.lua:143
+#: mods/HUD/mcl_credits/people.lua:140
 msgid "Translations"
 msgstr ""
 
-#: mods/HUD/mcl_credits/people.lua:218
+#: mods/HUD/mcl_credits/people.lua:215
 msgid "Special thanks"
 msgstr ""

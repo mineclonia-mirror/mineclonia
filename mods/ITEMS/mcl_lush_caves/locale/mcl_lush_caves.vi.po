@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 21:41+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -131,27 +131,27 @@ msgstr ""
 msgid "Spore blossoms are a type of flower found in lush caves."
 msgstr ""
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:411
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:412
 msgid "Needs soil and bone meal to grow"
 msgstr ""
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:457
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:458
 msgid "Azalea"
 msgstr ""
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:458
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:459
 msgid ""
 "Azalea is a small plant which often occurs in lush caves. It can be broken "
 "by hand or any tool. By using bone meal, azalea can be turned into an azalea "
 "tree."
 msgstr ""
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:472
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:474
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:473
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:475
 msgid "Flowering Azalea"
 msgstr ""
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:473
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:474
 msgid ""
 "Flowering azalea is a small plant which often occurs in lush caves. It can "
 "be broken by hand or any tool. By using bone meal, flowering azalea can be "

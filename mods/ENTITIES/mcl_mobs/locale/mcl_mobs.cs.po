@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:738
+#: mods/ENTITIES/mcl_mobs/api.lua:744
 msgid ""
 "Remove all, nametagged or tamed mobs within the specified distance or "
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
@@ -22,15 +22,15 @@ msgstr ""
 "nebo všude. Pokud není zadáno, odstraní všechny moby kromě ochočených a "
 "pojmenovaných."
 
-#: mods/ENTITIES/mcl_mobs/api.lua:751 mods/ENTITIES/mcl_mobs/api.lua:758
+#: mods/ENTITIES/mcl_mobs/api.lua:757 mods/ENTITIES/mcl_mobs/api.lua:764
 msgid "Invalid syntax."
 msgstr "Nesprávná syntaxe."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:679
+#: mods/ENTITIES/mcl_mobs/init.lua:681
 msgid "This allows you to place a single mob."
 msgstr "Umožní vytvořit jednu příšeru."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:680
+#: mods/ENTITIES/mcl_mobs/init.lua:682
 msgid ""
 "Just place it where you want the mob to appear. Animals will spawn tamed, "
 "unless you hold down the sneak key while placing. If you place this on a mob "
@@ -71,18 +71,11 @@ msgstr ""
 #. Controlling mobs in jockeys are not saved directly, but in
 #. the staticdata of their vehicles.
 #. Fix the visual size of this mob.
-#. CAUTION: it is far too involved to get this to function
-#. correctly in the presence of nested attachments that differ
-#. in visual size, and consequently, if multiple objects are
-#. to be jocked above each other, they _must_ share a
-#. visual_size of 1.
-#. Caveat emptor: FIX_EYE_HEIGHT when specified will
-#. not prompt eye height to be readjusted when the
-#. mob's parent's eye height is adjusted, or account
-#. for more than one mob in the attachment chain.
-#. Neither will it function if BONE is not the base of
-#. the object, as bone offsets are unavailable to
-#. server-side programs.
+#. Caveat emptor: it is far too involved to get this to
+#. function correctly in the presence of nested attachments
+#. that differ in visual size, and consequently, if multiple
+#. objects are to be jocked above each other, they _must_
+#. share a visual_size of 1.
 #. Remove any jockey that is no longer valid and was not
 #. expressly removed.
 #. If this mob's mount has vanished, remove itself also.

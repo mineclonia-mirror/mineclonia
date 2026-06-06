@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -64,11 +64,11 @@ msgstr "Vache"
 msgid "Mooshroom"
 msgstr "Champimeuh"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:273 mods/ENTITIES/mobs_mc/creeper.lua:313
+#: mods/ENTITIES/mobs_mc/creeper.lua:277 mods/ENTITIES/mobs_mc/creeper.lua:317
 msgid "Creeper"
 msgstr "Creeper"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:296
+#: mods/ENTITIES/mobs_mc/creeper.lua:300
 msgid "Charged Creeper"
 msgstr "Creeper chargé"
 
@@ -96,7 +96,7 @@ msgid "Ender Dragon"
 msgstr "Ender Dragon"
 
 #: mods/ENTITIES/mobs_mc/enderman.lua:235
-#: mods/ENTITIES/mobs_mc/enderman.lua:755
+#: mods/ENTITIES/mobs_mc/enderman.lua:757
 msgid "Enderman"
 msgstr "Enderman"
 
@@ -112,11 +112,11 @@ msgstr "Ghast"
 msgid "Ghast Fireball"
 msgstr "Boule de feu de Ghast"
 
-#: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:462
+#: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:456
 msgid "Guardian"
 msgstr "Gardien"
 
-#: mods/ENTITIES/mobs_mc/guardian.lua:423
+#: mods/ENTITIES/mobs_mc/guardian.lua:417
 msgid ""
 "Guardians spawn less frequently in regions of the ocean which are exposed to "
 "the sky at the surface."
@@ -144,29 +144,29 @@ msgstr ""
 msgid "Zoglin"
 msgstr "Zoglin"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:7
+#: mods/ENTITIES/mobs_mc/horse.lua:8
 msgid "Sneak to dismount"
 msgstr "S'accroupir pour descendre"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:67 mods/ENTITIES/mobs_mc/horse.lua:1365
+#: mods/ENTITIES/mobs_mc/horse.lua:68 mods/ENTITIES/mobs_mc/horse.lua:1363
 msgid "Horse"
 msgstr "Cheval"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1098 mods/ENTITIES/mobs_mc/horse.lua:1366
+#: mods/ENTITIES/mobs_mc/horse.lua:1096 mods/ENTITIES/mobs_mc/horse.lua:1364
 msgid "Skeleton Horse"
 msgstr "Cheval-squelette"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1235 mods/ENTITIES/mobs_mc/horse.lua:1367
+#: mods/ENTITIES/mobs_mc/horse.lua:1233 mods/ENTITIES/mobs_mc/horse.lua:1365
 msgid "Zombie Horse"
 msgstr "Cheval-zombie"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1266 mods/ENTITIES/mobs_mc/horse.lua:1328
-#: mods/ENTITIES/mobs_mc/horse.lua:1368
+#: mods/ENTITIES/mobs_mc/horse.lua:1264 mods/ENTITIES/mobs_mc/horse.lua:1326
+#: mods/ENTITIES/mobs_mc/horse.lua:1366
 msgid "Donkey"
 msgstr "Âne"
 
-#: mods/ENTITIES/mobs_mc/horse.lua:1336 mods/ENTITIES/mobs_mc/horse.lua:1359
-#: mods/ENTITIES/mobs_mc/horse.lua:1369
+#: mods/ENTITIES/mobs_mc/horse.lua:1334 mods/ENTITIES/mobs_mc/horse.lua:1357
+#: mods/ENTITIES/mobs_mc/horse.lua:1367
 msgid "Mule"
 msgstr "Mule"
 
@@ -212,11 +212,11 @@ msgid ""
 "upper surface."
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:348
+#: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:352
 msgid "Parrot"
 msgstr "Perroquet"
 
-#: mods/ENTITIES/mobs_mc/parrot.lua:365
+#: mods/ENTITIES/mobs_mc/parrot.lua:369
 msgid "on grass, leaves, or logs"
 msgstr ""
 
@@ -234,27 +234,27 @@ msgstr ""
 #. Pig spawning.
 #. ----------------------------------------------------------------------
 #. spawn eggs
-#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:286
+#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:285
 msgid "Pig"
 msgstr "Cochon"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1944
+#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1941
 msgid "Piglin"
 msgstr "Piglin"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1565 mods/ENTITIES/mobs_mc/piglin.lua:1945
+#: mods/ENTITIES/mobs_mc/piglin.lua:1569 mods/ENTITIES/mobs_mc/piglin.lua:1942
 msgid "Piglin Brute"
 msgstr "Piglin barbare"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1717 mods/ENTITIES/mobs_mc/zombiepig.lua:5
+#: mods/ENTITIES/mobs_mc/piglin.lua:1721 mods/ENTITIES/mobs_mc/zombiepig.lua:5
 msgid "Zombified Piglin"
 msgstr "Piglin zombifié"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1946
+#: mods/ENTITIES/mobs_mc/piglin.lua:1943
 msgid "Zombie Piglin"
 msgstr "Piglin zombie"
 
-#: mods/ENTITIES/mobs_mc/pillager.lua:9 mods/ENTITIES/mobs_mc/pillager.lua:305
+#: mods/ENTITIES/mobs_mc/pillager.lua:9 mods/ENTITIES/mobs_mc/pillager.lua:303
 msgid "Pillager"
 msgstr "Pillard"
 
@@ -381,33 +381,33 @@ msgid ""
 "natural light levels of 0 and @2."
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:370
+#: mods/ENTITIES/mobs_mc/spider.lua:39 mods/ENTITIES/mobs_mc/spider.lua:371
 msgid "Spider"
 msgstr "Araignée"
 
-#: mods/ENTITIES/mobs_mc/spider.lua:331 mods/ENTITIES/mobs_mc/spider.lua:371
+#: mods/ENTITIES/mobs_mc/spider.lua:332 mods/ENTITIES/mobs_mc/spider.lua:372
 msgid "Cave Spider"
 msgstr "Araignée venimeuse"
 
 #: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:11
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:484
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:485
 msgid "Squid"
 msgstr "Poulpe"
 
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:411
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:485
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:412
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:486
 msgid "Glow Squid"
 msgstr "Poulpe luisant"
 
-#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:600
+#: mods/ENTITIES/mobs_mc/squid+glow_squid.lua:601
 msgid "Glow Squid only spawn in absolute darkness at Y levels of 33 or below."
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:519
+#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:518
 msgid "Strider"
 msgstr "Arpenteur"
 
-#: mods/ENTITIES/mobs_mc/strider.lua:558
+#: mods/ENTITIES/mobs_mc/strider.lua:557
 msgid "Baby Strider"
 msgstr "Bébé arpenteur"
 
@@ -416,7 +416,7 @@ msgstr "Bébé arpenteur"
 msgid "Tropical Fish"
 msgstr "Poisson tropical"
 
-#: mods/ENTITIES/mobs_mc/vex.lua:15 mods/ENTITIES/mobs_mc/vex.lua:323
+#: mods/ENTITIES/mobs_mc/vex.lua:15 mods/ENTITIES/mobs_mc/vex.lua:333
 msgid "Vex"
 msgstr "Vex"
 
@@ -502,12 +502,12 @@ msgid "Master"
 msgstr "Maître"
 
 #: mods/ENTITIES/mobs_mc/villager_evoker.lua:20
-#: mods/ENTITIES/mobs_mc/villager_evoker.lua:559
+#: mods/ENTITIES/mobs_mc/villager_evoker.lua:556
 msgid "Evoker"
 msgstr "Invocateur"
 
 #: mods/ENTITIES/mobs_mc/villager_illusioner.lua:19
-#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:645
+#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:647
 msgid "Illusioner"
 msgstr "Illusionniste"
 
@@ -532,12 +532,12 @@ msgstr "Marchand ambulant"
 msgid "Trader Llama"
 msgstr "Lama de marchand"
 
-#: mods/ENTITIES/mobs_mc/witch.lua:59 mods/ENTITIES/mobs_mc/witch.lua:397
+#: mods/ENTITIES/mobs_mc/witch.lua:59 mods/ENTITIES/mobs_mc/witch.lua:398
 msgid "Witch"
 msgstr "Sorcière"
 
 #: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:339
-#: mods/ENTITIES/mobs_mc/wither.lua:978
+#: mods/ENTITIES/mobs_mc/wither.lua:979
 msgid "Wither"
 msgstr "Wither"
 

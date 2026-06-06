@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_core x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: 2026-05-23 16:37+0000\n"
 "Last-Translator: Oldcoinmania <oldcoinmania@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
@@ -22,7 +22,8 @@ msgstr "棒"
 msgid ""
 "Sticks are a very versatile crafting material; used in countless crafting "
 "recipes."
-msgstr "棒は非常に汎用性の高いクラフト材料で、たくさんのレシピで使われています。"
+msgstr ""
+"棒は非常に汎用性の高いクラフト材料で、たくさんのレシピで使われています。"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:14
 msgid "Paper"
@@ -92,7 +93,8 @@ msgstr "ダイヤモンド"
 msgid ""
 "Diamonds are precious minerals and useful to create the highest tier of "
 "armor and tools."
-msgstr "ダイヤモンドは貴重な鉱石であり、最高級の防具や道具を作るのに役立ちます。"
+msgstr ""
+"ダイヤモンドは貴重な鉱石であり、最高級の防具や道具を作るのに役立ちます。"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:61
 msgid "Diamond Material"
@@ -1483,15 +1485,15 @@ msgstr ""
 msgid "Grows on cacti"
 msgstr ""
 
-#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:100
+#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:101
 msgid "Sugar Canes"
 msgstr "サトウキビ"
 
-#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:101
+#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:102
 msgid "Grows on sand or dirt next to water"
 msgstr "水辺の砂や土の上に生育"
 
-#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:102
+#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:103
 msgid ""
 "Sugar canes are a plant which has some uses in crafting. Sugar canes will "
 "slowly grow up to 3 blocks when they are next to water and are placed on a "
@@ -1502,7 +1504,7 @@ msgstr ""
 "ポドゾル、粗い土の上にサトウキビを置くと、ゆっくりと3ブロックまで成長します。"
 "サトウキビが折れるときは、上につながっているすべてのサトウキビも折れます。"
 
-#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:103
+#: mods/ITEMS/mcl_core/nodes_cactuscane.lua:104
 msgid ""
 "Sugar canes can only be placed top of other sugar canes and on top of blocks "
 "on which they would grow."

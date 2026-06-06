@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_credits x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -44,26 +44,26 @@ msgstr "Criador do MineClone"
 msgid "Active Contributors"
 msgstr "Contribuidores ativos"
 
-#: mods/HUD/mcl_credits/people.lua:36
+#: mods/HUD/mcl_credits/people.lua:31
 msgid "Previous Contributors"
 msgstr "Contribuidores Anteriores"
 
-#: mods/HUD/mcl_credits/people.lua:81
+#: mods/HUD/mcl_credits/people.lua:78
 msgid "Original Mod Authors"
 msgstr "Autores Originais do Mod"
 
-#: mods/HUD/mcl_credits/people.lua:113
+#: mods/HUD/mcl_credits/people.lua:110
 msgid "3D Models"
 msgstr "Modelos 3D"
 
-#: mods/HUD/mcl_credits/people.lua:119
+#: mods/HUD/mcl_credits/people.lua:116
 msgid "Textures and menu images"
 msgstr "Texturas e imagens do menu"
 
-#: mods/HUD/mcl_credits/people.lua:143
+#: mods/HUD/mcl_credits/people.lua:140
 msgid "Translations"
 msgstr "Traduções"
 
-#: mods/HUD/mcl_credits/people.lua:218
+#: mods/HUD/mcl_credits/people.lua:215
 msgid "Special thanks"
 msgstr "Agradecimentos especiais"

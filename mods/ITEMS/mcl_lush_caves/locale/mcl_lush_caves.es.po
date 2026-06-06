@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_lush_caves x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: 2026-05-30 21:07+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
@@ -138,15 +138,15 @@ msgstr ""
 "La flor de esporas es un tipo de flor que se encuentra en las cuevas "
 "frondosas."
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:411
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:412
 msgid "Needs soil and bone meal to grow"
 msgstr "Necesita suelo y polvo de hueso para crecer"
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:457
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:458
 msgid "Azalea"
 msgstr "Azalea"
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:458
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:459
 msgid ""
 "Azalea is a small plant which often occurs in lush caves. It can be broken "
 "by hand or any tool. By using bone meal, azalea can be turned into an azalea "
@@ -156,12 +156,12 @@ msgstr ""
 "puede romper con la mano o con cualquier herramienta. Si se utiliza polvo de "
 "hueso, la azalea se puede convertir en un árbol de azalea."
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:472
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:474
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:473
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:475
 msgid "Flowering Azalea"
 msgstr "Azalea florecida"
 
-#: mods/ITEMS/mcl_lush_caves/nodes.lua:473
+#: mods/ITEMS/mcl_lush_caves/nodes.lua:474
 msgid ""
 "Flowering azalea is a small plant which often occurs in lush caves. It can "
 "be broken by hand or any tool. By using bone meal, flowering azalea can be "

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_boats x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-06 22:12+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,15 +12,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-#: mods/ENTITIES/mcl_boats/init.lua:164
+#: mods/ENTITIES/mcl_boats/init.lua:166
 msgid "Sneak to dismount"
 msgstr "潛行以離船"
 
-#: mods/ENTITIES/mcl_boats/init.lua:630
+#: mods/ENTITIES/mcl_boats/init.lua:632
 msgid "Boats are used to travel on the surface of water."
 msgstr "船用於在水面上行駛。"
 
-#: mods/ENTITIES/mcl_boats/init.lua:631
+#: mods/ENTITIES/mcl_boats/init.lua:633
 msgid ""
 "Rightclick on a water source to place the boat. Rightclick the boat to enter "
 "it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] "
@@ -30,20 +30,20 @@ msgstr ""
 "右按水源以放置船。右按船以乘船。左右方向鍵轉向，上方向鍵向前加速，下方向鍵減"
 "速或退後。潛行以離船。攻擊船可使它變回物品。"
 
-#: mods/ENTITIES/mcl_boats/init.lua:632
+#: mods/ENTITIES/mcl_boats/init.lua:634
 msgid "Boat"
 msgstr "船"
 
-#: mods/ENTITIES/mcl_boats/init.lua:638
+#: mods/ENTITIES/mcl_boats/init.lua:640
 msgid "Water vehicle"
 msgstr "水上載具"
 
-#: mods/ENTITIES/mcl_boats/init.lua:647
+#: mods/ENTITIES/mcl_boats/init.lua:649
 msgid ""
 "Chest Boats are used to travel on the surface of water. And transport goods"
 msgstr "船連箱子用於在水面上行駛。以及運輸貨物"
 
-#: mods/ENTITIES/mcl_boats/init.lua:648
+#: mods/ENTITIES/mcl_boats/init.lua:650
 msgid ""
 "Rightclick on a water source to place the boat. Rightclick the boat to enter "
 "it. Use [Left] and [Right] to steer, [Forwards] to speed up and [Backwards] "
@@ -54,11 +54,11 @@ msgstr ""
 "右按水源以放置船。右按船以乘船。左右方向鍵轉向，上方向鍵向前加速，下方向鍵減"
 "速或退後。潛行以離船。潛行+右按以打開箱子。攻擊船可使它變回物品。"
 
-#: mods/ENTITIES/mcl_boats/init.lua:649
+#: mods/ENTITIES/mcl_boats/init.lua:651
 msgid "Chest Boat"
 msgstr "儲物箱船"
 
-#: mods/ENTITIES/mcl_boats/init.lua:661
+#: mods/ENTITIES/mcl_boats/init.lua:663
 #, fuzzy
 msgid " Boat"
 msgstr "船"
