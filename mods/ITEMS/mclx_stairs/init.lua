@@ -83,12 +83,15 @@ mcl_stairs.register_stair("stone", {
 	groups = {not_in_creative_inventory = extra_nodes and 0 or 1},
 })
 
+core.registered_nodes["mcl_colorblocks:hardened_clay"].groups.stonecuttable = extra_nodes and 1 or 0
+
 mcl_stairs.register_stair_and_slab("hardened_clay", {
 	baseitem="mcl_colorblocks:hardened_clay",
 	description_stair = S("Terracotta Stairs"),
 	description_slab = S("Terracotta Slab"),
 	recipeitem=extra_nodes and "mcl_colorblocks:hardened_clay" or "",
 	groups={not_in_creative_inventory=extra_nodes and 0 or 1},
+	overrides = {_mcl_stonecutter_recipes = {"mcl_colorblocks:hardened_clay"}}
 })
 
 local canonical_color = "yellow"
