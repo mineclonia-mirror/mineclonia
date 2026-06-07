@@ -194,7 +194,7 @@ core.register_abm({
 		local pos1 = vector.offset(pos, 4, 1, 4)
 
 		-- Stop mushroom spread if a 9×3×9 box is too crowded
-		if #core.find_nodes_in_area(pos0, pos1, {"group:mushroom"}) >= 5 then
+		if #core.find_nodes_in_area(pos0, pos1, node.name) >= 5 then
 			return
 		end
 
