@@ -23,6 +23,10 @@ mcl_fishing.loot_junk = {
 	{ itemstring = "mcl_mobitems:string", weight = 10 }, -- TODO: Tripwire Hook
 }
 
+mcl_fishing.loot_junk_jungle = table.merge(mcl_fishing.loot_junk, {
+	{ itemstring = "mcl_bamboo:bamboo", weight = 10 },
+})
+
 mcl_fishing.loot_treasure = {
 	{ itemstring = "mcl_bows:bow", wear_min = 49144, wear_max = 65535, func = function(stack, pr)
 		mcl_enchanting.enchant_randomly(stack, 30, true, false, false, pr)
@@ -76,6 +80,11 @@ local function remove_bobber(player, object)
 	end
 end
 
+local jungle_biome_test
+core.register_on_mods_loaded(function()
+	jungle_biome_test = mcl_biome_dispatch.make_biome_test({ "Jungle" })
+end)
+
 local function fish(itemstack, player, pointed_thing)
 	if pointed_thing and pointed_thing.type == "node" then
 		-- Call on_rightclick if the pointed node defines it
@@ -121,7 +130,7 @@ local function fish(itemstack, player, pointed_thing)
 				items = mcl_loot.get_loot({ items = mcl_fishing.loot_fish, stacks_min = 1, stacks_max = 1 }, pr)
 				awards.unlock(player:get_player_name(), "mcl:fishyBusiness")
 			elseif r <= junk_value then
-				items = mcl_loot.get_loot({ items = mcl_fishing.loot_junk, stacks_min = 1, stacks_max = 1 }, pr)
+				items = mcl_loot.get_loot({ items = jungle_biome_test(mcl_biome_dispatch.get_biome_name(bobbers[player]:get_pos())) and mcl_fishing.loot_junk_jungle or mcl_fishing.loot_junk, stacks_min = 1, stacks_max = 1 }, pr)
 			else
 				items = mcl_loot.get_loot({ items = mcl_fishing.loot_treasure, stacks_min = 1, stacks_max = 1 }, pr)
 			end
