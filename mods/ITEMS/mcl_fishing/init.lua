@@ -82,7 +82,7 @@ end
 
 local jungle_biome_test
 core.register_on_mods_loaded(function()
-	jungle_biome_test = mcl_biome_dispatch.make_biome_test({ "Jungle" })
+	jungle_biome_test = mcl_biome_dispatch.make_biome_test({ "#is_jungle" })
 end)
 
 local function fish(itemstack, player, pointed_thing)
