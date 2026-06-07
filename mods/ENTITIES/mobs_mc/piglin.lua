@@ -547,9 +547,9 @@ end)
 
 local function piglin_loves_item (itemname)
 	return itemname == "mcl_core:stone_with_gold"
-		or itemname == "mcl_core:deepslate_with_gold"
+		or itemname == "mcl_deepslate:deepslate_with_gold"
 		or itemname == "mcl_blackstone:nether_gold"
-		-- or itemname == light_weighted_pressure_plate
+		or itemname == "mcl_pressureplates:pressure_plate_light_off"
 		or itemname == "mcl_core:gold_ingot"
 		or itemname == "mcl_bells:bell"
 		or itemname == "mcl_clock:clock"
@@ -564,6 +564,10 @@ local function piglin_loves_item (itemname)
 			and itemname:find ("gold"))
 		or itemname == "mcl_raw_ores:raw_gold"
 		or itemname == "mcl_raw_ores:raw_gold_block"
+		or itemname == "mcl_core:gold_nugget"
+		or itemname == "mcl_core:goldblock"
+		or itemname == "mcl_blackstone:blackstone_gilded"
+		or itemname == "mcl_mobitems:gold_horse_armor"
 end
 
 local function is_piglin_food (itemname)
