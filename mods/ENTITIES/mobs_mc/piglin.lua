@@ -168,7 +168,7 @@ local trading_items = {
 	{ itemstring = "mcl_core:gravel", weight = 40, amount_min = 8, amount_max = 16 },
 	{ itemstring = "mcl_mobitems:leather", weight = 40, amount_min = 4, amount_max = 10 },
 	{ itemstring = "mcl_nether:soul_sand", weight = 40, amount_min = 4, amount_max = 16 },
-	{ itemstring = "mcl_nether:nether_brick", weight = 40, amount_min = 4, amount_max = 16 },
+	{ itemstring = "mcl_nether:netherbrick", weight = 40, amount_min = 4, amount_max = 16 },
 	{ itemstring = "mcl_mobitems:string", weight = 20, amount_min = 3, amount_max = 9 },
 	{ itemstring = "mcl_nether:quartz", weight = 20, amount_min = 4, amount_max = 10 },
 	{ itemstring = "mcl_potions:water", weight = 40, amount_min = 1, amount_max = 1 },
