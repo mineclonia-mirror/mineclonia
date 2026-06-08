@@ -147,10 +147,6 @@ function mcl_maps.load_map(id, callback)
 	end
 end
 
-function mcl_maps.load_map_item(itemstack)
-	return mcl_maps.load_map(itemstack:get_meta():get_string("mcl_maps:id"))
-end
-
 local function fill_map(itemstack, placer, pointed_thing)
 	local new_stack = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
 	if new_stack then
@@ -194,52 +190,6 @@ local filled_def = {
 
 core.register_craftitem("mcl_maps:filled_map", filled_def)
 
-local filled_wield_def = table.copy(filled_def)
-filled_wield_def.visual_scale = 1
-filled_wield_def.wield_scale = { x = 1, y = 1, z = 1 }
-filled_wield_def.paramtype = "light"
-filled_wield_def.drawtype = "mesh"
-filled_wield_def.node_placement_prediction = ""
-filled_wield_def.range = core.registered_items[""].range
-filled_wield_def.on_place = mcl_util.call_on_rightclick
-filled_wield_def._mcl_wieldview_item = "mcl_maps:filled_map"
-
-local mcl_skins_enabled = core.global_exists("mcl_skins")
-
-if mcl_skins_enabled then
-	-- Generate a node for every skin
-	local list = mcl_skins.get_skin_list()
-	for _, skin in pairs(list) do
-		if skin.slim_arms then
-			local female = table.copy(filled_wield_def)
-			female._mcl_hand_id = skin.id
-			female.mesh = "mcl_meshhand_female.b3d"
-			female.tiles = { skin.texture }
-			core.register_node("mcl_maps:filled_map_" .. skin.id, female)
-		else
-			local male = table.copy(filled_wield_def)
-			male._mcl_hand_id = skin.id
-			male.mesh = "mcl_meshhand.b3d"
-			male.tiles = { skin.texture }
-			core.register_node("mcl_maps:filled_map_" .. skin.id, male)
-		end
-	end
-else
-	filled_wield_def._mcl_hand_id = "hand"
-	filled_wield_def.mesh = "mcl_meshhand.b3d"
-	filled_wield_def.tiles = { "character.png" }
-	core.register_node("mcl_maps:filled_map_hand", filled_wield_def)
-end
-
-local old_add_item = core.add_item
-function core.add_item(pos, stack)
-	stack = ItemStack(stack)
-	if core.get_item_group(stack:get_name(), "filled_map") > 0 then
-		stack:set_name("mcl_maps:filled_map")
-	end
-	return old_add_item(pos, stack)
-end
-
 tt.register_priority_snippet(function(itemstring, _, itemstack)
 	if itemstack and core.get_item_group(itemstring, "filled_map") > 0 then
 		local id = itemstack:get_meta():get_string("mcl_maps:id")
@@ -278,91 +228,6 @@ end
 core.register_on_craft(on_craft)
 core.register_craft_predict(on_craft)
 
-local maps = {}
-local huds = {}
-
-core.register_on_joinplayer(function(player)
-	local map_def = {
-		type = "image",
-		text = "blank.png",
-		position = { x = 0.75, y = 0.8 },
-		alignment = { x = 0, y = -1 },
-		offset = { x = 0, y = 0 },
-		scale = { x = 2, y = 2 },
-	}
-	local marker_def = table.copy(map_def)
-	marker_def.alignment = { x = 0, y = 0 }
-	huds[player] = {
-		map = player:hud_add(map_def),
-		marker = player:hud_add(marker_def),
-	}
-end)
-
-core.register_on_leaveplayer(function(player)
-	maps[player] = nil
-	huds[player] = nil
-end)
-
-mcl_player.register_globalstep(function(player)
-	-- Disable the old map implementation for the present.
-	if true then
-		return false
-	end
-
-	local wield = player:get_wielded_item()
-	local texture = mcl_maps.load_map_item(wield)
-	local hud = huds[player]
-	if texture then
-		local wield_def = wield:get_definition()
-		local hand_def = player:get_inventory():get_stack("hand", 1):get_definition()
-
-		if hand_def and wield_def and hand_def._mcl_hand_id ~= wield_def._mcl_hand_id then
-			wield:set_name("mcl_maps:filled_map_" .. hand_def._mcl_hand_id)
-			player:set_wielded_item(wield)
-		end
-
-		if texture ~= maps[player] then
-			player:hud_change(hud.map, "text", "[combine:140x140:0,0=mcl_maps_map_background.png:6,6=" .. texture)
-			maps[player] = texture
-		end
-
-		local pos = vector.round(player:get_pos())
-		local meta = wield:get_meta()
-		local minp = core.string_to_pos(meta:get_string("mcl_maps:minp"))
-		local maxp = core.string_to_pos(meta:get_string("mcl_maps:maxp"))
-
-		local marker = "mcl_maps_player_arrow.png"
-
-		if pos.x < minp.x then
-			marker = "mcl_maps_player_dot.png"
-			pos.x = minp.x
-		elseif pos.x > maxp.x then
-			marker = "mcl_maps_player_dot.png"
-			pos.x = maxp.x
-		end
-
-		if pos.z < minp.z then
-			marker = "mcl_maps_player_dot.png"
-			pos.z = minp.z
-		elseif pos.z > maxp.z then
-			marker = "mcl_maps_player_dot.png"
-			pos.z = maxp.z
-		end
-
-		if marker == "mcl_maps_player_arrow.png" then
-			local yaw = (math.floor(player:get_look_horizontal() * 180 / math.pi / 90 + 0.5) % 4) * 90
-			marker = marker .. "^[transformR" .. yaw
-		end
-
-		player:hud_change(hud.marker, "text", marker)
-		player:hud_change(hud.marker, "offset", { x = (6 - 140 / 2 + pos.x - minp.x) * 2, y = (6 - 140 + maxp.z - pos.z) * 2 })
-	elseif maps[player] then
-		player:hud_change(hud.map, "text", "blank.png")
-		player:hud_change(hud.marker, "text", "blank.png")
-		maps[player] = nil
-	end
-end)
-
 ------------------------------------------------------------------------
 -- Dynamically updated maps.
 -- TODO:
@@ -381,6 +246,9 @@ local map_colors_by_cid = {}
 
 local rshift = bit.rshift
 local lshift = bit.lshift
+local arshift = bit.arshift
+
+local bnot = bit.bnot
 local band = bit.band
 local bor = bit.bor
 
@@ -476,15 +344,15 @@ local function scan_heightmap (current_height, x, z, y1, y2)
 end
 
 local function produce_heightmap_turn_1 (map, x1, y1, z1, base, i_start, i_end)
-	local scale = map.scale
+	local scale = map.scale - 1
 	local x_start = map.x_start
-	local z_start = map.z_start + z1 * scale
+	local z_start = map.z_start + lshift (z1, scale)
 	local heightmap = map.heightmap
 
 	for i = i_start, i_end do
 		local current = heightmap[base + i]
 		heightmap[base + i]
-			= scan_heightmap (current, x_start + (i - 1) * scale,
+			= scan_heightmap (current, x_start + lshift (i - 1, scale),
 					  z_start, y1, y1 + MAP_UPDATE_AREA_Y - 1)
 	end
 end
@@ -493,16 +361,16 @@ local LIGHT_DIR = 1.0 / mathsqrt (3.0)
 
 local function produce_rgb_turn (map, x1, z1, base_first, base,
 				 base_next, i_start, i_end)
-	local scale = map.scale
+	local scale = map.scale - 1
 	local x_start = map.x_start
-	local z_start = map.z_start + z1 * scale
+	local z_start = map.z_start + lshift (z1, scale)
 	local heightmap = map.heightmap
 	local data = map.data
 
 	for i = i_start, i_end do
 		local current = heightmap[base + i]
 		local cid, _, param2
-			= map_get_node_raw (x_start + (i - 1) * scale,
+			= map_get_node_raw (x_start + lshift (i - 1, scale),
 					    current, z_start)
 		local rgb = get_rgb (cid, param2)
 		if rgb then
@@ -772,7 +640,9 @@ end
 local warned = {}
 
 local function load_map_data (id)
-	if loaded_maps[id] then
+	if warned[id] then -- This map is known not to exist.
+		return nil
+	elseif loaded_maps[id] then
 		loaded_maps[id].ttl = MAP_TTL
 		return loaded_maps[id]
 	end
@@ -821,8 +691,8 @@ core.register_on_shutdown (save_all_maps)
 ------------------------------------------------------------------------
 
 local function create_new_map_1 (id, pos)
-	local gx = band (pos.x - 64, -128) + 64
-	local gz = band (pos.z + 64, -128) - 64
+	local gx = band (pos.x - 63, -128) + 64
+	local gz = band (pos.z + 63, -128) - 64
 
 	local map = {
 		x_start = gx,
@@ -917,6 +787,15 @@ core.register_craftitem ("mcl_maps:map_empty", {
 	on_secondary_use = create_new_map,
 })
 
+-- A map is maintained between players and active map textures known
+-- to them.  Each key indexes only a single texture string, to wit,
+-- that which corresponds to the currently wielded map, as unreleased
+-- texture data on the client is preferable to accumulating unused
+-- texture strings on the server.
+
+local maps = {}
+local huds = {}
+
 local function use_filled_map (itemstack, placer, pointed_thing)
 	local new_stack = mcl_util.call_on_rightclick (itemstack, placer,
 						       pointed_thing)
@@ -935,13 +814,10 @@ local function use_filled_map (itemstack, placer, pointed_thing)
 			return
 		end
 
+		-- Update the current map image if necessary.
 		local png = core.encode_base64 (encode_map_png (map))
-		local texture = {
-			"[combine:140x140:0,0=mcl_maps_map_background.png:6,6=",
-			"(", modifier_escape ("blank.png^[png:" .. png), ")",
-		}
-		placer:hud_change (huds[placer].map, "text",
-				   table.concat (texture))
+		huds[placer].last_texture
+			= modifier_escape ("blank.png^[png:" .. png)
 	end
 end
 
@@ -955,10 +831,89 @@ core.register_craftitem ("mcl_maps:map", {
 	on_secondary_use = use_filled_map,
 })
 
-local tick = 0
+local map_update_cnt = 0
 local N = 4 -- Number of rows to update on each globalstep.
 local STEPS_PER_MAP = MAP_DATA_LENGTH / N
 local STEP_MASK = 0x1f
+
+local function update_one_map_unscaled (nodepos, map, xmin, xmax, x_end, y1)
+	local radius = CIRCLE_RADIUS
+	local xmin = nodepos.x - radius
+	local xmax = nodepos.x + radius - 1
+	local x_end = map.x_start + MAP_DATA_LENGTH - 1
+	if xmin <= x_end and xmax >= map.x_start then
+		local y1 = nodepos.y - floor (MAP_UPDATE_AREA_Y / 2)
+		local x1 = mathmax (xmin, map.x_start)
+			- map.x_start
+		local x2 = mathmin (xmax, x_end)
+			- map.x_start
+		local z_end = map.z_start + MAP_DATA_LENGTH - 1
+		local z1 = mathmax (nodepos.z - radius, map.z_start)
+			- map.z_start
+		local z2 = mathmin (nodepos.z + radius - 1, z_end)
+			- map.z_start
+		local player_x = nodepos.x - map.x_start
+		local player_z = nodepos.z - map.z_start
+		for i = z1, z2 do
+			if band (i, STEP_MASK) == map_update_cnt then
+				local d = mathabs (i - player_z)
+				local r = mathsqrt (CIRCLE_RADIUS_SQR - d * d)
+				local x1 = mathmax (x1, floor (player_x - r + 0.5))
+				local x2 = mathmin (x2, floor (player_x + r + 0.5))
+				if x2 >= x1 then
+					-- Unscaled maps have their entire
+					-- heightmaps initialized at the time
+					-- of creation, and therefore it is
+					-- satisfactory if only the heightmap
+					-- for the current row is updated for
+					-- reasons of performance.
+					produce_heightmap_turn (map, x1, y1, i, x2 - x1 + 1)
+					produce_map_turn (map, x1, y1, i, x2 - x1 + 1)
+				end
+			end
+		end
+	end
+end
+
+local function update_one_map (nodepos, map, radius, xmin, xmax, x_end, y1)
+	local scale = map.scale - 1
+	local radius = CIRCLE_RADIUS
+	local xmin = nodepos.x - radius
+	local xmax = nodepos.x + radius - 1
+	local data_compass = lshift (MAP_DATA_LENGTH - 1, scale)
+	local x_end = map.x_start + data_compass
+	if xmin <= x_end and xmax >= map.x_start then
+		local y1 = nodepos.y - floor (MAP_UPDATE_AREA_Y / 2)
+		local x1 = mathmax (xmin, map.x_start) - map.x_start
+		local x2 = mathmin (xmax, x_end) - map.x_start
+		local z_end = map.z_start + data_compass
+		local z1_node = mathmax (nodepos.z - radius, map.z_start)
+			- map.z_start
+		local z2_node = mathmin (nodepos.z + radius - 1, z_end)
+			- map.z_start
+		local z1 = arshift (z1_node, scale)
+		local z2 = arshift (z2_node, scale)
+		local player_x = nodepos.x - map.x_start
+		local player_z = nodepos.z - map.z_start
+		for i = z1, z2 do
+			if band (i, STEP_MASK) == map_update_cnt then
+				local d = mathabs (lshift (i, scale) - player_z)
+				local r = mathsqrt (CIRCLE_RADIUS_SQR - d * d)
+				local x1 = mathmax (x1, floor (player_x - r + 0.5))
+				local x2 = mathmin (x2, floor (player_x + r + 0.5))
+				if x2 >= x1 then
+					local x1 = rshift (x1, scale)
+					local x2 = rshift (x2, scale)
+					local cnt = x2 - x1 + 1
+					produce_heightmap_turn (map, x1, y1, i - 1, cnt)
+					produce_heightmap_turn (map, x1, y1, i, cnt)
+					produce_heightmap_turn (map, x1, y1, i + 1, cnt)
+					produce_map_turn (map, x1, y1, i, cnt)
+				end
+			end
+		end
+	end
+end
 
 function update_all_maps ()
 	prepare_map_generation ()
@@ -967,41 +922,241 @@ function update_all_maps ()
 		local nodepos = mcl_util.get_nodepos (pos)
 		if wielditem:get_name () == "mcl_maps:map" then
 			local map_id = wielditem:get_meta ():get_string ("mcl_maps:map_id")
+			local locked = wielditem:get_meta ():get_int ("mcl_maps:locked")
 			local map = load_map_data (map_id)
-			if map then
-				local radius = CIRCLE_RADIUS
-				local xmin = nodepos.x - radius
-				local xmax = nodepos.x + radius - 1
-				local x_end = map.x_start + MAP_DATA_LENGTH - 1
-				local y1 = nodepos.y - floor (MAP_UPDATE_AREA_Y / 2)
-
-				if xmin <= x_end and xmax >= map.x_start then
-					local x1 = mathmax (xmin, map.x_start)
-						- map.x_start
-					local x2 = mathmin (xmax, x_end)
-						- map.x_start
-					local z_end = map.z_start + MAP_DATA_LENGTH - 1
-					local z1 = mathmax (nodepos.z - radius, map.z_start)
-						- map.z_start
-					local z2 = mathmin (nodepos.z + radius - 1, z_end)
-						- map.z_start
-					local player_x = nodepos.x - map.x_start
-					local player_z = nodepos.z - map.z_start
-					for i = z1, z2 do
-						if band (i, STEP_MASK) == tick then
-							local d = mathabs (i - player_z)
-							local r = mathsqrt (CIRCLE_RADIUS_SQR - d * d)
-							local x1 = mathmax (x1, floor (player_x - r + 0.5))
-							local x2 = mathmin (x2, floor (player_x + r + 0.5))
-							if x2 >= x1 then
-								produce_heightmap_turn (map, x1, y1, i, x2 - x1 + 1)
-								produce_map_turn (map, x1, y1, i, x2 - x1 + 1)
-							end
-						end
-					end
+			if map and locked ~= 1 then
+				if map.scale == 1 then
+					update_one_map_unscaled (nodepos, map)
+				else
+					update_one_map (nodepos, map)
 				end
 			end
 		end
 	end
-	tick = (tick + 3) % STEPS_PER_MAP
+	map_update_cnt = (map_update_cnt + 3) % STEPS_PER_MAP
+end
+
+------------------------------------------------------------------------
+-- Map item scaling.
+------------------------------------------------------------------------
+
+local MAX_MAP_SCALE = 5
+
+local function scale_map_data_1 (gx, gz, scale)
+	local map = {
+		x_start = gx,
+		z_start = gz,
+		scale = scale,
+		data = alloc_map_data (),
+		heightmap = alloc_heightmap_data (),
+	}
+	local id = allocate_map_id ()
+	map.ttl = MAP_TTL
+	loaded_maps[id] = map
+	return id, map
+end
+
+local function scale_map_data (map)
+	-- What should be the origin of the updated map?
+	local s = map.scale + 1
+	if s > MAX_MAP_SCALE then
+		return nil, nil
+	end
+	local mask = -lshift (1, 6 + s)
+	local start_x = band (map.x_start - 63, mask) + 64
+	local start_z = band (map.z_start + 63, mask) - 64
+
+	local id, dst = scale_map_data_1 (start_x, start_z, s)
+
+	-- Copy existing data from MAP to the scaled map.  In the
+	-- interests of performance, scaling is realized only by
+	-- sampling the map at appropriate intervals.
+
+	local dx = arshift (map.x_start - start_x, s - 1)
+	local dz = arshift (map.z_start - start_z, s - 1)
+	local src_heightmap = map.heightmap
+	local src_data = map.data
+	local dst_heightmap = dst.heightmap
+	local dst_data = dst.data
+
+	for z = 1, MAP_SIDE_LENGTH - 1, 2 do
+		local src_base = z * MAP_SIDE_LENGTH + 1
+		local i = rshift (z, 1) + dz + 1
+		local dst_base = i * MAP_SIDE_LENGTH + 1
+		-- The first item is never preserved in the scaled
+		-- map, as node indices are scaled by the map's scale,
+		-- and `-1' would yield `-2', which is not present in
+		-- the map data.
+		for x = 1, MAP_SIDE_LENGTH - 1, 2 do
+			local i = rshift (x, 1) + dx + 1
+			dst_heightmap[dst_base + i] = src_heightmap[src_base + x]
+			dst_data[dst_base + i] = src_data[src_base + x]
+		end
+	end
+
+	write_map_data (id, map)
+	return id, dst
+end
+
+mcl_maps.scale_map_data = scale_map_data
+
+function mcl_maps.scale_map_item (stack)
+	local map_id = stack:get_meta ():get_string ("mcl_maps:map_id")
+	local map = load_map_data (map_id)
+	if not map then
+		return nil
+	end
+
+	local id, dst = scale_map_data (map)
+	if dst then
+		local stack = ItemStack ("mcl_maps:map")
+		stack:get_meta ():set_string ("mcl_maps:map_id", id)
+		return stack
+	end
+	return nil
+end
+
+core.register_chatcommand ("scale_map", {
+	description = S ("Scale the map which you are wielding."),
+	privs = { server = true, },
+	func = function (name, param)
+		local player = core.get_player_by_name (name)
+		if not player then
+			return
+		end
+
+		local wielditem = player:get_wielded_item ()
+		if wielditem and wielditem:get_name () == "mcl_maps:map" then
+			local scaled = mcl_maps.scale_map_item (wielditem)
+			if scaled then
+				if param == "1" then
+					-- Lock the map if so
+					-- specified.
+					scaled:get_meta ():set_int ("mcl_maps:locked", 1)
+				end
+				local inv = player:get_inventory ()
+				if inv:room_for_item ("main", scaled) then
+					inv:add_item ("main", scaled)
+				else
+					core.add_item (player:get_pos (), scaled)
+				end
+			end
+		end
+		return
+	end
+})
+
+------------------------------------------------------------------------
+-- Server-side map item user interface.
+------------------------------------------------------------------------
+
+core.register_on_joinplayer(function(player)
+	local map_def = {
+		type = "image",
+		text = "blank.png",
+		position = { x = 0.75, y = 0.8 },
+		alignment = { x = 0, y = -1 },
+		offset = { x = 0, y = 0 },
+		scale = { x = 2, y = 2 },
+	}
+	local marker_def = table.copy(map_def)
+	marker_def.alignment = { x = 0, y = 0 }
+	huds[player] = {
+		map = player:hud_add(map_def),
+		marker = player:hud_add(marker_def),
+	}
+end)
+
+core.register_on_leaveplayer(function(player)
+	maps[player] = nil
+	huds[player] = nil
+end)
+
+mcl_player.register_globalstep (function(player)
+	local wield = player:get_wielded_item ()
+	local hud = huds[player]
+	local texture, id
+
+	if hud.wielditem and hud.wielditem:equals (wield) then
+		texture = hud.last_texture
+		id = hud.last_map_id
+	else
+		texture, id = mcl_maps.load_map_item (wield)
+		hud.wielditem = wield
+		hud.last_texture = texture
+		hud.last_map_id = id
+	end
+
+	-- This may fail if the map texture is cached but the map was
+	-- unloaded and subsequently removed.
+	local map = id and load_map_data (id)
+	if texture and map then
+		local wield_def = wield:get_definition()
+
+		if texture ~= maps[player] then
+			local data = "[combine:140x140:0,0=mcl_maps_map_background.png:6,6="
+				.. texture
+			player:hud_change (hud.map, "text", data)
+			maps[player] = texture
+		end
+
+		local pos = vector.round (player:get_pos())
+		local width = lshift (MAP_DATA_LENGTH, map.scale - 1)
+		local minp = vector.new (map.x_start, 0, map.z_start)
+		local maxp = vector.new (map.x_start + width - 1, 0,
+					 map.z_start + width - 1)
+
+		local marker = "mcl_maps_player_arrow.png"
+
+		if pos.x < minp.x then
+			marker = "mcl_maps_player_dot.png"
+			pos.x = minp.x
+		elseif pos.x > maxp.x then
+			marker = "mcl_maps_player_dot.png"
+			pos.x = maxp.x
+		end
+
+		if pos.z < minp.z then
+			marker = "mcl_maps_player_dot.png"
+			pos.z = minp.z
+		elseif pos.z > maxp.z then
+			marker = "mcl_maps_player_dot.png"
+			pos.z = maxp.z
+		end
+
+		if marker == "mcl_maps_player_arrow.png" then
+			local yaw = (math.floor(player:get_look_horizontal() * 180 / math.pi / 90 + 0.5) % 4) * 90
+			marker = marker .. "^[transformR" .. yaw
+		end
+
+		player:hud_change(hud.marker, "text", marker)
+
+		local f = 2 * 128 / (maxp.x - minp.x + 1)
+		player:hud_change(hud.marker, "offset", {
+			x = (pos.x - minp.x) * f - 128,
+			y = (maxp.z - pos.z) * f - 256,
+		})
+	elseif maps[player] then
+		player:hud_change(hud.map, "text", "blank.png")
+		player:hud_change(hud.marker, "text", "blank.png")
+		maps[player] = nil
+	end
+end)
+
+
+function mcl_maps.load_map_item (itemstack)
+	if itemstack:get_name () == "mcl_maps:map" then
+		local id = itemstack:get_meta ():get_string ("mcl_maps:map_id")
+		local map = load_map_data (id)
+
+		if map then
+			local png = core.encode_base64 (encode_map_png (map))
+			local tbl = {
+				"(", modifier_escape ("blank.png^[png:" .. png), ")"
+			}
+			return table.concat (tbl), id
+		end
+	end
+
+	return nil, nil
 end
