@@ -216,6 +216,7 @@ globals = {
 	"mcl_serverplayer",
 	"mcl_liquids",
 	"mcl_levelgen",
+	"mcl_attachments",
 }
 
 read_globals = {
