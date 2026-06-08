@@ -175,18 +175,8 @@ function mobs_mc.trade_from_table (pr, trade, reward_xp)
 		wanted2:set_count (pr:next (trade[1][5], trade[1][6]))
 	end
 
-	local offered_item = eval_item (trade[2][1])
-	local offered
-
-	if type(offered_item) == "userdata" and offered_item:is_empty() == false then
-		offered = offered_item
-	else
-		offered = ItemStack (offered_item)
-	end
-
-	if not offered:is_empty() then
-		offered:set_count (pr:next (trade[2][2], trade[2][3]))
-	end
+	local offered = ItemStack (eval_item (trade[2][1]))
+	offered:set_count (pr:next (trade[2][2], trade[2][3]))
 
 	local name = offered:get_name ()
 	if mcl_enchanting.is_enchanted (name) then
@@ -2154,12 +2144,12 @@ function villager:next_working_day ()
 	self._last_restock_gmt = core.get_gametime ()
 end
 
-function villager:check_head_swivel (attach_pos, dtime, clear)
+function villager:check_head_swivel (self_pos, dtime, clear)
 	if self.object.set_bone_override and self._head_nod_timeout then
 		self.object:set_bone_override ("Head_Control", nil)
 		self._old_head_swivel_vector = nil
 	else
-		mob_class.check_head_swivel (self, attach_pos, dtime, clear)
+		mob_class.check_head_swivel (self, self_pos, dtime, clear)
 	end
 end
 
