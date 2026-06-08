@@ -262,7 +262,7 @@ core.register_node("mcl_grindstone:grindstone", {
 			-- Both slots occupied?
 			if not input1:is_empty() and not input2:is_empty() then
 				-- Get xp earnt from the enchanted items
-				xp_earnt = calculate_xp(input1) + calculate_xp(input1)
+				xp_earnt = calculate_xp(input1) + calculate_xp(input2)
 				input1:take_item(1)
 				input2:take_item(1)
 				inv:set_stack("input", 1, input1)
