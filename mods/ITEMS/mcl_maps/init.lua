@@ -375,14 +375,14 @@ local function produce_rgb_turn (map, x1, z1, base_first, base,
 		local rgb = get_rgb (cid, param2)
 		if rgb then
 			-- Central differencing.
-			local b = heightmap[base_first + i]
 			local t = heightmap[base_next + i]
+			local b = heightmap[base_first + i]
 			local r = heightmap[base + i + 1]
 			local l = heightmap[base + i - 1]
 
 			-- Slope at point.
 			local x = 2 * (r - l)
-			local y = 2 * (b - t)
+			local y = 2 * (t - b)
 			local z = -4
 
 			-- Dot product with light vector.  (|a| cos (t))
@@ -587,7 +587,7 @@ local function write_map_data (id, map)
 	serialize_data (bin, map.data, 0)
 	serialize_data (bin, map.heightmap, #bin)
 	local image = table.concat (bin)
-	local compressed = core.compress (image, "deflate")
+	local compressed = core.compress (image, "deflate", 9)
 
 	local rc = core.safe_file_write (map_name (id), str)
 	if not rc then
@@ -628,7 +628,7 @@ local function load_map_1 (id)
 	local data = file:read ("*all")
 	file:close ()
 
-	local str = core.decompress (data, "deflate")
+	local str = core.decompress (data, "deflate", 9)
 	map.data = {}
 	map.heightmap = {}
 	local offset = (MAP_SIDE_LENGTH * MAP_SIDE_LENGTH * 4)
