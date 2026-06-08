@@ -1,18 +1,19 @@
 local S = core.get_translator("mcl_pale_oak")
 
 local function grow_hanging_moss(pos)
-	local last_pos = pos
-	local pos_iterator = vector.offset(pos, 0, -1, 0)
-	local node = core.get_node(pos_iterator)
+	local tip, length = mcl_util.traverse_tower_group(pos, -1, "pale_hanging_moss")
 
-	while node.name ~= "air" do
-		last_pos = pos_iterator
-		pos_iterator = vector.offset(pos_iterator, 0, -1, 0)
-		node = core.get_node(pos_iterator)
+	if length >= 8 then
+		return
 	end
 
-	core.swap_node(last_pos, {name = "mcl_pale_oak:hanging_moss"})
-	core.swap_node(pos_iterator, {name = "mcl_pale_oak:hanging_moss_tip"})
+	local below_tip = vector.offset(tip, 0, -1, 0)
+	if core.get_node(below_tip).name ~= "air" then
+		return
+	end
+
+	core.swap_node(tip, {name = "mcl_pale_oak:hanging_moss"})
+	core.swap_node(below_tip, {name = "mcl_pale_oak:hanging_moss_tip"})
 end
 
 local hanging_moss_tpl = {
