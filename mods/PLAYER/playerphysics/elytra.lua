@@ -337,7 +337,13 @@ function elytra_entity:check_fall_damage (moveresult)
 end
 
 function elytra_entity:on_step(dtime, moveresult)
-	if not self.driver or not moveresult then
+	if not self.driver or not self.driver:get_pos() then
+		-- Something is wrong (probably the player logged out while flying).
+		-- Just remove the entity, don't try any cleanup.
+		self.object:remove()
+		return
+	end
+	if not moveresult then
 		return
 	end
 
