@@ -1663,14 +1663,14 @@ local villager_trades = {
 			{ { "mcl_core:emerald", 5, 45, "mcl_books:book", 1, 1 }, { "mcl_enchanting:book_enchanted", 1 ,1 }, 12, 30 },
 			{ E(4), {function()
 					local stack = ItemStack("mcl_candles:candle_1")
-					if mcl_candles then
+					if core.global_exists("mcl_candles") then
 						mcl_candles.set_candle_properties(stack, "red")
 					end
 					return stack
 				end, 1, 1 }, 12, 1},
 			{E(4), {function()
 					local stack = ItemStack("mcl_candles:candle_1")
-					if mcl_candles then
+					if core.global_exists("mcl_candles") then
 						mcl_candles.set_candle_properties(stack, "yellow")
 					end
 					return stack
@@ -2085,7 +2085,6 @@ function villager:trading_stopped ()
 end
 
 function villager:level_up ()
-
 	if self._tier >= MAX_TIER then
 		return
 	end
