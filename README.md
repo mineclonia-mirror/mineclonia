@@ -11,7 +11,7 @@ VoxeLibre (formerly MineClone2) with focus on stability, multiplayer
 performance and features. For information about migrating from VoxeLibre
 (formerly MineClone2) to Mineclonia, see [VoxeLibre Refugee's Guide](https://mineclonia.codeberg.page/wiki/intros/voxelibre-guide.html).
 
-Version: 0.122.1
+Version: 0.122.2
 
 ### Differences from VoxeLibre (formerly MineClone2)
 * Overworld depth increased from 64 to 128 nodes
