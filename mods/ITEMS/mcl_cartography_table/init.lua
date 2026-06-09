@@ -51,8 +51,9 @@ local function update_cartography_table(player)
 	local stack = inv:get_stack ("cartography_table_input", 1)
 	local operation_selected = false
 	local texture, id
+	local item_name = stack:get_name ()
 
-	if stack:get_name () == "mcl_maps:map" then
+	if core.get_item_group (item_name, "filled_map") > 0 then
 		texture, id = mcl_maps.load_map_item (stack)
 		if id then
 			local addon = inv:get_stack ("cartography_table_input", 2)
@@ -60,6 +61,7 @@ local function update_cartography_table(player)
 			assert (map)
 
 			if map.scale < MAX_MAP_SCALE
+				and item_name == "mcl_maps:map"
 				and addon:get_name () == "mcl_core:paper" then
 				-- Zoom a map
 				formspec = formspec .. "image[5.125,0.5;4,4;mcl_maps_map_background.png]"
@@ -96,75 +98,20 @@ local function update_cartography_table(player)
 				stack:set_count (2)
 				inv:set_stack ("cartography_table_output", 1, stack)
 				operation_selected = true
+			elseif item_name == "mcl_maps:map"
+				and addon:get_name () == "mcl_panes:pane_natural_flat" then
+				local stack = ItemStack ("mcl_maps:map_locked")
+				stack:get_meta ():set_string ("mcl_maps:map_id", id)
+				tt.reload_itemstack_description (stack)
+				inv:set_stack ("cartography_table_output", 1, stack)
+				operation_selected = true				
+
+				formspec = formspec .. "image[5.375,0.75;3.5,3.5;" .. texture .. "]"
+					.. "image[8.375,3.75;0.5,0.5;mcl_core_barrier.png]"
+				inv:set_stack("cartography_table_output", 1, stack)
 			end
-			-- TODO: locking maps.
 		end
 	end
-
-	-- if mcl_maps.is_map(map) then
-	-- 	local texture = not map:is_empty() and mcl_maps.load_map_item(map)
-	-- 	local addon = inv:get_stack("cartography_table_input", 2)
-	-- 	inv:set_stack("cartography_table_output", 1, nil)
-
-	-- 	local meta
-	-- 	local old_zoom = 999 -- Large number to never allow resizing maps that shouldn't be resizable
-	-- 	if not map:is_empty() and not mcl_maps.is_empty_map(map) then
-	-- 		meta = map:get_meta()
-	-- 		old_zoom = meta:get_int("mcl_maps:zoom")
-	-- 		if old_zoom < 1 then
-	-- 			mcl_maps.convert_legacy_map(map, meta)
-	-- 			old_zoom = 1
-	-- 		end
-	-- 	end
-
-	-- 	if not map:is_empty() and not mcl_maps.is_empty_map(map) and addon:get_name() == "mcl_core:paper"
-	-- 	and old_zoom < mcl_maps.max_zoom and meta :get_int("mcl_maps:locked") ~= 1 then
-	-- 		---- Zoom a map
-	-- 		formspec = formspec .. "image[5.125,0.5;4,4;mcl_maps_map_background.png]"
-	-- 		-- TODO: show half size in appropriate position?
-	-- 		if texture then formspec = formspec .. "image[6.25,1.625;1.75,1.75;" .. texture .. "]" end
-	-- 		-- zoom will be really applied when taking from the stack
-	-- 		-- to not cause unnecessary map generation. But the tooltip should be right already:
-	-- 		map:get_meta():set_int("mcl_maps:zoom", old_zoom + 1)
-	-- 		tt.reload_itemstack_description(map)
-	-- 		inv:set_stack("cartography_table_output", 1, map)
-	-- 	elseif not map:is_empty() and addon:get_name() == "mcl_maps:empty_map" then
-	-- 		---- Copy a map
-	-- 		if texture then
-	-- 			formspec = table.concat({formspec,
-	-- 				"image[6.125,0.5;3,3;mcl_maps_map_background.png]",
-	-- 				"image[6.375,0.75;2.5,2.5;", texture, "]",
-	-- 				"image[5.125,1.5;3,3;mcl_maps_map_background.png]",
-	-- 				"image[5.375,1.75;2.5,2.5;", texture, "]"
-	-- 			})
-	-- 		else
-	-- 			formspec = table.concat({formspec,
-	-- 				"image[6.125,0.5;3,3;mcl_maps_map_background.png]",
-	-- 				"image[5.125,1.5;3,3;mcl_maps_map_background.png]"
-	-- 			})
-	-- 		end
-	-- 		map:set_count(2)
-	-- 		inv:set_stack("cartography_table_output", 1, map)
-	-- 	elseif not map:is_empty() and addon:get_name() == "mcl_panes:pane_natural_flat" then
-	-- 		---- Lock a map
-	-- 		formspec = formspec .. "image[5.125,0.5;4,4;mcl_maps_map_background.png]"
-	-- 		if texture then formspec = formspec .. "image[5.375,0.75;3.5,3.5;" .. texture .. "]" end
-	-- 		if map:get_meta():get_int("mcl_maps:locked") == 1 then
-	-- 			formspec = table.concat({formspec,
-	-- 				"image[3.2,2;1,1;mcl_core_barrier.png]",
-	-- 				"image[8.375,3.75;0.5,0.5;mcl_core_barrier.png]"
-	-- 			})
-	-- 		else
-	-- 			formspec = formspec .. "image[8.375,3.75;0.5,0.5;mcl_core_barrier.png]"
-	-- 			map:get_meta():set_int("mcl_maps:locked", 1)
-	-- 			inv:set_stack("cartography_table_output", 1, map)
-	-- 		end
-	-- 	else
-	-- 		---- Not supported
-	-- 		formspec = formspec .. "image[5.125,0.5;4,4;mcl_maps_map_background.png]"
-	-- 		if texture then formspec = formspec .. "image[5.375,0.75;3.5,3.5;" .. texture .. "]" end
-	-- 	end
-	-- end
 
 	if not operation_selected then
 		formspec = formspec .. "image[5.125,0.5;4,4;mcl_maps_map_background.png]"
@@ -226,6 +173,14 @@ core.register_allow_player_inventory_action(function(player, action, inventory, 
 			end
 			tt.reload_itemstack_description (stack)
 			inventory:set_stack ("cartography_table_output", 1, stack)
+		elseif stack:get_name () == "mcl_maps:map_locked"
+			and addon:get_name () == "mcl_panes:pane_natural_flat" then
+			local stack = mcl_maps.lock_map_item (input)
+			if not stack then
+				return 0
+			end
+			tt.reload_itemstack_description (stack)
+			inventory:set_stack ("cartography_table_output", 1, stack)
 		end
 
 		-- Always allow taking items from the cartography table output
@@ -238,7 +193,9 @@ core.register_allow_player_inventory_action(function(player, action, inventory, 
 		elseif inventory_info.to_list == "cartography_table_input" then
 			local index = inventory_info.to_index
 			local stack = inventory:get_stack(inventory_info.from_list, inventory_info.from_index)
-			if index == 1 and stack:get_name() == "mcl_maps:map" then
+			if index == 1
+				and core.get_item_group (stack:get_name (),
+							 "filled_map") > 0 then
 				return 1
 			end
 			if index == 2 and stack:get_name() == "mcl_core:paper" then
@@ -247,9 +204,9 @@ core.register_allow_player_inventory_action(function(player, action, inventory, 
 			if index == 2 and stack:get_name() == "mcl_maps:map_empty" then
 				return inventory_info.count
 			end
-			-- if index == 2 and stack:get_name() == "mcl_panes:pane_natural_flat" then
-			-- 	return inventory_info.count
-			-- end
+			if index == 2 and stack:get_name() == "mcl_panes:pane_natural_flat" then
+				return inventory_info.count
+			end
 			return 0
 		elseif inventory_info.from_list == "cartography_table_output"
 			and inventory_info.from_index == 1 then

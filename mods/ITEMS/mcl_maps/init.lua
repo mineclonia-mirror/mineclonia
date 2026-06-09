@@ -33,7 +33,7 @@ local texture_colors = load_json_file ("colors")
 --   [X] Cartography tables.
 --   [X] Item frame support.
 --   [X] Crafting of new maps.
---   [ ] Locked maps.
+--   [X] Locked maps.
 --   [ ] Conversion of existing maps.
 --   [ ] Treasure maps & biome reliefs.
 ------------------------------------------------------------------------
@@ -523,6 +523,11 @@ local function create_new_map (itemstack, placer, pointed_thing)
 	end
 
 	if placer and placer:is_valid () then
+		if not core.settings:get_bool ("enable_real_maps", true) then
+			local msg = S ("Maps are not enabled on this server")
+			core.chat_send_player (placer:get_player_name (), msg)
+			return itemstack
+		end
 		local placer_pos = placer:get_pos ()
 		local pos = mcl_util.get_nodepos (placer_pos)
 		local dim = mcl_worlds.pos_to_dimension (pos)
@@ -631,11 +636,24 @@ end
 core.register_craftitem ("mcl_maps:map", {
 	description = S("Map"),
 	_tt_help = S("Shows a map image."),
-	_doc_items_longdesc = S("When created, the map saves the nearby area as an image that can be viewed any time by holding the map."),
-	_doc_items_usagehelp = S("Hold the map in your hand. This will display a map on your screen."),
+	_doc_items_longdesc = S("When wielded, the area within a radius of 64 nodes from your position is recorded for display as you explore the world."),
+	_doc_items_usagehelp = S("Hold the map in your hand. This will display a map on your screen and record the world in the same."),
 	inventory_image = "mcl_maps_map_filled.png^(mcl_maps_map_filled_markings.png^[colorize:#000000)",
 	on_place = use_filled_map,
 	on_secondary_use = use_filled_map,
+	groups = {
+		not_in_creative_inventory = 1,
+		filled_map = 1,
+		tool = 1,
+	},
+})
+
+core.register_craftitem ("mcl_maps:map_locked", {
+	description = S("Locked Map"),
+	_tt_help = S("Shows a static map image."),
+	_doc_items_longdesc = S ("This item contains a map which is no longer updated as you move."),
+	_doc_items_usagehelp = S ("Hold the map in your hand. This will display a map on your screen."),
+	inventory_image = "mcl_maps_map_filled.png^(mcl_maps_map_filled_markings.png^[colorize:#000000)",
 	groups = {
 		not_in_creative_inventory = 1,
 		filled_map = 1,
@@ -734,10 +752,9 @@ function update_all_maps ()
 		local nodepos = mcl_util.get_nodepos (pos)
 		if wielditem:get_name () == "mcl_maps:map" then
 			local map_id = wielditem:get_meta ():get_string ("mcl_maps:map_id")
-			local locked = wielditem:get_meta ():get_int ("mcl_maps:locked")
 			local map = load_map_data (map_id)
 			local dim = mcl_worlds.pos_to_dimension (nodepos)
-			if map and locked ~= 1 and map.dimension == dim then
+			if map and map.dimension == dim then
 				if map.scale == 1 then
 					update_one_map_unscaled (nodepos, map)
 				else
@@ -838,6 +855,51 @@ function mcl_maps.scale_map_item (stack)
 	return nil
 end
 
+local function copy_map_data (src)
+	local map = {
+		x_start = src.x_start,
+		z_start = src.z_start,
+		dimension = src.dimension,
+		scale = src.scale,
+		data = alloc_map_data (),
+		heightmap = alloc_heightmap_data (),
+	}
+
+	local src_data = src.data
+	local src_heightmap = src.heightmap
+	local dst_data = map.data
+	local dst_heightmap = map.heightmap
+
+	for i = 1, MAP_SIDE_LENGTH * MAP_SIDE_LENGTH do
+		dst_data[i] = src_data[i]
+		dst_heightmap[i] = src_heightmap[i]
+	end
+
+	local id = allocate_map_id ()
+	map.ttl = MAP_TTL
+	loaded_maps[id] = map
+	write_map_data (id, map)
+	return id, map
+end
+
+mcl_maps.copy_map_data = copy_map_data
+
+function mcl_maps.lock_map_item (stack)
+	local map_id = stack:get_meta ():get_string ("mcl_maps:map_id")
+	local map = load_map_data (map_id)
+	if not map then
+		return nil
+	end
+
+	local id, dst = copy_map_data (map)
+	if dst then
+		local stack = ItemStack ("mcl_maps:map_locked")
+		stack:get_meta ():set_string ("mcl_maps:map_id", id)
+		return stack
+	end
+	return nil
+end
+
 core.register_chatcommand ("scale_map", {
 	description = S ("Scale the map which you are wielding."),
 	privs = { server = true, },
@@ -854,7 +916,7 @@ core.register_chatcommand ("scale_map", {
 				if param == "1" then
 					-- Lock the map if so
 					-- specified.
-					scaled:get_meta ():set_int ("mcl_maps:locked", 1)
+					scaled:set_name ("mcl_maps:map_locked")
 				end
 				local inv = player:get_inventory ()
 				if inv:room_for_item ("main", scaled) then
@@ -908,7 +970,7 @@ mcl_player.register_globalstep (function(player)
 		hud.last_texture = texture
 		hud.last_map_id = id
 
-		if texture then
+		if texture and wield:get_name () ~= "mcl_maps:map_locked" then
 			mcl_title.set (player, "actionbar", {
 				text = S ("Right-click to redraw map"),
 				color = "white",
@@ -973,7 +1035,8 @@ end)
 
 
 function mcl_maps.load_map_item (itemstack)
-	if itemstack:get_name () == "mcl_maps:map" then
+	if itemstack:get_name () == "mcl_maps:map"
+		or itemstack:get_name () == "mcl_maps:map_locked" then
 		local id = itemstack:get_meta ():get_string ("mcl_maps:map_id")
 		local map = load_map_data (id)
 
@@ -1021,7 +1084,7 @@ core.register_craft ({
 	}
 })
 
--- Register recipes for cloning ordinary maps.
+-- Register recipes for cloning ordinary and locked maps.
 
 for i = 2, 9 do
 	local recipe = { "mcl_maps:map", }
@@ -1031,6 +1094,12 @@ for i = 2, 9 do
 	core.register_craft ({
 		type = "shapeless",
 		output = "mcl_maps:map " .. i,
+		recipe = recipe,
+	})
+	recipe[1] = "mcl_maps:map_locked"
+	core.register_craft ({
+		type = "shapeless",
+		output = "mcl_maps:map_locked " .. i,
 		recipe = recipe,
 	})
 end
@@ -1073,7 +1142,8 @@ end
 mcl_maps.describe_map = describe_map
 
 local function on_craft (itemstack, _, old_craft_grid, _)
-	if itemstack:get_name() == "mcl_maps:map" then
+	local stack_name = itemstack:get_name ()
+	if stack_name == "mcl_maps:map" then
 		-- Does the old craft grid contain the recipe for
 		-- scaling maps?
 		if is_scaling_recipe (old_craft_grid) then
@@ -1084,11 +1154,14 @@ local function on_craft (itemstack, _, old_craft_grid, _)
 			end
 			return stack or itemstack
 		end
+	end
 
+	if core.get_item_group (stack_name, "filled_map") > 0 then
 		for _, stack in ipairs (old_craft_grid) do
-			if stack:get_name () == "mcl_maps:map" then
+			if stack:get_name () == stack_name then
 				local meta = itemstack:get_meta()
 				meta:from_table (stack:get_meta ():to_table ())
+				tt.reload_itemstack_description (itemstack)
 				return itemstack
 			end
 		end
@@ -1096,7 +1169,8 @@ local function on_craft (itemstack, _, old_craft_grid, _)
 end
 
 local function on_craft_predict (itemstack, _, old_craft_grid, _)
-	if itemstack:get_name() == "mcl_maps:map" then
+	local stack_name = itemstack:get_name ()
+	if stack_name == "mcl_maps:map" then
 		-- Does the old craft grid contain the recipe for
 		-- scaling maps?
 		if is_scaling_recipe (old_craft_grid) then
@@ -1127,11 +1201,14 @@ local function on_craft_predict (itemstack, _, old_craft_grid, _)
 			}))
 			return itemstack
 		end
+	end
 
+	if core.get_item_group (stack_name, "filled_map") > 0 then
 		for _, stack in ipairs (old_craft_grid) do
-			if stack:get_name () == "mcl_maps:map" then
+			if stack:get_name () == stack_name then
 				local meta = itemstack:get_meta()
 				meta:from_table (stack:get_meta ():to_table ())
+				tt.reload_itemstack_description (itemstack)
 				return itemstack
 			end
 		end
@@ -1158,5 +1235,20 @@ tt.register_priority_snippet(function(itemstring, _, itemstack)
 end)
 
 ------------------------------------------------------------------------
--- Conversion of obsolete maps.  TODO
+-- Conversion of obsolete maps.  TODO: it is not possible to convert
+-- an old map into the new format unless a TGA encoder is available.
 ------------------------------------------------------------------------
+
+core.register_alias ("mcl_maps:empty_map", "mcl_maps:map_empty")
+
+core.register_craftitem ("mcl_maps:filled_map", {
+	description = S ("Map (old)"),
+	_tt_help = S ("This map is no longer supported."),
+	inventory_image = "mcl_maps_map_filled.png^mcl_maps_map_update_required.png",
+	on_place = convert_filled_map,
+	on_secondary_use = convert_filled_map,
+	groups = {
+		not_in_creative_inventory = 1,
+		tool = 1,
+	},
+})
