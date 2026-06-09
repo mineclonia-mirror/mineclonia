@@ -511,11 +511,12 @@ tt.register_snippet(function(_, _, stack)
 		return upgrade .. template_desc
 	end
 
-	local trim_mat_color = core.registered_items[trim_material]._mcl_armor_trim_color
-	local trim_mat_desc = core.registered_items[trim_material]._mcl_armor_trim_desc
+	local trim_mat_def = core.registered_items[trim_material]
+	local trim_mat_color = trim_mat_def._mcl_armor_trim_tt_color or trim_mat_def._mcl_armor_trim_color
+	local trim_mat_desc = trim_mat_def._mcl_armor_trim_desc
 
 	return upgrade .. core.colorize(trim_mat_color, template_desc) .. "\n " ..
-	core.colorize(trim_mat_color, trim_mat_desc)
+		core.colorize(trim_mat_color, trim_mat_desc)
 end)
 
 function mcl_armor.is_trimmed(itemstack)

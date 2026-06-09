@@ -40,6 +40,8 @@ Items can have these fields:
   example.
 * `_mcl_armor_trim_color`: _colorstring_ used to determine the color that will be
   applied during armor trimming when used in the smithing table.
+* `_mcl_armor_trim_tt_color`: _colorstring_ used to determine the color that will be
+  applied to tooltips during armor trimming (defaults to `_mcl_armor_trim_color`).
 * `_mcl_armor_trim_desc`: _string_ used to describe the material used when trimming
   armor pieces. This string must be translated in the field definition so that it
   can be displayed translated in the final item. Examples of this definition can be

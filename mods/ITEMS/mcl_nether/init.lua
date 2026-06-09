@@ -365,6 +365,7 @@ core.register_craftitem("mcl_nether:netherite_ingot", {
 	inventory_image = "mcl_nether_netherite_ingot.png",
 	groups = { craftitem = 1, fire_immune=1, beacon_fuel = 1 },
 	_mcl_armor_trim_color = "#302a26",
+	_mcl_armor_trim_tt_color = "#79716d",
 	_mcl_armor_trim_desc = S("Netherite Material"),
 	_mcl_crafting_output = {square3 = {output = "mcl_nether:netheriteblock"}}
 })
