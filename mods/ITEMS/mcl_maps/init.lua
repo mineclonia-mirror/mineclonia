@@ -233,8 +233,8 @@ core.register_craft_predict(on_craft)
 -- TODO:
 --
 --   [X] Map items and grids.
---   [ ] Map HUDs.
---   [ ] Dimension information.
+--   [X] Map HUDs.
+--   [X] Dimension information.
 --   [X] Dynamic map updates.
 --   [X] Circular map filling.
 --   [ ] Cartography tables.
@@ -580,6 +580,7 @@ local function write_map_data (id, map)
 	local tbl = {
 		x_start = map.x_start,
 		z_start = map.z_start,
+		dimension = map.dimension or "overworld",
 		scale = map.scale,
 	}
 	local str = core.serialize (tbl)
@@ -618,11 +619,15 @@ local function load_map_1 (id)
 
 	local map = core.deserialize (data)
 	assert (type (map) == "table")
+	if not map.dimension then
+		map.dimension = "overworld"
+	end
 	assert (type (map.scale) == "number" and floor (map.scale) == map.scale)
 	assert (type (map.x_start) == "number"
 		and floor (map.x_start) == map.x_start)
 	assert (type (map.z_start) == "number"
 		and floor (map.z_start) == map.z_start)
+	assert (type (map.dimension) == "string")
 
 	local file = assert (io.open (image_name (id), "rb"))
 	local data = file:read ("*all")
@@ -690,13 +695,14 @@ core.register_on_shutdown (save_all_maps)
 -- Map item implementation.
 ------------------------------------------------------------------------
 
-local function create_new_map_1 (id, pos)
+local function create_new_map_1 (id, pos, dim)
 	local gx = band (pos.x - 63, -128) + 64
 	local gz = band (pos.z + 63, -128) - 64
 
 	local map = {
 		x_start = gx,
 		z_start = gz,
+		dimension = dim,
 		scale = 1,
 		data = alloc_map_data (),
 		heightmap = alloc_heightmap_data (),
@@ -721,8 +727,14 @@ local function create_new_map (itemstack, placer, pointed_thing)
 	if placer and placer:is_valid () then
 		local placer_pos = placer:get_pos ()
 		local pos = mcl_util.get_nodepos (placer_pos)
+		local dim = mcl_worlds.pos_to_dimension (pos)
+		if dim == "void" then
+			local msg = S ("Maps cannot be created at this position")
+			core.chat_send_player (placer:get_player_name (), msg)
+			return itemstack
+		end
 		local id = allocate_map_id ()
-		local id, map = create_new_map_1 (id, pos)
+		local id, map = create_new_map_1 (id, pos, dim)
 		local stack = ItemStack ("mcl_maps:map")
 
 		-- Prepare the map's heightmap and fill the map.
@@ -924,7 +936,8 @@ function update_all_maps ()
 			local map_id = wielditem:get_meta ():get_string ("mcl_maps:map_id")
 			local locked = wielditem:get_meta ():get_int ("mcl_maps:locked")
 			local map = load_map_data (map_id)
-			if map and locked ~= 1 then
+			local dim = mcl_worlds.pos_to_dimension (nodepos)
+			if map and locked ~= 1 and map.dimension == dim then
 				if map.scale == 1 then
 					update_one_map_unscaled (nodepos, map)
 				else
@@ -941,12 +954,14 @@ end
 ------------------------------------------------------------------------
 
 local MAX_MAP_SCALE = 5
+mcl_maps.MAX_MAP_SCALE = MAX_MAP_SCALE
 
-local function scale_map_data_1 (gx, gz, scale)
+local function scale_map_data_1 (gx, gz, scale, dim)
 	local map = {
 		x_start = gx,
 		z_start = gz,
 		scale = scale,
+		dimension = dim,
 		data = alloc_map_data (),
 		heightmap = alloc_heightmap_data (),
 	}
@@ -963,10 +978,11 @@ local function scale_map_data (map)
 		return nil, nil
 	end
 	local mask = -lshift (1, 6 + s)
-	local start_x = band (map.x_start - 63, mask) + 64
-	local start_z = band (map.z_start + 63, mask) - 64
+	local start_x = band (map.x_start - 64, mask) + 64
+	local start_z = band (map.z_start + 64, mask) - 64
 
-	local id, dst = scale_map_data_1 (start_x, start_z, s)
+	local id, dst = scale_map_data_1 (start_x, start_z,
+					  s, map.dimension)
 
 	-- Copy existing data from MAP to the scaled map.  In the
 	-- interests of performance, scaling is realized only by
@@ -1085,6 +1101,14 @@ mcl_player.register_globalstep (function(player)
 		hud.wielditem = wield
 		hud.last_texture = texture
 		hud.last_map_id = id
+
+		if texture then
+			mcl_title.set (player, "actionbar", {
+				text = S ("Right-click to redraw map"),
+				color = "white",
+				stay = 60,
+			})
+		end
 	end
 
 	-- This may fail if the map texture is cached but the map was
