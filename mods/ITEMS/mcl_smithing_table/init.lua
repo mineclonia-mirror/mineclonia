@@ -101,21 +101,30 @@ end
 
 local function reset_upgraded_item(pos)
 	local inv = core.get_meta(pos):get_inventory()
-	local upgraded_item
+	local input_item = inv:get_stack("upgrade_item", 1)
+	local input_template = inv:get_stack("template", 1)
+	local input_material = inv:get_stack("mineral", 1)
 
-	local original_itemname = inv:get_stack("upgrade_item", 1):get_name()
-	local original_def = inv:get_stack("upgrade_item", 1):get_definition() or {}
-	local template_present = core.get_item_group(inv:get_stack("template",1):get_name(), "smithing_template") > 0
-	local upgrade_template_present = inv:get_stack("template",1):get_name() == "mcl_nether:netherite_upgrade_template"
+	local original_def = input_item:get_definition() or {}
+	local original_meta = input_item:get_meta()
+
+	local template_present = core.get_item_group(input_template:get_name(), "smithing_template") > 0
+	local upgrade_template_present = input_template:get_name() == "mcl_nether:netherite_upgrade_template"
 	local is_armor = original_def._mcl_armor_element ~= nil
-	local is_trimmed = original_itemname:find("_trimmed") ~= nil
 
-	if inv:get_stack("mineral", 1):get_name() == "mcl_nether:netherite_ingot" and upgrade_template_present then
-		upgraded_item = mcl_smithing_table.upgrade_item(inv:get_stack("upgrade_item", 1))
-	elseif template_present and is_armor and not is_trimmed and mcl_smithing_table.is_smithing_mineral(inv:get_stack("mineral", 1)) then
-		upgraded_item = mcl_smithing_table.upgrade_trimmed(inv:get_stack("upgrade_item", 1),inv:get_stack("mineral", 1),inv:get_stack("template", 1))
+	local trimmed_with_that = false -- is it *already* trimmed with that?
+	if mcl_armor.is_trimmed(input_item) then
+		local original_template = "mcl_armor:" .. original_meta:get_string("mcl_armor:trim_overlay"):match("%((.-)%_")
+		local original_material = original_meta:get_string("mcl_armor:trim_material")
+		trimmed_with_that = input_template:get_name() == original_template and input_material:get_name() == original_material
 	end
 
+	local upgraded_item
+	if input_material:get_name() == "mcl_nether:netherite_ingot" and upgrade_template_present then
+		upgraded_item = mcl_smithing_table.upgrade_item(input_item)
+	elseif template_present and is_armor and not trimmed_with_that and mcl_smithing_table.is_smithing_mineral(input_material) then
+		upgraded_item = mcl_smithing_table.upgrade_trimmed(input_item, input_material, input_template)
+	end
 	inv:set_stack("upgraded_item", 1, upgraded_item)
 end
 
