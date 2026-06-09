@@ -1245,10 +1245,18 @@ core.register_craftitem ("mcl_maps:filled_map", {
 	description = S ("Map (old)"),
 	_tt_help = S ("This map is no longer supported."),
 	inventory_image = "mcl_maps_map_filled.png^mcl_maps_map_update_required.png",
-	on_place = convert_filled_map,
-	on_secondary_use = convert_filled_map,
 	groups = {
 		not_in_creative_inventory = 1,
 		tool = 1,
 	},
 })
+
+for _, skin_item in ipairs ({
+	"mcl_maps:filled_map_character_male_surv",
+	"mcl_maps:filled_map_character_female_surv",
+	"mcl_maps:filled_map_character_male_crea",
+	"mcl_maps:filled_map_character_female_crea",
+	"mcl_maps:filled_map_hand",
+}) do
+	core.register_alias (skin_item, "mcl_maps:filled_map")
+end
