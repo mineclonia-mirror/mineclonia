@@ -574,6 +574,7 @@ local function create_new_map (itemstack, placer, pointed_thing)
 		-- Save the map and initialize the ItemStack.
 		write_map_data (id, map)
 		stack:get_meta ():set_string ("mcl_maps:map_id", id)
+		tt.reload_itemstack_description (stack)
 
 		itemstack:take_item ()
 		if itemstack:is_empty () then
