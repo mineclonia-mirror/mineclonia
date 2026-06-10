@@ -352,6 +352,8 @@ local function struct_unhash (hash)
 	return x, z
 end
 
+mcl_levelgen.struct_unhash = struct_unhash
+
 local tostringull = mcl_levelgen.tostringull
 
 if core and core.get_mod_storage then
@@ -558,6 +560,7 @@ function mcl_levelgen.register_structure_set (keyword, tbl)
 		end
 	end
 	local set = {
+		id = keyword,
 		structures = structures,
 		total_weight = total_weight,
 		placement = tbl.placement,
@@ -2530,16 +2533,7 @@ local function compare_distance_to_src (a, b)
 	return dist_a < dist_b
 end
 
-function mcl_levelgen.locate_structure_placement (terrain, x, y, z, id_or_ids, grid_limit_xz)
-	local level = terrain.structures
-
-	-- First, attempt to locate structure sets containing any of
-	-- ID_OR_IDS in the level.
-
-	if type (id_or_ids) == "string" then
-		id_or_ids = { id_or_ids, }
-	end
-
+local function collect_structure_sets (level, id_or_ids)
 	local target_sets = {}
 	local target_stronghold_sets = {}
 	for _, set in ipairs (level.structure_sets) do
@@ -2555,8 +2549,23 @@ function mcl_levelgen.locate_structure_placement (terrain, x, y, z, id_or_ids, g
 			end
 		end
 	end
+	return target_sets, target_stronghold_sets
+end
+
+function mcl_levelgen.locate_structure_placement (terrain, x, y, z, id_or_ids, grid_limit_xz)
+	local level = terrain.structures
+
+	-- First, attempt to locate structure sets containing any of
+	-- ID_OR_IDS in the level.
+
+	if type (id_or_ids) == "string" then
+		id_or_ids = { id_or_ids, }
+	end
+
+	local target_sets, target_stronghold_sets
+		= collect_structure_sets (level, id_or_ids)
 	if #target_sets == 0 and #target_stronghold_sets == 0 then
-		return nil
+		return nil, nil
 	end
 
 	local nearest, d_nearest = nil, huge
@@ -2708,4 +2717,116 @@ function mcl_levelgen.fix_structure_pieces (terrain, x, y, z, sets, grid_limit_x
 	end
 
 	return pieces
+end
+
+function mcl_levelgen.locate_structure_incrementally (terrain, x, y, z, id_or_ids)
+	if type (id_or_ids) == "string" then
+		id_or_ids = { id_or_ids, }
+	end
+
+	local level = terrain.structures
+	local target_sets, _
+		= collect_structure_sets (level, id_or_ids)
+
+	-- Do not serialize structure sets, but just their IDs.
+	for i, set in ipairs (target_sets) do
+		target_sets[i] = set.id
+	end
+
+	local cx = floor (x / 16)
+	local cz = floor (z / 16)
+	return {
+		target_sets = target_sets,
+		id_or_ids = id_or_ids,
+		x = x,
+		y = y,
+		z = z,
+		cx = cx,
+		cz = cz,
+	}
+end
+
+local MAP_CHUNK_MIN = -2047
+local MAP_CHUNK_MAX = 2048
+
+function mcl_levelgen.step_locate_structure (terrain, ctx, d, posns)
+	local x, y, z = ctx.x, ctx.y, ctx.z
+	local cx, cz = ctx.cx, ctx.cz
+	local level = terrain.structures
+	local id_or_ids = ctx.id_or_ids
+
+	-- Reconstruct the list of structure sets from their IDs.
+	-- Merely storing the index of the set into
+	-- all_registered_structure_sets does not suffice, as the
+	-- order in which structure sets are registered may differ
+	-- across async environments.
+	local target_sets = {}
+	for i, set in ipairs (ctx.target_sets) do
+		target_sets[i] = registered_structure_sets[set]
+	end
+
+	-- XXX: structures with concentric ring placement are not
+	-- supported by this facility.
+	if not posns then
+		local posns = {}
+
+		for i, set in ipairs (target_sets) do
+			local placement = set.placement
+			local region_x = floor (cx / placement.spacing)
+			local region_z = floor (cz / placement.spacing)
+
+			for dx, dz in positions_at_distance_chebyshev (d) do
+				local rx = region_x + dx
+				local rz = region_z + dz
+				local scx, scz
+					= placement.locator_test (level,
+								  placement.salt,
+								  rx, rz)
+				if scx and scz
+					and scx >= MAP_CHUNK_MIN
+					and scz >= MAP_CHUNK_MIN
+					and scx <= MAP_CHUNK_MAX
+					and scz <= MAP_CHUNK_MAX then
+					insert (posns, i)
+					insert (posns, struct_hash (scx, scz))
+				end
+			end
+		end
+		return posns
+	else
+		-- Otherwise candidates do exist.  Select one and
+		-- return immediately.
+		local nearest, d_nearest = nil, huge
+
+		assert (#posns > 0)
+
+		-- Read the list of filtered positions.  The set to
+		-- which each position corresponds is represented by
+		-- the element preceding such position.
+
+		candidates = {}
+		for i = 1, #posns, 2 do
+			local set = target_sets[posns[i]]
+			local scx, scz = struct_unhash (posns[i + 1])
+			local just_this_set = {set,}
+
+			get_structure_starts (level, terrain, scx, scz,
+					      insert_structure_candidate,
+					      id_or_ids, just_this_set)
+		end
+
+		for _, candidate in ipairs (candidates) do
+			local dx = mathabs (candidate[1] - x)
+			local dy = mathabs (candidate[2] - y)
+			local dz = mathabs (candidate[3] - z)
+			local d_sqr = dx * dx + dy * dy + dz * dz
+			if d_sqr < d_nearest then
+				d_nearest = d_sqr
+				nearest = candidate
+			end
+		end
+
+		candidates = nil
+		return nearest
+	end
 end
