@@ -1657,7 +1657,7 @@ local villager_trades = {
 	cartographer = {
 		{
 			{ { "mcl_core:paper", 24, 24 }, E(), 16, 2 },
-			{ E(7), { "mcl_maps:empty_map", 1, 1 }, 12, 1 },
+			{ E(7), { "mcl_maps:map_empty", 1, 1 }, 12, 1 },
 		},
 
 		{
@@ -4673,7 +4673,7 @@ local villager_gift_tables = {
 		stacks_max = 1,
 		items = {
 			{
-				itemstring = "mcl_maps:empty_map"
+				itemstring = "mcl_maps:map_empty"
 			},
 			{
 				itemstring = "mcl_core:paper"
