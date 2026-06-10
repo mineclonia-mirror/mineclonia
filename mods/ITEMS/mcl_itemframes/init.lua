@@ -13,6 +13,8 @@ local base_props = {
 	physical = false,
 	pointable = false,
 	textures = {"blank.png"},
+	-- This was effectively true already.
+	static_save = false,
 }
 
 local map_props = {
@@ -87,10 +89,10 @@ local function drop_item(pos)
 	remove_entity(pos)
 end
 
-local function get_map_id(itemstack)
-	local map_id = itemstack:get_meta():get_string("mcl_maps:map_id")
-	if map_id == "" then map_id = nil end
-	return map_id
+local load_map_id = mcl_maps.load_map_id
+
+local function get_map_id (itemstack)
+	return load_map_id (itemstack)
 end
 
 local function rotate_entity(pos, rot)
@@ -243,39 +245,6 @@ function mcl_itemframes.tpl_entity:set_item(itemstack, pos)
 		wield_item = self._item,
 		visual_size = {x = base_props.visual_size.x / ws.x, y = base_props.visual_size.y / ws.y},
 	}, prop_overrides or {}, def.object_properties or {}))
-end
-
-function mcl_itemframes.tpl_entity:get_staticdata()
-	local s = {
-		item = self._item,
-		itemframe_pos = self._itemframe_pos,
-		itemstack = self._itemstack,
-		_map_id = self._map_id,
-		_dynamic_map_id = self._dynamic_map_id,
-	}
-	s.props = self.object:get_properties()
-	return core.serialize(s)
-end
-
-function mcl_itemframes.tpl_entity:on_activate(staticdata, dtime_s)
-	local s = core.deserialize(staticdata)
-	if (type(staticdata) == "string" and dtime_s and dtime_s > 0) then
-		-- try to re-initialize items without proper staticdata
-		local p = core.find_node_near(self.object:get_pos(), 1, {"group:itemframe"})
-		self.object:remove()
-		if p then
-			update_entity(p)
-		end
-		return
-	elseif s then
-		self._itemframe_pos = vector.copy (s.itemframe_pos)
-		self._itemstack = s.itemstack
-		self._item = s.item
-		self._map_id = s._map_id
-		self._dynamic_map_id = s._dynamic_map_id
-		update_entity(self._itemframe_pos)
-		return
-	end
 end
 
 function mcl_itemframes.tpl_entity:on_step(dtime)
