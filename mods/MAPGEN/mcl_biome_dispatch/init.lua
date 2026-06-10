@@ -657,7 +657,7 @@ end
 
 local insert = table.insert
 local mathmin = math.min
--- local mathmax = math.max
+local mathmax = math.max
 
 local objects_in_limbo = {}
 
@@ -861,16 +861,10 @@ local function get_overworld_structure_level ()
 	return level
 end
 
-local band = bit.band
 local arshift = bit.arshift
-
-local function struct_unhash (hash)
-	local x = arshift (hash, 13) - 4096
-	local z = band (hash, 0x1fff) - 4096
-	return x, z
-end
-
 local insert = table.insert
+
+local struct_unhash = mcl_levelgen.struct_unhash
 local enable_ersatz = mcl_levelgen.enable_ersatz
 
 function mcl_biome_dispatch.get_stronghold_positions ()
@@ -937,8 +931,31 @@ end
 
 local pending_locate_tasks = {}
 local outstanding_locate_task = false
+local dispatch_locate_task
 
-local function dispatch_locate_task (taskinfo)
+local function run_next_locate_task (taskinfo, cb_data)
+	assert (outstanding_locate_task)
+	outstanding_locate_task = false
+	local n = #pending_locate_tasks
+	while n > 0 and not outstanding_locate_task do
+		local taskinfo = pending_locate_tasks[1]
+		for i = 2, n do
+			pending_locate_tasks[i - 1]
+				= pending_locate_tasks[i]
+		end
+		pending_locate_tasks[n] = nil
+
+		if not taskinfo.retain_p
+			or taskinfo.retain_p (cb_data) then
+			dispatch_locate_task (taskinfo)
+			outstanding_locate_task = true
+		end
+
+		n = n - 1
+	end
+end
+
+local function dispatch_ordinary_locate_task (taskinfo)
 	local dim = get_dimension (taskinfo.dim)
 	local callback = taskinfo.callback
 	local cb_data = taskinfo.cb_data
@@ -970,30 +987,196 @@ local function dispatch_locate_task (taskinfo)
 		else
 			callback (nil, cb_data)
 		end
-
-		outstanding_locate_task = false
-		local n = #pending_locate_tasks
-		while n > 0 and not outstanding_locate_task do
-			local taskinfo = pending_locate_tasks[1]
-			for i = 2, n do
-				pending_locate_tasks[i - 1]
-					= pending_locate_tasks[i]
-			end
-			pending_locate_tasks[n] = nil
-
-			if not taskinfo.retain_p
-				or taskinfo.retain_p (cb_data) then
-				dispatch_locate_task (taskinfo)
-				outstanding_locate_task = true
-			end
-
-			n = n - 1
-		end
+		run_next_locate_task (taskinfo, cb_data)
 	end, taskinfo)
 end
 
+local function locate_structure_with_filter (taskinfo)
+	local dim = mcl_levelgen.get_dimension (taskinfo.dim)
+	assert (dim)
+	if not mcl_levelgen.enable_ersatz then
+		mcl_levelgen.initialize_terrain (dim)
+	else
+		dim.terrain = mcl_levelgen.get_ersatz_terrain (dim)
+	end
+
+	local terrain = dim.terrain
+	local ctx = taskinfo.ctx
+	local d = taskinfo.d
+	local posns = taskinfo.posns
+
+	if ctx == nil then
+		local id_or_ids = taskinfo.sids
+		ctx = mcl_levelgen.locate_structure_incrementally (terrain,
+								   taskinfo.x,
+								   taskinfo.y,
+								   taskinfo.z,
+								   id_or_ids)
+		d = 0
+	end
+	local posns = mcl_levelgen.step_locate_structure (terrain, ctx, d,
+							  posns)
+	return ctx, posns
+end
+
+local chunksize = mcl_levelgen.mt_chunksize
+local chunk_origin = mcl_levelgen.mt_chunk_origin
+
+local function execute_structure_filters (filter, dim, cb_data, posns)
+	-- Partition DIM into its constituent MapChunks, and, for each
+	-- column, evaluate a position within each such chunk.
+
+	local sy = chunksize.y
+	local ymin = floor (dim.y_global / 16)
+	local ymax = floor (dim.y_max / 16)
+	local chunk_y_start = floor ((ymin - chunk_origin.y) / sy) * sy
+		+ chunk_origin.y
+	local chunk_y_end = floor ((ymax - chunk_origin.y) / sy) * sy
+		+ chunk_origin.y
+	local new_posns = {}
+
+	for i = 1, #posns, 2 do
+		local idx = posns[i]
+		local hash = posns[i + 1]
+		local bx, scz = struct_unhash (hash)
+		local bz = -scz - 1
+		local reject = false
+
+		for chunk_y = chunk_y_start, chunk_y_end, sy do
+			local by = mathmin (mathmax (chunk_y, ymin), ymax)
+
+			if filter (bx, by, bz, cb_data) then
+				reject = true
+				break
+			end
+		end
+
+		if not reject then
+			insert (new_posns, idx)
+			insert (new_posns, hash)
+		end
+	end
+
+	return new_posns
+end
+
+local locate_structure_incrementally
+	= mcl_levelgen.locate_structure_incrementally
+local step_locate_structure = mcl_levelgen.step_locate_structure
+
+local function filter_locate_ersatz (taskinfo)
+	local dim = mcl_levelgen.get_dimension (taskinfo.dim)
+	assert (dim)
+	local terrain = mcl_levelgen.get_ersatz_terrain (dim)
+	dim.terrain = terrain
+	local callback = taskinfo.callback
+	local cb_data = taskinfo.cb_data
+	local filter = taskinfo.filter
+	local ctx = locate_structure_incrementally (terrain,
+						    taskinfo.x,
+						    taskinfo.y,
+						    taskinfo.z,
+						    taskinfo.sids)
+
+	for d = 0, taskinfo.range do
+		local posns = step_locate_structure (terrain, ctx,
+						     d, nil)
+		if #posns > 0 then
+			local filtered
+				= execute_structure_filters (filter, dim,
+							     cb_data, posns)
+			if #filtered > 0 then
+				local nearest
+					= step_locate_structure (terrain, ctx,
+								 nil, filtered)
+				if nearest then
+					local x, y, z = nearest[1], nearest[2], nearest[3]
+					local v = vector.new (x, y - dim.y_offset, -z - 1)
+					callback (v, cb_data)
+					return
+				end
+			end
+		end
+	end
+
+	callback (nil, cb_data)
+end
+
+local function dispatch_filter_locate_task (taskinfo)
+	local dim = get_dimension (taskinfo.dim)
+	local callback = taskinfo.callback
+	local cb_data = taskinfo.cb_data
+	local filter = taskinfo.filter
+
+	if enable_ersatz then
+		filter_locate_ersatz (taskinfo)
+		outstanding_locate_task = false
+		return
+	end
+
+	core.handle_async (locate_structure_with_filter, function (ctx, posns)
+		if not taskinfo.ctx then
+			taskinfo.d = 0
+		end
+		taskinfo.ctx = ctx
+		local d = taskinfo.d
+
+		if not taskinfo.posns then -- Awaiting position list.
+			if d < taskinfo.range and #posns == 0 then
+				-- Increase the distance and dispatch
+				-- this task again.
+				assert (taskinfo.posns == nil)
+				taskinfo.d = d + 1
+				dispatch_filter_locate_task (taskinfo)
+				return
+			elseif #posns == 0 then
+				-- Failure.
+				callback (nil, cb_data)
+			else -- A list of positions has appeared to be filtered.
+				local posns
+					= execute_structure_filters (filter, dim,
+								     cb_data, posns)
+				if #posns > 0 then
+					taskinfo.posns = posns
+					dispatch_filter_locate_task (taskinfo)
+					return
+				elseif d < taskinfo.range then
+					taskinfo.d = d + 1
+					taskinfo.posns = nil
+					dispatch_filter_locate_task (taskinfo)
+					return
+				else
+					-- Failure.
+					callback (nil, cb_data)
+				end
+			end
+		else -- Awaiting generation of starts.
+			if posns then
+				local x, y, z = posns[1], posns[2], posns[3]
+				local v = vector.new (x, y - dim.y_offset, -z - 1)
+				callback (v, cb_data)
+			else
+				taskinfo.posns = nil
+				taskinfo.d = d + 1
+				dispatch_filter_locate_task (taskinfo)
+				return
+			end
+		end
+
+		run_next_locate_task (taskinfo, cb_data)
+	end, taskinfo)
+end
+
+function dispatch_locate_task (taskinfo)
+	if not taskinfo.filter then
+		dispatch_ordinary_locate_task (taskinfo)
+	else
+		dispatch_filter_locate_task (taskinfo)
+	end
+end
+
 function mcl_biome_dispatch.locate_structure_near (pos, sid_or_sids, range_chebyshev,
-						   callback, cb_data, retain_p)
+						   callback, cb_data, retain_p, filter)
 	if not levelgen_enabled and not enable_ersatz then
 		callback (nil, cb_data)
 		return
@@ -1011,6 +1194,7 @@ function mcl_biome_dispatch.locate_structure_near (pos, sid_or_sids, range_cheby
 			dim = dim.id,
 			callback = callback,
 			retain_p = retain_p,
+			filter = filter,
 			cb_data = cb_data,
 		}
 		if not outstanding_locate_task then
@@ -1098,12 +1282,28 @@ end
 local mathsqrt = math.sqrt
 local huge = math.huge
 
+local cid_ignore = core.CONTENT_IGNORE
+
+local v = vector.new ()
+
+local function filter_generated_structures (bx, by, bz, _)
+	v.x = bx * 16
+	v.y = by * 16
+	v.z = bz * 16
+	core.load_area (v)
+	local cid, _, _, _
+		= core.get_node_raw (bx * 16, by * 16, bz * 16)
+	return cid ~= cid_ignore
+end
+
+mcl_biome_dispatch.filter_generated_structures = filter_generated_structures
+
 core.register_chatcommand ("locate", {
-	params = "[structure | biome | poi] <ID>",
+	params = "[structure | biome | poi] <ID> [ true | false ]",
 	description = S ("Locate a structure, biome, or point of interest identified by ID in the current dimension."),
 	privs = { maphack = true, },
 	func = function (name, param)
-		local command, id = unpack (param:split (" "))
+		local command, id, ungenerated = unpack (param:split (" "))
 		if command == "structure" then
 			if type (id) ~= "string" then
 				core.chat_send_player (name, S ([[/locate structure requires a structure ID.
@@ -1115,7 +1315,10 @@ These structures are available: ]]))
 			local player = core.get_player_by_name (name)
 			if player then
 				local pos = player:get_pos ()
-				mcl_biome_dispatch.locate_structure_near (pos, id, 96, function (v, _)
+				local filter = ungenerated == "true"
+					and filter_generated_structures
+					or nil
+				mcl_biome_dispatch.locate_structure_near (pos, id, filter and 16 or 96, function (v, _)
 					if v then
 						local dist = floor (vector.distance (v, pos) + 0.5)
 						local blurb = PS ("The nearest structure of type @1 is located at (@2,@3,@4) (@5 block away)",
@@ -1126,9 +1329,9 @@ These structures are available: ]]))
 						local blurb = S ("No structure of type @1 exists near your position", id)
 						core.chat_send_player (name, blurb)
 					end
-				end, function (_)
+				end, nil, function (_)
 					return player:is_valid ()
-				end)
+				end, filter)
 			end
 		elseif command == "biome" then
 			if type (id) ~= "string" then
@@ -1241,4 +1444,57 @@ mcl_levelgen.register_hud_callback (function (x, y, z)
 	end
 end)
 
+end
+
+------------------------------------------------------------------------
+-- Cartography data generation.
+------------------------------------------------------------------------
+
+local dimension_at_layer = mcl_levelgen.dimension_at_layer
+
+function mcl_biome_dispatch.prepare_cartography_biomes (y, x1, z1, wx, wz)
+	if levelgen_enabled then
+		local dim = dimension_at_layer (y)
+		if dim then
+			local qx1 = arshift (x1, 2) - 1
+			local qz1 = arshift (-z1 - wz, 2) - 1
+			local qx2 = arshift (x1 + wx - 1, 2) + 1
+			local qz2 = arshift (-z1 - 1, 2) + 1
+
+			dim.preset:index_biomes_begin (qx2 - qx1 + 1,
+						       qz2 - qz1 + 1,
+						       qx1, qz1)
+			return dim.preset
+		end
+		return nil
+	else
+		local _, dim = mcl_worlds.y_to_layer (y)
+		if dim == "overworld"
+			or dim == "nether"
+			or dim == "end" then
+			return dim
+		end
+		return nil
+	end
+end
+
+local mapgen_model = nil
+local biome_seed = mcl_levelgen.biome_seed
+local munge_biome_coords = mcl_levelgen.munge_biome_coords
+
+function mcl_biome_dispatch.get_cartography_biome (preset, x, z)
+	if levelgen_enabled then
+		local qx, qy, qz
+			= munge_biome_coords (biome_seed, x,
+					      preset.sea_level,
+					      -z - 1)
+		return preset:index_biomes_cached (qx, qy, qz)
+	elseif preset == "overworld" then
+		if not mapgen_model then
+			mapgen_model = mcl_mapgen_models.get_mapgen_model ()
+		end
+		local v = mapgen_model.get_biome_override (x, z)
+		return v
+	end
+	return nil
 end

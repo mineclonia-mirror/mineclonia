@@ -208,7 +208,7 @@ biome system is active.
 Function: mcl_biome_dispatch.locate_structure_near (POS, SID_OR_SIDS,
 	  					    RANGE_CHEBYSHEV,
 						    CALLBACK, CB_DATA,
-						    RETAIN_P)
+						    RETAIN_P, FILTER)
 
 Locate the first instance of a structure identified in SID_OR_SIDS,
 which must be either a string holding an identifier provided to
@@ -222,6 +222,14 @@ CB_DATA, or nil and CB_DATA otherwise.
 RETAIN_P is a function which, if specified, is invoked with CB_DATA to
 decide whether to continue with a queued structure search operation
 upon completion of a preceding operation.
+
+FILTER is a function which, if specified, is invoked with the position
+of a MapBlock BX, BY, BZ, and CB_DATA, and should return whether
+structures whose origins are within the column to which this MapBlock
+belongs, in the dimension which exists at BY, must be excluded.  When
+FILTER is specified, structures which are assigned concentric ring
+placement mechanics cannot be located, and any structures in positions
+which it rejects will not be provided to CALLBACK.
 
 This function executes asynchronously when mcl_levelgen is enabled,
 but is synchronous and liable to block for a significant period when
