@@ -59,7 +59,12 @@ end
 
 local function init_chunksize ()
 	-- N.B. that the Y axis value of the mt_chunk_origin
-	-- established here is not meaningful or defined.
+	-- established here is slightly erroneous in old levels which
+	-- were generated with a modified version of the engine.
+	--
+	-- Unless you are already aware what this version of the
+	-- engine is, it is improbable that you should encounter such
+	-- levels in practice.
 	if not core.get_mapgen_chunksize then
 		local cs = tonumber (core.get_mapgen_setting ("chunksize")) or 5
 		core.ipc_set ("mcl_levelgen:mt_chunksize", vector.new (cs, cs, cs))
