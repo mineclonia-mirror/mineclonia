@@ -42,7 +42,7 @@ local enable_real_maps
 --   [X]   Treasure indicators.
 --   [X]   Item frames.
 --   [X]   Duplication &c.
---   [ ]   Trading.
+--   [X]   Trading & loot.
 --   [X]   Ersatz map generation.
 ------------------------------------------------------------------------
 
@@ -565,7 +565,7 @@ local function create_new_map (itemstack, placer, pointed_thing)
 	end
 
 	if placer and placer:is_valid () then
-		if enable_real_maps then
+		if not enable_real_maps then
 			local msg = S ("Maps are not enabled on this server")
 			core.chat_send_player (placer:get_player_name (), msg)
 			return itemstack
@@ -974,7 +974,7 @@ core.register_chatcommand ("explorer_map_item", {
 		local map_pos = vector.from_string (pos or "")
 			or player:get_pos ()
 		local pos = mcl_util.get_nodepos (map_pos)
-		local stack = mcl_maps.create_explorer_map (pos, id)
+		local stack = mcl_maps.initialize_explorer_map (pos, ItemStack (id))
 		if stack then
 			local inv = player:get_inventory ()
 			if inv:room_for_item ("main", stack) then
@@ -1146,8 +1146,8 @@ mcl_maps.register_explorer_map ("mcl_maps:jungle_explorer_map", "#848484", {
 
 local storage = core.get_mod_storage ()
 
-function mcl_maps.create_explorer_map (pos, name)
-	local def = core.registered_items[name]
+function mcl_maps.initialize_explorer_map (pos, stack)
+	local def = core.registered_items[stack:get_name ()]
 	assert (def and def._explorer_map_structures)
 
 	-- Indices commence at 30000 to prevent
@@ -1155,7 +1155,6 @@ function mcl_maps.create_explorer_map (pos, name)
 	-- array.
 	local id = storage:get_int ("last_explorer_map_id") + 1 + 30000
 	storage:set_int ("last_explorer_map_id", id)
-	local stack = ItemStack (name)
 	local meta = stack:get_meta ()
 	meta:set_int ("mcl_maps:explorer_map_id", id)
 	meta:set_int ("mcl_maps:explorer_map_x", floor (pos.x + 0.5))
@@ -1259,6 +1258,20 @@ function realize_explorer_map (stack)
 end
 
 mcl_maps.realize_explorer_map = realize_explorer_map
+
+local function initialize_explorer_maps (stack, x, y, z)
+	local name = stack:get_name ()
+	if core.get_item_group (name, "explorer_map") > 0 then
+		v.x = x
+		v.y = y
+		v.z = z
+
+		mcl_maps.initialize_explorer_map (v, stack)
+	end
+end
+
+mcl_levelgen.register_loot_postprocessor ("mcl_maps:initialize_explorer_maps",
+					  initialize_explorer_maps)
 
 ------------------------------------------------------------------------
 -- Map item scaling.
@@ -1775,7 +1788,7 @@ end)
 
 ------------------------------------------------------------------------
 -- Conversion of obsolete maps.  TODO: it is not possible to convert
--- an old map into the new format unless a TGA encoder is available.
+-- an old map into the new format unless a TGA decoder is available.
 ------------------------------------------------------------------------
 
 core.register_alias ("mcl_maps:empty_map", "mcl_maps:map_empty")
