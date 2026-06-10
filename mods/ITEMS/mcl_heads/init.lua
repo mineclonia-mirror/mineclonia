@@ -47,13 +47,19 @@ end
 
 function mcl_heads.deftemplate.on_rotate(pos, node, user, mode)
 	if mode == screwdriver.ROTATE_AXIS then
-		local dir = core.facedir_to_dir(node.param2)
+		local dir = core.yaw_to_dir(node.param2)
 		if dir then
-			node.name = node.name .. "_wall"
+			if core.get_item_group(node.name, "head") == 3 then
+				node.name = node.name:gsub("_ceiling", "_wall")
+			else
+				node.name = node.name .. "_wall"
+			end
 			if core.registered_nodes[node.name] then
 				node.param2 = core.dir_to_wallmounted(dir)
 				core.set_node(pos, node)
 				return true
+			else
+				return false
 			end
 		end
 	end
@@ -187,7 +193,7 @@ local function register_wall(head_def)
 		},
 		groups = {
 			handy = 1,
-			head = 1,
+			head = 2,
 			deco_block = 1,
 			dig_by_piston = 1,
 			not_in_creative_inventory = 1,
@@ -207,7 +213,7 @@ local function register_ceiling(head_def)
 		mesh = head_def.mesh or "mcl_heads_ceiling.obj",
 		groups = {
 			handy = 1,
-			head = 1,
+			head = 3,
 			deco_block = 1,
 			dig_by_piston = 1,
 			not_in_creative_inventory = 1,
