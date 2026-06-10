@@ -40,3 +40,6 @@ end
 
 function mcl_levelgen.register_loot_table (_, _)
 end
+
+function mcl_levelgen.register_loot_postprocessor (_, _)
+end

@@ -141,26 +141,26 @@ local trades_ordinary_table = {
 
 local pr = PcgRandom (os.time () + 593)
 
-local function get_wandering_trades ()
+local function get_wandering_trades (self)
 	local purch = table.copy (trades_purchasing_table)
 	local speci = table.copy (trades_special_table)
 	local ordin = table.copy (trades_ordinary_table)
 	local t = {}
 	for _ = 1, 2 do
 		local trade = table.remove (purch, math.random (#purch))
-		table.insert (t, mobs_mc.trade_from_table (pr, trade, false))
+		table.insert (t, mobs_mc.trade_from_table (self, pr, trade, false))
 		local trade = table.remove (speci, math.random (#speci))
-		table.insert (t, mobs_mc.trade_from_table (pr, trade, false))
+		table.insert (t, mobs_mc.trade_from_table (self, pr, trade, false))
 	end
 	for _ = 1, 5 do
 		local trade = table.remove (ordin, math.random (#ordin))
-		table.insert (t, mobs_mc.trade_from_table (pr, trade, false))
+		table.insert (t, mobs_mc.trade_from_table (self, pr, trade, false))
 	end
 	return t
 end
 
 function wandering_trader:on_spawn ()
-	self:update_trades (get_wandering_trades ())
+	self:update_trades (get_wandering_trades (self))
 end
 
 function wandering_trader:on_rightclick (clicker)
