@@ -104,7 +104,7 @@ local function update_cartography_table(player)
 				stack:get_meta ():set_string ("mcl_maps:map_id", id)
 				tt.reload_itemstack_description (stack)
 				inv:set_stack ("cartography_table_output", 1, stack)
-				operation_selected = true				
+				operation_selected = true
 
 				formspec = formspec .. "image[5.375,0.75;3.5,3.5;" .. texture .. "]"
 					.. "image[8.375,3.75;0.5,0.5;mcl_core_barrier.png]"
