@@ -21,6 +21,9 @@ end
 
 local texture_colors = load_json_file ("colors")
 
+local enable_real_maps
+	= core.settings:get_bool ("enable_real_maps", true)
+
 ------------------------------------------------------------------------
 -- Dynamically updated maps.
 -- TODO:
@@ -35,7 +38,12 @@ local texture_colors = load_json_file ("colors")
 --   [X] Crafting of new maps.
 --   [X] Locked maps.
 --   [ ] Conversion of existing maps.
---   [ ] Treasure maps & biome reliefs.
+--   [X] Treasure maps & biome reliefs.
+--   [X]   Treasure indicators.
+--   [X]   Item frames.
+--   [X]   Duplication &c.
+--   [ ]   Trading.
+--   [X]   Ersatz map generation.
 ------------------------------------------------------------------------
 
 local map_colors_by_cid = {}
@@ -335,6 +343,8 @@ end
 ------------------------------------------------------------------------
 
 local MAP_TTL = 20
+local ERROR_MAP_ID = "error"
+
 local loaded_maps = {}
 local update_all_maps
 
@@ -380,6 +390,7 @@ local function write_map_data (id, map)
 	local tbl = {
 		x_start = map.x_start,
 		z_start = map.z_start,
+		structure_pos = map.structure_pos,
 		dimension = map.dimension or "overworld",
 		scale = map.scale,
 	}
@@ -411,7 +422,31 @@ local function deserialize_data (dst, str, offset)
 	end
 end
 
+local function load_map_error ()
+	local map = {
+		dimension = "none",
+		x_start = 0,
+		z_start = 0,
+		scale = 1,
+	}
+	local file = assert (io.open (modpath .. "/error.zst", "rb"))
+	local data = file:read ("*all")
+	file:close ()
+
+	local str = assert (core.decompress (data, "zstd"))
+	map.data = {}
+	map.heightmap = {}
+	local offset = (MAP_SIDE_LENGTH * MAP_SIDE_LENGTH * 4)
+	deserialize_data (map.data, str, 0)
+	deserialize_data (map.heightmap, str, offset)
+	return map
+end
+
 local function load_map_1 (id)
+	if id == ERROR_MAP_ID then
+		return load_map_error ()
+	end
+
 	local file = assert (io.open (map_name (id), "r"))
 	local data = file:read ("*all")
 	file:close ()
@@ -427,6 +462,13 @@ local function load_map_1 (id)
 	assert (type (map.z_start) == "number"
 		and floor (map.z_start) == map.z_start)
 	assert (type (map.dimension) == "string")
+	if map.structure_pos then
+		assert (type (map.structure_pos) == "table")
+		assert (type (map.structure_pos.x) == "number")
+		assert (type (map.structure_pos.y) == "number")
+		assert (type (map.structure_pos.z) == "number")
+		map.structure_pos = vector.copy (map.structure_pos)
+	end
 
 	local file = assert (io.open (image_name (id), "rb"))
 	local data = file:read ("*all")
@@ -523,7 +565,7 @@ local function create_new_map (itemstack, placer, pointed_thing)
 	end
 
 	if placer and placer:is_valid () then
-		if not core.settings:get_bool ("enable_real_maps", true) then
+		if enable_real_maps then
 			local msg = S ("Maps are not enabled on this server")
 			core.chat_send_player (placer:get_player_name (), msg)
 			return itemstack
@@ -617,8 +659,8 @@ local function use_filled_map (itemstack, placer, pointed_thing)
 	end
 
 	if placer and placer:is_valid () then
-		local id = itemstack:get_meta ():get_string ("mcl_maps:map_id")
-		if not id or id == "" then
+		local id = mcl_maps.load_map_id (itemstack)
+		if not id then
 			return
 		end
 
@@ -746,13 +788,22 @@ local function update_one_map (nodepos, map, radius, xmin, xmax, x_end, y1)
 	end
 end
 
+local realize_explorer_map
+
 function update_all_maps ()
 	prepare_map_generation ()
 	for player, pos in mcl_player.iterate_connected_players () do
 		local wielditem = player:get_wielded_item ()
 		local nodepos = mcl_util.get_nodepos (pos)
-		if wielditem:get_name () == "mcl_maps:map" then
-			local map_id = wielditem:get_meta ():get_string ("mcl_maps:map_id")
+		local item_name = wielditem:get_name ()
+		local map_id
+		if item_name == "mcl_maps:map" then
+			local meta = wielditem:get_meta ()
+			map_id = meta:get_string ("mcl_maps:map_id")
+		elseif core.get_item_group (item_name, "explorer_map") > 0 then
+			map_id = realize_explorer_map (wielditem)
+		end
+		if map_id and map_id ~= "" then
 			local map = load_map_data (map_id)
 			local dim = mcl_worlds.pos_to_dimension (nodepos)
 			if map and map.dimension == dim then
@@ -766,6 +817,448 @@ function update_all_maps ()
 	end
 	map_update_cnt = (map_update_cnt + 3) % STEPS_PER_MAP
 end
+
+------------------------------------------------------------------------
+-- Explorer maps.
+------------------------------------------------------------------------
+
+local BIOME_STIPPLES = {}
+
+local EXPLORER_MAP_BKG = 0xffc3ae89
+
+local RIVER = {
+	0xff955824,
+	0xff955824,
+	0xff955824,
+	0xff955824,
+	0xff955824,
+	0xff955824,
+	0xff955824,
+	0xff955824,
+}
+
+local DEEP_OCEAN = {
+	0xff5c3311,
+	EXPLORER_MAP_BKG,
+	0xff5c3311,
+	EXPLORER_MAP_BKG,
+	0xff5c3311,
+	EXPLORER_MAP_BKG,
+	0xff5c3311,
+	EXPLORER_MAP_BKG,
+}
+
+local OCEAN = {
+	0xff955824,
+	EXPLORER_MAP_BKG,
+	0xff955824,
+	EXPLORER_MAP_BKG,
+	0xff955824,
+	EXPLORER_MAP_BKG,
+	0xff955824,
+	EXPLORER_MAP_BKG,
+}
+
+for _, biome in ipairs (mcl_levelgen.build_biome_list ({"#is_river"})) do
+	BIOME_STIPPLES[biome] = RIVER
+end
+
+for _, biome in ipairs (mcl_levelgen.build_biome_list ({"#is_ocean"})) do
+	BIOME_STIPPLES[biome] = OCEAN
+end
+
+
+for _, biome in ipairs (mcl_levelgen.build_biome_list ({"#is_deep_ocean"})) do
+	BIOME_STIPPLES[biome] = DEEP_OCEAN
+end
+
+local prepare_cartography_biomes
+	= mcl_biome_dispatch.prepare_cartography_biomes
+local get_cartography_biome
+	= mcl_biome_dispatch.get_cartography_biome
+
+local function fill_explorer_map (map, y)
+	local s = map.scale - 1
+	local compass = lshift (MAP_DATA_LENGTH - 1, s)
+	local x1 = map.x_start
+	local z1 = map.z_start
+	local dim = prepare_cartography_biomes (y, x1, z1, compass,
+						compass)
+	if not dim then
+		return false
+	end
+
+	local data = map.data
+	for dz = 0, MAP_DATA_LENGTH - 1 do
+		local base = (dz + 1) * MAP_SIDE_LENGTH + 1
+		for dx = 0, MAP_DATA_LENGTH - 1 do
+			local i = dx + 1
+			local biome
+				= get_cartography_biome (dim, x1 + lshift (dx, s),
+							 z1 + lshift (dz, s))
+			local stipples = BIOME_STIPPLES[biome]
+			if stipples then
+				data[base + i] = stipples[band (dx, 0x7) + 1]
+			else
+				data[base + i] = EXPLORER_MAP_BKG
+			end
+		end
+	end
+	return true
+end
+
+local function create_explorer_map_1 (pos, item)
+	local dim = mcl_worlds.pos_to_dimension (pos)
+	if dim == "void" then
+		return nil, nil
+	end
+	local id = allocate_map_id ()
+	local id, map = create_new_map_1 (id, pos, dim)
+	map.structure_pos = vector.copy (pos)
+	fill_explorer_map (map, pos.y)
+	write_map_data (id, map)
+	return id, map
+end
+
+function mcl_maps.create_explorer_map_now (pos, item)
+	local id, map = create_explorer_map_1 (pos)
+
+	if id and map then
+		-- Initialize the ItemStack.
+		local stack = ItemStack (item)
+		stack:get_meta ():set_string ("mcl_maps:map_id", id)
+		tt.reload_itemstack_description (stack)
+		return stack
+	end
+	return nil
+end
+
+core.register_chatcommand ("explorer_map", {
+	description = S ("Create an explorer map."),
+	privs = { server = true, },
+	func = function (name, param)
+		local player = core.get_player_by_name (name)
+		if not player then
+			return
+		end
+
+		local map_pos = vector.from_string (param)
+			or player:get_pos ()
+		local pos = mcl_util.get_nodepos (map_pos)
+		local stack = mcl_maps.create_explorer_map_now (pos, "mcl_maps:map")
+		if stack then
+			local inv = player:get_inventory ()
+			if inv:room_for_item ("main", stack) then
+				inv:add_item ("main", stack)
+			else
+				core.add_item (player:get_pos (), stack)
+			end
+		end
+	end
+})
+
+core.register_chatcommand ("explorer_map_item", {
+	description = S ("Create an explorer map item."),
+	privs = { server = true, },
+	func = function (name, param)
+		local player = core.get_player_by_name (name)
+		if not player then
+			return
+		end
+
+		local id, pos = unpack (param:split (" "))
+		local def = core.registered_items[id]
+		if not def or not def._explorer_map_structures then
+			return
+		end
+		local map_pos = vector.from_string (pos or "")
+			or player:get_pos ()
+		local pos = mcl_util.get_nodepos (map_pos)
+		local stack = mcl_maps.create_explorer_map (pos, id)
+		if stack then
+			local inv = player:get_inventory ()
+			if inv:room_for_item ("main", stack) then
+				inv:add_item ("main", stack)
+			else
+				core.add_item (player:get_pos (), stack)
+			end
+		end
+	end
+})
+
+local function explorer_map_on_entity_step (self, dtime, _)
+	if self.name == "mcl_itemframes:item"
+		and not self._dynamic_map_id then
+		-- The explorer map is still be loaded.  Wait till it
+		-- is realized, and record the map ID.
+		local itemstack = self._stack
+		if itemstack
+			and core.get_item_group (itemstack:get_name (),
+						 "explorer_map") > 0 then
+			-- Load the map once it has been generated.
+			self._dynamic_map_id = realize_explorer_map (itemstack)
+			if self._dynamic_map_id then
+				self:set_item (itemstack)
+			end
+		end
+	end
+end
+
+local explorer_map_toplevel = {
+	description = S ("Explorer Map"),
+	_tt_help = S ("Guides you to a structure."),
+	_doc_items_longdesc = S ("When wielded, a map is displayed with an indicator marking the position of a structure."),
+	_doc_items_usagehelp = S("Hold the map in your hand.  This will display a map on your screen and record the world in the same."),
+	on_place = use_filled_map,
+	on_secondary_use = use_filled_map,
+	groups = {
+		not_in_creative_inventory = 1,
+		filled_map = 1,
+		explorer_map = 1,
+		tool = 1,
+	},
+	_on_entity_step = explorer_map_on_entity_step,
+}
+
+function mcl_maps.register_explorer_map (name, color, itemdef)
+	local merge = table.merge
+	core.register_craftitem (":" .. name, merge (explorer_map_toplevel, merge (itemdef, {
+		inventory_image = table.concat ({
+			"mcl_maps_map_filled.png",
+			"^(mcl_maps_map_filled_markings.png",
+			"^[colorize:", color, ")",
+		}),
+		_explorer_map_structures
+			= itemdef._explorer_map_structures or {},
+	})))
+
+	local recipe = { name, }
+	for i = 2, 9 do
+		for j = 2, i do
+			recipe[j] = "mcl_maps:map_empty"
+		end
+		core.register_craft ({
+			type = "shapeless",
+			output = name .. " " .. i,
+			recipe = recipe,
+		})
+	end
+end
+
+local function build_map_icon_texture (x, y)
+	return table.concat ({
+		"blank.png^[resize:8x8^[combine:8x8:",
+		tostring (-(x * 8)), ",",
+		tostring (-(y * 8)), "=",
+		"mcl_maps_map_icons.png",
+	})
+end
+
+mcl_maps.register_explorer_map ("mcl_maps:ocean_explorer_map", "#3a7265", {
+	description = S ("Ocean Explorer Map"),
+	_explorer_map_structures = {
+		"mcl_levelgen:ocean_monument",
+	},
+	_treasure_symbol = build_map_icon_texture (9, 0),
+})
+
+mcl_maps.register_explorer_map ("mcl_maps:woodland_explorer_map", "#524c44", {
+	description = S ("Woodland Explorer Map"),
+	_explorer_map_structures = {
+		"mcl_levelgen:woodland_mansion",
+	},
+	_treasure_symbol = build_map_icon_texture (8, 0),
+})
+
+mcl_maps.register_explorer_map ("mcl_maps:trial_explorer_map", "#c26b4c", {
+	description = S ("Trial Explorer Map"),
+	_explorer_map_structures = {
+		"mcl_levelgen:trial_chambers",
+	},
+	-- TODO: Icon for Trial Chambers.
+	_treasure_symbol = build_map_icon_texture (10, 1),
+})
+
+mcl_maps.register_explorer_map ("mcl_maps:buried_treasure_map", "#675aad", {
+	description = S ("Buried Treasure Map"),
+	_explorer_map_structures = {
+		"mcl_levelgen:buried_treasure",
+	},
+	_treasure_symbol = build_map_icon_texture (10, 1),
+})
+
+mcl_maps.register_explorer_map ("mcl_maps:plains_village_map", "#848484", {
+	description = S ("Plains Village Map"),
+	_explorer_map_structures = {
+		"mcl_villages:village_plains",
+	},
+	_treasure_symbol = build_map_icon_texture (12, 1),
+})
+
+
+mcl_maps.register_explorer_map ("mcl_maps:desert_village_map", "#848484", {
+	description = S ("Desert Village Map"),
+	_explorer_map_structures = {
+		"mcl_villages:village_desert",
+	},
+	_treasure_symbol = build_map_icon_texture (11, 1),
+})
+
+mcl_maps.register_explorer_map ("mcl_maps:savannah_village_map", "#848484", {
+	description = S ("Savanna Village Map"),
+	_explorer_map_structures = {
+		"mcl_villages:village_savannah",
+	},
+	_treasure_symbol = build_map_icon_texture (13, 1),
+})
+
+mcl_maps.register_explorer_map ("mcl_maps:snowy_village_map", "#848484", {
+	description = S ("Snowy Village Map"),
+	_explorer_map_structures = {
+		"mcl_villages:village_snowy",
+	},
+	_treasure_symbol = build_map_icon_texture (14, 1),
+})
+
+mcl_maps.register_explorer_map ("mcl_maps:taiga_village_map", "#848484", {
+	description = S ("Taiga Village Map"),
+	_explorer_map_structures = {
+		"mcl_villages:village_taiga",
+	},
+	_treasure_symbol = build_map_icon_texture (15, 1),
+})
+
+mcl_maps.register_explorer_map ("mcl_maps:swamp_explorer_map", "#848484", {
+	description = S ("Swamp Explorer Map"),
+	_explorer_map_structures = {
+		"mcl_levelgen:swamp_hut",
+	},
+	_treasure_symbol = build_map_icon_texture (1, 2),
+})
+
+mcl_maps.register_explorer_map ("mcl_maps:jungle_explorer_map", "#848484", {
+	description = S ("Jungle Explorer Map"),
+	_explorer_map_structures = {
+		"mcl_levelgen:jungle_temple",
+	},
+	_treasure_symbol = build_map_icon_texture (0, 2),
+})
+
+local storage = core.get_mod_storage ()
+
+function mcl_maps.create_explorer_map (pos, name)
+	local def = core.registered_items[name]
+	assert (def and def._explorer_map_structures)
+
+	-- Indices commence at 30000 to prevent
+	-- `realizing_explorer_maps' from being initialized as an
+	-- array.
+	local id = storage:get_int ("last_explorer_map_id") + 1 + 30000
+	storage:set_int ("last_explorer_map_id", id)
+	local stack = ItemStack (name)
+	local meta = stack:get_meta ()
+	meta:set_int ("mcl_maps:explorer_map_id", id)
+	meta:set_int ("mcl_maps:explorer_map_x", floor (pos.x + 0.5))
+	meta:set_int ("mcl_maps:explorer_map_y", floor (pos.y + 0.5))
+	meta:set_int ("mcl_maps:explorer_map_z", floor (pos.z + 0.5))
+	return stack
+end
+
+local realizing_explorer_maps = {}
+
+local v = vector.new ()
+
+local function filter_generated_structures (bx, by, bz, _)
+	v.x = bx * 16
+	v.y = by * 16
+	v.z = bz * 16
+	core.load_area (v)
+	local cid, _, _, _
+		= core.get_node_raw (bx * 16, by * 16, bz * 16)
+	return cid ~= cid_ignore
+end
+
+local function realize_explorer_map_1 (pos, cb_data)
+	local err = true
+	if pos then
+		local clock = core.get_us_time ()
+		local id, _ = create_explorer_map_1 (pos)
+		if id then
+			local time = core.get_us_time () - clock
+			local msg = "[mcl_maps]: Generated explorer map in "
+				.. time / 1000 .. " ms"
+			core.log ("action", msg)
+			storage:set_string ("e_" .. cb_data, id)
+			realizing_explorer_maps[cb_data] = nil
+			err = false
+		end
+	end
+	if err then
+		storage:set_string ("e_" .. cb_data, ERROR_MAP_ID)
+		realizing_explorer_maps[cb_data] = nil
+	end
+
+	-- If a map with this ID appears in any HUD slot, guarantee
+	-- that it is reloaded.
+	for _, hud in pairs (huds) do
+		local stack = hud.wielditem
+		if stack then
+			local meta = stack:get_meta ()
+			local id = meta:get_int ("mcl_maps:explorer_map_id")
+			if id == cb_data then
+				hud.wielditem = nil
+				hud.last_texture = nil
+				hud.last_map_id = nil
+			end
+		end
+	end
+end
+
+local function maybe_realize_explorer_map (stack, id)
+	local map_id = storage:get_string ("e_" .. id)
+	if map_id and map_id ~= "" then
+		return map_id
+	end
+	return nil
+end
+
+function realize_explorer_map (stack)
+	local meta = stack:get_meta ()
+	local id = meta:get_int ("mcl_maps:explorer_map_id")
+	local map_id = maybe_realize_explorer_map (stack, id)
+	if map_id then
+		return map_id
+	end
+	local def = stack:get_definition ()
+	assert (def and def._explorer_map_structures)
+	if id > 0 and enable_real_maps then
+		if realizing_explorer_maps[id] then
+			return nil
+		end
+
+		local x = meta:get_int ("mcl_maps:explorer_map_x")
+		local y = meta:get_int ("mcl_maps:explorer_map_y")
+		local z = meta:get_int ("mcl_maps:explorer_map_z")
+		local pos = vector.new (x, y, z)
+		local structures = def._explorer_map_structures
+		realizing_explorer_maps[id] = true
+		local msg = {
+			"[mcl_maps]: Generating explorer map of type ",
+			stack:get_name (),
+			" at ",
+			vector.to_string (pos),
+		}
+		core.log ("action", table.concat (msg))
+		mcl_biome_dispatch.locate_structure_near (pos, structures, 16,
+							  realize_explorer_map_1,
+							  id, nil,
+							  filter_generated_structures)
+		return maybe_realize_explorer_map (stack, id)
+	end
+	return nil
+end
+
+mcl_maps.realize_explorer_map = realize_explorer_map
 
 ------------------------------------------------------------------------
 -- Map item scaling.
@@ -944,11 +1437,13 @@ core.register_on_joinplayer(function(player)
 		offset = { x = 0, y = 0 },
 		scale = { x = 2, y = 2 },
 	}
-	local marker_def = table.copy(map_def)
+	local marker_def = table.copy (map_def)
 	marker_def.alignment = { x = 0, y = 0 }
+	local treasure_def = table.copy (marker_def)
 	huds[player] = {
-		map = player:hud_add(map_def),
-		marker = player:hud_add(marker_def),
+		map = player:hud_add (map_def),
+		treasure = player:hud_add (treasure_def),
+		marker = player:hud_add (marker_def),
 	}
 end)
 
@@ -956,6 +1451,41 @@ core.register_on_leaveplayer(function(player)
 	maps[player] = nil
 	huds[player] = nil
 end)
+
+local function adjust_marker (player, id, img_arrow, img_dot, pos, minp, maxp)
+	local marker = img_arrow
+
+	if pos.x < minp.x then
+		marker = img_dot
+		pos.x = minp.x
+	elseif pos.x > maxp.x then
+		marker = img_dot
+		pos.x = maxp.x
+	end
+	if pos.z < minp.z then
+		marker = img_dot
+		pos.z = minp.z
+	elseif pos.z > maxp.z then
+		marker = img_dot
+		pos.z = maxp.z
+	end
+
+	if marker == "mcl_maps_player_arrow.png" then
+		local yaw = (floor (player:get_look_horizontal () * 180 / math.pi / 90 + 0.5) % 4) * 90
+		marker = marker .. "^[transformR" .. yaw
+	end
+	if not marker then
+		player:hud_change (id, "text", "blank.png")
+		return
+	end
+
+	player:hud_change (id, "text", marker)
+	local f = 2 * 128 / (maxp.x - minp.x + 1)
+	player:hud_change (id, "offset", {
+		x = (pos.x - minp.x) * f - 128,
+		y = (maxp.z - pos.z) * f - 256,
+	})
+end
 
 mcl_player.register_globalstep (function(player)
 	local wield = player:get_wielded_item ()
@@ -971,7 +1501,8 @@ mcl_player.register_globalstep (function(player)
 		hud.last_texture = texture
 		hud.last_map_id = id
 
-		if texture and wield:get_name () ~= "mcl_maps:map_locked" then
+		local map_name = wield:get_name ()
+		if texture and map_name ~= "mcl_maps:map_locked" then
 			mcl_title.set (player, "actionbar", {
 				text = S ("Right-click to redraw map"),
 				color = "white",
@@ -997,48 +1528,54 @@ mcl_player.register_globalstep (function(player)
 		local maxp = vector.new (map.x_start + width - 1, 0,
 					 map.z_start + width - 1)
 
-		local marker = "mcl_maps_player_arrow.png"
-
-		if pos.x < minp.x then
-			marker = "mcl_maps_player_dot.png"
-			pos.x = minp.x
-		elseif pos.x > maxp.x then
-			marker = "mcl_maps_player_dot.png"
-			pos.x = maxp.x
+		adjust_marker (player, hud.marker, "mcl_maps_player_arrow.png",
+			       "mcl_maps_player_dot.png", pos, minp, maxp)
+		if map.structure_pos then
+			local def = wield:get_definition ()
+			if def and def._treasure_symbol then
+				adjust_marker (player, hud.treasure,
+					       def._treasure_symbol,
+					       nil, map.structure_pos,
+					       minp, maxp)
+			else
+				player:hud_change (hud.treasure, "text", "blank.png")
+			end
+		else
+			player:hud_change (hud.treasure, "text", "blank.png")
 		end
-
-		if pos.z < minp.z then
-			marker = "mcl_maps_player_dot.png"
-			pos.z = minp.z
-		elseif pos.z > maxp.z then
-			marker = "mcl_maps_player_dot.png"
-			pos.z = maxp.z
-		end
-
-		if marker == "mcl_maps_player_arrow.png" then
-			local yaw = (math.floor(player:get_look_horizontal() * 180 / math.pi / 90 + 0.5) % 4) * 90
-			marker = marker .. "^[transformR" .. yaw
-		end
-
-		player:hud_change(hud.marker, "text", marker)
-
-		local f = 2 * 128 / (maxp.x - minp.x + 1)
-		player:hud_change(hud.marker, "offset", {
-			x = (pos.x - minp.x) * f - 128,
-			y = (maxp.z - pos.z) * f - 256,
-		})
 	elseif maps[player] then
 		player:hud_change(hud.map, "text", "blank.png")
 		player:hud_change(hud.marker, "text", "blank.png")
+		player:hud_change(hud.treasure, "text", "blank.png")
 		maps[player] = nil
 	end
 end)
 
+local function load_map_id (itemstack)
+	local name = itemstack:get_name ()
+	if core.get_item_group (name, "filled_map") > 0 then
+		local id
+		if core.get_item_group (name, "explorer_map") > 0 then
+			id = realize_explorer_map (itemstack)
+			if not id then
+				return nil
+			end
+		else
+			local meta = itemstack:get_meta ()
+			id = meta:get_string ("mcl_maps:map_id")
+			if not id or id == "" then
+				return nil
+			end
+		end
+		return id
+	end
+end
+
+mcl_maps.load_map_id = load_map_id
 
 function mcl_maps.load_map_item (itemstack)
-	if itemstack:get_name () == "mcl_maps:map"
-		or itemstack:get_name () == "mcl_maps:map_locked" then
-		local id = itemstack:get_meta ():get_string ("mcl_maps:map_id")
+	local id = load_map_id (itemstack)
+	if id then
 		local map = load_map_data (id)
 
 		if map then
@@ -1049,7 +1586,6 @@ function mcl_maps.load_map_item (itemstack)
 			return table.concat (tbl), id
 		end
 	end
-
 	return nil, nil
 end
 
@@ -1221,7 +1757,9 @@ core.register_on_craft (on_craft)
 core.register_craft_predict (on_craft_predict)
 
 tt.register_priority_snippet(function(itemstring, _, itemstack)
-	if itemstack and core.get_item_group (itemstring, "filled_map") > 0 then
+	if itemstack
+		and core.get_item_group (itemstring, "filled_map") > 0
+		and core.get_item_group (itemstring, "explorer_map") == 0 then
 		local meta = itemstack:get_meta ()
 		local id = meta:get_string ("mcl_maps:map_id")
 		if id ~= "" then
