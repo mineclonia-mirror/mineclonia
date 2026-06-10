@@ -157,25 +157,25 @@ function mobs_mc.make_villager_trade (tbl)
 	return copy
 end
 
-local function eval_item (item)
+local function eval_item (self, item, pr)
 	if type (item) == "function" then
-		return item ()
+		return item (self, pr)
 	else
-		return item
+		return ItemStack (item)
 	end
 end
 
-function mobs_mc.trade_from_table (pr, trade, reward_xp)
-	local wanted1 = ItemStack (eval_item (trade[1][1]))
+function mobs_mc.trade_from_table (self, pr, trade, reward_xp)
+	local wanted1 = ItemStack (eval_item (self, trade[1][1], pr))
 	wanted1:set_count (pr:next (trade[1][2], trade[1][3]))
 
 	local wanted2 = ItemStack ()
 	if trade[1][4] then
-		wanted2 = ItemStack (eval_item (trade[1][4]))
+		wanted2 = ItemStack (eval_item (self, trade[1][4], pr))
 		wanted2:set_count (pr:next (trade[1][5], trade[1][6]))
 	end
 
-	local offered = ItemStack (eval_item (trade[2][1]))
+	local offered = ItemStack (eval_item (self, trade[2][1], pr))
 	offered:set_count (pr:next (trade[2][2], trade[2][3]))
 
 	local name = offered:get_name ()
@@ -1411,6 +1411,62 @@ local function E (f, t)
 	return { "mcl_core:emerald", f or 1, t or f or 1 }
 end
 
+local function build_explorer_map_trade (itemid)
+	return function (self, _)
+		local stack = ItemStack (itemid)
+		local self_pos = self.object:get_pos ()
+		mcl_maps.initialize_explorer_map (self_pos, stack)
+		return stack
+	end
+end
+
+local explorer_map_items = {
+	desert = {
+		"mcl_maps:savannah_village_map",
+		"mcl_maps:plains_village_map",
+		"mcl_maps:jungle_explorer_map",
+	},
+	jungle = {
+		"mcl_maps:savannah_village_map",
+		"mcl_maps:desert_village_map",
+		"mcl_maps:swamp_explorer_map",
+	},
+	plains = {
+		"mcl_maps:savannah_village_map",
+		"mcl_maps:taiga_village_map",
+	},
+	savanna = {
+		"mcl_maps:desert_village_map",
+		"mcl_maps:plains_village_map",
+		"mcl_maps:jungle_explorer_map",
+	},
+	snowy = {
+		"mcl_maps:plains_village_map",
+		"mcl_maps:taiga_village_map",
+		"mcl_maps:swamp_explorer_map",
+	},
+	swamp = {
+		"mcl_maps:snowy_village_map",
+		"mcl_maps:taiga_village_map",
+		"mcl_maps:jungle_explorer_map",
+	},
+	taiga = {
+		"mcl_maps:plains_village_map",
+		"mcl_maps:snowy_village_map",
+		"mcl_maps:swamp_explorer_map",
+	},
+}
+
+local function get_explorer_map_item (self, pr)
+	local items = explorer_map_items[self._villager_type]
+	assert (items)
+	local itemid = items[pr:next (1, #items)]
+	local stack = ItemStack (itemid)
+	local self_pos = self.object:get_pos ()
+	mcl_maps.initialize_explorer_map (self_pos, stack)
+	return stack
+end
+
 local villager_trades = {
 	farmer = {
 		{
@@ -1658,16 +1714,18 @@ local villager_trades = {
 		{
 			{ { "mcl_core:paper", 24, 24 }, E(), 16, 2 },
 			{ E(7), { "mcl_maps:map_empty", 1, 1 }, 12, 1 },
+			{ { "mcl_core:emerald", 8, 8, "mcl_compass:compass", 1, 1 }, { get_explorer_map_item, 1, 1 }, 12, 10 },
 		},
 
 		{
 			{ { "mcl_panes:pane_natural_flat", 11, 11 }, E(), 16, 10 },
-			--{ { "mcl_core:emerald", 13, 13, "mcl_compass:compass", 1, 1 }, { "FIXME:ocean explorer map" 1, 1 }, 12, 5 },
+			{ { "mcl_core:emerald", 13, 13, "mcl_compass:compass", 1, 1 }, { build_explorer_map_trade ("mcl_maps:ocean_explorer_map"), 1, 1 }, 12, 10 },
+			{ { "mcl_core:emerald", 13, 13, "mcl_compass:compass", 1, 1 }, { build_explorer_map_trade ("mcl_maps:trial_explorer_map"), 1, 1 }, 12, 10 },
 		},
 
 		{
 			{ { "mcl_compass:compass", 1, 1 }, E(), 12, 20 },
-			--{ { "mcl_core:emerald", 14, 14, "mcl_compass:compass", 1, 1 }, { "FIXME:woodland explorer map" 1, 1 }, 12, 10 },
+			{ { "mcl_core:emerald", 14, 14, "mcl_compass:compass", 1, 1 }, { build_explorer_map_trade ("mcl_maps:woodland_explorer_map"), 1, 1 }, 12, 10 },
 		},
 
 		{
@@ -2002,7 +2060,7 @@ function villager:reload_trades ()
 
 		for _, trade in ipairs (trade_list) do
 			local trade_object
-				= mobs_mc.trade_from_table (pr, trade, true)
+				= mobs_mc.trade_from_table (self, pr, trade, true)
 			trade_object.tier = tier
 			table.insert (villager_trades, trade_object)
 		end
@@ -2017,7 +2075,7 @@ function villager:activate_trades ()
 	if trades then
 		for _, trade in ipairs (trades) do
 			local trade_object
-				= mobs_mc.trade_from_table (pr, trade, true)
+				= mobs_mc.trade_from_table (self, pr, trade, true)
 			trade_object.tier = self._tier
 			table.insert (self._trades, trade_object)
 		end
