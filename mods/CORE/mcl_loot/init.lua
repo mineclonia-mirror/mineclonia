@@ -135,18 +135,23 @@ Puts items in an inventory list into random slots.
 * inv: InvRef
 * listname: Inventory list name
 * items: table of items to add
+* cb: A function to be invoked with PR and every itemstack before it
+  is saved into the inventory.
 
 Items will be added from start of the table to end.
 If the inventory already has occupied slots, or is
 too small, placement of some items might fail.
 ]]
-function mcl_loot.fill_inventory(inv, listname, items, pr)
+function mcl_loot.fill_inventory(inv, listname, items, pr, cb, cb_data)
 	local size = inv:get_size(listname)
 	local slots = get_random_slots(size, pr)
 	local leftovers = {}
 	-- 1st pass: Add items into random slots
 	for i=1, math.min(#items, size) do
 		local item = items[i]
+		if cb then
+			cb (item, pr, cb_data)
+		end
 		local slot = slots[i]
 		local old_item = inv:get_stack(listname, slot)
 		local leftover = old_item:add_item(item)
@@ -158,6 +163,9 @@ function mcl_loot.fill_inventory(inv, listname, items, pr)
 	-- 2nd pass: If some items couldn't be added in first pass,
 	-- try again in a non-random fashion
 	for l=1, math.min(#leftovers, size) do
+		if cb then
+			cb (leftovers[l], pr, cb_data)
+		end
 		inv:add_item(listname, leftovers[l])
 	end
 	-- If there are still items left, tough luck!

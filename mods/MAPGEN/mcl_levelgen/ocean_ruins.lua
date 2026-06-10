@@ -13,7 +13,7 @@ mcl_levelgen.register_loot_table ("mcl_levelgen:ocean_ruins", {
 			{ itemstring = "mcl_core:coal_lump", weight = 25, amount_min = 1, amount_max=4 },
 			{ itemstring = "mcl_farming:wheat_item", weight = 25, amount_min = 2, amount_max=3 },
 			{ itemstring = "mcl_core:gold_nugget", weight = 25, amount_min = 1, amount_max=3 },
-			--{ itemstring = "mcl_maps:treasure_map", weight = 20, }, --FIXME Treasure map
+			{ itemstring = "mcl_maps:buried_treasure_map", weight = 20, },
 			{ itemstring = "mcl_books:book", weight = 10, func = function(stack, pr)
 				  mcl_enchanting.enchant_uniform_randomly(stack, {"soul_speed"}, pr)
 			end },
