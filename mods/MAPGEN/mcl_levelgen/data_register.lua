@@ -2,16 +2,45 @@
 -- Default Data Block processors.
 ------------------------------------------------------------------------
 
+local ipairs = ipairs
 local mathabs = math.abs
 local level_to_minetest_position = mcl_levelgen.level_to_minetest_position
 local loot_tables = {}
+local loot_postprocessors = {}
 
 function mcl_levelgen.register_loot_table (id, tbl)
 	loot_tables[id] = tbl
 end
 
+function mcl_levelgen.register_loot_postprocessor (id, fn)
+	table.insert (loot_postprocessors, {id, fn})
+end
+
+local function compare_postprocessor_ids (a, b)
+	return a[1] < b[1]
+end
+
+if core.register_on_mods_loaded then
+
+core.register_on_mods_loaded (function ()
+	table.sort (loot_postprocessors, compare_postprocessor_ids)
+	for i, fn in ipairs (loot_postprocessors) do
+		loot_postprocessors[i] = fn[2]
+	end
+end)
+
+end -- Otherwise loot processors should not be registered at all.
+
 local v = vector.zero ()
 local cid_air = core.CONTENT_AIR
+
+local function run_loot_postprocessors (stack, pr, _)
+	local x, y, z = v.x, v.y, v.z
+
+	for _, fn in ipairs (loot_postprocessors) do
+		fn (stack, x, y, z, pr)
+	end
+end
 
 local function handle_set_loot_table_1 (_, data, main_env_p)
 	v.x, v.y, v.z = level_to_minetest_position (data[1], data[2], data[3])
@@ -36,7 +65,8 @@ local function handle_set_loot_table_1 (_, data, main_env_p)
 		local pr = PcgRandom (loot_seed)
 		local loot = mcl_loot.get_multi_loot (loot_table, pr)
 		local meta = core.get_meta (v)
-		mcl_loot.fill_inventory (meta:get_inventory (), "main", loot, pr)
+		mcl_loot.fill_inventory (meta:get_inventory (), "main", loot, pr,
+					 run_loot_postprocessors)
 	end
 end
 
