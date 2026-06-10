@@ -46,6 +46,17 @@ features which are not available in this version. If one sees reason to drop
 compatibility in order to use later engine features, then one should make an
 issue about it so it can be discussed.
 
+### Use of Generative AI
+AI generated code may be used in mineclonia, there is an AGENTS.md file as well as
+in the skill files in the projects to assist your agent with generating code for
+mineclonia. AI contributions must satisfy these criteria:
+* They are marked with the "ai generated" label
+* The person submitting the PR takes full responsibility for the code.
+* The submitter should be able to answer questions about their changes and make
+refinements as requested.
+* For the Future the Maintainers reserve the right to deny AI generated PRs if
+they are of low-quality and/or high quantity (PR-spam).
+
 ## Code Guidelines
 * Each mod must provide `mod.conf`.
 * Mod names are snake case, and newly added mods start with `mcl_`, e.g.
