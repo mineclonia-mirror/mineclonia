@@ -3300,7 +3300,7 @@ local function get_containing_mapchunk (x, z, max)
 		z = floor (z1 / chunksize.z) * chunksize.z
 			+ chunksize.z - 1
 	end
-	return x, z
+	return x + origin.x, z + origin.z
 end
 
 local function emerge_progress_cb (blockpos, action, calls_remaining, param)
