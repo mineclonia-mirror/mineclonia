@@ -1488,8 +1488,16 @@ local function adjust_marker (player, id, img_arrow, img_dot, pos, minp, maxp)
 	end
 
 	if marker == "mcl_maps_player_arrow.png" then
-		local yaw = (floor (player:get_look_horizontal () * 180 / math.pi / 90 + 0.5) % 4) * 90
-		marker = marker .. "^[transformR" .. yaw
+		local dir = player:get_look_horizontal ()
+		local yaw = (floor (dir * 180 / pi / 45 + 0.5) % 8) * 45
+
+		if yaw == 0 or yaw == 90 or yaw == 180 or yaw == 270 then
+			marker = "mcl_maps_player_arrow.png^[transformR"
+				.. yaw
+		else
+			marker = "mcl_maps_player_arrow_diagonal.png^[transformR"
+				.. (yaw - 45)
+		end
 	end
 	if not marker then
 		player:hud_change (id, "text", "blank.png")
