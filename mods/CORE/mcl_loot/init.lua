@@ -135,8 +135,9 @@ Puts items in an inventory list into random slots.
 * inv: InvRef
 * listname: Inventory list name
 * items: table of items to add
-* cb: A function to be invoked with PR and every itemstack before it
-  is saved into the inventory.
+* cb: A function to be invoked with the parameter PR (a PcgRandom
+  object), CB_DATA, and every itemstack before it is saved into the
+  inventory.
 
 Items will be added from start of the table to end.
 If the inventory already has occupied slots, or is
