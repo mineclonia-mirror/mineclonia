@@ -37,7 +37,7 @@ local enable_real_maps
 --   [X] Item frame support.
 --   [X] Crafting of new maps.
 --   [X] Locked maps.
---   [ ] Conversion of existing maps.
+--   [X] Conversion of existing maps.
 --   [X] Treasure maps & biome reliefs.
 --   [X]   Treasure indicators.
 --   [X]   Item frames.
@@ -442,6 +442,14 @@ local function load_map_error ()
 	return map
 end
 
+local function read_map_data (map, data)
+	map.data = {}
+	map.heightmap = {}
+	local offset = (MAP_SIDE_LENGTH * MAP_SIDE_LENGTH * 4)
+	deserialize_data (map.data, data, 0)
+	deserialize_data (map.heightmap, data, offset)
+end
+
 local function load_map_1 (id)
 	if id == ERROR_MAP_ID then
 		return load_map_error ()
@@ -474,11 +482,7 @@ local function load_map_1 (id)
 	local data = file:read ("*all")
 	file:close ()
 
-	map.data = {}
-	map.heightmap = {}
-	local offset = (MAP_SIDE_LENGTH * MAP_SIDE_LENGTH * 4)
-	deserialize_data (map.data, data, 0)
-	deserialize_data (map.heightmap, data, offset)
+	read_map_data (map, data)
 	return map
 end
 
@@ -1787,20 +1791,90 @@ tt.register_priority_snippet(function(itemstring, _, itemstack)
 end)
 
 ------------------------------------------------------------------------
--- Conversion of obsolete maps.  TODO: it is not possible to convert
--- an old map into the new format unless a TGA decoder is available.
+-- Conversion of obsolete maps.
 ------------------------------------------------------------------------
+
+local function convert_old_map (itemstack, placer, pointed_thing)
+	local new_stack = mcl_util.call_on_rightclick (itemstack, placer,
+						       pointed_thing)
+	if new_stack then
+		return new_stack
+	end
+
+	if placer and placer:is_valid () then
+		local meta = itemstack:get_meta ()
+		local old_map_id = meta:get_string ("mcl_maps:id")
+		local old_minp = meta:get_string ("mcl_maps:minp")
+		local pos = core.string_to_pos (old_minp)
+
+		if old_map_id == "" or not pos then
+			local msg = S ("This old map is invalid and cannot be converted.")
+			core.chat_send_player (placer:get_player_name (), msg)
+			return nil
+		end
+		local id = storage:get_string ("converted_map_" .. old_map_id)
+
+		if not id or id == "" then
+			local data_file = map_textures_path .. "mcl_maps_map_texture_"
+				.. old_map_id .. ".bin"
+			if not core.path_exists (data_file) then
+				local msg = S ([[The map data previously generated for this map was not converted.
+If you are the server administrator, to prepare this data for conversion, install ImageMagick, and download and run the following script in your world directory: https://codeberg.org/mineclonia/mineclonia/src/branch/main/tools/convert_map_files.sh]])
+				core.chat_send_player (placer:get_player_name (), msg)
+				return nil
+			end
+
+			local map = {
+				x_start = pos.x,
+				z_start = pos.z,
+				dimension = mcl_worlds.pos_to_dimension (pos)
+					or "none",
+				scale = 1,
+			}
+
+			local file, _ = io.open (data_file, "rb")
+			if not file then
+				core.chat_send_player (placer:get_player_name (),
+						       "Failed to open map file for conversion.")
+				return nil
+			end
+			local data = file:read ("*all")
+			file:close ()
+
+			-- Verify that the data is the correct length.
+			if #data ~= MAP_SIDE_LENGTH * MAP_SIDE_LENGTH * 8 then
+				core.chat_send_player (placer:get_player_name (),
+						       "Converted map data is of incorrect length.")
+				return nil
+			end
+
+			id = allocate_map_id ()
+			map.ttl = MAP_TTL
+			loaded_maps[id] = map
+			read_map_data (map, data)
+			write_map_data (id, map)
+			storage:set_string ("converted_map_" .. old_map_id, id)
+		end
+
+		itemstack:set_name ("mcl_maps:map_locked")
+		meta:set_string ("mcl_maps:map_id", id)
+		tt.reload_itemstack_description (itemstack)
+		return itemstack
+	end
+end
 
 core.register_alias ("mcl_maps:empty_map", "mcl_maps:map_empty")
 
 core.register_craftitem ("mcl_maps:filled_map", {
 	description = S ("Map (old)"),
-	_tt_help = S ("This map is no longer supported."),
+	_tt_help = S ("This map is no longer supported.  Right click to convert it."),
 	inventory_image = "mcl_maps_map_filled.png^mcl_maps_map_update_required.png",
 	groups = {
 		not_in_creative_inventory = 1,
 		tool = 1,
 	},
+	on_place = convert_old_map,
+	on_secondary_use = convert_old_map,
 })
 
 for _, skin_item in ipairs ({
@@ -1812,3 +1886,33 @@ for _, skin_item in ipairs ({
 }) do
 	core.register_alias (skin_item, "mcl_maps:filled_map")
 end
+
+core.register_chatcommand ("create_old_map", {
+	description = S ("Obtain an old map with the provided ID."),
+	privs = { server = true, },
+	func = function (name, param)
+		local player = core.get_player_by_name (name)
+		if not player then
+			return
+		end
+
+		if #param > 0 then
+			local stack = ItemStack ("mcl_maps:filled_map")
+			local meta = stack:get_meta ()
+			meta:set_string ("mcl_maps:id", param)
+			local pos = mcl_util.get_nodepos (player:get_pos ())
+			pos.x = band (pos.x, -128)
+			pos.y = band (pos.y, -128)
+			pos.z = band (pos.z, -128)
+			meta:set_string ("mcl_maps:minp",
+					 core.pos_to_string (pos))
+			local inv = player:get_inventory ()
+			if inv:room_for_item ("main", stack) then
+				inv:add_item ("main", stack)
+			else
+				core.add_item (player:get_pos (), stack)
+			end
+		end
+		return
+	end
+})
