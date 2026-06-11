@@ -232,7 +232,7 @@ function mcl_itemframes.tpl_entity:set_item(itemstack, pos)
 		if texture then
 			local props = table.merge (map_props, {
 				textures = {
-					"blank.png^[fill:128x128:0,0:red^" .. texture,
+					"blank.png^" .. texture,
 				},
 			}, def.object_properties or {})
 			self.object:set_properties (props)
