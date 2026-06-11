@@ -323,7 +323,7 @@ mcl_player.register_globalstep(function(player)
 		local minp = core.string_to_pos(meta:get_string("mcl_maps:minp"))
 		local maxp = core.string_to_pos(meta:get_string("mcl_maps:maxp"))
 
-		local marker = "mcl_maps_player_arrow.png"
+		local marker
 
 		if pos.x < minp.x then
 			marker = "mcl_maps_player_dot.png"
@@ -341,9 +341,20 @@ mcl_player.register_globalstep(function(player)
 			pos.z = maxp.z
 		end
 
-		if marker == "mcl_maps_player_arrow.png" then
-			local yaw = (math.floor(player:get_look_horizontal() * 180 / math.pi / 90 + 0.5) % 4) * 90
-			marker = marker .. "^[transformR" .. yaw
+		if nil == marker then
+		   local yaw = (math.floor(player:get_look_horizontal() * 180 / math.pi / 45 + 0.5) % 8) * 45
+			if yaw == 0 or
+			   yaw == 90 or
+			   yaw == 180 or
+			   yaw == 270 then
+				marker = "mcl_maps_player_arrow.png" .. "^[transformR" .. yaw
+			end
+			if yaw == 45 or
+			   yaw == 135 or
+			   yaw == 225 or
+			   yaw == 315 then
+				marker = "mcl_maps_player_arrow_diagonal.png" .. "^[transformR" .. (yaw - 45)
+			end
 		end
 
 		player:hud_change(hud.marker, "text", marker)
