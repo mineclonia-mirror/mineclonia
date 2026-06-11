@@ -1508,7 +1508,7 @@ local function adjust_marker (player, id, img_arrow, img_dot, pos, minp, maxp)
 	local f = 2 * 128 / (maxp.x - minp.x + 1)
 	player:hud_change (id, "offset", {
 		x = (pos.x - minp.x) * f - 128,
-		y = (maxp.z - pos.z) * f - 256,
+		y = (maxp.z - pos.z) * f - 264,
 	})
 end
 
