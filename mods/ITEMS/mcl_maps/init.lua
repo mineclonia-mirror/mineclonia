@@ -1252,7 +1252,7 @@ function realize_explorer_map (stack)
 			vector.to_string (pos),
 		}
 		core.log ("action", table.concat (msg))
-		mcl_biome_dispatch.locate_structure_near (pos, structures, 16,
+		mcl_biome_dispatch.locate_structure_near (pos, structures, 32,
 							  realize_explorer_map_1,
 							  id, nil,
 							  filter_generated_structures)
