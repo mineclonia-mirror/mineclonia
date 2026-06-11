@@ -1340,7 +1340,7 @@ local function scale_map_data (map)
 		end
 	end
 
-	write_map_data (id, map)
+	write_map_data (id, dst)
 	return id, dst
 end
 
