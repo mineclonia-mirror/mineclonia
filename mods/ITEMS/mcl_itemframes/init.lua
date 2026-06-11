@@ -204,10 +204,33 @@ function mcl_itemframes.tpl_entity:set_item(itemstack, pos)
 	self._item = itemstack:get_name()
 	self._stack = itemstack
 	self._map_id = get_map_id(itemstack)
+	local meta = itemstack:get_meta()
+	self._map_minp = core.string_to_pos(meta:get_string("mcl_maps:minp"))
+	self._map_maxp = core.string_to_pos(meta:get_string("mcl_maps:maxp"))
 
 	local dir = core.wallmounted_to_dir(core.get_node(pos).param2)
 	self.object:set_pos(vector.add(self._itemframe_pos, dir * 0.42))
 	self.object:set_rotation(vector.dir_to_rotation(dir))
+
+	local marker = ""
+	if (
+		self._map_minp and
+		self._map_maxp and
+		pos.x > self._map_minp.x and
+		pos.x < self._map_maxp.x and
+		pos.z > self._map_minp.z and
+		pos.z < self._map_maxp.z
+	) then
+		-- marker is 8×8, points downwards
+		local x = pos.x - self._map_minp.x - 3
+		local z = self._map_maxp.z - pos.z - 6
+		-- hack to avoid clipping
+		if x < 0 then x = 0 end
+		if z < 0 then z = 0 end
+		if x > 120 then x = 120 end
+		if z > 120 then z = 120 end
+		marker = "^[combine:8x8:" .. x .. "," .. z .. "=mcl_maps_itemframe_location_marker.png"
+	end
 
 	if self._map_id then
 		local unran_callback = true
@@ -215,7 +238,7 @@ function mcl_itemframes.tpl_entity:set_item(itemstack, pos)
 			unran_callback = false
 			if self.object and self.object:get_pos() then
 				self.object:set_properties(table.merge(map_props, {
-					textures = {texture},
+					textures = {texture .. marker},
 				}, def.object_properties or {}))
 			end
 		end)
@@ -241,7 +264,9 @@ function mcl_itemframes.tpl_entity:get_staticdata()
 		item = self._item,
 		itemframe_pos = self._itemframe_pos,
 		itemstack = self._itemstack,
-		map_id = self._map_id
+		map_id = self._map_id,
+		map_maxp = self._map_maxp,
+		map_minp = self._map_minp,
 	}
 	s.props = self.object:get_properties()
 	return core.serialize(s)
@@ -262,6 +287,8 @@ function mcl_itemframes.tpl_entity:on_activate(staticdata, dtime_s)
 		self._itemstack = s.itemstack
 		self._item = s.item
 		self._map_id = s.map_id
+		self._map_minp = s.map_minp
+		self._map_maxp = s.map_maxp
 		update_entity(self._itemframe_pos)
 		return
 	end
