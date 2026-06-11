@@ -52,8 +52,15 @@ local function get_random_dye ()
 end
 
 local function get_random_tree ()
-	local _, wood = table.random_element (mcl_trees.woods)
-	return "mcl_trees:tree_" .. wood
+	local r = {}
+	for k, p in pairs(mcl_trees.woods) do
+		local sap = p.saplingdrop or "mcl_trees:sapling_" .. k
+		local def = core.registered_nodes[sap]
+		if def and not def._unobtainable then
+			table.insert (r, "mcl_trees:tree_" .. k)
+		end
+	end
+	return table.random_element (r)
 end
 
 local function get_random_sapling ()
