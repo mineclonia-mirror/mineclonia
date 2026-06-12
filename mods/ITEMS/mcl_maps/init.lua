@@ -551,7 +551,6 @@ local function create_new_map_1 (id, pos, dim)
 		data = alloc_map_data (),
 		heightmap = alloc_heightmap_data (),
 	}
-	local id = allocate_map_id ()
 	map.ttl = MAP_TTL
 	loaded_maps[id] = map
 	return id, map
@@ -713,7 +712,7 @@ local N = 4 -- Number of rows to update on each globalstep.
 local STEPS_PER_MAP = MAP_DATA_LENGTH / N
 local STEP_MASK = 0x1f
 
-local function update_one_map_unscaled (nodepos, map, xmin, xmax, x_end, y1)
+local function update_one_map_unscaled (nodepos, map)
 	local radius = CIRCLE_RADIUS
 	local xmin = nodepos.x - radius
 	local xmax = nodepos.x + radius - 1
@@ -752,7 +751,7 @@ local function update_one_map_unscaled (nodepos, map, xmin, xmax, x_end, y1)
 	end
 end
 
-local function update_one_map (nodepos, map, radius, xmin, xmax, x_end, y1)
+local function update_one_map (nodepos, map)
 	local scale = map.scale - 1
 	local radius = CIRCLE_RADIUS
 	local xmin = nodepos.x - radius
