@@ -108,7 +108,6 @@ local function update_cartography_table(player)
 
 				formspec = formspec .. "image[5.375,0.75;3.5,3.5;" .. texture .. "]"
 					.. "image[8.375,3.75;0.5,0.5;mcl_core_barrier.png]"
-				inv:set_stack("cartography_table_output", 1, stack)
 			end
 		end
 	end
