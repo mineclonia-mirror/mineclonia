@@ -62,6 +62,19 @@ core.register_on_leaveplayer(function(player)
 	mcl_player.players[player] = nil
 end)
 
+core.register_allow_player_inventory_action(function(_, action, _, inventory_info)
+	local from = inventory_info.from_list
+	local to = inventory_info.to_list
+	if from == "hand" then
+		if action == "move" then return 0 end
+		if action == "take" then return 0 end
+	end
+	if to == "hand" then
+		if action == "move" then return 0 end
+		if action == "put" then return 0 end
+	end
+end)
+
 local function node_ok(pos, fallback)
 	local node = core.get_node_or_nil(pos)
 	if node and node.name and core.registered_nodes[node.name] then
