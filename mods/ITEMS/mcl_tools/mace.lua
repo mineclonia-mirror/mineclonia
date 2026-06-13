@@ -105,7 +105,7 @@ core.register_tool("mcl_tools:mace", {
 
 					if not core.is_creative_enabled(user:get_player_name()) then
 						itemstack:add_wear(65535 / 500)
-						return itemstack
+						return mcl_util.return_itemstack_if_alive(user, itemstack)
 					end
 				end
 			end
