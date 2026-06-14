@@ -904,7 +904,7 @@ local skull_def = {
 		if player:get_hp() <= 0 then
 			local shooter = self._shooter:get_luaentity()
 			if shooter then
-				shooter:heal (5)
+				shooter:heal_mob (5)
 			end
 			spawn_wither_rose(player)
 		else
