@@ -284,7 +284,7 @@ core.register_craftitem("mcl_lush_caves:glow_berry", {
 		if not pointed_thing.under
 			or vector.direction (pointed_thing.under, pointed_thing.above).y ~= -1 then
 			if placer and not mcl_serverplayer.is_csm_at_least (placer, 1) then
-				return core.do_item_eat (2, nil, itemstack, placer, pointed_thing)
+				return itemstack
 			end
 			return
 		end
@@ -377,7 +377,6 @@ core.register_node("mcl_lush_caves:spore_blossom", {
 	mesh = "mcl_lush_caves_spore_blossom.obj",
 	use_texture_alpha = "clip",
 	paramtype = "light",
-	walkable = false,
 	groups = {handy = 1, plant = 1, deco_block = 1, attached_node = 4},
 	sounds = mcl_sounds.node_sound_dirt_defaults(),
 	selection_box = {
