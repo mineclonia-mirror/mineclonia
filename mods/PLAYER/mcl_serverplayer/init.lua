@@ -35,6 +35,7 @@ if not core.settings:get_bool("mcl_enable_csm", false) then
 		save_persistent_physics_factors = nop,
 		send_ammoctrl = nop,
 		send_bow_capabilities = nop,
+		send_cartography_updates = nop,
 		send_effect_ctrl = nop,
 		send_knockback = nop,
 		send_offhand_item = nop,
