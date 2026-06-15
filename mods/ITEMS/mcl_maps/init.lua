@@ -111,6 +111,7 @@ local MAP_UPDATE_AREA = 128
 local MAP_UPDATE_AREA_Y = 96
 local MAP_SIDE_LENGTH = 130
 local MAP_DATA_LENGTH = MAP_SIDE_LENGTH - 2
+mcl_maps.MAP_DATA_LENGTH = MAP_DATA_LENGTH
 
 local cid_ignore = core.CONTENT_IGNORE
 local map_get_node_raw = core.get_node_raw
@@ -311,6 +312,22 @@ local function encode_map_png (map, compression)
 				     converted_data,
 				     compression)
 	return png
+end
+
+local function irr_convert_map_data (dst, map)
+	local i = 0
+	local data = map.data
+	for z = 0, MAP_DATA_LENGTH - 1 do
+		for x = 0, MAP_DATA_LENGTH - 1 do
+			i = i + 1
+			dst[i] = data[(z + 1) * MAP_SIDE_LENGTH + x + 2]
+		end
+	end
+end
+
+function mcl_maps.convert_map_data (map)
+	irr_convert_map_data (converted_data, map)
+	return converted_data
 end
 
 function mcl_maps.produce_map_test (player_name, scale)
@@ -662,6 +679,10 @@ local function use_filled_map (itemstack, placer, pointed_thing)
 	end
 
 	if placer and placer:is_valid () then
+		if mcl_serverplayer.is_csm_at_least (placer, 14) then
+			return
+		end
+
 		local id = mcl_maps.load_map_id (itemstack)
 		if not id then
 			return
@@ -709,6 +730,7 @@ core.register_craftitem ("mcl_maps:map_locked", {
 
 local map_update_cnt = 0
 local N = 4 -- Number of rows to update on each globalstep.
+mcl_maps.N = N
 local STEPS_PER_MAP = MAP_DATA_LENGTH / N
 local STEP_MASK = 0x1f
 
@@ -717,6 +739,7 @@ local function update_one_map_unscaled (nodepos, map)
 	local xmin = nodepos.x - radius
 	local xmax = nodepos.x + radius - 1
 	local x_end = map.x_start + MAP_DATA_LENGTH - 1
+	local map_updated = false
 	if xmin <= x_end and xmax >= map.x_start then
 		local y1 = nodepos.y - floor (MAP_UPDATE_AREA_Y / 2)
 		local x1 = mathmax (xmin, map.x_start)
@@ -745,10 +768,12 @@ local function update_one_map_unscaled (nodepos, map)
 					-- reasons of performance.
 					produce_heightmap_turn (map, x1, y1, i, x2 - x1 + 1)
 					produce_map_turn (map, x1, y1, i, x2 - x1 + 1)
+					map_updated = true
 				end
 			end
 		end
 	end
+	return map_updated
 end
 
 local function update_one_map (nodepos, map)
@@ -758,6 +783,7 @@ local function update_one_map (nodepos, map)
 	local xmax = nodepos.x + radius - 1
 	local data_compass = lshift (MAP_DATA_LENGTH - 1, scale)
 	local x_end = map.x_start + data_compass
+	local map_updated = false
 	if xmin <= x_end and xmax >= map.x_start then
 		local y1 = nodepos.y - floor (MAP_UPDATE_AREA_Y / 2)
 		local x1 = mathmax (xmin, map.x_start) - map.x_start
@@ -785,40 +811,73 @@ local function update_one_map (nodepos, map)
 					produce_heightmap_turn (map, x1, y1, i, cnt)
 					produce_heightmap_turn (map, x1, y1, i + 1, cnt)
 					produce_map_turn (map, x1, y1, i, cnt)
+					map_updated = true
 				end
 			end
 		end
 	end
+	return map_updated
 end
 
 local realize_explorer_map
 
 function update_all_maps ()
+	local updates = {}
 	prepare_map_generation ()
 	for player, pos in mcl_player.iterate_connected_players () do
 		local wielditem = player:get_wielded_item ()
 		local nodepos = mcl_util.get_nodepos (pos)
 		local item_name = wielditem:get_name ()
-		local map_id
+		local map_id, explorer_map_id
 		if item_name == "mcl_maps:map" then
 			local meta = wielditem:get_meta ()
 			map_id = meta:get_string ("mcl_maps:map_id")
 		elseif core.get_item_group (item_name, "explorer_map") > 0 then
-			map_id = realize_explorer_map (wielditem)
+			map_id, explorer_map_id = realize_explorer_map (wielditem)
 		end
 		if map_id and map_id ~= "" then
 			local map = load_map_data (map_id)
 			local dim = mcl_worlds.pos_to_dimension (nodepos)
 			if map and map.dimension == dim then
+				local updated
 				if map.scale == 1 then
-					update_one_map_unscaled (nodepos, map)
+					updated = update_one_map_unscaled (nodepos, map)
 				else
-					update_one_map (nodepos, map)
+					updated = update_one_map (nodepos, map)
+				end
+
+				if updated then
+					-- If an explorer map has been
+					-- updated, this update must
+					-- be identified by the
+					-- explorer map ID.  Explorer
+					-- maps and cartographic maps
+					-- are expected not to alias.
+					updates[map]
+						= tostring (explorer_map_id or map_id)
 				end
 			end
 		end
 	end
+	mcl_serverplayer.send_cartography_updates (updates, map_update_cnt)
 	map_update_cnt = (map_update_cnt + 3) % STEPS_PER_MAP
+end
+
+local dst = {}
+
+function mcl_maps.encode_map_update (map, update_cnt)
+	local data = map.data
+	local idx = 1
+	for i = 0, MAP_DATA_LENGTH - 1 do
+		if band (i, STEP_MASK) == update_cnt then
+			local base = (i + 1) * MAP_SIDE_LENGTH + 2
+			for src_idx = base, base + MAP_DATA_LENGTH - 1 do
+				dst[idx] = data[src_idx]
+				idx = idx + 1
+			end
+		end
+	end
+	return dst
 end
 
 ------------------------------------------------------------------------
@@ -1229,7 +1288,7 @@ function realize_explorer_map (stack)
 	local id = meta:get_int ("mcl_maps:explorer_map_id")
 	local map_id = maybe_realize_explorer_map (stack, id)
 	if map_id then
-		return map_id
+		return map_id, id
 	end
 	local def = stack:get_definition ()
 	assert (def and def._explorer_map_structures)
@@ -1255,7 +1314,7 @@ function realize_explorer_map (stack)
 							  realize_explorer_map_1,
 							  id, nil,
 							  filter_generated_structures)
-		return maybe_realize_explorer_map (stack, id)
+		return maybe_realize_explorer_map (stack, id), id
 	end
 	return nil
 end
@@ -1511,10 +1570,26 @@ local function adjust_marker (player, id, img_arrow, img_dot, pos, minp, maxp)
 	})
 end
 
-mcl_player.register_globalstep (function(player)
+function mcl_maps.clear_player_hud (player)
+	local hud = huds[player]
+	if hud then
+		player:hud_change (hud.map, "text", "blank.png")
+		player:hud_change (hud.marker, "text", "blank.png")
+		player:hud_change (hud.treasure, "text", "blank.png")
+		hud.wielditem = nil
+		hud.last_texture = nil
+		hud.last_map_id = nil
+	end
+end
+
+mcl_player.register_globalstep (function (player)
 	local wield = player:get_wielded_item ()
 	local hud = huds[player]
 	local texture, id
+
+	if mcl_serverplayer.is_csm_at_least (player, 14) then
+		return
+	end
 
 	if hud.wielditem and hud.wielditem:equals (wield) then
 		texture = hud.last_texture
@@ -1580,7 +1655,8 @@ local function load_map_id (itemstack)
 	if core.get_item_group (name, "filled_map") > 0 then
 		local id
 		if core.get_item_group (name, "explorer_map") > 0 then
-			id = realize_explorer_map (itemstack)
+			local _
+			id, _ = realize_explorer_map (itemstack)
 			if not id then
 				return nil
 			end
