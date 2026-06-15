@@ -276,6 +276,9 @@ function mcl_serverplayer.init_player (client_state, player)
 			riptide_eligible = riptide_eligible,
 		})
 	end
+	if client_state.proto >= 14 then
+		mcl_maps.clear_player_hud (player)
+	end
 end
 
 function mcl_serverplayer.sprinting_locally (player)
@@ -655,6 +658,9 @@ function mcl_serverplayer.globalstep (player, dtime)
 	end
 	if mcl_serverplayer.is_csm_at_least (player, 6) then
 		mcl_serverplayer.update_biome_data (state, player, dtime)
+	end
+	if mcl_serverplayer.is_csm_at_least (player, 14) then
+		mcl_serverplayer.step_maps (state, player, dtime)
 	end
 	if enable_engine_anticheat then
 		mcl_serverplayer.anticheat_globalstep (state, player, dtime)
