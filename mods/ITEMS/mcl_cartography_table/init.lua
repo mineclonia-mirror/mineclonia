@@ -45,9 +45,16 @@ local function update_cartography_table(player)
 
 		mcl_formspec.get_itemslot_bg_v4(0.375, 9.05, 9, 1),
 		"list[current_player;main;0.375,9.05;9,1;]",
+		"listring[current_player;main]",
+		"listring[current_player;cartography_table_sorter]",
+		"listring[current_player;cartography_table_input]",
+		"listring[current_player;main]",
+		"listring[current_player;cartography_table_output]",
+		"listring[current_player;main]",
 	})
 
 	local inv = player:get_inventory()
+	inv:set_stack ("cartography_table_sorter", 1, ItemStack (""))
 	local stack = inv:get_stack ("cartography_table_input", 1)
 	local operation_selected = false
 	local texture, id
@@ -131,6 +138,8 @@ core.register_on_joinplayer(function(player)
 
 	inv:set_size("cartography_table_input", 2)
 	inv:set_size("cartography_table_output", 1)
+	inv:set_size ("cartography_table_sorter", 1)
+	inv:set_stack ("cartography_table_sorter", 1, ItemStack ())
 
 	-- The player might have items remaining in the slots from the previous join; this is likely
 	-- when the server has been shutdown and the server didn't clean up the player inventories.
@@ -189,6 +198,30 @@ core.register_allow_player_inventory_action(function(player, action, inventory, 
 	if action == "move" or action == "put" then
 		if inventory_info.to_list == "cartography_table_output" then
 			return 0
+		elseif inventory_info.to_list == "cartography_table_sorter" then
+			local stack = inventory:get_stack (inventory_info.from_list,
+							   inventory_info.from_index)
+			local name = stack:get_name ()
+			if core.get_item_group (name, "filled_map") > 0 then
+				local stack1 = inventory:get_stack ("cartography_table_input", 1)
+				if stack1:is_empty () then
+					return 1
+				end
+				return 0
+			elseif name == "mcl_core:paper"
+				or name == "mcl_maps:map_empty"
+				or name == "mcl_panes:pane_natural_flat" then
+				local stack2
+					= inventory:get_stack ("cartography_table_input", 2)
+				local dst_type = stack2:peek_item ()
+				if stack2:is_empty ()
+					or dst_type:equals (stack:peek_item ()) then
+					local cnt = stack2:get_stack_max ()
+						- stack2:get_count ()
+					return math.max (cnt, 0)
+				end
+				return 0
+			end
 		elseif inventory_info.to_list == "cartography_table_input" then
 			local index = inventory_info.to_index
 			local stack = inventory:get_stack(inventory_info.from_list, inventory_info.from_index)
@@ -212,6 +245,12 @@ core.register_allow_player_inventory_action(function(player, action, inventory, 
 			return inventory_info.count
 		end
 	end
+
+	-- Forbid all unhandled operations upon the sorter list.
+	if inventory_info.from_list == "cartography_table_sorter"
+		or inventory_info.to_list == "cartography_table_sorter" then
+		return 0
+	end
 end)
 
 core.register_on_player_inventory_action(function(player, action, inventory, inventory_info)
@@ -219,8 +258,26 @@ core.register_on_player_inventory_action(function(player, action, inventory, inv
 		if inventory_info.from_list == "cartography_table_output" then
 			remove_from_input(player, inventory, inventory_info.count)
 		end
-		if inventory_info.to_list == "cartography_table_input" or inventory_info.from_list == "cartography_table_input" then
+		if inventory_info.to_list == "cartography_table_input"
+			or inventory_info.from_list == "cartography_table_input" then
 			update_cartography_table(player)
+		end
+		if inventory_info.to_list == "cartography_table_sorter" then
+			local info = inventory_info
+			local stack = inventory:get_stack (info.to_list, info.to_index)
+
+			if core.get_item_group (stack:get_name (), "filled_map") > 0 then
+				inventory:set_stack ("cartography_table_input", 1, stack)
+			else
+				local stack2
+					= inventory:get_stack ("cartography_table_input", 2)
+				stack2:add_item (stack)
+				inventory:set_stack ("cartography_table_input", 2, stack2)
+			end
+
+			-- Leftovers should not exist here.
+			inventory:set_stack ("cartography_table_sorter", 1, ItemStack (""))
+			update_cartography_table (player)
 		end
 	elseif action == "put" then
 		if inventory_info.listname == "cartography_table_input" then
@@ -258,7 +315,8 @@ core.register_node("mcl_cartography_table:cartography_table", {
 	is_ground_content = false,
 	_mcl_burntime = 15,
 	on_rightclick = function(pos, node, player, itemstack)
-		if player and player:is_player() and not player:get_player_control().sneak then
+		if player and player:is_player()
+			and not player:get_player_control().sneak then
 			update_cartography_table(player)
 		end
 	end,
