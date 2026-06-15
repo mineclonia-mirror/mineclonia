@@ -95,7 +95,7 @@ end)
 -- Modchannel message definitions.
 -----------------------------------------------------------------------
 
-local MAX_PROTO_VERSION = 13
+local MAX_PROTO_VERSION = 14
 
 -- Serverbound messages.
 local SERVERBOUND_HELLO = 'aa'
@@ -116,6 +116,8 @@ local SERVERBOUND_SHIELDCTRL = 'ao' -- Protocol version 1.
 local SERVERBOUND_EAT_ITEM = 'ap'
 local SERVERBOUND_RELEASE_TRIDENT_ITEM = 'aq' -- Protocol version 4.
 local SERVERBOUND_DISCARD_BIOME_DATA = 'ar' -- Protocol version 6.
+local SERVERBOUND_REQUEST_CARTOGRAPHIC_MAP_DATA = 'as' -- Protocol version 14.
+local SERVERBOUND_REQUEST_EXPLORER_MAP_DATA = 'at'
 
 -- Clientbound messages.
 local CLIENTBOUND_HELLO = 'AA'
@@ -139,6 +141,10 @@ local CLIENTBOUND_PLAYER_VITALS = 'AR'
 local CLIENTBOUND_EFFECT_CTRL = 'AS' -- Protocol version 2.
 local CLIENTBOUND_TRIDENT_CTRL = 'AT' -- Protocol version 4.
 local CLIENTBOUND_BIOME_DATA = 'AU' -- Protocol version 6.
+local CLIENTBOUND_MAP_METADATA = 'AV' -- Protocol version 14.
+local CLIENTBOUND_MAP_DATA_PACKET = 'AW' -- Protocol version 14.
+local CLIENTBOUND_MAP_DATA_FINISH = 'AX'
+local CLIENTBOUND_MAP_DATA_UPDATE = 'AY'
 
 local MAX_PAYLOAD = 65533
 
@@ -313,6 +319,57 @@ function mcl_serverplayer.send_biome_data (player, index, meta)
 	})
 end
 
+function mcl_serverplayer.send_map_metadata (player, metadata)
+	local payload = core.write_json (metadata)
+	assert (#payload <= MAX_PAYLOAD, "oversized ClientboundMapMetadata")
+	modchannels[player]:send_all (table.concat {
+		CLIENTBOUND_MAP_METADATA, payload,
+	})
+end
+
+-- Assume that map IDs may be up to 99 characters in length.
+local MAX_MAP_DATA_LENGTH = MAX_PAYLOAD - 100
+mcl_serverplayer.MAX_MAP_DATA_LENGTH = MAX_MAP_DATA_LENGTH
+
+function mcl_serverplayer.send_map_data_packet (player, map, packet)
+	assert (#packet <= MAX_MAP_DATA_LENGTH,
+		"oversized ClientboundMapDataPacket")
+	modchannels[player]:send_all (table.concat {
+		CLIENTBOUND_MAP_DATA_PACKET,
+		map,
+		",",
+		packet,
+	})
+end
+
+function mcl_serverplayer.send_map_data_finish (player, map, packet)
+	assert (#packet <= MAX_MAP_DATA_LENGTH,
+		"oversized ClientboundMapDataFinish")
+	modchannels[player]:send_all (table.concat {
+		CLIENTBOUND_MAP_DATA_FINISH,
+		map,
+		",",
+		packet,
+	})
+end
+
+-- N.B. that updates are transmitted uncompressed.
+local MAX_MAP_UPDATE_LENGTH = 2112 -- 2048 / 32 * 33
+mcl_serverplayer.MAX_MAP_UPDATE_LENGTH = MAX_MAP_UPDATE_LENGTH
+
+function mcl_serverplayer.send_map_data_update (player, map, rows, packet)
+	assert (#packet <= MAX_MAP_UPDATE_LENGTH,
+		"oversized ClientboundMapDataUpdate")
+	modchannels[player]:send_all (table.concat {
+		CLIENTBOUND_MAP_DATA_UPDATE,
+		map,
+		",",
+		rows,
+		",",
+		packet,
+	})
+end
+
 -----------------------------------------------------------------------
 -- Handshakes.  When a client joins, it is not considered CSM-enabled
 -- till a SERVERBOUND_HELLO packet is received containing the protocol
@@ -475,6 +532,15 @@ local function process_serverbound_hello (player, state, payload)
 			end
 		else
 			serverbound_handshake.biome_data_available = nil
+		end
+		if proto >= 14 then
+			serverbound_handshake.explorer_map_items
+				= mcl_serverplayer.explorer_map_items
+			serverbound_handshake.cartographic_map_items
+				= mcl_serverplayer.cartographic_map_items
+		else
+			serverbound_handshake.explorer_map_items = nil
+			serverbound_handshake.cartographic_map_items = nil
 		end
 		local payload = core.write_json (serverbound_handshake)
 		if (#payload % MAX_PAYLOAD) == 0 then
@@ -736,6 +802,18 @@ local function receive_modchannel_message_1 (player, message)
 			end
 
 			mcl_serverplayer.discard_biome_data (player, state, list)
+		elseif msgtype == SERVERBOUND_REQUEST_CARTOGRAPHIC_MAP_DATA then
+			if state.proto < 14 then
+				error ("ServerboundRequestCartographicMapData messages require"
+				       .. " protocol version >= 14.")
+			end
+			mcl_serverplayer.request_cartographic_map_data (player, state, payload)
+		elseif msgtype == SERVERBOUND_REQUEST_EXPLORER_MAP_DATA then
+			if state.proto < 14 then
+				error ("ServerboundRequestExplorerMapData messages require"
+				       .. " protocol version >= 14.")
+			end
+			mcl_serverplayer.request_explorer_map_data (player, state, payload)
 		else
 			core.log ("warning", table.concat ({
 				"Client ", player:get_player_name (), " delivered",
@@ -763,8 +841,10 @@ end
 core.register_on_modchannel_message (receive_modchannel_message)
 
 local modpath = core.get_modpath (core.get_current_modname ())
+dofile (modpath .. "/util.lua")
 dofile (modpath .. "/player.lua")
 dofile (modpath .. "/items.lua")
 dofile (modpath .. "/mount.lua")
 dofile (modpath .. "/effects.lua")
 dofile (modpath .. "/level.lua")
+dofile (modpath .. "/cartography.lua")
