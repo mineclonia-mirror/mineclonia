@@ -116,7 +116,7 @@ mcl_player.register_player_setting("mcl_inventory:quick_move_to_craftgrid_", {
 	section = nil,
 
 	-- Optional callback run when the setting is changed.
-	on_change = function()
+	on_change = function(player, setting_name, value)
 	end,
 
 	-- Default value used for intializing the settings UI when the player
@@ -125,8 +125,8 @@ mcl_player.register_player_setting("mcl_inventory:quick_move_to_craftgrid_", {
 	-- be possible).
 	settings_ui_default = minetest.settings:get_bool("mcl_quick_move_to_craftgrid", false),
 
-    -- Hide the setting for clients with protocol version less than this value.
-    min_protocol_version = 47,
+	-- Hide the setting for clients with protocol version less than this value.
+	min_protocol_version = 47,
 }
 
 -- Get the value of a player setting. It will automatically be converted to the
