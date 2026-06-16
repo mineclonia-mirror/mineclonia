@@ -44,8 +44,8 @@ mcl_tools.register_set("wood", {
     },
     ["spear"] = {
         description = S("Wooden Spear"),
-        inventory_image = "wooden_spear.png",
-        wield_image = "wooden_spear_in_hand.png",
+        inventory_image = "mcl_tools_wooden_spear.png",
+        wield_image = "mcl_tools_wooden_spear_wield.png",
 
 		jab_cooldown = 0.65,
 		jab_damage = 1,
@@ -106,8 +106,8 @@ mcl_tools.register_set("stone", {
     },
     ["spear"] = {
         description = S("Stone Spear"),
-        inventory_image = "stone_spear.png",
-        wield_image = "stone_spear_in_hand.png",
+        inventory_image = "mcl_tools_stone_spear.png",
+        wield_image = "mcl_tools_stone_spear_wield.png",
 
 		jab_cooldown = 0.75,
 		jab_damage = 2,
@@ -165,6 +165,24 @@ mcl_tools.register_set("copper", {
             full_punch_interval = 1.25,
             damage_groups = { fleshy = 9 }
         },
+    },
+    ["spear"] = {
+        description = S("Copper Spear"),
+        inventory_image = "mcl_tools_copper_spear.png",
+        wield_image = "mcl_tools_copper_spear_wield.png",
+
+		jab_cooldown = 0.75,
+		jab_damage = 2,
+		enchantability = 5,
+		repair_material = "mcl_copper:copper_ingot",
+
+		uses = 131,
+		charge_delay = 0.7,
+		charge_minimum_dismount_speed = 10,
+		engaged_phase_duration = 4.5,
+		tired_phase_duration = 4.5,
+		disengaged_phase_duration = 4.75,
+		charge_damage_multiplier = 0.82
     }
 }, {_mcl_cooking_output = "mcl_copper:copper_nugget"})
 
@@ -212,8 +230,8 @@ mcl_tools.register_set("iron", {
     },
     ["spear"] = {
         description = S("Iron Spear"),
-        inventory_image = "iron_spear.png",
-        wield_image = "iron_spear_in_hand.png",
+        inventory_image = "mcl_tools_iron_spear.png",
+        wield_image = "mcl_tools_iron_spear_wield.png",
 
 		jab_cooldown = 0.95,
 		jab_damage = 3,
@@ -274,8 +292,8 @@ mcl_tools.register_set("gold", {
     },
     ["spear"] = {
         description = S("Golden Spear"),
-        inventory_image = "golden_spear.png",
-        wield_image = "golden_spear_in_hand.png",
+        inventory_image = "mcl_tools_golden_spear.png",
+        wield_image = "mcl_tools_golden_spear_wield.png",
 
 		jab_cooldown = 0.95,
 		jab_damage = 1,
@@ -344,8 +362,8 @@ mcl_tools.register_set("diamond", {
     },
     ["spear"] = {
         description = S("Diamond Spear"),
-        inventory_image = "diamond_spear.png",
-        wield_image = "diamond_spear_in_hand.png",
+        inventory_image = "mcl_tools_diamond_spear.png",
+        wield_image = "mcl_tools_diamond_spear_wield.png",
 
 		jab_cooldown = 1.05,
 		jab_damage = 4,
@@ -406,8 +424,8 @@ mcl_tools.register_set("netherite", {
     },
     ["spear"] = {
         description = S("Netherite Spear"),
-        inventory_image = "netherite_spear.png",
-        wield_image = "netherite_spear_in_hand.png",
+        inventory_image = "mcl_tools_netherite_spear.png",
+        wield_image = "mcl_tools_netherite_spear_wield.png",
 
 		jab_cooldown = 1.15,
 		jab_damage = 5,
