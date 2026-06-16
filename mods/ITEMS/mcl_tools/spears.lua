@@ -82,7 +82,7 @@ local function spear_on_use(stack, user, pointed_thing)
 		user:add_velocity(lunge_velocity)
 
 		stack:add_wear_by_uses(spear_def.groups.uses)
-		return stack
+		return mcl_util.return_itemstack_if_alive(user, stack)
 	end
 
 	local ray = core.raycast(user_pos, user_pos + vector.multiply(user_look, spear_reach), true)
@@ -108,7 +108,7 @@ local function spear_on_use(stack, user, pointed_thing)
 
 	stack:add_wear_by_uses(spear_def.groups.uses)
 
-	return stack
+	return mcl_util.return_itemstack_if_alive(user, stack)
 end
 
 function mcl_tools.register_spear(name, spear_def)
