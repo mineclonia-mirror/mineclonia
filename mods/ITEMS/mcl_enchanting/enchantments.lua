@@ -594,8 +594,9 @@ mcl_enchanting.enchantments.lunge = {
 mcl_enchanting.enchantments.density = {
 	name = S("Density"),
 	max_level = 5,
-	primary = { mace = true},
-	secondary = { mace = true},
+	primary = { mace = true },
+	secondary = { mace = true },
+	disallow = {},
 	incompatible = { breach = true, bane_of_arthropods = true, smite = true },
 	weight = 2,
 	description = S("Increases mace damage when falling."),
