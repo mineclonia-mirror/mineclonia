@@ -162,7 +162,7 @@ local function generate_setting_fragment(player, name, def, fs)
 	y = y + padding
 
 	local playerinfo = core.get_player_information(player:get_player_name())
-	if def.min_protocol_version and def.min_protocol_version >= playerinfo.protocol_version then
+	if def.min_protocol_version and def.min_protocol_version > playerinfo.protocol_version then
 		fs:add("label[1,", y, ";", F(C(setting_name_color, S('Setting "@1" is not available on your Luanti version', def.short_desc))), "]")
 		fs.y = y + padding
 		return
