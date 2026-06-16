@@ -1877,6 +1877,8 @@ end)
 -- Conversion of obsolete maps.
 ------------------------------------------------------------------------
 
+dofile (modpath .. "/tgadec.lua")
+
 local function convert_old_map (itemstack, placer, pointed_thing)
 	local new_stack = mcl_util.call_on_rightclick (itemstack, placer,
 						       pointed_thing)
@@ -1899,10 +1901,9 @@ local function convert_old_map (itemstack, placer, pointed_thing)
 
 		if not id or id == "" then
 			local data_file = map_textures_path .. "mcl_maps_map_texture_"
-				.. old_map_id .. ".bin"
+				.. old_map_id .. ".tga"
 			if not core.path_exists (data_file) then
-				local msg = S ([[The map data previously generated for this map was not converted.
-If you are the server administrator, to prepare this data for conversion, install ImageMagick, and download and run the following script in your world directory: https://codeberg.org/mineclonia/mineclonia/src/branch/main/tools/convert_map_files.sh]])
+				local msg = S ("The map data previously generated for this map does not exist.")
 				core.chat_send_player (placer:get_player_name (), msg)
 				return nil
 			end
@@ -1917,24 +1918,36 @@ If you are the server administrator, to prepare this data for conversion, instal
 
 			local file, _ = io.open (data_file, "rb")
 			if not file then
-				core.chat_send_player (placer:get_player_name (),
-						       "Failed to open map file for conversion.")
+				local msg = S ("Failed to open map file for conversion.")
+				core.chat_send_player (placer:get_player_name (), msg)
 				return nil
 			end
 			local data = file:read ("*all")
 			file:close ()
-
-			-- Verify that the data is the correct length.
-			if #data ~= MAP_SIDE_LENGTH * MAP_SIDE_LENGTH * 8 then
-				core.chat_send_player (placer:get_player_name (),
-						       "Converted map data is of incorrect length.")
+			local ok, width, height, pixels
+				= pcall (mcl_maps.get_targa_pixels, data)
+			if not ok or width ~= MAP_DATA_LENGTH or height ~= MAP_DATA_LENGTH then
+				local msg = S ("Format of existing map data is invalid: @1",
+					       tostring (width))
+				core.chat_send_player (placer:get_player_name (), msg)
 				return nil
 			end
 
 			id = allocate_map_id ()
 			map.ttl = MAP_TTL
+			map.data = alloc_map_data ()
+			map.heightmap = alloc_heightmap_data ()
+
+			-- Write pixels into the updated map.
+			local dst = map.data
+			for z = 0, MAP_DATA_LENGTH - 1 do
+				local src_base = z * width + 1
+				local dst_base = (z + 1) * MAP_SIDE_LENGTH + 1
+				for x = 0, MAP_DATA_LENGTH - 1 do
+					dst[dst_base + x] = pixels[src_base + x]
+				end
+			end
 			loaded_maps[id] = map
-			read_map_data (map, data)
 			write_map_data (id, map)
 			storage:set_string ("converted_map_" .. old_map_id, id)
 		end
@@ -1968,6 +1981,14 @@ for _, skin_item in ipairs ({
 	"mcl_maps:filled_map_hand",
 }) do
 	core.register_alias (skin_item, "mcl_maps:filled_map")
+end
+
+local list = mcl_skins.get_skin_list ()
+for _, skin in pairs (list) do
+	local name = "mcl_maps:filled_map_" .. skin.id
+	if not core.registered_items[name] then
+		core.register_alias (name, "mcl_maps:filled_map")
+	end
 end
 
 core.register_chatcommand ("create_old_map", {
