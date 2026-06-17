@@ -23,6 +23,8 @@ local function on_place_fish(itemstack, placer, pointed_thing)
 	local n = core.get_node(pointed_thing.above)
 	local defs = core.registered_nodes[n.name]
 
+	if not defs or (core.get_item_group(n.name, "solid") ~= 0 or core.get_item_group(n.name, "opaque") ~= 0) then return end
+
 	local fish = itemstack:get_definition()._mcl_buckets_fish
 	if fish_names[fish] then
 		local props = table.merge(
@@ -50,12 +52,8 @@ local function on_place_fish(itemstack, placer, pointed_thing)
 				core.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.25, max_hear_distance = 16}, true)
 			end
 			if water then
-				if defs and (core.get_item_group(n.name, "solid") ~= 1 and core.get_item_group(n.name, "opaque") ~= 1) then
-					core.dig_node(pos)
-					core.set_node(pos, {name = water})
-				else
-					return
-				end
+				core.dig_node(pos)
+				core.set_node(pos, {name = water})
 			end
 			if not placer or not core.is_creative_enabled(placer:get_player_name()) then
 				itemstack = ItemStack("mcl_buckets:bucket_empty")
