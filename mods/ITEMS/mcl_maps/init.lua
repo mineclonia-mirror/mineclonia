@@ -1942,7 +1942,7 @@ local function convert_old_map (itemstack, placer, pointed_thing)
 			local dst = map.data
 			for z = 0, MAP_DATA_LENGTH - 1 do
 				local src_base = z * width + 1
-				local dst_base = (z + 1) * MAP_SIDE_LENGTH + 1
+				local dst_base = (z + 1) * MAP_SIDE_LENGTH + 2
 				for x = 0, MAP_DATA_LENGTH - 1 do
 					dst[dst_base + x] = pixels[src_base + x]
 				end
