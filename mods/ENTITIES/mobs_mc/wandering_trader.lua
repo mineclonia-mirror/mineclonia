@@ -51,12 +51,16 @@ local function get_random_dye ()
 	return "mcl_dyes:"..get_random_color ()
 end
 
+local function is_trading_wood (k, p)
+	local sap = p.saplingdrop or ("mcl_trees:sapling_" .. k)
+	local def = core.registered_nodes[sap]
+	return def and not def._unobtainable
+end
+
 local function get_random_tree ()
 	local r = {}
 	for k, p in pairs(mcl_trees.woods) do
-		local sap = p.saplingdrop or ("mcl_trees:sapling_" .. k)
-		local def = core.registered_nodes[sap]
-		if def and not def._unobtainable then
+		if is_trading_wood (k, p) then
 			table.insert (r, "mcl_trees:tree_" .. k)
 		end
 	end
@@ -66,10 +70,8 @@ end
 local function get_random_sapling ()
 	local r = {}
 	for k, p in pairs(mcl_trees.woods) do
-		local sap = p.saplingdrop or ("mcl_trees:sapling_" .. k)
-		local def = core.registered_nodes[sap]
-		if def and not def._unobtainable then
-			table.insert (r, sap)
+		if is_trading_wood (k, p) then
+			table.insert (r, p.saplingdrop or ("mcl_trees:sapling_" .. k))
 		end
 	end
 	return table.random_element (r)
