@@ -1122,6 +1122,7 @@ mcl_maps.register_explorer_map ("mcl_maps:ocean_explorer_map", "#3a7265", {
 		"mcl_levelgen:ocean_monument",
 	},
 	_treasure_symbol = build_map_icon_texture (9, 0),
+	_skip_existing_chunks = true,
 })
 
 mcl_maps.register_explorer_map ("mcl_maps:woodland_explorer_map", "#524c44", {
@@ -1130,6 +1131,7 @@ mcl_maps.register_explorer_map ("mcl_maps:woodland_explorer_map", "#524c44", {
 		"mcl_levelgen:woodland_mansion",
 	},
 	_treasure_symbol = build_map_icon_texture (8, 0),
+	_skip_existing_chunks = true,
 })
 
 mcl_maps.register_explorer_map ("mcl_maps:trial_explorer_map", "#c26b4c", {
@@ -1139,6 +1141,7 @@ mcl_maps.register_explorer_map ("mcl_maps:trial_explorer_map", "#c26b4c", {
 	},
 	-- TODO: Icon for Trial Chambers.
 	_treasure_symbol = build_map_icon_texture (10, 1),
+	_skip_existing_chunks = true,
 })
 
 mcl_maps.register_explorer_map ("mcl_maps:buried_treasure_map", "#675aad", {
@@ -1147,6 +1150,7 @@ mcl_maps.register_explorer_map ("mcl_maps:buried_treasure_map", "#675aad", {
 		"mcl_levelgen:buried_treasure",
 	},
 	_treasure_symbol = build_map_icon_texture (10, 1),
+	_skip_existing_chunks = false,
 })
 
 mcl_maps.register_explorer_map ("mcl_maps:plains_village_map", "#848484", {
@@ -1155,6 +1159,7 @@ mcl_maps.register_explorer_map ("mcl_maps:plains_village_map", "#848484", {
 		"mcl_villages:village_plains",
 	},
 	_treasure_symbol = build_map_icon_texture (12, 1),
+	_skip_existing_chunks = true,
 })
 
 
@@ -1164,6 +1169,7 @@ mcl_maps.register_explorer_map ("mcl_maps:desert_village_map", "#848484", {
 		"mcl_villages:village_desert",
 	},
 	_treasure_symbol = build_map_icon_texture (11, 1),
+	_skip_existing_chunks = true,
 })
 
 mcl_maps.register_explorer_map ("mcl_maps:savannah_village_map", "#848484", {
@@ -1172,6 +1178,7 @@ mcl_maps.register_explorer_map ("mcl_maps:savannah_village_map", "#848484", {
 		"mcl_villages:village_savannah",
 	},
 	_treasure_symbol = build_map_icon_texture (13, 1),
+	_skip_existing_chunks = true,
 })
 
 mcl_maps.register_explorer_map ("mcl_maps:snowy_village_map", "#848484", {
@@ -1180,6 +1187,7 @@ mcl_maps.register_explorer_map ("mcl_maps:snowy_village_map", "#848484", {
 		"mcl_villages:village_snowy",
 	},
 	_treasure_symbol = build_map_icon_texture (14, 1),
+	_skip_existing_chunks = true,
 })
 
 mcl_maps.register_explorer_map ("mcl_maps:taiga_village_map", "#848484", {
@@ -1188,6 +1196,7 @@ mcl_maps.register_explorer_map ("mcl_maps:taiga_village_map", "#848484", {
 		"mcl_villages:village_taiga",
 	},
 	_treasure_symbol = build_map_icon_texture (15, 1),
+	_skip_existing_chunks = true,
 })
 
 mcl_maps.register_explorer_map ("mcl_maps:swamp_explorer_map", "#848484", {
@@ -1196,6 +1205,7 @@ mcl_maps.register_explorer_map ("mcl_maps:swamp_explorer_map", "#848484", {
 		"mcl_levelgen:swamp_hut",
 	},
 	_treasure_symbol = build_map_icon_texture (1, 2),
+	_skip_existing_chunks = true,
 })
 
 mcl_maps.register_explorer_map ("mcl_maps:jungle_explorer_map", "#848484", {
@@ -1204,6 +1214,7 @@ mcl_maps.register_explorer_map ("mcl_maps:jungle_explorer_map", "#848484", {
 		"mcl_levelgen:jungle_temple",
 	},
 	_treasure_symbol = build_map_icon_texture (0, 2),
+	_skip_existing_chunks = true,
 })
 
 local storage = core.get_mod_storage ()
@@ -1310,10 +1321,21 @@ function realize_explorer_map (stack)
 			vector.to_string (pos),
 		}
 		core.log ("action", table.concat (msg))
-		mcl_biome_dispatch.locate_structure_near (pos, structures, 32,
+		local dist = 32
+		local filter = filter_generated_structures
+
+		-- Some explorer maps, such as Buried Treasure maps,
+		-- always point to the nearest structure of the
+		-- appropriate type in Minecraft, even after they have
+		-- been generated.
+		if not def._skip_existing_chunks then
+			dist = 96
+			filter = nil
+		end
+
+		mcl_biome_dispatch.locate_structure_near (pos, structures, dist,
 							  realize_explorer_map_1,
-							  id, nil,
-							  filter_generated_structures)
+							  id, nil, filter)
 		return maybe_realize_explorer_map (stack, id), id
 	end
 	return nil
