@@ -58,23 +58,13 @@ local function is_trading_wood (k, p)
 end
 
 local function get_random_tree ()
-	local r = {}
-	for k, p in pairs(mcl_trees.woods) do
-		if is_trading_wood (k, p) then
-			table.insert (r, "mcl_trees:tree_" .. k)
-		end
-	end
-	return table.random_element (r)
+	local _, wood = table.random_element (mcl_trees.woods, is_trading_wood)
+	return "mcl_trees:tree_" .. wood
 end
 
 local function get_random_sapling ()
-	local r = {}
-	for k, p in pairs(mcl_trees.woods) do
-		if is_trading_wood (k, p) then
-			table.insert (r, p.saplingdrop or ("mcl_trees:sapling_" .. k))
-		end
-	end
-	return table.random_element (r)
+	local p, k = table.random_element (mcl_trees.woods, is_trading_wood)
+	return p.saplingdrop or ("mcl_trees:sapling_" .. k)
 end
 
 local function get_random_flower ()
