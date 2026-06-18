@@ -51,8 +51,12 @@ local function get_random_dye ()
 	return "mcl_dyes:"..get_random_color ()
 end
 
+local function get_wood_sapling (k, p)
+	return p.saplingdrop or ("mcl_trees:sapling_" .. k)
+end
+
 local function is_trading_wood (k, p)
-	local sap = p.saplingdrop or ("mcl_trees:sapling_" .. k)
+	local sap = get_wood_sapling (k, p)
 	local def = core.registered_nodes[sap]
 	return def and not def._unobtainable
 end
@@ -64,7 +68,7 @@ end
 
 local function get_random_sapling ()
 	local p, k = table.random_element (mcl_trees.woods, is_trading_wood)
-	return p.saplingdrop or ("mcl_trees:sapling_" .. k)
+	return get_wood_sapling (k, p)
 end
 
 local function get_random_flower ()
