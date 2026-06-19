@@ -71,7 +71,7 @@ local function update_cartography_table(player)
 				and item_name == "mcl_maps:map"
 				and addon:get_name () == "mcl_core:paper" then
 				-- Zoom a map
-				formspec = formspec .. "image[5.125,0.5;4,4;mcl_maps_map_background.png]"
+				formspec = formspec .. "image[5.125,0.5;4,4;mcl_cartography_table_scaled_map.png]"
 				if texture then
 					-- N.B. that the original map
 					-- is not displayed where it
@@ -97,30 +97,34 @@ local function update_cartography_table(player)
 				--- Copy a map
 				formspec = table.concat ({
 					formspec,
-					"image[6.125,0.5;3,3;mcl_maps_map_background.png]",
+					"image[6.125,0.5;3,3;mcl_cartography_table_map.png]",
 					"image[6.375,0.75;2.5,2.5;", texture, "]",
-					"image[5.125,1.5;3,3;mcl_maps_map_background.png]",
+					"image[5.125,1.5;3,3;mcl_cartography_table_map.png]",
 					"image[5.375,1.75;2.5,2.5;", texture, "]"
 				})
 				stack:set_count (2)
 				inv:set_stack ("cartography_table_output", 1, stack)
 				operation_selected = true
 			elseif item_name == "mcl_maps:map"
-				and addon:get_name () == "mcl_panes:pane_natural_flat" then
+					and addon:get_name () == "mcl_panes:pane_natural_flat" then
 				local stack = ItemStack ("mcl_maps:map_locked")
 				stack:get_meta ():set_string ("mcl_maps:map_id", id)
 				tt.reload_itemstack_description (stack)
 				inv:set_stack ("cartography_table_output", 1, stack)
 				operation_selected = true
 
-				formspec = formspec .. "image[5.375,0.75;3.5,3.5;" .. texture .. "]"
-					.. "image[8.375,3.75;0.5,0.5;mcl_core_barrier.png]"
+				formspec = table.concat({
+					formspec,
+					"image[5.125,0.5;4,4;mcl_cartography_table_map.png]",
+					"image[5.375,0.75;3.5,3.5;", texture, "]",
+					"image[8.3,3.475;0.5,0.7;mcl_cartography_table_locked.png]"
+				})
 			end
 		end
 	end
 
 	if not operation_selected then
-		formspec = formspec .. "image[5.125,0.5;4,4;mcl_maps_map_background.png]"
+		formspec = formspec .. "image[5.125,0.5;4,4;mcl_cartography_table_map.png]"
 		if texture then
 			formspec = formspec
 				.. "image[5.375,0.75;3.5,3.5;"
