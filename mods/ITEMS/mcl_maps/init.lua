@@ -1139,8 +1139,7 @@ mcl_maps.register_explorer_map ("mcl_maps:trial_explorer_map", "#c26b4c", {
 	_explorer_map_structures = {
 		"mcl_levelgen:trial_chambers",
 	},
-	-- TODO: Icon for Trial Chambers.
-	_treasure_symbol = build_map_icon_texture (10, 1),
+	_treasure_symbol = build_map_icon_texture (2, 2),
 	_skip_existing_chunks = true,
 })
 
