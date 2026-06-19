@@ -1637,7 +1637,7 @@ mcl_player.register_globalstep (function (player)
 	local map = id and load_map_data (id)
 	if texture and map then
 		if texture ~= maps[player] then
-			local data = "[combine:140x140:0,0=mcl_maps_map_background.png:6,6="
+			local data = "[combine:140x140:0,0=mcl_maps_map_background.png\\^[resize\\:140x140:6,6="
 				.. texture
 			player:hud_change (hud.map, "text", data)
 			maps[player] = texture
