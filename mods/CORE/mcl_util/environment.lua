@@ -337,7 +337,7 @@ end
 local function drop_item_stack(pos, stack)
 	if not stack or stack:is_empty() then return end
 	local drop_offset = vector.new(math.random() - 0.5, 0, math.random() - 0.5)
-	core.add_item(vector.add(pos, drop_offset), stack)
+	return core.add_item(vector.add(pos, drop_offset), stack)
 end
 
 mcl_util.drop_item_stack = drop_item_stack
@@ -1102,17 +1102,13 @@ function mcl_util.move_list(src_inv, src_listname, out_inv, out_listname, pos, d
 		if out_inv:room_for_item(out_listname, stack) then
 			out_inv:add_item(out_listname, stack)
 		else
-			local p = vector.copy(pos)
-			p.x = p.x + (math.random(1, 3) * 0.2)
-			p.z = p.z + (math.random(1, 3) * 0.2)
-
-			local obj = core.add_item(p, stack)
+			local obj = drop_item_stack(pos, stack)
 			if obj then
 				if dir then
 					local v = vector.copy(dir)
-					v.x = v.x * 4
-					v.y = v.y * 4 + 2
-					v.z = v.z * 4
+					v.x = v.x * 2
+					v.y = v.y * 2 + 2
+					v.z = v.z * 2
 					obj:set_velocity(v)
 				end
 				if not insta_collect then
