@@ -79,6 +79,12 @@ local guardian_elder = table.merge (mobs_mc.guardian, {
 		max = 1,
 		looting = "rare",
 		looting_factor = 0.01 / 4,},
+
+		--armor trim
+		{name = "mcl_armor:tide",
+		chance = 5, -- 20%
+		min = 1,
+		max = 1},
 	},
 })
 
