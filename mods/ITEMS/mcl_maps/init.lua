@@ -1540,6 +1540,7 @@ core.register_on_joinplayer(function(player)
 		map = player:hud_add (map_def),
 		treasure = player:hud_add (treasure_def),
 		marker = player:hud_add (marker_def),
+		light = core.LIGHT_MAX,
 	}
 end)
 
@@ -1583,7 +1584,8 @@ local function adjust_marker (player, id, img_arrow, img_dot, pos, minp, maxp)
 		return
 	end
 
-	player:hud_change (id, "text", marker)
+	local light_overlay = "^[colorize:black:" .. 255 - (huds[player].light * 17)
+	player:hud_change (id, "text", marker .. light_overlay)
 	local f = 2 * 128 / (maxp.x - minp.x + 1)
 	player:hud_change (id, "offset", {
 		x = (pos.x - minp.x) * f - 128,
@@ -1635,14 +1637,17 @@ mcl_player.register_globalstep (function (player)
 	-- unloaded and subsequently removed.
 	local map = id and load_map_data (id)
 	if texture and map then
-		if texture ~= maps[player] then
+		local pos = vector.round(player:get_pos())
+		local light = core.get_node_light(vector.offset(pos, 0, 0.5, 0)) or 0
+		if texture ~= maps[player] or light ~= hud.light then
+			local light_overlay = "^[colorize:black:" .. 255 - (light * 17)
 			local data = "[combine:140x140:0,0=mcl_maps_map_background.png\\^[resize\\:140x140:6,6="
-				.. texture
+				.. texture .. light_overlay
 			player:hud_change (hud.map, "text", data)
 			maps[player] = texture
+			hud.light = light
 		end
 
-		local pos = vector.round (player:get_pos())
 		local width = lshift (MAP_DATA_LENGTH, map.scale - 1)
 		local minp = vector.new (map.x_start, 0, map.z_start)
 		local maxp = vector.new (map.x_start + width - 1, 0,
