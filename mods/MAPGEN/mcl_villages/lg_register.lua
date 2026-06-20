@@ -310,7 +310,7 @@ local default_village_processor_list = {
 	preserve_grass,
 	instantiate_crops_and_chests,
 	construct_pois_with_formspecs,
-	mcl_levelgen.wall_update_processor(),
+	mcl_levelgen.wall_update_processor (),
 }
 
 local function place_villagers (piece, rng, x1, z1, x2, z2)
