@@ -1637,8 +1637,8 @@ mcl_player.register_globalstep (function (player)
 	-- unloaded and subsequently removed.
 	local map = id and load_map_data (id)
 	if texture and map then
-		local pos = vector.round(player:get_pos())
-		local light = core.get_node_light(vector.offset(pos, 0, 0.5, 0)) or 0
+		local eye_pos = mcl_util.target_eye_pos (player)
+		local light = core.get_node_light (eye_pos) or 0
 		if texture ~= maps[player] or light ~= hud.light then
 			local light_overlay = "^[colorize:black:" .. 255 - (light * 17)
 			local data = "[combine:140x140:0,0=mcl_maps_map_background.png\\^[resize\\:140x140:6,6="
@@ -1648,6 +1648,7 @@ mcl_player.register_globalstep (function (player)
 			hud.light = light
 		end
 
+		local pos = mcl_util.get_nodepos (player:get_pos ())
 		local width = lshift (MAP_DATA_LENGTH, map.scale - 1)
 		local minp = vector.new (map.x_start, 0, map.z_start)
 		local maxp = vector.new (map.x_start + width - 1, 0,
