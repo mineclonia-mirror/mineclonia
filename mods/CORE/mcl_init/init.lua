@@ -437,21 +437,4 @@ if mcl_vars.mg_overworld_min_old ~= mcl_vars.mg_overworld_min then
 	})
 end
 
--- Difficulty.  Peaceful is 0, normal is 1,
-local difficulty = core.settings:get ("mcl_difficulty")
-if difficulty == "peaceful" then
-	mcl_vars.difficulty = 0
-elseif difficulty == "easy" then
-	mcl_vars.difficulty = 1
-elseif difficulty == "normal"
-	or not difficulty
-	or difficulty == "" then
-	mcl_vars.difficulty = 2
-elseif difficulty == "hard" then
-	mcl_vars.difficulty = 3
-else
-	mcl_vars.difficulty = 2
-	core.log ("warning", "mcl_difficulty is configured to an unknown value " .. difficulty)
-end
-
 dofile(modpath.."/outdated_warning.lua")

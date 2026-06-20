@@ -79,7 +79,9 @@ mcl_levelgen_enable_ersatz (Enable new structure generator) bool true
 # Note: This setting requires Luanti version 5.14.0 or later.
 mcl_levelgen_enable_ersatz_carvers (Enable new cave generator) bool false
 
-# One of four levels defining the difficulty of gameplay.
+# One of four levels defining the default difficulty of gameplay.
+#
+# Can be changed with the `/difficulty <difficulty>` chat command for each world individually.
 #
 # Peaceful: no hostile mobs, excepting shulkers, hoglins, piglins, and
 # the dragon spawn, and nor do spiders or endermen, while players
@@ -105,7 +107,7 @@ mcl_levelgen_enable_ersatz_carvers (Enable new cave generator) bool false
 # than a certain period may host randomly generated pillager patrols.
 # In addition, there is an increased chance of a mob's spawning with
 # armor or weapons.
-mcl_difficulty (Difficulty) enum normal peaceful,easy,normal,hard
+mcl_difficulty (Default difficulty) enum normal peaceful,easy,normal,hard
 
 [Players]
 # If enabled, players eat food and drink potions instantly
