@@ -250,11 +250,18 @@ local function set_param2_nodes(vm, data, data2, emin, emax, area, minp, maxp, b
 	local search_max = vector.new (maxp.x, emax.y, maxp.z)
 	local nodes = core.find_nodes_in_area (search_min, search_max,
 					       biomecolor_nodes)
+	local get_biome_color_type = mcl_levelgen.get_biome_color_type
 	for _, n in ipairs(nodes) do
 		local p_pos = area:index(n.x, n.y, n.z)
 		local p2 = biome_id_p2[biomemap[aream:index(n.x, 0, n.z)]]
 		if p2 then
-			data2[p_pos] = math.floor(data2[p_pos] / 32) * 32 + p2
+			-- These are leaves and their decay distance
+			-- must be preserved.
+			if get_biome_color_type (data[p_pos]) == 2 then
+				data2[p_pos] = math.floor(data2[p_pos] / 32) * 32 + p2
+			else
+				data2[p_pos] = p2
+			end
 			lvm_used = true
 		end
 	end

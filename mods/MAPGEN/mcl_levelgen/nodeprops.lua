@@ -1207,6 +1207,10 @@ function mcl_levelgen.apply_biomecolor (x, y, z, index_biome, cid, param2)
 	end
 end
 
+function mcl_levelgen.get_biome_color_type (cid)
+	return biome_color_type[cid]
+end
+
 --------------------------------------------------------------------------
 -- Utility functions.
 --------------------------------------------------------------------------
