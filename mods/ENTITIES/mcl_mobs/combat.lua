@@ -445,8 +445,8 @@ function mob_class:receive_damage (mcl_reason, damage)
 	local source = mcl_reason.source
 
 	-- Don't suffer damage to be applied redundantly to mobs
-	-- already dead.
-	if self.dead then
+	-- already dead or removed.
+	if self.dead or self.removed then
 		return false
 	end
 

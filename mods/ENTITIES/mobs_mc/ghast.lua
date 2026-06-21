@@ -82,6 +82,14 @@ local ghast = {
 -- Ghast AI.
 ------------------------------------------------------------------------
 
+function ghast:attack_null (attach_pos, self_pos, dtime, target_pos,
+			    line_of_sight)
+	-- Initialize attack state.
+	if not self.attacking then
+		self.attacking = true
+	end
+end
+
 function ghast:do_go_pos (dtime, moveresult)
 	local target = self.movement_target or vector.zero ()
 	local self_pos = self.object:get_pos ()
@@ -279,62 +287,6 @@ mcl_mobs.register_spawner (ghast_spawner_basalt_delta)
 -- Big Fireball.
 ------------------------------------------------------------------------
 
--- blast damage to entities nearby
-local function blast_damage(pos, radius, source)
-	radius = radius * 2
-
-	for obj in core.objects_inside_radius(pos, radius) do
-
-		local obj_pos = obj:get_pos()
-		local dist = vector.distance(pos, obj_pos)
-		if dist < 1 then dist = 1 end
-
-		local damage = math.floor((4 / dist) * radius)
-
-		-- punches work on entities AND players
-		obj:punch(source, 1.0, {
-			full_punch_interval = 1.0,
-			damage_groups = {fleshy = damage},
-		}, vector.direction(pos, obj_pos))
-	end
-end
-
--- no damage to nodes explosion
-local function fireball_safe_boom (self, pos, strength, no_remove)
-	core.sound_play(self.sounds and self.sounds.explode or "tnt_explode", {
-		pos = pos,
-		gain = 1.0,
-		max_hear_distance = self.sounds and self.sounds.distance or 32
-	}, true)
-	local radius = strength
-	blast_damage(pos, radius, self.object)
-	mcl_mobs.effect(pos, 32, "mcl_particles_smoke.png", radius * 3, radius * 5, radius, 1, 0)
-	if not no_remove then
-		if self.is_mob then
-			self:safe_remove()
-		else
-			self.object:remove()
-		end
-	end
-end
-
--- make explosion with protection and tnt mod check
-local function fireball_boom (self, pos, strength, fire, no_remove)
-	if mobs_griefing and not core.is_protected(pos, "") then
-		mcl_explosions.explode(pos, strength, { fire = fire }, self.object)
-	else
-		fireball_safe_boom(self, pos, strength, no_remove)
-	end
-	if not no_remove then
-		if self.is_mob then
-			self:safe_remove()
-		else
-			self.object:remove()
-		end
-	end
-end
-
--- fireball (projectile)
 mcl_mobs.register_arrow("mobs_mc:fireball", {
 	description = S("Ghast Fireball"),
 	visual = "sprite",
@@ -347,23 +299,28 @@ mcl_mobs.register_arrow("mobs_mc:fireball", {
 	_mcl_fishing_reelable = true,
 	redirectable = true,
 	hit_player = function(self, player)
-		mcl_mobs.get_arrow_damage_func(6, "fireball")(self, player)
-		local p = self.object:get_pos()
-		if p then
-			fireball_boom (self,p, 1, true)
-		else
-			fireball_boom (self,player:get_pos(), 1, true)
-		end
+		mcl_mobs.get_arrow_damage_func (6, "fireball") (self, player)
+		local p = self.object:get_pos ()
+		mcl_explosions.explode (p, 1, {
+			fire = true, griefing = mobs_griefing,
+		}, self.object)
 	end,
 	hit_mob = function(self, mob)
-		if mob == self._shooter then
+		if mob == self._shooter or mob == self._old_shooter then
 			mcl_mobs.get_arrow_damage_func (6000, "fireball") (self, mob)
 		else
-			mcl_mobs.get_arrow_damage_func(6, "fireball")(self, mob)
+			mcl_mobs.get_arrow_damage_func (6, "fireball")(self, mob)
 		end
-		fireball_boom (self,self.object:get_pos(), 1, true)
+		local p = self.object:get_pos ()
+		mcl_explosions.explode (p, 1, {
+			fire = true,
+			griefing = mobs_griefing,
+		}, self.object)
 	end,
 	hit_node = function(self, pos, _)
-		fireball_boom (self,pos, 1, true)
+		mcl_explosions.explode (pos, 1, {
+			fire = true,
+			griefing = mobs_griefing,
+		}, self.object)
 	end
 })

@@ -109,8 +109,8 @@ function creeper_defs:update_swell ()
 	end
 
 	if self._swell_time >= CREEPER_SWELL_TIME then
-		self:boom (mcl_util.get_object_center (self.object),
-			   self.explosion_strength, false)
+		self:creeper_explode (mcl_util.get_object_center (self.object),
+				      self.explosion_strength)
 		return
 	end
 
@@ -134,66 +134,19 @@ function creeper_defs:update_swell ()
 	end
 end
 
--- blast damage to entities nearby
-local function blast_damage(pos, radius, source)
-	radius = radius * 2
-
-	for obj in core.objects_inside_radius(pos, radius) do
-
-		local obj_pos = obj:get_pos()
-		local dist = vector.distance(pos, obj_pos)
-		if dist < 1 then dist = 1 end
-
-		local damage = math.floor((4 / dist) * radius)
-
-		-- punches work on entities AND players
-		obj:punch(source, 1.0, {
-			full_punch_interval = 1.0,
-			damage_groups = {fleshy = damage},
-		}, vector.direction(pos, obj_pos))
-	end
-end
-
--- no damage to nodes explosion
-function creeper_defs:safe_boom(pos, strength, no_remove)
-	core.sound_play(self.sounds and self.sounds.explode or "tnt_explode", {
-		pos = pos,
-		gain = 1.0,
-		max_hear_distance = self.sounds and self.sounds.distance or 32
-	}, true)
-	local radius = strength
-	blast_damage(pos, radius, self.object)
-	mcl_mobs.effect(pos, 32, "mcl_particles_smoke.png", radius * 3, radius * 5, radius, 1, 0)
-	if not no_remove then
-		if self.is_mob then
-			self:safe_remove()
-		else
-			self.object:remove()
-		end
-	end
-end
-
-
--- make explosion with protection and tnt mod check
-function creeper_defs:boom(pos, strength, fire, no_remove)
-	if mobs_griefing and not core.is_protected(pos, "") then
-		mcl_explosions.explode(pos, strength, { fire = fire }, self.object)
-	else
-		self:safe_boom(pos, strength, no_remove)
-	end
+function creeper_defs:creeper_explode (pos, strength)
+	-- Prevent any further damage from being dealt to this mob
+	-- by the explosion by removing it now.
+	self:safe_remove ()
+	mcl_explosions.explode (pos, strength, {
+		griefing = mobs_griefing,
+	}, self.object)
 	-- Dissipate active status effects.
 	for name, val in pairs (mcl_potions.all_effects (self.object)) do
 		local level = mcl_potions.get_effect_level (self.object,
 							    name)
 		mcl_potions.add_lingering_effect (pos, name, val.dur / 2,
 						  level, 2.5)
-	end
-	if not no_remove then
-		if self.is_mob then
-			self:safe_remove()
-		else
-			self.object:remove()
-		end
 	end
 end
 

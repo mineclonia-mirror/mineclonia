@@ -292,44 +292,6 @@ function wither_def:mob_activate (staticdata, dtime)
 	return true
 end
 
--- blast damage to entities nearby
-local function blast_damage(pos, radius, source)
-	radius = radius * 2
-
-	for obj in core.objects_inside_radius(pos, radius) do
-
-		local obj_pos = obj:get_pos()
-		local dist = vector.distance(pos, obj_pos)
-		if dist < 1 then dist = 1 end
-
-		local damage = math.floor((4 / dist) * radius)
-
-		-- punches work on entities AND players
-		obj:punch(source, 1.0, {
-			full_punch_interval = 1.0,
-			damage_groups = {fleshy = damage},
-		}, vector.direction(pos, obj_pos))
-	end
-end
-
-function wither_def:safe_boom (pos, strength, no_remove)
-	core.sound_play(self.sounds and self.sounds.explode or "tnt_explode", {
-		pos = pos,
-		gain = 1.0,
-		max_hear_distance = self.sounds and self.sounds.distance or 32
-	}, true)
-	local radius = strength
-	blast_damage(pos, radius, self.object)
-	mcl_mobs.effect(pos, 32, "mcl_particles_smoke.png", radius * 3, radius * 5, radius, 1, 0)
-	if not no_remove then
-		if self.is_mob then
-			self:safe_remove()
-		else
-			self.object:remove()
-		end
-	end
-end
-
 function wither_def:do_custom (dtime, moveresult)
 	if self._spawning then
 		if not self._spw_max then self._spw_max = self._spawning end
@@ -360,11 +322,10 @@ function wither_def:do_custom (dtime, moveresult)
 		self.object:set_velocity (v)
 
 		if self._spawning <= 0 then
-			if mobs_griefing and not core.is_protected(pos, "") then
-				mcl_explosions.explode(pos, WITHER_INIT_BOOM, { drop_chance = 1.0 }, self.object)
-			else
-				self:safe_boom (pos, WITHER_INIT_BOOM, true)
-			end
+			mcl_explosions.explode (pos, WITHER_INIT_BOOM, {
+				drop_chance = 1.0,
+				griefing = mobs_griefing,
+			}, self.object)
 			self.object:set_texture_mod ("")
 			self._spawning = nil
 			self._spw_max = nil
@@ -645,8 +606,12 @@ function wither_def:run_ai (dtime, moveresult)
 	if ws.pending_explode
 		and (moveresult.touching_ground
 		     or (self._immersion_depth or 0) > 0) then
+		local params = {
+			drop_chance = 1.0,
+			griefing = mobs_griefing,
+		}
 		mcl_explosions.explode (vector.offset (self_pos, 0, self:get_eye_height (), 0),
-					WITHER_DESCENT_BOOM, {drop_chance = 1.0}, self.object)
+					WITHER_DESCENT_BOOM, params, self.object)
 		self:spawn_skeletons (self_pos)
 		ws.pending_explode = false
 	end
@@ -875,7 +840,9 @@ local skull_def = {
 	velocity = 17,
 	rotate = 90,
 	_lifetime = 500,
-	_explosioninfo = {},
+	_explosioninfo = {
+		griefing = mobs_griefing,
+	},
 	on_punch = function() end,
 
 	-- direct hit
@@ -896,11 +863,7 @@ local skull_def = {
 		local v = self.object:get_velocity ()
 		v.y = 0
 		local dir = vector.normalize (v)
-		if mobs_griefing and not core.is_protected(pos, "") then
-			mcl_explosions.explode(pos, 1, self._explosioninfo, self.object)
-		else
-			wither_def.safe_boom (self, pos, 1) --need to call it this way bc self is the "arrow" object here
-		end
+		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object)
 		if player:get_hp() <= 0 then
 			local shooter = self._shooter:get_luaentity()
 			if shooter then
@@ -920,18 +883,14 @@ local skull_def = {
 							  duration)
 		end
 		mcl_util.deal_damage (mob, 8.0, {
-					      source = self._shooter,
-					      direct = self.object,
-					      type = "wither_skull",
+			source = self._shooter,
+			direct = self.object,
+			type = "wither_skull",
 		})
 		local v = self.object:get_velocity ()
 		v.y = 0
 		local dir = vector.normalize (v)
-		if mobs_griefing and not core.is_protected(pos, "") then
-			mcl_explosions.explode(pos, 1, self._explosioninfo, self.object)
-		else
-			wither_def.safe_boom (self, pos, 1, true) --need to call it this way bc self is the "arrow" object here
-		end
+		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object)
 		local l = mob:get_luaentity()
 		if l and l.health - 8 <= 0 then
 			local shooter = self._shooter:get_luaentity()
@@ -944,14 +903,8 @@ local skull_def = {
 			l:projectile_knockback (1, dir)
 		end
 	end,
-
-	-- node hit, explode
 	hit_node = function(self, pos)
-		if mobs_griefing and not core.is_protected(pos, "") then
-			mcl_explosions.explode(pos, 1, self._explosioninfo, self.object)
-		else
-			wither_def.safe_boom (self, pos, 1, true) --need to call it this way bc self is the "arrow" object here
-		end
+		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object)
 	end
 }
 
@@ -963,6 +916,7 @@ strong_skull_def.redirectable = true
 strong_skull_def.explosioninfo = {
 	drop_chance = 1.0,
 	max_blast_resistance = 0,
+	griefing = mobs_griefing,
 }
 strong_skull_def.textures = {
 	"mobs_mc_wither_projectile_strong.png^[verticalframe:6:0", -- top

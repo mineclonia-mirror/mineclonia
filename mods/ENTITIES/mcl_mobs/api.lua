@@ -14,14 +14,8 @@ function mob_class:set_properties(prop)
 	mcl_util.set_properties(self.object, prop)
 end
 
-function mob_class:safe_remove()
+function mob_class:safe_remove ()
 	self.removed = true
-	core.after(0,function(obj)
-		if obj and obj:get_pos() then
-			mcl_burning.extinguish(obj)
-			obj:remove()
-		end
-	end,self.object)
 end
 
 function mob_class:replace_with (successor_type, propagate_equipment, mob_staticdata)
@@ -557,7 +551,7 @@ end
 
 function mob_class:on_step (dtime, moveresult)
 	if self.removed then
-		self:safe_remove ()
+		self.object:remove ()
 		return
 	end
 
