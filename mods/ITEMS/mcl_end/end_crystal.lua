@@ -388,9 +388,7 @@ local function reconstruct_spike (spike)
 	vm:set_data (cids)
 	vm:set_param2_data (param2s)
 	vm:write_to_map (true)
-	if vm.close then
-		vm:close ()
-	end
+	mcl_util.vm_close(vm)
 
 	-- End crystal; any previous crystal has presumably been
 	-- deleted by the preceding explosion.
