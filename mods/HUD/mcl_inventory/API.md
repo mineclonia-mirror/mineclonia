@@ -6,6 +6,15 @@ Puts the specified craft on the players crafting grid from player's inventory. T
 ## `mcl_inventory.fill_grid(player)`
 Maximizes all itemstacks on the crafting grid grom the player's inventory equally for bulk crafting.
 
+## `mcl_inventory.inv_add_at(inv, listname, i, stack, callback)`
+Attempts to add as many items as possible from `stack` into `listname` at slot `i`, respecting `callback.allow_put` limits and invoking `callback.put` if items were inserted.
+
+## `mcl_inventory.inv_add(inv, listname, stack, callback, from_index, to_index)`
+Spreads `stack` in specified range within `listname` by using `mcl_inventory.inv_add_at` to fill matching non-empty slots first and then moving onto empty ones.
+
+## `mcl_inventory.give_to_player(player, stack, trigger_inv_action, no_drop_leftover)`
+Uses `mcl_inventory.inv_add` to add `stack` to player's main inv list if the non-empty offhand stack doesn't match, and then optionally triggers inventory callbacks. If `no_drop_leftover` is nil or false, drops any leftover items at the player position.
+
 ## `mcl_inventory.show_inventory(player)`
 
 ## `mcl_inventory.register_survival_inventory_tab(def)`
