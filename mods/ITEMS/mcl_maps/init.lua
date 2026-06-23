@@ -767,6 +767,16 @@ local function update_one_map_unscaled (nodepos, map)
 					-- for the current row is updated for
 					-- reasons of performance.
 					produce_heightmap_turn (map, x1, y1, i, x2 - x1 + 1)
+					-- But it is necessary to
+					-- update the rows beyond the
+					-- map itself periodically.
+					if i == 0 then
+						produce_heightmap_turn (map, x1, y1, i - 1,
+									x2 - x1 + 1)
+					elseif i == MAP_DATA_LENGTH then
+						produce_heightmap_turn (map, x1, y1, i + 1,
+									x2 - x1 + 1)
+					end
 					produce_map_turn (map, x1, y1, i, x2 - x1 + 1)
 					map_updated = true
 				end
