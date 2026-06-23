@@ -83,7 +83,8 @@ mcl_stairs.register_stair("stone", {
 	groups = {not_in_creative_inventory = extra_nodes and 0 or 1},
 })
 
-core.registered_nodes["mcl_colorblocks:hardened_clay"].groups.stonecuttable = extra_nodes and 1 or 0
+local terracotta_defs = core.registered_nodes["mcl_colorblocks:hardened_clay"]
+core.override_item("mcl_colorblocks:hardened_clay", { groups = table.merge(terracotta_defs.groups, { stonecuttable = extra_nodes and 1 or 0 }) })
 
 mcl_stairs.register_stair_and_slab("hardened_clay", {
 	baseitem="mcl_colorblocks:hardened_clay",
@@ -100,8 +101,8 @@ for name,cdef in pairs(mcl_dyes.colors) do
 	local concrete_defs = core.registered_nodes["mcl_colorblocks:concrete_" .. name]
 	local clay_defs = core.registered_nodes["mcl_colorblocks:hardened_clay_" .. name]
 
-	concrete_defs.groups.stonecuttable = extra_nodes and 1 or 0
-	clay_defs.groups.stonecuttable = extra_nodes and 1 or 0
+	core.override_item("mcl_colorblocks:concrete_" .. name, { groups = table.merge(concrete_defs.groups, { stonecuttable = extra_nodes and 1 or 0 }) })
+	core.override_item("mcl_colorblocks:hardened_clay_" .. name, { groups = table.merge(clay_defs.groups, { stonecuttable = extra_nodes and 1 or 0 }) })
 
 	mcl_stairs.register_stair_and_slab("concrete_"..name, {
 		description_stair = D(cdef.readable_name .. " Concrete Stairs"),
