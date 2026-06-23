@@ -356,3 +356,21 @@ if not core.get_node_boxes then
 		return boxes
 	end
 end
+
+-- pre-5.15 polyfill
+if not core.path_exists then
+	function core.path_exists(path)
+		local ok = os.rename(path, path)
+		return ok
+	end
+end
+
+-- pre-5.13 polyfill for VoxelManip:close()
+function mcl_util.vm_close(vm)
+	if vm.close then
+		vm:close()
+	else
+		-- recommended workaround; see <https://github.com/luanti-org/luanti/issues/13982>
+		collectgarbage()
+	end
+end
