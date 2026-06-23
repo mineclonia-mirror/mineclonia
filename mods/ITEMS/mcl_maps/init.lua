@@ -287,7 +287,7 @@ local function prepare_map_generation_vm (map, y1)
 	v2.y = y1 + MAP_UPDATE_AREA_Y - 1
 	v2.z = map.z_start + (MAP_UPDATE_AREA + 1) * map.scale
 	if vm then
-		vm:close ()
+		mcl_util.vm_close (vm)
 	end
 	vm = VoxelManip (v1, v2)
 	vm:get_data (cids)
@@ -298,7 +298,7 @@ end
 local function prepare_map_generation ()
 	map_get_node_raw = core.get_node_raw
 	if vm then
-		vm:close ()
+		mcl_util.vm_close (vm)
 		vm = nil
 	end
 end
