@@ -184,17 +184,17 @@ local function produce_rgb_turn (map, x1, z1, base_first, base,
 			local r = heightmap[base + i + 1]
 			local l = heightmap[base + i - 1]
 
-			-- Slope at point.
-			local x = 2 * (r - l)
-			local y = 2 * (t - b)
+			-- Normal at point.
+			local x = 2 * (l - r)
+			local y = 2 * (b - t)
 			local z = -4
 
 			-- Dot product with light vector.  (|a| cos (t))
-			local p = mathabs (x * -LIGHT_DIR + y * LIGHT_DIR + z * LIGHT_DIR)
+			local p = x * -LIGHT_DIR + y * LIGHT_DIR + z * -LIGHT_DIR
 
 			-- Relief value.
 			local f = p * 1 / mathsqrt (x * x + y * y + z * z)
-			local r = 64 + floor (96.0 * f + 96.0)
+			local r = 192 + floor (64.0 * f)
 
 			-- Apply relief.
 			local c1 = band (rshift (band (rgb, 0x00ff00ff) * r, 8),
