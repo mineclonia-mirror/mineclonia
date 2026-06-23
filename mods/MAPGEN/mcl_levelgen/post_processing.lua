@@ -1561,7 +1561,7 @@ end
 function run_execution_cb (vm, run, heightmap, relight_queue, gen_notifies,
 			   features_requesting_additional_context,
 			   c_above, c_below)
-	if shutdown_complete then
+	if shutdown_complete and vm.close then
 		vm:close ()
 		return
 	end
@@ -1580,7 +1580,6 @@ function run_execution_cb (vm, run, heightmap, relight_queue, gen_notifies,
 	mb_records[run_hash] = nil
 	do_liquid_updates (vm, run, gen_notifies)
 	vm:write_to_map (false)
-	-- 5.13.0 only API.
 	if vm.close then
 		vm:close ()
 	end
