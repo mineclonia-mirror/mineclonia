@@ -170,7 +170,17 @@ function findbiome.find_biome(pos, biomes, res, checks)
 		local attempt = 1
 		while attempt < 3 do
 			for _ = 1, checks do
-				pos.y = model.get_column_height (pos.x, pos.z)
+				-- If the position is near the
+				-- surface, locate the biome at the
+				-- true surface of the map, rather
+				-- than at the position in the grid,
+				-- in order to distinguish clearly
+				-- between mountain biomes and Meadows
+				-- and Snowy Slopes which generate
+				-- beneath them.
+				if pos.y > -48 then
+					pos.y = model.get_column_height (pos.x, pos.z)
+				end
 				local biome_data = core.get_biome_data(pos)
 				-- Sometimes biome_data is nil
 				local biome = biome_data and biome_data.biome
