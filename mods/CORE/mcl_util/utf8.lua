@@ -1,5 +1,5 @@
-local assert, error, select, string_char, table_concat
-	= assert, error, select, string.char, table.concat
+local select, string_char, table_concat
+	= select, string.char, table.concat
 
 local utf8 = {}
 
@@ -32,7 +32,7 @@ local function utf8_bytes(codepoint)
 		local payload_2 = codepoint % 0x40
 		codepoint = (codepoint - payload_2) / 0x40
 		return 0xF0 + codepoint, 0x80 + payload_2, 0x80 + payload_3, 0x80 + payload_4
-	end error"codepoint out of range"
+	end return 0xEF, 0xBF, 0xBD -- U+FFFD
 end
 
 function utf8.char(...)
@@ -62,14 +62,16 @@ local function utf8_next_codepoint(str, i)
 		len, head_bits = 3, first_byte % 0x10 -- last 4 bits
 	elseif first_byte >= 0xF0 and first_byte <= 0xF7 then -- 11110_000 to 11110_111
 		len, head_bits = 4, first_byte % 0x8 -- last 3 bits
-	else error"invalid UTF-8" end
+	else return i + 1, 0xFFFD end
 
 	local codepoint = 0
 	local pow = 1
 	for j = i + len - 1, i + 1, -1 do
-		local byte = assert(str:byte(j), "invalid UTF-8")
-		local val_bits = byte % 0x40 -- extract last 6 bits xxxxxx from 10xxxxxx
-		assert(byte - val_bits == 0x80) -- assert that first two bits are 10
+		local byte = str:byte(j)
+		if not byte or byte - (byte % 0x40) ~= 0x80 then
+			return i + 1, 0xFFFD
+		end
+		local val_bits = byte % 0x40
 		codepoint = codepoint + val_bits * pow
 		pow = pow * 0x40
 	end
@@ -81,7 +83,6 @@ function utf8.codepoint(str, i, j)
 	if i > j then return end
 	local codepoint
 	i, codepoint = utf8_next_codepoint(str, i)
-	assert(i - j <= 1, "invalid UTF-8")
 	return codepoint, utf8.codepoint(str, i)
 end
 
