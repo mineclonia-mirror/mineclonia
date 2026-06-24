@@ -384,12 +384,16 @@ local ERROR_MAP_ID = "error"
 local loaded_maps = {}
 local update_all_maps
 
-local function image_name (id)
-	return map_textures_path .. id .. ".bin"
-end
-
 local function map_name (id)
 	return map_textures_path .. id .. ".lua"
+end
+
+local function texture_name (id)
+	return map_textures_path .. id .. '_texture.tga'
+end
+
+local function heightmap_name (id)
+	return map_textures_path .. id .. "_heightmap.tga"
 end
 
 local function allocate_map_id ()
@@ -399,9 +403,10 @@ local function allocate_map_id ()
 		i = i + 1
 	end
 
-	local image_name = image_name (base .. i)
+	local texture_name = texture_name (base .. i)
+	local heightmap_name = heightmap_name (base .. i)
 	local map_name = map_name (base .. i)
-	return base .. i, image_name, map_name
+	return base .. i, texture_name, heightmap_name, map_name
 end
 
 local char = string.char
@@ -431,19 +436,29 @@ local function write_map_data (id, map)
 		scale = map.scale,
 	}
 	local str = core.serialize (tbl)
-	local bin = {}
-	serialize_data (bin, map.data, 0)
-	serialize_data (bin, map.heightmap, #bin)
-	local image = table.concat (bin)
-
 	local rc = core.safe_file_write (map_name (id), str)
 	if not rc then
 		error ("Could not write map metadata for " .. id)
 	end
 
-	local rc = core.safe_file_write (image_name (id), image)
+	local bytes = string.char
+	local tga_header = bytes(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, MAP_SIDE_LENGTH, 0, MAP_SIDE_LENGTH, 0, 32, 8)
+	local tga_footer = bytes(0, 0, 0, 0, 0, 0, 0, 0) .. "TRUEVISION-XFILE." .. bytes(0)
+
+	local texture = {}
+	serialize_data (texture, map.data, #texture)
+	local texture_bytes = tga_header .. table.concat (texture) .. tga_footer
+	local rc = core.safe_file_write (texture_name (id), texture_bytes)
 	if not rc then
-		error ("Could not write map data for " .. id)
+		error ("Could not write map texture for " .. id)
+	end
+
+	local heightmap = {}
+	serialize_data (heightmap, map.heightmap, #heightmap)
+	local heightmap_bytes = tga_header .. table.concat (heightmap) .. tga_footer
+	local rc = core.safe_file_write (heightmap_name (id), heightmap_bytes)
+	if not rc then
+		error ("Could not write map heightmap for " .. id)
 	end
 end
 
@@ -468,14 +483,6 @@ local function load_map_error ()
 		heightmap = alloc_heightmap_data (),
 	}
 	return map
-end
-
-local function read_map_data (map, data)
-	map.data = {}
-	map.heightmap = {}
-	local new_size = MAP_SIDE_LENGTH * MAP_SIDE_LENGTH * 4
-	deserialize_data (map.data, data, 0)
-	deserialize_data (map.heightmap, data, new_size)
 end
 
 local function load_map_1 (id)
@@ -506,11 +513,18 @@ local function load_map_1 (id)
 		map.structure_pos = vector.copy (map.structure_pos)
 	end
 
-	local file = assert (io.open (image_name (id), "rb"))
-	local data = file:read ("*all")
-	file:close ()
+	local texture_file = assert (io.open (texture_name (id), "rb"))
+	local texture_data = texture_file:read ("*all")
+	texture_file:close()
+	map.data = {}
+	deserialize_data (map.data, texture_data, 18)
 
-	read_map_data (map, data)
+	local heightmap_file = assert (io.open (heightmap_name (id), "rb"))
+	local heightmap_data = heightmap_file:read ("*all")
+	heightmap_file:close()
+	map.heightmap = {}
+	deserialize_data (map.heightmap, heightmap_data, 18)
+
 	return map
 end
 
