@@ -186,8 +186,6 @@ local function produce_heightmap_turn_1 (map, x1, y1, z1, base, i_start, i_end)
 	end
 end
 
-local LIGHT_DIR = 1.0 / mathsqrt (3.0)
-
 local function produce_rgb_turn (map, x1, z1, base_first, base,
 				 base_next, i_start, i_end)
 	local scale = map.scale - 1
@@ -203,30 +201,24 @@ local function produce_rgb_turn (map, x1, z1, base_first, base,
 					    current, z_start)
 		local rgb = get_rgb (cid, param2)
 		if rgb then
-			-- Central differencing.
-			local t = heightmap[base_next + i]
-			local b = heightmap[base_first + i]
-			local r = heightmap[base + i + 1]
-			local l = heightmap[base + i - 1]
-
-			-- Normal at point.
-			local x = 2 * (l - r)
-			local y = 2 * (b - t)
-			local z = -4
-
-			-- Dot product with light vector.  (|a| cos (t))
-			local p = x * -LIGHT_DIR + y * LIGHT_DIR + z * -LIGHT_DIR
-
-			-- Relief value.
-			local f = p * 1 / mathsqrt (x * x + y * y + z * z)
-			local r = 192 + floor (64.0 * f)
-
-			-- Apply relief.
-			local c1 = band (rshift (band (rgb, 0x00ff00ff) * r, 8),
-					 0x00ff00ff)
-			local c2 = band (rshift (band (rgb, 0x0000ff00) * r, 8),
-					 0x0000ff00)
-			data[base + i] = bor (0xff000000, c1, c2)
+			local height = heightmap[base + i]
+			local last_height = heightmap[base_next + i]
+			if last_height ~= height then
+				local b = band (rgb, 0xff)
+				local g = rshift (band (rgb, 0xff00), 8)
+				local r = rshift (band (rgb, 0xff0000), 16)
+				if last_height < height then
+					r = math.min(255, r + 16)
+					g = math.min(255, g + 16)
+					b = math.min(255, b + 16)
+				elseif last_height > height then
+					r = math.max(0, r - 16)
+					g = math.max(0, g - 16)
+					b = math.max(0, b - 16)
+				end
+				rgb = encode_rgb (r, g, b)
+			end
+			data[base + i] = bor (0xff000000, rgb)
 		end
 	end
 end
