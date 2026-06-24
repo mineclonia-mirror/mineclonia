@@ -10,7 +10,30 @@ local S = core.get_translator(modname)
 local worldpath = core.get_worldpath()
 local map_textures_path = worldpath .. "/mcl_maps/"
 
-core.mkdir(map_textures_path)
+local detected_old_maps = false
+if core.path_exists (map_textures_path) then
+	for _, name in ipairs (core.get_dir_list (map_textures_path)) do
+		if name:find ("^mcl_maps_map_texture_") then
+			detected_old_maps = true
+			break
+		end
+	end
+else
+	core.mkdir (map_textures_path)
+end
+
+local use_old_map_grid
+	= core.get_mapgen_setting ("mcl_use_old_map_grid")
+
+if detected_old_maps then
+	use_old_map_grid = true
+	core.set_mapgen_setting ("mcl_use_old_map_grid", "true", true)
+elseif not use_old_map_grid then
+	use_old_map_grid = false
+	core.set_mapgen_setting ("mcl_use_old_map_grid", "false", true)
+else
+	use_old_map_grid = core.is_yes (use_old_map_grid)
+end
 
 local function load_json_file(name)
 	local file = assert(io.open(modpath .. "/" .. name .. ".json", "r"))
@@ -23,14 +46,6 @@ local texture_colors = load_json_file ("colors")
 
 local enable_real_maps
 	= core.settings:get_bool ("enable_real_maps", true)
-local use_old_map_grid
-	= core.get_mapgen_setting ("mcl_use_old_map_grid")
-
-if use_old_map_grid == "true" then
-	use_old_map_grid = true
-else
-	use_old_map_grid = false
-end
 
 ------------------------------------------------------------------------
 -- Dynamically updated maps.
