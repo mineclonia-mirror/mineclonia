@@ -23,6 +23,14 @@ local texture_colors = load_json_file ("colors")
 
 local enable_real_maps
 	= core.settings:get_bool ("enable_real_maps", true)
+local use_old_map_grid
+	= core.get_mapgen_setting ("mcl_use_old_map_grid")
+
+if use_old_map_grid == "true" then
+	use_old_map_grid = true
+else
+	use_old_map_grid = false
+end
 
 ------------------------------------------------------------------------
 -- Dynamically updated maps.
@@ -557,8 +565,15 @@ core.register_on_shutdown (save_all_maps)
 ------------------------------------------------------------------------
 
 local function create_new_map_1 (id, pos, dim)
-	local gx = band (pos.x - 63, -128) + 64
-	local gz = band (pos.z + 63, -128) - 64
+	local gx, gz
+
+	if not use_old_map_grid then
+		gx = band (pos.x - 63, -128) + 64
+		gz = band (pos.z + 63, -128) - 64
+	else
+		gx = band (pos.x, -128)
+		gz = band (pos.z, -128)
+	end
 
 	local map = {
 		x_start = gx,
@@ -1390,9 +1405,15 @@ end
 
 local function scale_map_origins (x_start, z_start, s)
 	local mask = -lshift (1, 6 + s)
-	local start_x = band (x_start - 64, mask) + 64
-	local start_z = band (z_start + 64, mask) - 64
-	return start_x, start_z
+	if not use_old_map_grid then
+		local start_x = band (x_start - 64, mask) + 64
+		local start_z = band (z_start + 64, mask) - 64
+		return start_x, start_z
+	else
+		local start_x = band (x_start, mask)
+		local start_z = band (z_start, mask)
+		return start_x, start_z
+	end
 end
 
 local function scale_map_data (map)
