@@ -176,12 +176,8 @@ function mcl_signs.string_to_ustring(str, max_characters)
 
 	local ustr = {}
 
-	-- pcall wrapping to protect against invalid UTF-8
-	local iter = utf8.codes(str)
-	while true do
-		local success, i, code = pcall(iter)
-		if not success or not i or i >= max_characters
-				or code == CR_CODEPOINT then
+	for i, code in utf8.codes(str) do
+		if i >= max_characters or code == CR_CODEPOINT then
 			break
 		end
 		table.insert(ustr, code)
