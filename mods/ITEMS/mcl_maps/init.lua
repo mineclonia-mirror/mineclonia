@@ -805,7 +805,7 @@ local function update_one_map_unscaled (nodepos, map)
 					if i == 0 then
 						produce_heightmap_turn (map, x1, y1, i - 1,
 									x2 - x1 + 1)
-					elseif i == MAP_DATA_LENGTH then
+					elseif i == MAP_DATA_LENGTH - 1 then
 						produce_heightmap_turn (map, x1, y1, i + 1,
 									x2 - x1 + 1)
 					end
