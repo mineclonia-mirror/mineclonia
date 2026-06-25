@@ -199,6 +199,29 @@ local function place_tree(place_at, schem)
 	end
 end
 
+local function choose_weighted(tbl)
+	local total = 0
+	local scaled = {}
+
+	for k, v in ipairs(tbl) do
+		local weight = v.weight or 1
+		local weight_scaled = math.round(weight * 1e6)
+		scaled[k] = weight_scaled
+		total = total + weight_scaled
+	end
+
+	if total == 0 then return end
+
+	local roll = math.random(total)
+	local acc = 0
+	for i, v in ipairs(tbl) do
+		acc = acc + scaled[i]
+		if roll <= acc then
+			return v
+		end
+	end
+end
+
 function mcl_trees.grow_tree(pos, node)
 	local name = node.name:gsub("mcl_trees:sapling_", "")
 	if node.name:find("propagule") then
@@ -214,8 +237,7 @@ function mcl_trees.grow_tree(pos, node)
 	if mcl_trees.woods[name].tree_schems_2x2  then
 		tbt, ne = check_2by2_saps(pos, node)
 		if tbt then
-			table.shuffle(mcl_trees.woods[name].tree_schems_2x2)
-			schem = mcl_trees.woods[name].tree_schems_2x2[1]
+			schem = choose_weighted(mcl_trees.woods[name].tree_schems_2x2)
 			can_grow = check_schem_growth(ne, schem.file, true)
 			place_at = ne
 			is_2by2 = true
@@ -223,8 +245,7 @@ function mcl_trees.grow_tree(pos, node)
 	end
 
 	if not tbt and mcl_trees.woods[name].tree_schems then
-		table.shuffle(mcl_trees.woods[name].tree_schems)
-		schem = mcl_trees.woods[name].tree_schems[1]
+		schem = choose_weighted(mcl_trees.woods[name].tree_schems)
 		can_grow = check_schem_growth(place_at, schem.file, false)
 	end
 

@@ -60,11 +60,11 @@ All features can be disabled by setting them to false, nil will assume default v
 {
     readable_name = "Willow",                  -- readable name for the tree type
 	sign_color = "#ECA870",                    -- color of the sign
-	tree_schems = {                            -- a table with schematics for tree growth from sapling, , no attempts to grow a normal tree will be made if this is absent.
-		{ file = "filename",width=7,height=11 },
+	tree_schems = {                            -- a table with schematics for tree growth from sapling, weighted (1 by default), no attempts to grow a normal tree will be made if this is absent.
+		{ file = "filename", width = 7, height = 11, weight = 2 }, -- twice as likely to grow than other schematics from the same tree def
 	},
-	tree_schems_2x2 = {                        -- Table with the same format as above containing schematics to be grown from 2x2 saplings, no attempts to grow a 2x2 tree will be made if this is absent.
-		{ file = "filename",width=7,height=11 },
+	tree_schems_2x2 = {                        -- Table with the same format as above containing schematics to be grown from 2x2 saplings, weighted (1 by default), no attempts to grow a 2x2 tree will be made if this is absent.
+		{ file = "filename", width = 7, height = 11, weight = 0.5 },
 	},
 	tree = {},                                 -- overrides for the tree/log node definition
 	leaves = {},                               -- overrides for the leaves node definition
