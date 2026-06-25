@@ -8,14 +8,13 @@ mcl_trees.register_wood("oak",{
 	readable_name = "Oak",
 	sign_color="#917056",
 	tree_schems= {
-		{ file = modpath.."/schematics/mcl_core_oak_balloon.mts"},
-		{ file = modpath.."/schematics/mcl_core_oak_large_1.mts"},
-		{ file = modpath.."/schematics/mcl_core_oak_large_2.mts"},
-		{ file = modpath.."/schematics/mcl_core_oak_large_3.mts"},
-		{ file = modpath.."/schematics/mcl_core_oak_large_4.mts"},
-		{ file = modpath.."/schematics/mcl_core_oak_swamp.mts"},
-		{ file = modpath.."/schematics/mcl_core_oak_v6.mts"},
-		{ file = modpath.."/schematics/mcl_core_oak_classic.mts"},
+		-- in MC, a large oak grows from a sapling with 10% chance (with 90% going to the small oak)
+		-- given we have 4 schematics, the weight has to be distributed
+		{ file = modpath.."/schematics/mcl_core_oak_large_1.mts", weight = 1 / 10 / 4 },
+		{ file = modpath.."/schematics/mcl_core_oak_large_2.mts", weight = 1 / 10 / 4 },
+		{ file = modpath.."/schematics/mcl_core_oak_large_3.mts", weight = 1 / 10 / 4 },
+		{ file = modpath.."/schematics/mcl_core_oak_large_4.mts", weight = 1 / 10 / 4 },
+		{ file = modpath.."/schematics/mcl_core_oak_classic.mts", weight = 9 / 10 },
 	},
 	tree = { tiles = {"default_tree_top.png", "default_tree_top.png","default_tree.png"} },
 	leaves = {
