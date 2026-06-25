@@ -1,7 +1,7 @@
 # tga_encoder
 A TGA Encoder written in Lua without the use of external Libraries.
 
-Created by fleckenstein for Mineclone 2, then improved by erlehmann.
+Created by fleckenstein for Mineclone 2, then improved by erle.
 
 May be used as a Minetest mod.
 
