@@ -156,15 +156,10 @@ core.register_node("mcl_lush_caves:dripleaf_small", {
 	end,
 	after_dig_node = dig_adjacent,
 	_on_bone_meal = function (_, player, _, pos)
-		local base = vector.offset(pos,0,-1,0)
 		local node = core.get_node(pos)
 		local dir = node.param2
-		local pname = player and player:get_player_name()
-		if pname and core.is_protected(base, pname) then
-			return false
-		end
-		core.swap_node(base, {name="mcl_lush_caves:dripleaf_big_stem", param2=dir})
 		core.swap_node(pos, {name="mcl_lush_caves:dripleaf_big_stem", param2=dir})
+		local pname = player and player:get_player_name()
 		local i = 0
 		while i < math.random(0,3) do
 			local p = vector.offset(pos,0,i,0)
@@ -172,7 +167,7 @@ core.register_node("mcl_lush_caves:dripleaf_small", {
 			local p_def = core.registered_nodes[p_node.name]
 			if not p_def or not p_def.buildable_to
 				or p_node.name ~= "air" and core.get_item_group(p_node.name, "dripleaf") <= 0
-				or pname and core.is_protected(p, pname) then
+				or (pname and core.is_protected(p, pname)) then
 				break
 			end
 			core.swap_node(p, {name="mcl_lush_caves:dripleaf_big_stem", param2=dir})
