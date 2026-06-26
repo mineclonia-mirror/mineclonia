@@ -347,31 +347,6 @@ function mcl_maps.convert_map_data (map)
 	return converted_data
 end
 
-function mcl_maps.produce_map_test (player_name, scale)
-	local player = core.get_player_by_name (player_name)
-	if player then
-		local pos = mcl_util.get_nodepos (player:get_pos ())
-		local map = {
-			x_start = pos.x - 64 * (scale or 1),
-			z_start = pos.z - 64 * (scale or 1),
-			scale = scale or 1,
-			data = alloc_map_data (),
-			heightmap = alloc_heightmap_data (),
-		}
-		local y1 = pos.y - floor (MAP_UPDATE_AREA_Y / 2)
-		prepare_map_generation_vm (map, y1)
-		prepare_map_heights (map, y1)
-		for i = 0, MAP_DATA_LENGTH - 1 do
-			produce_map_turn (map, 0, y1, i, MAP_DATA_LENGTH)
-		end
-		local png = encode_map_png (map, 9)
-		local worldpath = core.get_worldpath ()
-		local file = worldpath .. "/" .. os.date ("map_%Y%m%d%H%M%S.png")
-		core.safe_file_write (file, png)
-		return map
-	end
-end
-
 ------------------------------------------------------------------------
 -- Map management and serialization.
 ------------------------------------------------------------------------
