@@ -61,7 +61,7 @@ do
 	end
 end
 
-core.register_chatcommand("ver", {
+core.register_chatcommand("version", {
 	description = S("Displays the Mineclonia version"),
 	params = "",
 	privs = {},
