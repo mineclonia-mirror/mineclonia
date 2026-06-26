@@ -140,8 +140,16 @@ core.register_node("mcl_lush_caves:dripleaf_small", {
 		end
 		return true
 	end),
-	after_place_node = function (pos)
-		local above = vector.offset(pos,0,1,0)
+	after_place_node = function (pos, placer)
+		local above = vector.offset(pos, 0, 1, 0)
+		local node = core.get_node(above).name
+		local def = core.registered_nodes[node]
+		if not def or not def.buildable_to then
+			return
+		end
+		if placer and core.is_protected(above, placer:get_player_name()) then
+			return
+		end
 		local dir = core.get_node(pos).param2
 		core.swap_node(above, {name="mcl_lush_caves:dripleaf_small", param2=dir})
 		core.swap_node(pos, {name="mcl_lush_caves:dripleaf_small_stem", param2=dir})
