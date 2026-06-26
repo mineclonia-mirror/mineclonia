@@ -108,8 +108,9 @@ end
 -- pre-5.15 polyfill
 if not core.path_exists then
 	function core.path_exists(path)
-		local ok = os.rename(path, path)
-		return ok
+		local file_exists = mcl_util.file_exists(path)
+		if file_exists then return file_exists end
+		return core.get_dir_list(path) ~= nil
 	end
 end
 
