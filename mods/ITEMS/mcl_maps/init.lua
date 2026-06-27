@@ -197,9 +197,9 @@ local LIGHT_DIR = 1.0 / mathsqrt (3.0)
 -- and `stepi'):
 --
 -- Brightness calculation works in three steps:
--- 1. Base Value: (average height here) - (height to the north), 
+-- 1. Base Value: (average height here) - (height to the north),
 --    multiplied by (4.0 / ((1 << scale) + 5.0)).
--- 2. Adjustment: Add or subtract 0.2 depending on whether the sum of 
+-- 2. Adjustment: Add or subtract 0.2 depending on whether the sum of
 --    the unsigned map coordinates is even or odd.
 -- 3. Thresholding: If the adjusted value is > 0.6, brightness is 255.
 --    If it is < -0.6, brightness is 180.  Otherwise, it defaults to 220.
