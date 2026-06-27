@@ -208,8 +208,8 @@ local LIGHT_DIR = 1.0 / mathsqrt (3.0)
 -- region (1 << scale)^2 in size, but only the origin of this region
 -- is sampled in this implementation on grounds of performance.
 
-local function produce_rgb_turn (map, x1, z1, base_first, base,
-				 base_next, i_start, i_end)
+local function produce_rgb_turn (map, z1, base_first, base, base_next,
+				 i_start, i_end)
 	local scale = map.scale - 1
 	local x_start = map.x_start
 	local z_start = map.z_start + lshift (z1, scale)
@@ -296,7 +296,7 @@ local function produce_map_turn (map, x1, y1, z1, n)
 	local idx_next = (turn + 1) * MAP_SIDE_LENGTH + 1
 	local i_start, i_end
 		= x1 + 1, mathmin (x1 + n, MAP_DATA_LENGTH)
-	produce_rgb_turn (map, x1, z1, idx_first, idx_turn,
+	produce_rgb_turn (map, z1, idx_first, idx_turn,
 			  idx_next, i_start, i_end)
 end
 
@@ -607,7 +607,7 @@ local function manage_maps (dtime)
 	update_all_maps ()
 end
 
-local function save_all_maps (maps)
+local function save_all_maps ()
 	for id, map in pairs (loaded_maps) do
 		write_map_data (id, map)
 	end
@@ -1050,7 +1050,7 @@ local function fill_explorer_map (map, y)
 	return true
 end
 
-local function create_explorer_map_1 (pos, item)
+local function create_explorer_map_1 (pos)
 	local dim = mcl_worlds.pos_to_dimension (pos)
 	if dim == "void" then
 		return nil, nil
@@ -1366,7 +1366,7 @@ local function realize_explorer_map_1 (pos, cb_data)
 	end
 end
 
-local function maybe_realize_explorer_map (stack, id)
+local function maybe_realize_explorer_map (id)
 	local map_id = storage:get_string ("e_" .. id)
 	if map_id and map_id ~= "" then
 		return map_id
@@ -1377,7 +1377,7 @@ end
 function realize_explorer_map (stack)
 	local meta = stack:get_meta ()
 	local id = meta:get_int ("mcl_maps:explorer_map_id")
-	local map_id = maybe_realize_explorer_map (stack, id)
+	local map_id = maybe_realize_explorer_map (id)
 	if map_id then
 		return map_id, id
 	end
@@ -1603,7 +1603,6 @@ core.register_chatcommand ("scale_map", {
 				end
 			end
 		end
-		return
 	end
 })
 
@@ -2131,6 +2130,5 @@ core.register_chatcommand ("create_old_map", {
 				core.add_item (player:get_pos (), stack)
 			end
 		end
-		return
 	end
 })
