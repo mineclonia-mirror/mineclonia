@@ -165,28 +165,8 @@ local function produce_heightmap_turn_1 (map, x1, y1, z1, base, i_start, i_end)
 	end
 end
 
-local LIGHT_DIR = 1.0 / mathsqrt (3.0)
-
--- https://maven.fabricmc.net/docs/yarn-1.21.5+build.1/net/minecraft/item/FilledMapItem.html#updateColors(net.minecraft.world.World,net.minecraft.entity.Entity,net.minecraft.item.map.MapState)
-
--- Minecraft's shading algorithm is thus (from observing the execution
--- of `updateColors' in the above mentioned Minecraft class with `jdb'
--- and `stepi'):
---
--- Brightness calculation works in three steps:
--- 1. Base Value: (average height here) - (height to the north),
---    multiplied by (4.0 / ((1 << scale) + 4.0)).
--- 2. Adjustment: Add or subtract 0.2 depending on whether the sum of
---    the unsigned map coordinates is even or odd.
--- 3. Thresholding: If the adjusted value is > 0.6, brightness is 255.
---    If it is < -0.6, brightness is 180.  Otherwise, it defaults to 220.
---
--- N.B. that each map position is supposed to represent a square
--- region (1 << scale)^2 in size, but only the origin of this region
--- is sampled in this implementation on grounds of performance.
-
 local function produce_rgb_turn (map, z1, base_first, base, base_next,
-				 i_start, i_end)
+                                i_start, i_end)
 	local scale = map.scale - 1
 	local x_start = map.x_start
 	local z_start = map.z_start + lshift (z1, scale)
@@ -203,51 +183,24 @@ local function produce_rgb_turn (map, z1, base_first, base, base_next,
 			= map_get_node_raw (x_pos, current, z_start)
 		local rgb = get_rgb (cid, param2)
 		if rgb then
-			local rv
-			if enable_minimap_shading then
-				-- Central differencing.  Clamp
-				-- out-of-bounds height values to
-				-- the nearest in-bounds value.
-				local t = z1 < last and heightmap[base_next + i] or current
-				local b = z1 > 0 and heightmap[base_first + i] or current
-				local r = i < last and heightmap[base + i + 1] or current
-				local l = i > 0 and heightmap[base + i - 1] or current
-
-				-- Normal at point.
-				local x = 2 * (l - r)
-				local y = 2 * (b - t)
-				local z = -4
-
-				-- Dot product with light vector.  (|a| cos (t))
-				local p = x * -LIGHT_DIR + y * LIGHT_DIR + z * -LIGHT_DIR
-
-				-- Relief value.
-				local f = p * 1 / mathsqrt (x * x + y * y + z * z)
-				rv = 192 + floor (64.0 * f)
-			else
-				-- Clamp out-of-bounds height values
-				-- to the nearest in-bounds value.
-				local t = z1 < last and heightmap[base_next + i] or current
-				local b = heightmap[base + i]
-				local d = (b - t) * map_r
-				local c = (band (i + cz, 1) - 0.5) * 0.4
-				if d + c > 0.6 then
-					-- MapColor.Brightness.HIGH
-					rv = 256
-				elseif d + c < -0.6 then
-					-- MapColor.Brightness.LOW
-					rv = 180
-				else
-					-- MapColor.Brightness.NORMAL
-					rv = 220
+			local height = heightmap[base + i]
+			local height_north = heightmap[base_next + i] or height
+			if height_north ~= height then
+				local b = band (rgb, 0xff)
+				local g = rshift (band (rgb, 0xff00), 8)
+				local r = rshift (band (rgb, 0xff0000), 16)
+				if height_north < height then
+					r = math.min(255, r + 16)
+					g = math.min(255, g + 16)
+					b = math.min(255, b + 16)
+				elseif height_north > height then
+					r = math.max(0, r - 16)
+					g = math.max(0, g - 16)
+					b = math.max(0, b - 16)
 				end
+				rgb = bor (b, lshift (g, 8), lshift (r, 16))
 			end
-			-- Apply relief.
-			local c1 = band (rshift (band (rgb, 0x00ff00ff) * rv, 8),
-					 0x00ff00ff)
-			local c2 = band (rshift (band (rgb, 0x0000ff00) * rv, 8),
-					 0x0000ff00)
-			data[base + i] = bor (0xff000000, c1, c2)
+			data[base + i] = bor (0xff000000, rgb)
 		end
 	end
 end
