@@ -229,7 +229,7 @@ local function level_y_range (level, pos)
 		end
 	elseif level == "nether" then
 		return mcl_vars.mg_nether_min,
-			mcl_vars.mg_nether_max - 1
+			mcl_vars.mg_nether_max + 128
 	elseif level == "end" then
 		return mcl_vars.mg_end_min,
 			mcl_vars.mg_end_max_official - 1
