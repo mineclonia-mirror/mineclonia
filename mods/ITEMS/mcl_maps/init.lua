@@ -26,13 +26,9 @@ local use_old_map_grid
 	= core.get_mapgen_setting ("mcl_use_old_map_grid")
 
 if not use_old_map_grid then
-	if detected_old_maps then
-		use_old_map_grid = true
-		core.set_mapgen_setting ("mcl_use_old_map_grid", "true", true)
-	else
-		use_old_map_grid = false
-		core.set_mapgen_setting ("mcl_use_old_map_grid", "false", true)
-	end
+	use_old_map_grid = detected_old_maps
+	core.set_mapgen_setting ("mcl_use_old_map_grid",
+				 tostring (detected_old_maps), true)
 else
 	use_old_map_grid = core.is_yes (use_old_map_grid)
 end
