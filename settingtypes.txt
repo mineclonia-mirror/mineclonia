@@ -198,6 +198,18 @@ enable_real_maps (Real maps) bool true
 # by editing map_meta.txt.
 mcl_use_old_map_grid (Use old map grid) bool false
 
+# Enable minimap-style shading in cartography.
+#
+# If enabled, shading of pixels in maps will be performed with
+# reference to the normal of the surface at each position, rather than
+# the difference between the height of the node at such position and
+# the position above, as in Minecraft.
+#
+# Enabling this option produces maps where large or tall terrain
+# features are more legible, and which are more visually akin to the
+# built-in minimap.
+mcl_enable_minimap_map_shading (Use minimap shading) bool false
+
 # Place bonus chest near players' initial spawn point
 mcl_bonus_chest (Bonus chest) bool false
 
