@@ -53,24 +53,6 @@ local enable_minimap_shading
 
 ------------------------------------------------------------------------
 -- Dynamically updated maps.
--- TODO:
---
---   [X] Map items and grids.
---   [X] Map HUDs.
---   [X] Dimension information.
---   [X] Dynamic map updates.
---   [X] Circular map filling.
---   [X] Cartography tables.
---   [X] Item frame support.
---   [X] Crafting of new maps.
---   [X] Locked maps.
---   [X] Conversion of existing maps.
---   [X] Treasure maps & biome reliefs.
---   [X]   Treasure indicators.
---   [X]   Item frames.
---   [X]   Duplication &c.
---   [X]   Trading & loot.
---   [X]   Ersatz map generation.
 ------------------------------------------------------------------------
 
 local map_colors_by_cid = {}
