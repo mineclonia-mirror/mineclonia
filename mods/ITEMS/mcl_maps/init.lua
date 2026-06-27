@@ -48,6 +48,8 @@ local texture_colors = load_json_file ("colors")
 
 local enable_real_maps
 	= core.settings:get_bool ("enable_real_maps", true)
+local enable_minimap_shading
+	= core.settings:get_bool ("mcl_enable_minimap_map_shading", false)
 
 ------------------------------------------------------------------------
 -- Dynamically updated maps.
@@ -188,6 +190,24 @@ end
 
 local LIGHT_DIR = 1.0 / mathsqrt (3.0)
 
+-- https://maven.fabricmc.net/docs/yarn-1.21.5+build.1/net/minecraft/item/FilledMapItem.html#updateColors(net.minecraft.world.World,net.minecraft.entity.Entity,net.minecraft.item.map.MapState)
+
+-- Minecraft's shading algorithm is thus (from observing the execution
+-- of `updateColors' in the above mentioned Minecraft class with `jdb'
+-- and `stepi'):
+--
+-- Brightness calculation works in three steps:
+-- 1. Base Value: (average height here) - (height to the north), 
+--    multiplied by (4.0 / ((1 << scale) + 5.0)).
+-- 2. Adjustment: Add or subtract 0.2 depending on whether the sum of 
+--    the unsigned map coordinates is even or odd.
+-- 3. Thresholding: If the adjusted value is > 0.6, brightness is 255.
+--    If it is < -0.6, brightness is 180.  Otherwise, it defaults to 220.
+--
+-- N.B. that each map position is supposed to represent a square
+-- region (1 << scale)^2 in size, but only the origin of this region
+-- is sampled in this implementation on grounds of performance.
+
 local function produce_rgb_turn (map, x1, z1, base_first, base,
 				 base_next, i_start, i_end)
 	local scale = map.scale - 1
@@ -195,36 +215,55 @@ local function produce_rgb_turn (map, x1, z1, base_first, base,
 	local z_start = map.z_start + lshift (z1, scale)
 	local heightmap = map.heightmap
 	local data = map.data
+	local map_r = 4.0 / (lshift (1, scale) + 4.0)
+	local cz = z1 - MAP_DATA_LENGTH - 1
 
 	for i = i_start, i_end do
 		local current = heightmap[base + i]
+		local x_pos = x_start + lshift (i - 1, scale)
 		local cid, _, param2
-			= map_get_node_raw (x_start + lshift (i - 1, scale),
-					    current, z_start)
+			= map_get_node_raw (x_pos, current, z_start)
 		local rgb = get_rgb (cid, param2)
 		if rgb then
-			-- Central differencing.
-			local t = heightmap[base_next + i]
-			local b = heightmap[base_first + i]
-			local r = heightmap[base + i + 1]
-			local l = heightmap[base + i - 1]
+			local rv
+			if enable_minimap_shading then
+				-- Central differencing.
+				local t = heightmap[base_next + i]
+				local b = heightmap[base_first + i]
+				local r = heightmap[base + i + 1]
+				local l = heightmap[base + i - 1]
 
-			-- Normal at point.
-			local x = 2 * (l - r)
-			local y = 2 * (b - t)
-			local z = -4
+				-- Normal at point.
+				local x = 2 * (l - r)
+				local y = 2 * (b - t)
+				local z = -4
 
-			-- Dot product with light vector.  (|a| cos (t))
-			local p = x * -LIGHT_DIR + y * LIGHT_DIR + z * -LIGHT_DIR
+				-- Dot product with light vector.  (|a| cos (t))
+				local p = x * -LIGHT_DIR + y * LIGHT_DIR + z * -LIGHT_DIR
 
-			-- Relief value.
-			local f = p * 1 / mathsqrt (x * x + y * y + z * z)
-			local r = 192 + floor (64.0 * f)
-
+				-- Relief value.
+				local f = p * 1 / mathsqrt (x * x + y * y + z * z)
+				rv = 192 + floor (64.0 * f)
+			else
+				local t = heightmap[base_next + i]
+				local b = heightmap[base + i]
+				local d = (b - t) * map_r
+				local c = (band (i + cz, 1) - 0.5) * 0.4
+				if d + c > 0.6 then
+					-- MapColor.Brightness.HIGH
+					rv = 256
+				elseif d + c < -0.6 then
+					-- MapColor.Brightness.LOW
+					rv = 180
+				else
+					-- MapColor.Brightness.NORMAL
+					rv = 220
+				end
+			end
 			-- Apply relief.
-			local c1 = band (rshift (band (rgb, 0x00ff00ff) * r, 8),
+			local c1 = band (rshift (band (rgb, 0x00ff00ff) * rv, 8),
 					 0x00ff00ff)
-			local c2 = band (rshift (band (rgb, 0x0000ff00) * r, 8),
+			local c2 = band (rshift (band (rgb, 0x0000ff00) * rv, 8),
 					 0x0000ff00)
 			data[base + i] = bor (0xff000000, c1, c2)
 		end
