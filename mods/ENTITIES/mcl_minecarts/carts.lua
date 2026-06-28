@@ -232,6 +232,8 @@ core.register_craft({
 	},
 })
 
+mcl_wip.register_wip_item("mcl_minecarts:hopper_minecart")
+
 -- Minecart with TNT
 mcl_minecarts.register_minecart("mcl_minecarts:tnt_minecart", {
 	entity = {
