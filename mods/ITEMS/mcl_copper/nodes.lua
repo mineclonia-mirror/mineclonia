@@ -250,10 +250,6 @@ for n, desc in pairs(n_desc) do
 		groups = {pickaxey = 1, copper_bars = 1},
 		sounds = mcl_sounds.node_sound_metal_defaults(),
 		use_texture_alpha = "clip",
-		recipe = {
-			{"mcl_copper:copper_ingot", "mcl_copper:copper_ingot", "mcl_copper:copper_ingot"},
-			{"mcl_copper:copper_ingot", "mcl_copper:copper_ingot", "mcl_copper:copper_ingot"},
-		},
 		_mcl_blast_resistance = 6,
 		_mcl_hardness = 5
 	})

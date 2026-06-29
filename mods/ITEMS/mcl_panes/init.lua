@@ -185,10 +185,12 @@ function mcl_panes.register_pane(name, def)
 		end
 	})
 
-	core.register_craft({
-		output = string.format("%s 16", node_name_flat),
-		recipe = def.recipe
-	})
+	if def.recipe then
+		core.register_craft({
+			output = string.format("%s 16", node_name_flat),
+			recipe = def.recipe
+		})
+	end
 
 	if def._doc_items_create_entry ~= false then
 		doc.add_entry_alias("nodes", node_name_flat, "nodes", node_name)
