@@ -314,10 +314,10 @@ end
 local function irr_convert_map_data (dst, map)
 	local i = 0
 	local data = map.data
-	for z = 0, MAP_SIDE_LENGTH - 1 do
-		for x = 0, MAP_SIDE_LENGTH - 1 do
+	for z = 1, MAP_SIDE_LENGTH do
+		for x = 1, MAP_SIDE_LENGTH do
 			i = i + 1
-			dst[i] = data[z * MAP_SIDE_LENGTH + x + 1]
+			dst[i] = data[i]
 		end
 	end
 end
