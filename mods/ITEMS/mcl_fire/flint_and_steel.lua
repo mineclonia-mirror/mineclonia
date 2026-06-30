@@ -59,7 +59,7 @@ core.register_tool("mcl_fire:flint_and_steel", {
 			end
 		-- Ignite TNT
 		elseif dropnode.name == "mcl_tnt:tnt" then
-			tnt.ignite(droppos)
+			mcl_tnt.ignite(droppos)
 			if not core.is_creative_enabled("") then
 				stack:add_wear(65535/65) -- 65 uses
 			end

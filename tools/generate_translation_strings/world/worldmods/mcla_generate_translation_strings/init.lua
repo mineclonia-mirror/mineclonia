@@ -1,3 +1,4 @@
+--luacheck: globals mcla_generated_translations
 core.after(1, function()
 	if core.global_exists("mcla_generated_translations") then
 		local wp = core.get_worldpath().."/mcla_translate"

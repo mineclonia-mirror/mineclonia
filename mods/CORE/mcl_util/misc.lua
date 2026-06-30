@@ -38,6 +38,7 @@ end
 -- textdomain for that particular invocation. So API mods using this mechanism
 -- can create translatable strings in the textdomain of their calling mods.
 if core.get_modpath("mcla_generate_translation_strings") then
+	--luacheck: push globals mcla_generated_translations
 	mcla_generated_translations = {}
 	function mcl_util.get_dynamic_translator(textdomain)
 		return function(s, ...)
@@ -47,6 +48,7 @@ if core.get_modpath("mcla_generate_translation_strings") then
 			return core.translate(mod, s, ...)
 		end
 	end
+	--luacheck: pop
 else
 	function mcl_util.get_dynamic_translator(textdomain)
 		if textdomain then

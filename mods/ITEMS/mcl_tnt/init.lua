@@ -1,10 +1,10 @@
 local S = core.get_translator(core.get_current_modname())
 local explosions_griefing = core.settings:get_bool("mcl_explosions_griefing", true)
 
-tnt = {}
+mcl_tnt = {}
 
-tnt.BOOMTIMER = 4
-tnt.BLINKTIMER = 0.25
+mcl_tnt.BOOMTIMER = 4
+mcl_tnt.BLINKTIMER = 0.25
 
 local function spawn_tnt(pos, entname)
 	core.sound_play("tnt_ignite", { pos = pos, gain = 1.0, max_hear_distance = 15 }, true)
@@ -15,7 +15,7 @@ local function spawn_tnt(pos, entname)
 	return ent
 end
 
-function tnt.ignite(pos)
+function mcl_tnt.ignite(pos)
 	core.remove_node(pos)
 	local e = spawn_tnt(pos, "mcl_tnt:tnt")
 	core.check_for_falling(pos)
@@ -25,7 +25,7 @@ end
 ---Add smoke particle of entity at pos.
 ---
 ---Intended to be called every step.
-function tnt.smoke_step(pos)
+function mcl_tnt.smoke_step(pos)
 	core.add_particle({
 		pos                = vector.offset(pos, 0, 0.5, 0),
 		velocity           = vector.new(math.random() * 0.2 - 0.1, 1.0 + math.random(), math.random() * 0.2 - 0.1),
@@ -69,17 +69,17 @@ core.register_node("mcl_tnt:tnt", {
 	_doc_items_usagehelp = S("Place the TNT and ignite it with one of the methods above. Quickly get in safe distance. The TNT will start to be affected by gravity and explodes in 4 seconds."),
 	groups = { dig_immediate = 3, tnt = 1, enderman_takable = 1, flammable = -1 },
 	on_blast = function(pos, _)
-		local e = tnt.ignite(pos)
+		local e = mcl_tnt.ignite(pos)
 		if e then
-			e:get_luaentity().timer = tnt.BOOMTIMER - (0.5 + math.random())
+			e:get_luaentity().timer = mcl_tnt.BOOMTIMER - (0.5 + math.random())
 		end
 	end,
 	_on_ignite = function(_, pointed_thing)
-		tnt.ignite(pointed_thing.under)
+		mcl_tnt.ignite(pointed_thing.under)
 		return true
 	end,
 	_on_burn = function(pos)
-		tnt.ignite(pos)
+		mcl_tnt.ignite(pos)
 		return true
 	end,
 	_on_dispense = function(_, _, droppos, dropnode)
@@ -92,7 +92,7 @@ core.register_node("mcl_tnt:tnt", {
 	end,
 	_on_arrow_hit = function(_, arrowent)
 		if mcl_burning.is_burning(arrowent.object) then
-			tnt.ignite(arrowent._stuckin)
+			mcl_tnt.ignite(arrowent._stuckin)
 		end
 	end,
 	_mcl_redstone = {
@@ -101,7 +101,7 @@ core.register_node("mcl_tnt:tnt", {
 		end,
 		update = function(pos)
 			if mcl_redstone.get_power(pos) ~= 0 then
-				tnt.ignite(pos)
+				mcl_tnt.ignite(pos)
 			end
 		end,
 	},
@@ -235,11 +235,11 @@ end]]
 function TNT:on_step(dtime, _)
 	local pos = self.object:get_pos()
 	self:check_water_flow(pos)
-	tnt.smoke_step(pos)
+	mcl_tnt.smoke_step(pos)
 	self.timer = self.timer + dtime
 	self.blinktimer = self.blinktimer + dtime
-	if self.blinktimer > tnt.BLINKTIMER then
-		self.blinktimer = self.blinktimer - tnt.BLINKTIMER
+	if self.blinktimer > mcl_tnt.BLINKTIMER then
+		self.blinktimer = self.blinktimer - mcl_tnt.BLINKTIMER
 		if self.blinkstatus then
 			self.object:set_texture_mod("")
 		else
@@ -247,7 +247,7 @@ function TNT:on_step(dtime, _)
 		end
 		self.blinkstatus = not self.blinkstatus
 	end
-	if self.timer > tnt.BOOMTIMER then
+	if self.timer > mcl_tnt.BOOMTIMER then
 		mcl_explosions.explode(self.object:get_pos(), 4, {}, self.object)
 		self.object:remove()
 	end

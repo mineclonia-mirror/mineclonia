@@ -32,7 +32,7 @@ local function activate_tnt_minecart(self, timer)
 	if timer then
 		self._boomtimer = timer
 	else
-		self._boomtimer = tnt.BOOMTIMER
+		self._boomtimer = mcl_tnt.BOOMTIMER
 	end
 	self.object:set_properties({textures = {
 		"mcl_tnt_blink.png",
@@ -43,7 +43,7 @@ local function activate_tnt_minecart(self, timer)
 		"mcl_tnt_blink.png",
 		"mcl_minecarts_minecart.png",
 	}})
-	self._blinktimer = tnt.BLINKTIMER
+	self._blinktimer = mcl_tnt.BLINKTIMER
 	core.sound_play("tnt_ignite", {pos = self.object:get_pos(), gain = 1.0, max_hear_distance = 15}, true)
 end
 
@@ -361,7 +361,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 				self.object:remove()
 				return
 			else
-				tnt.smoke_step(pos)
+				mcl_tnt.smoke_step(pos)
 			end
 		end
 		if self._blinktimer then
@@ -391,7 +391,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 					"mcl_minecarts_minecart.png",
 					}})
 				end
-				self._blinktimer = tnt.BLINKTIMER
+				self._blinktimer = mcl_tnt.BLINKTIMER
 			end
 		end
 
