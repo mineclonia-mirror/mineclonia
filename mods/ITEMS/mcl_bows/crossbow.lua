@@ -38,7 +38,7 @@ local bow_load = {}
 -- Another player table, this one stores the wield index of the bow being charged
 local bow_index = {}
 
-function shoot_arrow_crossbow_1(arrow_item, pos, dir, yaw, shooter, speed, damage, is_critical, crossbow_stack, collectable)
+local function shoot_arrow_crossbow_1(arrow_item, pos, dir, yaw, shooter, speed, damage, is_critical, crossbow_stack, collectable)
 	local obj = core.add_entity({x=pos.x,y=pos.y,z=pos.z}, ItemStack(arrow_item):get_name().."_entity")
 	if not obj or not obj:get_pos() then return end
 	if damage == nil then

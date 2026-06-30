@@ -328,7 +328,7 @@ local function wandering_trader_check_trading (self, self_pos, dtime, moveresult
 	return false
 end
 
-function wandering_trader_check_wander (self, self_pos, dtime)
+local function wandering_trader_check_wander (self, self_pos, dtime)
 	if self._wandering_to_target then
 		if self:navigation_finished () then
 			local distance

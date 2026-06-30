@@ -27,17 +27,6 @@ function mcl_bells.ring_internal (pos)
 	end
 end
 
-local find_or_create_entity
-
-function mcl_bells.ring_once (pos, node)
-	local node = node or core.get_node (pos)
-	local entity = find_or_create_entity (pos, node)
-	mcl_bells.ring_internal (pos)
-	if entity then
-		entity:ring ()
-	end
-end
-
 local bell_rotations = {
 	0,          -- ceiling
 	0,          -- floor
@@ -76,6 +65,15 @@ end
 function find_or_create_entity (pos, node)
 	local hash = core.hash_node_position (pos)
 	return bell_entities[hash] or create_entity (pos, node)
+end
+
+function mcl_bells.ring_once (pos, node)
+	local node = node or core.get_node (pos)
+	local entity = find_or_create_entity (pos, node)
+	mcl_bells.ring_internal (pos)
+	if entity then
+		entity:ring ()
+	end
 end
 
 local bell_def = {

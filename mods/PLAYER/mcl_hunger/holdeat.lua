@@ -6,7 +6,7 @@ last_eat_sound = {} -- effect timer for precise interval
 local SPEED_WHILE_EAT = tonumber(core.settings:get("movement_speed_crouch")) / tonumber(core.settings:get("movement_speed_walk"))
 local EAT_DELAY = 1.61
 
-function play_eat_anim_sound(user, itemname, hunger_points, item_def, pitch)
+local function play_eat_anim_sound(user, itemname, hunger_points, item_def, pitch)
 	if not (user and itemname and hunger_points and item_def) then
 		return false
 	end

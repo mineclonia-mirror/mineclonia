@@ -96,7 +96,7 @@ local function make_endspike(pos,width,height)
 	return vector.offset(pos,0,height,0)
 end
 
-function make_cage(pos,width)
+local function make_cage(pos,width)
 	local nodes = {}
 	local r = math.max(1,math.floor(width/2) - 2)
 	for x=-r,r do for y = 0,width do for z = -r,r do

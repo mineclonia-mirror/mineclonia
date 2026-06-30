@@ -219,7 +219,7 @@ function mcl_villages.check_radius_distance(settlement_info, building_pos, schem
 	return true, 0
 end
 
-function plant_fields(_, biome_name, schem_lua, pr)
+local function plant_fields(_, biome_name, schem_lua, pr)
 	local modified_schem_lua = schem_lua
 
 	local map_name = mcl_villages.biome_map[biome_name] or "plains"

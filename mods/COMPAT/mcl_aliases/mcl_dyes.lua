@@ -25,7 +25,7 @@ core.register_alias("mcl_dyes:dark_grey","mcl_dyes:grey")
 core.register_alias("mcl_dyes:violet","mcl_dyes:purple")
 core.register_alias("mcl_dyes:lightblue","mcl_dyes:light_blue")
 
-function register_alias_if_not_exists(alias, name)
+local function register_alias_if_not_exists(alias, name)
 	if not core.registered_nodes[alias] then
 		core.register_alias(alias, name)
 	end

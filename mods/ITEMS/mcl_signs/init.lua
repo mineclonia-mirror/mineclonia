@@ -203,7 +203,7 @@ local function subseq(ustr, s, e)
 	return line
 end
 
-function ustring_to_line_array(ustr)
+local function ustring_to_line_array(ustr)
 	local lines = {}
 	local start, stop = 1, 1
 

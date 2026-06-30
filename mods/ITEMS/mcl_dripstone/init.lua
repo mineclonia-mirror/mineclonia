@@ -78,7 +78,7 @@ local function get_dripstone_length(pos, direction)
 	return length
 end
 
-function place_dripstone(pos, length, direction)
+local function place_dripstone(pos, length, direction)
 	if length == 0 then return end
 	-- create the base
 	if length >= 3 then

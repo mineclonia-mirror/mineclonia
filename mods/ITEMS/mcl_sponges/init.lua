@@ -69,7 +69,7 @@ core.register_node("mcl_sponges:sponge", {
 	_mcl_hardness = 0.6,
 })
 
-function place_wet_sponge(itemstack, placer, pointed_thing)
+local function place_wet_sponge(itemstack, placer, pointed_thing)
 	if pointed_thing.type ~= "node" or not placer or not placer:is_player() then
 		return itemstack
 	end

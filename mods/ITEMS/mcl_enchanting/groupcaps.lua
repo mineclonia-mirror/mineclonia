@@ -1,7 +1,7 @@
 local groupcaps_cache = {}
 
 -- Compute a hash value.
-function compute_hash(value)
+local function compute_hash(value)
 	return string.sub(core.sha1(core.serialize(value)), 1, 8)
 end
 

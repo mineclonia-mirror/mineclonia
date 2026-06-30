@@ -58,7 +58,7 @@ local function finish_event(self,idx)
 end
 
 local etime = 0
-function check_events(dtime)
+local function check_events(dtime)
 	--process active events
 	for idx,ae in pairs(active_events) do
 		if ae.cond_complete and ae:cond_complete() then

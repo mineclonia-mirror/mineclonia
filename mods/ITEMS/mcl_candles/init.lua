@@ -180,7 +180,7 @@ function tpl_candle.on_place(itemstack, placer, pointed_thing)
 	return itemstack
 end
 
-function extinguish(pos, node, clicker, _, _)
+local function extinguish(pos, node, clicker, _, _)
 	if not clicker then
 		return
 	end
