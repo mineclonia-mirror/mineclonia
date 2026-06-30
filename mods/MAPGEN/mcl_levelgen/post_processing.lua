@@ -1467,6 +1467,7 @@ end
 
 local REGENERATION_QUOTA_US = 8000
 
+--luacheck: push globals levelgen_previous_vm
 if mcl_levelgen.load_feature_environment then
 	-- This global variable holds the last VM to be supplied to
 	-- async_function.  It exists as, for reasons that ought to
@@ -1493,6 +1494,7 @@ local function async_function (vm, run, dim_id, heightmap, wg_heightmap, biomes,
 	return vm, run, heightmap, relight_list, gen_notifies,
 		features, c_above, c_below
 end
+--luacheck: pop
 
 local v1 = vector.zero ()
 local v2 = vector.zero ()
