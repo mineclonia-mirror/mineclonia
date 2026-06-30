@@ -296,7 +296,9 @@ function core.item_pickup(itemstack,picker,pointed_thing,time_from_last_punch,..
 		itemstack = inv:add_item("offhand", itemstack)
 	end
 
-	return old_cipu(itemstack, picker, pointed_thing, time_from_last_punch, ...)
+	local leftover = old_cipu(itemstack, picker, pointed_thing, time_from_last_punch, ...)
+	-- Always pick up items when creative mode is enabled, even if they don't fit in inventory
+	return core.is_creative_enabled(picker:get_player_name()) and ItemStack() or leftover
 end
 
 --modify builtin:item
