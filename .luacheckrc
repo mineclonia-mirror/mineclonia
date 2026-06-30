@@ -8,7 +8,7 @@ ignore = {
 	"542", -- An empty if branch
 }
 globals = {
-	"minetest", "core",
+	"core",
 	"doc",
 	"tt",
 	"mesecon",

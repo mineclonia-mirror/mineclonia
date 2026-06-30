@@ -61,7 +61,7 @@ function mcl_maps.create_map(pos)
 					local index = area:index(map_x, map_y, map_z)
 					local c_id = data[index]
 					if c_id ~= c_air then
-						local color = texture_colors[minetest.get_name_from_content_id(c_id)]
+						local color = texture_colors[core.get_name_from_content_id(c_id)]
 						-- use param2 if available:
 						if color and type(color[1]) == "table" then
 							color = color[param2data[index] + 1] or color[1]

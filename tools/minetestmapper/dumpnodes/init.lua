@@ -1,9 +1,9 @@
-minetest.register_chatcommand("dumpnodes", {
+core.register_chatcommand("dumpnodes", {
 	description = "Dump node and texture list for use with minetestmapper",
 	func = function()
-		local out, err = io.open(minetest.get_worldpath() .. "/nodes.txt", 'wb')
+		local out, err = io.open(core.get_worldpath() .. "/nodes.txt", 'wb')
 		if not out then return true, err end
-		for name, def in pairs(minetest.registered_nodes) do
+		for name, def in pairs(core.registered_nodes) do
 			local tiles = def.tiles or def.tile_images
 			if tiles and def.drawtype ~= 'airlike' then
 				local tex = nil
