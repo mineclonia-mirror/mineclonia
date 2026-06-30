@@ -62,7 +62,7 @@ local function create_entity (pos, node)
 	return nil
 end
 
-function find_or_create_entity (pos, node)
+local function find_or_create_entity (pos, node)
 	local hash = core.hash_node_position (pos)
 	return bell_entities[hash] or create_entity (pos, node)
 end
