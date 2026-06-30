@@ -1,7 +1,7 @@
-eat_duration = {}
-eat_anim_hud = {}
-eat_anim_block = {}
-last_eat_sound = {} -- effect timer for precise interval
+local eat_duration = {}
+local eat_anim_hud = {}
+local eat_anim_block = {}
+local last_eat_sound = {} -- effect timer for precise interval
 
 local SPEED_WHILE_EAT = tonumber(core.settings:get("movement_speed_crouch")) / tonumber(core.settings:get("movement_speed_walk"))
 local EAT_DELAY = 1.61

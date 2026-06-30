@@ -4,7 +4,7 @@ mcl_clock = {}
 local clock_frames = 64
 local image_fmt = "mcl_clock_clock_%02d.png"
 
-clock_images = {}
+local clock_images = {}
 -- the first and last element of clock_images are the same. This is to
 -- accomodate for `core.get_timeofday` returning values in [0, 1], where
 -- the value `0` and `1` indicate the same time.

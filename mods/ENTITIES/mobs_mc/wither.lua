@@ -910,7 +910,7 @@ local skull_def = {
 
 mcl_mobs.register_arrow("mobs_mc:wither_skull", skull_def)
 
-strong_skull_def = table.copy (skull_def)
+local strong_skull_def = table.copy (skull_def)
 strong_skull_def.velocity = 12
 strong_skull_def.redirectable = true
 strong_skull_def.explosioninfo = {

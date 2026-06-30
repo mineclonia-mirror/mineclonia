@@ -4,7 +4,7 @@ local modpath = core.get_modpath(modname)
 -- Cooldown time and global storing of cooldown
 local cooldown_time = 1
 mcl_charges = {}
-mcl_charges_cooldown = {}
+local mcl_charges_cooldown = {}
 
 --Wind Charge Particle effects
 mcl_charges.wind_burst_spawner = {

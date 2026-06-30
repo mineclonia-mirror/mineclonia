@@ -1,4 +1,4 @@
-eat_block = {}
+local eat_block = {}
 function mcl_hunger.prevent_eating(player)
 	eat_block[player:get_player_name()] = true
 end

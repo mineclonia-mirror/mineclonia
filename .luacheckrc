@@ -1,5 +1,4 @@
 unused_args = false
-allow_defined_top = true
 max_line_length = false
 redefined = false
 ignore = {
@@ -53,6 +52,7 @@ globals = {
 	"mcl_blast_furnace",
 	"mcl_boats",
 	"mcl_bone_meal",
+	"mcl_bonus_chest",
 	"mcl_books",
 	"mcl_bossbars",
 	"mcl_bows",
@@ -75,6 +75,7 @@ globals = {
 	"mcl_comparators",
 	"mcl_compass",
 	"mcl_composters",
+	"mcl_conduits",
 	"mcl_copper",
 	"mcl_core",
 	"mcl_craftguide",
@@ -155,7 +156,6 @@ globals = {
 	"mcl_paintings",
 	"mcl_particles",
 	"mcl_player",
-	"mcl_playerinfo",
 	"mcl_player_init",
 	"mcl_playerplus",
 	"mcl_portals",
@@ -180,6 +180,7 @@ globals = {
 	"mcl_stonecutter",
 	"mcl_strongholds",
 	"mcl_structures",
+	"mcl_sus_nodes",
 	"mcl_sus_stew",
 	"mcl_target",
 	"mcl_temp_helper_recipes",
@@ -191,6 +192,7 @@ globals = {
 	"mcl_torches",
 	"mcl_totems",
 	"mcl_trees",
+	"mcl_trial_spawners",
 	"mcl_tridents",
 	"mcl_buttons",
 	"mcl_tt",
@@ -199,6 +201,7 @@ globals = {
 	"mcl_villages",
 	"mcl_void_damage",
 	"mcl_walls",
+	"mcl_walkover",
 	"mcl_weather",
 	"mcl_wieldview",
 	"mcl_wip",
@@ -217,6 +220,11 @@ globals = {
 	"mcl_liquids",
 	"mcl_levelgen",
 	"mcl_attachments",
+
+	-- COMPAT
+	"lightning",
+	"mcl_dye",
+	"mcl_playerinfo",
 }
 
 read_globals = {
@@ -274,7 +282,6 @@ read_globals = {
 	--GENERAL
 	"default",
 
-
 	--ENTITIES
 	"cmi",
 
@@ -284,3 +291,5 @@ read_globals = {
 
 	"sfinv", "sfinv_buttons", "unified_inventory", "cmsg", "inventory_plus",
 }
+
+files["mods/CORE/mcl_init/init.lua"].globals = {"mcl_vars"}

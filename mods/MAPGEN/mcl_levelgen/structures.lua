@@ -84,7 +84,7 @@ local set_carver_seed = mcl_levelgen.set_carver_seed
 
 -- Distribution methods.
 
-function build_random_spread_chunk_test (spacing, separation, spread_method)
+local function build_random_spread_chunk_test (spacing, separation, spread_method)
 	local function distribute_triangular (rng, n)
 		return rtz ((rng:next_within (n) + rng:next_within (n)) / 2)
 	end
@@ -114,7 +114,7 @@ function build_random_spread_chunk_test (spacing, separation, spread_method)
 	end
 end
 
-function build_random_spread_locator_test (spacing, separation, spread_method)
+local function build_random_spread_locator_test (spacing, separation, spread_method)
 	local function distribute_triangular (rng, n)
 		return rtz ((rng:next_within (n) + rng:next_within (n)) / 2)
 	end

@@ -593,11 +593,11 @@ local function check_intersection (box, other_box)
 	return true
 end
 
-recently_damaged = {}
+local recently_damaged = {}
 
 core.register_globalstep (function (dtime)
 	for key, value in pairs (recently_damaged) do
-		local t = recently_damaged[key] - dtime
+		local t = value - dtime
 		if t <= 0 then
 			recently_damaged[key] = nil
 		else

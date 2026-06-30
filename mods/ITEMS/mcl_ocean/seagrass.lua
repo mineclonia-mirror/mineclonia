@@ -99,7 +99,7 @@ for s=1, #surfaces do
 	sounds.dig = leaf_sounds.dig
 	sounds.dug = leaf_sounds.dug
 	sounds.place = leaf_sounds.place
-	local doc_longdesc, doc_img, desc
+	local doc_longdesc, doc_img, desc, doc_create
 	if surfaces[s][1] == "dirt" then
 		doc_longdesc = S("Seagrass grows inside water on top of dirt, sand or gravel.")
 		desc = S("Seagrass")
