@@ -140,6 +140,9 @@ core.register_craftitem("mcl_mobitems:spider_eye", {
 	wield_image = "mcl_mobitems_spider_eye.png",
 	groups = { food = 2, eatable = 2, brewitem = 1 },
 	_mcl_saturation = 3.2,
+	_mcl_eat_effect = function(_, player)
+		mcl_potions.give_effect_by_level("poison", player, 1, 5)
+	end
 })
 
 core.register_craftitem("mcl_mobitems:bone", {
@@ -535,9 +538,3 @@ core.register_craft({
 		{"", "mcl_core:paper"}
 	}
 })
-
-core.register_on_item_eat(function (_, _, itemstack, user, _)	-- poisoning with spider eye
-	if itemstack:get_name() == "mcl_mobitems:spider_eye" then
-		mcl_potions.give_effect_by_level("poison", user, 1, 4)
-	end
-end)
