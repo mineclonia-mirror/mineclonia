@@ -10,8 +10,7 @@ core.register_chatcommand("setblock", {
 		p.x, p.y, p.z, nodestring = param:match("^([%d.-]+)[, ] *([%d.-]+)[, ] *([%d.-]+) +(.+)$")
 		p.x, p.y, p.z = tonumber(p.x), tonumber(p.y), tonumber(p.z)
 		if p.x and p.y and p.z and nodestring then
-			local itemstack = ItemStack(nodestring)
-			if itemstack:is_empty() or not core.registered_nodes[itemstack:get_name()] then
+			if not core.registered_nodes[nodestring] then
 				return false, S("Invalid node")
 			end
 			core.set_node(p, {name=nodestring})
