@@ -131,17 +131,11 @@ core.register_craftitem("mcl_farming:potato_item_poison", {
 	inventory_image = "farming_potato_poison.png",
 	groups = { food = 2, eatable = 2 },
 	_mcl_saturation = 1.2,
+	_mcl_eat_effect = function(_, player)
+		if math.random() <= 0.6 then
+			mcl_potions.give_effect_by_level("poison", player, 1, 5)
+		end
+	end
 })
 
 mcl_farming:add_plant("plant_potato", "mcl_farming:potato", {"mcl_farming:potato_1", "mcl_farming:potato_2", "mcl_farming:potato_3", "mcl_farming:potato_4", "mcl_farming:potato_5", "mcl_farming:potato_6", "mcl_farming:potato_7"}, 19.75, 20)
-
-core.register_on_item_eat(function (_, _, itemstack, user)
-
-	-- 60% chance of poisoning with poisonous potato
-	if itemstack:get_name() == "mcl_farming:potato_item_poison" then
-		if math.random(1,10) >= 6 then
-			mcl_potions.give_effect_by_level("poison", user, 1, 5)
-		end
-	end
-
-end )
