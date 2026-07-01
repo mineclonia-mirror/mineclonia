@@ -17,7 +17,7 @@ mcl_levelgen.register_loot_table ("mcl_levelgen:shipwreck_map", {
 			{ itemstring = "mcl_books:book", weight = 5, amount_min = 1, amount_max = 5 },
 			{ itemstring = "mcl_clock:clock", weight = 1, amount_min = 1, amount_max = 1 },
 			{ itemstring = "mcl_compass:compass", weight = 1, amount_min = 1, amount_max = 1 },
-			{ itemstring = "mcl_maps:empty_map", weight = 1, amount_min = 1, amount_max = 1 },
+			{ itemstring = "mcl_maps:map_empty", weight = 1, amount_min = 1, amount_max = 1 },
 		},
 	},
 	{

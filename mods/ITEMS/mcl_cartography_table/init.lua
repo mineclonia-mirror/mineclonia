@@ -56,11 +56,9 @@ local function update_cartography_table(player)
 		texture, id = mcl_maps.load_map_item (stack)
 		if id then
 			local addon = inv:get_stack ("cartography_table_input", 2)
-			local meta = stack:get_meta ()
 			local map = mcl_maps.load_map_data (id)
 			assert (map)
 
-			local scale = math.pow (2, map.scale)
 			if map.scale < MAX_MAP_SCALE
 				and addon:get_name () == "mcl_core:paper" then
 				-- Zoom a map
@@ -75,6 +73,15 @@ local function update_cartography_table(player)
 						.. "image[6.25,1.625;1.75,1.75;"
 						.. texture .. "]"
 				end
+				local stack = ItemStack ("mcl_maps:map")
+				local def = stack:get_definition ()
+				stack:get_meta ():set_string ("description", table.concat {
+					def.description, "\n",
+					core.colorize (mcl_colors.GRAY,
+						       mcl_maps.describe_map (map.x_start,
+									      map.z_start,
+									      map.scale + 1)),
+				})
 				inv:set_stack ("cartography_table_output", 1, stack)
 				operation_selected = true
 			elseif addon:get_name () == "mcl_maps:map_empty" then
@@ -205,17 +212,19 @@ end
 
 core.register_allow_player_inventory_action(function(player, action, inventory, inventory_info)
 	-- Generate zoomed map
-	if (action == "move" or action == "take") 
+	if (action == "move" or action == "take")
 		and inventory_info.from_list == "cartography_table_output"
 		and inventory_info.from_index == 1 then
 		local stack = inventory:get_stack ("cartography_table_output", 1)
+		local input = inventory:get_stack ("cartography_table_input", 1)
 		local addon = inventory:get_stack ("cartography_table_input", 2)
 		if stack:get_name () == "mcl_maps:map"
 			and addon:get_name () == "mcl_core:paper" then
-			local stack = mcl_maps.scale_map_item (stack)
+			local stack = mcl_maps.scale_map_item (input)
 			if not stack then
 				return 0
 			end
+			tt.reload_itemstack_description (stack)
 			inventory:set_stack ("cartography_table_output", 1, stack)
 		end
 

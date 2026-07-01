@@ -120,7 +120,7 @@ local stronghold_loot_pools = {
 					amount_max = 7,
 				},
 				{
-					itemstring = "mcl_maps:empty_map",
+					itemstring = "mcl_maps:map_empty",
 				},
 				{
 					itemstring = "mcl_compass:compass",

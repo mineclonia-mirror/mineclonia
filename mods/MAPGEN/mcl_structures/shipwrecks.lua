@@ -224,7 +224,7 @@ mcl_structures.register_structure("shipwreck",{
 				{ itemstring = "mcl_books:book", weight = 5, amount_min = 1, amount_max = 5 },
 				{ itemstring = "mcl_clock:clock", weight = 1, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_compass:compass", weight = 1, amount_min = 1, amount_max = 1 },
-				{ itemstring = "mcl_maps:empty_map", weight = 1, amount_min = 1, amount_max = 1 },
+				{ itemstring = "mcl_maps:map_empty", weight = 1, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_armor:coast", weight = 20, amount_min = 2, amount_max = 2},
 				}
 			},
@@ -296,7 +296,7 @@ mcl_structures.register_structure("ocean_temple",{
 				{ itemstring = "mcl_books:book", weight = 1, amount_min = 1, amount_max = 5 },
 				{ itemstring = "mcl_clock:clock", weight = 1, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_compass:compass", weight = 1, amount_min = 1, amount_max = 1 },
-				{ itemstring = "mcl_maps:empty_map", weight = 1, amount_min = 1, amount_max = 1 },
+				{ itemstring = "mcl_maps:map_empty", weight = 1, amount_min = 1, amount_max = 1 },
 				}
 			},
 		}
