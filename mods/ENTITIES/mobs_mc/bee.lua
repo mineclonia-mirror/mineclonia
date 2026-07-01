@@ -8,7 +8,6 @@ local bee = {
 	description = S("Bee"),
 	type = "animal",
 	spawn_class = "passive",
-	passive = true,
 	retaliates = true,
 	pathfinding = 1,
 	hp_min = 6,
@@ -34,7 +33,7 @@ local bee = {
 	fly_velocity = 4,
 	view_range = 16,
 	stepheight = 1.1,
-	fall_damage = 0,
+	_no_fall_damage = true,
 	animation = {
 		-- Holding Item = 200,220
 		--
