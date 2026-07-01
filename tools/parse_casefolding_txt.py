@@ -74,13 +74,13 @@ def render_to_lua(entries: list[CaseFoldingEntry], version: str, include_turkic:
         left = display_code(src)
         right = display_code(dst)
         lines.append(f'\t[0x{src:04X}] = 0x{dst:04X}, -- {left} → {right}')
+    lines.append("")
 
     lines.append('\t-- F status (multi-codepoint) entries (raw strings)')
     for src, _, mapped in multi:
         left = display_code(src)
         right = "".join(chr(code) for code in mapped)
         lines.append(f'\t[0x{src:04X}] = {to_lua_string(right)}, -- {left} → {right}')
-    lines.append("")
 
     lines.append("}")
     return "\n".join(lines) + "\n"

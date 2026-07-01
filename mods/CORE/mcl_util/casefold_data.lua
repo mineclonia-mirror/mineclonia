@@ -1482,6 +1482,7 @@ return {
 	[0x1E91F] = 0x1E941, -- 𞤟 → 𞥁
 	[0x1E920] = 0x1E942, -- 𞤠 → 𞥂
 	[0x1E921] = 0x1E943, -- 𞤡 → 𞥃
+
 	-- F status (multi-codepoint) entries (raw strings)
 	[0x00DF] = "ss", -- ß → ss
 	[0x0130] = "i̇", -- İ → i̇
@@ -1587,5 +1588,4 @@ return {
 	[0xFB15] = "մի", -- ﬕ → մի
 	[0xFB16] = "վն", -- ﬖ → վն
 	[0xFB17] = "մխ", -- ﬗ → մխ
-
 }
