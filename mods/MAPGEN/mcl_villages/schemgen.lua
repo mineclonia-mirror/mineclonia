@@ -770,7 +770,7 @@ local village_cartographer = {
 	stacks_max = 5,
 	items = {
 		{
-			itemstring = "mcl_maps:empty_map",
+			itemstring = "mcl_maps:map_empty",
 			amount_min = 1.0,
 			amount_max = 3.0,
 			weight = 10,
