@@ -3,6 +3,9 @@ local explosions_griefing = core.settings:get_bool("mcl_explosions_griefing", tr
 
 mcl_tnt = {}
 
+-- Keep alias for compatibility with mods which use it
+tnt = mcl_tnt --luacheck: globals tnt
+
 mcl_tnt.BOOMTIMER = 4
 mcl_tnt.BLINKTIMER = 0.25
 
