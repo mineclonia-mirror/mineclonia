@@ -1096,7 +1096,7 @@ end)
 ---@param insta_collect? boolean Enable instant collection, let players collect dropped items instantly. Default `false`
 function mcl_util.move_list(src_inv, src_listname, out_inv, out_listname, pos, dir, insta_collect)
 	local src_list = src_inv:get_list(src_listname)
-	
+
 	if not src_list then return end
 	for i, stack in ipairs(src_list) do
 		if out_inv:room_for_item(out_listname, stack) then
@@ -1105,7 +1105,7 @@ function mcl_util.move_list(src_inv, src_listname, out_inv, out_listname, pos, d
 			local p = vector.copy(pos)
 			p.x = p.x + (math.random(1, 3) * 0.2)
 			p.z = p.z + (math.random(1, 3) * 0.2)
-			
+
 			local obj = core.add_item(p, stack)
 			if obj then
 				if dir then
@@ -1120,7 +1120,7 @@ function mcl_util.move_list(src_inv, src_listname, out_inv, out_listname, pos, d
 				end
 			end
 		end
-		
+
 		stack:clear()
 		src_inv:set_stack(src_listname, i, stack)
 	end
