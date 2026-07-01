@@ -7,10 +7,8 @@ local modname = core.get_current_modname()
 local modpath = core.get_modpath(modname)
 local S = core.get_translator(modname)
 
-local storage = core.get_mod_storage()
 local worldpath = core.get_worldpath()
 local map_textures_path = worldpath .. "/mcl_maps/"
---local last_finished_id = storage:get_int("next_id") - 1
 
 core.mkdir(map_textures_path)
 
@@ -21,212 +19,7 @@ local function load_json_file(name)
 	return data
 end
 
-local texture_colors = load_json_file("colors")
-
-local creating_maps = {}
-local loaded_maps = {}
-
-local c_air = core.get_content_id("air")
-
-function mcl_maps.create_map(pos)
-	local minp = vector.multiply(vector.floor(vector.divide(pos, 128)), 128)
-	local maxp = vector.add(minp, vector.new(127, 127, 127))
-
-	local itemstack = ItemStack("mcl_maps:filled_map")
-	local meta = itemstack:get_meta()
-	local next_id = storage:get_int("next_id")
-	storage:set_int("next_id", next_id + 1)
-	local id = tostring(next_id)
-	meta:set_string("mcl_maps:id", id)
-	meta:set_string("mcl_maps:minp", core.pos_to_string(minp))
-	meta:set_string("mcl_maps:maxp", core.pos_to_string(maxp))
-	meta:set_int("date", os.time())
-	tt.reload_itemstack_description(itemstack)
-
-	creating_maps[id] = true
-	core.emerge_area(minp, maxp, function(_, _, calls_remaining)
-		if calls_remaining > 0 then
-			return
-		end
-		local vm = core.get_voxel_manip()
-		local emin, emax = vm:read_from_map(minp, maxp)
-		local data = vm:get_data()
-		local param2data = vm:get_param2_data()
-		local area = VoxelArea:new({ MinEdge = emin, MaxEdge = emax })
-		local pixels = {}
-		for x = 1, 128 do
-			local map_x = minp.x - 1 + x
-			local last_height
-			for z = 1, 128 do
-				local map_z = minp.z - 1 + z
-				local cagg, alpha, height = { 0, 0, 0 }, 0
-				for map_y = maxp.y, minp.y, -1 do
-					local index = area:index(map_x, map_y, map_z)
-					local c_id = data[index]
-					if c_id ~= c_air then
-						local color = texture_colors[core.get_name_from_content_id(c_id)]
-						-- use param2 if available:
-						if color and type(color[1]) == "table" then
-							color = color[param2data[index] + 1] or color[1]
-						end
-						if color then
-							-- <https://www.w3.org/TR/png-3/#13Alpha-channel-processing>
-							local a = (color[4] or 255) / 255
-							local f = a * (1 - alpha)
-							cagg[1] = cagg[1] + f * color[1]
-							cagg[2] = cagg[2] + f * color[2]
-							cagg[3] = cagg[3] + f * color[3]
-							alpha = alpha + f
-
-							-- ground estimate with transparent blocks
-							if alpha > 0.70 and not height then height = map_y end
-							-- adjust color to give a 3d effect
-							if alpha >= 0.99 and last_height and height then
-								local dheight = math.min(math.max((height - last_height) * 8, -32), 32)
-								cagg = {
-									math.max(0, math.min(255, cagg[1] + dheight)),
-									math.max(0, math.min(255, cagg[2] + dheight)),
-									math.max(0, math.min(255, cagg[3] + dheight)),
-								}
-							end
-							if alpha >= 0.99 then break end
-						end
-					end
-				end
-				last_height = height
-				pixels[z] = pixels[z] or {}
-				pixels[z][x] = cagg or { 0, 0, 0 }
-			end
-		end
-		tga_encoder.image(pixels):save(map_textures_path .. "mcl_maps_map_texture_" .. id .. ".tga", { compression = "RLE", color_format = "A1R5G5B5", })
-		creating_maps[id] = nil
-	end)
-	return itemstack
-end
-
-function mcl_maps.load_map(id, callback)
-	if not id or id == "" or creating_maps[id] then
-		return false
-	end
-
-	local texture = "mcl_maps_map_texture_" .. id .. ".tga"
-
-	local result = true
-
-	if not loaded_maps[id] then
-		if not core.features.dynamic_add_media_table then
-			-- core.dynamic_add_media() blocks in
-			-- Minetest 5.3 and 5.4 until media loads
-			loaded_maps[id] = true
-			result = core.dynamic_add_media(map_textures_path .. texture, function()
-			end)
-			if callback then
-				callback(texture)
-			end
-		else
-			-- core.dynamic_add_media() never blocks
-			-- in Minetest 5.5, callback runs after load
-			result = core.dynamic_add_media(map_textures_path .. texture, function()
-				loaded_maps[id] = true
-				if callback then
-					callback(texture)
-				end
-			end)
-		end
-	end
-
-	if result == false then
-		return false
-	end
-
-	if loaded_maps[id] then
-		if callback then
-			callback(texture)
-		end
-		return texture
-	end
-end
-
-local function fill_map(itemstack, placer, pointed_thing)
-	local new_stack = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
-	if new_stack then
-		return new_stack
-	end
-
-	if core.settings:get_bool("enable_real_maps", true) then
-		local new_map = mcl_maps.create_map(placer:get_pos())
-		itemstack:take_item()
-		if itemstack:is_empty() then
-			return new_map
-		else
-			local inv = placer:get_inventory()
-			if inv:room_for_item("main", new_map) then
-				inv:add_item("main", new_map)
-			else
-				core.add_item(placer:get_pos(), new_map)
-			end
-			return itemstack
-		end
-	end
-end
-
-core.register_craftitem("mcl_maps:empty_map", {
-	description = S("Empty Map"),
-	_doc_items_longdesc = S("Empty maps are not useful as maps, but they can be stacked and turned to maps which can be used."),
-	_doc_items_usagehelp = S("Rightclick to create a filled map (which can't be stacked anymore)."),
-	inventory_image = "mcl_maps_map_empty.png",
-	on_place = fill_map,
-	on_secondary_use = fill_map,
-})
-
-local filled_def = {
-	description = S("Map"),
-	_tt_help = S("Shows a map image."),
-	_doc_items_longdesc = S("When created, the map saves the nearby area as an image that can be viewed any time by holding the map."),
-	_doc_items_usagehelp = S("Hold the map in your hand. This will display a map on your screen."),
-	inventory_image = "mcl_maps_map_filled.png^(mcl_maps_map_filled_markings.png^[colorize:#000000)",
-	groups = { not_in_creative_inventory = 1, filled_map = 1, tool = 1 },
-}
-
-core.register_craftitem("mcl_maps:filled_map", filled_def)
-
-tt.register_priority_snippet(function(itemstring, _, itemstack)
-	if itemstack and core.get_item_group(itemstring, "filled_map") > 0 then
-		local id = itemstack:get_meta():get_string("mcl_maps:id")
-		if id ~= "" then
-			return "#" .. id, mcl_colors.GRAY
-		end
-	end
-end)
-
-core.register_craft({
-	output = "mcl_maps:empty_map",
-	recipe = {
-		{ "mcl_core:paper", "mcl_core:paper", "mcl_core:paper" },
-		{ "mcl_core:paper", "mcl_compass:compass", "mcl_core:paper" },
-		{ "mcl_core:paper", "mcl_core:paper", "mcl_core:paper" },
-	}
-})
-
-core.register_craft({
-	type = "shapeless",
-	output = "mcl_maps:filled_map 2",
-	recipe = { "group:filled_map", "mcl_maps:empty_map" },
-})
-
-local function on_craft(itemstack, _, old_craft_grid, _)
-	if itemstack:get_name() == "mcl_maps:filled_map" then
-		for _, stack in pairs(old_craft_grid) do
-			if core.get_item_group(stack:get_name(), "filled_map") > 0 then
-				itemstack:get_meta():from_table(stack:get_meta():to_table())
-				return itemstack
-			end
-		end
-	end
-end
-
-core.register_on_craft(on_craft)
-core.register_craft_predict(on_craft)
+local texture_colors = load_json_file ("colors")
 
 ------------------------------------------------------------------------
 -- Dynamically updated maps.
@@ -237,9 +30,12 @@ core.register_craft_predict(on_craft)
 --   [X] Dimension information.
 --   [X] Dynamic map updates.
 --   [X] Circular map filling.
---   [ ] Cartography tables.
+--   [X] Cartography tables.
+--   [X] Item frame support.
+--   [X] Crafting of new maps.
+--   [ ] Locked maps.
+--   [ ] Conversion of existing maps.
 --   [ ] Treasure maps & biome reliefs.
---   [ ] Item frame support.
 ------------------------------------------------------------------------
 
 local map_colors_by_cid = {}
@@ -248,7 +44,6 @@ local rshift = bit.rshift
 local lshift = bit.lshift
 local arshift = bit.arshift
 
-local bnot = bit.bnot
 local band = bit.band
 local bor = bit.bor
 
@@ -412,7 +207,10 @@ end
 
 local function produce_heightmap_turn (map, x1, y1, z1, n)
 	local idx = (z1 + 1) * MAP_SIDE_LENGTH + 1
-	produce_heightmap_turn_1 (map, x1 - 1, y1, z1, idx, x1, x1 + n)	
+	produce_heightmap_turn_1 (map, x1 - 1, y1, z1, idx, x1,
+				  -- The heightmap extends beyond the
+				  -- image in both directions.
+				  x1 + n + 1)
 end
 
 local function produce_map_turn (map, x1, y1, z1, n)
@@ -424,7 +222,7 @@ local function produce_map_turn (map, x1, y1, z1, n)
 	local idx_turn = turn * MAP_SIDE_LENGTH + 1
 	local idx_next = (turn + 1) * MAP_SIDE_LENGTH + 1
 	local i_start, i_end
-		= x1 + 1, mathmin (x1 + n - 1, MAP_DATA_LENGTH)
+		= x1 + 1, mathmin (x1 + n, MAP_DATA_LENGTH)
 	produce_rgb_turn (map, x1, z1, idx_first, idx_turn,
 			  idx_next, i_start, i_end)
 end
@@ -498,11 +296,13 @@ end
 
 local converted_data = {}
 
-local function encode_map_png (map)
+local function encode_map_png (map, compression)
 	convert_map_data (converted_data, map)
-	return core.encode_png (MAP_DATA_LENGTH,
-				MAP_DATA_LENGTH,
-				converted_data, 9)
+	local png = core.encode_png (MAP_DATA_LENGTH,
+				     MAP_DATA_LENGTH,
+				     converted_data,
+				     compression)
+	return png
 end
 
 function mcl_maps.produce_map_test (player_name, scale)
@@ -517,15 +317,12 @@ function mcl_maps.produce_map_test (player_name, scale)
 			heightmap = alloc_heightmap_data (),
 		}
 		local y1 = pos.y - floor (MAP_UPDATE_AREA_Y / 2)
-		-- local clock = core.get_us_time ()
 		prepare_map_generation_vm (map, y1)
-		-- local tm_1 = core.get_us_time () - clock;
 		prepare_map_heights (map, y1)
-		-- print (tm_1, core.get_us_time () - clock - tm_1)
 		for i = 0, MAP_DATA_LENGTH - 1 do
 			produce_map_turn (map, 0, y1, i, MAP_DATA_LENGTH)
 		end
-		local png = encode_map_png (map)
+		local png = encode_map_png (map, 9)
 		local worldpath = core.get_worldpath ()
 		local file = worldpath .. "/" .. os.date ("map_%Y%m%d%H%M%S.png")
 		core.safe_file_write (file, png)
@@ -561,6 +358,9 @@ local function allocate_map_id ()
 	return base .. i, image_name, map_name
 end
 
+local char = string.char
+local byte = string.byte
+
 local function serialize_data (dst, list, off)
 	assert (#list == MAP_SIDE_LENGTH * MAP_SIDE_LENGTH)
 	for i = 1, #list do
@@ -569,10 +369,10 @@ local function serialize_data (dst, list, off)
 		local b1 = rshift (band (value, 0xff00), 8)
 		local b2 = rshift (band (value, 0xff0000), 16)
 		local b3 = rshift (band (value, 0xff000000), 24)
-		dst[off + i * 4 - 3] = string.char (b0)
-		dst[off + i * 4 - 2] = string.char (b1)
-		dst[off + i * 4 - 1] = string.char (b2)
-		dst[off + i * 4] = string.char (b3)
+		dst[off + i * 4 - 3] = char (b0)
+		dst[off + i * 4 - 2] = char (b1)
+		dst[off + i * 4 - 1] = char (b2)
+		dst[off + i * 4] = char (b3)
 	end
 end
 
@@ -588,14 +388,13 @@ local function write_map_data (id, map)
 	serialize_data (bin, map.data, 0)
 	serialize_data (bin, map.heightmap, #bin)
 	local image = table.concat (bin)
-	local compressed = core.compress (image, "deflate", 9)
 
 	local rc = core.safe_file_write (map_name (id), str)
 	if not rc then
 		error ("Could not write map metadata for " .. id)
 	end
 
-	local rc = core.safe_file_write (image_name (id), compressed)
+	local rc = core.safe_file_write (image_name (id), image)
 	if not rc then
 		error ("Could not write map data for " .. id)
 	end
@@ -603,10 +402,10 @@ end
 
 local function deserialize_data (dst, str, offset)
 	for i = 1, MAP_SIDE_LENGTH * MAP_SIDE_LENGTH do
-		local b0 = string.byte (str, i * 4 - 3 + offset)
-		local b1 = string.byte (str, i * 4 - 2 + offset)
-		local b2 = string.byte (str, i * 4 - 1 + offset)
-		local b3 = string.byte (str, i * 4 + offset)
+		local b0 = byte (str, i * 4 - 3 + offset)
+		local b1 = byte (str, i * 4 - 2 + offset)
+		local b2 = byte (str, i * 4 - 1 + offset)
+		local b3 = byte (str, i * 4 + offset)
 		dst[i] = bor (b0, lshift (b1, 8), lshift (b2, 16),
 			      lshift (b3, 24))
 	end
@@ -633,12 +432,11 @@ local function load_map_1 (id)
 	local data = file:read ("*all")
 	file:close ()
 
-	local str = core.decompress (data, "deflate", 9)
 	map.data = {}
 	map.heightmap = {}
 	local offset = (MAP_SIDE_LENGTH * MAP_SIDE_LENGTH * 4)
-	deserialize_data (map.data, str, 0)
-	deserialize_data (map.heightmap, str, offset)
+	deserialize_data (map.data, data, 0)
+	deserialize_data (map.heightmap, data, offset)
 	return map
 end
 
@@ -741,9 +539,6 @@ local function create_new_map (itemstack, placer, pointed_thing)
 		local y1 = pos.y - floor (MAP_UPDATE_AREA_Y / 2)
 		prepare_map_generation_vm (map, y1)
 		prepare_map_heights (map, y1)
-		-- for i = 0, MAP_DATA_LENGTH - 1 do
-		-- 	produce_map_turn (map, 0, y1, i, 1)
-		-- end
 
 		local radius = CIRCLE_RADIUS
 		local x1 = mathmax (pos.x - radius, map.x_start)
@@ -784,7 +579,7 @@ local function create_new_map (itemstack, placer, pointed_thing)
 		if inv:room_for_item ("main", stack) then
 			inv:add_item ("main", stack)
 		else
-			core.add_item (placer_pos, new_map)
+			core.add_item (placer_pos, stack)
 		end
 		return itemstack
 	end
@@ -827,7 +622,7 @@ local function use_filled_map (itemstack, placer, pointed_thing)
 		end
 
 		-- Update the current map image if necessary.
-		local png = core.encode_base64 (encode_map_png (map))
+		local png = core.encode_base64 (encode_map_png (map, 9))
 		huds[placer].last_texture
 			= modifier_escape ("blank.png^[png:" .. png)
 	end
@@ -841,6 +636,11 @@ core.register_craftitem ("mcl_maps:map", {
 	inventory_image = "mcl_maps_map_filled.png^(mcl_maps_map_filled_markings.png^[colorize:#000000)",
 	on_place = use_filled_map,
 	on_secondary_use = use_filled_map,
+	groups = {
+		not_in_creative_inventory = 1,
+		filled_map = 1,
+		tool = 1,
+	},
 })
 
 local map_update_cnt = 0
@@ -971,16 +771,22 @@ local function scale_map_data_1 (gx, gz, scale, dim)
 	return id, map
 end
 
+local function scale_map_origins (x_start, z_start, s)
+	local mask = -lshift (1, 6 + s)
+	local start_x = band (x_start - 64, mask) + 64
+	local start_z = band (z_start + 64, mask) - 64
+	return start_x, start_z
+end
+
 local function scale_map_data (map)
 	-- What should be the origin of the updated map?
 	local s = map.scale + 1
 	if s > MAX_MAP_SCALE then
 		return nil, nil
 	end
-	local mask = -lshift (1, 6 + s)
-	local start_x = band (map.x_start - 64, mask) + 64
-	local start_z = band (map.z_start + 64, mask) - 64
-
+	local start_x, start_z
+		= scale_map_origins (map.x_start,
+				     map.z_start, s)
 	local id, dst = scale_map_data_1 (start_x, start_z,
 					  s, map.dimension)
 
@@ -1115,8 +921,6 @@ mcl_player.register_globalstep (function(player)
 	-- unloaded and subsequently removed.
 	local map = id and load_map_data (id)
 	if texture and map then
-		local wield_def = wield:get_definition()
-
 		if texture ~= maps[player] then
 			local data = "[combine:140x140:0,0=mcl_maps_map_background.png:6,6="
 				.. texture
@@ -1174,7 +978,7 @@ function mcl_maps.load_map_item (itemstack)
 		local map = load_map_data (id)
 
 		if map then
-			local png = core.encode_base64 (encode_map_png (map))
+			local png = core.encode_base64 (encode_map_png (map, 9))
 			local tbl = {
 				"(", modifier_escape ("blank.png^[png:" .. png), ")"
 			}
@@ -1184,3 +988,175 @@ function mcl_maps.load_map_item (itemstack)
 
 	return nil, nil
 end
+
+function mcl_maps.load_map_texture (id_or_map)
+	local map
+
+	if type (id_or_map) == "string" then
+		map = load_map_data (id_or_map)
+	else
+		map = id_or_map
+	end
+
+	if map then
+		-- This function may be invoked frequently during item
+		-- frame initialization, during which high compression
+		-- levels prove to be unduly expensive.
+		local png = core.encode_base64 (encode_map_png (map, 3))
+		return "blank.png^[png:" .. png
+	end
+	return nil
+end
+
+------------------------------------------------------------------------
+-- Crafting and other sundries.
+------------------------------------------------------------------------
+
+core.register_craft ({
+	output = "mcl_maps:map_empty",
+	recipe = {
+		{ "mcl_core:paper", "mcl_core:paper", "mcl_core:paper" },
+		{ "mcl_core:paper", "mcl_compass:compass", "mcl_core:paper" },
+		{ "mcl_core:paper", "mcl_core:paper", "mcl_core:paper" },
+	}
+})
+
+-- Register recipes for cloning ordinary maps.
+
+for i = 2, 9 do
+	local recipe = { "mcl_maps:map", }
+	for j = 2, i do
+		recipe[j] = "mcl_maps:map_empty"
+	end
+	core.register_craft ({
+		type = "shapeless",
+		output = "mcl_maps:map " .. i,
+		recipe = recipe,
+	})
+end
+
+-- Register recipe for scaling ordinary maps.
+
+core.register_craft ({
+	output = "mcl_maps:map",
+	recipe = {
+		{ "mcl_core:paper", "mcl_core:paper", "mcl_core:paper" },
+		{ "mcl_core:paper", "mcl_maps:map", "mcl_core:paper" },
+		{ "mcl_core:paper", "mcl_core:paper", "mcl_core:paper" },
+	}
+})
+
+local function is_scaling_recipe (craft_grid)
+	for i = 1, 9 do
+		local desired = "mcl_core:paper"
+		if i == 5 then
+			desired = "mcl_maps:map"
+		end
+		if craft_grid[i]:get_name () ~= desired then
+			return false
+		end
+	end
+
+	return true
+end
+
+local function describe_map (start_x, start_z, scale)
+	local compass = lshift (MAP_DATA_LENGTH, scale - 1)
+	local tbl = {
+		S ("Displays area: (@1, @2) - (@3, @4)", start_x, start_z,
+		   start_x + compass - 1, start_z + compass - 1), "\n",
+		S ("Scale: @1x", lshift (1, scale - 1)),
+	}
+	return table.concat (tbl)
+end
+
+mcl_maps.describe_map = describe_map
+
+local function on_craft (itemstack, _, old_craft_grid, _)
+	if itemstack:get_name() == "mcl_maps:map" then
+		-- Does the old craft grid contain the recipe for
+		-- scaling maps?
+		if is_scaling_recipe (old_craft_grid) then
+			local old_stack = old_craft_grid[5]
+			local stack = mcl_maps.scale_map_item (old_stack)
+			if stack then
+				tt.reload_itemstack_description (stack)
+			end
+			return stack or itemstack
+		end
+
+		for _, stack in ipairs (old_craft_grid) do
+			if stack:get_name () == "mcl_maps:map" then
+				local meta = itemstack:get_meta()
+				meta:from_table (stack:get_meta ():to_table ())
+				return itemstack
+			end
+		end
+	end
+end
+
+local function on_craft_predict (itemstack, _, old_craft_grid, _)
+	if itemstack:get_name() == "mcl_maps:map" then
+		-- Does the old craft grid contain the recipe for
+		-- scaling maps?
+		if is_scaling_recipe (old_craft_grid) then
+			local old_stack = old_craft_grid[5]
+			local meta = old_stack:get_meta ()
+			local id = meta:get_string ("mcl_maps:map_id")
+			if not id or id == "" then
+				return ItemStack ()
+			end
+			local map = load_map_data (id)
+			if not map or map.scale >= MAX_MAP_SCALE then
+				return ItemStack ()
+			end
+			local x_start, z_start
+				= scale_map_origins (map.x_start,
+						     map.z_start,
+						     map.scale + 1)
+			local description
+				= core.colorize (mcl_colors.GRAY,
+						 describe_map (x_start,
+							       z_start,
+							       map.scale + 1))
+			local new_meta = itemstack:get_meta ()
+			new_meta:set_string ("description", table.concat ({
+				S ("Map"),
+				"\n",
+				description,
+			}))
+			return itemstack
+		end
+
+		for _, stack in ipairs (old_craft_grid) do
+			if stack:get_name () == "mcl_maps:map" then
+				local meta = itemstack:get_meta()
+				meta:from_table (stack:get_meta ():to_table ())
+				return itemstack
+			end
+		end
+		tt.reload_itemstack_description (itemstack)
+	end
+end
+
+core.register_on_craft (on_craft)
+core.register_craft_predict (on_craft_predict)
+
+tt.register_priority_snippet(function(itemstring, _, itemstack)
+	if itemstack and core.get_item_group (itemstring, "filled_map") > 0 then
+		local meta = itemstack:get_meta ()
+		local id = meta:get_string ("mcl_maps:map_id")
+		if id ~= "" then
+			local map = load_map_data (id)
+			if map then
+				return describe_map (map.x_start, map.z_start,
+						     map.scale), mcl_colors.GRAY
+			end
+		end
+		return S ("Invalid map"), mcl_colors.RED
+	end
+end)
+
+------------------------------------------------------------------------
+-- Conversion of obsolete maps.  TODO
+------------------------------------------------------------------------

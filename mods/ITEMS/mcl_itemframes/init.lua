@@ -88,7 +88,7 @@ local function drop_item(pos)
 end
 
 local function get_map_id(itemstack)
-	local map_id = itemstack:get_meta():get_string("mcl_maps:id")
+	local map_id = itemstack:get_meta():get_string("mcl_maps:map_id")
 	if map_id == "" then map_id = nil end
 	return map_id
 end
@@ -142,6 +142,8 @@ function mcl_itemframes.tpl_node.on_rightclick(pos, _, clicker, ostack, _)
 	local imeta = ostack:get_meta()
 	local nmeta = core.get_meta(pos)
 	nmeta:set_string("infotext", imeta:get_string("name"))
+	nmeta:set_string ("mcl_itemframes:dynamic_map_id", "")
+	nmeta:set_string ("mcl_itemframes:dynamic_map_texture", "")
 	local itemstack = pstack:take_item()
 	drop_item(pos)
 	inv:set_stack("main", 1, itemstack)
@@ -171,6 +173,18 @@ end
 
 function mcl_itemframes.tpl_node.on_rotate()
 	return false
+end
+
+local function find_cached_map_texture (pos, dynamic_id)
+	local meta = core.get_meta (pos)
+	if meta:get_string ("mcl_itemframes:dynamic_map_id") == dynamic_id then
+		return meta:get_string ("mcl_itemframes:dynamic_map_texture")
+	else
+		local texture = mcl_maps.load_map_texture (dynamic_id)
+		meta:set_string ("mcl_itemframes:dynamic_map_id", dynamic_id)
+		meta:set_string ("mcl_itemframes:dynamic_map_texture", texture)
+		return texture
+	end
 end
 
 -- Entity functions
@@ -203,29 +217,24 @@ function mcl_itemframes.tpl_entity:set_item(itemstack, pos)
 	local def = mcl_itemframes.registered_itemframes[ndef._mcl_itemframe]
 	self._item = itemstack:get_name()
 	self._stack = itemstack
-	self._map_id = get_map_id(itemstack)
+	local id = get_map_id (itemstack)
+	self._dynamic_map_id = id
 
 	local dir = core.wallmounted_to_dir(core.get_node(pos).param2)
-	self.object:set_pos(vector.add(self._itemframe_pos, dir * 0.42))
+	self.object:set_pos(vector.add(pos, dir * 0.42))
 	self.object:set_rotation(vector.dir_to_rotation(dir))
 
-	if self._map_id then
-		local unran_callback = true
-		mcl_maps.load_map(self._map_id, function(texture)
-			unran_callback = false
-			if self.object and self.object:get_pos() then
-				self.object:set_properties(table.merge(map_props, {
-					textures = {texture},
-				}, def.object_properties or {}))
-			end
-		end)
-		-- dirty recursive hack because dynamic_add_media is unreliable
-		-- (and subsequently, mcl_maps.load_map is just as unreliable)
-		core.after(0, function()
-			if unran_callback then
-				update_entity(pos)
-			end
-		end)
+	if self._dynamic_map_id then
+		local texture
+			= find_cached_map_texture (pos, self._dynamic_map_id)
+		if texture then
+			local props = table.merge (map_props, {
+				textures = {
+					"blank.png^[fill:128x128:0,0:red^" .. texture,
+				},
+			}, def.object_properties or {})
+			self.object:set_properties (props)
+		end
 		return
 	end
 	local idef = itemstack:get_definition()
@@ -241,7 +250,8 @@ function mcl_itemframes.tpl_entity:get_staticdata()
 		item = self._item,
 		itemframe_pos = self._itemframe_pos,
 		itemstack = self._itemstack,
-		map_id = self._map_id
+		_map_id = self._map_id,
+		_dynamic_map_id = self._dynamic_map_id,
 	}
 	s.props = self.object:get_properties()
 	return core.serialize(s)
@@ -261,7 +271,8 @@ function mcl_itemframes.tpl_entity:on_activate(staticdata, dtime_s)
 		self._itemframe_pos = vector.copy (s.itemframe_pos)
 		self._itemstack = s.itemstack
 		self._item = s.item
-		self._map_id = s.map_id
+		self._map_id = s._map_id
+		self._dynamic_map_id = s._dynamic_map_id
 		update_entity(self._itemframe_pos)
 		return
 	end
