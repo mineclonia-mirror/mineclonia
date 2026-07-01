@@ -24,7 +24,7 @@ core.register_craft({
     output = "mcl_armor:wayfinder",
     recipe = {
         {"mcl_core:diamond","mcl_core:diamond","mcl_core:diamond"},
-        {"mcl_core:diamond", "mcl_maps:empty_map","mcl_core:diamond"},
+        {"mcl_core:diamond", "mcl_maps:map_empty","mcl_core:diamond"},
         {"mcl_core:diamond","mcl_core:diamond","mcl_core:diamond"},
     }
 })
