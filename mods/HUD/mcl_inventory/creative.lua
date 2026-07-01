@@ -157,7 +157,7 @@ local function filter_item(name, description, lang, filter)
 	else
 		desc = mcl_util.casefold(core.get_translated_string(lang, description))
 	end
-	return string.find(name, filter, nil, true) or string.find(mcl_util.casefold(desc), filter, nil, true)
+	return string.find(name, filter, nil, true) or string.find(desc, filter, nil, true)
 end
 
 local function set_inv_search(filter, player)
