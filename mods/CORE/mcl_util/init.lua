@@ -7,6 +7,8 @@ mcl_util = {}
 dofile(modpath .. "/table.lua")
 core.register_mapgen_script (modpath .. "/table.lua")
 core.register_async_dofile (modpath .. "/table.lua")
+-- UTF-8 library (stripped down 5.3 backport) from modlib
+mcl_util.utf8 = dofile(modpath .. "/utf8.lua")
 -- Utilities for environment access (nodes, mapgen)
 dofile(modpath .. "/environment.lua")
 -- Item-related utilities
@@ -30,7 +32,5 @@ core.register_async_dofile (modpath .. "/shape.lua")
 -- Spatial index library.
 dofile (modpath .. "/spatialindex.lua")
 dofile (modpath .. "/control.lua")
--- UTF-8 library (stripped down 5.3 backport) from modlib
-mcl_util.utf8 = dofile(modpath .. "/utf8.lua")
 -- 'Unicode full' implementation of case-folding
 dofile(modpath.."/casefold.lua")

@@ -246,3 +246,54 @@ end
 function mcl_util.lcg_next (a, c, m, state)
 	return (a * state + c) % m
 end
+
+------------------------------------------------------------------------
+-- UTF-8 helper functions external to `mcl_util.utf8`
+------------------------------------------------------------------------
+
+local utf8 = mcl_util.utf8
+
+-- Sanitize `str` from UTF-8 errors.
+-- Should guarantee that `str` will not contain invalid UTF-8 (replaced w/ U+FFFD on conversion)
+function mcl_util.sanitize_utf8(str)
+	local out = {}
+	for _, code in utf8.codes(str) do
+		table.insert(out, utf8.char(code))
+	end
+	return table.concat(out)
+end
+
+-- Sanitize and truncate `str` to be:
+-- 1. `max_bytes` bytes long at most
+-- 2. `max_codepoints` Unicode codepoints long at most
+-- 3. Have `max_nonascii` non-ASCII codepoints at most
+--
+-- Returns:
+-- 1. Truncated string
+-- 2. Number of Unicode codepoints within it
+-- 3. Number of non-ASCII codepoints within it
+function mcl_util.truncate_utf8(str, max_bytes, max_codepoints, max_nonascii)
+	max_bytes = max_bytes or #str
+	max_codepoints = max_codepoints or math.huge
+	max_nonascii = max_nonascii or math.huge
+
+	local out = {}
+	local codepoints = 0
+	local nonascii = 0
+	local bytes = 0
+
+	for _, code in utf8.codes(str) do
+		if codepoints >= max_codepoints then break end
+		local encoded = utf8.char(code)
+		if bytes + #encoded > max_bytes then break end
+		if code > 0x7F then
+			if nonascii >= max_nonascii then break end
+			nonascii = nonascii + 1
+		end
+		bytes = bytes + #encoded
+		codepoints = codepoints + 1
+		table.insert(out, encoded)
+	end
+
+	return table.concat(out), codepoints, nonascii
+end
