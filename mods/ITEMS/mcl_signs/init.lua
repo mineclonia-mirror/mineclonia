@@ -170,16 +170,18 @@ end
 
 -- Text processing
 function mcl_signs.string_to_ustring(str, max_characters)
-	-- limit saved text to 256 characters by default
+	-- limit saved text to 256 characters (codepoints) by default
 	-- (4 lines x 15 chars = 60 so this should be more than is ever needed)
 	max_characters = max_characters or 256
 
 	local ustr = {}
+	local codepoints = 0
 
-	for i, code in utf8.codes(str) do
-		if i >= max_characters or code == CR_CODEPOINT then
+	for _, code in utf8.codes(str) do
+		if codepoints >= max_characters or code == CR_CODEPOINT then
 			break
 		end
+		codepoints = codepoints + 1
 		table.insert(ustr, code)
 	end
 
