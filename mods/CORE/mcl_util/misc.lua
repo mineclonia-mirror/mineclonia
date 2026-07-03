@@ -297,3 +297,72 @@ function mcl_util.truncate_utf8(str, max_bytes, max_codepoints, max_nonascii)
 
 	return table.concat(out), codepoints, nonascii
 end
+
+local truncate_utf8_tests = {
+	{
+		name = "ASCII",
+		input = "abc",
+		args = {2},
+		output = "ab",
+		codepoints = 2,
+		nonascii = 0,
+	},
+	{
+		name = "2-byte character",
+		input = "\195\177", -- ñ
+		args = {2},
+		output = "ñ",
+		codepoints = 1,
+		nonascii = 1,
+	},
+	{
+		name = "Broken continuation",
+		input = "\195(",
+		args = {4}, -- U+FFFD is 3 bytes + 1 for ASCII opening bracket
+		output = utf8.char(0xFFFD) .. "(",
+		codepoints = 2,
+		nonascii = 1,
+	},
+	{
+		name = "Byte truncates inside sequence",
+		input = "\195\177",
+		args = {1},
+		output = "", -- impossible to trim to 1 byte w/o corruption
+		codepoints = 0,
+		nonascii = 0,
+	},
+	{
+		name = "Codepoint limit",
+		input = "ñe\204\128abc", -- ñèabc w/ e + combining grave
+		args = {nil, 2},
+		output = "ñe",
+		codepoints = 2,
+		nonascii = 1,
+	},
+	{
+		name = "Non-ASCII limit",
+		input = "ñéabc",
+		args = {nil, nil, 1},
+		output = "ñ",
+		codepoints = 1,
+		nonascii = 1,
+	},
+}
+
+for _, test in ipairs(truncate_utf8_tests) do
+	local output, codepoints, nonascii = mcl_util.truncate_utf8(test.input, unpack(test.args))
+	assert(
+		output == mcl_util.sanitize_utf8(output),
+		"Output UTF-8 validity test failed for truncate_utf8"
+	)
+	for _, res in ipairs{"output", "codepoints", "nonascii"} do
+		local var
+		if res == "output" then var = output
+		elseif res == "codepoints" then var = codepoints
+		elseif res == "nonascii" then var = nonascii end
+		assert(var == test[res], string.format(
+			"Test '%s' failed for truncate_utf8: %s mismatch!\n    expected %s = %s\n    real %s = %s",
+			test.name, res, res, dump(var), res, dump(test[res])
+		))
+	end
+end
