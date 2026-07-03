@@ -121,8 +121,11 @@ core.override_item("", {
 			if type(def._mcl_baseitem) == "function" then
 				stack = def._mcl_baseitem(pointed_thing.under)
 			elseif core.get_item_group(name, "not_in_creative_inventory") > 0 then
-				if not def.drop and not def._mcl_baseitem then return end
-				name = def._mcl_baseitem or def.drop
+				name = def._mcl_baseitem
+				if not name then
+					if type(def.drop) ~= "string" or def.drop == "" then return end
+					name = def.drop
+				end
 				stack = ItemStack(name)
 			end
 			local inv = placer:get_inventory()
