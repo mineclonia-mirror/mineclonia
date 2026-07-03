@@ -63,6 +63,7 @@ for i=0, 3 do
 		_mcl_hardness = 0,
 		_pathfinding_class = "DAMAGE_OTHER",
 		on_rightclick = orc,
+		_mcl_baseitem = "mcl_farming:sweet_berry",
 		_on_bone_meal = function(itemstack,placer,pointed_thing,pos,node)
 			mcl_farming.on_bone_meal(itemstack,placer,pointed_thing,pos,node,"plant_sweet_berry_bush",1)
 		end,
