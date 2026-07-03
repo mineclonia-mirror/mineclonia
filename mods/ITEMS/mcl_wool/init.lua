@@ -83,4 +83,11 @@ for color,colordef in pairs(mcl_dyes.colors) do
 		output = "mcl_wool:"..color,
 		recipe = { "group:wool", "mcl_dyes:"..color }
 	})
+
+    --java carpet dying recipe since MC 1.20-pre1, see https://minecraft.wiki/w/Carpet#Crafting
+	core.register_craft({
+		type = "shapeless",
+		output = "mcl_wool:"..color.."_carpet",
+		recipe = { "group:carpet", "mcl_dyes:"..color } 
+	})
 end
