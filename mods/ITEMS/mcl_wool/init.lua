@@ -88,6 +88,6 @@ for color,colordef in pairs(mcl_dyes.colors) do
 	core.register_craft({
 		type = "shapeless",
 		output = "mcl_wool:"..color.."_carpet",
-		recipe = { "group:carpet", "mcl_dyes:"..color } 
+		recipe = { "group:carpet", "mcl_dyes:"..color }
 	})
 end
