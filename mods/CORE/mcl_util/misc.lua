@@ -273,7 +273,7 @@ end
 -- 2. Number of Unicode codepoints within it
 -- 3. Number of non-ASCII codepoints within it
 function mcl_util.truncate_utf8(str, max_bytes, max_codepoints, max_nonascii)
-	max_bytes = max_bytes or #str
+	max_bytes = max_bytes or math.huge
 	max_codepoints = max_codepoints or math.huge
 	max_nonascii = max_nonascii or math.huge
 
@@ -318,7 +318,7 @@ local truncate_utf8_tests = {
 	{
 		name = "Broken continuation",
 		input = "\195(",
-		args = {4}, -- U+FFFD is 3 bytes + 1 for ASCII opening bracket
+		args = {},
 		output = utf8.char(0xFFFD) .. "(",
 		codepoints = 2,
 		nonascii = 1,
