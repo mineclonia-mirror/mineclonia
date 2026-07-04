@@ -420,9 +420,11 @@ function mcl_util.generate_on_place_plant_function(condition)
 end
 
 function core.item_place(itemstack, placer, pointed_thing, param2)
-	local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
-	if rc ~= nil then
-		return rc, nil
+	if placer and placer:is_player() then
+		local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
+		if rc ~= nil then
+			return rc, nil
+		end
 	end
 
 	if itemstack:get_definition().type == "node" then
