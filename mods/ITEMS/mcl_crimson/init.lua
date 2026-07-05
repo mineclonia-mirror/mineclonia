@@ -405,7 +405,8 @@ core.register_node("mcl_crimson:warped_roots", {
 	buildable_to = true,
 	groups = {
 		shearsy=1, deco_block=1, attached_node=1,
-		dig_immediate=3, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1, compostability=65
+		dig_immediate=3, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1, compostability=65,
+		enderman_takable = 1,
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	selection_box = {
@@ -460,7 +461,13 @@ core.register_node("mcl_crimson:warped_nylium", {
 		"mcl_nether_netherrack.png^warped_nylium_side.png",
 	},
 	drop = "mcl_nether:netherrack",
-	groups = {pickaxey=1, soil_fungus=1, building_block=1, material_stone=1},
+	groups = {
+		pickaxey = 1,
+		soil_fungus = 1,
+		building_block = 1,
+		material_stone = 1,
+		enderman_takable = 1,
+	},
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_hardness = 0.4,
 	_mcl_silk_touch_drop = true,
@@ -515,7 +522,8 @@ core.register_node("mcl_crimson:crimson_roots", {
 	buildable_to = true,
 	groups = {
 		shearsy=1, deco_block=1, attached_node=1,
-		dig_immediate=3 ,dig_by_water=1 ,destroy_by_lava_flow=1 ,dig_by_piston=1, compostability=65
+		dig_immediate=3 ,dig_by_water=1 ,destroy_by_lava_flow=1 ,dig_by_piston=1, compostability=65,
+		enderman_takable = 1,
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	selection_box = {
@@ -543,7 +551,13 @@ core.register_node("mcl_crimson:crimson_nylium", {
 		"mcl_nether_netherrack.png^crimson_nylium_side.png",
 		"mcl_nether_netherrack.png^crimson_nylium_side.png",
 	},
-	groups = {pickaxey=1, soil_fungus=1, building_block=1, material_stone=1},
+	groups = {
+		pickaxey = 1,
+		soil_fungus = 1,
+		building_block = 1,
+		material_stone = 1,
+		enderman_takable = 1,
+	},
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	drop = "mcl_nether:netherrack",
 	_mcl_hardness = 0.4,

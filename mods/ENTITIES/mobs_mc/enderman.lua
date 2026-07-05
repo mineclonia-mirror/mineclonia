@@ -532,7 +532,9 @@ local function enderman_ungrief (self, self_pos, dtime)
 		if core.get_node (place_pos).name == "air"
 			and not core.is_protected (place_pos, "")
 		-- and whether the node below is sturdy.
-			and self:is_up_face_sturdy (node_below) then
+			and self:is_up_face_sturdy (node_below)
+		-- and that the node below is not bedrock.
+			and core.get_node (node_below).name ~= "mcl_core:bedrock" then
 			-- ... but only if there's a free space
 			local success = core.place_node (place_pos, {name = self._taken_node})
 			if success then

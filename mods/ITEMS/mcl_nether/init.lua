@@ -99,7 +99,7 @@ core.register_node("mcl_nether:netherrack", {
 	description = S("Netherrack"),
 	_doc_items_longdesc = S("Netherrack is a stone-like block home to the Nether. Starting a fire on this block will create an eternal fire."),
 	tiles = {"mcl_nether_netherrack.png"},
-	groups = {pickaxey=1, building_block=1, material_stone=1, enderman_takable=1, nether_ore_target=1,},
+	groups = {pickaxey=1, building_block=1, material_stone=1, nether_ore_target=1,},
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_hardness = 0.4,
 	_mcl_cooking_output = "mcl_nether:netherbrick",
