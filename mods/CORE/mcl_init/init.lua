@@ -100,8 +100,8 @@ if not mapmeta_settings_initialized then
 		elseif #levelgen_inhibiting_mods > 0 then
 			mcl_vars.enable_mcl_levelgen = false
 		end
-		core.set_mapgen_setting("mcl_singlenode_mapgen", tostring(mcl_vars.enable_mcl_levelgen), true)
 	end
+	core.set_mapgen_setting("mcl_singlenode_mapgen", tostring(mcl_vars.enable_mcl_levelgen), true)
 	mod_storage:set_string("mapmeta_settings_initialized", "true")
 end
 
