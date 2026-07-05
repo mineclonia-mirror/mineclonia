@@ -1,6 +1,14 @@
 local S = core.get_translator(core.get_current_modname())
 
-local planton = {"mcl_core:dirt_with_grass", "mcl_core:dirt", "mcl_core:podzol", "mcl_core:coarse_dirt", "mcl_farming:soil", "mcl_farming:soil_wet", "mcl_lush_caves:moss"}
+local planton = {
+	"mcl_core:dirt_with_grass",
+	"mcl_core:dirt",
+	"mcl_core:podzol",
+	"mcl_core:coarse_dirt",
+	"mcl_farming:soil",
+	"mcl_farming:soil_wet",
+	"mcl_lush_caves:moss",
+}
 
 for i=0, 3 do
 	local texture = "mcl_farming_sweet_berry_bush_" .. i .. ".png"
@@ -71,6 +79,14 @@ for i=0, 3 do
 	core.register_alias("mcl_sweet_berry:sweet_berry_bush_" .. i, node_name)
 end
 
+local sweet_berry_placement_def = {
+	inherit = "victuals",
+}
+
+for _, item in ipairs (planton) do
+	sweet_berry_placement_def[item] = "default"
+end
+
 core.register_craftitem("mcl_farming:sweet_berry", {
 	description = S("Sweet Berry"),
 	inventory_image = "mcl_farming_sweet_berry.png",
@@ -94,6 +110,7 @@ core.register_craftitem("mcl_farming:sweet_berry", {
 			return itemstack
 		end
 	end,
+	_placement_def = sweet_berry_placement_def,
 })
 core.register_alias("mcl_sweet_berry:sweet_berry", "mcl_farming:sweet_berry")
 
