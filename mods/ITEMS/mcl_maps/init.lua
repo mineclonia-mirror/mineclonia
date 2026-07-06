@@ -1597,6 +1597,7 @@ end
 
 mcl_player.register_globalstep (function (player)
 	local wield = player:get_wielded_item ()
+	local wield_name = wield:get_name ()
 	local hud = huds[player]
 	local texture, id
 
@@ -1613,8 +1614,7 @@ mcl_player.register_globalstep (function (player)
 		hud.last_texture = texture
 		hud.last_map_id = id
 
-		local map_name = wield:get_name ()
-		if texture and map_name ~= "mcl_maps:map_locked" then
+		if texture and wield_name ~= "mcl_maps:map_locked" then
 			mcl_title.set (player, "actionbar", {
 				text = S ("Right-click to redraw map"),
 				color = "white",
@@ -1625,7 +1625,21 @@ mcl_player.register_globalstep (function (player)
 
 	-- This may fail if the map texture is cached but the map was
 	-- unloaded and subsequently removed.
-	local map = id and load_map_data (id)
+	local map
+	if wield_name and "mcl_maps:filled_map" == string.sub(wield_name, 1, 19) then
+		local meta = wield:get_meta ()
+		local old_minp = meta:get_string ("mcl_maps:minp")
+		local pos = core.string_to_pos (old_minp)
+		map = {
+			x_start = pos.x,
+			z_start = pos.z,
+			dimension = mcl_worlds.pos_to_dimension (pos)
+				or "none",
+			scale = 1
+		}
+	else
+		map = id and load_map_data (id)
+	end
 	if texture and map then
 		local eye_pos = mcl_util.target_eye_pos (player)
 		local light = core.get_node_light (eye_pos) or 0
@@ -1692,18 +1706,36 @@ mcl_maps.load_map_id = load_map_id
 
 function mcl_maps.load_map_item (itemstack)
 	local id = load_map_id (itemstack)
+	local image_payload
 	if id then
 		local map = load_map_data (id)
 
 		if map then
-			local png = core.encode_base64 (encode_map_png (map, 9))
-			local tbl = {
-				"(", modifier_escape ("blank.png^[png:" .. png), ")"
-			}
-			return table.concat (tbl), id
+			image_payload = encode_map_png (map, 9)
 		end
+	else -- proof of concept that you can deliver older maps verbatim
+		local meta = itemstack:get_meta ()
+		id = meta:get_string ("mcl_maps:id")
+		local image_file = map_textures_path .. "mcl_maps_map_texture_"
+				.. id .. ".tga"
+		local file, _ = io.open (image_file, "rb")
+		if not file then
+			local msg = S ("Failed to open image file: " .. image_file)
+			core.log ("error", msg)
+			return nil, nil
+		end
+		image_payload = file:read ("*all")
+		file:close ()
 	end
-	return nil, nil
+	local texture
+	if image_payload then
+		local image_payload_base64 = core.encode_base64 (image_payload)
+		local tbl = {
+			"(", modifier_escape ("blank.png^[png:" .. image_payload_base64), ")"
+		}
+		texture = table.concat (tbl)
+	end
+	return texture, id
 end
 
 function mcl_maps.load_map_texture (id_or_map)
@@ -1894,100 +1926,18 @@ end)
 -- Conversion of obsolete maps.
 ------------------------------------------------------------------------
 
-dofile (modpath .. "/tgadec.lua")
-
-local function convert_old_map (itemstack, placer, pointed_thing)
-	local new_stack = mcl_util.call_on_rightclick (itemstack, placer,
-						       pointed_thing)
-	if new_stack then
-		return new_stack
-	end
-
-	if placer and placer:is_valid () then
-		local meta = itemstack:get_meta ()
-		local old_map_id = meta:get_string ("mcl_maps:id")
-		local old_minp = meta:get_string ("mcl_maps:minp")
-		local pos = core.string_to_pos (old_minp)
-
-		if old_map_id == "" or not pos then
-			local msg = S ("This old map is invalid and cannot be converted.")
-			core.chat_send_player (placer:get_player_name (), msg)
-			return nil
-		end
-		local id = storage:get_string ("converted_map_" .. old_map_id)
-
-		if not id or id == "" then
-			local data_file = map_textures_path .. "mcl_maps_map_texture_"
-				.. old_map_id .. ".tga"
-			if not core.path_exists (data_file) then
-				local msg = S ("The map data previously generated for this map does not exist.")
-				core.chat_send_player (placer:get_player_name (), msg)
-				return nil
-			end
-
-			local map = {
-				x_start = pos.x,
-				z_start = pos.z,
-				dimension = mcl_worlds.pos_to_dimension (pos)
-					or "none",
-				scale = 1,
-			}
-
-			local file, _ = io.open (data_file, "rb")
-			if not file then
-				local msg = S ("Failed to open map file for conversion.")
-				core.chat_send_player (placer:get_player_name (), msg)
-				return nil
-			end
-			local data = file:read ("*all")
-			file:close ()
-			local ok, width, height, pixels
-				= pcall (mcl_maps.get_targa_pixels, data)
-			if not ok or width ~= MAP_SIDE_LENGTH or height ~= MAP_SIDE_LENGTH then
-				local msg = S ("Format of existing map data is invalid: @1",
-					       tostring (width))
-				core.chat_send_player (placer:get_player_name (), msg)
-				return nil
-			end
-
-			id = allocate_map_id ()
-			map.ttl = MAP_TTL
-			map.data = alloc_map_data ()
-			map.heightmap = alloc_heightmap_data ()
-
-			-- Write pixels into the updated map.
-			local dst = map.data
-			for z = 0, MAP_SIDE_LENGTH - 1 do
-				local src_base = z * width + 1
-				local dst_base = z * MAP_SIDE_LENGTH + 1
-				for x = 0, MAP_SIDE_LENGTH - 1 do
-					dst[dst_base + x] = pixels[src_base + x]
-				end
-			end
-			loaded_maps[id] = map
-			write_map_data (id, map)
-			storage:set_string ("converted_map_" .. old_map_id, id)
-		end
-
-		itemstack:set_name ("mcl_maps:map_locked")
-		meta:set_string ("mcl_maps:map_id", id)
-		tt.reload_itemstack_description (itemstack)
-		return itemstack
-	end
-end
-
 core.register_alias ("mcl_maps:empty_map", "mcl_maps:map_empty")
 
 core.register_craftitem ("mcl_maps:filled_map", {
 	description = S ("Map (old)"),
-	_tt_help = S ("This map is no longer supported.  Right click to convert it."),
+	_tt_help = S ("It's an older map, but it checks out."),
 	inventory_image = "mcl_maps_map_filled.png^mcl_maps_map_update_required.png",
 	groups = {
 		not_in_creative_inventory = 1,
 		tool = 1,
 	},
-	on_place = convert_old_map,
-	on_secondary_use = convert_old_map,
+--	on_place = convert_old_map,
+--	on_secondary_use = convert_old_map,
 })
 
 for _, skin_item in ipairs ({
