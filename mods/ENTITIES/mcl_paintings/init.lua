@@ -221,7 +221,19 @@ core.register_craftitem("mcl_paintings:painting", {
 			meta:set_string("mcl_paintings:title", def.title)
 			meta:set_int("mcl_paintings:width", def.width)
 			meta:set_int("mcl_paintings:height", def.height)
-			meta:set_string("inventory_image", def.texture )
+
+			-- Make a 16x16 inv image with centred preview of painting
+			local x, y
+			if def.width > def.height then
+				x, y = 16, math.round(16*def.height/def.width)
+			else
+				x, y = math.round(16*def.width/def.height), 16
+			end
+			local inv_texture = "[combine:16x16:"
+			.. tostring(math.floor(8-x/2)) .. "," .. tostring(math.floor(8-y/2)) .. "="
+			.. mcl_util.escape_texture(def.texture .. "^[resize:" .. tostring(x) .. "x" .. tostring(y))
+			meta:set_string("inventory_image", inv_texture)
+
 			tt.reload_itemstack_description(stack)
 			table.insert(output.deco, stack:to_string())
 		end
