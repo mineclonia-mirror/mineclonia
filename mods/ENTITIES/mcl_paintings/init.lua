@@ -6,6 +6,8 @@ local C = core.colorize
 
 local wood = "mcl_paintings_frame.png"
 
+local creative_inv_previews = core.settings:get_bool("mcl_paintings_inv_preview", true)
+
 -- a painting definition has these fields
 -- width         - integer
 -- height        - integer
@@ -222,18 +224,20 @@ core.register_craftitem("mcl_paintings:painting", {
 			meta:set_int("mcl_paintings:width", def.width)
 			meta:set_int("mcl_paintings:height", def.height)
 
-			-- Make a 16x16 inv image with centred preview of painting
-			local x, y
-			if def.width > def.height then
-				x, y = 16, math.round(16*def.height/def.width)
-			else
-				x, y = math.round(16*def.width/def.height), 16
+			if creative_inv_previews then
+				-- Make a 16x16 inv image with centred preview of painting
+				local x, y
+				if def.width > def.height then
+					x, y = 16, math.round(16*def.height/def.width)
+				else
+					x, y = math.round(16*def.width/def.height), 16
+				end
+				meta:set_string("inventory_image", table.concat({
+					"[combine:16x16:",
+					math.floor(8-x/2), ",", math.floor(8-y/2), "=",
+					mcl_util.escape_texture(def.texture .. "^[resize:" .. x .. "x" .. y)
+				}))
 			end
-			meta:set_string("inventory_image", table.concat({
-				"[combine:16x16:",
-				math.floor(8-x/2), ",", math.floor(8-y/2), "=",
-				mcl_util.escape_texture(def.texture .. "^[resize:" .. x .. "x" .. y)
-			}))
 
 			tt.reload_itemstack_description(stack)
 			table.insert(output.deco, stack:to_string())
