@@ -226,19 +226,40 @@ function mcl_itemframes.tpl_entity:set_item(itemstack, pos)
 	self.object:set_pos(vector.add(pos, dir * 0.42))
 	self.object:set_rotation(vector.dir_to_rotation(dir))
 
+	local texture
 	if self._dynamic_map_id then
-		local texture
-			= find_cached_map_texture (pos, self._dynamic_map_id)
-		if texture then
-			local props = table.merge (map_props, {
-				textures = {
-					"blank.png^" .. texture,
-				},
-			}, def.object_properties or {})
-			self.object:set_properties (props)
+		texture	= find_cached_map_texture (pos, self._dynamic_map_id)
+	end
+	if "mcl_maps:filled_map" == self._item then
+		-- FIXME: this is the stupidest possible thing and not cached
+		-- this case should really be handled in find_cached_map_texture()
+		-- Should it be done using mcl_maps.load_map_item ?
+		local worldpath = core.get_worldpath()
+		local map_textures_path = worldpath .. "/mcl_maps/"
+		local meta = itemstack:get_meta ()
+		id = meta:get_string ("mcl_maps:id")
+		local image_file = map_textures_path .. "mcl_maps_map_texture_"
+				.. id .. ".tga"
+		local file, _ = io.open (image_file, "rb")
+		if not file then
+			local msg = S ("Failed to open image file: " .. image_file)
+			core.log ("error", msg)
+			return nil, nil
 		end
+		image_payload = file:read ("*all")
+		texture = "[png:" .. core.encode_base64 (image_payload)
+	end
+	print(texture)
+	if texture then
+		local props = table.merge (map_props, {
+			textures = {
+				"blank.png^" .. texture,
+			},
+		}, def.object_properties or {})
+		self.object:set_properties (props)
 		return
 	end
+
 	local idef = itemstack:get_definition()
 	local ws = idef.wield_scale
 	self.object:set_properties(table.merge(base_props, {
