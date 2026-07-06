@@ -124,7 +124,8 @@ end
 
 -- Escape texture string
 function mcl_util.escape_texture(text)
-	return text:gsub("\\", "\\\\"):gsub("%^", "\\%^"):gsub(":", "\\:")
+	local escaped = text:gsub("\\", "\\\\"):gsub("%^", "\\%^"):gsub(":", "\\:")
+	return escaped -- Only return one value from gsub
 end
 
 -- Attribution: https://gist.github.com/jrus/3197011
