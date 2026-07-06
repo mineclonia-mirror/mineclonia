@@ -229,10 +229,11 @@ core.register_craftitem("mcl_paintings:painting", {
 			else
 				x, y = math.round(16*def.width/def.height), 16
 			end
-			local inv_texture = "[combine:16x16:"
-			.. tostring(math.floor(8-x/2)) .. "," .. tostring(math.floor(8-y/2)) .. "="
-			.. mcl_util.escape_texture(def.texture .. "^[resize:" .. tostring(x) .. "x" .. tostring(y))
-			meta:set_string("inventory_image", inv_texture)
+			meta:set_string("inventory_image", table.concat({
+				"[combine:16x16:",
+				math.floor(8-x/2), ",", math.floor(8-y/2), "=",
+				mcl_util.escape_texture(def.texture .. "^[resize:" .. x .. "x" .. y)
+			}))
 
 			tt.reload_itemstack_description(stack)
 			table.insert(output.deco, stack:to_string())
