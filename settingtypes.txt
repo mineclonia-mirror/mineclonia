@@ -208,6 +208,9 @@ mcl_damage_particles (Damage particles) bool true
 # Form: Image height / Image width
 fire_animation_frames (Fire animation frames) int 8
 
+# Display previews of painting items in the Creative inventory
+mcl_paintings_inv_preview (Creative inventory painting previews) bool true
+
 [Redstone]
 
 # Redstone update interval in seconds.
