@@ -122,7 +122,8 @@ function mcl_util.return_itemstack_if_alive(player, itemstack)
 	return itemstack
 end
 
-function mcl_util.escape_texture (text) -- Escape texture string
+-- Escape texture string
+function mcl_util.escape_texture(text)
 	return text:gsub("\\", "\\\\"):gsub("%^", "\\%^"):gsub(":", "\\:")
 end
 
