@@ -46,6 +46,22 @@ features which are not available in this version. If one sees reason to drop
 compatibility in order to use later engine features, then one should make an
 issue about it so it can be discussed.
 
+## Review guidelines
+- Legitimate review questions must be answered by the author. "Just read the
+code" is not an acceptable answer.
+- It is on the reviewer to ask in a respectful way.
+- But it is also on the author and anyone participating not to react in an
+disrespectful manner - all participants are responsible for an escalating
+spiral – remember respect is conveyed largely by *what* is said more so than
+*how* it is said.
+- Before escalating an already heated discussion the issue should be taken to
+a maintainer who will then try to isolate the factual points.
+- There is no guarantee for any PR to get merged, if a PR makes technical
+decisions which have never been agreed upon the author must expect and be
+ready to change them later on if another approach is preferred. It is much
+better to discuss these in an issue before committing to any particular
+solution.
+
 ## Code Guidelines
 * Each mod must provide `mod.conf`.
 * Mod names are snake case, and newly added mods start with `mcl_`, e.g.
