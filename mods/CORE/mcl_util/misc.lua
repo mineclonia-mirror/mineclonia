@@ -122,6 +122,10 @@ function mcl_util.return_itemstack_if_alive(player, itemstack)
 	return itemstack
 end
 
+function mcl_util.escape_texture (text) -- Escape texture string
+	return text:gsub("\\", "\\\\"):gsub("%^", "\\%^"):gsub(":", "\\:")
+end
+
 -- Attribution: https://gist.github.com/jrus/3197011
 local pr = PcgRandom (os.time ())
 

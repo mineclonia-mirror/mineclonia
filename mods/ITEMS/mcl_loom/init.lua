@@ -87,12 +87,12 @@ local function get_formspec(pos)
 			end
 		end
 		if selected_preview ~= "" then
-			local b, esc = mcl_banners, core.formspec_escape
+			local b, esc, tesc = mcl_banners, core.formspec_escape, mcl_util.escape_texture
 			local banner_color = banner:get_definition()._unicolor
 			local preview_layers = table.copy(layers)
 			table.insert(preview_layers, {color = "unicolor_"..color, pattern = selected_preview})
 			preview_texture = b.make_banner_texture(banner_color, preview_layers, "item")
-			preview_texture = "[combine:30x48:-9,0=" .. b.escape_texture(preview_texture)
+			preview_texture = "[combine:30x48:-9,0=" .. tesc(preview_texture)
 			preview_texture = esc(preview_texture)
 			b.write_layers(banner:get_meta(), preview_layers)
 			preview_tooltip = "tooltip[btn_loom_craft;"..esc(b.update_description(banner, b.max_craftable_layers)).."]"

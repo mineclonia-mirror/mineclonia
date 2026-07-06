@@ -115,7 +115,7 @@ local shield_texture_builder = {
 		return banner -- Passed as "base" in combine()
 	end,
 	combine = function (base, layers)
-		local escape = mcl_banners.escape_texture
+		local escape = mcl_util.escape_texture
 		-- Enlarge base texture for banner placement.  Banner patterns need to be resized and offset to leave only front.
 		local shield = "[combine:128x128:0,0=mcl_shield_base_nopattern.png\\^[resize\\:128x128"
 		return shield .. ":4,4=" .. escape("[combine:20x40:-1,-1=" .. escape(base .. layers .."^[resize:64x64"))

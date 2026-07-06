@@ -49,10 +49,6 @@ local function round(num, idp)
 	return math.floor(num * mult + 0.5) / mult
 end
 
-function mcl_banners.escape_texture (text) -- Escape texture string
-	return text:gsub("\\", "\\\\"):gsub("%^", "\\%^"):gsub(":", "\\:")
-end
-
 function mcl_banners.read_layers (meta)
 	local raw = meta:get_string("layers")
 	local layers = core.deserialize(raw)
@@ -244,7 +240,7 @@ mcl_banners.item_texture_builder = {
 	layer = nil, -- function (previous_result, rgb, pattern)
 	combine = function (base, layers)
 		if layers == "" then return base end
-		local escape = mcl_banners.escape_texture
+		local escape = mcl_util.escape_texture
 		-- Banner Item texture size 48x48 offset 14,4.  Pattern resize required to support theme packs.
 		-- Pattern Texture size 64x64, Front at offset 1,1 size 20x40.
 		return "[combine:48x48:0,0=" .. escape(base)
@@ -694,3 +690,6 @@ core.register_lbm({
 		respawn_banner_entity(pos, node, true)
 	end,
 })
+
+-- Compat
+mcl_banners.escape_texture = mcl_util.escape_texture
