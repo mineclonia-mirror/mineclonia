@@ -556,6 +556,7 @@ function horse:update_armor_inv ()
 	self._armor_inv:set_stack ("main", SADDLE_SLOT, stack)
 	stack = ItemStack (self._horse_armor_stack)
 	self._armor_inv:set_stack ("main", ARMOR_SLOT, stack)
+	mcl_upgrade.upgrade_in_inventory(self._armor_inv)
 end
 
 function horse:generate_inventory_formspec ()

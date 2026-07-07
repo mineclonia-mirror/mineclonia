@@ -46,6 +46,7 @@ function mcl_entity_invs.load_inv(ent,size)
 		if ent._items then
 			inv:set_list("main",ent._items)
 		end
+		mcl_upgrade.upgrade_in_inventory(inv)
 	end
 	ent._inv = inv
 	return inv

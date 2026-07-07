@@ -188,6 +188,7 @@ globals = {
 	"mcl_trial_spawners",
 	"mcl_tridents",
 	"mcl_tt",
+	"mcl_upgrade",
 	"mcl_util",
 	"mcl_vaults",
 	"mcl_villages",

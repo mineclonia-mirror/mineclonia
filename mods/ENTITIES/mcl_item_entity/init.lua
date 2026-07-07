@@ -588,6 +588,14 @@ core.register_entity(":__builtin:item", {
 			return
 		end
 
+		if self.itemstring ~= "" then
+			local stack = ItemStack(self.itemstring)
+			local upgraded = mcl_upgrade.upgrade_itemstack(stack)
+			if upgraded then
+				self.itemstring = upgraded:to_string()
+			end
+		end
+
 		self.object:set_armor_groups({immortal = 1})
 		self.object:set_acceleration({x = 0, y = -get_gravity(), z = 0})
 		self:set_item(self.itemstring)
