@@ -191,7 +191,6 @@ globals = {
 	"mcl_util",
 	"mcl_vaults",
 	"mcl_villages",
-	"mcl_villages",
 	"mcl_void_damage",
 	"mcl_walkover",
 	"mcl_walls",
