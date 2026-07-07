@@ -2,7 +2,7 @@ mcl_upgrade = {}
 
 local function upgrade_itemstack(stack)
 	stack = ItemStack(stack)
-	local upgrade = stack:get_definition()._mcl_upgrade
+	local upgrade = stack:get_definition()._mcl_itemstack_upgrade
 	if upgrade then
 		return upgrade(stack)
 	end
@@ -24,19 +24,6 @@ function mcl_upgrade.upgrade_in_inventory(inv)
 	end
 	return modified
 end
-
--- How can itemstacks be loaded?
--- - Player inventories (handled here)
--- - Node inventories (handled here)
--- - Item entities (in on_activate of item entity)
--- 	- Special case: shulker boxes; th
--- - Detached inventories:
--- These are used for different things in different places:
--- 	- mcl_entity_invs: handled in mcl_entity_invs.load_inv
--- 	- Villager trading: the detached trading formspec inv
--- 		is not saved so don't need to upgrade
--- 	- Horse armor inv: in horse.update_armor_inv
--- 	- Creative inventory: not saved, don't need to upgrade
 
 core.register_on_joinplayer(function(player)
 	mcl_upgrade.upgrade_in_inventory(player:get_inventory())

@@ -8,11 +8,11 @@ Currently, it only has functionality to upgrade itemstacks.
 
 This mod allows an itemstack to register a function that upgrades it to a new itemstack
 
-Items can add an _mcl_upgrade function to their definition, which takes in the old itemstack:
-`_mcl_upgrade = function(stack) end`
+Items can add an `_mcl_itemstack_upgrade` function to their definition, which takes in the old itemstack:
+`_mcl_itemstack_upgrade = function(stack) end`
 The function should return `nil` if the itemstack doesn't need to be upgraded, or the new itemstack if it does.
 
-Mods which process itemstacks shouldn't call the `_mcl_upgrade` field directly, instead they should use one of the provided api functions:
+Mods which process itemstacks shouldn't call the `_mcl_itemstack_upgrade` field directly, instead they should use one of the provided api functions:
 
 ### `mcl_upgrade.upgrade_itemstack(stack)`
 `stack` must be convertible to ItemStack via `ItemStack(stack)` (i.e. itemstring, ItemStack, table)
@@ -39,4 +39,4 @@ Items only need to be upgraded once per restart of the server, as the server can
         - Villager trading inv: this is reset on rejoin, so never contains outdated items
         - Creative inventory: also reset on rejoin
 
-Also, shulker boxes have an `_mcl_upgrade` which calls `_mcl_upgrade` on their contents.
+Also, shulker boxes have an `_mcl_itemstack_upgrade` which calls `_mcl_itemstack_upgrade` on their contents.
