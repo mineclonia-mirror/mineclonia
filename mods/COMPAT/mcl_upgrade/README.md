@@ -30,6 +30,8 @@ Items only need to be upgraded once per restart of the server, as the server can
 - In player inventories in an on_joinplayer callback (in mcl_upgrade)
 - In node inventories in an LBM on `group:container` (in mcl_upgrade)
 - Item entities in on_activate of item entity (in mcl_item_entity)
+- Itemfames. Even though they have an inventory, they don't have group:container;
+    they are upgraded in mcl_itemframes.update_entity, which is called during on_activate (in mcl_itemframes)
 - Detached inventories:
     - In `mcl_entity_invs.load_inv` (in mcl_entity_invs)
     - Horse armor inv: in `horse.update_armor_inv` (in mobs_mc)

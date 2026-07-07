@@ -114,6 +114,7 @@ local function update_entity(pos)
 		remove_entity(pos)
 		return
 	end
+	itemstack = mcl_upgrade.upgrade_itemstack(itemstack) or itemstack
 	local itemstring = itemstack:get_name()
 	local l = find_or_create_entity(pos)
 	if not itemstring or itemstring == "" then
