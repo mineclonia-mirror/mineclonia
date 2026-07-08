@@ -12,6 +12,7 @@ dofile(modpath .. "/engine.lua")
 dofile(modpath .. "/groupcaps.lua")
 dofile(modpath .. "/enchantments.lua")
 dofile(modpath .. "/enchanting_table.lua")
+dofile(modpath .. "/anvil.lua")
 
 core.register_chatcommand("enchant", {
 	description = S("Enchant an item"),
