@@ -267,7 +267,7 @@ core.register_node("mcl_lush_caves:rooted_dirt", {
 })
 
 core.register_craftitem("mcl_lush_caves:glow_berry", {
-	description = S("Glow berry"),
+	description = S("Glow Berry"),
 	_doc_items_longdesc = S("This is a food item which can be eaten."),
 	_doc_items_hidden = false,
 	inventory_image = "mcl_lush_caves_glow_berries.png",
