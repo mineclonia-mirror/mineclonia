@@ -365,7 +365,7 @@ local awkward_table = {
 -- API
 -- register a potion recipe brewed from awkward potion
 function mcl_potions.register_awkward_brew(ingr, potion)
-	assert (not water_table[ingr],
+	assert (not awkward_table[ingr],
 		"Attempt to register the same ingredient twice!")
 	assert (type(ingr) == "string", "ingr must be a string")
 	assert (type(potion) == "string", "potion must be a string")
