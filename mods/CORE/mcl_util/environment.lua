@@ -323,7 +323,7 @@ function mcl_util.move_item_container(source_pos, destination_pos, source_list, 
 			if ok and dctype == 4 then
 				-- Start furnace's timer function (if inactive), it will sort out whether furnace can burn or not.
 				local ft = core.get_node_timer(dpos)
-				if ft:get_timeout() == 0 then
+				if not ft:is_started() then
 					ft:start(1.0)
 				end
 			end
