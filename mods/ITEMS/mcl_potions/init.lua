@@ -393,7 +393,7 @@ local thick_table = {
 -- API
 -- register a potion recipe brewed from thick potion
 function mcl_potions.register_thick_brew(ingr, potion)
-	assert (not awkward_table[ingr],
+	assert (not thick_table[ingr],
 		"Attempt to register the same ingredient twice!")
 	assert (type(ingr) == "string", "ingr must be a string")
 	assert (type(potion) == "string", "potion must be a string")
