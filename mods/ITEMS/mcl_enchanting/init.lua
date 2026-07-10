@@ -59,7 +59,6 @@ mcl_enchanting = {
 }
 
 dofile(modpath .. "/engine.lua")
-dofile(modpath .. "/groupcaps.lua")
 dofile(modpath .. "/enchantments.lua")
 
 core.register_chatcommand("enchant", {
@@ -132,7 +131,10 @@ core.register_chatcommand("forceenchant", {
 		elseif errorstring == "level invalid" then
 			return false, S("'@1' is not a valid number.", level_str)
 		else
-			target:set_wielded_item(mcl_enchanting.enchant(itemstack, enchantment, level))
+			local enchanted_item = mcl_enchanting.enchant(itemstack, enchantment, level)
+			enchanted_item = mcl_autogroup.try_update_tool_capabilities(enchanted_item, target) or enchanted_item
+
+			target:set_wielded_item(enchanted_item)
 			return true, S("Enchanting succeded.")
 		end
 	end

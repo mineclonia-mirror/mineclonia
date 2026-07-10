@@ -114,8 +114,7 @@ mcl_enchanting.register_enchantment("efficiency", {
 	weight = 10,
 	description = S("Increases mining speed."),
 	on_enchant = function()
-		-- Updating digging speed is handled by update_groupcaps which
-		-- is called from load_enchantments.
+		-- Updating digging speed is handled in _mcl_autogroup
 	end,
 	power_range_table = {{1, 61}, {11, 71}, {21, 81}, {31, 91}, {41, 101}},
 	inv_tool_tab = true,
@@ -552,8 +551,7 @@ mcl_enchanting.register_enchantment("unbreaking", {
 		tool_capabilities.punch_attack_uses = tool_capabilities.punch_attack_uses * (1 + level)
 		itemstack:get_meta():set_tool_capabilities(tool_capabilities)
 
-		-- Updating digging durability is handled by update_groupcaps
-		-- which is called from load_enchantments.
+		-- Updating digging durability is handled in _mcl_autogroup
 	end,
 	requires_tool = true,
 	power_range_table = {{5, 61}, {13, 71}, {21, 81}},

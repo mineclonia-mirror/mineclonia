@@ -67,3 +67,12 @@ function mcl_util.is_item_or_in_group(itemname, group_or_item)
 	end
 	return itemname == group_or_item
 end
+
+function mcl_util.set_main_list_item_no_anim(player, index, itemstack)
+	if index == player:get_wield_index() then
+		-- FIXME: This seems to randomly not work about 20% of the time???
+		player:set_wielded_item(itemstack, true)
+	else
+		player:get_inventory():set_stack("main", index, itemstack)
+	end
+end

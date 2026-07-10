@@ -418,6 +418,14 @@ core.register_entity(":__builtin:item", {
 		end
 
 		if leftovers:is_empty() then
+			-- If a tool has been picked up, it must all be picked up at once since it can't stack
+			-- So we only need to update tool caps here
+			if mcl_autogroup.is_tool(itemstack) then
+				-- Unfortunately, we don't know where it went in the inventory
+				-- Let's just update all active slots
+				mcl_autogroup.update_player_capabilities(player)
+			end
+
 			-- Destroy entity
 			-- This just prevents this section to be run again because object:remove() doesn't remove the item immediately.
 			self.target = checkpos

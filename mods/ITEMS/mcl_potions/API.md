@@ -122,13 +122,6 @@ def = {
     dmg_mod_is_type = bool -- damage_modifier string is used as type instead of flag of damage, defaults to false
     modifier_func = function(damage, effect_vals) -- see damage_modifier, if not defined damage_modifier defaults to 100% resistance
     modifier_priority = integer -- priority passed when registering damage_modifier - defaults to -50
-    affects_item_speed = table
--- -- if provided, effect gets added to the item_speed_effects table, this should be true if the effect affects item speeds,
--- -- otherwise it won't work properly with other such effects (like haste and fatigue)
--- -- -- factor_is_positive - bool - whether values of factor between 0 and 1 should be considered +factor% or speed multiplier
--- -- --   - obviously +factor% is positive and speed multiplier is negative interpretation
--- -- --   - values of factor higher than 1 will have a positive effect regardless
--- -- --   - values of factor lower than 0 will have a negative effect regardless
 }
 ```
 

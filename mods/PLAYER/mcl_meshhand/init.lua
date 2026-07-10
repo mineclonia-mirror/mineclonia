@@ -98,7 +98,8 @@ function mcl_meshhand.update_player(player)
 		local creative = core.is_creative_enabled(player:get_player_name())
 		hand = ItemStack("mcl_meshhand:hand" .. (creative and "_crea" or "_surv"))
 	end
-	player:get_inventory():set_stack("hand", 1, mcl_potions.hf_update_internal(hand, player))
+	player:get_inventory():set_stack("hand", 1, hand)
+	mcl_autogroup.update_hand_capabilities(player)
 end
 
 if mcl_skins_enabled then
