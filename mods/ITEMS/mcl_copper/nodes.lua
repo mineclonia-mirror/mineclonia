@@ -111,7 +111,7 @@ for n, desc in pairs(n_desc) do
 		_doc_items_longdesc = D(desc .. "Cut Copper is mostly a decorative block."),
 		tiles = {"mcl_copper"..(n == "" and "_block" or n) .."_cut.png"},
 		is_ground_content = false,
-		groups = {pickaxey = 2, building_block = 1, stonecuttable = 1},
+		groups = {pickaxey = 2, building_block = 1, stonecuttable = 1, cut_copper = 1},
 		sounds = mcl_sounds.node_sound_metal_defaults(),
 		_mcl_blast_resistance = 6,
 		_mcl_hardness = 3,
