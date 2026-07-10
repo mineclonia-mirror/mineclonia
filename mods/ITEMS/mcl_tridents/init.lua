@@ -654,6 +654,8 @@ function mcl_tridents.shoot_trident (stack, obj, pos, yaw, pitch, dir, collectab
 		entity._itemstack = stack
 		entity._can_pick_up = collectable
 		if riptide_level > 0 then
+			-- obj always exists here because
+			-- dispensers set riptide level to 0
 			assert (obj:is_player ())
 			entity:riptide_init (obj)
 			core.sound_play("mcl_tridents_riptide", {
@@ -663,7 +665,7 @@ function mcl_tridents.shoot_trident (stack, obj, pos, yaw, pitch, dir, collectab
 		end
 		entity:rotate (v)
 		core.sound_play("mcl_tridents_throw_"..math.random(1,2), {
-			pos = obj:get_pos(), gain = 0.5,
+			pos = object:get_pos(), gain = 0.5,
 			max_hear_distance = 16
 		}, true)
 		return true
