@@ -36,36 +36,28 @@ function mcl_enchanting.is_curse(enchantment)
 	return mcl_enchanting.enchantments[enchantment] and mcl_enchanting.enchantments[enchantment].curse
 end
 
-function mcl_enchanting.unload_enchantments(itemstack)
-	local itemdef = itemstack:get_definition()
+local function setup_item_meta(itemstack)
 	local meta = itemstack:get_meta()
-	if itemdef.tool_capabilities then
-		meta:set_tool_capabilities(nil)
-		meta:set_string("groupcaps_hash", "")
-	end
-	if meta:get_string("name") == "" then
-		meta:set_string("description", "")
-		meta:set_string("groupcaps_hash", "")
-	end
-end
+	-- Clear all tool capability overrides, as some on_enchant functions shouldn't be called twice
+	-- This means tool capabilities shouldn't be overridden elsewhere
+	meta:set_tool_capabilities()
 
-function mcl_enchanting.load_enchantments(itemstack, enchantments)
 	if not mcl_enchanting.is_book(itemstack:get_name()) then
-		mcl_enchanting.unload_enchantments(itemstack)
-		for enchantment, level in pairs(enchantments or mcl_enchanting.get_enchantments(itemstack)) do
+		for enchantment, level in pairs(mcl_enchanting.get_enchantments(itemstack)) do
 			local enchantment_def = mcl_enchanting.enchantments[enchantment]
 			if enchantment_def then
 				enchantment_def.on_enchant(itemstack, level)
 			end
 		end
-		mcl_enchanting.update_groupcaps(itemstack, false)
 	end
 	tt.reload_itemstack_description(itemstack)
+	return itemstack
 end
+mcl_enchanting.setup_item_meta = setup_item_meta
 
 function mcl_enchanting.set_enchantments(itemstack, enchantments)
 	itemstack:get_meta():set_string("mcl_enchanting:enchantments", core.serialize(enchantments))
-	mcl_enchanting.load_enchantments(itemstack)
+	setup_item_meta(itemstack)
 end
 
 function mcl_enchanting.get_enchantment(itemstack, enchantment)
@@ -321,7 +313,7 @@ local function get_after_use_callback(itemdef)
 		-- one too.
 		return function(itemstack, user, node, digparams)
 			itemdef.after_use(itemstack, user, node, digparams)
-			mcl_enchanting.update_groupcaps(itemstack, false)
+			--mcl_enchanting.update_groupcaps(itemstack, false)
 		end
 	end
 
@@ -333,7 +325,7 @@ local function get_after_use_callback(itemdef)
 		end
 
 		--local enchantments = mcl_enchanting.get_enchantments(itemstack)
-		mcl_enchanting.update_groupcaps(itemstack, false)
+		--mcl_enchanting.update_groupcaps(itemstack, false)
 	end
 end
 

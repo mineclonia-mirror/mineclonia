@@ -211,11 +211,8 @@ end]]
 -- can_harvest - if the tool can harvest the block
 -- speed - dig speed multiplier for tool (default 1)
 -- efficiency - efficiency level for the tool if applicable
-local function get_digtimes(group, can_harvest, speed, efficiency)
+local function get_digtimes(group, can_harvest, speed)
 	local speed = speed or 1
-	if efficiency then
-		speed = speed + efficiency * efficiency + 1
-	end
 
 	local digtimes = {}
 
@@ -239,9 +236,9 @@ local function get_digtimes(group, can_harvest, speed, efficiency)
 end
 
 -- Get one groupcap field for using a specific tool on a specific group.
-local function get_groupcap(group, can_harvest, multiplier, efficiency, uses)
+local function get_groupcap(group, can_harvest, multiplier, uses)
 	return {
-		times = get_digtimes(group, can_harvest, multiplier, efficiency),
+		times = get_digtimes(group, can_harvest, multiplier),
 		uses = uses,
 		maxlevel = 0,
 	}
@@ -249,13 +246,15 @@ end
 
 -- Add the groupcaps from a field in "_mcl_diggroups" to the groupcaps of a
 -- tool.
-local function add_groupcaps(toolname, groupcaps, groupcaps_def, efficiency)
+local function add_groupcaps(toolname, groupcaps, groupcaps_def, speed_add_bonus, speed_multiplier)
 	if not groupcaps_def then
 		return
 	end
 
 	for g, capsdef in pairs(groupcaps_def) do
-		local mult = capsdef.speed or 1
+		local speed = capsdef.speed or 1
+		speed = (speed + (speed_add_bonus or 0)) * (speed_multiplier or 1)
+
 		local uses = capsdef.uses
 		local def = mcl_autogroup.registered_diggroups[g]
 		assert(def, toolname .. " has unknown diggroup '" .. dump(g) .. "'")
@@ -265,12 +264,12 @@ local function add_groupcaps(toolname, groupcaps, groupcaps_def, efficiency)
 		local level = math.min(capsdef.level, max_level)
 
 		if def.levels then
-			groupcaps[g .. "_dig_default"] = get_groupcap(g, false, mult, efficiency, uses)
+			groupcaps[g .. "_dig_default"] = get_groupcap(g, false, speed, uses)
 			if level > 0 then
-				groupcaps[g .. "_dig_" .. def.levels[level]] = get_groupcap(g, true, mult, efficiency, uses)
+				groupcaps[g .. "_dig_" .. def.levels[level]] = get_groupcap(g, true, speed, uses)
 			end
 		else
-			groupcaps[g .. "_dig"] = get_groupcap(g, level > 0, mult, efficiency, uses)
+			groupcaps[g .. "_dig"] = get_groupcap(g, level > 0, speed, uses)
 		end
 	end
 end
@@ -318,15 +317,6 @@ function mcl_autogroup.can_harvest(nodename, toolname, player)
 	return false
 end
 
--- Get one groupcap field for using a specific tool on a specific group.
---[[local function get_groupcap(group, can_harvest, multiplier, efficiency, uses)
-	return {
-		times = get_digtimes(group, can_harvest, multiplier, efficiency),
-		uses = uses,
-		maxlevel = 0,
-	}
-end]]
-
 -- Returns the tool_capabilities from a tool definition or a default set of
 -- tool_capabilities
 local function get_tool_capabilities(tdef)
@@ -342,6 +332,7 @@ local function get_tool_capabilities(tdef)
 		damage_groups = hand_toolcaps.damage_groups
 	}
 end
+mcl_autogroup.get_tool_capabilities = get_tool_capabilities
 
 -- Get the groupcaps for a tool.  This function returns "groupcaps" table of
 -- digging which should be put in the "tool_capabilities" of the tool definition
@@ -355,10 +346,11 @@ end
 -- This function can only be called after mod initialization.  Otherwise a mod
 -- would have to add _mcl_autogroup as a dependency which would break the mod
 -- loading order.
-function mcl_autogroup.get_groupcaps(toolname, efficiency)
+-- TODO: Use actual attribute modifiers and make this whole system a bit less hardcoded
+function mcl_autogroup.get_groupcaps(toolname, speed_add_bonus, speed_multiplier)
 	local tdef = core.registered_items[toolname]
 	local groupcaps = table.copy(get_tool_capabilities(tdef).groupcaps or {})
-	add_groupcaps(toolname, groupcaps, tdef._mcl_diggroups, efficiency)
+	add_groupcaps(toolname, groupcaps, tdef._mcl_diggroups, speed_add_bonus, speed_multiplier)
 	return groupcaps
 end
 
@@ -509,3 +501,6 @@ core.register_on_mods_loaded(function ()
 		mcl_player.players[player].joinplayer_done = true
 	end)
 end)
+
+local modpath = core.get_modpath(core.get_current_modname())
+dofile(modpath .. "/toolcaps_override.lua")

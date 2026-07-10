@@ -133,11 +133,7 @@ function trade_class:get_wanted2 ()
 end
 
 function trade_class:get_offered ()
-	local stack = ItemStack (self.offered)
-	if mcl_enchanting.is_enchanted (stack:get_name ()) then
-		mcl_enchanting.load_enchantments (stack)
-	end
-	return stack
+	return ItemStack(self.offered)
 end
 
 function trade_class:is_locked ()
@@ -187,7 +183,6 @@ function mobs_mc.trade_from_table (pr, trade, reward_xp)
 		else
 			mcl_enchanting.enchant_randomly (offered, pr:next (5, 19),
 							 false, false, true, pr)
-			mcl_enchanting.unload_enchantments (offered)
 		end
 	end
 

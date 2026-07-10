@@ -4,9 +4,6 @@ local EF = {}
 mcl_potions.registered_effects = {}
 local registered_effects = mcl_potions.registered_effects -- shorthand ref
 
--- effects affecting item speed utilize numerous hacks, so they have to be counted separately
-local item_speed_effects = {}
-
 local EFFECT_TYPES = 0
 core.register_on_mods_loaded(function()
 	for _,_ in pairs(EF) do
@@ -114,14 +111,6 @@ end
 -- dmg_mod_is_type - bool - damage_modifier string is used as type instead of flag of damage, defaults to false
 -- modifier_func - function(damage, effect_vals) - see damage_modifier, if not defined damage_modifier defaults to 100% resistance
 -- modifier_priority - integer - priority passed when registering damage_modifier - defaults to -50
--- affects_item_speed - table
--- -- if provided, effect gets added to the item_speed_effects table, this should be true if the effect affects item speeds,
--- -- otherwise it won't work properly with other such effects (like haste and fatigue)
--- -- -- factor_is_positive - bool - whether values of factor between 0 and 1 should be considered +factor% or speed multiplier
--- -- --   - obviously +factor% is positive and speed multiplier is negative interpretation
--- -- --   - values of factor higher than 1 will have a positive effect regardless
--- -- --   - values of factor lower than 0 will have a negative effect regardless
--- -- --   - open an issue on our tracker if you have a usage that isn't supported by this API
 function mcl_potions.register_effect(def)
 	local modname = core.get_current_modname()
 	local name = def.name
@@ -145,6 +134,7 @@ function mcl_potions.register_effect(def)
 	pdef.on_step = def.on_step
 	pdef.on_hit_timer = def.on_hit_timer
 	pdef.on_end = def.on_end
+	pdef.after_end = def.after_end
 	pdef.on_save_effect = def.on_save_effect
 	if not def.particle_color then
 		pdef.particle_color = "#3000EE"
@@ -187,7 +177,6 @@ function mcl_potions.register_effect(def)
 	end
 	registered_effects[name] = pdef
 	EF[name] = {}
-	item_speed_effects[name] = def.affects_item_speed
 end
 
 mcl_potions.register_effect({
@@ -1053,76 +1042,25 @@ mcl_potions.register_effect({
 	uses_factor = true,
 })
 
--- constants relevant for effects altering mining and attack speed
-local LONGEST_MINING_TIME = 300
-local LONGEST_PUNCH_INTERVAL = 10
-mcl_potions.LONGEST_MINING_TIME = LONGEST_MINING_TIME
-mcl_potions.LONGEST_PUNCH_INTERVAL = LONGEST_PUNCH_INTERVAL
-
-function mcl_potions.apply_haste_fatigue(toolcaps, h_fac, f_fac)
-	local interval = toolcaps.full_punch_interval
-	local h_level = registered_effects.haste.factor_to_level (h_fac)
-	local f_level = registered_effects.fatigue.factor_to_level (f_fac)
-	interval = interval * (1.0 + 0.1 * (-h_level + f_level))
-	toolcaps.full_punch_interval = math.min (interval, LONGEST_PUNCH_INTERVAL)
-	for _, group in pairs(toolcaps.groupcaps) do
-		local t = group.times
-		for i=1, #t do
-			if f_fac == 0 then
-				t[i] = t[i] > LONGEST_MINING_TIME and t[i] or LONGEST_MINING_TIME
-			else
-				local old_time = t[i]
-				t[i] = t[i] / (1+h_fac) / f_fac
-				if old_time < LONGEST_MINING_TIME and t[i] > LONGEST_MINING_TIME then
-					t[i] = LONGEST_MINING_TIME
-				end
-			end
-		end
-	end
-	return toolcaps
-end
-
-function mcl_potions.hf_update_internal(hand, object)
-	-- TODO add a check for creative mode?
-	local meta = hand:get_meta()
-	local h_fac = mcl_potions.get_total_haste(object)
-	local f_fac = mcl_potions.get_total_fatigue(object)
-	-- Reset the capabilities of the hand to its default.
-	meta:set_tool_capabilities ()
-	local toolcaps = hand:get_tool_capabilities()
-	meta:set_tool_capabilities(mcl_potions.apply_haste_fatigue(toolcaps, h_fac, f_fac))
-	return hand
-end
-
-local function haste_fatigue_hand_update(object)
-	local inventory = object:get_inventory()
-	if not inventory or inventory:get_size("hand") < 1 then return end
-	local hand = inventory:get_stack("hand", 1)
-	inventory:set_stack("hand", 1, mcl_potions.hf_update_internal(hand, object))
-end
-
+-- TODO: Should also apply to mobs (e.g. zombies breaking down doors)
 mcl_potions.register_effect({
 	name = "haste",
 	description = S("Haste"),
 	get_tt = function(factor)
 		return S("+@1% mining and attack speed", math.floor(factor*100))
 	end,
-	on_start = function (object)
-		if object:is_player () then
-		mcl_potions.update_haste_and_fatigue (object)
+	on_start = function(object, factor)
+		if object:is_player() then
+			mcl_autogroup.update_player_capabilities(object)
 		end
 	end,
 	after_end = function(object)
-		if object:is_player () then
-		haste_fatigue_hand_update(object)
-		mcl_potions._reset_haste_fatigue_item_meta(object)
+		if object:is_player() then
+			mcl_autogroup.update_player_capabilities(object)
 		end
 	end,
 	particle_color = "#D9C043",
 	uses_factor = true,
-	lvl1_factor = 0.2,
-	lvl2_factor = 0.4,
-	affects_item_speed = {factor_is_positive = true},
 })
 
 mcl_potions.register_effect({
@@ -1132,23 +1070,20 @@ mcl_potions.register_effect({
 		return S("-@1% mining and attack speed", math.floor((1-factor)*100))
 	end,
 	on_start = function (object)
-		if object:is_player () then
-		mcl_potions.update_haste_and_fatigue (object)
+		if object:is_player() then
+			mcl_autogroup.update_player_capabilities(object)
 		end
 	end,
 	after_end = function(object)
-		if object:is_player () then
-		haste_fatigue_hand_update(object)
-		mcl_potions._reset_haste_fatigue_item_meta(object)
+		if object:is_player() then
+			mcl_autogroup.update_player_capabilities(object)
 		end
 	end,
 	particle_color = "#4A4217",
 	uses_factor = true,
-	lvl1_factor = 0.3,
-	lvl2_factor = 0.09,
-	affects_item_speed = {},
 })
 
+-- TODO: Shouldn't check for water, move that into conduit code
 mcl_potions.register_effect({
 	name = "conduit_power",
 	description = S("Conduit Power"),
@@ -1156,35 +1091,29 @@ mcl_potions.register_effect({
 		return S("+@1% mining and attack speed in water").."\n"..S("limitless breathing under water", math.floor(factor*100))
 	end,
 	on_start = function (object)
-		if object:is_player () then
-		mcl_potions.update_haste_and_fatigue (object)
+		if object:is_player() then
+			mcl_autogroup.update_player_capabilities(object)
 		end
 	end,
 	on_step = function(_, object)
-		if not object:is_player() then return end
-		local node = core.get_node_or_nil(object:get_pos())
-		if node and core.registered_nodes[node.name]
-			and core.get_item_group(node.name, "liquid") ~= 0
-			and core.get_item_group(node.name, "water") ~= 0 then
-				EF.conduit_power[object].blocked = nil
-				if object:get_breath() then
-					hb.hide_hudbar(object, "breath")
-					if object:get_breath() < 10 then object:set_breath(10) end
-				end
-				-- TODO implement improved underwater vision with this effect
+		-- Copied from water_breathing
+		if object:get_breath() then
+			hb.hide_hudbar(object, "breath")
+			if object:get_breath() < 10 then object:set_breath(10) end
 		else
-			EF.conduit_power[object].blocked = true
+			local entity = object:get_luaentity()
+			if entity and entity.is_mob then
+				entity:reset_breath()
+			end
 		end
 	end,
 	after_end = function(object)
-		haste_fatigue_hand_update(object)
-		mcl_potions._reset_haste_fatigue_item_meta(object)
+		if object:is_player() then
+			mcl_autogroup.update_player_capabilities(object)
+		end
 	end,
 	particle_color = "#1DC2D1",
 	uses_factor = true,
-	lvl1_factor = 0.2,
-	lvl2_factor = 0.4,
-	affects_item_speed = {factor_is_positive = true},
 })
 
 mcl_potions.register_effect({
@@ -1316,43 +1245,6 @@ end
 mcl_damage.register_on_death(function(obj)
 	mcl_potions.check_on_death(obj)
 end)
-
--- implementation of haste and fatigue effects
-function mcl_potions.update_haste_and_fatigue(player)
-	local h_fac = mcl_potions.get_total_haste(player)
-	local f_fac = mcl_potions.get_total_fatigue(player)
-	if mcl_gamemode.get_gamemode(player) == "creative" then return end
-	local item = player:get_wielded_item()
-	if core.get_item_group(item.name, "tool") ~= 1 then return end
-	local meta = item:get_meta()
-	local item_haste = meta:get_float("mcl_potions:haste")
-	local item_fatig = 1 - meta:get_float("mcl_potions:fatigue")
-	if item_haste ~= h_fac or item_fatig ~= f_fac then
-	if h_fac ~= 0 then meta:set_float("mcl_potions:haste", h_fac)
-	else meta:set_string("mcl_potions:haste", "") end
-	if f_fac ~= 1 then meta:set_float("mcl_potions:fatigue", 1 - f_fac)
-	else meta:set_string("mcl_potions:fatigue", "") end
-	meta:set_tool_capabilities()
-	mcl_enchanting.update_groupcaps(item, true)
-	if h_fac == 0 and f_fac == 1 then
-		player:set_wielded_item(item)
-		return
-	end
-	local toolcaps = item:get_tool_capabilities()
-	meta:set_tool_capabilities(mcl_potions.apply_haste_fatigue(toolcaps, h_fac, f_fac))
-	player:set_wielded_item(item)
-	end
-	haste_fatigue_hand_update(player)
-end
-core.register_on_punchnode(function(_, _, puncher)
-	mcl_potions.update_haste_and_fatigue(puncher)
-end)
-core.register_on_punchplayer(function(_, hitter)
-	if not hitter:is_player() then return end -- TODO implement haste and fatigue support for mobs?
-	mcl_potions.update_haste_and_fatigue(hitter)
-end)
--- update when hitting mob implemented in mcl_mobs/combat.lua
-
 
 
 -- ██╗░░░██╗██████╗░██████╗░░█████╗░████████╗███████╗
@@ -1608,10 +1500,8 @@ core.register_globalstep(function(dtime)
 			end
 			if effect.on_end then effect.on_end(object) end
 			EF[name][object] = nil
-			if item_speed_effects[effect] then
-			item_speed_effects[effect][object] = nil
-			end
-			if effect.after_end then effect.after_end(object) end
+			if effect.after_end then
+				effect.after_end(object) end
 			if object:is_player() then
 			local meta = object:get_meta()
 			meta:set_string("mcl_potions:_EF_"..name, "")
@@ -1662,23 +1552,6 @@ end)
 -- ███████╗╚█████╔╝██║░░██║██████╔╝██╔╝░░░██████╔╝██║░░██║░░╚██╔╝░░███████╗
 -- ╚══════╝░╚════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░░░╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚══════╝
 
-function mcl_potions._reset_haste_fatigue_item_meta(player)
-	local inv = player:get_inventory()
-	if not inv then return end
-	local lists = inv:get_lists()
-	for _, list in pairs(lists) do
-		for _, item in pairs(list) do
-			local meta = item:get_meta()
-			meta:set_string("mcl_potions:haste", "")
-			meta:set_string("mcl_potions:fatigue", "")
-			meta:set_tool_capabilities()
-			mcl_enchanting.load_enchantments(item)
-		end
-	end
-	inv:set_lists(lists)
-end
-mcl_gamemode.register_on_gamemode_change(mcl_potions._reset_haste_fatigue_item_meta)
-
 function mcl_potions._clear_cached_effect_data(object)
 	for _, effect in pairs(EF) do
 		effect[object] = nil
@@ -1705,9 +1578,6 @@ function mcl_potions._reset_effects(object, set_hud)
 		end
 		if effect.after_end then table.insert(removed_effects, effect.after_end) end
 		mcl_serverplayer.remove_status_effect (object, name)
-	end
-	for _, tbl in pairs (item_speed_effects) do
-		tbl[object] = nil
 	end
 
 	mcl_potions._clear_cached_effect_data(object)
@@ -1894,31 +1764,6 @@ function mcl_potions.get_effect_level(object, effect_name)
 	return registered_effects[effect_name].factor_to_level(effect.factor)
 end
 
-function mcl_potions.get_total_haste(object)
-	local accum_factor = 1
-	for name, def in pairs(item_speed_effects) do
-		if EF[name][object] and not EF[name][object].blocked then
-			local factor = EF[name][object].factor
-			if def.factor_is_positive then factor = factor + 1 end
-			if factor > 1 then accum_factor = accum_factor * factor end
-		end
-	end
-	return accum_factor - 1
-end
-
-function mcl_potions.get_total_fatigue(object)
-	local accum_factor = 1
-	for name, def in pairs(item_speed_effects) do
-		if EF[name][object] and not EF[name][object].blocked then
-			local factor = EF[name][object].factor
-			if def.factor_is_positive then factor = factor + 1 end
-			if factor <= 0 then return 0 end
-			if factor < 1 then accum_factor = accum_factor * factor end
-		end
-	end
-	return accum_factor
-end
-
 function mcl_potions.clear_effect(object, effectname)
 	if not EF[effectname] then
 		core.log("warning", "[mcl_potions] Tried to remove an effect that is not registered: " .. dump(effectname))
@@ -1934,9 +1779,6 @@ function mcl_potions.clear_effect(object, effectname)
 		EF[effectname][object] = nil
 		if def.after_end then def.after_end(object) end
 		mcl_serverplayer.remove_status_effect (object, effectname)
-	end
-	if item_speed_effects[effectname] then
-		item_speed_effects[effectname][object] = nil
 	end
 	local entity = object:get_luaentity ()
 	if entity and entity._mcl_potions then
@@ -1960,7 +1802,6 @@ end)
 core.register_on_joinplayer( function(player)
 	mcl_potions._reset_effects(player, false) -- make sure there are no weird holdover effects
 	mcl_potions._load_player_effects(player)
-	mcl_potions._reset_haste_fatigue_item_meta(player)
 	potions_init_icons(player)
 	potions_set_hud(player)
 end)

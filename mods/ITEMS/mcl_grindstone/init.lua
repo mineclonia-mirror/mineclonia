@@ -100,6 +100,7 @@ end
 
 -- Accepts an itemstack and returns the disenchanted version of said stack (curses are kept)
 -- Returns an empty string if nothing changed.
+-- FIXME: Should just remove enchantments from old item, not create a new one
 function mcl_grindstone.disenchant(stack)
 	local def = stack:get_definition()
 	local meta = stack:get_meta()

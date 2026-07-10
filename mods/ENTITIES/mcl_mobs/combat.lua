@@ -518,7 +518,6 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir)
 	local hitter_playername = is_player and hitter:get_player_name()
 	if hitter_playername and hitter_playername ~= "" then
 		doc.mark_entry_as_revealed(hitter_playername, "mobs", self.name)
-		mcl_potions.update_haste_and_fatigue(hitter)
 	end
 
 	if self.do_punch then
