@@ -107,13 +107,7 @@ core.register_craftitem("mcl_farming:potato_item", {
 	_mcl_saturation = 0.6,
 	_mcl_cooking_output = "mcl_farming:potato_item_baked",
 	_mcl_places_plant = "mcl_farming:potato_1",
-	on_place = function(itemstack, placer, pointed_thing)
-		local new = mcl_farming:place_seed(itemstack, placer, pointed_thing, "mcl_farming:potato_1")
-		if new then
-			mcl_hunger.prevent_eating (placer)
-			return new
-		end
-	end,
+	on_place = mcl_farming.place_seed
 })
 
 core.register_craftitem("mcl_farming:potato_item_baked", {

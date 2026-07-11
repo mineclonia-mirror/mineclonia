@@ -12,9 +12,7 @@ core.register_craftitem("mcl_farming:melon_seeds", {
 	groups = {craftitem = 1, compostability = 30},
 	inventory_image = "mcl_farming_melon_seeds.png",
 	_mcl_places_plant = "mcl_farming:melontige_1",
-	on_place = function(itemstack, placer, pointed_thing)
-		return mcl_farming:place_seed(itemstack, placer, pointed_thing, "mcl_farming:melontige_1")
-	end,
+	on_place = mcl_farming.place_seed
 })
 
 -- Melon template (will be fed into mcl_farming.register_gourd

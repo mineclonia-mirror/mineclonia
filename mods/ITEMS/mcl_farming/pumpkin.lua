@@ -32,9 +32,7 @@ core.register_craftitem("mcl_farming:pumpkin_seeds", {
 	inventory_image = "mcl_farming_pumpkin_seeds.png",
 	groups = {craftitem=1, compostability = 30},
 	_mcl_places_plant = "mcl_farming:pumpkin_1",
-	on_place = function(itemstack, placer, pointed_thing)
-		return mcl_farming:place_seed(itemstack, placer, pointed_thing, "mcl_farming:pumpkin_1")
-	end
+	on_place = mcl_farming.place_seed
 })
 
 local stem_drop = {

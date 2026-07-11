@@ -16,9 +16,7 @@ core.register_craftitem("mcl_farming:wheat_seeds", {
 	groups = {craftitem = 1, compostability = 30},
 	inventory_image = "mcl_farming_wheat_seeds.png",
 	_mcl_places_plant = "mcl_farming:wheat_1",
-	on_place = function(itemstack, placer, pointed_thing)
-		return mcl_farming:place_seed(itemstack, placer, pointed_thing, "mcl_farming:wheat_1")
-	end
+	on_place = mcl_farming.place_seed
 })
 
 local sel_heights = {

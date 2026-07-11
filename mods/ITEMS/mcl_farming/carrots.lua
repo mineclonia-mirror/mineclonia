@@ -104,13 +104,7 @@ core.register_craftitem("mcl_farming:carrot_item", {
 	groups = {food = 2, eatable = 3, compostability = 65},
 	_mcl_saturation = 3.6,
 	_mcl_places_plant = "mcl_farming:carrot_1",
-	on_place = function(itemstack, placer, pointed_thing)
-		local new = mcl_farming:place_seed(itemstack, placer, pointed_thing, "mcl_farming:carrot_1")
-		if new then
-			mcl_hunger.prevent_eating (placer)
-			return new
-		end
-	end,
+	on_place = mcl_farming.place_seed,
 })
 
 core.register_craftitem("mcl_farming:carrot_item_gold", {

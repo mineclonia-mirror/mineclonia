@@ -137,37 +137,40 @@ function mcl_farming:grow_plant(identifier, pos, node, stages, ignore_light, low
 	return true
 end
 
-function mcl_farming:place_seed(itemstack, placer, pointed_thing, plantname)
-	local pt = pointed_thing
-	if not pt then
-		return
-	end
-	if pt.type ~= "node" then
+function mcl_farming.place_seed(itemstack, placer, pointed_thing)
+	if not pointed_thing or pointed_thing.type ~= "node" then
 		return
 	end
 
 	local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
 	if rc then return rc end
 
-	local pos = { x = pt.above.x, y = pt.above.y - 1, z = pt.above.z }
-	local farmland = core.get_node(pos)
-	pos = { x = pt.above.x, y = pt.above.y, z = pt.above.z }
-	local place_s = core.get_node(pos)
+	local placed = false
+	local above = pointed_thing.above
+	local under = pointed_thing.under
+	local anode = core.get_node(above)
+	local unode = core.get_node(under)
+	local plant = itemstack:get_definition()._mcl_places_plant
 
-	if string.find(farmland.name, "mcl_farming:soil") and string.find(place_s.name, "air") then
-		core.sound_play(core.registered_nodes[plantname].sounds.place, { pos = pos }, true)
-		core.set_node(pos, { name = plantname, param2 = core.registered_nodes[plantname].place_param2 })
-		--local intervals_counter = get_intervals_counter(pos, 1, 1)
-	else
+	if anode.name ~= "air" or type(plant) ~= "string" or not core.registered_nodes[plant] then
 		return
+	end
+
+	if string.find(unode.name, "mcl_farming:soil") then
+		core.place_node(above, {name = plant})
+		placed = true
+	end
+
+	if placed and core.get_item_group(itemstack:get_name(), "eatable") > 0 then
+		mcl_hunger.prevent_eating(placer)
 	end
 
 	if not core.is_creative_enabled(placer:get_player_name()) then
 		itemstack:take_item()
 	end
+
 	return itemstack
 end
-
 
 --[[ Helper function to create a gourd (e.g. melon, pumpkin), the connected stem nodes as
 
@@ -465,7 +468,7 @@ Used for on_place callbacks for craft items which are seeds that can also be con
 ]]
 function mcl_farming:get_seed_or_eat_callback(plantname, hunger_points)
 	return function(itemstack, placer, pointed_thing)
-		local new = mcl_farming:place_seed(itemstack, placer, pointed_thing, plantname)
+		local new = mcl_farming.place_seed(itemstack, placer, pointed_thing)
 		if new then
 			return new
 		else
