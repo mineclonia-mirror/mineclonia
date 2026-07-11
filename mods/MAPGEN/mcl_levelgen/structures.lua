@@ -1596,7 +1596,10 @@ end
 local munge_biome_coords = mcl_levelgen.munge_biome_coords
 local bindex = mcl_levelgen.biome_table_index
 local toquart = mcl_levelgen.toquart
-local apply_biomecolor
+
+-- `apply_biomecolor' may never be initialized if the level generator
+-- is being benchmarked independently of Luanti.
+local apply_biomecolor = function (_, _, _, _, _, param2) return param2 end
 
 local function munge_biome_index (x, y, z, level_min, bx, bz)
 	local qx, qy, qz = munge_biome_coords (biome_seed, x, y, z)
