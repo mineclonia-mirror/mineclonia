@@ -294,6 +294,11 @@ function mob_class:on_detach_child (child)
 end
 
 function mob_class:on_detach ()
+	-- Mobs which are attached will never register as being in
+	-- contact with the ground, and consequently will accumulate
+	-- fall damage indefinitely which must be reset upon
+	-- detachment lest it should be applied.
+	self._fall_distance = 0
 	mcl_attachments.remove_attachment_entity (self.object)
 end
 
