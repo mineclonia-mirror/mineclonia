@@ -6,12 +6,18 @@ local toggle_inverted = {
 	["mcl_daylight_detector:daylight_detector_inverted"] = "mcl_daylight_detector:daylight_detector",
 }
 
-local function update_detector(pos)
-	mcl_redstone.swap_node(pos, {
-		name = core.get_node(pos).name,
-		param2 = core.get_natural_light(pos),
-	})
-	mcl_redstone._notify_observer_neighbours(pos)
+local function update_detector(pos, node)
+	node = node or core.get_node(pos)
+	local power = core.get_natural_light(pos)
+
+	-- Scale unobstructed range (2..14) to 0..15
+	power = math.floor((power - 2) * 15/12 + 0.5)
+	power = math.min(math.max(power, 0), 15)
+
+	if power ~= node.param2 then
+		mcl_redstone.swap_node(pos, {name = node.name, param2 = power})
+		mcl_redstone._notify_observer_neighbours(pos)
+	end
 end
 
 local commdef = {
@@ -97,7 +103,7 @@ core.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		update_detector(pos)
+		update_detector(pos, node)
 	end,
 })
 
