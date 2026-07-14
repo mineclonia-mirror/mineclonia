@@ -242,10 +242,11 @@ local function propagate_wire(clear_nodes, fill_nodes, updates)
 	for hash, node in pairs(nodecache) do
 		if node.dirty then
 			local pos = core.get_position_from_hash(hash)
+			local old_node = core.get_node(pos)
 			core.swap_node(pos, node)
-			-- Note: Observers might trigger despite no change in power level if
-			-- wire propagation were to swap a node just to change the upper bits in param2.
-			mcl_redstone._notify_observer_neighbours(pos)
+			if bit.band(node.param2, 0xF) ~= bit.band(old_node.param2, 0xF) then
+				mcl_redstone._notify_observer_neighbours(pos)
+			end
 		end
 	end
 
