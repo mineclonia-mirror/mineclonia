@@ -38,7 +38,11 @@ function mcl_weather.set_sky_box_clear(player, sky, fog)
 	player:set_sky({
 		type = "regular",
 		sky_color = sc,
+		fog = {
+			fog_start = -1,
+		},
 		clouds =  mcl_player.get_player_setting(player, "mcl_weather:enable_clouds", true),
+		auto_dim_skybox = false,
 	})
 end
 
@@ -52,7 +56,11 @@ function mcl_weather.set_sky_color(player, def)
 	player:set_sky({
 		type = def.type,
 		sky_color = def.sky_color,
+        fog = {
+			fog_start = -1,
+		},
 		clouds = def.clouds,
+		auto_dim_skybox = false,
 	})
 end
 
