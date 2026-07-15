@@ -27,6 +27,32 @@ local potion_intro = S("Drinking a potion gives you a particular effect or set o
 -- ██║░░░░░╚█████╔╝░░░██║░░░██║╚█████╔╝██║░╚███║██████╔╝
 -- ╚═╝░░░░░░╚════╝░░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═════╝░
 
+
+mcl_itemmeta.register_meta_modifier({
+	modifies = "itemname",
+	priority = mcl_itemmeta.itemname.MCL_POTIONS,
+	func = function(itemstack, state)
+		local name = state.name
+		local meta = itemstack:get_meta ()
+		local potency = meta:get_int("mcl_potions:potion_potent")
+		local plus = meta:get_int("mcl_potions:potion_plus")
+		if potency > 0 then
+			local sym_potency = mcl_util.to_roman(potency+1)
+			name = name .. " " .. sym_potency
+		end
+		if plus > 0 then
+			local sym_plus = " "
+			local i = plus
+			while i>0 do
+				i = i - 1
+				sym_plus = sym_plus .. "+"
+			end
+			name = name .. sym_plus
+		end
+		state.name = name
+	end
+})
+
 local function generate_get_all_virtual_items_func(itemname, pdef, nocreative)
 	return function()
 		local category = nocreative and "nici" or "brew"
@@ -35,14 +61,14 @@ local function generate_get_all_virtual_items_func(itemname, pdef, nocreative)
 			local stack = ItemStack(itemname)
 			local potency = pdef._default_potent_level - 1
 			stack:get_meta():set_int("mcl_potions:potion_potent", potency)
-			tt.reload_itemstack_description(stack)
+			mcl_itemmeta.invalidate(stack, "tooltip")
 			table.insert(list, stack:to_string())
 		end
 		if pdef.has_plus then
 			local stack = ItemStack(itemname)
 			local extend = pdef._default_extend_level
 			stack:get_meta():set_int("mcl_potions:potion_plus", extend)
-			tt.reload_itemstack_description(stack)
+			mcl_itemmeta.invalidate(stack, "tooltip")
 			table.insert(list, stack:to_string())
 		end
 
@@ -197,7 +223,6 @@ function mcl_potions.register_potion(def)
 		end
 		pdef._mcl_eat_replace_with = def.vanishing and "" or "mcl_potions:glass_bottle"
 	end
-	pdef._mcl_filter_description = mcl_potions.filter_potion_description
 
 	local internal_def = table.copy(pdef)
 	local itemname = modname .. ":" .. name
@@ -285,26 +310,6 @@ function mcl_potions.register_potion(def)
 	end
 	internal_def.custom_effect = def.custom_effect
 	mcl_potions.registered_potions[modname..":"..name] = internal_def
-end
-
-function mcl_potions.filter_potion_description (itemstack, orig_desc)
-	local meta = itemstack:get_meta ()
-	local potency = meta:get_int("mcl_potions:potion_potent")
-	local plus = meta:get_int("mcl_potions:potion_plus")
-	if potency > 0 then
-	local sym_potency = mcl_util.to_roman(potency+1)
-	orig_desc = orig_desc .. " ".. sym_potency
-	end
-	if plus > 0 then
-	local sym_plus = " "
-	local i = plus
-	while i>0 do
-		i = i - 1
-		sym_plus = sym_plus .. "+"
-	end
-	orig_desc = orig_desc .. sym_plus
-	end
-	return orig_desc
 end
 
 -- ██████╗░░█████╗░████████╗██╗░█████╗░███╗░░██╗

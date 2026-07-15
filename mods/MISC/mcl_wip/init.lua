@@ -7,39 +7,24 @@ mcl_wip.registered_wip_items = {}
 mcl_wip.registered_experimental_items = {}
 
 function mcl_wip.register_wip_item(itemname)
-	table.insert(mcl_wip.registered_wip_items, itemname) --Only check for valid node name after mods loaded
+	mcl_wip.registered_wip_items[itemname] = true --Only check for valid node name after mods loaded
 end
 
 function mcl_wip.register_experimental_item(itemname)
-	table.insert(mcl_wip.registered_experimental_items, itemname)
+	mcl_wip.registered_experimental_items[itemname] = true
 end
 
-core.register_on_mods_loaded(function()
-	for _,name in pairs(mcl_wip.registered_wip_items) do
-		local def = core.registered_items[name]
-		if not def then
-			core.log("error", "[mcl_wip] Unknown item: "..name)
-			break
-		end
-		local new_description = def.description
-		if new_description == "" then
-			new_description = name
-		end
-		new_description = new_description .. "\n"..core.colorize(mcl_colors.RED, S("(WIP)"))
-		core.override_item(name, {description = new_description})
+tt.register_snippet(function(itemname)
+	local parts = {}
+	if mcl_wip.registered_wip_items[itemname] then
+		table.insert(parts, core.colorize(mcl_colors.RED, S("(WIP)")))
 	end
 
-	for _,name in pairs(mcl_wip.registered_experimental_items) do
-		local def = core.registered_items[name]
-		if not def then
-			core.log("error", "[mcl_wip] Unknown item: "..name)
-			break
-		end
-		local new_description = def.description
-		if new_description == "" then
-			new_description = name
-		end
-		new_description = new_description .. "\n"..core.colorize(mcl_colors.YELLOW, S("(Temporary)"))
-		core.override_item(name, {description = new_description})
+	if mcl_wip.registered_experimental_items[itemname] then
+		table.insert(parts, core.colorize(mcl_colors.YELLOW, S("(Temporary)")))
+	end
+
+	if #parts > 0 then
+		return table.concat(parts, "\n"), false
 	end
 end)

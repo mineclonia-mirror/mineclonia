@@ -11,6 +11,7 @@ as possible.  Minetest loads mods in reverse alphabetical order.
 --]]
 mcl_autogroup = {}
 mcl_autogroup.registered_diggroups = {}
+mcl_autogroup.registered_definition_overrides = {}
 
 assert(core.get_modpath("_mcl_autogroup"), "This mod requires the mod _mcl_autogroup to function")
 
@@ -25,4 +26,8 @@ assert(core.get_modpath("_mcl_autogroup"), "This mod requires the mod _mcl_autog
 --         digging levels the digging group supports.
 function mcl_autogroup.register_diggroup(group, def)
 	mcl_autogroup.registered_diggroups[group] = def or {}
+end
+
+function mcl_autogroup.register_definition_override(func)
+	table.insert(mcl_autogroup.registered_definition_overrides, func)
 end
