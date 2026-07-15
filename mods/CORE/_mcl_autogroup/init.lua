@@ -79,15 +79,6 @@ local groups_mtg2mcl = {
 	["snappy"] = { group = "swordy", hardness = 0.2 },
 }
 
-local C = core.colorize
-
--- maps rarity group rating to their colors; 1=uncommen, 2=rare, 3=epic
-local rarity_colors = {
-	mcl_colors.YELLOW,
-	mcl_colors.AQUA,
-	mcl_colors.DARK_PURPLE,
-}
-
 -- shapes for simple recipes
 local shapes = {
 	-- single
@@ -443,20 +434,11 @@ local function overwrite()
 			})
 		end
 
-		local rarity_group = core.get_item_group(tname, "rarity")
-		if rarity_group > 0 and rarity_colors[rarity_group] then
-			local desc = tdef.description or tname
-			core.override_item(tname, {
-				description = C(rarity_colors[rarity_group], desc)
-			})
-		end
-
 		if tdef.groups.eatable and tdef.groups.eatable > 0 then
 			core.override_item(tname, {
 				touch_interaction = "short_dig_long_place",
 			})
 		end
-
 
 		if tdef._mcl_burntime and tdef._mcl_burntime > 0 then
 			core.register_craft({
@@ -489,6 +471,10 @@ local function overwrite()
 					})
 				end
 			end
+		end
+
+		for _, func in ipairs(mcl_autogroup.registered_definition_overrides) do
+			func(tname, tdef)
 		end
 	end
 end

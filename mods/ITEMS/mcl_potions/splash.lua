@@ -40,7 +40,6 @@ function mcl_potions.register_splash(name, descr, color, def)
 		description = descr,
 		_tt_help = def._tt,
 		_dynamic_tt = def._dynamic_tt,
-		_mcl_filter_description = mcl_potions.filter_potion_description,
 		_doc_items_longdesc = longdesc,
 		_doc_items_usagehelp = S("Use the “Place” key to throw it."),
 		stack_max = def.stack_max,

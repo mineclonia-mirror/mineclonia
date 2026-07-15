@@ -116,6 +116,7 @@ globals = {
 	"mcl_init",
 	"mcl_inventory",
 	"mcl_item_entity",
+	"mcl_itemmeta",
 	"mcl_itemframes",
 	"mcl_jukebox",
 	"mcl_lanterns",
