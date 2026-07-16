@@ -299,12 +299,9 @@ local function spawn_banner_entity(pos, hanging, itemstack)
 	if banner == nil then return banner end
 
 	local imeta = itemstack:get_meta()
-	local desc, name = mcl_banners.update_description(itemstack)
 	local layers = mcl_banners.read_layers(imeta)
 	local colorid = itemstack:get_definition()._unicolor
 	banner:get_luaentity():_set_textures(colorid, layers)
-	banner:get_luaentity()._item_name = name
-	banner:get_luaentity()._item_description = desc
 	return banner
 end
 
