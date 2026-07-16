@@ -38,6 +38,7 @@ local function register_meta_modifier(def)
 		modifiers_by_modifiable[def.modifies] = modifiers_table
 	end
 	-- TODO: checking
+	assert(def.priority)
 	insert_with_priority(modifiers_table, def)
 end
 mcl_itemmeta.register_meta_modifier = register_meta_modifier

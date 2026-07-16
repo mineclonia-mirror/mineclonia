@@ -122,6 +122,21 @@ local shield_texture_builder = {
 	end,
 }
 
+mcl_itemmeta.register_meta_modifier({
+	modifies = "appearance",
+	priority = mcl_itemmeta.appearance.IMAGE_BASE,
+	func = function(itemstack, values)
+		local def = itemstack:get_definition()
+		if not def._shield_color_key then return end
+
+		local layers = mcl_banners.read_layers(itemstack:get_meta())
+		local item_image = mcl_banners.make_banner_texture(def._shield_color_key, layers, "item")
+		item_image = item_image:gsub("mcl_banners_item_base_48.png", "mcl_shield_48.png")
+		values.inventory_image = item_image
+		--meta:set_string("inventory_overlay", item_image)
+	end
+})
+
 local function set_shield_layers(itemstack, layers)
 	if not itemstack then return end
 	local itemname, meta = itemstack:get_name(), itemstack:get_meta()
@@ -130,11 +145,9 @@ local function set_shield_layers(itemstack, layers)
 	local b, base_colour = mcl_banners, def._shield_color_key
 
 	if layers and #layers > 0 then mcl_banners.write_layers(meta, layers) end
-	b.update_description(itemstack)
 
-	local item_image = b.make_banner_texture(base_colour, layers, "item")
-	item_image = item_image:gsub("mcl_banners_item_base_48.png", "mcl_shield_48.png")
-	meta:set_string("inventory_overlay", item_image)
+	mcl_itemmeta.invalidate(itemstack, "appearance")
+	mcl_itemmeta.invalidate(itemstack, "tooltip")
 
 	local texture = b.make_banner_texture(base_colour, layers, shield_texture_builder)
 	meta:set_string("mcl_shields:banner_texture", texture)
@@ -717,7 +730,6 @@ for colorkey, colortab in pairs(mcl_banners.colors) do
 		_placement_class = "shield",
 		_shield_color_key = colorkey,
 		_mcl_wieldview_item = "",
-		_mcl_generate_description = mcl_banners.update_description,
 		_on_set_item_entity = function (stack)
 			local meta = stack:get_meta()
 			meta:set_string("mcl_shields:banner_texture", "") -- Force texture rebuild to clear wield texture.

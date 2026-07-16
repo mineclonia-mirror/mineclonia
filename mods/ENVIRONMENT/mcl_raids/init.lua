@@ -46,22 +46,65 @@ end
 
 core.register_entity(":mcl_raids:ominous_banner",oban_def)
 
+--FIXME: Maybe ominous banners should have their banner patterns hidden
+--we can't do this until tooltip display is implemented: https://minecraft.wiki/w/Data_component_format#tooltip_display
+local canonical_obanner
+local function get_obanner_item()
+	if not canonical_obanner then
+		canonical_obanner = ItemStack("mcl_banners:banner_item_white")
+		mcl_banners.write_layers(canonical_obanner:get_meta(), oban_layers)
+		mcl_itemmeta.readable_name.set(canonical_obanner, mcl_raids.ominous_banner_name)
+		mcl_itemmeta.rarity.set(canonical_obanner, "uncommon")
+		mcl_itemmeta.invalidate(canonical_obanner, "appearance")
+		mcl_itemmeta.invalidate(canonical_obanner, "tooltip")
+	end
+	return canonical_obanner:peek_item(1)
+end
+mcl_raids.get_obanner_item = get_obanner_item
+
 function mcl_raids.drop_obanner(pos)
-	local it = ItemStack("mcl_banners:banner_item_white")
-	mcl_banners.write_layers(it:get_meta(), oban_layers)
-	tt.reload_itemstack_description(it)
-	core.add_item(pos,it)
+	core.add_item(pos, get_obanner_item())
 end
 
-function mcl_raids.is_banner_item (stack, layers)
-	local name = stack:get_name ()
-	if name ~= "mcl_banners:banner_item_white" then return false end
-	if not layers then
-		local metadata = stack:get_meta ()
-		layers = mcl_banners.read_layers (metadata)
-	end
-	return mcl_banners.is_same_layers(layers, oban_layers)
+function mcl_raids.is_banner_item(stack)
+	if stack:get_name() ~= "mcl_banners:banner_item_white" then return false end
+	mcl_itemmeta.reload(stack)
+	return mcl_banners.are_items_equal(stack:peek_item(), get_obanner_item())
 end
+
+-- Pre-0.84, ominous banners had a custom name "Ominous Banner"
+-- From then until 1.122, they had no custom metadata and any banner with
+-- the correct patterns had "Ominous Banner" as the first tooltip line
+-- Now, ominous banners have an itemname (not custom name) set in their metadata
+-- and also a rarity set in their metadata
+local function upgrade_old_ominous_banner(itemstack)
+	if itemstack:get_name() ~= "mcl_banners:banner_item_white" then
+		return
+	end
+	if mcl_itemmeta.readable_name.get(itemstack) == mcl_raids.ominous_banner_name then
+		-- This is new or has already been updated
+		return
+	end
+	local is_ominous_banner = false
+	local meta = itemstack:get_meta()
+	local layers = mcl_banners.read_layers(meta)
+	local custom_name = meta:get_string("name")
+	if custom_name:find("Ominous Banner") then
+		meta:set_string("name", "")
+		is_ominous_banner = true
+	elseif mcl_banners.is_same_layers(layers, mcl_raids.ominous_banner_layers) then
+		is_ominous_banner = true
+	end
+	if is_ominous_banner then
+		itemstack:replace(mcl_raids.get_obanner_item())
+	end
+end
+
+mcl_itemmeta.register_meta_modifier({
+	modifies = "itemname",
+	priority = -10000,
+	func = upgrade_old_ominous_banner,
+})
 
 local pr = PcgRandom (os.time () + 970)
 local r = 1 / 2147483647

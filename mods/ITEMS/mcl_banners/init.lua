@@ -78,47 +78,43 @@ function mcl_banners.is_same_layers (A, B)
 	return true
 end
 
--- Update banner description, returning description, name
-function mcl_banners.update_description (itemstack, limit)
-	local def, meta = itemstack:get_definition(), itemstack:get_meta()
-	local name, itemname = meta:get_string("name"), itemstack:get_name()
-	local orig_desc = def._tt_original_description or def.description
-	local base_name = orig_desc:gsub("%W", "%%%1")
-	local layers = mcl_banners.read_layers(meta)
-	local def_name = def.description
-	if name ~= "" and name:find("Ominous Banner") then name = "" end -- Pre-0.84.0 Ominous Banners
-	if name == "" then
-		name = def_name
-		if mcl_raids.is_banner_item(itemstack, layers) then
-			name = def_name:gsub(base_name, mcl_raids.ominous_banner_name)
-		end
-	else
-		name = def_name:gsub(base_name, core.colorize(tt.NAME_COLOR, name))
-	end
-	if mcl_enchanting.is_enchanted(itemname) then -- Enchanted shield
-		local enchantments = mcl_enchanting.get_enchantments(itemstack)
-		local old_name = name
-		for enchantment, level in pairs(enchantments) do
-			name = name .. "\n" .. mcl_enchanting.get_colorized_enchantment_description(enchantment, level)
-		end
-		if name ~= old_name then
-			name = name .. "\n"
-		end
-	end
-	local newdesc = mcl_banners.make_advanced_banner_description(name, layers, limit)
-	meta:set_string("description", newdesc)
+-- FIXME: Ideally there would be a more general system for checking whether metadata keys
+-- are semantically equal. This only takes the "layers" key into account but all serialized values
+-- need checking because serialization is not unique
+function mcl_banners.are_items_equal(a, b)
+	if not (
+		a:get_name() == b:get_name()
+		and a:get_wear() == b:get_wear()
+		and a:get_count() == b:get_count()
+	) then return false end
 
-	if core.get_item_group(itemname, "banner") > 0 then
-		local image = mcl_banners.make_banner_texture(def._unicolor, layers, "item")
-		meta:set_string("inventory_overlay", image)
-		meta:set_string("wield_overlay", image)
+	local fields_a = a:get_meta():to_table().fields
+	local fields_b = b:get_meta():to_table().fields
+	for k, va in pairs(fields_a) do
+		local vb = fields_b[k]
+		if k == "layers" then
+			va = core.deserialize(va)
+			vb = core.deserialize(vb)
+			if (type(va) ~= "table" or type(vb) ~= "table") then
+				if va ~= vb then
+					return false
+				end
+			else
+				if not mcl_banners.is_same_layers(va, vb) then
+					return false
+				end
+			end
+		else
+			if va ~= vb then
+				return false
+			end
+		end
 	end
-	return newdesc, name, def_name
+	return true
 end
 
--- Create a banner description containing all the layer names
-function mcl_banners.make_advanced_banner_description (name, layers, limit)
-	if layers == nil or #layers == 0 then return name end
+local function get_banner_patterns_snippet(layers, limit)
+	if layers == nil or #layers == 0 then return end
 	local layerstrings = {}
 	if type(limit) ~= "number" or limit < 0 then limit = max_layer_lines end
 	for l=1, math.min(#layers, limit) do
@@ -136,7 +132,36 @@ function mcl_banners.make_advanced_banner_description (name, layers, limit)
 
 	-- Final string concatenations: Just a list of strings
 	local append = table.concat(layerstrings, "\n")
-	return name .. "\n" .. core.colorize(mcl_colors.GRAY, append)
+	return core.colorize(mcl_colors.GRAY, append)
+end
+
+mcl_itemmeta.register_snippet({
+	priority = mcl_itemmeta.snippet.BANNER_PATTERNS,
+	func = function(itemstack)
+		local layers = mcl_banners.read_layers(itemstack:get_meta())
+		if not layers then return end
+		return get_banner_patterns_snippet(layers, mcl_banners.max_layer_lines)
+	end
+})
+
+-- Updates banners only (not shields)
+mcl_itemmeta.register_meta_modifier({
+	modifies = "appearance",
+	priority = mcl_itemmeta.appearance.IMAGE_BASE,
+	func = function(itemstack, values)
+		if core.get_item_group(itemstack:get_name(), "banner") > 0 then
+			local def = itemstack:get_definition()
+			local layers = mcl_banners.read_layers(itemstack:get_meta())
+			local image = mcl_banners.make_banner_texture(def._unicolor, layers, "item")
+			values.inventory_overlay = image
+			values.wield_overlay = image
+		end
+	end
+})
+
+-- Create a banner description containing all the layer names
+function mcl_banners.make_advanced_banner_description (name, layers, limit)
+	return name .. "\n" .. get_banner_patterns_snippet(layers, limit)
 end
 
 -- Add pattern/emblazoning crafting recipes
@@ -577,7 +602,6 @@ local function init_banner_registration ()
 			_on_set_item_entity = function (stack)
 				return stack, {wield_item = stack:to_string()}
 			end,
-			_mcl_generate_description = mcl_banners.update_description,
 		})
 
 		local wool = "mcl_wool:" .. color_id

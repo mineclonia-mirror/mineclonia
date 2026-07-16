@@ -91,11 +91,13 @@ local function get_formspec(pos)
 			local banner_color = banner:get_definition()._unicolor
 			local preview_layers = table.copy(layers)
 			table.insert(preview_layers, {color = "unicolor_"..color, pattern = selected_preview})
+			local banner_itemname = mcl_itemmeta.readable_name.get(banner)
+			local craft_tooltip = mcl_banners.make_advanced_banner_description(banner_itemname, preview_layers, mcl_banners.max_craftable_layers)
 			preview_texture = b.make_banner_texture(banner_color, preview_layers, "item")
 			preview_texture = "[combine:30x48:-9,0=" .. b.escape_texture(preview_texture)
 			preview_texture = esc(preview_texture)
 			b.write_layers(banner:get_meta(), preview_layers)
-			preview_tooltip = "tooltip[btn_loom_craft;"..esc(b.update_description(banner, b.max_craftable_layers)).."]"
+			preview_tooltip = "tooltip[btn_loom_craft;"..esc(craft_tooltip).."]"
 		end
 	elseif inv:is_empty("banner") then
 		selected_pattern_by_pos[tostring(pos)] = nil -- Clear pattern selection when banner is emptied
@@ -241,20 +243,15 @@ core.register_node("mcl_loom:loom", {
 						local new_banner = banner:peek_item()
 						table.insert(layers, { color = "unicolor_"..color, pattern = pattern_id })
 						mcl_banners.write_layers(new_banner:get_meta(), layers)
-						if not inv:is_empty("output") then -- Output is non-empty?
-							local output_stack = inv:get_stack("output",1)
-							if output_stack:get_free_space() > 0 then
-								local max_layers = mcl_banners.max_craftable_layers
-								local out_desc, _, out_name = mcl_banners.update_description(output_stack, max_layers)
-								local new_desc, _, new_name = mcl_banners.update_description(new_banner, max_layers)
-								if out_desc == new_desc and out_name == new_name then -- Compare FULL descriptions
-									new_banner:set_count(output_stack:get_count() + 1) -- Same? OK!
-								else
-									new_banner = nil -- Not same banner description.
-								end
-							else
-								new_banner = nil -- Output full.
-							end
+						mcl_itemmeta.reload(new_banner)
+						local output_stack = inv:get_stack("output",1)
+						-- Don't add a new banner to output if it wouldn't stack
+						if (output_stack:is_empty() or mcl_banners.are_items_equal(output_stack:peek_item(), new_banner:peek_item()))
+							and output_stack:get_count() + new_banner:get_count() < new_banner:get_stack_max()
+						then
+							new_banner:set_count(output_stack:get_count() + new_banner:get_count())
+						else
+							new_banner = nil
 						end
 						if new_banner then -- Consume inputs (one each) and update output.
 							dye:take_item()
@@ -265,7 +262,6 @@ core.register_node("mcl_loom:loom", {
 								p_item:take_item()
 								inv:set_stack("pattern", 1, p_item)
 							end
-							mcl_banners.update_description(new_banner)
 							inv:set_stack("output", 1, new_banner)
 						end
 					end
