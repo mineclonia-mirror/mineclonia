@@ -25,28 +25,44 @@ core.register_craft({
 	recipe = { "mcl_core:paper", "mcl_core:paper", "mcl_core:paper", "mcl_mobitems:leather", }
 })
 
-local function make_description(itemstack)
-	local m = itemstack:get_meta()
-	local title = m:get_string("title")
-	local author = m:get_string("author")
-	local generation = m:get_int("generation")
-	if author == "" then
-		return
-	end
+mcl_itemmeta.register_meta_modifier({
+	modifies = "itemname",
+	priority = mcl_itemmeta.itemname.BASE,
+	func = function(itemstack, state)
+		local m = itemstack:get_meta()
+		local title = m:get_string("title")
+		local author = m:get_string("author")
+		local generation = m:get_int("generation")
+		if author == "" then
+			return
+		end
 
-	local desc
-	if generation == 0 then
-		desc = S("“@1”", title)
-	elseif generation == 1 then
-		desc = S("Copy of “@1”", title)
-	elseif generation == 2 then
-		desc = S("Copy of Copy of “@1”", title)
-	else
-		desc = S("Tattered Book")
+		if generation == 0 then
+			state.name = S("“@1”", title)
+		elseif generation == 1 then
+			state.name = S("Copy of “@1”", title)
+		elseif generation == 2 then
+			state.name = S("Copy of Copy of “@1”", title)
+		else
+			state.name = S("Tattered Book")
+		end
 	end
-	desc = desc .. "\n" .. C(mcl_colors.GRAY, S("by @1", author))
-	m:set_string("description", desc)
-end
+})
+
+mcl_itemmeta.register_snippet({
+	priority = mcl_itemmeta.snippet.WRITTEN_BOOK,
+	func = function(itemstack)
+		local m = itemstack:get_meta()
+		local author = m:get_string("author")
+		if author == "" then
+			return
+		end
+
+		-- TODO: Also show generation
+		-- See https://minecraft.wiki/w/Tooltip
+		return C(mcl_colors.GRAY, S("by @1", author))
+	end
+})
 
 local function cap_text_length(text, max_length)
 	return string.sub(text, 1, max_length)
@@ -184,7 +200,6 @@ core.register_craftitem("mcl_books:written_book", {
 	stack_max = 16,
 	on_place = read,
 	on_secondary_use = read,
-	_mcl_generate_description = make_description,
 })
 
 --This adds 8 recipes containing 1 written book and 1-8 writeable book
