@@ -167,6 +167,41 @@ local function drop_items(pos, metatable, silk_touch)
 	end
 end
 
+mcl_itemmeta.register_snippet({
+	priority = mcl_itemmeta.snippet.DECORATED_POT_FACES,
+	func = function(itemstack)
+		local meta = itemstack:get_meta()
+		local faces = core.deserialize(meta:get_string("pot_faces"))
+		if not faces then return nil end
+
+		local facedescs = {}
+		for i = 1, 4 do
+			facedescs[i] = get_sherd_desc(faces[i])
+		end
+
+		return "\n" .. core.colorize(mcl_colors.GREEN, table.concat(facedescs, "\n"))
+	end,
+})
+
+mcl_itemmeta.register_meta_modifier({
+	modifies = "appearance",
+	priority = mcl_itemmeta.appearance.DECORATED_POT_FACES,
+	func = function(stack, values)
+		if not stack then return end
+		local meta = stack:get_meta()
+		local faces = core.deserialize(meta:get_string("pot_faces"))
+		if not faces then return end
+
+		local img1 = faces[3] and "mcl_pottery_sherds_pattern_"..faces[3]..".png" or "blank.png"
+		local img2 = faces[2] and "mcl_pottery_sherds_pattern_"..faces[2]..".png" or "blank.png"
+
+		local img = core.inventorycube("blank.png", img2, img1)
+		values.inventory_overlay = img
+		-- There is no point in seting wield_overlay, because the engine only checks it
+		-- if wield_image is defined. It won't display over the 3D wield render of the node
+	end,
+})
+
 core.register_node("mcl_pottery_sherds:pot", {
 	description = S("Decorated Pot"),
 	_doc_items_longdesc = S("Pots are decorative blocks."),
@@ -195,26 +230,6 @@ core.register_node("mcl_pottery_sherds:pot", {
 	drop = "",
 	_mcl_hardness = 0,
 	_mcl_baseitem = get_itemstack_from_node,
-	_mcl_generate_description = function(stack)
-		if not stack then return nil end
-		local meta = stack:get_meta()
-		local faces = core.deserialize(meta:get_string("pot_faces"))
-		if not faces then return nil end
-		local def = stack:get_definition()
-
-		local facedescs = {}
-		for i = 1, 4 do
-			facedescs[i] = get_sherd_desc(faces[i])
-		end
-
-		local img1 = faces[3] and "mcl_pottery_sherds_pattern_"..faces[3]..".png" or "blank.png"
-		local img2 = faces[2] and "mcl_pottery_sherds_pattern_"..faces[2]..".png" or "blank.png"
-
-		local img = core.inventorycube("blank.png", img2, img1)
-		meta:set_string("inventory_overlay", img)
-		meta:set_string("wield_overlay", img)
-		meta:set_string("description", def.description.. "\n" .. core.colorize(mcl_colors.GREEN,table.concat(facedescs, "\n")))
-	end,
 	on_construct = function (pos)
 		update_entities(pos)
 	end,
@@ -261,7 +276,8 @@ local function get_craft(itemstack, _, old_craft_grid, _)
 		get_sherd_name(old_craft_grid[8]),
 		get_sherd_name(old_craft_grid[4]),
 	}))
-	tt.reload_itemstack_description(itemstack)
+	mcl_itemmeta.invalidate(itemstack, "appearance")
+	mcl_itemmeta.invalidate(itemstack, "tooltip")
 	return itemstack
 end
 

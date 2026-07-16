@@ -48,5 +48,6 @@ mcl_itemmeta.register_modifiable("appearance", {
 mcl_itemmeta.appearance = {
 	IMAGE_BASE = 10100,
 	BANNER_LAYERS = 10200,
-	ENCHANTMENT_GLINT = 10300
+	DECORATED_POT_FACES = 10300,
+	ENCHANTMENT_GLINT = 10400,
 }

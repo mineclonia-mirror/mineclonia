@@ -11,6 +11,7 @@ local function insert_with_priority(tbl, item)
 end
 
 local function register_snippet(def)
+	assert(def.priority)
 	insert_with_priority(registered_snippets, def)
 end
 mcl_itemmeta.register_snippet = register_snippet
@@ -44,7 +45,7 @@ mcl_itemmeta.snippet = {
 	BEES = 900,
 	CONTAINER_ITEMS = 1000,
 	BANNER_PATTERNS = 1100,
-	DECORATED_POT_SHERDS = 1200,
+	DECORATED_POT_FACES = 1200,
 	WRITTEN_BOOK = 1300,
 	FLIGHT_DURATION = 1400,
 	FIREWORK_EFFECTS = 1500,
