@@ -10,19 +10,67 @@ local candle_boxes = {
 	{-0.1875, -0.5, -0.125, 0.1875, -0.125, 0.1875}
 }
 
-local function set_candle_properties(stack, color)
-	if type(color) ~= "string" and color == "" then return end
+-- How candle color is stored
+-- The candle palette is similar to the mcl_dyes palette, but shifted by 1
+-- this is to make one space for the default candle color at palette index 0
 
-	local color_defs = mcl_dyes.colors[color]
-	local image = "mcl_candles_item_".. color .. ".png"
-
-	if color_defs then
-		stack:get_meta():set_int("palette_index", color_defs.palette_index + 1)
-		stack:get_meta():set_string("inventory_overlay", image)
-		stack:get_meta():set_string("wield_overlay", image)
-	end
+-- Returns the candle palette index of stack (default is 0 if not set in meta)
+local function get_candle_color(stack)
+	return stack:get_meta():get_int("candle_palette_index")
 end
-mcl_candles.set_candle_properties = set_candle_properties
+
+local function set_candle_color(stack, palette_index)
+	local meta = stack:get_meta()
+	if palette_index > 0 then
+		meta:set_int("candle_palette_index", palette_index)
+	else
+		meta:set_string("candle_palette_index", "")
+	end
+	mcl_itemmeta.invalidate(stack, "appearance")
+	mcl_itemmeta.invalidate(stack, "tooltip")
+end
+mcl_candles.set_candle_properties = set_candle_color
+
+local function dye_color_to_palette_index(color)
+	return color and mcl_dyes.colors[color].palette_index + 1 or 0
+end
+
+local function palette_index_to_dye_color(palette_index)
+	if palette_index == 0 then return end
+	return mcl_dyes.palette_index_to_color(palette_index - 1)
+end
+
+mcl_itemmeta.register_meta_modifier({
+	modifies = "appearance",
+	priority = mcl_itemmeta.appearance.IMAGE_BASE,
+	func = function(itemstack, values)
+		if itemstack:get_name() ~= "mcl_candles:candle_1" then return end
+		local color = palette_index_to_dye_color(get_candle_color(itemstack))
+
+		local image
+		if color then
+			image = "mcl_candles_item_".. color .. ".png"
+		else
+			image = "mcl_candles_item.png"
+		end
+		values.inventory_image = image
+		values.wield_image = image
+	end,
+})
+
+mcl_itemmeta.register_meta_modifier({
+	modifies = "itemname",
+	priority = mcl_itemmeta.itemname.BASE,
+	func = function(itemstack, state)
+		if itemstack:get_name() ~= "mcl_candles:candle_1" then return end
+		local color = palette_index_to_dye_color(get_candle_color(itemstack))
+		local c = ""
+		if color then
+			c = mcl_dyes.colors[color].readable_name .. " "
+		end
+		state.name = D(c .. "Candle")
+	end
+})
 
 local function drop_candles(pos, node, _, digger)
 	if digger and digger:is_player() and core.is_creative_enabled(digger:get_player_name()) then return end
@@ -34,12 +82,7 @@ local function drop_candles(pos, node, _, digger)
 	if node.name:find("mcl_candles:candle_cake") then group = 1 end
 
 	local item = ItemStack("mcl_candles:candle_1 " .. group)
-	local color_index = node.param2 > 0 and node.param2
-	local color = color_index and mcl_dyes.palette_index_to_color(color_index - 1)
-
-	if color then set_candle_properties(item, color) end
-
-	tt.reload_itemstack_description(item)
+	set_candle_color(item, node.param2)
 
 	return core.add_item(pos, item)
 end
@@ -57,12 +100,7 @@ end
 local function get_candle_item(pos)
 	local stack = ItemStack("mcl_candles:candle_1")
 	local node = core.get_node(pos)
-	local color_index = node.param2 > 0 and node.param2
-	local color = color_index and mcl_dyes.palette_index_to_color(color_index - 1)
-
-	if color then set_candle_properties(stack, color) end
-
-	tt.reload_itemstack_description(stack)
+	set_candle_color(stack, node.param2)
 
 	return stack
 end
@@ -73,7 +111,7 @@ local tpl_candle = {
 	_mcl_hardness = 0.1,
 	_on_dye_place = function(pos, color)
 		local node = core.get_node(pos)
-		node.param2 = mcl_dyes.colors[color].palette_index
+		node.param2 = dye_color_to_palette_index(color)
 		core.swap_node(pos, node)
 	end,
 	_on_ignite = function(_, pointed_thing)
@@ -85,15 +123,6 @@ local tpl_candle = {
 	end,
 	_on_set_item_entity = function (stack)
 		return stack, {wield_item = stack:to_string()}
-	end,
-	_mcl_generate_description = function(itemstack)
-		local m = itemstack:get_meta()
-		local color = mcl_dyes.palette_index_to_color(m:get_int("palette_index") - 1)
-		local c = ""
-		if mcl_dyes.colors[color] then
-			c = mcl_dyes.colors[color].readable_name .. " "
-		end
-		m:set_string("description", D(c.. "Candle"))
 	end,
 	on_destruct = drop_candles,
 	description = S("Candle"),
@@ -146,7 +175,8 @@ function tpl_candle.on_place(itemstack, placer, pointed_thing)
 
 	local unode = core.get_node(pointed_thing.under)
 	local group = core.get_item_group(unode.name, "candles")
-	local param2 = tonumber(itemstack:get_meta():get("palette_index")) or 0
+	local param2 = get_candle_color(itemstack)
+	core.debug(itemstack:to_string(), get_candle_color(itemstack))
 
 	if unode.name == "mcl_cake:cake" then
 		core.swap_node(pointed_thing.under, {name = "mcl_candles:candle_cake", param2 = param2})
@@ -162,19 +192,21 @@ function tpl_candle.on_place(itemstack, placer, pointed_thing)
 
 	if rc ~= nil then return rc end
 
-	if group > 0 then
-		if group < #candle_boxes then
-			unode.name = "mcl_candles:candle_" .. math.min(4, group + 1)
-			if param2 == unode.param2 then
-				core.swap_node(pointed_thing.under, unode)
-			end
+	if group > 0 and group < #candle_boxes and param2 == unode.param2 then
+		unode.name = "mcl_candles:candle_" .. math.min(4, group + 1)
+		core.swap_node(pointed_thing.under, unode)
 
-			if not core.is_creative_enabled(placer:get_player_name()) then
-				itemstack:take_item()
-			end
+		if not core.is_creative_enabled(placer:get_player_name()) then
+			itemstack:take_item()
 		end
 	else
-		return core.item_place_node(itemstack, placer, pointed_thing)
+		local itemstack, pos = core.item_place_node(itemstack, placer, pointed_thing)
+		if pos then
+			local node = core.get_node(pos)
+			node.param2 = param2
+			core.swap_node(pos, node)
+		end
+		return itemstack
 	end
 
 	return itemstack
@@ -216,9 +248,7 @@ for i = 1, #candle_boxes do
 				for color, _ in pairs(mcl_dyes.colors) do
 					local stack = ItemStack("mcl_candles:candle_1")
 
-					set_candle_properties(stack, color)
-
-					tt.reload_itemstack_description(stack)
+					set_candle_color(stack, dye_color_to_palette_index(color))
 
 					table.insert(output.deco, stack:to_string())
 				end
@@ -267,14 +297,9 @@ local function candle_craft(output, _, old_craft_grid, _)
 
 	if dye and candle and i == 2 then
 		local color = dye:get_definition()._color
-		local cdef = mcl_dyes.colors[color]
-		local result = ItemStack(core.itemstring_with_palette(candle, cdef.palette_index + 1))
+		local result = ItemStack(candle:get_name())
 
-		result:set_count(1)
-
-		set_candle_properties(result, color)
-
-		tt.reload_itemstack_description(result)
+		set_candle_color(result, dye_color_to_palette_index(color))
 
 		return result
 	end
