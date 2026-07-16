@@ -47,5 +47,6 @@ mcl_itemmeta.register_meta_modifier({
 })
 
 mcl_itemmeta.itemname = {
-	MCL_POTIONS = 100
+	BASE = 0,
+	MCL_POTIONS = 100,
 }
