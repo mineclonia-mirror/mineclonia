@@ -73,13 +73,24 @@ local function get_compass_angle(pos, target, dir)
 end
 
 local function update_compass_img(stack, frame)
-	local def = stack:get_definition()
-	local img = string.format(def._mcl_compass_img_fmt, frame)
-	local m = stack:get_meta()
-	m:set_string("inventory_image", img)
-	m:set_string("wield_image", img)
+	stack:get_meta():set_string("compass_frame", frame)
+	mcl_itemmeta.invalidate(stack, "appearance")
 	return stack
 end
+
+mcl_itemmeta.register_meta_modifier({
+	modifies = "appearance",
+	priority = mcl_itemmeta.appearance.IMAGE_BASE,
+	func = function(stack, values)
+		local img_fmt = stack:get_definition()._mcl_compass_img_fmt
+		if not img_fmt then return end
+		local frame = stack:get_meta():get_string("compass_frame")
+		if frame == "" then return end
+		local img = string.format(img_fmt, tonumber(frame))
+		values.inventory_image = img
+		values.wield_image = img
+	end
+})
 
 local function update_compass(stack, player)
 	local frame = random_frame
@@ -134,14 +145,14 @@ local function update_recovery_compass(stack, player)
 	return update_compass_img(stack, frame)
 end
 
-mcl_player.register_globalstep(function(player, dtime)
+mcl_player.register_globalstep(function(player)
 	local inv = player:get_inventory()
 	for j, stack in pairs(inv:get_list("main")) do
 		local compass_group = core.get_item_group(stack:get_name(), "compass")
 		if compass_group > 0 then
 			local def = stack:get_definition()
 			if def._mcl_compass_update then
-				inv:set_stack("main", j, def._mcl_compass_update(stack, player))
+				mcl_util.set_main_list_item_no_anim(player, j, def._mcl_compass_update(stack, player))
 			end
 		end
 	end
