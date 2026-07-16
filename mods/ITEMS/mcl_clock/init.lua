@@ -41,7 +41,17 @@ core.register_globalstep(function(dtime)
 	current_frame = new_frame
 end)
 
-mcl_player.register_globalstep(function(player, dtime)
+local function set_frame(stack, frame)
+	if stack:get_name() ~= "mcl_clock:clock" then
+		-- compat to update inventories - aliases do not do this.
+		stack:set_name("mcl_clock:clock")
+	end
+	local m = stack:get_meta()
+	m:set_int("clock_frame", frame)
+	mcl_itemmeta.invalidate(stack, "appearance")
+end
+
+mcl_player.register_globalstep(function(player)
 	local frame
 	-- Clocks do not work in certain zones
 	if not mcl_worlds.clock_works(player:get_pos()) then
@@ -52,17 +62,24 @@ mcl_player.register_globalstep(function(player, dtime)
 	local inv = player:get_inventory()
 	for s, stack in pairs(inv:get_list("main")) do
 		if core.get_item_group(stack:get_name(), "clock") > 0 then
-			if stack:get_name() ~= "mcl_clock:clock" then
-				-- compat to update inventories - aliases do not do this.
-				stack:set_name("mcl_clock:clock")
-			end
-			local m = stack:get_meta()
-			m:set_string("wield_image", clock_images[frame])
-			m:set_string("inventory_image", clock_images[frame])
-			inv:set_stack("main", s, stack)
+			set_frame(stack, frame)
+			mcl_util.set_main_list_item_no_anim(player, s, stack)
 		end
 	end
 end)
+
+mcl_itemmeta.register_meta_modifier({
+	modifies = "appearance",
+	priority = mcl_itemmeta.appearance.IMAGE_BASE,
+	func = function(stack, values)
+		local frame = stack:get_meta():get_string("clock_frame")
+		if frame == "" then return end
+		frame = tonumber(frame)
+		local image = clock_images[frame]
+		values.wield_image = image
+		values.inventory_image = image
+	end
+})
 
 core.register_craftitem("mcl_clock:clock", {
 	description = S("Clock"),
@@ -83,9 +100,7 @@ core.register_craftitem("mcl_clock:clock", {
 			frame = current_frame
 		end
 		local stack = ItemStack("mcl_clock:clock")
-		local m = stack:get_meta()
-		m:set_string("inventory_image", clock_images[frame])
-		m:set_string("wield_image", clock_images[frame])
+		set_frame(stack, frame)
 		self.object:set_properties({wield_item = stack:to_string()})
 	end
 })
