@@ -55,8 +55,8 @@ local function get_obanner_item()
 		mcl_banners.write_layers(canonical_obanner:get_meta(), oban_layers)
 		mcl_itemmeta.readable_name.set(canonical_obanner, mcl_raids.ominous_banner_name)
 		mcl_itemmeta.rarity.set(canonical_obanner, "uncommon")
-		mcl_itemmeta.invalidate(canonical_obanner, "appearance")
-		mcl_itemmeta.invalidate(canonical_obanner, "tooltip")
+		mcl_itemmeta.recalculate(canonical_obanner, "appearance")
+		mcl_itemmeta.recalculate(canonical_obanner, "tooltip")
 	end
 	return canonical_obanner:peek_item(1)
 end

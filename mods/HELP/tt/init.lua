@@ -30,7 +30,7 @@ end
 dofile(core.get_modpath(core.get_current_modname()).."/snippets.lua")
 
 function tt.reload_itemstack_description(itemstack)
-	mcl_itemmeta.invalidate(itemstack, "tooltip")
+	mcl_itemmeta.recalculate(itemstack, "tooltip")
 end
 
 -- FIXME: Remove, should rewrite any mods that use this to use the new system

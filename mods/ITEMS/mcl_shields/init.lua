@@ -146,8 +146,8 @@ local function set_shield_layers(itemstack, layers)
 
 	if layers and #layers > 0 then mcl_banners.write_layers(meta, layers) end
 
-	mcl_itemmeta.invalidate(itemstack, "appearance")
-	mcl_itemmeta.invalidate(itemstack, "tooltip")
+	mcl_itemmeta.recalculate(itemstack, "appearance")
+	mcl_itemmeta.recalculate(itemstack, "tooltip")
 
 	local texture = b.make_banner_texture(base_colour, layers, shield_texture_builder)
 	meta:set_string("mcl_shields:banner_texture", texture)

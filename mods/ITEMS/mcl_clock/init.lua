@@ -48,7 +48,7 @@ local function set_frame(stack, frame)
 	end
 	local m = stack:get_meta()
 	m:set_int("clock_frame", frame)
-	mcl_itemmeta.invalidate(stack, "appearance")
+	mcl_itemmeta.recalculate(stack, "appearance")
 end
 
 mcl_player.register_globalstep(function(player)

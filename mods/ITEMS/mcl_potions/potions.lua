@@ -61,14 +61,14 @@ local function generate_get_all_virtual_items_func(itemname, pdef, nocreative)
 			local stack = ItemStack(itemname)
 			local potency = pdef._default_potent_level - 1
 			stack:get_meta():set_int("mcl_potions:potion_potent", potency)
-			mcl_itemmeta.invalidate(stack, "tooltip")
+			mcl_itemmeta.recalculate(stack, "tooltip")
 			table.insert(list, stack:to_string())
 		end
 		if pdef.has_plus then
 			local stack = ItemStack(itemname)
 			local extend = pdef._default_extend_level
 			stack:get_meta():set_int("mcl_potions:potion_plus", extend)
-			mcl_itemmeta.invalidate(stack, "tooltip")
+			mcl_itemmeta.recalculate(stack, "tooltip")
 			table.insert(list, stack:to_string())
 		end
 

@@ -43,7 +43,7 @@ local function register_meta_modifier(def)
 end
 mcl_itemmeta.register_meta_modifier = register_meta_modifier
 
-local function invalidate(itemstack, modifiable)
+local function recalculate(itemstack, modifiable)
 	local modifiable_def = modifiables[modifiable]
 	local state = modifiable_def.init(itemstack)
 	for _, modifier in ipairs(modifiers_by_modifiable[modifiable]) do
@@ -51,18 +51,18 @@ local function invalidate(itemstack, modifiable)
 	end
 	modifiable_def.set(itemstack, state)
 end
-mcl_itemmeta.invalidate = invalidate
+mcl_itemmeta.recalculate = recalculate
 
-local function invalidator(modifiable)
+local function recalculator(modifiable)
 	return function(itemstack)
-		invalidate(itemstack, modifiable)
+		recalculator(itemstack, modifiable)
 	end
 end
-mcl_itemmeta.invalidator = invalidator
+mcl_itemmeta.recalculator = recalculator
 
 local function reload(itemstack)
 	for modifiable, _ in pairs(modifiables) do
-		invalidate(itemstack, modifiable)
+		recalculate(itemstack, modifiable)
 	end
 end
 mcl_itemmeta.reload = reload

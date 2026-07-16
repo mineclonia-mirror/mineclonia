@@ -26,8 +26,8 @@ local function set_candle_color(stack, palette_index)
 	else
 		meta:set_string("candle_palette_index", "")
 	end
-	mcl_itemmeta.invalidate(stack, "appearance")
-	mcl_itemmeta.invalidate(stack, "tooltip")
+	mcl_itemmeta.recalculate(stack, "appearance")
+	mcl_itemmeta.recalculate(stack, "tooltip")
 end
 mcl_candles.set_candle_properties = set_candle_color
 

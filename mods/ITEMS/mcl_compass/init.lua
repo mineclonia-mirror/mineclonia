@@ -74,7 +74,7 @@ end
 
 local function update_compass_img(stack, frame)
 	stack:get_meta():set_string("compass_frame", frame)
-	mcl_itemmeta.invalidate(stack, "appearance")
+	mcl_itemmeta.recalculate(stack, "appearance")
 	return stack
 end
 

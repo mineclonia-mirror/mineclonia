@@ -41,7 +41,7 @@ mcl_itemmeta.register_meta_modifier({
 	modifies = "tooltip",
 	priority = mcl_itemmeta.tooltip.ITEMNAME,
 	func = function(itemstack, state)
-		mcl_itemmeta.invalidate(itemstack, "itemname")
+		mcl_itemmeta.recalculate(itemstack, "itemname")
 		state.content = get_readable_name(itemstack)
 	end,
 })

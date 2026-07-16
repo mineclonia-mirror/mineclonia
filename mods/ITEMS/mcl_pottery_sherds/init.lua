@@ -277,8 +277,8 @@ local function get_craft(itemstack, _, old_craft_grid, _)
 		get_sherd_name(old_craft_grid[8]),
 		get_sherd_name(old_craft_grid[4]),
 	}))
-	mcl_itemmeta.invalidate(itemstack, "appearance")
-	mcl_itemmeta.invalidate(itemstack, "tooltip")
+	mcl_itemmeta.recalculate(itemstack, "appearance")
+	mcl_itemmeta.recalculate(itemstack, "tooltip")
 	return itemstack
 end
 
