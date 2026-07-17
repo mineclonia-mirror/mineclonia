@@ -247,7 +247,7 @@ local function initialize_engine_aliases ()
 		DeepOcean = approximate_ocean (),
 		DeepLukewarmOcean = approximate_warm_ocean (),
 		Desert = related_list_from_base ("Desert", overworld_subtypes),
-		DripstoneCaves = "DripstoneCave",
+		DripstoneCaves = related_list_from_base ("DripstoneCave", overworld_subtypes),
 		ErodedMesa = related_list_from_base ("MesaBryce", overworld_subtypes),
 		FlowerForest = related_list_from_base ("FlowerForest",
 						       overworld_subtypes),
