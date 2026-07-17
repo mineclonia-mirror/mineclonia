@@ -34,6 +34,11 @@ core.register_node("mcl_honey:honeycomb_block", {
 	tiles = {
 		"mcl_honey_honeycomb_block.png"
 	},
+	sounds = {
+		dug = {name = "honeynodes_dug", gain = 0.6},
+		place = {name = "honeynodes_place", gain = 0.6},
+		footstep = {name = "honeynodes_step", gain = 0.3},
+	},
 	is_ground_content = false,
 	groups = { handy = 1, deco_block = 1 },
 	_mcl_hardness = 0.6,
@@ -86,6 +91,11 @@ core.register_node("mcl_honey:honey_block", {
 	},
 	selection_box = {
 		type = "regular",
+	},
+	sounds = {
+		dug = {name = "honeynodes_dug", gain = 0.6},
+		place = {name = "honeynodes_place", gain = 0.6},
+		footstep = {name = "honeynodes_step", gain = 0.3},
 	},
 	_mcl_hardness = 0,
 	_mcl_pistons_sticky = function(node, node_to, dir)
