@@ -247,7 +247,7 @@ local function initialize_engine_aliases ()
 		DeepOcean = approximate_ocean (),
 		DeepLukewarmOcean = approximate_warm_ocean (),
 		Desert = related_list_from_base ("Desert", overworld_subtypes),
-		DripstoneCaves = related_list_from_base ("DripstoneCave", overworld_subtypes),
+		DripstoneCaves = "DripstoneCave",
 		ErodedMesa = related_list_from_base ("MesaBryce", overworld_subtypes),
 		FlowerForest = related_list_from_base ("FlowerForest",
 						       overworld_subtypes),
@@ -668,11 +668,11 @@ local objects_in_limbo = {}
 
 local limbo_formspec = [[
 formspec_version[6]
-size[15,8]
+size[16,9]
 position[0.5,0.5]
 allow_close[false]
-hypertext[0,3;15,4;_;<center><big>%s</big></center>]
-image[4,5;7,0.1;(blank.png^[resize:100x1^[fill:100x1:#525252)%s%s]
+hypertext[0,3;16,9;_;<center><big>%s</big></center>]
+image[3.84,4.8;8.34,0.0834;(blank.png^[resize:100x1^[fill:100x1:#000000)%s%s]
 bgcolor[;true;]
 background[-10,-10;0,0;mcl_biome_dispatch_transition_bkg.png;true]
 ]]
@@ -725,10 +725,10 @@ local function limbo_callback (progress, player, limbo_in)
 		if progress_load ~= limbo.last_progress_load
 			or progress_regen ~= limbo.last_progress_regen then
 			local pload = progress_load > 0
-				and string.format ("^[fill:%dx1:#9c9c9c", progress_load)
+				and string.format ("^[fill:%dx1:#000000", progress_load)
 				or ""
 			local pregen = progress_regen > 0
-				and string.format ("^[fill:%dx1:#458b00", progress_regen)
+				and string.format ("^[fill:%dx1:#00FF00", progress_regen)
 				or ""
 			local pmax, pmin
 			if progress_regen > progress_load then
@@ -788,7 +788,7 @@ function mcl_biome_dispatch.emerged_teleport_prepare (player, v1, v2, msg, callb
 		v1 = v1,
 		v2 = v2,
 		src_pos = player:get_pos (),
-		msg = msg or S ("Loading terrain"),
+		msg = msg or S ("Loading terrain..."),
 		callback = callback,
 		data = data,
 	}
