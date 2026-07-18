@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain playerphysics x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-06-17 08:44+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,6 +12,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-#: mods/PLAYER/playerphysics/elytra.lua:376
+#: mods/PLAYER/playerphysics/elytra.lua:382
 msgid "Elytra is already broken."
 msgstr "Elytra ist bereits kaputt."

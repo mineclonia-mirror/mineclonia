@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-12 07:46+0200\n"
 "PO-Revision-Date: 2026-05-18 18:08+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2026.5\n"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:744
+#: mods/ENTITIES/mcl_mobs/api.lua:738
 msgid ""
 "Remove all, nametagged or tamed mobs within the specified distance or "
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
@@ -24,15 +24,15 @@ msgstr ""
 "distancia especificada o en todas partes. Cuando no se especifica, elimina "
 "todos las criaturas excepto las domesticadas y con etiquetas."
 
-#: mods/ENTITIES/mcl_mobs/api.lua:757 mods/ENTITIES/mcl_mobs/api.lua:764
+#: mods/ENTITIES/mcl_mobs/api.lua:751 mods/ENTITIES/mcl_mobs/api.lua:758
 msgid "Invalid syntax."
 msgstr "Sintaxis no válida."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:681
+#: mods/ENTITIES/mcl_mobs/init.lua:682
 msgid "This allows you to place a single mob."
 msgstr "Esto le permite colocar una sola criatura."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:682
+#: mods/ENTITIES/mcl_mobs/init.lua:683
 msgid ""
 "Just place it where you want the mob to appear. Animals will spawn tamed, "
 "unless you hold down the sneak key while placing. If you place this on a mob "
@@ -821,16 +821,16 @@ msgid ""
 " spawn_mob skeleton:var<jump_height=NUM10>:\n"
 " this setting the skelly's jump height to 10. if you want to make multiple "
 "changes to a mob, you can, example: \n"
-" spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::"
-"var<fly_in=air>::var<fly=true>:\n"
+" spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 " etc."
 msgstr ""
 "spawn_mob es un comando que te permite escribir el nombre de una criatura "
 "sin tener que escribir 'mobs_mc:' todo el tiempo, como por ejemplo: "
 "'spawn_mob spider'. Sin embargo, hay más que puedes hacer con este comando "
 "especial. Actualmente, puedes editar cualquier variable numérica, booleana, "
-"y cadena con este formato: spawn_mob 'any_mob:"
-"var<mobs_variable=variable_value>:'. Siendo any_mob la criatura que "
+"y cadena con este formato: spawn_mob "
+"'any_mob:var<mobs_variable=variable_value>:'. Siendo any_mob la criatura que "
 "elegiste, mobs_variable la variable, y variable_value el valor de la "
 "variable. Ejemplos con este formato: \n"
 " spawn_mob skeleton:var<passive=true>:\n"
@@ -839,8 +839,8 @@ msgstr ""
 " spawn_mob skeleton:var<jump_height=NUM10>:\n"
 " Esto establece la altura de salto del esqueleto a 10. Si quieres hacer "
 "varios cambios a una criatura, puedes, por ejemplo: \n"
-" spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::"
-"var<fly_in=air>::var<fly=true>:\n"
+" spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 " etc."
 
 #: mods/ENTITIES/mcl_mobs/spawning.lua:1210

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_pale_oak x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -112,48 +112,48 @@ msgstr "Kuorittu pala valjutammea."
 msgid "The trunk of a Pale Oak tree."
 msgstr "Pala valjutammen runkoa."
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:19
+#: mods/ITEMS/mcl_pale_oak/plants.lua:20
 msgid "Pale Hanging Moss"
 msgstr "Roikkuva kalpeasammal"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:74
+#: mods/ITEMS/mcl_pale_oak/plants.lua:75
 msgid "Closed Eyeblossom"
 msgstr "Sulkeutunut silmäkukka"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:85
+#: mods/ITEMS/mcl_pale_oak/plants.lua:86
 msgid "Open Eyeblossom"
 msgstr "Auennut silmäkukka"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:101
+#: mods/ITEMS/mcl_pale_oak/plants.lua:102
 msgid "Eyeblossom activation"
 msgstr "Aktivoitunut silmäkukka"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:113
+#: mods/ITEMS/mcl_pale_oak/plants.lua:114
 msgid "Eyeblossom in a pot activation"
 msgstr "Aktivoitunut ruukutettu silmäkukka"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:125
+#: mods/ITEMS/mcl_pale_oak/plants.lua:126
 msgid "Eyeblossom deactivation"
 msgstr "Aktivoimaton silmäkukka"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:137
+#: mods/ITEMS/mcl_pale_oak/plants.lua:138
 msgid "Eyeblossom in a pot deactivation"
 msgstr "Aktivoimaton ruukutettu silmäkukka"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:209
-#: mods/ITEMS/mcl_pale_oak/plants.lua:211
+#: mods/ITEMS/mcl_pale_oak/plants.lua:210
+#: mods/ITEMS/mcl_pale_oak/plants.lua:212
 msgid "Pale Moss"
 msgstr "Kalpeasammal"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:210
+#: mods/ITEMS/mcl_pale_oak/plants.lua:211
 msgid "Moss is a grey block found in pale garden"
 msgstr "Kalpeasammal on harmaa kuutio, jota esiintyy valjupuistossa"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:225
+#: mods/ITEMS/mcl_pale_oak/plants.lua:226
 msgid "Pale Moss Carpet"
 msgstr "Kalpeasammalmatto"
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:226
+#: mods/ITEMS/mcl_pale_oak/plants.lua:227
 msgid "A pale moss carpet is a flat variant of the pale moss block."
 msgstr "Kalpeasammalmatto on kalpeasammalkuution litteä muoto."
 

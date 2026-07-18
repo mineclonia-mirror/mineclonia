@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-12 07:46+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:744
+#: mods/ENTITIES/mcl_mobs/api.lua:738
 msgid ""
 "Remove all, nametagged or tamed mobs within the specified distance or "
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
@@ -22,15 +22,15 @@ msgstr ""
 "distantziaren barruan edo leku guztietan. Zehazten ez denean, izaki guztiak "
 "ezabatuko dira etxekotutako eta izena dutenak izan ezik."
 
-#: mods/ENTITIES/mcl_mobs/api.lua:757 mods/ENTITIES/mcl_mobs/api.lua:764
+#: mods/ENTITIES/mcl_mobs/api.lua:751 mods/ENTITIES/mcl_mobs/api.lua:758
 msgid "Invalid syntax."
 msgstr "Sintaxi baliogabea."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:681
+#: mods/ENTITIES/mcl_mobs/init.lua:682
 msgid "This allows you to place a single mob."
 msgstr "Honek izaki bakar bat jartzea ahalbidetzen dizu."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:682
+#: mods/ENTITIES/mcl_mobs/init.lua:683
 msgid ""
 "Just place it where you want the mob to appear. Animals will spawn tamed, "
 "unless you hold down the sneak key while placing. If you place this on a mob "
@@ -818,8 +818,8 @@ msgid ""
 " spawn_mob skeleton:var<jump_height=NUM10>:\n"
 " this setting the skelly's jump height to 10. if you want to make multiple "
 "changes to a mob, you can, example: \n"
-" spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::"
-"var<fly_in=air>::var<fly=true>:\n"
+" spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 " etc."
 msgstr ""
 "spawn_mod txat-komando bat da, izaki baten izenean idaztea errazago egingo "
@@ -835,8 +835,8 @@ msgstr ""
 " spawn_mob skeleton:var<jump_height=NUM10>:\n"
 " modu honetan sortutako eskeletoak 10 alturako jauzia egingo du. Izaki bati "
 "hainbat aldaketa egin nahi badizkiozu, hemen adibidea: \n"
-" spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::"
-"var<fly_in=air>::var<fly=true>:\n"
+" spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 " etab."
 
 #: mods/ENTITIES/mcl_mobs/spawning.lua:1210

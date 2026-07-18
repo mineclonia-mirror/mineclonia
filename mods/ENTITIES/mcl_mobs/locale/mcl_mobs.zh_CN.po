@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-12 07:46+0200\n"
 "PO-Revision-Date: 2026-06-12 05:08+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2026.6.1\n"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:744
+#: mods/ENTITIES/mcl_mobs/api.lua:738
 msgid ""
 "Remove all, nametagged or tamed mobs within the specified distance or "
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
@@ -23,15 +23,15 @@ msgstr ""
 "移除指定距离或全图范围内：所有（all）、已命名（nametagged）或已驯服（tamed）"
 "的生物。若未指定移除类型，则移除除已驯服和已命名之外的所有生物。"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:757 mods/ENTITIES/mcl_mobs/api.lua:764
+#: mods/ENTITIES/mcl_mobs/api.lua:751 mods/ENTITIES/mcl_mobs/api.lua:758
 msgid "Invalid syntax."
 msgstr "语法无效。"
 
-#: mods/ENTITIES/mcl_mobs/init.lua:681
+#: mods/ENTITIES/mcl_mobs/init.lua:682
 msgid "This allows you to place a single mob."
 msgstr "这能让你放置单个生物。"
 
-#: mods/ENTITIES/mcl_mobs/init.lua:682
+#: mods/ENTITIES/mcl_mobs/init.lua:683
 msgid ""
 "Just place it where you want the mob to appear. Animals will spawn tamed, "
 "unless you hold down the sneak key while placing. If you place this on a mob "
@@ -819,8 +819,8 @@ msgid ""
 " spawn_mob skeleton:var<jump_height=NUM10>:\n"
 " this setting the skelly's jump height to 10. if you want to make multiple "
 "changes to a mob, you can, example: \n"
-" spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::"
-"var<fly_in=air>::var<fly=true>:\n"
+" spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 " etc."
 msgstr ""
 "spawn_mob是一个聊天命令，它能让你输入生物的名称，而不用总是像这样输入 "
@@ -835,8 +835,8 @@ msgstr ""
 "spawn_mob skeleton:var<jump_height=NUM10>:\n"
 "这会将骷髅的跳跃高度设置为10。如果你想对一个生物进行多项更改，也是可以的，例"
 "如：\n"
-"spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::"
-"var<fly_in=air>::var<fly=true>:\n"
+"spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 "等等。"
 
 #: mods/ENTITIES/mcl_mobs/spawning.lua:1210

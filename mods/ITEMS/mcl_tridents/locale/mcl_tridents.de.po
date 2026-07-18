@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_tridents x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-10 13:48+0200\n"
 "PO-Revision-Date: 2026-04-30 19:57+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
@@ -22,6 +22,6 @@ msgstr "Dreizack"
 msgid "Impales animals and destroys certain blocks"
 msgstr "Spießt Tiere auf und zerstört gewisse Blöcke"
 
-#: mods/ITEMS/mcl_tridents/init.lua:770
+#: mods/ITEMS/mcl_tridents/init.lua:772
 msgid "Trident charged.  Release RMB to launch."
 msgstr "Aufgeladener Dreizack.  RMB loslassen zum Abschießen."

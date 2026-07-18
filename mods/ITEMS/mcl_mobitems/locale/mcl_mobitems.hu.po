@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobitems x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-01 03:14+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -174,11 +174,11 @@ msgstr ""
 "A pókszemek főként kézműves alapanyagként használhatók. Ha nagyon muszáj, "
 "megeheted, de rövid időre megmérgez."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:146
+#: mods/ITEMS/mcl_mobitems/init.lua:149
 msgid "Bone"
 msgstr "Csont"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:147
+#: mods/ITEMS/mcl_mobitems/init.lua:150
 msgid ""
 "Bones can be used to tame wolves so they will protect you. They are also "
 "useful as a crafting ingredient."
@@ -186,7 +186,7 @@ msgstr ""
 "A csonttal meg lehet szelídíteni a farkasokat, hogy védjenek. Kézműves "
 "alapanyagként is hasznos."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:148
+#: mods/ITEMS/mcl_mobitems/init.lua:151
 msgid ""
 "Wield the bone near wolves to attract them. Use the “Place” key on the wolf "
 "to give it a bone and tame it. You can then give commands to the tamed wolf "
@@ -196,11 +196,11 @@ msgstr ""
 "gombot a farkason a csont odaadásához és a szelídítéshez. A szelídített "
 "farkasnak utasításokat adhatsz a 'Helyez' gomb használatával."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:156
+#: mods/ITEMS/mcl_mobitems/init.lua:159
 msgid "Squid Ink Sac"
 msgstr "Tintazsák"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:157
+#: mods/ITEMS/mcl_mobitems/init.lua:160
 msgid ""
 "This item is dropped by dead squids. Squid ink can be used to as an "
 "ingredient to craft book and quill or black dye."
@@ -208,59 +208,59 @@ msgstr ""
 "Ezt az tárgyat az elhullott tintahalak adják. A tintát könyv és toll vagy "
 "fekete festék készítéséhez használhatod."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:164
+#: mods/ITEMS/mcl_mobitems/init.lua:167
 msgid "String"
 msgstr "Zsineg"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:165
+#: mods/ITEMS/mcl_mobitems/init.lua:168
 msgid "Strings are used in crafting."
 msgstr "A zsineget kézműves célokra használják."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:172
+#: mods/ITEMS/mcl_mobitems/init.lua:175
 msgid "Blaze Rod"
 msgstr "Lángpálca"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:173
+#: mods/ITEMS/mcl_mobitems/init.lua:176
 msgid "This is a crafting component dropped from dead blazes."
 msgstr "Ez a tárgy az elhullott lángok által dobott kézműves alapanyag."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:182
+#: mods/ITEMS/mcl_mobitems/init.lua:185
 msgid "Breeze Rod"
 msgstr "Szellőpálca"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:183
+#: mods/ITEMS/mcl_mobitems/init.lua:186
 msgid "This is a crafting item dropped from breezes."
 msgstr "Ez a tárgy a szellők által dobott kézműves alapanyag."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:191
+#: mods/ITEMS/mcl_mobitems/init.lua:194
 msgid "Blaze Powder"
 msgstr "Lángpor"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:192
+#: mods/ITEMS/mcl_mobitems/init.lua:195
 msgid "This item is mainly used for crafting."
 msgstr "Ez a tárgy főként kézműves célokra használható."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:199
+#: mods/ITEMS/mcl_mobitems/init.lua:202
 msgid "Magma Cream"
 msgstr "Magmakrém"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:200
+#: mods/ITEMS/mcl_mobitems/init.lua:203
 msgid "Magma cream is a crafting component."
 msgstr "A magmakrém kézműves alapanyag."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:208
+#: mods/ITEMS/mcl_mobitems/init.lua:211
 msgid "Ghast Tear"
 msgstr "Szellemkönny"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:209
+#: mods/ITEMS/mcl_mobitems/init.lua:212
 msgid "Place this item in an item frame as decoration."
 msgstr "Helyezd ezt a tárgyat egy tárgykeretbe dekorációként."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:216
+#: mods/ITEMS/mcl_mobitems/init.lua:219
 msgid "Nether Star"
 msgstr "Nether Csillag"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:217
+#: mods/ITEMS/mcl_mobitems/init.lua:220
 msgid ""
 "A nether star is dropped when the Wither dies. Place it in an item frame to "
 "show the world how hardcore you are! Or just as decoration."
@@ -269,54 +269,54 @@ msgstr ""
 "hogy megmutasd, mennyire hardcore játékos vagy! Vagy egyszerűen "
 "dekorációként."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:225
+#: mods/ITEMS/mcl_mobitems/init.lua:228
 msgid "Leather"
 msgstr "Bőr"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:226
+#: mods/ITEMS/mcl_mobitems/init.lua:229
 msgid "Leather is a versatile crafting component."
 msgstr "A bőr sokoldalú kézműves alapanyag."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:233
+#: mods/ITEMS/mcl_mobitems/init.lua:236
 msgid "Feather"
 msgstr "Toll"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:234
+#: mods/ITEMS/mcl_mobitems/init.lua:237
 msgid "Feathers are used in crafting and are dropped from chickens."
 msgstr "A tollak kézműves célokra használhatók, és csirkék dobják őket."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:241
+#: mods/ITEMS/mcl_mobitems/init.lua:244
 msgid "Rabbit Hide"
 msgstr "Nyúlbőr"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:242
+#: mods/ITEMS/mcl_mobitems/init.lua:245
 msgid "Rabbit hide is used to create leather."
 msgstr "A nyúlbőrt bőr készítésére használják."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:250
+#: mods/ITEMS/mcl_mobitems/init.lua:253
 msgid "Rabbit's Foot"
 msgstr "Nyúlláb"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:251
+#: mods/ITEMS/mcl_mobitems/init.lua:254
 msgid ""
 "Must be your lucky day! Place this item in an item frame for decoration."
 msgstr ""
 "Ez biztosan a szerencsés napod! Helyezd ezt a tárgyat egy tárgykeretbe "
 "dekorációként."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:258
+#: mods/ITEMS/mcl_mobitems/init.lua:261
 msgid "Saddle"
 msgstr "Nyereg"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:259
+#: mods/ITEMS/mcl_mobitems/init.lua:262
 msgid "Can be placed on animals to ride them"
 msgstr "Állatra helyezhető, hogy lovagolhass rajta"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:260
+#: mods/ITEMS/mcl_mobitems/init.lua:263
 msgid "Saddles can be put on some animals in order to mount them."
 msgstr "A nyerget bizonyos állatokra lehet helyezni, hogy rájuk ülhess."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:261
+#: mods/ITEMS/mcl_mobitems/init.lua:264
 msgid ""
 "Use the placement key with the saddle in your hand to try to put on the "
 "saddle. Saddles fit on horses, mules, donkeys and pigs. Horses, mules and "
@@ -328,49 +328,49 @@ msgstr ""
 "öszvéreket és szamarakat előbb szelídíteni kell, különben elutasítják a "
 "nyereget. A nyergelt állatokra újra a 'Helyez' gombbal lehet felülni."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:269
+#: mods/ITEMS/mcl_mobitems/init.lua:272
 msgid "Rabbit Stew"
 msgstr "Nyúlpörkölt"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:270
+#: mods/ITEMS/mcl_mobitems/init.lua:273
 msgid "Rabbit stew is a very nutricious food item."
 msgstr "A nyúlpörkölt nagyon tápláló élelmiszer."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:280
+#: mods/ITEMS/mcl_mobitems/init.lua:283
 msgid "Shulker Shell"
 msgstr "Kagylapuló Héj"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:281
+#: mods/ITEMS/mcl_mobitems/init.lua:284
 msgid ""
 "Shulker shells are used in crafting. They are dropped from dead shulkers."
 msgstr ""
 "A kagylapuló héjat kézműves célokra használják. Elhullott shulker-ek dobják."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:287
+#: mods/ITEMS/mcl_mobitems/init.lua:290
 msgid "Slimeball"
 msgstr "Zselebogyó Ribizli"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:288
+#: mods/ITEMS/mcl_mobitems/init.lua:291
 msgid "Slimeballs are used in crafting. They are dropped from slimes."
 msgstr "A zselebogyót kézműves célokra használják. Slime-ok dobják."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:295
+#: mods/ITEMS/mcl_mobitems/init.lua:298
 msgid "Gunpowder"
 msgstr "Lőpor"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:302
+#: mods/ITEMS/mcl_mobitems/init.lua:305
 msgid "Carrot on a Stick"
 msgstr "Répacsali"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:303
+#: mods/ITEMS/mcl_mobitems/init.lua:306
 msgid "Lets you ride a saddled pig"
 msgstr "Lehetővé teszi, hogy lovagolj egy nyergelt disznón"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:304
+#: mods/ITEMS/mcl_mobitems/init.lua:307
 msgid "A carrot on a stick can be used on saddled pigs to ride them."
 msgstr "A répacsali használható nyergelt disznókon való lovagláshoz."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:305
+#: mods/ITEMS/mcl_mobitems/init.lua:308
 msgid ""
 "Place it on a saddled pig to mount it. You can now ride the pig like a "
 "horse. Pigs will also walk towards you when you just wield the carrot on a "
@@ -380,20 +380,20 @@ msgstr ""
 "rajta, mint egy lovon. A disznók a répacsali kézben tartásakor is feléd "
 "fognak menni."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:314
+#: mods/ITEMS/mcl_mobitems/init.lua:317
 msgid "Warped Fungus on a Stick"
 msgstr "Torz gomba pálcán"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:315
+#: mods/ITEMS/mcl_mobitems/init.lua:318
 msgid "Lets you ride a strider"
 msgstr "Lehetővé teszi, hogy lovagolj egy strider-en"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:316
+#: mods/ITEMS/mcl_mobitems/init.lua:319
 msgid ""
 "A warped fungus on a stick can be used on saddled striders to ride them."
 msgstr "A torz gomba pálcán használható nyergelt stridereken való lovagláshoz."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:317
+#: mods/ITEMS/mcl_mobitems/init.lua:320
 msgid ""
 "Place it on a saddled strider to mount it. You can now ride the strider like "
 "a horse. Striders will also walk towards you when you just wield the fungus "
@@ -403,15 +403,15 @@ msgstr ""
 "rajta, mint egy lovon. A striderek a pálca kézben tartásakor feléd fognak "
 "menni."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:326
+#: mods/ITEMS/mcl_mobitems/init.lua:329
 msgid "Nautilus Shell"
 msgstr "Nautilusz Héj"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:327 mods/ITEMS/mcl_mobitems/init.lua:335
+#: mods/ITEMS/mcl_mobitems/init.lua:330 mods/ITEMS/mcl_mobitems/init.lua:338
 msgid "Used to craft a conduit"
 msgstr "Használható vezérlő készítéséhez"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:328
+#: mods/ITEMS/mcl_mobitems/init.lua:331
 msgid ""
 "The Nautilus Shell is used to craft a conduit. They can be obtained by "
 "fishing or killing a drowned that is wielding a shell."
@@ -419,11 +419,11 @@ msgstr ""
 "A nautilusz héjat vezérlő készítéséhez használják. Halászattal vagy olyan "
 "Vízbefúlt legyőzésével szerezhető, amely héjat tart."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:334
+#: mods/ITEMS/mcl_mobitems/init.lua:337
 msgid "Heart of the Sea"
 msgstr "A tenger szíve"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:336
+#: mods/ITEMS/mcl_mobitems/init.lua:339
 msgid ""
 "The Heart of the Sea is used to craft a conduit. They can be obtained by "
 "finding them in a buried treasure chest."
@@ -431,7 +431,7 @@ msgstr ""
 "A tenger szívét vezérlő készítéséhez használják. Elásott kincsesláda "
 "megtalálásával szerezhető."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:341
+#: mods/ITEMS/mcl_mobitems/init.lua:344
 msgid ""
 "Place it on a horse to put on the horse armor. Donkeys and mules can't wear "
 "horse armor."
@@ -439,11 +439,11 @@ msgstr ""
 "Helyezd a lóra, hogy felvedd a lópáncélt. Szamarak és öszvérek nem "
 "viselhetnek lópáncélt."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:346
+#: mods/ITEMS/mcl_mobitems/init.lua:349
 msgid "Leather Horse Armor"
 msgstr "Bőr Lópáncél"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:347
+#: mods/ITEMS/mcl_mobitems/init.lua:350
 msgid ""
 "Leather horse armor can be worn by horses to increase their protection from "
 "harm a little."
@@ -451,21 +451,21 @@ msgstr ""
 "A bőr lópáncélt a lovak viselhetik, hogy némileg növeljék a védekezésüket a "
 "sérülések ellen."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:360
+#: mods/ITEMS/mcl_mobitems/init.lua:363
 msgid "Copper Horse Armor"
 msgstr ""
 
-#: mods/ITEMS/mcl_mobitems/init.lua:361
+#: mods/ITEMS/mcl_mobitems/init.lua:364
 msgid ""
 "Copper horse armor can be worn by horses to increase their protection from "
 "harm a bit."
 msgstr ""
 
-#: mods/ITEMS/mcl_mobitems/init.lua:376
+#: mods/ITEMS/mcl_mobitems/init.lua:379
 msgid "Iron Horse Armor"
 msgstr "Vas Lópáncél"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:377
+#: mods/ITEMS/mcl_mobitems/init.lua:380
 msgid ""
 "Iron horse armor can be worn by horses to increase their protection from "
 "harm a bit."
@@ -473,11 +473,11 @@ msgstr ""
 "A vas lópáncélt a lovak viselhetik, hogy kicsit növeljék a sérülések elleni "
 "védelmüket."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:391
+#: mods/ITEMS/mcl_mobitems/init.lua:394
 msgid "Golden Horse Armor"
 msgstr "Arany Lószerszám"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:392
+#: mods/ITEMS/mcl_mobitems/init.lua:395
 msgid ""
 "Golden horse armor can be worn by horses to increase their protection from "
 "harm."
@@ -485,11 +485,11 @@ msgstr ""
 "Az arany lópáncél a lovak viselhetik, hogy növeljék a sérülések elleni "
 "védelmüket."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:405
+#: mods/ITEMS/mcl_mobitems/init.lua:408
 msgid "Diamond Horse Armor"
 msgstr "Gyémánt Lópáncél"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:406
+#: mods/ITEMS/mcl_mobitems/init.lua:409
 msgid ""
 "Diamond horse armor can be worn by horses to greatly increase their "
 "protection from harm."
@@ -497,38 +497,38 @@ msgstr ""
 "A gyémánt lópáncélt a lovak viselhetik, hogy jelentősen növeljék a sérülések "
 "elleni védelmüket."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:422
+#: mods/ITEMS/mcl_mobitems/init.lua:425
 msgid "Glow Ink Sac"
 msgstr "Világító Tintazsák"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:423
+#: mods/ITEMS/mcl_mobitems/init.lua:426
 msgid "Use it to craft the Glow Item Frame."
 msgstr "Használd a világító tárgykeret elkészítéséhez."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:424
+#: mods/ITEMS/mcl_mobitems/init.lua:427
 msgid ""
 "Use the Glow Ink Sac and the normal Item Frame to craft the Glow Item Frame."
 msgstr ""
 "A világító tintazsákot és a normál tárgykeretet használva készítheted el a "
 "világító tárgykeretet."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:430
+#: mods/ITEMS/mcl_mobitems/init.lua:433
 msgid "Name Tag"
 msgstr "Névtábla"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:431
+#: mods/ITEMS/mcl_mobitems/init.lua:434
 msgid "Give names to mobs"
 msgstr "Elnevezheted az állatokat"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:431
+#: mods/ITEMS/mcl_mobitems/init.lua:434
 msgid "Set name at anvil"
 msgstr "Állítsd be a nevet az üllőn"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:432
+#: mods/ITEMS/mcl_mobitems/init.lua:435
 msgid "A name tag is an item to name a mob."
 msgstr "A névtábla egy tárgy, amivel elnevezheted az állatokat."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:433
+#: mods/ITEMS/mcl_mobitems/init.lua:436
 msgid ""
 "Before you use the name tag, you need to set a name at an anvil. Then you "
 "can use the name tag to name a mob. This uses up the name tag."

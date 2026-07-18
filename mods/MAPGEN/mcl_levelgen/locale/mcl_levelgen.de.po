@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-06-30 22:52+0200\n"
 "PO-Revision-Date: 2026-06-04 09:07+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
@@ -216,22 +216,22 @@ msgstr ""
 #. ----------------------------------------------------------------------
 #. Debug HUD.
 #. ----------------------------------------------------------------------
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3061
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3062
 msgid "Enable or disable the level generation HUD"
 msgstr "Aktiviert oder Deaktiviert das Levelgenerations-HUD"
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3113
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3114
 msgid "@1 structure piece(s) were (re-)inserted into the structure database"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3120
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3121
 msgid "Regenerate nearby structure pieces for a structure set"
 msgstr "Regeneriere nahe Strukturenteile für eine Strukturenmenge"
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3123
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3124
 msgid "The structure database is currently being repaired.  Please wait."
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3136
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3137
 msgid "No level contains the position @1,@2,@3"
 msgstr ""

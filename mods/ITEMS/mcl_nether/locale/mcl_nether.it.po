@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_nether x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-10 05:32+0200\n"
 "PO-Revision-Date: 2026-06-01 13:07+0000\n"
 "Last-Translator: cuche <cuche@noreply.codeberg.org>\n"
 "Language-Team: Italian <https://translate.codeberg.org/projects/mineclonia/"
@@ -193,7 +193,7 @@ msgstr "Frammento di netherite"
 msgid "Netherite scrap is a crafting ingredient for netherite ingots."
 msgstr ""
 
-#: mods/ITEMS/mcl_nether/init.lua:363 mods/ITEMS/mcl_nether/init.lua:384
+#: mods/ITEMS/mcl_nether/init.lua:363 mods/ITEMS/mcl_nether/init.lua:385
 msgid "Netherite Ingot"
 msgstr "Lingotto di netherite"
 
@@ -203,37 +203,37 @@ msgid ""
 "netherite."
 msgstr ""
 
-#: mods/ITEMS/mcl_nether/init.lua:368
+#: mods/ITEMS/mcl_nether/init.lua:369
 msgid "Netherite Material"
 msgstr "Di netherite"
 
-#: mods/ITEMS/mcl_nether/init.lua:373
+#: mods/ITEMS/mcl_nether/init.lua:374
 msgid "Nether Brick"
 msgstr "Mattone del Nether"
 
-#: mods/ITEMS/mcl_nether/init.lua:374
+#: mods/ITEMS/mcl_nether/init.lua:375
 msgid ""
 "Nether bricks are the main crafting ingredient for crafting nether brick "
 "blocks and nether fences."
 msgstr ""
 
-#: mods/ITEMS/mcl_nether/init.lua:381
+#: mods/ITEMS/mcl_nether/init.lua:382
 msgid "Netherite Upgrade Template"
 msgstr "Miglioramento di netherite"
 
-#: mods/ITEMS/mcl_nether/init.lua:382
+#: mods/ITEMS/mcl_nether/init.lua:383
 msgid "Smithing Template"
 msgstr "Schema di forgiatura"
 
-#: mods/ITEMS/mcl_nether/init.lua:383
+#: mods/ITEMS/mcl_nether/init.lua:384
 msgid "Applies to:"
 msgstr "Si applica a:"
 
-#: mods/ITEMS/mcl_nether/init.lua:383
+#: mods/ITEMS/mcl_nether/init.lua:384
 msgid "Diamond Equipment"
 msgstr ""
 
-#: mods/ITEMS/mcl_nether/init.lua:384
+#: mods/ITEMS/mcl_nether/init.lua:385
 msgid "Ingredients:"
 msgstr "Ingredienti:"
 

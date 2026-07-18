@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_potions x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -447,25 +447,25 @@ msgstr ""
 "Pour collecter l'eau, cliquer droit sur un chaudron avec de l'eau (qui "
 "enlève un niveau d'eau) ou toute source d'eau (qui n'enlève pas d'eau)."
 
-#: mods/ITEMS/mcl_potions/init.lua:172
+#: mods/ITEMS/mcl_potions/init.lua:175
 msgid "Water Bottle"
 msgstr "Fiole d'eau"
 
-#: mods/ITEMS/mcl_potions/init.lua:173 mods/ITEMS/mcl_potions/init.lua:199
+#: mods/ITEMS/mcl_potions/init.lua:176 mods/ITEMS/mcl_potions/init.lua:202
 #: mods/ITEMS/mcl_potions/potions.lua:335
 #: mods/ITEMS/mcl_potions/potions.lua:343
 #: mods/ITEMS/mcl_potions/potions.lua:351
 msgid "No effect"
 msgstr "Aucun effet"
 
-#: mods/ITEMS/mcl_potions/init.lua:174
+#: mods/ITEMS/mcl_potions/init.lua:177
 msgid ""
 "Water bottles can be used to fill cauldrons. Drinking water has no effect."
 msgstr ""
 "Les fioles d'eau peuvent être utilisées pour remplir les chaudrons. L'eau "
 "potable n'a aucun effet."
 
-#: mods/ITEMS/mcl_potions/init.lua:175
+#: mods/ITEMS/mcl_potions/init.lua:178
 msgid ""
 "Use the “Place” key to drink. Place this item on a cauldron to pour the "
 "water into the cauldron."
@@ -473,18 +473,18 @@ msgstr ""
 "Utilisez la touche \"Utiliser\" pour boire. Placez cet article sur un "
 "chaudron pour verser l'eau dans le chaudron."
 
-#: mods/ITEMS/mcl_potions/init.lua:198
+#: mods/ITEMS/mcl_potions/init.lua:201
 msgid "River Water Bottle"
 msgstr "Fiole d'eau de rivière"
 
-#: mods/ITEMS/mcl_potions/init.lua:200
+#: mods/ITEMS/mcl_potions/init.lua:203
 msgid ""
 "River water bottles can be used to fill cauldrons. Drinking it has no effect."
 msgstr ""
 "Les bouteilles d'eau de rivière peuvent être utilisées pour remplir les "
 "chaudrons. La boire n'a aucun effet."
 
-#: mods/ITEMS/mcl_potions/init.lua:201
+#: mods/ITEMS/mcl_potions/init.lua:204
 msgid ""
 "Use the “Place” key to drink. Place this item on a cauldron to pour the "
 "river water into the cauldron."
@@ -492,15 +492,15 @@ msgstr ""
 "Utilisez la touche \"Utiliser\" pour boire. Cliquer droit cet objet sur un "
 "chaudron pour verser l'eau de la rivière dans le chaudron."
 
-#: mods/ITEMS/mcl_potions/init.lua:214
+#: mods/ITEMS/mcl_potions/init.lua:217
 msgid "Splash Water Bottle"
 msgstr "Fiole d'eau jetable"
 
-#: mods/ITEMS/mcl_potions/init.lua:215 mods/ITEMS/mcl_potions/init.lua:226
+#: mods/ITEMS/mcl_potions/init.lua:218 mods/ITEMS/mcl_potions/init.lua:229
 msgid "Extinguishes fire and hurts some mobs"
 msgstr "Éteint le feu et blesse certaines créatures"
 
-#: mods/ITEMS/mcl_potions/init.lua:216
+#: mods/ITEMS/mcl_potions/init.lua:219
 msgid ""
 "A throwable water bottle that will shatter on impact, where it extinguishes "
 "nearby fire and hurts mobs that are vulnerable to water."
@@ -508,11 +508,11 @@ msgstr ""
 "Une bouteille d'eau jetable qui se brisera à l'impact, où elle éteint le feu "
 "à proximité et blesse les mobs vulnérables à l'eau."
 
-#: mods/ITEMS/mcl_potions/init.lua:225
+#: mods/ITEMS/mcl_potions/init.lua:228
 msgid "Lingering Water Bottle"
 msgstr "Fiole d'eau persistante"
 
-#: mods/ITEMS/mcl_potions/init.lua:227
+#: mods/ITEMS/mcl_potions/init.lua:230
 msgid ""
 "A throwable water bottle that will shatter on impact, where it creates a "
 "cloud of water vapor that lingers on the ground for a while. This cloud "
@@ -522,11 +522,11 @@ msgstr ""
 "de vapeur d'eau qui s'attarde au sol pendant un moment. Ce nuage éteint le "
 "feu et blesse les mobs vulnérables à l'eau."
 
-#: mods/ITEMS/mcl_potions/init.lua:235
+#: mods/ITEMS/mcl_potions/init.lua:238
 msgid "Glistering Melon"
 msgstr "Pastèque scintillante"
 
-#: mods/ITEMS/mcl_potions/init.lua:236
+#: mods/ITEMS/mcl_potions/init.lua:239
 msgid ""
 "This shiny melon is full of tiny gold nuggets and would be nice in an item "
 "frame. It isn't edible and not useful for anything else."

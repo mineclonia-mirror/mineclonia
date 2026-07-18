@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-06-30 22:52+0200\n"
 "PO-Revision-Date: 2026-06-12 05:07+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -249,22 +249,22 @@ msgstr "需要拥有服务器权限才能操作拼图方块"
 #. ----------------------------------------------------------------------
 #. Debug HUD.
 #. ----------------------------------------------------------------------
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3061
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3062
 msgid "Enable or disable the level generation HUD"
 msgstr "开启或关闭地形生成平视显示界面（HUD）"
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3113
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3114
 msgid "@1 structure piece(s) were (re-)inserted into the structure database"
 msgstr "@1 共 1 个结构部件已（重新）插入结构数据库"
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3120
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3121
 msgid "Regenerate nearby structure pieces for a structure set"
 msgstr "为一套结构重新生成附近的结构部件"
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3123
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3124
 msgid "The structure database is currently being repaired.  Please wait."
 msgstr "结构数据库正在修复中，请稍候。"
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3136
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3137
 msgid "No level contains the position @1,@2,@3"
 msgstr "坐标 @1、@2、@3 不存在于任何地形区块内"

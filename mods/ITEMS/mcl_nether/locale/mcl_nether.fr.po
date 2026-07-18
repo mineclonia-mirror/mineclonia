@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_nether x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-10 05:32+0200\n"
 "PO-Revision-Date: 2026-05-06 12:58+0000\n"
 "Last-Translator: syl <syl@noreply.codeberg.org>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/mineclonia/"
@@ -208,7 +208,7 @@ msgstr ""
 "Le fragment de Nétherite est un ingrédient d'artisanat pour les lingots de "
 "Nétherite."
 
-#: mods/ITEMS/mcl_nether/init.lua:363 mods/ITEMS/mcl_nether/init.lua:384
+#: mods/ITEMS/mcl_nether/init.lua:363 mods/ITEMS/mcl_nether/init.lua:385
 msgid "Netherite Ingot"
 msgstr "Lingot de Netherite"
 
@@ -220,15 +220,15 @@ msgstr ""
 "Les lingots de Nétherite peuvent être utilisés avec une table de forge pour "
 "améliorer les objets en Nétherite."
 
-#: mods/ITEMS/mcl_nether/init.lua:368
+#: mods/ITEMS/mcl_nether/init.lua:369
 msgid "Netherite Material"
 msgstr ""
 
-#: mods/ITEMS/mcl_nether/init.lua:373
+#: mods/ITEMS/mcl_nether/init.lua:374
 msgid "Nether Brick"
 msgstr "Brique du Nether"
 
-#: mods/ITEMS/mcl_nether/init.lua:374
+#: mods/ITEMS/mcl_nether/init.lua:375
 msgid ""
 "Nether bricks are the main crafting ingredient for crafting nether brick "
 "blocks and nether fences."
@@ -236,23 +236,23 @@ msgstr ""
 "Les briques du Nether sont le principal ingrédient pour la fabrication de "
 "blocs de briques et de clôtures du Nether."
 
-#: mods/ITEMS/mcl_nether/init.lua:381
+#: mods/ITEMS/mcl_nether/init.lua:382
 msgid "Netherite Upgrade Template"
 msgstr "Modèle d'amélioration en Netherite"
 
-#: mods/ITEMS/mcl_nether/init.lua:382
+#: mods/ITEMS/mcl_nether/init.lua:383
 msgid "Smithing Template"
 msgstr "Modèle de forge"
 
-#: mods/ITEMS/mcl_nether/init.lua:383
+#: mods/ITEMS/mcl_nether/init.lua:384
 msgid "Applies to:"
 msgstr "S'applique à :"
 
-#: mods/ITEMS/mcl_nether/init.lua:383
+#: mods/ITEMS/mcl_nether/init.lua:384
 msgid "Diamond Equipment"
 msgstr ""
 
-#: mods/ITEMS/mcl_nether/init.lua:384
+#: mods/ITEMS/mcl_nether/init.lua:385
 msgid "Ingredients:"
 msgstr "Ingrédients :"
 

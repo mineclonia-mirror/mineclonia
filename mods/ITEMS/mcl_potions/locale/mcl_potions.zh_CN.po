@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_potions x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-06-12 05:07+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -441,62 +441,62 @@ msgid ""
 msgstr ""
 "要收集水，可用于有水的炼药锅（这会消耗一格水）或任何水源（不会消耗水）上。"
 
-#: mods/ITEMS/mcl_potions/init.lua:172
+#: mods/ITEMS/mcl_potions/init.lua:175
 msgid "Water Bottle"
 msgstr "水瓶"
 
-#: mods/ITEMS/mcl_potions/init.lua:173 mods/ITEMS/mcl_potions/init.lua:199
+#: mods/ITEMS/mcl_potions/init.lua:176 mods/ITEMS/mcl_potions/init.lua:202
 #: mods/ITEMS/mcl_potions/potions.lua:335
 #: mods/ITEMS/mcl_potions/potions.lua:343
 #: mods/ITEMS/mcl_potions/potions.lua:351
 msgid "No effect"
 msgstr "无效果"
 
-#: mods/ITEMS/mcl_potions/init.lua:174
+#: mods/ITEMS/mcl_potions/init.lua:177
 msgid ""
 "Water bottles can be used to fill cauldrons. Drinking water has no effect."
 msgstr "水瓶可用于填充炼药锅。饮用水瓶里的水没有效果。"
 
-#: mods/ITEMS/mcl_potions/init.lua:175
+#: mods/ITEMS/mcl_potions/init.lua:178
 msgid ""
 "Use the “Place” key to drink. Place this item on a cauldron to pour the "
 "water into the cauldron."
 msgstr "使用“放置”键来饮用。将此物品放置在炼药锅上可将水倒入炼药锅中。"
 
-#: mods/ITEMS/mcl_potions/init.lua:198
+#: mods/ITEMS/mcl_potions/init.lua:201
 msgid "River Water Bottle"
 msgstr "河水瓶"
 
-#: mods/ITEMS/mcl_potions/init.lua:200
+#: mods/ITEMS/mcl_potions/init.lua:203
 msgid ""
 "River water bottles can be used to fill cauldrons. Drinking it has no effect."
 msgstr "河水瓶可用于填充炼药锅。饮用河水瓶里的水没有效果。"
 
-#: mods/ITEMS/mcl_potions/init.lua:201
+#: mods/ITEMS/mcl_potions/init.lua:204
 msgid ""
 "Use the “Place” key to drink. Place this item on a cauldron to pour the "
 "river water into the cauldron."
 msgstr "使用“放置”键来饮用。将此物品放置在炼药锅上可将河水倒入炼药锅中。"
 
-#: mods/ITEMS/mcl_potions/init.lua:214
+#: mods/ITEMS/mcl_potions/init.lua:217
 msgid "Splash Water Bottle"
 msgstr "喷溅型水瓶"
 
-#: mods/ITEMS/mcl_potions/init.lua:215 mods/ITEMS/mcl_potions/init.lua:226
+#: mods/ITEMS/mcl_potions/init.lua:218 mods/ITEMS/mcl_potions/init.lua:229
 msgid "Extinguishes fire and hurts some mobs"
 msgstr "可扑灭火灾并对某些生物造成伤害"
 
-#: mods/ITEMS/mcl_potions/init.lua:216
+#: mods/ITEMS/mcl_potions/init.lua:219
 msgid ""
 "A throwable water bottle that will shatter on impact, where it extinguishes "
 "nearby fire and hurts mobs that are vulnerable to water."
 msgstr "一种可投掷的水瓶，撞击后会破碎，能扑灭附近的火并对怕水的生物造成伤害。"
 
-#: mods/ITEMS/mcl_potions/init.lua:225
+#: mods/ITEMS/mcl_potions/init.lua:228
 msgid "Lingering Water Bottle"
 msgstr "滞留型水瓶"
 
-#: mods/ITEMS/mcl_potions/init.lua:227
+#: mods/ITEMS/mcl_potions/init.lua:230
 msgid ""
 "A throwable water bottle that will shatter on impact, where it creates a "
 "cloud of water vapor that lingers on the ground for a while. This cloud "
@@ -505,11 +505,11 @@ msgstr ""
 "一种可投掷的水瓶，撞击后会破碎，产生一团水蒸气云雾，云雾会在地面停留一段时"
 "间。这团云雾能扑灭火灾并对怕水的生物造成伤害。"
 
-#: mods/ITEMS/mcl_potions/init.lua:235
+#: mods/ITEMS/mcl_potions/init.lua:238
 msgid "Glistering Melon"
 msgstr "闪烁的西瓜"
 
-#: mods/ITEMS/mcl_potions/init.lua:236
+#: mods/ITEMS/mcl_potions/init.lua:239
 msgid ""
 "This shiny melon is full of tiny gold nuggets and would be nice in an item "
 "frame. It isn't edible and not useful for anything else."

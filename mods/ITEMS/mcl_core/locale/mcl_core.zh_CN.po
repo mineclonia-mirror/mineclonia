@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_core x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-06-12 05:08+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -41,7 +41,8 @@ msgid ""
 "“Coal” refers to coal lumps obtained by digging coal ore which can be found "
 "underground. Coal is your standard furnace fuel, but it can also be used to "
 "make torches, coal blocks and a few other things."
-msgstr "煤炭是开采地下煤矿获得的煤块，是熔炉常规燃料，还能制作火把、煤炭块等物品。"
+msgstr ""
+"煤炭是开采地下煤矿获得的煤块，是熔炉常规燃料，还能制作火把、煤炭块等物品。"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:31
 msgid "Charcoal"
@@ -53,8 +54,8 @@ msgid ""
 "furnace. It has the same burning time as coal and also shares many of its "
 "crafting recipes, but it can not be used to create coal blocks."
 msgstr ""
-"木炭是将木头放入熔炉烧制得到的替代燃料，燃烧时长与煤炭一致，多数合成配方通用"
-"，但无法合成煤炭块。"
+"木炭是将木头放入熔炉烧制得到的替代燃料，燃烧时长与煤炭一致，多数合成配方通"
+"用，但无法合成煤炭块。"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:40
 msgid "Iron Nugget"
@@ -1061,8 +1062,8 @@ msgid ""
 "mycelium slowly spreads over nearby dirt. Under an opaque block or a liquid, "
 "it eventually turns back into dirt."
 msgstr ""
-"菌丝是特殊泥土，最适合蘑菇生长；无法用锄头开垦成农田。光照下会蔓延至周围泥土"
-"，被不透光方块/液体覆盖后会变回泥土。"
+"菌丝是特殊泥土，最适合蘑菇生长；无法用锄头开垦成农田。光照下会蔓延至周围泥"
+"土，被不透光方块/液体覆盖后会变回泥土。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:407
 msgid "Mycelium with Snow"
@@ -1090,7 +1091,8 @@ msgstr "泥土"
 msgid ""
 "Dirt acts as a soil for a few plants. When in light, this block may grow a "
 "grass or mycelium cover if such blocks are nearby."
-msgstr "泥土可种植部分植物；附近有草地或菌丝且光照充足时，表层会慢慢长出草皮或菌丝。"
+msgstr ""
+"泥土可种植部分植物；附近有草地或菌丝且光照充足时，表层会慢慢长出草皮或菌丝。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:481
 msgid "Coarse Dirt"
@@ -1230,95 +1232,96 @@ msgstr "在末地维度，基岩上点燃的火焰会永久燃烧永不熄灭。
 msgid "Cobblestone"
 msgstr "圆石"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:728
+#: mods/ITEMS/mcl_core/nodes_base.lua:729
 msgid "Mossy Cobblestone"
 msgstr "苔圆石"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:739
+#: mods/ITEMS/mcl_core/nodes_base.lua:740
 msgid "Block of Coal"
 msgstr "煤炭块"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:740
+#: mods/ITEMS/mcl_core/nodes_base.lua:741
 msgid ""
 "Blocks of coal are useful as a compact storage of coal and very useful as a "
 "furnace fuel. A block of coal is as efficient as 10 coal."
-msgstr "煤炭块既能紧凑储存煤炭，也是高效熔炉燃料，一块煤炭块燃烧时长等同于10个煤炭。"
+msgstr ""
+"煤炭块既能紧凑储存煤炭，也是高效熔炉燃料，一块煤炭块燃烧时长等同于10个煤炭。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:752
+#: mods/ITEMS/mcl_core/nodes_base.lua:753
 msgid "Block of Iron"
 msgstr "铁块"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:753
+#: mods/ITEMS/mcl_core/nodes_base.lua:754
 msgid ""
 "A block of iron is mostly a decorative block but also useful as a compact "
 "storage of iron ingots."
 msgstr "铁块主要用作装饰方块，也可紧凑存放铁锭。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:764
+#: mods/ITEMS/mcl_core/nodes_base.lua:765
 msgid "Block of Gold"
 msgstr "金块"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:765
+#: mods/ITEMS/mcl_core/nodes_base.lua:766
 msgid ""
 "A block of gold is mostly a shiny decorative block but also useful as a "
 "compact storage of gold ingots."
 msgstr "金块是亮眼的装饰方块，同时可以集中收纳金锭。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:776
+#: mods/ITEMS/mcl_core/nodes_base.lua:777
 msgid "Block of Diamond"
 msgstr "钻石块"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:777
+#: mods/ITEMS/mcl_core/nodes_base.lua:778
 msgid ""
 "A block of diamond is mostly a shiny decorative block but also useful as a "
 "compact storage of diamonds."
 msgstr "钻石块光泽亮丽，多用于装饰，也能批量存放钻石。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:788
+#: mods/ITEMS/mcl_core/nodes_base.lua:789
 msgid "Block of Lapis Lazuli"
 msgstr "青金石块"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:789
+#: mods/ITEMS/mcl_core/nodes_base.lua:790
 msgid ""
 "A lapis lazuli block is mostly a decorative block but also useful as a "
 "compact storage of lapis lazuli."
 msgstr "青金石块主要用作装饰方块，也可用来集中存放青金石。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:799
+#: mods/ITEMS/mcl_core/nodes_base.lua:800
 msgid "Block of Emerald"
 msgstr "绿宝石块"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:800
+#: mods/ITEMS/mcl_core/nodes_base.lua:801
 msgid ""
 "A block of emerald is mostly a shiny decorative block but also useful as a "
 "compact storage of emeralds."
 msgstr "绿宝石块光鲜亮眼，既可以装饰，也能集中存放绿宝石。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:811
+#: mods/ITEMS/mcl_core/nodes_base.lua:812
 msgid "Obsidian"
 msgstr "黑曜石"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:812
+#: mods/ITEMS/mcl_core/nodes_base.lua:813
 msgid ""
 "Obsidian is an extremely hard mineral with an enourmous blast-resistance. "
 "Obsidian is formed when water meets lava."
 msgstr "黑曜石质地极其坚硬，抗爆炸能力极强，由水与岩浆接触生成。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:822
+#: mods/ITEMS/mcl_core/nodes_base.lua:823
 msgid "Crying Obsidian"
 msgstr "哭泣黑曜石"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:823
+#: mods/ITEMS/mcl_core/nodes_base.lua:824
 msgid ""
 "Crying obsidian is a luminous obsidian that can generate as part of ruined "
 "portals."
 msgstr "哭泣黑曜石会自身发光，会自然生成在破损传送门结构中。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:834
+#: mods/ITEMS/mcl_core/nodes_base.lua:835
 msgid "Ice"
 msgstr "冰"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:835
+#: mods/ITEMS/mcl_core/nodes_base.lua:836
 msgid ""
 "Ice is a solid block usually found in cold areas. It melts near block light "
 "sources at a light level of 12 or higher. When it melts or is broken while "
@@ -1327,48 +1330,48 @@ msgstr ""
 "冰是寒冷区域常见固体方块，亮度12及以上的光源会使其融化。融化或在其他方块上方"
 "被打碎时会变为水源。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:853
+#: mods/ITEMS/mcl_core/nodes_base.lua:854
 msgid "Packed Ice"
 msgstr "压实冰"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:854
+#: mods/ITEMS/mcl_core/nodes_base.lua:855
 msgid "Packed ice is a compressed form of ice. It is opaque and solid."
 msgstr "压实冰是经过挤压成型的冰，不透明且质地坚实。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:869
+#: mods/ITEMS/mcl_core/nodes_base.lua:870
 msgid "Blue Ice"
 msgstr "蓝冰"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:870
+#: mods/ITEMS/mcl_core/nodes_base.lua:871
 msgid ""
 "Blue Ice is a still more compressed form of ice.  It is opaque and solid."
 msgstr "蓝冰是挤压程度更高的冰，同样不透明、质地坚硬。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:913
+#: mods/ITEMS/mcl_core/nodes_base.lua:914
 msgid ""
 "Frosted ice is a short-lived solid block. It melts into a water source "
 "within a few seconds."
 msgstr "霜冰存在时间很短，数秒内就会融化成水源方块。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:916
+#: mods/ITEMS/mcl_core/nodes_base.lua:917
 msgid "Frosted Ice"
 msgstr "霜冰"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1011
+#: mods/ITEMS/mcl_core/nodes_base.lua:1012
 msgid "Top Snow"
 msgstr "雪层"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1012
+#: mods/ITEMS/mcl_core/nodes_base.lua:1013
 msgid "Stackable"
 msgstr "可堆叠"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1013
+#: mods/ITEMS/mcl_core/nodes_base.lua:1014
 msgid ""
 "Top snow is a layer of snow. It melts near light sources other than the sun "
 "with a light level of 12 or higher."
 msgstr "雪层是薄层积雪，除阳光外，亮度12及以上的光源会将其融化。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1013
+#: mods/ITEMS/mcl_core/nodes_base.lua:1014
 msgid ""
 "Top snow can be stacked and has one of 8 different height levels. At levels "
 "2-8, top snow is collidable. Top snow drops 2-9 snowballs, depending on its "
@@ -1377,17 +1380,17 @@ msgstr ""
 "雪层可堆叠，共有8种高度层级；2至8层时具备碰撞体积。根据高度不同，破坏后掉落2"
 "至9个雪球。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1014
+#: mods/ITEMS/mcl_core/nodes_base.lua:1015
 msgid ""
 "This block can only be placed on full solid blocks and on another top snow "
 "(which increases its height)."
 msgstr "雪层仅能放置在完整实心方块或是其他雪层上（堆叠会提升高度）。"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1065
+#: mods/ITEMS/mcl_core/nodes_base.lua:1066
 msgid "Snow"
 msgstr "雪块"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1066
+#: mods/ITEMS/mcl_core/nodes_base.lua:1067
 msgid ""
 "This is a full block of snow. Snow of this thickness is usually found in "
 "areas of extreme cold."
@@ -1444,8 +1447,8 @@ msgid ""
 "grass block, dirt, sand, red sand, podzol or coarse dirt. When a sugar cane "
 "is broken, all sugar canes connected above will break as well."
 msgstr ""
-"甘蔗是可用于合成的作物。栽种在草地、泥土、沙子、红沙、灰化土、粗泥土且傍水时"
-"，可缓慢长至3格高。打碎下方甘蔗，上方相连甘蔗会一并断裂。"
+"甘蔗是可用于合成的作物。栽种在草地、泥土、沙子、红沙、灰化土、粗泥土且傍水"
+"时，可缓慢长至3格高。打碎下方甘蔗，上方相连甘蔗会一并断裂。"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:104
 msgid ""
@@ -1463,8 +1466,8 @@ msgid ""
 "placed on the side of solid blocks and not on glass, leaves, ice, slabs, "
 "glowstone, nor sea lanterns."
 msgstr ""
-"梯子可供垂直攀爬，仅能贴附在实心方块侧面，无法放在玻璃、树叶、冰、台阶、荧石"
-"、海灯表面。"
+"梯子可供垂直攀爬，仅能贴附在实心方块侧面，无法放在玻璃、树叶、冰、台阶、荧"
+"石、海灯表面。"
 
 #: mods/ITEMS/mcl_core/nodes_climb.lua:83
 msgid "Vines"

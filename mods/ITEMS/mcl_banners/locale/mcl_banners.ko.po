@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_banners x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,19 +12,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-#: mods/ITEMS/mcl_banners/init.lua:132
+#: mods/ITEMS/mcl_banners/init.lua:128
 msgid "And one additional layer"
 msgstr "추가 레이어 한 장"
 
-#: mods/ITEMS/mcl_banners/init.lua:134
+#: mods/ITEMS/mcl_banners/init.lua:130
 msgid "And @1 additional layers"
 msgstr "추가 레이어 @1개"
 
-#: mods/ITEMS/mcl_banners/init.lua:347
+#: mods/ITEMS/mcl_banners/init.lua:343
 msgid "Banner"
 msgstr "현수막"
 
-#: mods/ITEMS/mcl_banners/init.lua:349
+#: mods/ITEMS/mcl_banners/init.lua:345
 msgid ""
 "Banners are tall colorful decorative blocks. They can be placed on the floor "
 "and at walls. Banners can be emblazoned with a variety of patterns by "
@@ -34,21 +34,21 @@ msgstr ""
 "조대에 염료를 함께 두면 다양한 무늬를 새길 수 있고, 제작대에 염료를 많이 두어"
 "도 무늬를 만들 수 있습니다."
 
-#: mods/ITEMS/mcl_banners/init.lua:350
+#: mods/ITEMS/mcl_banners/init.lua:346
 msgid ""
 "Emblazoned banners can be emblazoned again to combine patterns. Up to @1 "
 "patterns can be layered on a banner. To wash off a banner's top-most layer, "
 "use it on a cauldron with water."
 msgstr ""
 
-#: mods/ITEMS/mcl_banners/init.lua:351
+#: mods/ITEMS/mcl_banners/init.lua:347
 msgid ""
 "An emblazoned banner can be copied by placing two banners of the same base "
 "color in the crafting table — one needs to be emblazoned, the other one must "
 "be clean."
 msgstr ""
 
-#: mods/ITEMS/mcl_banners/init.lua:465
+#: mods/ITEMS/mcl_banners/init.lua:461
 msgid "Paintable decoration"
 msgstr ""
 

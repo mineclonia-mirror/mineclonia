@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_signs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-30 22:52+0200\n"
 "PO-Revision-Date: 2026-05-03 10:57+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
@@ -43,18 +43,18 @@ msgstr ""
 "del ratón sobre el letrero. Se le puede dar color y hacer que brille. Usa "
 "harina de huesos para eliminar el color y el brillo."
 
-#: mods/ITEMS/mcl_signs/init.lua:355
+#: mods/ITEMS/mcl_signs/init.lua:351
 msgid "Enter sign text:"
 msgstr "Inserte el texto del letrero:"
 
-#: mods/ITEMS/mcl_signs/init.lua:357
+#: mods/ITEMS/mcl_signs/init.lua:353
 msgid "Maximum line length: @1"
 msgstr "Longitud máxima de línea: @1"
 
-#: mods/ITEMS/mcl_signs/init.lua:358
+#: mods/ITEMS/mcl_signs/init.lua:354
 msgid "Maximum lines: @1"
 msgstr "Número máximo de líneas: @1"
 
-#: mods/ITEMS/mcl_signs/init.lua:360
+#: mods/ITEMS/mcl_signs/init.lua:356
 msgid "Done"
 msgstr "Escribir cartel"

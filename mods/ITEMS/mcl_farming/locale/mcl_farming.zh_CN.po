@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-07-08 07:24+0200\n"
 "PO-Revision-Date: 2026-06-12 05:07+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -433,8 +433,8 @@ msgid ""
 "A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
 "which in turn grow from pumpkin seeds."
 msgstr ""
-"雕刻南瓜可以当作头盔佩戴。南瓜由南瓜梗生长而成，而南瓜梗则由南瓜种子培育长出"
-"。"
+"雕刻南瓜可以当作头盔佩戴。南瓜由南瓜梗生长而成，而南瓜梗则由南瓜种子培育长"
+"出。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:228
 msgid "Jack o'Lantern"
@@ -495,11 +495,11 @@ msgstr ""
 "会形成湿润耕地。没有水时，这个方块最终会变干。当上方出现固体方块或活塞臂伸展"
 "到上方时，这个方块会变回泥土。"
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:40
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:48
 msgid "Sweet Berry Bush (Stage @1)"
 msgstr "甜浆果丛（第@1阶段）"
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:74
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:91
 msgid "Sweet Berry"
 msgstr "甜浆果"
 
@@ -536,8 +536,8 @@ msgid ""
 "\t\t"
 msgstr ""
 "\t\t\t幼苗状态的小麦在光照下的耕地上分八个生长阶段逐步成熟。\n"
-"小麦在湿润耕地上生长速度更快。玩家可随时收割，但只有完全成熟后才能获得收成"
-"。\n"
+"小麦在湿润耕地上生长速度更快。玩家可随时收割，但只有完全成熟后才能获得收"
+"成。\n"
 "\t\t"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:49

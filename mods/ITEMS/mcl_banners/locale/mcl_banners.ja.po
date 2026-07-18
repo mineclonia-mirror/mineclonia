@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_banners x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-07-09 08:08+0000\n"
 "Last-Translator: baka_bo <baka_bo@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
@@ -14,19 +14,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2026.6.1\n"
 
-#: mods/ITEMS/mcl_banners/init.lua:132
+#: mods/ITEMS/mcl_banners/init.lua:128
 msgid "And one additional layer"
 msgstr "さらにレイヤーを1枚追加"
 
-#: mods/ITEMS/mcl_banners/init.lua:134
+#: mods/ITEMS/mcl_banners/init.lua:130
 msgid "And @1 additional layers"
 msgstr "さらにレイヤーを@1枚追加"
 
-#: mods/ITEMS/mcl_banners/init.lua:347
+#: mods/ITEMS/mcl_banners/init.lua:343
 msgid "Banner"
 msgstr "旗"
 
-#: mods/ITEMS/mcl_banners/init.lua:349
+#: mods/ITEMS/mcl_banners/init.lua:345
 msgid ""
 "Banners are tall colorful decorative blocks. They can be placed on the floor "
 "and at walls. Banners can be emblazoned with a variety of patterns by "
@@ -36,17 +36,17 @@ msgstr ""
 "で染料と一緒に使うか、作業台で複数の染料を使うことで、さまざまな模様を付ける"
 "ことができます。"
 
-#: mods/ITEMS/mcl_banners/init.lua:350
+#: mods/ITEMS/mcl_banners/init.lua:346
 msgid ""
 "Emblazoned banners can be emblazoned again to combine patterns. Up to @1 "
 "patterns can be layered on a banner. To wash off a banner's top-most layer, "
 "use it on a cauldron with water."
 msgstr ""
-"模様付きの旗には、さらに模様を追加して組み合わせることができます。旗には最"
-"大@1個まで模様を重ねられます。一番上の模様を消すには、水入りの大釜で旗を洗い"
-"ます。"
+"模様付きの旗には、さらに模様を追加して組み合わせることができます。旗には最大"
+"@1個まで模様を重ねられます。一番上の模様を消すには、水入りの大釜で旗を洗いま"
+"す。"
 
-#: mods/ITEMS/mcl_banners/init.lua:351
+#: mods/ITEMS/mcl_banners/init.lua:347
 msgid ""
 "An emblazoned banner can be copied by placing two banners of the same base "
 "color in the crafting table — one needs to be emblazoned, the other one must "
@@ -55,7 +55,7 @@ msgstr ""
 "模様付きの旗は、同じベースカラーの旗2枚を作業台で組み合わせることで複製できま"
 "す。片方は模様付き、もう片方は無地の旗である必要があります。"
 
-#: mods/ITEMS/mcl_banners/init.lua:465
+#: mods/ITEMS/mcl_banners/init.lua:461
 msgid "Paintable decoration"
 msgstr "塗装可能な装飾"
 

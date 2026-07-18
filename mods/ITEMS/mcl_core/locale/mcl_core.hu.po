@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_core x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1272,15 +1272,15 @@ msgstr ""
 msgid "Cobblestone"
 msgstr "Zúzottkő"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:728
+#: mods/ITEMS/mcl_core/nodes_base.lua:729
 msgid "Mossy Cobblestone"
 msgstr "Mohás kő"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:739
+#: mods/ITEMS/mcl_core/nodes_base.lua:740
 msgid "Block of Coal"
 msgstr "Szénblokk"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:740
+#: mods/ITEMS/mcl_core/nodes_base.lua:741
 msgid ""
 "Blocks of coal are useful as a compact storage of coal and very useful as a "
 "furnace fuel. A block of coal is as efficient as 10 coal."
@@ -1288,22 +1288,22 @@ msgstr ""
 "A szénblokkok hasznosak a szén tömör tárolására, és nagyon jól használhatók "
 "tűzhelyi üzemanyagként. Egy szénblokk annyira hatékony, mint 10 szén."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:752
+#: mods/ITEMS/mcl_core/nodes_base.lua:753
 msgid "Block of Iron"
 msgstr "Vasblokk"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:753
+#: mods/ITEMS/mcl_core/nodes_base.lua:754
 msgid ""
 "A block of iron is mostly a decorative block but also useful as a compact "
 "storage of iron ingots."
 msgstr ""
 "A vasblokk főként díszítőelem, de hasznos a vasrúd tömör tárolására is."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:764
+#: mods/ITEMS/mcl_core/nodes_base.lua:765
 msgid "Block of Gold"
 msgstr "Aranyblokk"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:765
+#: mods/ITEMS/mcl_core/nodes_base.lua:766
 msgid ""
 "A block of gold is mostly a shiny decorative block but also useful as a "
 "compact storage of gold ingots."
@@ -1311,11 +1311,11 @@ msgstr ""
 "Az aranyblokk leginkább fényes díszítőelem, de hasznos az aranyrudak tömör "
 "tárolására is."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:776
+#: mods/ITEMS/mcl_core/nodes_base.lua:777
 msgid "Block of Diamond"
 msgstr "Gyémántblokk"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:777
+#: mods/ITEMS/mcl_core/nodes_base.lua:778
 msgid ""
 "A block of diamond is mostly a shiny decorative block but also useful as a "
 "compact storage of diamonds."
@@ -1323,11 +1323,11 @@ msgstr ""
 "A gyémántblokk leginkább fényes díszítőelem, de hasznos a gyémántok tömör "
 "tárolására is."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:788
+#: mods/ITEMS/mcl_core/nodes_base.lua:789
 msgid "Block of Lapis Lazuli"
 msgstr "Lazúrkő blokk"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:789
+#: mods/ITEMS/mcl_core/nodes_base.lua:790
 msgid ""
 "A lapis lazuli block is mostly a decorative block but also useful as a "
 "compact storage of lapis lazuli."
@@ -1335,11 +1335,11 @@ msgstr ""
 "A lazúrkő blokk leginkább dekorációs célt szolgál, de hasznos a lazúrkövek "
 "tömör tárolására is."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:799
+#: mods/ITEMS/mcl_core/nodes_base.lua:800
 msgid "Block of Emerald"
 msgstr "Smaragdblokk"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:800
+#: mods/ITEMS/mcl_core/nodes_base.lua:801
 msgid ""
 "A block of emerald is mostly a shiny decorative block but also useful as a "
 "compact storage of emeralds."
@@ -1347,11 +1347,11 @@ msgstr ""
 "A smaragd blokk leginkább dekorációs célt szolgál, de hasznos a smaragdok "
 "tömör tárolására is."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:811
+#: mods/ITEMS/mcl_core/nodes_base.lua:812
 msgid "Obsidian"
 msgstr "Obszidián"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:812
+#: mods/ITEMS/mcl_core/nodes_base.lua:813
 msgid ""
 "Obsidian is an extremely hard mineral with an enourmous blast-resistance. "
 "Obsidian is formed when water meets lava."
@@ -1359,11 +1359,11 @@ msgstr ""
 "Az obszidián rendkívül kemény ásvány, hatalmas robbanásállósággal. Obszidián "
 "akkor keletkezik, amikor a víz találkozik a lávával."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:822
+#: mods/ITEMS/mcl_core/nodes_base.lua:823
 msgid "Crying Obsidian"
 msgstr "Könnyező obszidián"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:823
+#: mods/ITEMS/mcl_core/nodes_base.lua:824
 msgid ""
 "Crying obsidian is a luminous obsidian that can generate as part of ruined "
 "portals."
@@ -1371,11 +1371,11 @@ msgstr ""
 "A könnyező obszidián fénylő obszidián, amely romos portálok részeként "
 "keletkezhet."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:834
+#: mods/ITEMS/mcl_core/nodes_base.lua:835
 msgid "Ice"
 msgstr "Jég"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:835
+#: mods/ITEMS/mcl_core/nodes_base.lua:836
 msgid ""
 "Ice is a solid block usually found in cold areas. It melts near block light "
 "sources at a light level of 12 or higher. When it melts or is broken while "
@@ -1385,24 +1385,24 @@ msgstr ""
 "blokkok fényforrása mellett, ha a fényerő szintje 12 vagy magasabb. Ha olvad "
 "vagy eltörik egy másik blokk tetején, vízforrássá alakul."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:853
+#: mods/ITEMS/mcl_core/nodes_base.lua:854
 msgid "Packed Ice"
 msgstr "Tömör jég"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:854
+#: mods/ITEMS/mcl_core/nodes_base.lua:855
 msgid "Packed ice is a compressed form of ice. It is opaque and solid."
 msgstr "A tömör jég a jég sűrített formája. Áttetszőtlen és tömör."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:869
+#: mods/ITEMS/mcl_core/nodes_base.lua:870
 msgid "Blue Ice"
 msgstr "Kék jég"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:870
+#: mods/ITEMS/mcl_core/nodes_base.lua:871
 msgid ""
 "Blue Ice is a still more compressed form of ice.  It is opaque and solid."
 msgstr "A kék jég a jég még sűrítettebb formája. Áttetszőtlen és tömör."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:913
+#: mods/ITEMS/mcl_core/nodes_base.lua:914
 msgid ""
 "Frosted ice is a short-lived solid block. It melts into a water source "
 "within a few seconds."
@@ -1410,19 +1410,19 @@ msgstr ""
 "A fagyott jég rövid életű tömör blokk. Néhány másodpercen belül vízforrássá "
 "olvad."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:916
+#: mods/ITEMS/mcl_core/nodes_base.lua:917
 msgid "Frosted Ice"
 msgstr "Fagyott jég"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1011
+#: mods/ITEMS/mcl_core/nodes_base.lua:1012
 msgid "Top Snow"
 msgstr "Hóréteg"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1012
+#: mods/ITEMS/mcl_core/nodes_base.lua:1013
 msgid "Stackable"
 msgstr "Pakolható"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1013
+#: mods/ITEMS/mcl_core/nodes_base.lua:1014
 msgid ""
 "Top snow is a layer of snow. It melts near light sources other than the sun "
 "with a light level of 12 or higher."
@@ -1430,7 +1430,7 @@ msgstr ""
 "A tetején lévő hó egy hó réteg. Olvad, ha nem a nap a fényforrás, és a "
 "fényerő szintje 12 vagy magasabb."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1013
+#: mods/ITEMS/mcl_core/nodes_base.lua:1014
 msgid ""
 "Top snow can be stacked and has one of 8 different height levels. At levels "
 "2-8, top snow is collidable. Top snow drops 2-9 snowballs, depending on its "
@@ -1440,7 +1440,7 @@ msgstr ""
 "rendelkezhet. A 2-8 szinteken a hó ütközhető. A tetején lévő hó 2-9 hógolyót "
 "ad, a magasságától függően."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1014
+#: mods/ITEMS/mcl_core/nodes_base.lua:1015
 msgid ""
 "This block can only be placed on full solid blocks and on another top snow "
 "(which increases its height)."
@@ -1448,11 +1448,11 @@ msgstr ""
 "Ez a blokk csak teljesen tömör blokkokra és más tetején lévő hóra helyezhető "
 "(amely növeli a magasságát)."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1065
+#: mods/ITEMS/mcl_core/nodes_base.lua:1066
 msgid "Snow"
 msgstr "Hó"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1066
+#: mods/ITEMS/mcl_core/nodes_base.lua:1067
 msgid ""
 "This is a full block of snow. Snow of this thickness is usually found in "
 "areas of extreme cold."

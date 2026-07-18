@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 21:41+0200\n"
+"POT-Creation-Date: 2026-07-18 15:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,23 +17,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: mods/ITEMS/mcl_beehives/init.lua:90 mods/ITEMS/mcl_beehives/init.lua:110
-#: mods/ITEMS/mcl_beehives/init.lua:128
+#: mods/ITEMS/mcl_beehives/init.lua:97 mods/ITEMS/mcl_beehives/init.lua:117
+#: mods/ITEMS/mcl_beehives/init.lua:135
 msgid "Beehive"
 msgstr ""
 
-#: mods/ITEMS/mcl_beehives/init.lua:91 mods/ITEMS/mcl_beehives/init.lua:111
-#: mods/ITEMS/mcl_beehives/init.lua:129
+#: mods/ITEMS/mcl_beehives/init.lua:98 mods/ITEMS/mcl_beehives/init.lua:118
+#: mods/ITEMS/mcl_beehives/init.lua:136
 msgid "Artificial bee nest."
 msgstr ""
 
-#: mods/ITEMS/mcl_beehives/init.lua:147 mods/ITEMS/mcl_beehives/init.lua:167
-#: mods/ITEMS/mcl_beehives/init.lua:185
+#: mods/ITEMS/mcl_beehives/init.lua:154 mods/ITEMS/mcl_beehives/init.lua:174
+#: mods/ITEMS/mcl_beehives/init.lua:192
 msgid "Bee Nest"
 msgstr ""
 
-#: mods/ITEMS/mcl_beehives/init.lua:148 mods/ITEMS/mcl_beehives/init.lua:168
-#: mods/ITEMS/mcl_beehives/init.lua:186
+#: mods/ITEMS/mcl_beehives/init.lua:155 mods/ITEMS/mcl_beehives/init.lua:175
+#: mods/ITEMS/mcl_beehives/init.lua:193
 msgid ""
 "A naturally generating block that houses bees and a tasty treat...if you can "
 "get it."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-07-08 07:24+0200\n"
 "PO-Revision-Date: 2026-07-16 21:07+0000\n"
 "Last-Translator: 2t6vder <2t6vder@noreply.codeberg.org>\n"
 "Language-Team: Russian <https://translate.codeberg.org/projects/mineclonia/"
@@ -536,11 +536,11 @@ msgstr ""
 "высохнет. Этот блок превратится обратно в землю, если поместить на него "
 "твёрдый блок, или действовать на блок поршнем."
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:40
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:48
 msgid "Sweet Berry Bush (Stage @1)"
 msgstr "Куст сладкой ягоды (стадия @1)"
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:74
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:91
 msgid "Sweet Berry"
 msgstr "Сладкая ягода"
 

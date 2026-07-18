@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_smithing_table x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-18 18:03+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,11 +16,11 @@ msgstr ""
 msgid "Upgrade Gear"
 msgstr "장비 강화"
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:135
+#: mods/ITEMS/mcl_smithing_table/init.lua:145
 msgid "Smithing Table"
 msgstr "대장장이 작업대"
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:136
+#: mods/ITEMS/mcl_smithing_table/init.lua:146
 msgid ""
 "A smithing table is a utility block used to alter tools and armor at the "
 "cost of a smithing template and the appropriate material. This is the only "
@@ -32,7 +32,7 @@ msgstr ""
 "아몬드 장비를 네더라이트로 업그레이드하는 유일한 방법입니다. 또한 도구 대장장"
 "이의 작업장 블록으로도 사용됩니다."
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:137
+#: mods/ITEMS/mcl_smithing_table/init.lua:147
 msgid ""
 "Rightclick on a smithing table to access its interface. Put armor or tools "
 "in the upper left slot. The top right slot is reserved for mineral items. "
@@ -44,7 +44,7 @@ msgstr ""
 "장장이 형판용입니다. 다이아몬드 갑옷과 도구를 네더라이트로 업그레이드하려면 "
 "네더라이트 업그레이드 형판이 필요합니다."
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:138
+#: mods/ITEMS/mcl_smithing_table/init.lua:148
 msgid ""
 "To trim your armor, you need a mineral item and a smithing template. Each "
 "piece of armor can be given an trimming pattern. The items are consumed "
@@ -52,7 +52,7 @@ msgid ""
 "template."
 msgstr ""
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:139
+#: mods/ITEMS/mcl_smithing_table/init.lua:149
 msgid ""
 "List of mineral items:\n"
 "• Amethyst Shard\n"

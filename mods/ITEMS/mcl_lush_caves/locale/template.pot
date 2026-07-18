@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-10 04:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,10 +24,10 @@ msgstr ""
 msgid "Small Dripleaf"
 msgstr ""
 
-#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:203
-#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:204
-#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:205
-#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:206
+#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:219
+#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:220
+#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:221
+#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:222
 msgid "Big Dripleaf"
 msgstr ""
 
@@ -100,7 +100,7 @@ msgid "Rooted dirt is type of dirt found in lush caves."
 msgstr ""
 
 #: mods/ITEMS/mcl_lush_caves/nodes.lua:270
-msgid "Glow berry"
+msgid "Glow Berry"
 msgstr ""
 
 #: mods/ITEMS/mcl_lush_caves/nodes.lua:271

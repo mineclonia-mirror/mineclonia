@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_core x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-06-01 13:07+0000\n"
 "Last-Translator: cuche <cuche@noreply.codeberg.org>\n"
 "Language-Team: Italian <https://translate.codeberg.org/projects/mineclonia/"
@@ -1283,15 +1283,15 @@ msgstr "Nell'End, accendere un fuoco su questo blocco creerà un fuoco eterno."
 msgid "Cobblestone"
 msgstr "Pietrisco"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:728
+#: mods/ITEMS/mcl_core/nodes_base.lua:729
 msgid "Mossy Cobblestone"
 msgstr "Pietrisco muschioso"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:739
+#: mods/ITEMS/mcl_core/nodes_base.lua:740
 msgid "Block of Coal"
 msgstr "Blocco di carbone"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:740
+#: mods/ITEMS/mcl_core/nodes_base.lua:741
 msgid ""
 "Blocks of coal are useful as a compact storage of coal and very useful as a "
 "furnace fuel. A block of coal is as efficient as 10 coal."
@@ -1300,11 +1300,11 @@ msgstr ""
 "come carburante per le fornaci. Un blocco di carbone dura quanto 10 pezzi di "
 "carbone."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:752
+#: mods/ITEMS/mcl_core/nodes_base.lua:753
 msgid "Block of Iron"
 msgstr "Blocco di ferro"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:753
+#: mods/ITEMS/mcl_core/nodes_base.lua:754
 msgid ""
 "A block of iron is mostly a decorative block but also useful as a compact "
 "storage of iron ingots."
@@ -1312,11 +1312,11 @@ msgstr ""
 "Un blocco di ferro è principalmente un blocco decorativo ma è anche utile "
 "per immagazzinare efficacemente i lingotti di ferro."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:764
+#: mods/ITEMS/mcl_core/nodes_base.lua:765
 msgid "Block of Gold"
 msgstr "Blocco d'oro"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:765
+#: mods/ITEMS/mcl_core/nodes_base.lua:766
 msgid ""
 "A block of gold is mostly a shiny decorative block but also useful as a "
 "compact storage of gold ingots."
@@ -1324,11 +1324,11 @@ msgstr ""
 "Un blocco d'oro è principalmente un blocco decorativo ma è anche utile per "
 "immagazzinare efficacemente i lingotti d'oro."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:776
+#: mods/ITEMS/mcl_core/nodes_base.lua:777
 msgid "Block of Diamond"
 msgstr "Blocco di diamante"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:777
+#: mods/ITEMS/mcl_core/nodes_base.lua:778
 msgid ""
 "A block of diamond is mostly a shiny decorative block but also useful as a "
 "compact storage of diamonds."
@@ -1336,11 +1336,11 @@ msgstr ""
 "Un blocco di diamante è principalmente un blocco decorativo prezioso ma è "
 "anche utile per immagazzinare efficacemente i diamanti."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:788
+#: mods/ITEMS/mcl_core/nodes_base.lua:789
 msgid "Block of Lapis Lazuli"
 msgstr "Blocco di lapislazzuli"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:789
+#: mods/ITEMS/mcl_core/nodes_base.lua:790
 msgid ""
 "A lapis lazuli block is mostly a decorative block but also useful as a "
 "compact storage of lapis lazuli."
@@ -1348,11 +1348,11 @@ msgstr ""
 "Un blocco di lapislazuli è principalmente un blocco decorativo ma è anche "
 "utile per immagazzinare efficacemente i lapislazuli."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:799
+#: mods/ITEMS/mcl_core/nodes_base.lua:800
 msgid "Block of Emerald"
 msgstr "Blocco di smeraldo"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:800
+#: mods/ITEMS/mcl_core/nodes_base.lua:801
 msgid ""
 "A block of emerald is mostly a shiny decorative block but also useful as a "
 "compact storage of emeralds."
@@ -1360,11 +1360,11 @@ msgstr ""
 "Un blocco di smeraldo è principalmente un blocco decorativo prezioso ma è "
 "anche utile per immagazzinare efficacemente gli smeraldi."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:811
+#: mods/ITEMS/mcl_core/nodes_base.lua:812
 msgid "Obsidian"
 msgstr "Ossidiana"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:812
+#: mods/ITEMS/mcl_core/nodes_base.lua:813
 msgid ""
 "Obsidian is an extremely hard mineral with an enourmous blast-resistance. "
 "Obsidian is formed when water meets lava."
@@ -1373,11 +1373,11 @@ msgstr ""
 "esplosioni. L'ossidiana si forma quando l'acqua entra in contatto con un "
 "blocco di lava."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:822
+#: mods/ITEMS/mcl_core/nodes_base.lua:823
 msgid "Crying Obsidian"
 msgstr "Ossidiana piangente"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:823
+#: mods/ITEMS/mcl_core/nodes_base.lua:824
 msgid ""
 "Crying obsidian is a luminous obsidian that can generate as part of ruined "
 "portals."
@@ -1385,11 +1385,11 @@ msgstr ""
 "L'ossidiana piangente è una variante luminosa dell'ossidiana che fa parte "
 "dei portali rovinati."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:834
+#: mods/ITEMS/mcl_core/nodes_base.lua:835
 msgid "Ice"
 msgstr "Ghiaccio"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:835
+#: mods/ITEMS/mcl_core/nodes_base.lua:836
 msgid ""
 "Ice is a solid block usually found in cold areas. It melts near block light "
 "sources at a light level of 12 or higher. When it melts or is broken while "
@@ -1399,25 +1399,25 @@ msgstr ""
 "se esposto ad un livello di luce pari o superiore a 12. Quando si fonde o "
 "viene rotto, diventa una sorgente d'acqua."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:853
+#: mods/ITEMS/mcl_core/nodes_base.lua:854
 msgid "Packed Ice"
 msgstr "Ghiaccio compatto"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:854
+#: mods/ITEMS/mcl_core/nodes_base.lua:855
 msgid "Packed ice is a compressed form of ice. It is opaque and solid."
 msgstr ""
 "Il ghiaccio compatto è un blocco di ghiaccio compresso. È opaco e solido."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:869
+#: mods/ITEMS/mcl_core/nodes_base.lua:870
 msgid "Blue Ice"
 msgstr ""
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:870
+#: mods/ITEMS/mcl_core/nodes_base.lua:871
 msgid ""
 "Blue Ice is a still more compressed form of ice.  It is opaque and solid."
 msgstr ""
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:913
+#: mods/ITEMS/mcl_core/nodes_base.lua:914
 msgid ""
 "Frosted ice is a short-lived solid block. It melts into a water source "
 "within a few seconds."
@@ -1425,19 +1425,19 @@ msgstr ""
 "Il ghiaccio azzurro è un blocco con vita breve. Si scioglie in una sorgente "
 "d'acqua dopo alcuni secondi."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:916
+#: mods/ITEMS/mcl_core/nodes_base.lua:917
 msgid "Frosted Ice"
 msgstr "Ghiaccio azzurro"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1011
+#: mods/ITEMS/mcl_core/nodes_base.lua:1012
 msgid "Top Snow"
 msgstr "Neve"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1012
+#: mods/ITEMS/mcl_core/nodes_base.lua:1013
 msgid "Stackable"
 msgstr "Sovrapponibile"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1013
+#: mods/ITEMS/mcl_core/nodes_base.lua:1014
 msgid ""
 "Top snow is a layer of snow. It melts near light sources other than the sun "
 "with a light level of 12 or higher."
@@ -1445,7 +1445,7 @@ msgstr ""
 "Uno strato di neve. Si fonde se vicino ad una fonte luminosa di livello 12 o "
 "superiore."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1013
+#: mods/ITEMS/mcl_core/nodes_base.lua:1014
 msgid ""
 "Top snow can be stacked and has one of 8 different height levels. At levels "
 "2-8, top snow is collidable. Top snow drops 2-9 snowballs, depending on its "
@@ -1455,7 +1455,7 @@ msgstr ""
 "soggetta a collisioni. La neve lascia da 2 a 9 palle di neve a seconda "
 "dell'altezza."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1014
+#: mods/ITEMS/mcl_core/nodes_base.lua:1015
 msgid ""
 "This block can only be placed on full solid blocks and on another top snow "
 "(which increases its height)."
@@ -1463,11 +1463,11 @@ msgstr ""
 "Questo blocco può essere posizionato solo sopra un blocco solido o della "
 "neve (di cui ne aumenta l'altezza)."
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1065
+#: mods/ITEMS/mcl_core/nodes_base.lua:1066
 msgid "Snow"
 msgstr "Blocco di neve"
 
-#: mods/ITEMS/mcl_core/nodes_base.lua:1066
+#: mods/ITEMS/mcl_core/nodes_base.lua:1067
 msgid ""
 "This is a full block of snow. Snow of this thickness is usually found in "
 "areas of extreme cold."

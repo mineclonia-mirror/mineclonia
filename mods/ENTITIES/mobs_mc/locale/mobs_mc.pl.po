@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-10 05:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -66,11 +66,11 @@ msgstr "Krowa"
 msgid "Mooshroom"
 msgstr "Grzyb"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:277 mods/ENTITIES/mobs_mc/creeper.lua:317
+#: mods/ENTITIES/mobs_mc/creeper.lua:230 mods/ENTITIES/mobs_mc/creeper.lua:270
 msgid "Creeper"
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:300
+#: mods/ENTITIES/mobs_mc/creeper.lua:253
 msgid "Charged Creeper"
 msgstr "Naładowany Creeper"
 
@@ -98,7 +98,7 @@ msgid "Ender Dragon"
 msgstr "Smok Kresu"
 
 #: mods/ENTITIES/mobs_mc/enderman.lua:235
-#: mods/ENTITIES/mobs_mc/enderman.lua:757
+#: mods/ENTITIES/mobs_mc/enderman.lua:759
 msgid "Enderman"
 msgstr ""
 
@@ -106,11 +106,11 @@ msgstr ""
 msgid "Endermite"
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/ghast.lua:17 mods/ENTITIES/mobs_mc/ghast.lua:233
+#: mods/ENTITIES/mobs_mc/ghast.lua:17 mods/ENTITIES/mobs_mc/ghast.lua:241
 msgid "Ghast"
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/ghast.lua:339
+#: mods/ENTITIES/mobs_mc/ghast.lua:291
 msgid "Ghast Fireball"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgid ""
 msgstr ""
 
 #: mods/ENTITIES/mobs_mc/guardian_elder.lua:11
-#: mods/ENTITIES/mobs_mc/guardian_elder.lua:124
+#: mods/ENTITIES/mobs_mc/guardian_elder.lua:130
 msgid "Elder Guardian"
 msgstr "Starszy strażnik"
 
@@ -243,19 +243,19 @@ msgstr "na trawie, liściach lub kłodach"
 msgid "Pig"
 msgstr "Świnia"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1941
+#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1945
 msgid "Piglin"
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1569 mods/ENTITIES/mobs_mc/piglin.lua:1942
+#: mods/ENTITIES/mobs_mc/piglin.lua:1573 mods/ENTITIES/mobs_mc/piglin.lua:1946
 msgid "Piglin Brute"
 msgstr "Brutalny piglin"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1721 mods/ENTITIES/mobs_mc/zombiepig.lua:5
+#: mods/ENTITIES/mobs_mc/piglin.lua:1725 mods/ENTITIES/mobs_mc/zombiepig.lua:5
 msgid "Zombified Piglin"
 msgstr "Zombifikowany piglin"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1943
+#: mods/ENTITIES/mobs_mc/piglin.lua:1947
 msgid "Zombie Piglin"
 msgstr "Piglin zombi"
 
@@ -430,7 +430,7 @@ msgid "Vex"
 msgstr "Dręczyciel"
 
 #: mods/ENTITIES/mobs_mc/villager.lua:973
-#: mods/ENTITIES/mobs_mc/villager.lua:6770
+#: mods/ENTITIES/mobs_mc/villager.lua:6786
 msgid "Villager"
 msgstr "Osadnik"
 
@@ -490,23 +490,23 @@ msgstr "Zbrojmistrz"
 msgid "Nitwit"
 msgstr "Głupek"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1953
+#: mods/ENTITIES/mobs_mc/villager.lua:1966
 msgid "Novice"
 msgstr "Nowicjusz"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1954
+#: mods/ENTITIES/mobs_mc/villager.lua:1967
 msgid "Apprentice"
 msgstr "Uczeń"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1955
+#: mods/ENTITIES/mobs_mc/villager.lua:1968
 msgid "Journeyman"
 msgstr "Czeladnik"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1956
+#: mods/ENTITIES/mobs_mc/villager.lua:1969
 msgid "Expert"
 msgstr "Ekspert"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1957
+#: mods/ENTITIES/mobs_mc/villager.lua:1970
 msgid "Master"
 msgstr "Mistrz"
 
@@ -531,13 +531,13 @@ msgid "Zombie Villager"
 msgstr "Osadnik zombie"
 
 #: mods/ENTITIES/mobs_mc/wandering_trader.lua:12
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:543
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:546
 msgid "Wandering Trader"
 msgstr "Kupiec wędrowny"
 
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:560
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:678
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:679
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:563
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:681
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:682
 msgid "Trader Llama"
 msgstr "Handlarz lam"
 
@@ -545,8 +545,8 @@ msgstr "Handlarz lam"
 msgid "Witch"
 msgstr "Wiedźma"
 
-#: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:339
-#: mods/ENTITIES/mobs_mc/wither.lua:979
+#: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:301
+#: mods/ENTITIES/mobs_mc/wither.lua:933
 msgid "Wither"
 msgstr ""
 
@@ -558,31 +558,31 @@ msgstr "Wilk"
 msgid "on grass, snow blocks, coarse dirt, or podzol"
 msgstr "na trawie, blokach śniegu, twardej ziemi lub bielicy"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:62 mods/ENTITIES/mobs_mc/zombie.lua:863
+#: mods/ENTITIES/mobs_mc/zombie.lua:62 mods/ENTITIES/mobs_mc/zombie.lua:866
 msgid "Zombie"
 msgstr ""
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:783
+#: mods/ENTITIES/mobs_mc/zombie.lua:786
 msgid "Baby Zombie"
 msgstr "Dziecko zombie"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:809 mods/ENTITIES/mobs_mc/zombie.lua:862
+#: mods/ENTITIES/mobs_mc/zombie.lua:812 mods/ENTITIES/mobs_mc/zombie.lua:865
 msgid "Husk"
 msgstr "Posuch"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:838
+#: mods/ENTITIES/mobs_mc/zombie.lua:841
 msgid "Baby Husk"
 msgstr "Dziecko posuch"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:897
+#: mods/ENTITIES/mobs_mc/zombie.lua:900
 msgid "5% of Zombies will spawn as their baby variants."
 msgstr "5% zombie odradza się w dziecięcej postaci."
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:936
+#: mods/ENTITIES/mobs_mc/zombie.lua:939
 msgid "5% of Husks will spawn as their baby variants."
 msgstr "5% posuchów odradza się w dziecięcej postaci."
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:937
+#: mods/ENTITIES/mobs_mc/zombie.lua:940
 msgid "Husks will only spawn on nodes that are exposed to sky."
 msgstr ""
 

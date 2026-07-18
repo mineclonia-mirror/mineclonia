@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_banners x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,19 +12,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-#: mods/ITEMS/mcl_banners/init.lua:132
+#: mods/ITEMS/mcl_banners/init.lua:128
 msgid "And one additional layer"
 msgstr "Přidat další vrstvu"
 
-#: mods/ITEMS/mcl_banners/init.lua:134
+#: mods/ITEMS/mcl_banners/init.lua:130
 msgid "And @1 additional layers"
 msgstr "Přidá @1 další vrstvu/vrstvy"
 
-#: mods/ITEMS/mcl_banners/init.lua:347
+#: mods/ITEMS/mcl_banners/init.lua:343
 msgid "Banner"
 msgstr "Baner"
 
-#: mods/ITEMS/mcl_banners/init.lua:349
+#: mods/ITEMS/mcl_banners/init.lua:345
 msgid ""
 "Banners are tall colorful decorative blocks. They can be placed on the floor "
 "and at walls. Banners can be emblazoned with a variety of patterns by "
@@ -34,7 +34,7 @@ msgstr ""
 "na stěny. Lze je ozdobit různými vzory pomocí barviva v tkalcovském stavu "
 "nebo pomocí mnoha barvi pomocí pracovního stolu."
 
-#: mods/ITEMS/mcl_banners/init.lua:350
+#: mods/ITEMS/mcl_banners/init.lua:346
 msgid ""
 "Emblazoned banners can be emblazoned again to combine patterns. Up to @1 "
 "patterns can be layered on a banner. To wash off a banner's top-most layer, "
@@ -44,7 +44,7 @@ msgstr ""
 "banner lze vrstvit až @1 vzorů. Chcete-li smýt vrchní vrstvu banneru, "
 "použijte jej na kotel s vodou."
 
-#: mods/ITEMS/mcl_banners/init.lua:351
+#: mods/ITEMS/mcl_banners/init.lua:347
 msgid ""
 "An emblazoned banner can be copied by placing two banners of the same base "
 "color in the crafting table — one needs to be emblazoned, the other one must "
@@ -53,7 +53,7 @@ msgstr ""
 "Ozdobený prapor lze zkopírovat tak, že do řemeslného stolu umístíte dva "
 "prapory stejné základní barvy – jeden musí být ozdobený, druhý čistý."
 
-#: mods/ITEMS/mcl_banners/init.lua:465
+#: mods/ITEMS/mcl_banners/init.lua:461
 msgid "Paintable decoration"
 msgstr "Možnost natírání dekorací"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_commands x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-01 03:10+0200\n"
 "PO-Revision-Date: 2026-07-10 00:08+0000\n"
 "Last-Translator: baka_bo <baka_bo@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
@@ -78,15 +78,15 @@ msgstr "<X>,<Y>,<Z> <ノード文字列>"
 msgid "Set node at given position"
 msgstr "指定された位置にノードを設定"
 
-#: mods/MISC/mcl_commands/setblock.lua:15
+#: mods/MISC/mcl_commands/setblock.lua:19
 msgid "Invalid node"
 msgstr "無効なノード"
 
-#: mods/MISC/mcl_commands/setblock.lua:18
+#: mods/MISC/mcl_commands/setblock.lua:22
 msgid "@1 spawned."
 msgstr "@1がスポーンしました。"
 
-#: mods/MISC/mcl_commands/setblock.lua:20
+#: mods/MISC/mcl_commands/setblock.lua:24
 msgid "Invalid parameters (see /help setblock)"
 msgstr "無効なパラメータ（/help setblock を参照の事）"
 
@@ -109,3 +109,7 @@ msgstr "対象が無効です！！"
 #: mods/MISC/mcl_commands/summon.lua:8
 msgid "Only peaceful mobs allowed!"
 msgstr "平和的なモブのみ許されます！"
+
+#: mods/MISC/mcl_commands/version.lua:65
+msgid "Displays the Mineclonia version"
+msgstr ""

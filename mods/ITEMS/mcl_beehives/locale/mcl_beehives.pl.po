@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_beehives x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 15:26+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,23 +12,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-#: mods/ITEMS/mcl_beehives/init.lua:90 mods/ITEMS/mcl_beehives/init.lua:110
-#: mods/ITEMS/mcl_beehives/init.lua:128
+#: mods/ITEMS/mcl_beehives/init.lua:97 mods/ITEMS/mcl_beehives/init.lua:117
+#: mods/ITEMS/mcl_beehives/init.lua:135
 msgid "Beehive"
 msgstr "Ul dla pszczół"
 
-#: mods/ITEMS/mcl_beehives/init.lua:91 mods/ITEMS/mcl_beehives/init.lua:111
-#: mods/ITEMS/mcl_beehives/init.lua:129
+#: mods/ITEMS/mcl_beehives/init.lua:98 mods/ITEMS/mcl_beehives/init.lua:118
+#: mods/ITEMS/mcl_beehives/init.lua:136
 msgid "Artificial bee nest."
 msgstr "Sztuczne gniazdo dla pszczół."
 
-#: mods/ITEMS/mcl_beehives/init.lua:147 mods/ITEMS/mcl_beehives/init.lua:167
-#: mods/ITEMS/mcl_beehives/init.lua:185
+#: mods/ITEMS/mcl_beehives/init.lua:154 mods/ITEMS/mcl_beehives/init.lua:174
+#: mods/ITEMS/mcl_beehives/init.lua:192
 msgid "Bee Nest"
 msgstr "Barć"
 
-#: mods/ITEMS/mcl_beehives/init.lua:148 mods/ITEMS/mcl_beehives/init.lua:168
-#: mods/ITEMS/mcl_beehives/init.lua:186
+#: mods/ITEMS/mcl_beehives/init.lua:155 mods/ITEMS/mcl_beehives/init.lua:175
+#: mods/ITEMS/mcl_beehives/init.lua:193
 msgid ""
 "A naturally generating block that houses bees and a tasty treat...if you can "
 "get it."

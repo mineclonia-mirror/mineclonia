@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-12 07:46+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: mtt_convert 0.1.1\n"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:744
+#: mods/ENTITIES/mcl_mobs/api.lua:738
 msgid ""
 "Remove all, nametagged or tamed mobs within the specified distance or "
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
@@ -22,15 +22,15 @@ msgstr ""
 "nebo všude. Pokud není zadáno, odstraní všechny moby kromě ochočených a "
 "pojmenovaných."
 
-#: mods/ENTITIES/mcl_mobs/api.lua:757 mods/ENTITIES/mcl_mobs/api.lua:764
+#: mods/ENTITIES/mcl_mobs/api.lua:751 mods/ENTITIES/mcl_mobs/api.lua:758
 msgid "Invalid syntax."
 msgstr "Nesprávná syntaxe."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:681
+#: mods/ENTITIES/mcl_mobs/init.lua:682
 msgid "This allows you to place a single mob."
 msgstr "Umožní vytvořit jednu příšeru."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:682
+#: mods/ENTITIES/mcl_mobs/init.lua:683
 msgid ""
 "Just place it where you want the mob to appear. Animals will spawn tamed, "
 "unless you hold down the sneak key while placing. If you place this on a mob "
@@ -818,8 +818,8 @@ msgid ""
 " spawn_mob skeleton:var<jump_height=NUM10>:\n"
 " this setting the skelly's jump height to 10. if you want to make multiple "
 "changes to a mob, you can, example: \n"
-" spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::"
-"var<fly_in=air>::var<fly=true>:\n"
+" spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 " etc."
 msgstr ""
 "spawn_mob je chat příkaz, který vám umožňuje zadat jméno moba, aniž byste "
@@ -834,8 +834,8 @@ msgstr ""
 "změně číselné hodnoty vždy používejte předponu ‚NUM‘, příklad:\n"
 " spawn_mob skeleton:var<výška skoku=NUM10>:\n"
 " Pokud chcete u moba provést více změn, můžete, příklad::\n"
-" spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::"
-"var<fly_in=air>::var<fly=true>:\n"
+" spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 " atd."
 
 #: mods/ENTITIES/mcl_mobs/spawning.lua:1210

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-07-08 07:24+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -525,11 +525,11 @@ msgstr ""
 "乾いてしまいます。上に固体ブロックが現れたり、上にピストンアームが伸びたりす"
 "ると、このブロックは土に戻ります。"
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:40
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:48
 msgid "Sweet Berry Bush (Stage @1)"
 msgstr "スイートベリーの低木（第@1段階）"
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:74
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:91
 msgid "Sweet Berry"
 msgstr "スイートベリー"
 

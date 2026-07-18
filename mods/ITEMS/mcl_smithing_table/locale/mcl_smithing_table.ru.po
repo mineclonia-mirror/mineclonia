@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_smithing_table x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-18 18:03+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,11 +16,11 @@ msgstr ""
 msgid "Upgrade Gear"
 msgstr "Улучшить"
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:135
+#: mods/ITEMS/mcl_smithing_table/init.lua:145
 msgid "Smithing Table"
 msgstr "Кузнечный стол"
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:136
+#: mods/ITEMS/mcl_smithing_table/init.lua:146
 msgid ""
 "A smithing table is a utility block used to alter tools and armor at the "
 "cost of a smithing template and the appropriate material. This is the only "
@@ -33,7 +33,7 @@ msgstr ""
 "снаряжение с помощью нетерита. Он также служит в качестве рабочего места "
 "кузнеца."
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:137
+#: mods/ITEMS/mcl_smithing_table/init.lua:147
 msgid ""
 "Rightclick on a smithing table to access its interface. Put armor or tools "
 "in the upper left slot. The top right slot is reserved for mineral items. "
@@ -46,7 +46,7 @@ msgstr ""
 "кузнечных шаблонов. Чтобы улучшить алмазную броню и инструменты с помощью "
 "нетерита, необходим шаблон улучшения нетерита."
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:138
+#: mods/ITEMS/mcl_smithing_table/init.lua:148
 msgid ""
 "To trim your armor, you need a mineral item and a smithing template. Each "
 "piece of armor can be given an trimming pattern. The items are consumed "
@@ -57,7 +57,7 @@ msgstr ""
 "Каждому предмету брони можно подобрать свой узор. Минералы расходуются после "
 "отделки, и доспех получает узор, заданный шаблоном."
 
-#: mods/ITEMS/mcl_smithing_table/init.lua:139
+#: mods/ITEMS/mcl_smithing_table/init.lua:149
 msgid ""
 "List of mineral items:\n"
 "• Amethyst Shard\n"

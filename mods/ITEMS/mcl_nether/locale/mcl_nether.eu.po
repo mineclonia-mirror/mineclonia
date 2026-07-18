@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_nether x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-10 05:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -202,7 +202,7 @@ msgstr "Netherita zatiak"
 msgid "Netherite scrap is a crafting ingredient for netherite ingots."
 msgstr "Netherita zatiak netherita lingoteak sortzeko erabiltzen dira."
 
-#: mods/ITEMS/mcl_nether/init.lua:363 mods/ITEMS/mcl_nether/init.lua:384
+#: mods/ITEMS/mcl_nether/init.lua:363 mods/ITEMS/mcl_nether/init.lua:385
 msgid "Netherite Ingot"
 msgstr "Netheritazko lingotea"
 
@@ -214,15 +214,15 @@ msgstr ""
 "Netheritazko lingoteak errementeriako mahai batean erabil daitezke, itemak "
 "netheritara eguneratzeko."
 
-#: mods/ITEMS/mcl_nether/init.lua:368
+#: mods/ITEMS/mcl_nether/init.lua:369
 msgid "Netherite Material"
 msgstr ""
 
-#: mods/ITEMS/mcl_nether/init.lua:373
+#: mods/ITEMS/mcl_nether/init.lua:374
 msgid "Nether Brick"
 msgstr "Nether adreiluak"
 
-#: mods/ITEMS/mcl_nether/init.lua:374
+#: mods/ITEMS/mcl_nether/init.lua:375
 msgid ""
 "Nether bricks are the main crafting ingredient for crafting nether brick "
 "blocks and nether fences."
@@ -230,23 +230,23 @@ msgstr ""
 "Nether-eko adreiluak dira nether-eko adreiluzko blokeak eta hesiak "
 "fabrikatzeko osagai nagusia."
 
-#: mods/ITEMS/mcl_nether/init.lua:381
+#: mods/ITEMS/mcl_nether/init.lua:382
 msgid "Netherite Upgrade Template"
 msgstr "Netherita hobetzea"
 
-#: mods/ITEMS/mcl_nether/init.lua:382
+#: mods/ITEMS/mcl_nether/init.lua:383
 msgid "Smithing Template"
 msgstr "Errementaritzako txantiloia"
 
-#: mods/ITEMS/mcl_nether/init.lua:383
+#: mods/ITEMS/mcl_nether/init.lua:384
 msgid "Applies to:"
 msgstr "Honako hauei aplikatzen zaie:"
 
-#: mods/ITEMS/mcl_nether/init.lua:383
+#: mods/ITEMS/mcl_nether/init.lua:384
 msgid "Diamond Equipment"
 msgstr "Diamantezko ekipamendua"
 
-#: mods/ITEMS/mcl_nether/init.lua:384
+#: mods/ITEMS/mcl_nether/init.lua:385
 msgid "Ingredients:"
 msgstr "Osagaiak:"
 

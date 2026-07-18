@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_banners x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-06-01 13:07+0000\n"
 "Last-Translator: cuche <cuche@noreply.codeberg.org>\n"
 "Language-Team: Italian <https://translate.codeberg.org/projects/mineclonia/"
@@ -14,19 +14,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2026.5\n"
 
-#: mods/ITEMS/mcl_banners/init.lua:132
+#: mods/ITEMS/mcl_banners/init.lua:128
 msgid "And one additional layer"
 msgstr "Aggiungi un livello"
 
-#: mods/ITEMS/mcl_banners/init.lua:134
+#: mods/ITEMS/mcl_banners/init.lua:130
 msgid "And @1 additional layers"
 msgstr "E @1 livelli aggiuntivi"
 
-#: mods/ITEMS/mcl_banners/init.lua:347
+#: mods/ITEMS/mcl_banners/init.lua:343
 msgid "Banner"
 msgstr "Stendardo"
 
-#: mods/ITEMS/mcl_banners/init.lua:349
+#: mods/ITEMS/mcl_banners/init.lua:345
 msgid ""
 "Banners are tall colorful decorative blocks. They can be placed on the floor "
 "and at walls. Banners can be emblazoned with a variety of patterns by "
@@ -36,7 +36,7 @@ msgstr ""
 "muri e pavimenti. Gli stendardi si possono personalizzare con una varietà di "
 "motivi utilizzando coloranti ed un telaio."
 
-#: mods/ITEMS/mcl_banners/init.lua:350
+#: mods/ITEMS/mcl_banners/init.lua:346
 msgid ""
 "Emblazoned banners can be emblazoned again to combine patterns. Up to @1 "
 "patterns can be layered on a banner. To wash off a banner's top-most layer, "
@@ -46,7 +46,7 @@ msgstr ""
 "motivi. Si possono applicare fino a @1 motivi su uno stendardo. Per "
 "rimuovere lo strato più superficiale, usalo su un calderone pieno d'acqua."
 
-#: mods/ITEMS/mcl_banners/init.lua:351
+#: mods/ITEMS/mcl_banners/init.lua:347
 msgid ""
 "An emblazoned banner can be copied by placing two banners of the same base "
 "color in the crafting table — one needs to be emblazoned, the other one must "
@@ -56,7 +56,7 @@ msgstr ""
 "stesso colore di sfondo in una griglia d'assemblaggio. Uno dei due deve "
 "essere personalizzato, l'altro deve essere \"pulito\"."
 
-#: mods/ITEMS/mcl_banners/init.lua:465
+#: mods/ITEMS/mcl_banners/init.lua:461
 msgid "Paintable decoration"
 msgstr "Decorazione personalizzabile"
 

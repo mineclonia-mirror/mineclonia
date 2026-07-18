@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mclx_stairs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -72,27 +72,27 @@ msgstr "End Harrizko Lauza"
 msgid "Smooth Stone Stairs"
 msgstr "Harri leuneko Eskailerak"
 
-#: mods/ITEMS/mclx_stairs/init.lua:88 mods/ITEMS/mclx_stairs/init.lua:145
+#: mods/ITEMS/mclx_stairs/init.lua:91 mods/ITEMS/mclx_stairs/init.lua:149
 msgid "Terracotta Stairs"
 msgstr "Terrakotazko Eskailerak"
 
-#: mods/ITEMS/mclx_stairs/init.lua:89 mods/ITEMS/mclx_stairs/init.lua:143
+#: mods/ITEMS/mclx_stairs/init.lua:92 mods/ITEMS/mclx_stairs/init.lua:147
 msgid "Terracotta Slab"
 msgstr "Terrakotazko Lauza"
 
-#: mods/ITEMS/mclx_stairs/init.lua:130
+#: mods/ITEMS/mclx_stairs/init.lua:134
 msgid "Concrete Slab"
 msgstr "Hormigoizko Lauza"
 
-#: mods/ITEMS/mclx_stairs/init.lua:131
+#: mods/ITEMS/mclx_stairs/init.lua:135
 msgid "Double Concrete Slab"
 msgstr "Hormigoizko Lauza bikoitza"
 
-#: mods/ITEMS/mclx_stairs/init.lua:132
+#: mods/ITEMS/mclx_stairs/init.lua:136
 msgid "Concrete Stairs"
 msgstr "Hormigoizko Eskailerak"
 
-#: mods/ITEMS/mclx_stairs/init.lua:144
+#: mods/ITEMS/mclx_stairs/init.lua:148
 msgid "Double Terracotta Slab"
 msgstr "Terrakotazko Lauza bikoitza"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_banners x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-06-12 05:08+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -14,19 +14,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2026.6.1\n"
 
-#: mods/ITEMS/mcl_banners/init.lua:132
+#: mods/ITEMS/mcl_banners/init.lua:128
 msgid "And one additional layer"
 msgstr "再加一层图案"
 
-#: mods/ITEMS/mcl_banners/init.lua:134
+#: mods/ITEMS/mcl_banners/init.lua:130
 msgid "And @1 additional layers"
 msgstr "再加@1层图案"
 
-#: mods/ITEMS/mcl_banners/init.lua:347
+#: mods/ITEMS/mcl_banners/init.lua:343
 msgid "Banner"
 msgstr "旗帜"
 
-#: mods/ITEMS/mcl_banners/init.lua:349
+#: mods/ITEMS/mcl_banners/init.lua:345
 msgid ""
 "Banners are tall colorful decorative blocks. They can be placed on the floor "
 "and at walls. Banners can be emblazoned with a variety of patterns by "
@@ -35,7 +35,7 @@ msgstr ""
 "旗帜是高大多彩的装饰方块，可放置在地面与墙面。将旗帜与染料放入织布机，或在合"
 "成台搭配多份染料，就能给旗帜印上各式图案。"
 
-#: mods/ITEMS/mcl_banners/init.lua:350
+#: mods/ITEMS/mcl_banners/init.lua:346
 msgid ""
 "Emblazoned banners can be emblazoned again to combine patterns. Up to @1 "
 "patterns can be layered on a banner. To wash off a banner's top-most layer, "
@@ -44,14 +44,15 @@ msgstr ""
 "印有图案的旗帜可再次印制叠加纹样，一面旗帜最多叠加@1层图案。拿着旗帜对着装水"
 "的炼药锅使用，即可洗掉最上层图案。"
 
-#: mods/ITEMS/mcl_banners/init.lua:351
+#: mods/ITEMS/mcl_banners/init.lua:347
 msgid ""
 "An emblazoned banner can be copied by placing two banners of the same base "
 "color in the crafting table — one needs to be emblazoned, the other one must "
 "be clean."
-msgstr "在合成台放入两面底色相同的旗帜（一面带图案、一面空白），即可复制旗帜图案。"
+msgstr ""
+"在合成台放入两面底色相同的旗帜（一面带图案、一面空白），即可复制旗帜图案。"
 
-#: mods/ITEMS/mcl_banners/init.lua:465
+#: mods/ITEMS/mcl_banners/init.lua:461
 msgid "Paintable decoration"
 msgstr "可绘制装饰"
 

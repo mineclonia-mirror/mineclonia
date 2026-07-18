@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_lush_caves x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-10 04:49+0200\n"
 "PO-Revision-Date: 2026-05-30 21:07+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
@@ -21,10 +21,10 @@ msgstr ""
 msgid "Small Dripleaf"
 msgstr "Hoja de goteo pequeña"
 
-#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:203
-#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:204
-#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:205
-#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:206
+#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:219
+#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:220
+#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:221
+#: mods/ITEMS/mcl_lush_caves/dripleaf.lua:222
 msgid "Big Dripleaf"
 msgstr "Hoja de goteo grande"
 
@@ -105,7 +105,8 @@ msgstr ""
 "frondosas."
 
 #: mods/ITEMS/mcl_lush_caves/nodes.lua:270
-msgid "Glow berry"
+#, fuzzy
+msgid "Glow Berry"
 msgstr "Bayas luminosas"
 
 #: mods/ITEMS/mcl_lush_caves/nodes.lua:271

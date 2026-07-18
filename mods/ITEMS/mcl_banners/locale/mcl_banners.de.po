@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_banners x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-06-30 14:07+0000\n"
 "Last-Translator: Enlive <enlive@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
@@ -14,19 +14,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2026.6.1\n"
 
-#: mods/ITEMS/mcl_banners/init.lua:132
+#: mods/ITEMS/mcl_banners/init.lua:128
 msgid "And one additional layer"
 msgstr "Und eine zusätzliche Schicht"
 
-#: mods/ITEMS/mcl_banners/init.lua:134
+#: mods/ITEMS/mcl_banners/init.lua:130
 msgid "And @1 additional layers"
 msgstr "Und @1 zusätzliche Schichten"
 
-#: mods/ITEMS/mcl_banners/init.lua:347
+#: mods/ITEMS/mcl_banners/init.lua:343
 msgid "Banner"
 msgstr "Banner"
 
-#: mods/ITEMS/mcl_banners/init.lua:349
+#: mods/ITEMS/mcl_banners/init.lua:345
 msgid ""
 "Banners are tall colorful decorative blocks. They can be placed on the floor "
 "and at walls. Banners can be emblazoned with a variety of patterns by "
@@ -37,7 +37,7 @@ msgstr ""
 "geschmückt werden, indem der Farbstoff in den Webstuhl platziert wird oder "
 "mit vielen Farbstoffen in der Werkbank."
 
-#: mods/ITEMS/mcl_banners/init.lua:350
+#: mods/ITEMS/mcl_banners/init.lua:346
 #, fuzzy
 msgid ""
 "Emblazoned banners can be emblazoned again to combine patterns. Up to @1 "
@@ -49,7 +49,7 @@ msgstr ""
 "Banner können bis zu @1 Muster übereinandergelegt werden. Um die oberste "
 "Schicht eines Banners auszutauschen, tauche es auf einem Kessel mit Wasser."
 
-#: mods/ITEMS/mcl_banners/init.lua:351
+#: mods/ITEMS/mcl_banners/init.lua:347
 msgid ""
 "An emblazoned banner can be copied by placing two banners of the same base "
 "color in the crafting table — one needs to be emblazoned, the other one must "
@@ -59,7 +59,7 @@ msgstr ""
 "Banner derselben Grundfarbe in die Werkbank legt – eines muss mit einem "
 "Wappen verziert sein, das andere muss unbedruckt sein."
 
-#: mods/ITEMS/mcl_banners/init.lua:465
+#: mods/ITEMS/mcl_banners/init.lua:461
 msgid "Paintable decoration"
 msgstr "Bemalbare Dekoration"
 

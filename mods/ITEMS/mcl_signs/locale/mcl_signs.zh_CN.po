@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_signs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-30 22:52+0200\n"
 "PO-Revision-Date: 2026-06-12 05:07+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -40,18 +40,18 @@ msgstr ""
 "告示牌即可修改文字。文字可以染色并设置发光效果，使用骨粉能够清除染色与发光效"
 "果。"
 
-#: mods/ITEMS/mcl_signs/init.lua:355
+#: mods/ITEMS/mcl_signs/init.lua:351
 msgid "Enter sign text:"
 msgstr "输入文字："
 
-#: mods/ITEMS/mcl_signs/init.lua:357
+#: mods/ITEMS/mcl_signs/init.lua:353
 msgid "Maximum line length: @1"
 msgstr "单行最大字符长度：@1"
 
-#: mods/ITEMS/mcl_signs/init.lua:358
+#: mods/ITEMS/mcl_signs/init.lua:354
 msgid "Maximum lines: @1"
 msgstr "最大行数：@1"
 
-#: mods/ITEMS/mcl_signs/init.lua:360
+#: mods/ITEMS/mcl_signs/init.lua:356
 msgid "Done"
 msgstr "完成"

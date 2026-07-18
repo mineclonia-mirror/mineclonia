@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_deepslate x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-06 22:17+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -82,88 +82,88 @@ msgid ""
 "or blackstone."
 msgstr "鵝卵深板岩是一種石方塊，功用類似鵝卵石或黑石。"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:80
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:81
 msgid "Cobbled Deepslate Stairs"
 msgstr "鵝卵深板岩階梯"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:84
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:85
 msgid "Cobbled Deepslate Slab"
 msgstr "鵝卵深板岩台階"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:88
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:89
 msgid "Cobbled Deepslate Wall"
 msgstr "鵝卵深板岩牆"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:95
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:96
 msgid "Polished Deepslate"
 msgstr "拋光深板岩"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:96
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:97
 msgid "Polished deepslate is the stone-like polished version of deepslate."
 msgstr "拋光深板岩是經拋光的深板岩。"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:102
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:103
 msgid "Polished Deepslate Stairs"
 msgstr "拋光深板岩階梯"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:106
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:107
 msgid "Polished Deepslate Slab"
 msgstr "拋光深板岩台階"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:110
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:111
 msgid "Polished Deepslate Wall"
 msgstr "拋光深板岩牆"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:117
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:118
 msgid "Deepslate Bricks"
 msgstr "深板岩磚"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:118
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:119
 msgid "Deepslate bricks are the brick version of deepslate."
 msgstr "深板岩磚是深板岩的磚塊版。"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:125
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:126
 msgid "Deepslate Brick Stairs"
 msgstr "深板岩磚階梯"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:129
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:130
 msgid "Deepslate Brick Slab"
 msgstr "深板岩磚台階"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:133
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:134
 msgid "Deepslate Brick Wall"
 msgstr "深板岩磚牆"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:137
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:138
 msgid "Cracked Deepslate Bricks"
 msgstr "裂紋深板岩磚"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:143
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:144
 msgid "Deepslate Tiles"
 msgstr "深板岩磚瓦"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:144
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:169
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:145
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:170
 msgid "Deepslate tiles are a decorative variant of deepslate."
 msgstr "深板岩磚瓦是裝飾性的深板岩。"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:150
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:151
 msgid "Deepslate Tile Stairs"
 msgstr "深板岩磚瓦階梯"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:154
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:155
 msgid "Deepslate Tile Slab"
 msgstr "深板岩磚瓦台階"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:158
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:159
 msgid "Deepslate Tiles Wall"
 msgstr ""
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:162
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:163
 msgid "Cracked Deepslate Tiles"
 msgstr ""
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:168
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:169
 msgid "Chiseled Deepslate"
 msgstr "浮雕深板岩"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-07-08 07:24+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -494,11 +494,11 @@ msgstr ""
 "或靠近水的情況下形成的。如果沒有水，這個方塊最終會變乾。當上面出現固體方塊或"
 "活塞臂延伸到上面時，這個方塊會變回泥土。"
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:40
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:48
 msgid "Sweet Berry Bush (Stage @1)"
 msgstr ""
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:74
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:91
 msgid "Sweet Berry"
 msgstr ""
 

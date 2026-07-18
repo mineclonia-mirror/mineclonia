@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-06-30 22:52+0200\n"
 "PO-Revision-Date: 2026-06-21 22:07+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
@@ -122,8 +122,8 @@ msgstr ""
 "\n"
 "- Modo «seguro»: \n"
 "\n"
-"Guarda una parte del mapa, cuyos límites se especifican en los campos «"
-"Posición relativa» y «Tamaño de la estructura» de la especificación de "
+"Guarda una parte del mapa, cuyos límites se especifican en los campos "
+"«Posición relativa» y «Tamaño de la estructura» de la especificación de "
 "formulario, en una plantilla de estructura identificada por el campo «Nombre "
 "de la estructura» de dicha especificación y almacenada como un archivo con "
 "la extensión «.dat» dentro del subdirectorio «templates» del directorio de "
@@ -138,9 +138,9 @@ msgstr ""
 "- Modo «Esquina»:\n"
 "\n"
 "Marca los límites de una parte del mapa que se va a registrar mediante otro "
-"bloque de estructura en modo «Guardar» con un valor idéntico en su campo «"
-"Nombre de la estructura» dentro de una región de 80x80x80 de dicho bloque de "
-"estructura.\n"
+"bloque de estructura en modo «Guardar» con un valor idéntico en su campo "
+"«Nombre de la estructura» dentro de una región de 80x80x80 de dicho bloque "
+"de estructura.\n"
 "\n"
 "  Los límites ocupados por todas las esquinas coincidentes dentro de dicha "
 "distancia se interpretan como los límites de dicha región delimitada por un "
@@ -282,27 +282,27 @@ msgstr ""
 #. ----------------------------------------------------------------------
 #. Debug HUD.
 #. ----------------------------------------------------------------------
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3061
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3062
 msgid "Enable or disable the level generation HUD"
 msgstr "Activar o desactivar el HUD de generación de niveles"
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3113
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3114
 msgid "@1 structure piece(s) were (re-)inserted into the structure database"
 msgstr ""
 "Se han (re)introducido @1 pieza(s) de estructura en la base de datos de "
 "estructuras"
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3120
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3121
 msgid "Regenerate nearby structure pieces for a structure set"
 msgstr ""
 "Regenerar las piezas de estructura cercanas para un conjunto de estructuras"
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3123
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3124
 msgid "The structure database is currently being repaired.  Please wait."
 msgstr ""
 "La base de datos de estructuras se está reparando en estos momentos. Por "
 "favor, espera."
 
-#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3136
+#: mods/MAPGEN/mcl_levelgen/post_processing.lua:3137
 msgid "No level contains the position @1,@2,@3"
 msgstr "Ningún nivel contiene la posición @1,@2,@3"

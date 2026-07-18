@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_signs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-30 22:52+0200\n"
 "PO-Revision-Date: 2026-07-01 09:07+0000\n"
 "Last-Translator: jopaSuomi <jopasuomi@noreply.codeberg.org>\n"
 "Language-Team: Finnish <https://translate.codeberg.org/projects/mineclonia/"
@@ -42,18 +42,18 @@ msgstr ""
 "muokata painamalla kylttiä oikealla hiirennäppäimellä. Kyltin voi värjätä ja "
 "maalata hohtavaksi, ja väri ja hohde poistetaan luujauholla."
 
-#: mods/ITEMS/mcl_signs/init.lua:355
+#: mods/ITEMS/mcl_signs/init.lua:351
 msgid "Enter sign text:"
 msgstr "Syötä kyltin teksti:"
 
-#: mods/ITEMS/mcl_signs/init.lua:357
+#: mods/ITEMS/mcl_signs/init.lua:353
 msgid "Maximum line length: @1"
 msgstr "Suurin mahdollinen rivipituus: @1"
 
-#: mods/ITEMS/mcl_signs/init.lua:358
+#: mods/ITEMS/mcl_signs/init.lua:354
 msgid "Maximum lines: @1"
 msgstr "Suurin mahdollinen määrä rivejä: @1"
 
-#: mods/ITEMS/mcl_signs/init.lua:360
+#: mods/ITEMS/mcl_signs/init.lua:356
 msgid "Done"
 msgstr "Valmis"

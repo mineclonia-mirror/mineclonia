@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_copper x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-07-10 02:07+0000\n"
 "Last-Translator: baka_bo <baka_bo@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
@@ -35,8 +35,8 @@ msgid ""
 "Copper nuggets are very small pieces of molten copper; the main purpose is "
 "to create copper ingots."
 msgstr ""
-"銅塊は、溶けた銅を小さく分けた素材です。主に銅インゴットの作成に使用されます"
-"。"
+"銅塊は、溶けた銅を小さく分けた素材です。主に銅インゴットの作成に使用されま"
+"す。"
 
 #: mods/ITEMS/mcl_copper/items.lua:26
 msgid "Raw Copper"
@@ -200,7 +200,8 @@ msgstr "風化した銅のランタン"
 msgid ""
 "Exposed Copper Lanterns are light sources which can be placed on the top or "
 "the bottom of most blocks."
-msgstr "風化した銅のランタンは、ほとんどのブロックの上または下に設置できる光源です。"
+msgstr ""
+"風化した銅のランタンは、ほとんどのブロックの上または下に設置できる光源です。"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:39
 msgid "Exposed Copper Trapdoor"
@@ -290,7 +291,8 @@ msgstr "酸化した銅のランタン"
 msgid ""
 "Oxidized Copper Lanterns are light sources which can be placed on the top or "
 "the bottom of most blocks."
-msgstr "酸化した銅のランタンは、ほとんどのブロックの上または下に設置できる光源です。"
+msgstr ""
+"酸化した銅のランタンは、ほとんどのブロックの上または下に設置できる光源です。"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:61
 msgid "Oxidized Copper Trapdoor"
@@ -629,8 +631,8 @@ msgid ""
 "Weathered Copper Lanterns are light sources which can be placed on the top "
 "or the bottom of most blocks."
 msgstr ""
-"錆びた銅のランタンは、ほとんどのブロックの上面または下面に設置できる光源です"
-"。"
+"錆びた銅のランタンは、ほとんどのブロックの上面または下面に設置できる光源で"
+"す。"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:145
 msgid "Weathered Copper Trapdoor"
@@ -678,11 +680,11 @@ msgstr "銅の粗鉱をコンパクトに保管するのに使えるブロック
 msgid "Copper Bars neatly connect to their neighbors as you build them."
 msgstr "銅の棒は、設置すると隣接するブロックときれいにつながります。"
 
-#: mods/ITEMS/mcl_copper/nodes.lua:294
+#: mods/ITEMS/mcl_copper/nodes.lua:290
 msgid "Copper Torch"
 msgstr "銅の松明"
 
-#: mods/ITEMS/mcl_copper/nodes.lua:295
+#: mods/ITEMS/mcl_copper/nodes.lua:291
 msgid ""
 "Copper Torches are light sources which can be placed at the side or on the "
 "top of most blocks."

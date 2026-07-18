@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-07-08 07:24+0200\n"
 "PO-Revision-Date: 2026-05-13 14:58+0000\n"
 "Last-Translator: syl <syl@noreply.codeberg.org>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/mineclonia/"
@@ -566,11 +566,11 @@ msgstr ""
 "ce bloc finira par se dessécher. Ce bloc redeviendra de la terre lorsqu'un "
 "bloc solide apparaît au-dessus ou qu'un bras de piston s'étend au-dessus."
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:40
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:48
 msgid "Sweet Berry Bush (Stage @1)"
 msgstr "Buisson à baies sucrées (Étape @1)"
 
-#: mods/ITEMS/mcl_farming/sweet_berry.lua:74
+#: mods/ITEMS/mcl_farming/sweet_berry.lua:91
 msgid "Sweet Berry"
 msgstr "Baie sucrée"
 

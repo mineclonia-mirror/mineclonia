@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_copper x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-06-20 21:07+0000\n"
 "Last-Translator: newrizen <newrizen@noreply.codeberg.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.codeberg.org/projects/"
@@ -688,11 +688,11 @@ msgstr ""
 "As barras de cobre se encaixam perfeitamente umas nas outras à medida que "
 "você as constrói."
 
-#: mods/ITEMS/mcl_copper/nodes.lua:294
+#: mods/ITEMS/mcl_copper/nodes.lua:290
 msgid "Copper Torch"
 msgstr "Tocha de Cobre"
 
-#: mods/ITEMS/mcl_copper/nodes.lua:295
+#: mods/ITEMS/mcl_copper/nodes.lua:291
 msgid ""
 "Copper Torches are light sources which can be placed at the side or on the "
 "top of most blocks."

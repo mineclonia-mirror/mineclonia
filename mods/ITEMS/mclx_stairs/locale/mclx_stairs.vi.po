@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 21:41+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -77,27 +77,27 @@ msgstr ""
 msgid "Smooth Stone Stairs"
 msgstr ""
 
-#: mods/ITEMS/mclx_stairs/init.lua:88 mods/ITEMS/mclx_stairs/init.lua:145
+#: mods/ITEMS/mclx_stairs/init.lua:91 mods/ITEMS/mclx_stairs/init.lua:149
 msgid "Terracotta Stairs"
 msgstr ""
 
-#: mods/ITEMS/mclx_stairs/init.lua:89 mods/ITEMS/mclx_stairs/init.lua:143
+#: mods/ITEMS/mclx_stairs/init.lua:92 mods/ITEMS/mclx_stairs/init.lua:147
 msgid "Terracotta Slab"
 msgstr ""
 
-#: mods/ITEMS/mclx_stairs/init.lua:130
+#: mods/ITEMS/mclx_stairs/init.lua:134
 msgid "Concrete Slab"
 msgstr ""
 
-#: mods/ITEMS/mclx_stairs/init.lua:131
+#: mods/ITEMS/mclx_stairs/init.lua:135
 msgid "Double Concrete Slab"
 msgstr ""
 
-#: mods/ITEMS/mclx_stairs/init.lua:132
+#: mods/ITEMS/mclx_stairs/init.lua:136
 msgid "Concrete Stairs"
 msgstr ""
 
-#: mods/ITEMS/mclx_stairs/init.lua:144
+#: mods/ITEMS/mclx_stairs/init.lua:148
 msgid "Double Terracotta Slab"
 msgstr ""
 

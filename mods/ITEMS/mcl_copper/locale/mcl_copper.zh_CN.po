@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_copper x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-06-12 05:07+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -674,11 +674,11 @@ msgstr "用于紧凑存放粗铜的方块。"
 msgid "Copper Bars neatly connect to their neighbors as you build them."
 msgstr "放置铜栏杆时，会自动整齐地与相邻栏杆衔接。"
 
-#: mods/ITEMS/mcl_copper/nodes.lua:294
+#: mods/ITEMS/mcl_copper/nodes.lua:290
 msgid "Copper Torch"
 msgstr "铜火把"
 
-#: mods/ITEMS/mcl_copper/nodes.lua:295
+#: mods/ITEMS/mcl_copper/nodes.lua:291
 msgid ""
 "Copper Torches are light sources which can be placed at the side or on the "
 "top of most blocks."

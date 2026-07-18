@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-06 22:12+0200\n"
+"POT-Creation-Date: 2026-07-10 05:32+0200\n"
 "PO-Revision-Date: 2026-06-12 05:08+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -68,11 +68,11 @@ msgstr "牛"
 msgid "Mooshroom"
 msgstr "哞菇"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:277 mods/ENTITIES/mobs_mc/creeper.lua:317
+#: mods/ENTITIES/mobs_mc/creeper.lua:230 mods/ENTITIES/mobs_mc/creeper.lua:270
 msgid "Creeper"
 msgstr "苦力怕"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:300
+#: mods/ENTITIES/mobs_mc/creeper.lua:253
 msgid "Charged Creeper"
 msgstr "高压苦力怕"
 
@@ -100,7 +100,7 @@ msgid "Ender Dragon"
 msgstr "末影龙"
 
 #: mods/ENTITIES/mobs_mc/enderman.lua:235
-#: mods/ENTITIES/mobs_mc/enderman.lua:757
+#: mods/ENTITIES/mobs_mc/enderman.lua:759
 msgid "Enderman"
 msgstr "末影人"
 
@@ -108,11 +108,11 @@ msgstr "末影人"
 msgid "Endermite"
 msgstr "末影螨"
 
-#: mods/ENTITIES/mobs_mc/ghast.lua:17 mods/ENTITIES/mobs_mc/ghast.lua:233
+#: mods/ENTITIES/mobs_mc/ghast.lua:17 mods/ENTITIES/mobs_mc/ghast.lua:241
 msgid "Ghast"
 msgstr "恶魂"
 
-#: mods/ENTITIES/mobs_mc/ghast.lua:339
+#: mods/ENTITIES/mobs_mc/ghast.lua:291
 msgid "Ghast Fireball"
 msgstr "恶魂火球"
 
@@ -127,7 +127,7 @@ msgid ""
 msgstr "海面露天海域的守卫者生成频率更低。"
 
 #: mods/ENTITIES/mobs_mc/guardian_elder.lua:11
-#: mods/ENTITIES/mobs_mc/guardian_elder.lua:124
+#: mods/ENTITIES/mobs_mc/guardian_elder.lua:130
 msgid "Elder Guardian"
 msgstr "远古守卫者"
 
@@ -215,8 +215,8 @@ msgid ""
 "exist within a volume @1 nodes in size around the center of such a node's "
 "upper surface."
 msgstr ""
-"仅在草地或树叶上方、方块顶面中心周围@1格范围内无遮挡时，该生物才会低概率生成"
-"。"
+"仅在草地或树叶上方、方块顶面中心周围@1格范围内无遮挡时，该生物才会低概率生"
+"成。"
 
 #: mods/ENTITIES/mobs_mc/parrot.lua:14 mods/ENTITIES/mobs_mc/parrot.lua:352
 msgid "Parrot"
@@ -244,19 +244,19 @@ msgstr "生成于草地、树叶或原木上"
 msgid "Pig"
 msgstr "猪"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1941
+#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1945
 msgid "Piglin"
 msgstr "猪灵"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1569 mods/ENTITIES/mobs_mc/piglin.lua:1942
+#: mods/ENTITIES/mobs_mc/piglin.lua:1573 mods/ENTITIES/mobs_mc/piglin.lua:1946
 msgid "Piglin Brute"
 msgstr "猪灵蛮兵"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1721 mods/ENTITIES/mobs_mc/zombiepig.lua:5
+#: mods/ENTITIES/mobs_mc/piglin.lua:1725 mods/ENTITIES/mobs_mc/zombiepig.lua:5
 msgid "Zombified Piglin"
 msgstr "僵尸猪灵"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1943
+#: mods/ENTITIES/mobs_mc/piglin.lua:1947
 msgid "Zombie Piglin"
 msgstr "僵尸猪灵"
 
@@ -357,7 +357,8 @@ msgid ""
 "This mob will spawn infrequently @1 with a surface occupying a full node "
 "when no obstructions exist within a volume @2 nodes in size around the "
 "center of such a node's upper surface, in light levels of 8 or greater."
-msgstr "光照等级8及以上、完整方块顶面中心周围@2格无遮挡时，该生物会以@1的低概率生成。"
+msgstr ""
+"光照等级8及以上、完整方块顶面中心周围@2格无遮挡时，该生物会以@1的低概率生成。"
 
 #: mods/ENTITIES/mobs_mc/spawning.lua:214
 msgid ""
@@ -429,7 +430,7 @@ msgid "Vex"
 msgstr "恼鬼"
 
 #: mods/ENTITIES/mobs_mc/villager.lua:973
-#: mods/ENTITIES/mobs_mc/villager.lua:6770
+#: mods/ENTITIES/mobs_mc/villager.lua:6786
 msgid "Villager"
 msgstr "村民"
 
@@ -489,23 +490,23 @@ msgstr "武器匠"
 msgid "Nitwit"
 msgstr "傻子村民"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1953
+#: mods/ENTITIES/mobs_mc/villager.lua:1966
 msgid "Novice"
 msgstr "新手"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1954
+#: mods/ENTITIES/mobs_mc/villager.lua:1967
 msgid "Apprentice"
 msgstr "学徒"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1955
+#: mods/ENTITIES/mobs_mc/villager.lua:1968
 msgid "Journeyman"
 msgstr "熟练工"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1956
+#: mods/ENTITIES/mobs_mc/villager.lua:1969
 msgid "Expert"
 msgstr "专家"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1957
+#: mods/ENTITIES/mobs_mc/villager.lua:1970
 msgid "Master"
 msgstr "大师"
 
@@ -530,13 +531,13 @@ msgid "Zombie Villager"
 msgstr "僵尸村民"
 
 #: mods/ENTITIES/mobs_mc/wandering_trader.lua:12
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:543
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:546
 msgid "Wandering Trader"
 msgstr "流浪商人"
 
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:560
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:678
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:679
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:563
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:681
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:682
 msgid "Trader Llama"
 msgstr "行商羊驼"
 
@@ -544,8 +545,8 @@ msgstr "行商羊驼"
 msgid "Witch"
 msgstr "女巫"
 
-#: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:339
-#: mods/ENTITIES/mobs_mc/wither.lua:979
+#: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:301
+#: mods/ENTITIES/mobs_mc/wither.lua:933
 msgid "Wither"
 msgstr "凋灵"
 
@@ -557,31 +558,31 @@ msgstr "狼"
 msgid "on grass, snow blocks, coarse dirt, or podzol"
 msgstr "生成于草地、雪块、粗泥土或灰化土上"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:62 mods/ENTITIES/mobs_mc/zombie.lua:863
+#: mods/ENTITIES/mobs_mc/zombie.lua:62 mods/ENTITIES/mobs_mc/zombie.lua:866
 msgid "Zombie"
 msgstr "僵尸"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:783
+#: mods/ENTITIES/mobs_mc/zombie.lua:786
 msgid "Baby Zombie"
 msgstr "小僵尸"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:809 mods/ENTITIES/mobs_mc/zombie.lua:862
+#: mods/ENTITIES/mobs_mc/zombie.lua:812 mods/ENTITIES/mobs_mc/zombie.lua:865
 msgid "Husk"
 msgstr "尸壳"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:838
+#: mods/ENTITIES/mobs_mc/zombie.lua:841
 msgid "Baby Husk"
 msgstr "小尸壳"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:897
+#: mods/ENTITIES/mobs_mc/zombie.lua:900
 msgid "5% of Zombies will spawn as their baby variants."
 msgstr "生成的僵尸中有5%为幼年个体。"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:936
+#: mods/ENTITIES/mobs_mc/zombie.lua:939
 msgid "5% of Husks will spawn as their baby variants."
 msgstr "生成的尸壳中有5%为幼年个体。"
 
-#: mods/ENTITIES/mobs_mc/zombie.lua:937
+#: mods/ENTITIES/mobs_mc/zombie.lua:940
 msgid "Husks will only spawn on nodes that are exposed to sky."
 msgstr "尸壳仅能在露天见天的方块上生成。"
 

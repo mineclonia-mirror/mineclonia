@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_deepslate x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-06-06 22:17+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -89,93 +89,93 @@ msgstr ""
 "La pierre des abîmes est une variante de roche similaire à la pierre ou la "
 "pierre noire."
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:80
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:81
 msgid "Cobbled Deepslate Stairs"
 msgstr "Escalier en pierres des abîmes"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:84
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:85
 msgid "Cobbled Deepslate Slab"
 msgstr "Dalle de pierres des abîmes"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:88
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:89
 msgid "Cobbled Deepslate Wall"
 msgstr "Muret de pierres des abîmes"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:95
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:96
 msgid "Polished Deepslate"
 msgstr "Ardoise des abîmes polie"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:96
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:97
 msgid "Polished deepslate is the stone-like polished version of deepslate."
 msgstr ""
 "L'ardoise des abîmes polie est la version polie de l'ardoise des abîmes, de "
 "manière similaire à la pierre."
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:102
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:103
 msgid "Polished Deepslate Stairs"
 msgstr "Escalier en ardoise des abîmes polie"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:106
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:107
 msgid "Polished Deepslate Slab"
 msgstr "Dalle d'ardoise des abîmes polie"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:110
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:111
 msgid "Polished Deepslate Wall"
 msgstr "Muret d'ardoise des abîmes polie"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:117
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:118
 msgid "Deepslate Bricks"
 msgstr "Ardoise des abîmes taillée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:118
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:119
 msgid "Deepslate bricks are the brick version of deepslate."
 msgstr ""
 "L'ardoise des abîmes taillée est la version brique de l'ardoise des abîmes."
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:125
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:126
 msgid "Deepslate Brick Stairs"
 msgstr "Escalier en ardoise des abîmes taillée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:129
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:130
 msgid "Deepslate Brick Slab"
 msgstr "Dalle d'ardoise des abîmes taillée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:133
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:134
 msgid "Deepslate Brick Wall"
 msgstr "Muret d'ardoise des abîmes taillée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:137
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:138
 msgid "Cracked Deepslate Bricks"
 msgstr "Ardoise des abîmes taillée craquelée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:143
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:144
 msgid "Deepslate Tiles"
 msgstr "Ardoise des abîmes carrelée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:144
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:169
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:145
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:170
 msgid "Deepslate tiles are a decorative variant of deepslate."
 msgstr ""
 "L'ardoise des abîmes carrelée est une variante décorative de l'ardoise des "
 "abîmes."
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:150
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:151
 msgid "Deepslate Tile Stairs"
 msgstr "Escalier en ardoise des abîmes carrelée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:154
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:155
 msgid "Deepslate Tile Slab"
 msgstr "Dalle d'ardoise des abîmes carrelée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:158
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:159
 msgid "Deepslate Tiles Wall"
 msgstr "Muret d'ardoise des abîmes carrelée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:162
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:163
 msgid "Cracked Deepslate Tiles"
 msgstr "Ardoise des abîmes carrelée craquelée"
 
-#: mods/ITEMS/mcl_deepslate/deepslate.lua:168
+#: mods/ITEMS/mcl_deepslate/deepslate.lua:169
 msgid "Chiseled Deepslate"
 msgstr "Ardoise des abîmes sculptée"
 

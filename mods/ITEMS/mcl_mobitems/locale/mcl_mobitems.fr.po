@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobitems x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-01 03:14+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -181,11 +181,11 @@ msgstr ""
 "êtes vraiment désespéré, vous pouvez manger un œil d'araignée, mais cela "
 "vous empoisonnera brièvement."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:146
+#: mods/ITEMS/mcl_mobitems/init.lua:149
 msgid "Bone"
 msgstr "Os"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:147
+#: mods/ITEMS/mcl_mobitems/init.lua:150
 msgid ""
 "Bones can be used to tame wolves so they will protect you. They are also "
 "useful as a crafting ingredient."
@@ -193,7 +193,7 @@ msgstr ""
 "Les os peuvent être utilisés pour apprivoiser les loups afin de vous "
 "protéger. Ils sont également utiles comme ingrédient d'artisanat."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:148
+#: mods/ITEMS/mcl_mobitems/init.lua:151
 msgid ""
 "Wield the bone near wolves to attract them. Use the “Place” key on the wolf "
 "to give it a bone and tame it. You can then give commands to the tamed wolf "
@@ -204,11 +204,11 @@ msgstr ""
 "des commandes au loup apprivoisé en utilisant la touche \"Placer\" sur celui-"
 "ci."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:156
+#: mods/ITEMS/mcl_mobitems/init.lua:159
 msgid "Squid Ink Sac"
 msgstr "Poche d'encre"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:157
+#: mods/ITEMS/mcl_mobitems/init.lua:160
 msgid ""
 "This item is dropped by dead squids. Squid ink can be used to as an "
 "ingredient to craft book and quill or black dye."
@@ -217,59 +217,59 @@ msgstr ""
 "utilisée comme ingrédient pour fabriquer des livres et des plumes d'oie ou "
 "de la teinture noire."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:164
+#: mods/ITEMS/mcl_mobitems/init.lua:167
 msgid "String"
 msgstr "Ficelle"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:165
+#: mods/ITEMS/mcl_mobitems/init.lua:168
 msgid "Strings are used in crafting."
 msgstr "Les ficelles sont utilisées dans l'artisanat."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:172
+#: mods/ITEMS/mcl_mobitems/init.lua:175
 msgid "Blaze Rod"
 msgstr "Bâton de Blaze"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:173
+#: mods/ITEMS/mcl_mobitems/init.lua:176
 msgid "This is a crafting component dropped from dead blazes."
 msgstr "Il s'agit d'un composant d'artisanat tombé des Blazes morts."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:182
+#: mods/ITEMS/mcl_mobitems/init.lua:185
 msgid "Breeze Rod"
 msgstr "Bâton de Breeze"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:183
+#: mods/ITEMS/mcl_mobitems/init.lua:186
 msgid "This is a crafting item dropped from breezes."
 msgstr "Il s'agit d'un objet d'artisanat lâché par les breezes."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:191
+#: mods/ITEMS/mcl_mobitems/init.lua:194
 msgid "Blaze Powder"
 msgstr "Poudre de Blaze"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:192
+#: mods/ITEMS/mcl_mobitems/init.lua:195
 msgid "This item is mainly used for crafting."
 msgstr "Cet objet est principalement utilisé pour l'artisanat."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:199
+#: mods/ITEMS/mcl_mobitems/init.lua:202
 msgid "Magma Cream"
 msgstr "Crème de magma"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:200
+#: mods/ITEMS/mcl_mobitems/init.lua:203
 msgid "Magma cream is a crafting component."
 msgstr "La crème de magma est un composant artisanal."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:208
+#: mods/ITEMS/mcl_mobitems/init.lua:211
 msgid "Ghast Tear"
 msgstr "Larme de Ghast"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:209
+#: mods/ITEMS/mcl_mobitems/init.lua:212
 msgid "Place this item in an item frame as decoration."
 msgstr "Placez cet article dans un cadre d'article comme décoration."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:216
+#: mods/ITEMS/mcl_mobitems/init.lua:219
 msgid "Nether Star"
 msgstr "Étoile du Nether"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:217
+#: mods/ITEMS/mcl_mobitems/init.lua:220
 msgid ""
 "A nether star is dropped when the Wither dies. Place it in an item frame to "
 "show the world how hardcore you are! Or just as decoration."
@@ -278,55 +278,55 @@ msgstr ""
 "cadre d'objet pour montrer au monde à quel point vous êtes génial ! Ou tout "
 "simplement comme décoration."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:225
+#: mods/ITEMS/mcl_mobitems/init.lua:228
 msgid "Leather"
 msgstr "Cuir"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:226
+#: mods/ITEMS/mcl_mobitems/init.lua:229
 msgid "Leather is a versatile crafting component."
 msgstr "Le cuir est un élément d'artisanat polyvalent."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:233
+#: mods/ITEMS/mcl_mobitems/init.lua:236
 msgid "Feather"
 msgstr "Plume"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:234
+#: mods/ITEMS/mcl_mobitems/init.lua:237
 msgid "Feathers are used in crafting and are dropped from chickens."
 msgstr "Les plumes sont utilisées dans l'artisanat et tombent des poulets."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:241
+#: mods/ITEMS/mcl_mobitems/init.lua:244
 msgid "Rabbit Hide"
 msgstr "Peau de lapin"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:242
+#: mods/ITEMS/mcl_mobitems/init.lua:245
 msgid "Rabbit hide is used to create leather."
 msgstr "La peau de lapin est utilisée pour créer du cuir."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:250
+#: mods/ITEMS/mcl_mobitems/init.lua:253
 msgid "Rabbit's Foot"
 msgstr "Patte de lapin"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:251
+#: mods/ITEMS/mcl_mobitems/init.lua:254
 msgid ""
 "Must be your lucky day! Place this item in an item frame for decoration."
 msgstr ""
 "Ce doit être votre jour de chance ! Placez cet article dans un cadre "
 "d'article pour la décoration."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:258
+#: mods/ITEMS/mcl_mobitems/init.lua:261
 msgid "Saddle"
 msgstr "Selle"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:259
+#: mods/ITEMS/mcl_mobitems/init.lua:262
 msgid "Can be placed on animals to ride them"
 msgstr "Peut être placé sur les animaux pour les monter"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:260
+#: mods/ITEMS/mcl_mobitems/init.lua:263
 msgid "Saddles can be put on some animals in order to mount them."
 msgstr ""
 "Des selles peuvent être posées sur certains animaux afin de les monter."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:261
+#: mods/ITEMS/mcl_mobitems/init.lua:264
 msgid ""
 "Use the placement key with the saddle in your hand to try to put on the "
 "saddle. Saddles fit on horses, mules, donkeys and pigs. Horses, mules and "
@@ -339,54 +339,54 @@ msgstr ""
 "apprivoisés, sinon ils rejetteront la selle. Les animaux sellés peuvent être "
 "montés en utilisant à nouveau la touche de placement."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:269
+#: mods/ITEMS/mcl_mobitems/init.lua:272
 msgid "Rabbit Stew"
 msgstr "Ragoût de lapin"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:270
+#: mods/ITEMS/mcl_mobitems/init.lua:273
 msgid "Rabbit stew is a very nutricious food item."
 msgstr "Le ragoût de lapin est un aliment très nutritif."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:280
+#: mods/ITEMS/mcl_mobitems/init.lua:283
 msgid "Shulker Shell"
 msgstr "Carapace de Shulker"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:281
+#: mods/ITEMS/mcl_mobitems/init.lua:284
 msgid ""
 "Shulker shells are used in crafting. They are dropped from dead shulkers."
 msgstr ""
 "Les carapaces Shulker sont utilisés dans l'artisanat. Ils sont lâchés de "
 "shulkers morts."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:287
+#: mods/ITEMS/mcl_mobitems/init.lua:290
 msgid "Slimeball"
 msgstr "Boule de Slime"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:288
+#: mods/ITEMS/mcl_mobitems/init.lua:291
 msgid "Slimeballs are used in crafting. They are dropped from slimes."
 msgstr ""
 "Les boules de Slime sont utilisées dans l'artisanat. Ils sont lâchés par les "
 "Slimes."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:295
+#: mods/ITEMS/mcl_mobitems/init.lua:298
 msgid "Gunpowder"
 msgstr "Poudre à canon"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:302
+#: mods/ITEMS/mcl_mobitems/init.lua:305
 msgid "Carrot on a Stick"
 msgstr "Carotte sur un batôn"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:303
+#: mods/ITEMS/mcl_mobitems/init.lua:306
 msgid "Lets you ride a saddled pig"
 msgstr "Vous permet de monter un cochon sellé"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:304
+#: mods/ITEMS/mcl_mobitems/init.lua:307
 msgid "A carrot on a stick can be used on saddled pigs to ride them."
 msgstr ""
 "Une carotte sur un bâton peut être utilisée sur les porcs sellés pour les "
 "monter."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:305
+#: mods/ITEMS/mcl_mobitems/init.lua:308
 msgid ""
 "Place it on a saddled pig to mount it. You can now ride the pig like a "
 "horse. Pigs will also walk towards you when you just wield the carrot on a "
@@ -396,22 +396,22 @@ msgstr ""
 "le cochon comme un cheval. Les porcs marcheront également vers vous lorsque "
 "vous brandirez la carotte sur un bâton."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:314
+#: mods/ITEMS/mcl_mobitems/init.lua:317
 msgid "Warped Fungus on a Stick"
 msgstr "Champignon biscornu sur un bâton"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:315
+#: mods/ITEMS/mcl_mobitems/init.lua:318
 msgid "Lets you ride a strider"
 msgstr "Permet de monter un arpenteur"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:316
+#: mods/ITEMS/mcl_mobitems/init.lua:319
 msgid ""
 "A warped fungus on a stick can be used on saddled striders to ride them."
 msgstr ""
 "Un champignon biscornu sur un bâton peut être utilisé sur les arpenteurs "
 "sellés pour les monter."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:317
+#: mods/ITEMS/mcl_mobitems/init.lua:320
 msgid ""
 "Place it on a saddled strider to mount it. You can now ride the strider like "
 "a horse. Striders will also walk towards you when you just wield the fungus "
@@ -421,15 +421,15 @@ msgstr ""
 "monter l'arpenteur comme un cheval. Les arpenteurs s'approcheront également "
 "de vous lorsque vous maniez simplement le champignon sur un bâton."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:326
+#: mods/ITEMS/mcl_mobitems/init.lua:329
 msgid "Nautilus Shell"
 msgstr "Coquille de nautile"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:327 mods/ITEMS/mcl_mobitems/init.lua:335
+#: mods/ITEMS/mcl_mobitems/init.lua:330 mods/ITEMS/mcl_mobitems/init.lua:338
 msgid "Used to craft a conduit"
 msgstr "Utilisé pour fabriquer un conduit"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:328
+#: mods/ITEMS/mcl_mobitems/init.lua:331
 msgid ""
 "The Nautilus Shell is used to craft a conduit. They can be obtained by "
 "fishing or killing a drowned that is wielding a shell."
@@ -437,11 +437,11 @@ msgstr ""
 "La Coquille de nautile est utilisée pour fabriquer un conduit. Elles peuvent "
 "être obtenues en pêchant ou en tuant un noyé qui tient une coquille."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:334
+#: mods/ITEMS/mcl_mobitems/init.lua:337
 msgid "Heart of the Sea"
 msgstr "Coeur de la mer"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:336
+#: mods/ITEMS/mcl_mobitems/init.lua:339
 msgid ""
 "The Heart of the Sea is used to craft a conduit. They can be obtained by "
 "finding them in a buried treasure chest."
@@ -449,7 +449,7 @@ msgstr ""
 "Le coeur de la mer est utilisé pour fabriquer un conduit. Il peut être "
 "obtenu dans un coffre au trésor enterré."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:341
+#: mods/ITEMS/mcl_mobitems/init.lua:344
 msgid ""
 "Place it on a horse to put on the horse armor. Donkeys and mules can't wear "
 "horse armor."
@@ -457,11 +457,11 @@ msgstr ""
 "Placez-la sur un cheval pour mettre l'armure de cheval. Les ânes et les "
 "mules ne peuvent pas porter d'armure de cheval."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:346
+#: mods/ITEMS/mcl_mobitems/init.lua:349
 msgid "Leather Horse Armor"
 msgstr "Armure pour cheval en cuir"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:347
+#: mods/ITEMS/mcl_mobitems/init.lua:350
 msgid ""
 "Leather horse armor can be worn by horses to increase their protection from "
 "harm a little."
@@ -469,21 +469,21 @@ msgstr ""
 "L'armure pour cheval en cuir peut être portée par les chevaux pour améliorer "
 "un peu leur protection contre les dégats."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:360
+#: mods/ITEMS/mcl_mobitems/init.lua:363
 msgid "Copper Horse Armor"
 msgstr ""
 
-#: mods/ITEMS/mcl_mobitems/init.lua:361
+#: mods/ITEMS/mcl_mobitems/init.lua:364
 msgid ""
 "Copper horse armor can be worn by horses to increase their protection from "
 "harm a bit."
 msgstr ""
 
-#: mods/ITEMS/mcl_mobitems/init.lua:376
+#: mods/ITEMS/mcl_mobitems/init.lua:379
 msgid "Iron Horse Armor"
 msgstr "Armure pour cheval en fer"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:377
+#: mods/ITEMS/mcl_mobitems/init.lua:380
 msgid ""
 "Iron horse armor can be worn by horses to increase their protection from "
 "harm a bit."
@@ -491,11 +491,11 @@ msgstr ""
 "L'armure pour cheval en fer peut être portée par les chevaux pour augmenter "
 "un peu leur protection contre les dommages."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:391
+#: mods/ITEMS/mcl_mobitems/init.lua:394
 msgid "Golden Horse Armor"
 msgstr "Armure pour cheval en or"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:392
+#: mods/ITEMS/mcl_mobitems/init.lua:395
 msgid ""
 "Golden horse armor can be worn by horses to increase their protection from "
 "harm."
@@ -503,11 +503,11 @@ msgstr ""
 "Une armure pour cheval en or peut être portée par les chevaux pour augmenter "
 "leur protection contre les dommages."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:405
+#: mods/ITEMS/mcl_mobitems/init.lua:408
 msgid "Diamond Horse Armor"
 msgstr "Armure pour cheval en diamant"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:406
+#: mods/ITEMS/mcl_mobitems/init.lua:409
 msgid ""
 "Diamond horse armor can be worn by horses to greatly increase their "
 "protection from harm."
@@ -515,38 +515,38 @@ msgstr ""
 "Une armure de cheval en diament peut être portée par les chevaux pour "
 "augmenter fortement leur protection contre les dommages."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:422
+#: mods/ITEMS/mcl_mobitems/init.lua:425
 msgid "Glow Ink Sac"
 msgstr "Poche d'encre luisante"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:423
+#: mods/ITEMS/mcl_mobitems/init.lua:426
 msgid "Use it to craft the Glow Item Frame."
 msgstr "Utilisez-la pour fabriquer le cadre luisant."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:424
+#: mods/ITEMS/mcl_mobitems/init.lua:427
 msgid ""
 "Use the Glow Ink Sac and the normal Item Frame to craft the Glow Item Frame."
 msgstr ""
 "Utilisez la poche d'encre luisante et le cadre pour fabriquer le cadre "
 "luisant."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:430
+#: mods/ITEMS/mcl_mobitems/init.lua:433
 msgid "Name Tag"
 msgstr "Étiquette"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:431
+#: mods/ITEMS/mcl_mobitems/init.lua:434
 msgid "Give names to mobs"
 msgstr "Donne des noms aux créatures"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:431
+#: mods/ITEMS/mcl_mobitems/init.lua:434
 msgid "Set name at anvil"
 msgstr "Définir le nom sur l'enclume"
 
-#: mods/ITEMS/mcl_mobitems/init.lua:432
+#: mods/ITEMS/mcl_mobitems/init.lua:435
 msgid "A name tag is an item to name a mob."
 msgstr "Une étiquette est un élément pour nommer une créature."
 
-#: mods/ITEMS/mcl_mobitems/init.lua:433
+#: mods/ITEMS/mcl_mobitems/init.lua:436
 msgid ""
 "Before you use the name tag, you need to set a name at an anvil. Then you "
 "can use the name tag to name a mob. This uses up the name tag."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_crimson x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -32,35 +32,35 @@ msgstr "垂泪藤"
 msgid "Nether Sprouts"
 msgstr "下界苗"
 
-#: mods/ITEMS/mcl_crimson/init.lua:398 mods/ITEMS/mcl_crimson/init.lua:422
+#: mods/ITEMS/mcl_crimson/init.lua:398 mods/ITEMS/mcl_crimson/init.lua:423
 msgid "Warped Roots"
 msgstr "诡异菌索"
 
-#: mods/ITEMS/mcl_crimson/init.lua:428
+#: mods/ITEMS/mcl_crimson/init.lua:429
 msgid "Warped Wart Block"
 msgstr "诡异疣块"
 
-#: mods/ITEMS/mcl_crimson/init.lua:440
+#: mods/ITEMS/mcl_crimson/init.lua:441
 msgid "Shroomlight"
 msgstr "菌光体"
 
-#: mods/ITEMS/mcl_crimson/init.lua:453
+#: mods/ITEMS/mcl_crimson/init.lua:454
 msgid "Warped Nylium"
 msgstr "诡异菌岩"
 
-#: mods/ITEMS/mcl_crimson/init.lua:471 mods/ITEMS/mcl_crimson/init.lua:503
+#: mods/ITEMS/mcl_crimson/init.lua:478 mods/ITEMS/mcl_crimson/init.lua:510
 msgid "Crimson Fungus"
 msgstr "绯红菌"
 
-#: mods/ITEMS/mcl_crimson/init.lua:472 mods/ITEMS/mcl_crimson/init.lua:473
+#: mods/ITEMS/mcl_crimson/init.lua:479 mods/ITEMS/mcl_crimson/init.lua:480
 msgid "Crimson fungus is a mushroom found in the nether's crimson forest."
 msgstr "绯红真菌是在下界的绯红森林中发现的一种蘑菇。"
 
-#: mods/ITEMS/mcl_crimson/init.lua:508 mods/ITEMS/mcl_crimson/init.lua:532
+#: mods/ITEMS/mcl_crimson/init.lua:515 mods/ITEMS/mcl_crimson/init.lua:540
 msgid "Crimson Roots"
 msgstr "绯红菌索"
 
-#: mods/ITEMS/mcl_crimson/init.lua:537
+#: mods/ITEMS/mcl_crimson/init.lua:545
 msgid "Crimson Nylium"
 msgstr "绯红菌岩"
 

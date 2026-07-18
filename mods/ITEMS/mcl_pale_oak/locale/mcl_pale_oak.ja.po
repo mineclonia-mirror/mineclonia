@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_pale_oak x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-18 19:32+0200\n"
 "PO-Revision-Date: 2026-06-05 08:08+0000\n"
 "Last-Translator: bo_chan <bo_chan@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
@@ -114,48 +114,48 @@ msgstr ""
 msgid "The trunk of a Pale Oak tree."
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:19
+#: mods/ITEMS/mcl_pale_oak/plants.lua:20
 msgid "Pale Hanging Moss"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:74
+#: mods/ITEMS/mcl_pale_oak/plants.lua:75
 msgid "Closed Eyeblossom"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:85
+#: mods/ITEMS/mcl_pale_oak/plants.lua:86
 msgid "Open Eyeblossom"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:101
+#: mods/ITEMS/mcl_pale_oak/plants.lua:102
 msgid "Eyeblossom activation"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:113
+#: mods/ITEMS/mcl_pale_oak/plants.lua:114
 msgid "Eyeblossom in a pot activation"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:125
+#: mods/ITEMS/mcl_pale_oak/plants.lua:126
 msgid "Eyeblossom deactivation"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:137
+#: mods/ITEMS/mcl_pale_oak/plants.lua:138
 msgid "Eyeblossom in a pot deactivation"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:209
-#: mods/ITEMS/mcl_pale_oak/plants.lua:211
+#: mods/ITEMS/mcl_pale_oak/plants.lua:210
+#: mods/ITEMS/mcl_pale_oak/plants.lua:212
 msgid "Pale Moss"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:210
+#: mods/ITEMS/mcl_pale_oak/plants.lua:211
 msgid "Moss is a grey block found in pale garden"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:225
+#: mods/ITEMS/mcl_pale_oak/plants.lua:226
 msgid "Pale Moss Carpet"
 msgstr ""
 
-#: mods/ITEMS/mcl_pale_oak/plants.lua:226
+#: mods/ITEMS/mcl_pale_oak/plants.lua:227
 msgid "A pale moss carpet is a flat variant of the pale moss block."
 msgstr ""
 
