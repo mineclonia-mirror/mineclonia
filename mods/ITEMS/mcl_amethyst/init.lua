@@ -74,7 +74,7 @@ local bud_def = {
 		selection_box = {
 			type = "fixed",
 			fixed = { -4/16, -7/16, -4/16, 4/16, -3/16, 4/16 },
-		}
+		},
 	},
 	medium = {
 		description   = S("Medium Amethyst Bud"),
@@ -84,7 +84,7 @@ local bud_def = {
 		selection_box = {
 			type = "fixed",
 			fixed = { -4.5/16, -8/16, -4.5/16, 4.5/16, -2/16, 4.5/16 },
-		}
+		},
 	},
 	large = {
 		description   = S("Large Amethyst Bud"),
@@ -99,6 +99,7 @@ local bud_def = {
 }
 
 for size, def in pairs(bud_def) do
+	def.collision_box = def.selection_box
 	core.register_node("mcl_amethyst:" .. size .. "_amethyst_bud", table.merge(def, {
 		drop = "",
 		tiles = { 	"mcl_amethyst_amethyst_bud_" .. size .. ".png" },
@@ -108,7 +109,6 @@ for size, def in pairs(bud_def) do
 		drawtype = "plantlike",
 		use_texture_alpha = "clip",
 		sunlight_propagates = true,
-		walkable = true,
 		groups = {
 			dig_by_piston = 1,
 			unsticky = 1,
@@ -145,7 +145,6 @@ core.register_node("mcl_amethyst:amethyst_cluster",{
 	drawtype = "plantlike",
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
-	walkable = false,
 	light_source = 5,
 	groups = {
 		dig_by_piston = 1,
@@ -156,6 +155,10 @@ core.register_node("mcl_amethyst:amethyst_cluster",{
 	},
 	sounds = sounds,
 	selection_box = {
+		type = "fixed",
+		fixed = { -4.8/16, -8/16, -4.8/16, 4.8/16, 3.9/16, 4.8/16 },
+	},
+	collision_box = {
 		type = "fixed",
 		fixed = { -4.8/16, -8/16, -4.8/16, 4.8/16, 3.9/16, 4.8/16 },
 	},
