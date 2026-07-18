@@ -39,6 +39,13 @@ local honey_harvest = function(pos, node, player, itemstack)
 			end
 		else --Must be shears
 			core.add_item(pos, "mcl_honey:honeycomb 3")
+			if not core.is_creative_enabled(player:get_player_name()) then
+				local idef = itemstack:get_definition()
+				itemstack:add_wear_by_uses(mcl_util.calculate_durability(itemstack))
+				if itemstack:get_count() == 0 and idef.sound and idef.sound.breaks then
+					core.sound_play(idef.sound.breaks, {pos=player:get_pos(), gain=0.5}, true)
+				end
+			end
 		end
 		--TODO: damage type = "mob" since this is supposed to be done by bee mobs which aren't a thing yet
 		--Once bees exist this branch should spawn them and/or make them aggro
