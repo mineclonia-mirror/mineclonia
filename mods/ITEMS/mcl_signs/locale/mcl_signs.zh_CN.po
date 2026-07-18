@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_signs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-12 05:07+0000\n"
+"Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.codeberg.org/projects/mineclonia/mcl_signs/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_signs/init.lua:90
 msgid "Can be written"
@@ -33,6 +35,10 @@ msgid ""
 "written by rightclicking the sign. Can be colored and made to glow. Use bone "
 "meal to remove color and glow."
 msgstr ""
+"放置告示牌后，你可以在上面书写内容。告示牌共有 @1 行文字，每行最多可输入 @2 "
+"个字符；超出限制的内容会被截断。并非所有字符都能正常显示。写完文字后右键点击"
+"告示牌即可修改文字。文字可以染色并设置发光效果，使用骨粉能够清除染色与发光效"
+"果。"
 
 #: mods/ITEMS/mcl_signs/init.lua:355
 msgid "Enter sign text:"
@@ -40,11 +46,11 @@ msgstr "输入文字："
 
 #: mods/ITEMS/mcl_signs/init.lua:357
 msgid "Maximum line length: @1"
-msgstr ""
+msgstr "单行最大字符长度：@1"
 
 #: mods/ITEMS/mcl_signs/init.lua:358
 msgid "Maximum lines: @1"
-msgstr ""
+msgstr "最大行数：@1"
 
 #: mods/ITEMS/mcl_signs/init.lua:360
 msgid "Done"

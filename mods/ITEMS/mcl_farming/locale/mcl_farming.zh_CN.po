@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: 2026-06-01 10:14+0000\n"
+"PO-Revision-Date: 2026-06-12 05:07+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.codeberg.org/projects/mineclonia/mcl_farming/zh_Hans/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.5\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:10
 msgid "Beetroot Seeds"
@@ -186,7 +186,7 @@ msgstr "石锄"
 
 #: mods/ITEMS/mcl_farming/hoes.lua:82
 msgid "Copper Hoe"
-msgstr ""
+msgstr "铜锄"
 
 #: mods/ITEMS/mcl_farming/hoes.lua:91
 msgid "Iron Hoe"
@@ -413,11 +413,10 @@ msgid "Pumpkin"
 msgstr "南瓜"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
-#, fuzzy
 msgid ""
 "A pumpkin is a decorative block. It can be carved with shears to obtain "
 "pumpkin seeds."
-msgstr "无脸南瓜是一种装饰性方块。可用剪刀雕刻它来获取南瓜种子。"
+msgstr "南瓜是一种装饰性方块。使用剪刀雕刻它可以获得南瓜种子。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:117
 msgid ""
@@ -426,16 +425,16 @@ msgid ""
 msgstr "要在南瓜上雕刻面容，在想要雕刻的那一面使用剪刀。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-#, fuzzy
 msgid "Carved Pumpkin"
-msgstr "成熟南瓜蔓"
+msgstr "雕刻过的南瓜"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
-#, fuzzy
 msgid ""
 "A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
 "which in turn grow from pumpkin seeds."
-msgstr "可作为头盔佩戴。南瓜籽可长成南瓜蔓，南瓜蔓可长出南瓜。"
+msgstr ""
+"雕刻南瓜可以当作头盔佩戴。南瓜由南瓜梗生长而成，而南瓜梗则由南瓜种子培育长出"
+"。"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:228
 msgid "Jack o'Lantern"
@@ -556,7 +555,8 @@ msgid ""
 "\t\tThey won't grow any further.\n"
 "\t"
 msgstr ""
-"\t\t成熟的小麦可以收割，能获得小麦和小麦种子，植株此后不再继续生长。\n"
+"\t\t成熟的小麦植株已经可以收割，获取小麦麦粒与麦种。\n"
+"\t\t它们不会再继续生长了。\n"
 "\t"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:120

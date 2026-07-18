@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_inventory x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-12 05:08+0000\n"
+"Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.codeberg.org/projects/mineclonia/mcl_inventory/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/HUD/mcl_inventory/creative.lua:13
 msgid "Scrollbar"
@@ -18,11 +20,11 @@ msgstr "滚动条"
 
 #: mods/HUD/mcl_inventory/creative.lua:14
 msgid "Pagination buttons"
-msgstr ""
+msgstr "分页按钮"
 
 #: mods/HUD/mcl_inventory/creative.lua:17
 msgid "Creative inventory scrolling"
-msgstr ""
+msgstr "创造模式物品栏滚动"
 
 #: mods/HUD/mcl_inventory/creative.lua:329
 msgid "Building Blocks"

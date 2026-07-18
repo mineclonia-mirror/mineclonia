@@ -3,18 +3,20 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mangrove x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-21 08:07+0000\n"
+"Last-Translator: syl <syl@noreply.codeberg.org>\n"
+"Language-Team: French <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_mangrove/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_mangrove/init.lua:99
 msgid "Mangrove Roots"
-msgstr "Racines de Palétuvier"
+msgstr "Racines de palétuvier"
 
 #: mods/ITEMS/mcl_mangrove/init.lua:100 mods/ITEMS/mcl_mangrove/init.lua:281
 msgid ""
@@ -25,7 +27,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_mangrove/init.lua:141 mods/ITEMS/mcl_mangrove/init.lua:274
 msgid "Mangrove Propagule"
-msgstr "Propagule de Palétuvier"
+msgstr "Propagule de palétuvier"
 
 #: mods/ITEMS/mcl_mangrove/init.lua:142
 msgid "Needs soil and light to grow"
@@ -36,8 +38,8 @@ msgid ""
 "When placed on soil (such as dirt) and exposed to light, an propagule will "
 "grow into an mangrove after some time."
 msgstr ""
-"Lorsque placé sur la terre et exposée à la lumière, une propagule pousera en "
-"palétuvier après un certain temps."
+"Lorsque placé sur la terre et exposée à la lumière, une propagule poussera "
+"en palétuvier après un certain temps."
 
 #: mods/ITEMS/mcl_mangrove/init.lua:210
 msgid "Suspended mague propagules grow on the underside of mangrove leaves.\n"
@@ -87,9 +89,8 @@ msgid "Muddy Mangrove Roots"
 msgstr "Racines de palétuvier boueuses"
 
 #: mods/ITEMS/mcl_mangrove/init.lua:366
-#, fuzzy
 msgid "Crafted with Mud and Mangrove roots"
-msgstr "fabriqué avec de la Boue et des racines de Palétuvier"
+msgstr "Fabriqué avec de la boue et des racines de palétuvier"
 
 #: mods/ITEMS/mcl_mangrove/init.lua:367
 msgid ""

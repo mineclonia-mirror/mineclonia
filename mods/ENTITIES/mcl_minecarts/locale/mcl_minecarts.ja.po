@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_minecarts x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-06-05 08:08+0000\n"
-"Last-Translator: bo_chan <bo_chan@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-07-10 02:07+0000\n"
+"Last-Translator: baka_bo <baka_bo@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_minecarts/ja/>\n"
 "Language: ja\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.5\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ENTITIES/mcl_minecarts/init.lua:725
 msgid "Sneak-click to remove"
@@ -54,7 +54,7 @@ msgstr "トロッコを入手するには、スニークキーを押しながら
 
 #: mods/ENTITIES/mcl_minecarts/init.lua:741
 msgid "If it moves over a powered activator rail, you'll get ejected."
-msgstr ""
+msgstr "動力付きアクティベーターレールの上を通過すると、乗客は外に放り出されます。"
 
 #: mods/ENTITIES/mcl_minecarts/init.lua:763
 msgid "Sneak to dismount"

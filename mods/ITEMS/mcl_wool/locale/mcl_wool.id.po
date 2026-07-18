@@ -3,155 +3,157 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_wool x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-27 15:07+0000\n"
+"Last-Translator: B198 <b198@noreply.codeberg.org>\n"
+"Language-Team: Indonesian <https://translate.codeberg.org/projects/"
+"mineclonia/mcl_wool/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_wool/init.lua:25
 msgid "Carpet"
-msgstr ""
+msgstr "Karpet"
 
 #: mods/ITEMS/mcl_wool/init.lua:26
 msgid "Wool"
-msgstr ""
+msgstr "Wol"
 
 #: mods/ITEMS/mcl_wool/init.lua:27
 msgid "Wool is a decorative block which comes in many different colors."
-msgstr ""
+msgstr "Wol adalah sebuah blok dekoratif dengan warna yang beragam."
 
 #: mods/ITEMS/mcl_wool/init.lua:28
 msgid "Carpets are thin floor covers which come in many different colors."
-msgstr ""
+msgstr "Karpet adalah penutup lantai dengan warna yang beragam."
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:1
 msgid "Black Carpet"
-msgstr ""
+msgstr "Karpet Hitam"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:2
 msgid "Black Wool"
-msgstr ""
+msgstr "Wol Hitam"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:3
 msgid "Blue Carpet"
-msgstr ""
+msgstr "Karpet Biru"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:4
 msgid "Blue Wool"
-msgstr ""
+msgstr "Wol Biru"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:5
 msgid "Brown Carpet"
-msgstr ""
+msgstr "Karpet Cokelat"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:6
 msgid "Brown Wool"
-msgstr ""
+msgstr "Wol Cokelat"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:7
 msgid "Cyan Carpet"
-msgstr ""
+msgstr "Karpet Sian"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:8
 msgid "Cyan Wool"
-msgstr ""
+msgstr "Wol Sian"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:9
 msgid "Green Carpet"
-msgstr ""
+msgstr "Karpet Hijau"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:10
 msgid "Green Wool"
-msgstr ""
+msgstr "Wol Hijau"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:11
 msgid "Grey Carpet"
-msgstr ""
+msgstr "Karpet Abu-abu"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:12
 msgid "Grey Wool"
-msgstr ""
+msgstr "Wol Abu-abu"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:13
 msgid "Light Blue Carpet"
-msgstr ""
+msgstr "Karpet Biru Muda"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:14
 msgid "Light Blue Wool"
-msgstr ""
+msgstr "Wol Biru Muda"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:15
 msgid "Light Grey Carpet"
-msgstr ""
+msgstr "Karpet Abu-abu Muda"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:16
 msgid "Light Grey Wool"
-msgstr ""
+msgstr "Wol Abu-abu Muda"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:17
 msgid "Lime Carpet"
-msgstr ""
+msgstr "Karpet Limau"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:18
 msgid "Lime Wool"
-msgstr ""
+msgstr "Wol Limau"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:19
 msgid "Magenta Carpet"
-msgstr ""
+msgstr "Karpet Magenta"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:20
 msgid "Magenta Wool"
-msgstr ""
+msgstr "Wol Magenta"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:21
 msgid "Orange Carpet"
-msgstr ""
+msgstr "Karpet Jingga"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:22
 msgid "Orange Wool"
-msgstr ""
+msgstr "Wol Jingga"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:23
 msgid "Pink Carpet"
-msgstr ""
+msgstr "Karpet Merah Muda"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:24
 msgid "Pink Wool"
-msgstr ""
+msgstr "Wol Merah Muda"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:25
 msgid "Purple Carpet"
-msgstr ""
+msgstr "Karpet Ungu"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:26
 msgid "Purple Wool"
-msgstr ""
+msgstr "Wol Ungu"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:27
 msgid "Red Carpet"
-msgstr ""
+msgstr "Karpet Merah"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:28
 msgid "Red Wool"
-msgstr ""
+msgstr "Wol Merah"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:29
 msgid "White Carpet"
-msgstr ""
+msgstr "Karpet Putih"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:30
 msgid "White Wool"
-msgstr ""
+msgstr "Wol Putih"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:31
 msgid "Yellow Carpet"
-msgstr ""
+msgstr "Karpet Kuning"
 
 #: mods/ITEMS/mcl_wool/mcl_wool_translations_tmp.lua:32
 msgid "Yellow Wool"
-msgstr ""
+msgstr "Wol Kuning"

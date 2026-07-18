@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_dyes x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-27 15:07+0000\n"
+"Last-Translator: B198 <b198@noreply.codeberg.org>\n"
+"Language-Team: Indonesian <https://translate.codeberg.org/projects/"
+"mineclonia/mcl_dyes/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_dyes/init.lua:167
 msgid "This item is a dye which is used for dyeing and crafting."
@@ -23,64 +25,64 @@ msgstr ""
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:1
 msgid "Black Dye"
-msgstr ""
+msgstr "Pewarna Hitam"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:2
 msgid "Blue Dye"
-msgstr ""
+msgstr "Pewarna Biru"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:3
 msgid "Brown Dye"
-msgstr ""
+msgstr "Pewarna Cokelat"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:4
 msgid "Cyan Dye"
-msgstr ""
+msgstr "Pewarna Sian"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:5
 msgid "Green Dye"
-msgstr ""
+msgstr "Pewarna Hijau"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:6
 msgid "Grey Dye"
-msgstr ""
+msgstr "Pewarna Abu-abu"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:7
 msgid "Light Blue Dye"
-msgstr ""
+msgstr "Pewarna Biru Muda"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:8
 msgid "Light Grey Dye"
-msgstr ""
+msgstr "Pewarna Abu-abu Muda"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:9
 msgid "Lime Dye"
-msgstr ""
+msgstr "Pewarna Limau"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:10
 msgid "Magenta Dye"
-msgstr ""
+msgstr "Pewarna Magenta"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:11
 msgid "Orange Dye"
-msgstr ""
+msgstr "Pewarna Jingga"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:12
 msgid "Pink Dye"
-msgstr ""
+msgstr "Pewarna Merah Muda"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:13
 msgid "Purple Dye"
-msgstr ""
+msgstr "Pewarna Ungu"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:14
 msgid "Red Dye"
-msgstr ""
+msgstr "Pewarna Merah"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:15
 msgid "White Dye"
-msgstr ""
+msgstr "Pewarna Putih"
 
 #: mods/ITEMS/mcl_dyes/mcl_dyes_translations_tmp.lua:16
 msgid "Yellow Dye"
-msgstr ""
+msgstr "Pewarna Kuning"

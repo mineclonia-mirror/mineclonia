@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_player x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-06-05 08:07+0000\n"
-"Last-Translator: bo_chan <bo_chan@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-07-09 08:07+0000\n"
+"Last-Translator: baka_bo <baka_bo@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_player/ja/>\n"
 "Language: ja\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.5\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/PLAYER/mcl_player/mcl_player_translations_tmp.lua:1
 msgid "Graphics"
@@ -24,7 +24,7 @@ msgstr "HUD"
 
 #: mods/PLAYER/mcl_player/mcl_player_translations_tmp.lua:3
 msgid "Inventory"
-msgstr ""
+msgstr "インベントリー"
 
 #: mods/PLAYER/mcl_player/settings.lua:88
 msgid "Misc"

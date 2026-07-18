@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_core x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-06-06 22:12+0200\n"
-"PO-Revision-Date: 2026-06-06 07:07+0000\n"
-"Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-06-30 14:07+0000\n"
+"Last-Translator: Enlive <enlive@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_core-1/de/>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.5\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
@@ -44,10 +44,10 @@ msgid ""
 "underground. Coal is your standard furnace fuel, but it can also be used to "
 "make torches, coal blocks and a few other things."
 msgstr ""
-"„Kohle“ meint Kohleklumpen, die herausfallen, wenn Kohleerz gegraben wird, "
-"was im Untergrund gefunden werden kann. Kohle ist der klassische Brennstoff "
-"für den Ofen, aber er kann auch benutzt werden, um Fackeln, Kohleblöcke und "
-"einige andere Dinge herzustellen."
+"\"Kohle\" bezieht sich auf Kohlebrocken, welche durch das Abbauen von "
+"Kohleerz gewonnen wird und im Untergrund gefunden werden kann. Kohle ist der "
+"übliche Brennstoff für Öfen, aber kann auch benutzt werden, um Fackeln, "
+"Kohleblöcke und ein paar andere Dinge herzustellen."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:31
 msgid "Charcoal"
@@ -97,8 +97,8 @@ msgid ""
 "Diamonds are precious minerals and useful to create the highest tier of "
 "armor and tools."
 msgstr ""
-"Diamanten sind kostbare Mineralien, die für die hochwertigsten Rüstungen und "
-"Werkzeuge gebraucht werden."
+"Diamanten sind wertvolle Mineralien und sind nützlich, um Rüstungen und "
+"Werkzeuge der höchsten Stufe herzustellen."
 
 #: mods/ITEMS/mcl_core/craftitems.lua:61
 msgid "Diamond Material"
@@ -949,7 +949,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:118
 msgid "Lit Redstone Ore"
-msgstr "Leuchtendes Redstoneerz"
+msgstr "Beleuchtetes Redstoneerz"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:152
 msgid "Lapis Lazuli Ore"
@@ -960,8 +960,8 @@ msgid ""
 "Lapis lazuli ore is the ore of lapis lazuli. It can be rarely found in "
 "clusters near the bottom of the world."
 msgstr ""
-"Lapislazulierz ist das Erz von Lapislazuli. Es kann relativ selten in "
-"Ansammlungen in der Nähe des Weltbodens gefunden werden."
+"Lapislazulierz ist das Erz von Lapislazuli. Es ist selten und kann in "
+"Ansammlungen in der Nähe des Bodens der Welt gefunden werden."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:175
 msgid "Emerald Ore"
@@ -972,8 +972,8 @@ msgid ""
 "Emerald ore is the ore of emeralds. It is very rare and can be found alone, "
 "not in clusters."
 msgstr ""
-"Smaragderz ist das Erz von Smaragden. Es ist sehr selten und kann nur "
-"einzeln gefunden werden, nicht in Ansammlungen."
+"Smaragderz ist das Erz von Smaragden. Es ist sehr selten und kann einzeln "
+"gefunden werden, nicht in Ansammlungen."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:188
 msgid "Diamond Ore"
@@ -984,8 +984,8 @@ msgid ""
 "Diamond ore is rare and can be found in clusters near the bottom of the "
 "world."
 msgstr ""
-"Diamanterz ist selten und kann in kleinen Ansammlungen in der Nähe des "
-"Weltbodens gefunden werden."
+"Diamanterz ist selten und kann in Ansammlungen in der Nähe des Bodens der "
+"Welt gefunden werden."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:201
 msgid "Stone Bricks"
@@ -1005,7 +1005,7 @@ msgstr "Moosige Steinziegel"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:248
 msgid "Smooth Stone"
-msgstr ""
+msgstr "Glatter Stein"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:259
 msgid "Granite"
@@ -1013,7 +1013,7 @@ msgstr "Granit"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:260
 msgid "Granite is an igneous rock."
-msgstr "Granit ist ein magmatisches Gestein."
+msgstr "Granit ist ein magmatischer Stein."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:270
 msgid "Polished Granite"
@@ -1021,9 +1021,7 @@ msgstr "Polierter Granit"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:271
 msgid "Polished granite is a decorative building block made from granite."
-msgstr ""
-"Polierter Granit ist ein dekorativer Block zum Bauen, der aus Granit gemacht "
-"wurde."
+msgstr "Polierter Granit ist ein dekorativer Baublock, hergestellt aus Granit."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:282
 msgid "Andesite"
@@ -1031,7 +1029,7 @@ msgstr "Andesit"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:283
 msgid "Andesite is an igneous rock."
-msgstr "Andesit ist ein magmatisches Gestein."
+msgstr "Andesit ist ein magmatischer Stein."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:293
 msgid "Polished Andesite"
@@ -1040,8 +1038,7 @@ msgstr "Polierter Andesit"
 #: mods/ITEMS/mcl_core/nodes_base.lua:294
 msgid "Polished andesite is a decorative building block made from andesite."
 msgstr ""
-"Polierter Andesit ist ein dekorativer Block zum Bauen, der aus Andesit "
-"gemacht wurde."
+"Polierter Andesit ist ein dekorativer Baublock, hergestellt aus Andesit."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:305
 msgid "Diorite"
@@ -1049,7 +1046,7 @@ msgstr "Diorit"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:306
 msgid "Diorite is an igneous rock."
-msgstr "Diorit ist ein vulkanisches Gestein."
+msgstr "Diorit ist ein magmatischer Stein."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:316
 msgid "Polished Diorite"
@@ -1057,9 +1054,7 @@ msgstr "Polierter Diorit"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:317
 msgid "Polished diorite is a decorative building block made from diorite."
-msgstr ""
-"Polierter Diorit ist ein dekorativer Block zum Bauen, der aus Diorit gemacht "
-"wurde."
+msgstr "Polierter Diorit ist ein dekorativer Baublock, hergestellt aus Diorit."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:329
 msgid "Grass Block"
@@ -1073,12 +1068,12 @@ msgid ""
 "light, the grass slowly spreads onto dirt nearby. Under an opaque block or a "
 "liquid, a grass block may turn back to dirt."
 msgstr ""
-"Ein Grasblock ist Erde mit einer Grasschicht. Grasblöcke sind vielseitige "
-"Blöcke, die das Wachstum aller möglichen Pflanzen fördern. Mit einer Hacke "
-"kann man das Land bestellen und einen Ackerboden machen. Mit einer Schaufel "
-"verwandelt man ihn in einen Graspfad. Im Licht wird das Gras sich langsam "
-"auf benachbarte Erde ausbreiten. Unter einem lichtundurchlässigen Block kann "
-"sich dieser Block wieder zurück zu Erde verwandeln."
+"Ein Grasblock ist Erde mit einer Grasschicht. Grasblöcke sind "
+"ressourcenschonende Blöcke, welche das Wachstum aller Arten und Pflanzen "
+"ermöglichen. Sie können mit einer Hacke in Ackerland und mit einer Schaufle "
+"in Graswege verwandelt werden. In Licht verbreitet sich das Gras langsam auf "
+"nebenliegende Erde. Unter einem undurchsichtigen Block oder einer "
+"Flüssigkeit kann sich ein Grasblock wieder in Erde verwandeln."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:368
 msgid "Dirt with Snow"
@@ -1086,7 +1081,7 @@ msgstr "Erde mit Schnee"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:372
 msgid "Grass Path"
-msgstr "Graspfad"
+msgstr "Grasweg"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:373
 msgid ""
@@ -1095,11 +1090,11 @@ msgid ""
 "useful to build footpaths. Grass paths can be created with a shovel. A grass "
 "path turns into dirt when it is below a solid block."
 msgstr ""
-"Graspfade sind eine dekorative Variante von Grasblöcken. Ihre Oberseite hat "
-"eine andere Farbe und sie sind etwas niedriger als Grasblöcke, wodurch sie "
-"nützlich sind, um Fußwege zu errichten. Graspfade werden mit einer Schaufel "
-"errichtet. Ein Graspfad verwandelt sich in Erde, wenn er sich unter einem "
-"festen Block befindet."
+"Graswege sind dekorative Versionen des Grasblocks. Deren Oberfläche hat eine "
+"andere Farbe und sie sind ein wenig tiefer als Grasblöcke, welches sie "
+"nützlich macht, Fußwege zu bauen. Graswege können mit einer Schaufel "
+"erstellt werden. Ein Grasweg verwandelt sich zu Erde, wenn ein solider Block "
+"über ihm ist."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:392
 msgid "Mycelium"
@@ -1112,11 +1107,10 @@ msgid ""
 "mycelium slowly spreads over nearby dirt. Under an opaque block or a liquid, "
 "it eventually turns back into dirt."
 msgstr ""
-"Myzel ist eine Art Erde und der perfekte Nährboden für Pilze. Anders als bei "
-"anderen erdähnlichen Blöcken kann es mit einer Hacke nicht zu Ackerboden "
-"verwandelt werden. Im Licht wird sich Myzel langsam auf benachbarte Erde "
-"ausbreiten. Unter einem lichtundurchlässigen Block oder einer Flüssigkeit "
-"wird es sich früher oder später zurück zu Erde verwandeln."
+"Myzel ist ein Typ Erde und der perfekte Boden für Pilze. Nicht wie andere "
+"Blöcke vom Typ Erde, kann es nicht in Ackerboden mit einer Hacke verwandelt "
+"werden. Im Licht verbreitet sich Myzel langsam auf nahegelegene Erde. Unter "
+"einem festen Block oder Flüssigkeit, kann es sich wieder in Erde verwandeln."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:407
 msgid "Mycelium with Snow"
@@ -1124,19 +1118,19 @@ msgstr "Myzel mit Schnee"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:454
 msgid "Podzol"
-msgstr "Podsol"
+msgstr "Podzol"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:455
 msgid ""
 "Podzol is a type of dirt found in taiga forests. Only a few plants are able "
 "to survive on it."
 msgstr ""
-"Podsol ist eine Art Erde, die man in Taigawäldern finden kann. Nur wenige "
-"Pflanzen können hierauf wachsen."
+"Podzol ist eine Art Erde, die in Taigawäldern vorkommt. Nur wenige Pflanzen "
+"können auf Podzol überleben."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:466
 msgid "Podzol with Snow"
-msgstr "Podsol mit Schnee"
+msgstr "Podzol mit Schnee"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:469
 msgid "Dirt"
@@ -1147,9 +1141,8 @@ msgid ""
 "Dirt acts as a soil for a few plants. When in light, this block may grow a "
 "grass or mycelium cover if such blocks are nearby."
 msgstr ""
-"Erde dient als Nährboden für einige Pflanzen. Im Licht könnte auf diesem "
-"Block eine Gras- oder Myzelschicht wachsen, wenn solche Blöcke in der Nähe "
-"sind."
+"Erde wirkt als Boden für ein paar Pflanzen. Wenn es im Licht ist kann der "
+"Block mit Gras oder Myzel abgedeckt werden, wenn diese Blöcke nah sind."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:481
 msgid "Coarse Dirt"
@@ -1160,8 +1153,8 @@ msgid ""
 "Coarse dirt acts as a soil for some plants and is similar to dirt, but it "
 "will never grow a cover."
 msgstr ""
-"Grobe Erde ist für einige Pflanzen ein Erdboden und ähnlich wie Erde, aber "
-"auf ihr wird nie eine Grasschicht oder ähnliches wachsen."
+"Grobe Erde wirkt als Boden für manche Pflanzen und ist vergleichbar mit "
+"Erde, aber es bildet niemals eine dichte Pflanzendecke."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:492
 msgid "Gravel"
@@ -1171,7 +1164,7 @@ msgstr "Kies"
 msgid ""
 "This block consists of a couple of loose stones and can't support itself."
 msgstr ""
-"Dieser Block besteht aus ein paar losen Steinchen und kann sich nicht selbst "
+"Dieser Block besteht aus ein paar losen Steinen und kann sich nicht selbst "
 "tragen."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:527
@@ -1180,7 +1173,7 @@ msgstr "Sand"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:528
 msgid "Sand is found in large quantities at beaches and deserts."
-msgstr "Sand kommt in großen Mengen an Stränden und in Wüsten vor."
+msgstr "Sand kann in Vielzahl an Stränden und in Wüsten gefunden werden."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:539
 msgid "Sandstone"
@@ -1188,15 +1181,15 @@ msgstr "Sandstein"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:541
 msgid "Sandstone is compressed sand and is a rather soft kind of stone."
-msgstr "Sandstein ist komprimierter Sand und ein relativ weiches Gestein."
+msgstr "Sandstein ist gepresster Sand und ist eine eher weiche Gesteinsart."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:551
 msgid "Cut Sandstone"
-msgstr "Geschliffener Sandstein"
+msgstr "Geschnittener Sandstein"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:552
 msgid "Cut sandstone is a decorative building block."
-msgstr "Geschliffener Sandstein ist ein dekorativer Block zum Bauen."
+msgstr "Geschnittener Sandstein ist ein dekorativer Baublock."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:562
 msgid "Chiseled Sandstone"
@@ -1204,7 +1197,7 @@ msgstr "Gemeißelter Sandstein"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:563
 msgid "Chiseled sandstone is a decorative building block."
-msgstr "Gemeißelter Sandstein ist ein dekorativer Block zum Bauen."
+msgstr "Gemeißelter Sandstein ist ein dekorativer Baublock."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:573
 msgid "Smooth Sandstone"
@@ -1213,7 +1206,7 @@ msgstr "Glatter Sandstein"
 #: mods/ITEMS/mcl_core/nodes_base.lua:575
 msgid "Smooth sandstone is compressed sand and is a rather soft kind of stone."
 msgstr ""
-"Glatter Sandstein ist komprimierter Sand und ein relativ weiches Gestein."
+"Glatter Sandstein ist gepresster Sand und ist eine eher weiche Gesteinsart."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:588
 msgid "Red Sand"
@@ -1221,7 +1214,7 @@ msgstr "Roter Sand"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:589
 msgid "Red sand is found in large quantities in mesa biomes."
-msgstr "Roter Sand kommt in großen Mengen bei Tafelbergbiomen vor."
+msgstr "Roter Sand kann in großen Mengen in Mesa-Biomen gefunden werden."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:599
 msgid "Red Sandstone"
@@ -1231,31 +1224,32 @@ msgstr "Roter Sandstein"
 msgid ""
 "Red sandstone is compressed red sand and is a rather soft kind of stone."
 msgstr ""
-"Roter Sandstein ist komprimierter roter Sand und ein relativ weiches Gestein."
+"Roter Sandstein ist gepresster roter Sand und ist eher eine weiche "
+"Gesteinsart."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:610
 msgid "Cut Red Sandstone"
-msgstr "Geschliffener roter Sandstein"
+msgstr "Geschnittener Roter Sandstein"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:611
 msgid "Cut red sandstone is a decorative building block."
-msgstr "Geschliffener roter Sandstein ist ein dekorativer Block zum Bauen."
+msgstr "Geschnittener roter Sandstein ist ein dekorativer Baublock."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:621
 msgid "Chiseled Red Sandstone"
-msgstr "Gemeißelter roter Sandstein"
+msgstr "Gemeißelter Roter Sandstein"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:622
 msgid "Chiseled red sandstone is a decorative building block."
-msgstr "Gemeißelter roter Sandstein ist ein dekorativer Block zum Bauen."
+msgstr "Gemeißelter roter Sandstein ist ein dekorativer Baublock."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:632
 msgid "Smooth Red Sandstone"
-msgstr "Glatter roter Sandstein"
+msgstr "Glatter Roter Sandstein"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:633
 msgid "Smooth red sandstone is a decorative building block."
-msgstr "Glatter roter Sandstein ist ein decorativer Block zum Bauen."
+msgstr "Glatter roter Sandstein ist ein dekorativer Baublock."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:645
 msgid "Clay"
@@ -1264,8 +1258,8 @@ msgstr "Ton"
 #: mods/ITEMS/mcl_core/nodes_base.lua:646
 msgid "Clay is a versatile kind of earth commonly found at beaches underwater."
 msgstr ""
-"Ton ist eine vielseitige Art Erde, die oft an Stränden unter dem Wasser "
-"gefunden werden kann."
+"Ton ist eine vielseitige Erdart und kann meist an Stränden unter Wasser "
+"gefunden werden."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:659
 msgid "Brick Block"

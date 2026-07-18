@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_buckets x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-07-10 00:08+0000\n"
+"Last-Translator: baka_bo <baka_bo@noreply.codeberg.org>\n"
+"Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_buckets/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_buckets/init.lua:255
 msgid "Empty Bucket"
@@ -42,7 +44,7 @@ msgstr "タラ入りバケツ"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:3
 msgid "Bucket of Pufferfish"
-msgstr ""
+msgstr "フグ入りバケツ"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:4
 msgid "Bucket of Salmon"
@@ -57,70 +59,80 @@ msgid ""
 "Place it to empty the bucket and place a Cod. Obtain by right clicking on a "
 "Cod with a bucket of water."
 msgstr ""
+"使用するとタラを放ち、バケツが空になります。水入りバケツでタラを右クリックす"
+"ると入手できます。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:7
 msgid ""
 "Place it to empty the bucket and place a Pufferfish. Obtain by right "
 "clicking on a Pufferfish with a bucket of water."
 msgstr ""
+"使用するとフグを放ち、空のバケツになります。水入りバケツでフグを右クリックす"
+"ると入手できます。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:8
 msgid ""
 "Place it to empty the bucket and place a Salmon. Obtain by right clicking on "
 "a Salmon with a bucket of water."
 msgstr ""
+"使用するとサケを放ち、空のバケツになります。水入りバケツでサケを右クリックす"
+"ると入手できます。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:9
 msgid ""
 "Place it to empty the bucket and place a Tropical Fish. Obtain by right "
 "clicking on a Tropical Fish with a bucket of water."
 msgstr ""
+"使用すると熱帯魚を放ち、空のバケツになります。水入りバケツで熱帯魚を右"
+"クリックすると入手できます。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:10
 msgid ""
 "Place it to empty the bucket and place an Axolotl. Obtain by right clicking "
 "on an Axolotl with a bucket of water."
 msgstr ""
+"使用するとウーパールーパーを放ち、空のバケツになります。水入りバケツで"
+"ウーパールーパーを右クリックすると入手できます。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:11
 msgid "Places a water source and a Cod."
-msgstr ""
+msgstr "水源とタラを設置します。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:12
 msgid "Places a water source and a Pufferfish."
-msgstr ""
+msgstr "水源とフグを設置します。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:13
 msgid "Places a water source and a Salmon."
-msgstr ""
+msgstr "水源とサケを設置します。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:14
 msgid "Places a water source and a Tropical Fish."
-msgstr ""
+msgstr "水源と熱帯魚を設置します。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:15
 msgid "Places a water source and an Axolotl."
-msgstr ""
+msgstr "水源とウーパールーパーを設置します。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:16
 msgid "This bucket is filled with water and a Cod."
-msgstr ""
+msgstr "このバケツには水とタラが入っています。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:17
 msgid "This bucket is filled with water and a Pufferfish."
-msgstr ""
+msgstr "このバケツには水とフグが入っています。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:18
 msgid "This bucket is filled with water and a Salmon."
-msgstr ""
+msgstr "このバケツには水とサケが入っています。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:19
 msgid "This bucket is filled with water and a Tropical Fish."
-msgstr ""
+msgstr "このバケツには水と熱帯魚が入っています。"
 
 #: mods/ITEMS/mcl_buckets/mcl_buckets_translations_tmp.lua:20
 msgid "This bucket is filled with water and an Axolotl."
-msgstr ""
+msgstr "このバケツには水とウーパールーパーが入っています。"
 
 #: mods/ITEMS/mcl_buckets/register.lua:22
 msgid "Lava Bucket"

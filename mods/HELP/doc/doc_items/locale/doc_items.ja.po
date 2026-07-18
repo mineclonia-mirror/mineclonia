@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain doc_items x.x.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-06-05 10:07+0000\n"
-"Last-Translator: bo_chan <bo_chan@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-07-09 04:07+0000\n"
+"Last-Translator: baka_bo <baka_bo@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
 "doc_items/ja/>\n"
 "Language: ja\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.5\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 msgid "This is a decorational block."
 msgstr "これは装飾用のブロックです。"
@@ -318,37 +318,37 @@ msgid "Unknown Node"
 msgstr "不明なノード"
 
 msgid "This block connects to this block: @1."
-msgstr "このブロックは、このブロックに接続します：@1"
+msgstr "このブロックは、@1に接続します。"
 
 msgid "This block connects to these blocks: @1."
-msgstr "このブロックは、次のブロックに接続します：@1"
+msgstr "このブロックは、@1に接続します。"
 
 msgid "This block connects to blocks of the @1 group."
 msgstr "このブロックは、@1グループのブロックに接続します。"
 
 msgid "This block connects to blocks of the following groups: @1."
-msgstr "このブロックは、次のグループのブロックに接続します：@1"
+msgstr "このブロックは、@1グループのブロックに接続します。"
 
 msgid "This block won't drop anything when mined."
 msgstr "このブロックは、掘っても何もドロップしません。"
 
 msgid "This block will drop the following when mined: @1×@2."
-msgstr "このブロックを掘ると、次のものをドロップします：@1×@2"
+msgstr "このブロックを掘ると、@1×@2をドロップします。"
 
 msgid "This block will drop the following when mined: @1."
-msgstr "このブロックを掘ると、次のものをドロップします：@1"
+msgstr "このブロックを掘ると、@1を落とします。"
 
 msgid "This block will drop the following items when mined: @1."
 msgstr "このブロックを掘ると、次のアイテムをドロップします：@1。"
 
 msgid "This block will randomly drop one of the following when mined: @1."
-msgstr "このブロックを掘ると、次のいずれかがランダムにドロップされます：@1"
+msgstr "このブロックを掘ると、@1のいずれかをランダムにドロップします。"
 
 msgid "This block will randomly drop up to @1 drops of the following possible drops when mined: @2."
-msgstr "このブロックを掘ると、次の可能なドロップのうち、最大@1個をランダムにドロップします：@2"
+msgstr "このブロックを掘ると、@2の中から最大@1個をランダムにドロップします。"
 
 msgid " and "
-msgstr "＆"
+msgstr " ＆ "
 
 msgid "@1×@2"
 msgstr "@1×@2"
@@ -384,13 +384,13 @@ msgid "Mobs"
 msgstr "モブ"
 
 msgid "Different Mobs"
-msgstr ""
+msgstr "モブの種類"
 
 msgid "Drops: "
-msgstr ""
+msgstr "ドロップ： "
 
 msgid "Follows player when these items are held:"
-msgstr ""
+msgstr "次のアイテムを持つとプレイヤーについてきます："
 
 msgid "A transparent block, basically empty space. It is usually left behind after digging something."
 msgstr "透明なブロックで、基本的には何もない空間です。たいていは何かを掘った後に残ります。"

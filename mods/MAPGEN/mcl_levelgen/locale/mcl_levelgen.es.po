@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: 2026-05-30 21:07+0000\n"
+"PO-Revision-Date: 2026-06-21 22:07+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_levelgen/es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.5\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:157
 msgid "Structure Void"
@@ -44,11 +44,11 @@ msgstr ""
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:254
 msgid "Structure Block"
-msgstr ""
+msgstr "Bloque de estructuras"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
 msgid "Saves, generates, or records structure data"
-msgstr ""
+msgstr "Guarda, genera o registra datos estructurales"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:256
 msgid ""
@@ -101,26 +101,80 @@ msgid ""
 "Blocks (only when loaded during jigsaw block expansion), and any structure "
 "blocks in an internal Data Mode."
 msgstr ""
+"Un bloque de estructura es un bloque administrativo y de programación que "
+"permite registrar elementos existentes en un mapa para su posterior "
+"reutilización por parte de estructuras generadas, así como recrear dichos "
+"registros en otras posiciones de diversos mapas. Los bloques de estructura "
+"alternan entre varios modos de funcionamiento, cada uno con una "
+"especificación de formulario (formspec) única que refleja su finalidad, y "
+"entre los cuales se puede alternar mediante un botón situado en la esquina "
+"inferior izquierda de cada especificación de formulario, a saber: \n"
+"\n"
+"- Modo de carga: \n"
+"\n"
+"Previsualiza o carga una estructura identificada en el campo «Nombre de la "
+"estructura» de la especificación de formulario, según lo establecido por las "
+"opciones de «Posición relativa», «Rotación» y «Simetría» proporcionadas en "
+"dicha especificación. La primera vez que se ejecute «CARGAR» se cargará y "
+"mostrará un esquema de la posición de destino y los límites de la plantilla "
+"con todas las opciones mencionadas aplicadas, y las ejecuciones posteriores "
+"cargarán la plantilla en el mapa dentro de dichos límites. \n"
+"\n"
+"- Modo «seguro»: \n"
+"\n"
+"Guarda una parte del mapa, cuyos límites se especifican en los campos «"
+"Posición relativa» y «Tamaño de la estructura» de la especificación de "
+"formulario, en una plantilla de estructura identificada por el campo «Nombre "
+"de la estructura» de dicha especificación y almacenada como un archivo con "
+"la extensión «.dat» dentro del subdirectorio «templates» del directorio de "
+"guardado del mundo. \n"
+"\n"
+"  Opcionalmente, los campos «Posición relativa» y «Tamaño de la estructura» "
+"pueden obtenerse a partir de dos o más bloques «Esquina de estructura» con "
+"el mismo valor en el campo «Nombre de la estructura», colocados en las "
+"esquinas o en los límites de una construcción que se desee registrar, y "
+"seleccionando «Detectar tamaño y posición de la estructura».\n"
+"\n"
+"- Modo «Esquina»:\n"
+"\n"
+"Marca los límites de una parte del mapa que se va a registrar mediante otro "
+"bloque de estructura en modo «Guardar» con un valor idéntico en su campo «"
+"Nombre de la estructura» dentro de una región de 80x80x80 de dicho bloque de "
+"estructura.\n"
+"\n"
+"  Los límites ocupados por todas las esquinas coincidentes dentro de dicha "
+"distancia se interpretan como los límites de dicha región delimitada por un "
+"único nodo; se requiere un mínimo de dos de dichas esquinas para establecer "
+"la posición y las dimensiones de una estructura.\n"
+"\n"
+"Se espera que todas las coordenadas y/o desplazamientos se expresen en el "
+"sistema de coordenadas de Minecraft, que difiere principalmente del de "
+"Luanti en la inversión del eje Z.  Al grabarse o cargarse, ciertos bloques y "
+"sus metadatos tienen un significado especial y no siempre se reproducen "
+"fielmente a partir de los datos de una plantilla de estructura. Entre ellos "
+"se incluyen los bloques «Structure Void», los bloques «Jigsaw» (solo cuando "
+"se cargan durante la expansión de bloques «Jigsaw») y cualquier bloque de "
+"estructura en un modo de datos interno."
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:406
 msgid "Template name is not specified"
-msgstr ""
+msgstr "Sin nombre para la plantilla"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:415
 msgid "Template `@1' is not available: @2"
-msgstr ""
+msgstr "La plantilla «@1» no está disponible: @2"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:520
 msgid "Invalid dimensions: @1,@2,@3"
-msgstr ""
+msgstr "Dimensiones no válidas: @1,@2,@3"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:574
 msgid "Metadata storage limit exceeded"
-msgstr ""
+msgstr "Se ha superado el límite de almacenamiento de metadatos"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:612
 msgid "Creating file @1: @2"
-msgstr ""
+msgstr "Creando el archivo @1: @2"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:802
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:916
@@ -128,23 +182,28 @@ msgstr ""
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1057
 msgid "`server' privileges are required to utilize structure blocks"
 msgstr ""
+"Se requieren privilegios de «servidor» para utilizar bloques de estructura"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:961
 msgid ""
 "Unable to detect structure size.  Add corners with matching structure names."
 msgstr ""
+"No se ha podido detectar el tamaño de la estructura. Añade esquinas con "
+"nombres de estructura coincidentes."
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1217
 msgid "Jigsaw Block"
-msgstr ""
+msgstr "Bloque de rompecabezas"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1218
 msgid "Facilitates generation of multiple-piece structures"
-msgstr ""
+msgstr "Facilita la creación de estructuras compuestas por varias piezas"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1352
 msgid "`server' privileges are required to interact with jigsaw blocks"
 msgstr ""
+"Se necesitan privilegios de «servidor» para interactuar con los bloques de "
+"Jigsaw"
 
 #. ~= 0 then
 #. print ("Nonempty structuremask",
@@ -225,20 +284,25 @@ msgstr ""
 #. ----------------------------------------------------------------------
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3061
 msgid "Enable or disable the level generation HUD"
-msgstr ""
+msgstr "Activar o desactivar el HUD de generación de niveles"
 
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3113
 msgid "@1 structure piece(s) were (re-)inserted into the structure database"
 msgstr ""
+"Se han (re)introducido @1 pieza(s) de estructura en la base de datos de "
+"estructuras"
 
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3120
 msgid "Regenerate nearby structure pieces for a structure set"
 msgstr ""
+"Regenerar las piezas de estructura cercanas para un conjunto de estructuras"
 
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3123
 msgid "The structure database is currently being repaired.  Please wait."
 msgstr ""
+"La base de datos de estructuras se está reparando en estos momentos. Por "
+"favor, espera."
 
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3136
 msgid "No level contains the position @1,@2,@3"
-msgstr ""
+msgstr "Ningún nivel contiene la posición @1,@2,@3"

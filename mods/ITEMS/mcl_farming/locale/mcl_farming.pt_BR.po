@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-20 21:07+0000\n"
+"Last-Translator: newrizen <newrizen@noreply.codeberg.org>\n"
+"Language-Team: Portuguese (Brazil) <https://translate.codeberg.org/projects/"
+"mineclonia/mcl_farming/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:10
 msgid "Beetroot Seeds"
@@ -454,13 +456,12 @@ msgid "Pumpkin"
 msgstr "Abóbora"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
-#, fuzzy
 msgid ""
 "A pumpkin is a decorative block. It can be carved with shears to obtain "
 "pumpkin seeds."
 msgstr ""
-"A abóbora sem rosto é um bloco decorativo. Ela pode ser esculpida com "
-"tesoura para se obter as sementes."
+"A abóbora é um bloco decorativo. Ela pode ser esculpida com tesoura para se "
+"obter as sementes."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:117
 msgid ""
@@ -471,18 +472,16 @@ msgstr ""
 "esculpir."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-#, fuzzy
 msgid "Carved Pumpkin"
-msgstr "Caule de Abóbora Maduro"
+msgstr "Abóbora Esculpida"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
-#, fuzzy
 msgid ""
 "A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
 "which in turn grow from pumpkin seeds."
 msgstr ""
-"Uma abóbora pode ser usada como capacete. As abóboras crescem a partir de "
-"caules, que por sua vez crescem a partir de sementes."
+"Uma abóbora esculpida pode ser usada como capacete. As abóboras crescem a "
+"partir de caules, que por sua vez crescem a partir de sementes."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:228
 msgid "Jack o'Lantern"
@@ -569,7 +568,6 @@ msgstr ""
 "trigo."
 
 #: mods/ITEMS/mcl_farming/wheat.lua:12
-#, fuzzy
 msgid ""
 "\t\tPlace the wheat seeds on farmland (which can be created with a hoe) to "
 "plant a wheat plant.\n"
@@ -577,7 +575,6 @@ msgid ""
 "an animal to feed it wheat seeds.\n"
 "\t"
 msgstr ""
-"\n"
 "\t\tColoque as sementes de trigo em uma terra arada (que pode ser criado com "
 "uma enxada) para plantar um pé de trigo.\n"
 "\t\tEles crescem sob a luz do sol e crescem mais rápido em terrenos arados "
@@ -590,14 +587,12 @@ msgid "Premature Wheat Plant"
 msgstr "Pé de Trigo Prematuro"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:40
-#, fuzzy
 msgid ""
 "\t\t\tPremature wheat plants grow on farmland under sunlight in 8 stages.\n"
 "\t\t\tOn hydrated farmland, they grow faster. They can be harvested at any "
 "time but will only yield a profit when mature.\n"
 "\t\t"
 msgstr ""
-"\n"
 "\t\t\tPés de trigo prematuros crescem em terras aradas sob a luz solar em 8 "
 "estágios.\n"
 "\t\t\tEm terras aradas irrigadas, elas crescem mais rápido. Podem ser "
@@ -613,14 +608,12 @@ msgid "Mature Wheat Plant"
 msgstr "Pé de Trigo Maduro"
 
 #: mods/ITEMS/mcl_farming/wheat.lua:80
-#, fuzzy
 msgid ""
 "\t\tMature wheat plants are ready to be harvested for wheat and wheat "
 "seeds.\n"
 "\t\tThey won't grow any further.\n"
 "\t"
 msgstr ""
-"\n"
 "\t\tPés de trigo maduros são prontos para serem colhidos como trigo e "
 "sementes de trigo.\n"
 "\t\tEles não vão crescer mais.\n"

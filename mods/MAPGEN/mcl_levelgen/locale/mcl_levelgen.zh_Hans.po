@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-12 05:07+0000\n"
+"Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.codeberg.org/projects/mineclonia/mcl_levelgen/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:157
 msgid "Structure Void"
@@ -30,6 +32,11 @@ msgid ""
 "wielded, in which event any Structure Void blocks near the wielder will be "
 "revealed by particles containing its item image."
 msgstr ""
+"结构模板中放置结构空位方块时，会告知地形生成器：生成该模板的过程中，此方块所"
+"在位置的原有地形内容不得被替换。\n"
+"\n"
+"手持结构空位物品时才能看见结构空位节点；手持该物品后，持有者附近所有结构空位"
+"方块都会通过带有其物品图案的粒子显现出来。"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:254
 msgid "Structure Block"
@@ -90,6 +97,36 @@ msgid ""
 "Blocks (only when loaded during jigsaw block expansion), and any structure "
 "blocks in an internal Data Mode."
 msgstr ""
+"结构方块是面向管理员与开发人员的专用方块，能够将地图中已建好的建筑结构保存记"
+"录，供地形生成系统后续重复调用，也可以把保存好的结构模板在不同地图的任意位置"
+"重新生成放置。结构方块拥有多种工作模式，每种模式配有独立功能界面，界面左下角"
+"的按钮可循环切换模式，各模式详情如下：\n"
+"\n"
+"加载模式\n"
+"\n"
+"根据界面中填写的结构名称读取对应结构模板，同时依照界面设置的相对坐标、旋转角"
+"度、镜像翻转参数进行预览或生成。第一次点击 “加载” 时，系统套用全部参数，仅显"
+"示模板放置位置与整体范围的轮廓框；再次点击加载，才会将模板完整填充到地图对应"
+"范围内。\n"
+"\n"
+"保存模式\n"
+"\n"
+"依据界面填写的相对坐标与结构尺寸，框选地图中的一片区域，将其保存为对应名称的"
+"结构模板文件，文件后缀为.dat，存放于世界存档文件夹下的templates子目录内。\n"
+"你也可以在待保存建筑的边界位置放置两个及以上结构角方块，所有角方块填写完全相"
+"同的结构名称；随后点击 “自动识别结构尺寸与位置”，程序会自动读取角方块数据来确"
+"定保存区域的坐标与大小。\n"
+"\n"
+"角标模式\n"
+"\n"
+"用于标记待存档区域的边界范围，供以自身为中心、80×80×80 方块范围内、同名且处于"
+"保存模式的其他结构方块识别。\n"
+"范围内所有匹配名称的角方块围成的区域，会整体向外扩大一格作为实际存档边界；至"
+"少放置两个同名角方块，才能确定整套结构的坐标与长宽高尺寸。\n"
+"所有坐标与偏移量均采用《我的世界》坐标系，该坐标系与 Luanti 引擎坐标系最主要"
+"的区别是 Z 轴正负方向相反。在保存、载入模板时，部分特殊方块及其附加元数据有特"
+"殊处理逻辑，不会完全原样复刻：包含结构空位方块、拼图方块（仅拼图自动拼接拓展"
+"阶段载入时生效）、处于内部数据模式的各类结构方块。"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:406
 msgid "Template name is not specified"
@@ -125,15 +162,15 @@ msgstr "无法检测结构大小，请添加结构名称一致的角落方块。
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1217
 msgid "Jigsaw Block"
-msgstr ""
+msgstr "拼图方块"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1218
 msgid "Facilitates generation of multiple-piece structures"
-msgstr ""
+msgstr "用于拼接生成由多个部件组成的大型建筑结构"
 
 #: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1352
 msgid "`server' privileges are required to interact with jigsaw blocks"
-msgstr ""
+msgstr "需要拥有服务器权限才能操作拼图方块"
 
 #. ~= 0 then
 #. print ("Nonempty structuremask",
@@ -214,20 +251,20 @@ msgstr ""
 #. ----------------------------------------------------------------------
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3061
 msgid "Enable or disable the level generation HUD"
-msgstr ""
+msgstr "开启或关闭地形生成平视显示界面（HUD）"
 
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3113
 msgid "@1 structure piece(s) were (re-)inserted into the structure database"
-msgstr ""
+msgstr "@1 共 1 个结构部件已（重新）插入结构数据库"
 
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3120
 msgid "Regenerate nearby structure pieces for a structure set"
-msgstr ""
+msgstr "为一套结构重新生成附近的结构部件"
 
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3123
 msgid "The structure database is currently being repaired.  Please wait."
-msgstr ""
+msgstr "结构数据库正在修复中，请稍候。"
 
 #: mods/MAPGEN/mcl_levelgen/post_processing.lua:3136
 msgid "No level contains the position @1,@2,@3"
-msgstr ""
+msgstr "坐标 @1、@2、@3 不存在于任何地形区块内"

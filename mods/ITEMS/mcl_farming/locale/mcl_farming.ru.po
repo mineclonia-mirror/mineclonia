@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: 2026-05-07 10:19+0000\n"
-"Last-Translator: Nana M <nana_m@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-07-16 21:07+0000\n"
+"Last-Translator: 2t6vder <2t6vder@noreply.codeberg.org>\n"
 "Language-Team: Russian <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_farming/ru/>\n"
 "Language: ru\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.17.1\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:10
 msgid "Beetroot Seeds"
@@ -445,13 +445,12 @@ msgid "Pumpkin"
 msgstr "Тыква"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:116
-#, fuzzy
 msgid ""
 "A pumpkin is a decorative block. It can be carved with shears to obtain "
 "pumpkin seeds."
 msgstr ""
-"Тыква это декоративный блок. Её можно разрезать ножницами для получения "
-"семян тыквы."
+"Тыква это декоративный блок. Её можно вырезать ножницами для получения семян "
+"тыквы."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:117
 msgid ""
@@ -461,18 +460,16 @@ msgstr ""
 "Чтобы вырезать лицо на тыкве примените ножницы к выбранной стороне тыквы."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:132
-#, fuzzy
 msgid "Carved Pumpkin"
-msgstr "Созревший тыквенный стебель"
+msgstr "Вырезанная тыква"
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:133
-#, fuzzy
 msgid ""
 "A carved pumpkin can be worn as a helmet. Pumpkins grow from pumpkin stems, "
 "which in turn grow from pumpkin seeds."
 msgstr ""
 "Вырезанную тыкву можно носить как шлем. Тыквы растут из тыквенных стеблей, "
-"которые растут из семян тыквы."
+"которые вырастают из семян тыквы."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:228
 msgid "Jack o'Lantern"

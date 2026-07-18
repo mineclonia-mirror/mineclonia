@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-05-30 18:07+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-07 20:07+0000\n"
+"Last-Translator: cuche <cuche@noreply.codeberg.org>\n"
+"Language-Team: Italian <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_farming/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:10
 msgid "Beetroot Seeds"
@@ -21,7 +23,7 @@ msgstr "Semi di Barbabietola"
 #: mods/ITEMS/mcl_farming/potatoes.lua:102
 #: mods/ITEMS/mcl_farming/pumpkin.lua:29 mods/ITEMS/mcl_farming/wheat.lua:10
 msgid "Grows on farmland"
-msgstr ""
+msgstr "Cresce sulla terra zappata"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:12
 msgid "Grows into a beetroot plant. Chickens like beetroot seeds."
@@ -42,7 +44,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:24
 msgid "Premature Beetroot Plant (Stage 1)"
-msgstr ""
+msgstr "Pianta di barbabietola prematura (fase 1)"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:25
 msgid ""
@@ -50,28 +52,34 @@ msgid ""
 "stages. On hydrated farmland, they grow a bit faster. They can be harvested "
 "at any time but will only yield a profit when mature."
 msgstr ""
+"Le piante di barbabietole crescono sulla terra zappate e con la luce in 4 "
+"fasi. Sulla terra zappata idratata, crescono più velocemente. Si possono "
+"raccogliere in qualsiasi momento, ma rilasciano barbabietole solo se "
+"completamente maturate."
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:26
 msgid "Premature Beetroot Plant"
-msgstr ""
+msgstr "Pianta di barbabietola prematura"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:51
 msgid "Premature Beetroot Plant (Stage 2)"
-msgstr ""
+msgstr "Pianta di barbabietola prematura (fase 2)"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:77
 msgid "Premature Beetroot Plant (Stage 3)"
-msgstr ""
+msgstr "Pianta di barbabietola prematura (fase 3)"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:103
 msgid "Mature Beetroot Plant"
-msgstr ""
+msgstr "Pianta di barbabietola matura"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:104
 msgid ""
 "A mature beetroot plant is a farming plant which is ready to be harvested "
 "for a beetroot and some beetroot seeds. It won't grow any further."
 msgstr ""
+"Una pianta di barbabietola matura è pronta per essere raccolta per ottenere "
+"una barbabietola e alcuni semi. Non cresce più di così."
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:157
 msgid "Beetroot"
@@ -82,12 +90,16 @@ msgid ""
 "Beetroots are both used as food item and a dye ingredient. Pigs like "
 "beetroots, too."
 msgstr ""
+"Le barbabietole si possono usare come cibo o essere trasformate in colorante "
+"rosso. I maiali le apprezzano molto."
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:159
 msgid ""
 "Hold it in your hand and right-click to eat it. Rightclick an animal to feed "
 "it."
 msgstr ""
+"Tienila in mano e tieni premuto il tasto destro per mangiarla. Per farla "
+"mangiare ad un mob, fai clic col tasto destro."
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:168
 msgid "Beetroot Soup"
@@ -95,11 +107,11 @@ msgstr "Zuppa di barbabietole"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:169
 msgid "Beetroot soup is a food item."
-msgstr ""
+msgstr "La zuppa di barbabietole è un tipo di cibo."
 
 #: mods/ITEMS/mcl_farming/carrots.lua:23
 msgid "Premature Carrot Plant"
-msgstr ""
+msgstr "Pianta di carote prematura"
 
 #: mods/ITEMS/mcl_farming/carrots.lua:24
 msgid ""
@@ -108,20 +120,26 @@ msgid ""
 "grow a bit faster. They can be harvested at any time but will only yield a "
 "profit when mature."
 msgstr ""
+"Le piante di carote crescono sulla terra zappata e con la luce in 8 fasi, ma "
+"solo 4 sono distinguibili ad occhio nudo. Sulla terra zappata idratata, "
+"crescono più velocemente. Si possono raccogliere in qualsiasi momento, ma "
+"rilasciano più unità solo se mature."
 
 #: mods/ITEMS/mcl_farming/carrots.lua:29
 msgid "Premature Carrot Plant (Stage @1)"
-msgstr ""
+msgstr "Pianta di carota prematura (fase @1)"
 
 #: mods/ITEMS/mcl_farming/carrots.lua:58
 msgid "Mature Carrot Plant"
-msgstr ""
+msgstr "Pianta di carota matura"
 
 #: mods/ITEMS/mcl_farming/carrots.lua:59
 msgid ""
 "Mature carrot plants are ready to be harvested for carrots. They won't grow "
 "any further."
 msgstr ""
+"Le piante di carote mature sono pronte per poter essere raccolte. Non "
+"crescono più di così."
 
 #: mods/ITEMS/mcl_farming/carrots.lua:99
 msgid "Carrot"
@@ -130,6 +148,8 @@ msgstr "Carota"
 #: mods/ITEMS/mcl_farming/carrots.lua:101
 msgid "Carrots can be eaten and planted. Pigs and rabbits like carrots."
 msgstr ""
+"Le carote si possono sia mangiare che piantare. I conigli e i maiali le "
+"apprezzano."
 
 #: mods/ITEMS/mcl_farming/carrots.lua:102
 msgid ""
@@ -137,6 +157,9 @@ msgid ""
 "to plant the carrot. It grows in sunlight and grows faster on hydrated "
 "farmland. Rightclick an animal to feed it."
 msgstr ""
+"Tienila in mano e tieni premuto il tasto destro per mangiarla. Piazzala su "
+"della terra zappata per piantarla. Per farla mangiare ad un mob, fai clic "
+"col tasto destro."
 
 #: mods/ITEMS/mcl_farming/carrots.lua:117
 msgid "Golden Carrot"
@@ -147,10 +170,12 @@ msgid ""
 "A golden carrot is a precious food item which can be eaten. It is really, "
 "really filling!"
 msgstr ""
+"Le carote d'oro sono un tipo di cibo prezioso che si può mangiare. Riempiono "
+"un sacco!"
 
 #: mods/ITEMS/mcl_farming/hoes.lua:29
 msgid "Turns block into farmland"
-msgstr ""
+msgstr "Trasforma la terra in terra zappata"
 
 #: mods/ITEMS/mcl_farming/hoes.lua:30
 msgid ""
@@ -158,6 +183,9 @@ msgid ""
 "in order to plant seeds on it. Hoes can also be used as very weak weapons in "
 "a pinch."
 msgstr ""
+"Le zappe sono essenziale per far crescere raccolti. Vengono usate per creare "
+"la terra zappata, necessaria per piantarci i semi. Le zappe si possono anche "
+"usare come arma molto inefficace."
 
 #: mods/ITEMS/mcl_farming/hoes.lua:31
 msgid ""
@@ -165,6 +193,10 @@ msgid ""
 "farmland. Dirt, grass blocks and grass paths are cultivatable blocks. Using "
 "a hoe on coarse dirt turns it into dirt."
 msgstr ""
+"Usa la zappa su un blocco coltivabile facendo clic col tasto destro per "
+"trasformarla in terra zappata. Terra, blocchi d'erba e sentieri sono "
+"considerati blocchi coltivabili. Usando una zappa su della terra brulla la "
+"si trasforma in terra."
 
 #: mods/ITEMS/mcl_farming/hoes.lua:64
 msgid "Wood Hoe"
@@ -176,7 +208,7 @@ msgstr "Zappa di pietra"
 
 #: mods/ITEMS/mcl_farming/hoes.lua:82
 msgid "Copper Hoe"
-msgstr ""
+msgstr "Zappa di rame"
 
 #: mods/ITEMS/mcl_farming/hoes.lua:91
 msgid "Iron Hoe"
@@ -203,6 +235,8 @@ msgid ""
 "Grows into a melon stem which in turn grows melons. Chickens like melon "
 "seeds."
 msgstr ""
+"Crescono in piante di anguria che fanno crescere angurie. Le galline li "
+"apprezzano."
 
 #: mods/ITEMS/mcl_farming/melon.lua:11
 msgid ""
@@ -211,6 +245,11 @@ msgid ""
 "farmland. When mature, the stem will attempt to grow a melon at the side. "
 "Rightclick an animal to feed it melon seeds."
 msgstr ""
+"Posiziona i semi di anguria su della terra zappata per piantare una pianta "
+"d'anguria. Le piante crescono con la luce e più velocemente sulla terra "
+"zappata idratata. Quando sono mature, le piante cercano di far crescere "
+"un'anguria in uno dei suoi lati. Fai clic col tasto destro su un mob per "
+"dargli da mangiare un seme d'anguria."
 
 #: mods/ITEMS/mcl_farming/melon.lua:23
 msgid "Melon"
@@ -221,24 +260,28 @@ msgid ""
 "A melon is a block which can be grown from melon stems, which in turn are "
 "grown from melon seeds. It can be harvested for melon slices."
 msgstr ""
+"Un'anguria è un blocco che cresce dalle omonime piante. Può essere raccolta "
+"per ottenere delle fette di anguria."
 
 #: mods/ITEMS/mcl_farming/melon.lua:86
 msgid "Premature Melon Stem"
-msgstr ""
+msgstr "Pianta di anguria prematura"
 
 #: mods/ITEMS/mcl_farming/melon.lua:87
 msgid ""
 "Melon stems grow on farmland in 8 stages. On hydrated farmland, the growth "
 "is a bit quicker. Mature melon stems are able to grow melons."
 msgstr ""
+"Le angurie crescono in 8 fasi sulla terra zappata. Se è idratata, crescono "
+"più velocemente. Una volta mature sono in grado di generare angurie."
 
 #: mods/ITEMS/mcl_farming/melon.lua:92
 msgid "Premature Melon Stem (Stage @1)"
-msgstr ""
+msgstr "Pianta di anguria prematura (fase @1)"
 
 #: mods/ITEMS/mcl_farming/melon.lua:120
 msgid "Mature Melon Stem"
-msgstr ""
+msgstr "Pianta di anguria matura"
 
 #: mods/ITEMS/mcl_farming/melon.lua:122
 msgid ""
@@ -249,6 +292,12 @@ msgid ""
 "melon. As soon all melons around the stem have been removed, it loses the "
 "connection and is ready to grow another melon."
 msgstr ""
+"Una pianta matura di anguria cerca di far crescere un'anguria in uno dei "
+"blocchi laterali adiacenti. Un'anguria può crescere sono sui blocchi di "
+"terra zappata, terra o erba. Quando un'anguria è accanto una pianta, "
+"quest'ultima si inclina e si attacca al frutto. Se ha già un frutto, una "
+"pianta non ne farà crescere altri. Una volta che l'anguria viene raccolta, "
+"la pianta è pronta per generarne una nuova."
 
 #: mods/ITEMS/mcl_farming/melon.lua:138
 msgid "Melon Slice"
@@ -257,11 +306,11 @@ msgstr "Fetta di anguria"
 #: mods/ITEMS/mcl_farming/melon.lua:139 mods/ITEMS/mcl_farming/wheat.lua:140
 #: mods/ITEMS/mcl_farming/wheat.lua:148
 msgid "This is a food item which can be eaten."
-msgstr ""
+msgstr "Del cibo che si può mangiare."
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:25
 msgid "Premature Potato Plant"
-msgstr ""
+msgstr "Pianta di patata prematura"
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:26
 msgid ""
@@ -270,20 +319,26 @@ msgid ""
 "grow a bit faster. They can be harvested at any time but will only yield a "
 "profit when mature."
 msgstr ""
+"Le piante di patata crescono sulla terra zappata e con la luce in 8 fasi, ma "
+"solo 4 sono distinguibili ad occhio nudo. Sulla terra zappata idratata, "
+"crescono più velocemente. Si possono raccogliere in qualsiasi momento, ma "
+"rilasciano più unità solo se mature."
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:33
 msgid "Premature Potato Plant (Stage @1)"
-msgstr ""
+msgstr "Pianta di patata prematura (fase @1)"
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:61
 msgid "Mature Potato Plant"
-msgstr ""
+msgstr "Pianta di patata matura"
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:62
 msgid ""
 "Mature potato plants are ready to be harvested for potatoes. They won't grow "
 "any further."
 msgstr ""
+"Le piante di patate mature sono pronte per poter essere raccolte. Non "
+"crescono più di così."
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:101
 msgid "Potato"
@@ -294,6 +349,7 @@ msgid ""
 "Potatoes are food items which can be eaten, cooked in the furnace and "
 "planted. Pigs like potatoes."
 msgstr ""
+"Le carote si possono mangiare, cucinare o piantare. I maiali le apprezzano."
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:104
 msgid ""
@@ -301,6 +357,9 @@ msgid ""
 "to plant it. It grows in sunlight and grows faster on hydrated farmland. "
 "Rightclick an animal to feed it."
 msgstr ""
+"Tienila in mano e tieni premuto il tasto destro per mangiarla. Piazzala su "
+"della terra zappata per piantarla. Per farla mangiare ad un mob, fai clic "
+"col tasto destro."
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:120
 msgid "Baked Potato"
@@ -309,7 +368,7 @@ msgstr "Patata al forno"
 #: mods/ITEMS/mcl_farming/potatoes.lua:121
 msgid ""
 "Baked potatoes are food items which are more filling than the unbaked ones."
-msgstr ""
+msgstr "Le patate al forno sono un cibo che sazia più rispetto a quelle crude."
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:128
 msgid "Poisonous Potato"
@@ -317,13 +376,15 @@ msgstr "Patata velenosa"
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:129
 msgid "60% chance of poisoning"
-msgstr ""
+msgstr "Probabilità del 60% di avvelenamento"
 
 #: mods/ITEMS/mcl_farming/potatoes.lua:130
 msgid ""
 "This potato doesn't look too healthy. You can eat it to restore hunger "
 "points, but there's a 60% chance it will poison you briefly."
 msgstr ""
+"Questa patata non sembra buona. Puoi mangiarla per recuperare dei punti "
+"fame, ma c'è il 60% di possibilità che ti avveleni per un breve periodo."
 
 #: mods/ITEMS/mcl_farming/pumpkin.lua:28
 msgid "Pumpkin Seeds"

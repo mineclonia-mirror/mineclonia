@@ -3,176 +3,178 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_pale_oak x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-06-12 05:08+0000\n"
+"Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.codeberg.org/projects/mineclonia/mcl_pale_oak/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:1
 msgid "Pale Oak Bark"
-msgstr ""
+msgstr "苍白橡木树皮"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:2
 msgid "Pale Oak Bark Slab"
-msgstr ""
+msgstr "苍白橡木树皮半砖"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:3
 msgid "Pale Oak Bark Stairs"
-msgstr ""
+msgstr "苍白橡木树皮楼梯"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:4
 msgid "Pale Oak Boat"
-msgstr ""
+msgstr "苍白橡木船"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:5
 msgid "Pale Oak Button"
-msgstr ""
+msgstr "苍白橡木按钮"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:6
 msgid "Pale Oak Chest Boat"
-msgstr ""
+msgstr "苍白橡木储物船"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:7
 msgid "Pale Oak Door"
-msgstr ""
+msgstr "苍白橡木门"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:8
 msgid "Pale Oak Fence"
-msgstr ""
+msgstr "苍白橡木栅栏"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:9
 msgid "Pale Oak Fence Gate"
-msgstr ""
+msgstr "苍白橡木栅栏门"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:10
 msgid "Pale Oak Hanging Sign"
-msgstr ""
+msgstr "苍白橡木悬挂告示牌"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:11
 msgid "Pale Oak Leaves"
-msgstr ""
+msgstr "苍白橡树树叶"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:12
 msgid "Pale Oak Log"
-msgstr ""
+msgstr "苍白橡树原木"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:13
 msgid "Pale Oak Planks"
-msgstr ""
+msgstr "苍白橡木木板"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:14
 msgid "Pale Oak Pressure Plate"
-msgstr ""
+msgstr "苍白橡木压力板"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:15
 msgid "Pale Oak Sapling"
-msgstr ""
+msgstr "苍白橡树树苗"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:16
 msgid "Pale Oak Sign"
-msgstr ""
+msgstr "苍白橡木告示牌"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:17
 msgid "Pale Oak Slab"
-msgstr ""
+msgstr "苍白橡木半砖"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:18
 msgid "Pale Oak Stairs"
-msgstr ""
+msgstr "苍白橡木楼梯"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:19
 msgid "Pale Oak Trapdoor"
-msgstr ""
+msgstr "苍白橡木活板门"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:20
 msgid "Pale Oak leaves are grown from Pale Oak trees."
-msgstr ""
+msgstr "苍白橡树树叶产自苍白橡树。"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:21
 msgid "Stripped Pale Oak Bark"
-msgstr ""
+msgstr "去皮苍白橡木树皮"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:22
 msgid "Stripped Pale Oak Log"
-msgstr ""
+msgstr "去皮苍白橡树原木"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:23
 msgid "The stripped trunk of an Pale Oak tree."
-msgstr ""
+msgstr "剥去外皮的苍白橡树树干。"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:24
 msgid "The stripped wood of an Pale Oak tree."
-msgstr ""
+msgstr "剥去外皮的苍白橡木木料。"
 
 #: mods/ITEMS/mcl_pale_oak/mcl_pale_oak_translations_tmp.lua:25
 msgid "The trunk of a Pale Oak tree."
-msgstr ""
+msgstr "苍白橡树的树干。"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:19
 msgid "Pale Hanging Moss"
-msgstr ""
+msgstr "苍白悬垂苔藓"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:74
 msgid "Closed Eyeblossom"
-msgstr ""
+msgstr "闭合眼纹花"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:85
 msgid "Open Eyeblossom"
-msgstr ""
+msgstr "绽放眼纹花"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:101
 msgid "Eyeblossom activation"
-msgstr ""
+msgstr "眼纹花绽放触发"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:113
 msgid "Eyeblossom in a pot activation"
-msgstr ""
+msgstr "花盆内眼纹花绽放触发"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:125
 msgid "Eyeblossom deactivation"
-msgstr ""
+msgstr "眼纹花闭合触发"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:137
 msgid "Eyeblossom in a pot deactivation"
-msgstr ""
+msgstr "花盆内眼纹花闭合触发"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:209
 #: mods/ITEMS/mcl_pale_oak/plants.lua:211
 msgid "Pale Moss"
-msgstr ""
+msgstr "苍白苔藓"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:210
 msgid "Moss is a grey block found in pale garden"
-msgstr ""
+msgstr "苍白苔藓是生成于苍白花园的灰色方块"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:225
 msgid "Pale Moss Carpet"
-msgstr ""
+msgstr "苍白苔藓地毯"
 
 #: mods/ITEMS/mcl_pale_oak/plants.lua:226
 msgid "A pale moss carpet is a flat variant of the pale moss block."
-msgstr ""
+msgstr "苍白苔藓地毯是苍白苔藓方块的扁平形态。"
 
 #: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:4
 msgid "Resin Clump"
-msgstr ""
+msgstr "树脂团"
 
 #: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:14
 msgid "Resin Brick"
-msgstr ""
+msgstr "树脂砖"
 
 #: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:25
 msgid "Block of Resin"
-msgstr ""
+msgstr "树脂块"
 
 #: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:35
 msgid "Resin Bricks"
-msgstr ""
+msgstr "树脂砖块"
 
 #: mods/ITEMS/mcl_pale_oak/resin_blocks.lua:43
 msgid "Chiseled Resin Brick"
-msgstr ""
+msgstr "雕纹树脂砖"
