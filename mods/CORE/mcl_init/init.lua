@@ -1,4 +1,4 @@
-local S = core.get_translator("mcl_init")
+local S = core.get_translator(core.get_current_modname())
 local mod_storage = core.get_mod_storage()
 local normal_vars_in_singlenode = false
 
