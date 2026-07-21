@@ -502,9 +502,8 @@ core.register_chatcommand("difficulty", {
 	description = S("Change difficulty (peaceful/easy/normal/hard/0/1/2/3/p/e/n/h)"),
 	privs = { server = true },
 	func = function(_, param)
-		local args = param:split(" ")
+		local d = unpack(param:split(" "))
 
-		local d = args[1]
 		if d and not set_difficulty(d) then
 			return false, S("Failed to set difficulty @1", d)
 		end
