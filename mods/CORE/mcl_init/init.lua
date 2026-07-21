@@ -597,6 +597,12 @@ local gamerules = {
 		type = "bool",
 		default_value = true,
 	},
+	mobs_griefing_disable_individual = {
+		setting_key = "mcl_mobs_griefing_disable_individual",
+		global_setting_key = "mobs_griefing_disable_individual",
+		type = "list",
+		hidden = true,
+	},
 	only_peaceful_mobs = {
 		setting_key = "mcl_only_peaceful_mobs",
 		global_setting_key = "only_peaceful_mobs",
