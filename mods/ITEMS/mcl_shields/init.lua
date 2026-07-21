@@ -676,7 +676,7 @@ end)
 core.register_on_dieplayer(function(player)
 	set_interact(player, true)
 	playerphysics.remove_physics_factor(player, "speed", "shield_speed")
-	if not core.settings:get_bool("mcl_keepInventory") then
+	if not mcl_vars.keep_inventory then
 		remove_shield_entity(player, 1)
 		remove_shield_entity(player, 2)
 	end

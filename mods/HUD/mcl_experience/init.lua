@@ -238,7 +238,7 @@ core.register_on_leaveplayer(function(player)
 end)
 
 core.register_on_dieplayer(function(player)
-	if not core.settings:get_bool("mcl_keepInventory", false) then
+	if not mcl_vars.keep_inventory then
 		mcl_experience.throw_xp(player:get_pos(), mcl_experience.get_xp(player))
 		mcl_experience.set_xp(player, 0)
 	end

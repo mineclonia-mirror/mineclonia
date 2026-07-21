@@ -205,7 +205,7 @@ core.register_on_joinplayer(function(player)
 	end
 end)
 core.register_on_dieplayer(function(player)
-	if not core.settings:get_bool("mcl_keepInventory") then
+	if not mcl_vars.keep_inventory then
 		remove_pumpkin_hud(player)
 	end
 end)

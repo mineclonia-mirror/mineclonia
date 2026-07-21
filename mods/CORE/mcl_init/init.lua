@@ -556,7 +556,13 @@ core.register_chatcommand("difficulty", {
 	end
 })
 
-local gamerules = {}
+local gamerules = {
+	keep_inventory = {
+		setting_key = "mcl_keep_inventory",
+		global_setting_key = "mcl_keepInventory",
+		type = "bool",
+	},
+}
 
 for rule, def in pairs(gamerules) do
 	mcl_vars[rule] = get_world_setting(def.setting_key, def.default_value, def.type, def.global_setting_key)

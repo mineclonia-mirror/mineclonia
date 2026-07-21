@@ -125,7 +125,8 @@ mcl_playersSleepingPercentage (Player sleeping percentage) int 100
 
 # Normally, players drop all their items when they die.
 # If enabled, players always keep their inventory on death.
-mcl_keepInventory (Keep inventory on death) bool false
+# Can be changed with the `/gamerule keep_inventory <value>` chat command for each world individually.
+mcl_keepInventory (Default keep inventory on death) bool false
 
 # If enabled, chat messages are shown to everyone when a player dies.
 mcl_showDeathMessages (Show death messages) bool true

@@ -12,8 +12,7 @@ mcl_death_drop.register_dropped_list("PLAYER", "armor", true)
 mcl_death_drop.register_dropped_list("PLAYER", "offhand", true)
 
 core.register_on_dieplayer(function(player)
-	local keep = core.settings:get_bool("mcl_keepInventory", false)
-	if keep == false then
+	if not mcl_vars.keep_inventory then
 		-- Drop inventory, crafting grid and armor
 		local playerinv = player:get_inventory()
 		local pos = player:get_pos()
