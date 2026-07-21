@@ -480,11 +480,20 @@ end
 set_mcl_vars_difficulty()
 
 local function set_difficulty(d)
-	if table.indexof(difficulties, d) == -1 then return false end
+	if table.indexof(difficulties, d) == -1 then
+		d = difficulty_aliases[d]
+		if not d then
+			return false
+		end
+	end
+
 	world_settings:set("mcl_difficulty", d)
 	world_settings:write()
+
 	difficulty = d
+
 	set_mcl_vars_difficulty()
+
 	return true
 end
 
@@ -495,8 +504,8 @@ core.register_chatcommand("difficulty", {
 	func = function(_, param)
 		local args = param:split(" ")
 
-		local d = difficulty_aliases[args[1]] or args[1]
-		if d and set_difficulty(d) == false then
+		local d = args[1]
+		if d and not set_difficulty(d) then
 			return false, S("Failed to set difficulty @1", d)
 		end
 
