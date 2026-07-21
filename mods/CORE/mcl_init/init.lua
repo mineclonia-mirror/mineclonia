@@ -446,11 +446,11 @@ local function is_empty_value(value)
 	return not value or value == ""
 end
 
-local function get_world_setting(key, default_value, type)
+local function get_world_setting(key, default_value, type, global_key)
 	local value = get_world_settings():get(key)
 
-	if is_empty_value(value) then
-		value = core.settings:get(key)
+	if is_empty_value(value) and global_key ~= false then
+		value = core.settings:get(global_key or key)
 	end
 
 	if is_empty_value(value) then
@@ -559,7 +559,7 @@ core.register_chatcommand("difficulty", {
 local gamerules = {}
 
 for rule, def in pairs(gamerules) do
-	mcl_vars[rule] = get_world_setting(def.setting_key, def.default_value, def.type)
+	mcl_vars[rule] = get_world_setting(def.setting_key, def.default_value, def.type, def.global_setting_key)
 end
 
 local function set_gamerule(rule, value)
