@@ -17,7 +17,8 @@ mcl_doWeatherCycle (Changing weather) bool true
 mcl_doTileDrops (Default blocks have drops) bool true
 
 # If enabled, explosions destroy blocks.
-mcl_explosions_griefing (Explosion griefing) bool true
+# Can be changed with the `/gamerule explosions_griefing <value>` chat command for each world individually.
+mcl_explosions_griefing (Default explosion griefing) bool true
 
 # If disabled, no ores will be generated.
 mcl_generate_ores (Generate ores) bool true

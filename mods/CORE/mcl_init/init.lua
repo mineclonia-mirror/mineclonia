@@ -592,6 +592,11 @@ local gamerules = {
 		type = "bool",
 		default_value = true,
 	},
+	explosions_griefing = {
+		setting_key = "mcl_explosions_griefing",
+		type = "bool",
+		default_value = true,
+	},
 	keep_inventory = {
 		setting_key = "mcl_keep_inventory",
 		global_setting_key = "mcl_keepInventory",
