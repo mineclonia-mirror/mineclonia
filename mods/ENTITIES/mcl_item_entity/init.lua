@@ -127,8 +127,6 @@ local function get_fortune_drops(fortune_drops, fortune_level)
 	return drop or {}
 end
 
-local doTileDrops = core.settings:get_bool("mcl_doTileDrops", true)
-
 -- local variable to pass the wielded tool from node_dig
 local wielded_tool
 ---@diagnostic disable-next-line: duplicate-set-field
@@ -146,7 +144,7 @@ function core.handle_node_drops(pos, drops, digger)
 			end
 		end
 		return
-	elseif not doTileDrops then return end
+	elseif not mcl_vars.do_tile_drops then return end
 
 	-- Check if node will yield its useful drop by the digger's tool
 	local dug_node = core.get_node(pos)

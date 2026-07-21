@@ -13,7 +13,8 @@ mcl_doWeatherCycle (Changing weather) bool true
 
 # If enabled, breaking blocks will cause them to drop as item.
 # Note that blocks never have drops when in Creative Mode.
-mcl_doTileDrops (Blocks have drops) bool true
+# Can be changed with the `/gamerule do_tile_drops <value>` chat command for each world individually.
+mcl_doTileDrops (Default blocks have drops) bool true
 
 # If enabled, explosions destroy blocks.
 mcl_explosions_griefing (Explosion griefing) bool true

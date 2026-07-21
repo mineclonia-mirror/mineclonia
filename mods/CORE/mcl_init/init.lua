@@ -586,6 +586,12 @@ core.register_chatcommand("difficulty", {
 })
 
 local gamerules = {
+	do_tile_drops = {
+		setting_key = "mcl_do_tile_drops",
+		global_setting_key = "mcl_doTileDrops",
+		type = "bool",
+		default_value = true,
+	},
 	keep_inventory = {
 		setting_key = "mcl_keep_inventory",
 		global_setting_key = "mcl_keepInventory",
