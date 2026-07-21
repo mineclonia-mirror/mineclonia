@@ -547,4 +547,59 @@ core.register_chatcommand("difficulty", {
 	end
 })
 
+local gamerules = {}
+
+for rule, def in pairs(gamerules) do
+	mcl_vars[rule] = get_world_setting(def.setting_key, def.default_value)
+end
+
+local function set_gamerule(rule, value)
+	local def = gamerules[rule]
+
+	if not def then
+		return false
+	end
+
+	set_world_setting(def.setting_key, value)
+
+	mcl_vars[rule] = value
+
+	return true
+end
+
+local function get_gamerules()
+	local rules = {}
+
+	for rule in pairs(gamerules) do
+		table.insert(rules, rule)
+	end
+
+	table.sort(rules)
+
+	return rules
+end
+
+core.register_chatcommand("gamerule", {
+	params = S("[<rule>] [<value>]"),
+	description = S("Change gamerule"),
+	privs = { server = true },
+	func = function(_, param)
+		local rule, value = unpack(param:split(" "))
+
+		if not rule then
+			return true, S("Gamerules:") .. "\n" .. table.concat(get_gamerules(), "\n")
+		end
+
+		if value and not set_gamerule(rule, value) then
+			return false, S("Failed to set gamerule @1: @2", rule, value)
+		end
+
+		if not gamerules[rule] then
+			return false, S("Failed to get gamerule @1", rule)
+		end
+
+		return true, S("Gamerule @1: @2", rule, tostring(mcl_vars[rule]))
+	end
+})
+
 dofile(modpath.."/outdated_warning.lua")
