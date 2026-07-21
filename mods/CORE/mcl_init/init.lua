@@ -446,6 +446,24 @@ local function is_empty_value(value)
 	return not value or value == ""
 end
 
+local function to_list(values)
+	if is_empty_value(values) then
+		return {}
+	end
+
+	if type(values) == "table" then
+		return values
+	end
+
+	local list = {}
+
+	for _, value in ipairs(values:split(",")) do
+		table.insert(list, value:trim())
+	end
+
+	return list
+end
+
 local function get_world_setting(key, default_value, type, global_key)
 	local value = get_world_settings():get(key)
 
@@ -459,8 +477,18 @@ local function get_world_setting(key, default_value, type, global_key)
 
 	if type == "bool" then
 		return core.is_yes(value)
+	elseif type == "list" then
+		return to_list(value)
 	else
 		return value
+	end
+end
+
+local function to_string(value)
+	if type(value) == "table" then
+		return table.concat(value, ", ")
+	else
+		return tostring(value)
 	end
 end
 
@@ -469,10 +497,11 @@ local function set_world_setting(key, value, type)
 
 	if type == "bool" then
 		value = core.is_yes(value)
-		world_settings:set_bool(key, value)
-	else
-		world_settings:set(key, value)
+	elseif type == "list" then
+		value = to_list(value)
 	end
+
+	world_settings:set(key, to_string(value))
 
 	world_settings:write()
 
@@ -608,21 +637,28 @@ core.register_chatcommand("gamerule", {
 	description = S("Change gamerule"),
 	privs = { server = true },
 	func = function(_, param)
-		local rule, value = unpack(param:split(" "))
+		local params = param:split(" ")
+		local rule, value = unpack(params)
 
 		if not rule then
 			return true, S("Gamerules:") .. "\n" .. table.concat(get_gamerules(), "\n")
 		end
 
-		if value and not set_gamerule(rule, value) then
-			return false, S("Failed to set gamerule @1: @2", rule, value)
+		if value then
+			-- Value is second parameter till last
+			table.remove(params, 1)
+			value = table.concat(params, " ")
+
+			if not set_gamerule(rule, value) then
+				return false, S("Failed to set gamerule @1: @2", rule, value)
+			end
 		end
 
 		if not gamerules[rule] then
 			return false, S("Failed to get gamerule @1", rule)
 		end
 
-		return true, S("Gamerule @1: @2", rule, tostring(mcl_vars[rule]))
+		return true, S("Gamerule @1: @2", rule, to_string(mcl_vars[rule]))
 	end
 })
 
