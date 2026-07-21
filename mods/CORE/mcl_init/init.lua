@@ -438,13 +438,11 @@ if mcl_vars.mg_overworld_min_old ~= mcl_vars.mg_overworld_min then
 	})
 end
 
-mcl_difficulty = {
-	difficulties = {
-		"peaceful",
-		"easy",
-		"normal",
-		"hard",
-	}
+local difficulties = {
+	"peaceful",
+	"easy",
+	"normal",
+	"hard",
 }
 
 local difficulty_aliases = {
@@ -460,12 +458,12 @@ local difficulty_aliases = {
 
 local world_settings = Settings(core.get_worldpath() .. "/world.mt")
 
-function mcl_difficulty.get_difficulty()
+local function get_difficulty()
 	return world_settings:get("mcl_difficulty") or core.settings:get("mcl_difficulty")
 end
 
-function mcl_difficulty.set_difficulty(d)
-	if table.indexof(mcl_difficulty.difficulties, d) == -1 then return false end
+local function set_difficulty(d)
+	if table.indexof(difficulties, d) == -1 then return false end
 	world_settings:set("mcl_difficulty", d)
 	world_settings:write()
 	set_mcl_vars_difficulty(d)
@@ -480,12 +478,12 @@ core.register_chatcommand("difficulty", {
 		local args = param:split(" ")
 
 		local d = difficulty_aliases[args[1]] or args[1]
-		if d and mcl_difficulty.set_difficulty(d) == false then
+		if d and set_difficulty(d) == false then
 			return false, S("Failed to set difficulty @1", d)
 		end
 
 		--Result message - show effective difficulty
-		return true, S("Difficulty: @1", mcl_difficulty.get_difficulty())
+		return true, S("Difficulty: @1", get_difficulty())
 	end
 })
 
@@ -507,6 +505,6 @@ local function set_mcl_vars_difficulty(difficulty)
 	end
 end
 
-set_mcl_vars_difficulty(mcl_difficulty.get_difficulty())
+set_mcl_vars_difficulty(get_difficulty())
 
 dofile(modpath.."/outdated_warning.lua")
