@@ -460,6 +460,26 @@ local world_settings = Settings(core.get_worldpath() .. "/world.mt")
 
 local difficulty = world_settings:get("mcl_difficulty") or core.settings:get("mcl_difficulty")
 
+local function set_mcl_vars_difficulty()
+	-- Difficulty.  Peaceful is 0, normal is 1,
+	if difficulty == "peaceful" then
+		mcl_vars.difficulty = 0
+	elseif difficulty == "easy" then
+		mcl_vars.difficulty = 1
+	elseif difficulty == "normal"
+		or not difficulty
+		or difficulty == "" then
+		mcl_vars.difficulty = 2
+	elseif difficulty == "hard" then
+		mcl_vars.difficulty = 3
+	else
+		mcl_vars.difficulty = 2
+		core.log ("warning", "mcl_difficulty is configured to an unknown value " .. difficulty)
+	end
+end
+
+set_mcl_vars_difficulty()
+
 local function set_difficulty(d)
 	if table.indexof(difficulties, d) == -1 then return false end
 	world_settings:set("mcl_difficulty", d)
@@ -485,25 +505,5 @@ core.register_chatcommand("difficulty", {
 		return true, S("Difficulty: @1", difficulty)
 	end
 })
-
-local function set_mcl_vars_difficulty()
-	-- Difficulty.  Peaceful is 0, normal is 1,
-	if difficulty == "peaceful" then
-		mcl_vars.difficulty = 0
-	elseif difficulty == "easy" then
-		mcl_vars.difficulty = 1
-	elseif difficulty == "normal"
-		or not difficulty
-		or difficulty == "" then
-		mcl_vars.difficulty = 2
-	elseif difficulty == "hard" then
-		mcl_vars.difficulty = 3
-	else
-		mcl_vars.difficulty = 2
-		core.log ("warning", "mcl_difficulty is configured to an unknown value " .. difficulty)
-	end
-end
-
-set_mcl_vars_difficulty()
 
 dofile(modpath.."/outdated_warning.lua")
