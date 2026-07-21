@@ -603,6 +603,12 @@ local gamerules = {
 		type = "list",
 		hidden = true,
 	},
+	mobs_spawn = {
+		setting_key = "mcl_mobs_spawn",
+		global_setting_key = "mobs_spawn",
+		type = "bool",
+		default_value = true,
+	},
 	only_peaceful_mobs = {
 		setting_key = "mcl_only_peaceful_mobs",
 		global_setting_key = "only_peaceful_mobs",

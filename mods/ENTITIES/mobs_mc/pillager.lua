@@ -308,7 +308,6 @@ mcl_mobs.register_egg ("mobs_mc:pillager", S("Pillager"), "#532f36", "#959b9b", 
 -- Pillager spawning.
 ------------------------------------------------------------------------
 
-local mobs_spawn = core.settings:get_bool ("mobs_spawn", true)
 local next_spawn_attempt = (12000 + pr:next (0, 1200)) / 20
 local force_spawn = false
 
@@ -336,7 +335,7 @@ core.register_on_mods_loaded (function ()
 end)
 
 core.register_globalstep (function (dtime)
-	if (mcl_vars.difficulty == 0 or not mobs_spawn or mcl_vars.only_peaceful_mobs)
+	if (mcl_vars.difficulty == 0 or not mcl_vars.mobs_spawn or mcl_vars.only_peaceful_mobs)
 		and not force_spawn then
 		return
 	end

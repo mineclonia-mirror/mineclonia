@@ -508,11 +508,10 @@ end
 
 mobs_mc.spawn_wandering_trader = spawn_wandering_trader
 
-if core.settings:get_bool ("mobs_spawn", true) then
-
 local local_spawn_counter = 60
 
 core.register_globalstep (function (dtime)
+	if not mcl_vars.mobs_spawn then return end
 	local_spawn_counter = local_spawn_counter - dtime
 	if local_spawn_counter < 0 then
 		local_spawn_counter = 60
@@ -540,8 +539,6 @@ core.register_globalstep (function (dtime)
 		storage:set_int ("trader_spawn_delay", level_spawn_counter)
 	end
 end)
-
-end
 
 mcl_mobs.register_egg ("mobs_mc:wandering_trader", S("Wandering Trader"), "#1E90FF", "#bc8b72", 0)
 

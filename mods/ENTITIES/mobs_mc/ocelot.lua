@@ -5,7 +5,6 @@
 
 local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
-local mobs_spawn = core.settings:get_bool ("mobs_spawn", true)
 
 --###################
 --################### OCELOT AND CAT
@@ -1000,8 +999,6 @@ mcl_mobs.register_mob ("mobs_mc:cat", cat)
 -- Cat & Ocelot spawning.
 ------------------------------------------------------------------------
 
-if mobs_spawn then
-
 local time_since_spawn_attempt = 0
 
 local function is_cat_spawn_position (spawn_pos)
@@ -1009,6 +1006,7 @@ local function is_cat_spawn_position (spawn_pos)
 end
 
 core.register_globalstep (function (dtime)
+	if not mcl_vars.mobs_spawn then return end
 	time_since_spawn_attempt = time_since_spawn_attempt + dtime
 	if time_since_spawn_attempt < 60 then
 		return
@@ -1078,8 +1076,6 @@ core.register_globalstep (function (dtime)
 		end
 	end
 end)
-
-end
 
 -- spawn eggs
 mcl_mobs.register_egg("mobs_mc:ocelot", S("Ocelot"), "#efde7d", "#564434", 0)

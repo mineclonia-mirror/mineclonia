@@ -8,7 +8,6 @@ else disabled_structures = {} end
 
 local mob_cap_player = tonumber(core.settings:get("mcl_mob_cap_player")) or 75
 local mob_cap_animal = tonumber(core.settings:get("mcl_mob_cap_animal")) or 10
-local mobs_spawn = core.settings:get_bool("mobs_spawn", true) ~= false
 
 local logging = core.settings:get_bool("mcl_logging_structures",true)
 mcl_structures.DBG = false
@@ -307,7 +306,7 @@ function mcl_structures.register_structure_spawn(def)
 			local limit = def.limit or 7
 			if active_object_count_wider > limit + mob_cap_animal then return end
 			if active_object_count_wider > mob_cap_player then return end
-			if not mobs_spawn then
+			if not mcl_vars.mobs_spawn then
 				return
 			end
 			local p = vector.offset(pos,0,1,0)

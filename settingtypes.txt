@@ -158,8 +158,8 @@ mcl_enable_hunger (Hunger) bool true
 [Mobs]
 # If enabled, mobs will spawn naturally.
 # This does not affect mob spawners.
-# This setting is only read at startup.
-mobs_spawn (Spawn mobs naturally) bool true
+# Can be changed with the `/gamerule mobs_spawn <value>` chat command for each world individually.
+mobs_spawn (Default spawn mobs naturally) bool true
 
 # If enabled, only peaceful mobs will appear naturally.
 # This does not affect mob spawners.

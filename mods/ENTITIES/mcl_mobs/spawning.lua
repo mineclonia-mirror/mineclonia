@@ -7,8 +7,6 @@ local mob_class = mcl_mobs.mob_class
 local instant_despawn_range = 128
 local random_despawn_range = 32
 
---do mobs spawn?
-local mobs_spawn = core.settings:get_bool("mobs_spawn", true) ~= false
 local logging = core.settings:get_bool("mcl_logging_mobs_spawn", false)
 
 local function count_mobs_total(mob_type)
@@ -1233,12 +1231,11 @@ function default_spawner:describe_criteria (tbl, omit_group_details)
 	table.insert (tbl, table.concat (tbl1, "  "))
 end
 
-if mobs_spawn then
-
 local spawn_timer = 0
 local passive_spawn_timer = 0
 
 core.register_globalstep (function (dtime)
+	if not mcl_vars.mobs_spawn then return end
 	spawn_timer = spawn_timer - dtime
 	passive_spawn_timer = passive_spawn_timer - dtime
 	local chunks, n_chunks = collect_all_unique_chunks ()
@@ -1261,8 +1258,6 @@ core.register_globalstep (function (dtime)
 		passive_spawn_timer = 10.0
 	end
 end)
-
-end
 
 ------------------------------------------------------------------------
 -- Spawn testing utilities.
