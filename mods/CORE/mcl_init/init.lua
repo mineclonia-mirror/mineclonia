@@ -446,7 +446,7 @@ local function is_empty_value(value)
 	return not value or value == ""
 end
 
-local function get_world_setting(key, default_value)
+local function get_world_setting(key, default_value, type)
 	local value = get_world_settings():get(key)
 
 	if is_empty_value(value) then
@@ -454,18 +454,29 @@ local function get_world_setting(key, default_value)
 	end
 
 	if is_empty_value(value) then
-		return default_value
+		value = default_value
+	end
+
+	if type == "bool" then
+		return core.is_yes(value)
 	else
 		return value
 	end
 end
 
-local function set_world_setting(key, value)
+local function set_world_setting(key, value, type)
 	local world_settings = get_world_settings()
 
-	world_settings:set(key, value)
+	if type == "bool" then
+		value = core.is_yes(value)
+		world_settings:set_bool(key, value)
+	else
+		world_settings:set(key, value)
+	end
 
 	world_settings:write()
+
+	return value
 end
 
 local difficulties = {
@@ -510,9 +521,7 @@ local function set_difficulty(d)
 		end
 	end
 
-	set_world_setting("mcl_difficulty", d)
-
-	difficulty = d
+	difficulty = set_world_setting("mcl_difficulty", d)
 
 	set_mcl_vars_difficulty()
 
@@ -550,7 +559,7 @@ core.register_chatcommand("difficulty", {
 local gamerules = {}
 
 for rule, def in pairs(gamerules) do
-	mcl_vars[rule] = get_world_setting(def.setting_key, def.default_value)
+	mcl_vars[rule] = get_world_setting(def.setting_key, def.default_value, def.type)
 end
 
 local function set_gamerule(rule, value)
@@ -560,9 +569,7 @@ local function set_gamerule(rule, value)
 		return false
 	end
 
-	set_world_setting(def.setting_key, value)
-
-	mcl_vars[rule] = value
+	mcl_vars[rule] = set_world_setting(def.setting_key, value, def.type)
 
 	return true
 end
