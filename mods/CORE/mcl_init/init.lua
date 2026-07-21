@@ -438,6 +438,36 @@ if mcl_vars.mg_overworld_min_old ~= mcl_vars.mg_overworld_min then
 	})
 end
 
+local function get_world_settings()
+	return Settings(core.get_worldpath() .. "/world.mt")
+end
+
+local function is_empty_value(value)
+	return not value or value == ""
+end
+
+local function get_world_setting(key, default_value)
+	local value = get_world_settings():get(key)
+
+	if is_empty_value(value) then
+		value = core.settings:get(key)
+	end
+
+	if is_empty_value(value) then
+		return default_value
+	else
+		return value
+	end
+end
+
+local function set_world_setting(key, value)
+	local world_settings = get_world_settings()
+
+	world_settings:set(key, value)
+
+	world_settings:write()
+end
+
 local difficulties = {
 	"peaceful",
 	"easy",
@@ -456,21 +486,7 @@ local difficulty_aliases = {
 	["h"] = "hard",
 }
 
-local function get_world_settings()
-	return Settings(core.get_worldpath() .. "/world.mt")
-end
-
-local function is_empty_value(value)
-	return not value or value == ""
-end
-
-local difficulty = get_world_settings():get("mcl_difficulty")
-if is_empty_value(difficulty) then
-	difficulty = core.settings:get("mcl_difficulty")
-end
-if is_empty_value(difficulty) then
-	difficulty = "normal"
-end
+local difficulty = get_world_setting("mcl_difficulty", "normal")
 
 local function set_mcl_vars_difficulty()
 	local i = table.indexof(difficulties, difficulty)
@@ -494,9 +510,7 @@ local function set_difficulty(d)
 		end
 	end
 
-	local world_settings = get_world_settings()
-	world_settings:set("mcl_difficulty", d)
-	world_settings:write()
+	set_world_setting("mcl_difficulty", d)
 
 	difficulty = d
 
