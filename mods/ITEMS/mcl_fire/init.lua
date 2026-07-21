@@ -271,101 +271,101 @@ core.register_abm({
 	end,
 })
 
-	-- Occasionally remove fire if fire disabled
-	-- NOTE: Fire is normally extinguished in timer function
-	core.register_abm({
-		label = "Remove disabled fire",
-		nodenames = {"mcl_fire:fire"},
-		interval = 10,
-		chance = 10,
-		catch_up = false,
-		action = function(pos)
-			if mcl_vars.enable_fire then return end
-			core.remove_node (pos)
-		end,
-	})
+-- Occasionally remove fire if fire disabled
+-- NOTE: Fire is normally extinguished in timer function
+core.register_abm({
+	label = "Remove disabled fire",
+	nodenames = {"mcl_fire:fire"},
+	interval = 10,
+	chance = 10,
+	catch_up = false,
+	action = function(pos)
+		if mcl_vars.enable_fire then return end
+		core.remove_node (pos)
+	end,
+})
 
-	-- Fire Spread
-	core.register_abm({
-		label = "Ignite flame",
-		nodenames ={"mcl_fire:fire","mcl_fire:eternal_fire"},
-		interval = 7,
-		chance = 12,
-		catch_up = false,
-		action = function(pos)
-			if not mcl_vars.enable_fire then return end
-			local p = get_ignitable(pos)
-			if p then
-				spawn_fire(p)
-				shuffle_table(adjacents)
-			end
+-- Fire Spread
+core.register_abm({
+	label = "Ignite flame",
+	nodenames ={"mcl_fire:fire","mcl_fire:eternal_fire"},
+	interval = 7,
+	chance = 12,
+	catch_up = false,
+	action = function(pos)
+		if not mcl_vars.enable_fire then return end
+		local p = get_ignitable(pos)
+		if p then
+			spawn_fire(p)
+			shuffle_table(adjacents)
 		end
-	})
+	end
+})
 
-	--lava fire spread
-	core.register_abm({
-		label = "Ignite fire by lava",
-		nodenames = {"mcl_core:lava_source","mcl_nether:nether_lava_source"},
-		neighbors = {"group:flammable"},
-		interval = 15,
-		chance = 9,
-		catch_up = false,
-		action = function(pos)
-			if not mcl_vars.enable_fire then return end
-			local p=get_ignitable_by_lava(pos)
-			if p then
-				spawn_fire(p)
-			end
-		end,
-	})
+--lava fire spread
+core.register_abm({
+	label = "Ignite fire by lava",
+	nodenames = {"mcl_core:lava_source","mcl_nether:nether_lava_source"},
+	neighbors = {"group:flammable"},
+	interval = 15,
+	chance = 9,
+	catch_up = false,
+	action = function(pos)
+		if not mcl_vars.enable_fire then return end
+		local p=get_ignitable_by_lava(pos)
+		if p then
+			spawn_fire(p)
+		end
+	end,
+})
 
-	core.register_abm({
-		label = "Remove fires",
-		nodenames = {"mcl_fire:fire"},
-		interval = 7,
-		chance = 3,
-		catch_up = false,
-		action = function(pos)
-			if not mcl_vars.enable_fire then return end
-			local p=has_flammable(pos)
-			if p then
-				local n=core.get_node_or_nil(p)
-				if n and core.get_item_group(n.name, "flammable") < 1 then
-					core.remove_node(pos)
-				end
-			else
+core.register_abm({
+	label = "Remove fires",
+	nodenames = {"mcl_fire:fire"},
+	interval = 7,
+	chance = 3,
+	catch_up = false,
+	action = function(pos)
+		if not mcl_vars.enable_fire then return end
+		local p=has_flammable(pos)
+		if p then
+			local n=core.get_node_or_nil(p)
+			if n and core.get_item_group(n.name, "flammable") < 1 then
 				core.remove_node(pos)
 			end
-		end,
-	})
-
-	-- Remove flammable nodes around basic flame
-	core.register_abm({
-		label = "Remove flammable nodes",
-		nodenames = {"mcl_fire:fire","mcl_fire:eternal_fire"},
-		neighbors = {"group:flammable"},
-		interval = 5,
-		chance = 18,
-		catch_up = false,
-		action = function(pos)
-			if not mcl_vars.enable_fire then return end
-			local p = has_flammable(pos)
-			if not p then
-				return
-			end
-
-			local nn = core.get_node(p).name
-			local def = core.registered_nodes[nn]
-			local fgroup = core.get_item_group(nn, "flammable")
-
-			if def and def._on_burn then
-				def._on_burn(p)
-			elseif fgroup ~= -1 then
-				spawn_fire(p)
-				core.check_for_falling(p)
-			end
+		else
+			core.remove_node(pos)
 		end
-	})
+	end,
+})
+
+-- Remove flammable nodes around basic flame
+core.register_abm({
+	label = "Remove flammable nodes",
+	nodenames = {"mcl_fire:fire","mcl_fire:eternal_fire"},
+	neighbors = {"group:flammable"},
+	interval = 5,
+	chance = 18,
+	catch_up = false,
+	action = function(pos)
+		if not mcl_vars.enable_fire then return end
+		local p = has_flammable(pos)
+		if not p then
+			return
+		end
+
+		local nn = core.get_node(p).name
+		local def = core.registered_nodes[nn]
+		local fgroup = core.get_item_group(nn, "flammable")
+
+		if def and def._on_burn then
+			def._on_burn(p)
+		elseif fgroup ~= -1 then
+			spawn_fire(p)
+			core.check_for_falling(p)
+		end
+	end
+})
 
 -- Set pointed_thing on (normal) fire.
 -- * pointed_thing: Pointed thing to ignite
