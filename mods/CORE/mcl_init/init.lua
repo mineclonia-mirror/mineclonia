@@ -461,7 +461,6 @@ local world_settings = Settings(core.get_worldpath() .. "/world.mt")
 local difficulty = world_settings:get("mcl_difficulty") or core.settings:get("mcl_difficulty")
 
 local function set_mcl_vars_difficulty()
-	-- Difficulty.  Peaceful is 0, normal is 1,
 	if difficulty == "peaceful" then
 		mcl_vars.difficulty = 0
 	elseif difficulty == "easy" then
@@ -501,7 +500,6 @@ core.register_chatcommand("difficulty", {
 			return false, S("Failed to set difficulty @1", d)
 		end
 
-		--Result message - show effective difficulty
 		return true, S("Difficulty: @1", difficulty)
 	end
 })
