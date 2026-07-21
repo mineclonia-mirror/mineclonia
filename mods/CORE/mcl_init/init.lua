@@ -1,3 +1,4 @@
+local S = core.get_translator("mcl_init")
 local mod_storage = core.get_mod_storage()
 local normal_vars_in_singlenode = false
 
@@ -436,8 +437,6 @@ if mcl_vars.mg_overworld_min_old ~= mcl_vars.mg_overworld_min then
 		end
 	})
 end
-
-local S = core.get_translator("mcl_difficulty")
 
 mcl_difficulty = {
 	difficulties = {
