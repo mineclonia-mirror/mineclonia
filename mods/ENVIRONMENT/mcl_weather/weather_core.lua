@@ -145,11 +145,7 @@ core.register_globalstep(function(dtime)
 	end
 	-- recalculate weather
 	if mcl_weather.end_time <= core.get_gametime() then
-		local changeWeather = core.settings:get_bool("mcl_doWeatherCycle")
-		if changeWeather == nil then
-			changeWeather = true
-		end
-		if changeWeather then
+		if mcl_vars.do_weather_cycle then
 			mcl_weather.set_random_weather(mcl_weather.state, mcl_weather.reg_weathers[mcl_weather.state])
 		else
 			mcl_weather.end_time = mcl_weather.get_rand_end_time()

@@ -592,6 +592,12 @@ local gamerules = {
 		type = "bool",
 		default_value = true,
 	},
+	do_weather_cycle = {
+		setting_key = "mcl_do_weather_cycle",
+		global_setting_key = "mcl_doWeatherCycle",
+		type = "bool",
+		default_value = true,
+	},
 	enable_fire = {
 		setting_key = "mcl_enable_fire",
 		global_setting_key = "enable_fire",
