@@ -458,15 +458,14 @@ local difficulty_aliases = {
 
 local world_settings = Settings(core.get_worldpath() .. "/world.mt")
 
-local function get_difficulty()
-	return world_settings:get("mcl_difficulty") or core.settings:get("mcl_difficulty")
-end
+local difficulty = world_settings:get("mcl_difficulty") or core.settings:get("mcl_difficulty")
 
 local function set_difficulty(d)
 	if table.indexof(difficulties, d) == -1 then return false end
 	world_settings:set("mcl_difficulty", d)
 	world_settings:write()
-	set_mcl_vars_difficulty(d)
+	difficulty = d
+	set_mcl_vars_difficulty()
 	return true
 end
 
@@ -483,11 +482,11 @@ core.register_chatcommand("difficulty", {
 		end
 
 		--Result message - show effective difficulty
-		return true, S("Difficulty: @1", get_difficulty())
+		return true, S("Difficulty: @1", difficulty)
 	end
 })
 
-local function set_mcl_vars_difficulty(difficulty)
+local function set_mcl_vars_difficulty()
 	-- Difficulty.  Peaceful is 0, normal is 1,
 	if difficulty == "peaceful" then
 		mcl_vars.difficulty = 0
@@ -505,6 +504,6 @@ local function set_mcl_vars_difficulty(difficulty)
 	end
 end
 
-set_mcl_vars_difficulty(get_difficulty())
+set_mcl_vars_difficulty()
 
 dofile(modpath.."/outdated_warning.lua")
