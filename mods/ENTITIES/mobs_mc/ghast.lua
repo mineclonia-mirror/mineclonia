@@ -4,7 +4,6 @@
 --License for code WTFPL and otherwise stated in readmes
 
 local S = core.get_translator("mobs_mc")
-local mobs_griefing = mobs_mc.is_mob_griefing_enabled("ghast")
 local mob_class = mcl_mobs.mob_class
 
 --###################
@@ -300,7 +299,7 @@ mcl_mobs.register_arrow("mobs_mc:fireball", {
 		mcl_mobs.get_arrow_damage_func (6, "fireball") (self, player)
 		local p = self.object:get_pos ()
 		mcl_explosions.explode (p, 1, {
-			fire = true, griefing = mobs_griefing,
+			fire = true, griefing = mobs_mc.is_mob_griefing_enabled("ghast"),
 		}, self.object)
 	end,
 	hit_mob = function(self, mob)
@@ -312,13 +311,13 @@ mcl_mobs.register_arrow("mobs_mc:fireball", {
 		local p = self.object:get_pos ()
 		mcl_explosions.explode (p, 1, {
 			fire = true,
-			griefing = mobs_griefing,
+			griefing = mobs_mc.is_mob_griefing_enabled("ghast"),
 		}, self.object)
 	end,
 	hit_node = function(self, pos, _)
 		mcl_explosions.explode (pos, 1, {
 			fire = true,
-			griefing = mobs_griefing,
+			griefing = mobs_mc.is_mob_griefing_enabled("ghast"),
 		}, self.object)
 	end
 })

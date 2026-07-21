@@ -6,7 +6,6 @@
 local S = core.get_translator("mobs_mc")
 local snow_trail_frequency = 0.5 -- Time in seconds between depositions of snow trails
 local mob_class = mcl_mobs.mob_class
-local mobs_griefing = mobs_mc.is_mob_griefing_enabled("snowman")
 
 local sheared_textures = {
 	"mobs_mc_snowman.png",
@@ -128,7 +127,7 @@ function snow_golem:ai_step (dtime)
 		end
 	end
 
-	if not mobs_griefing then
+	if not mobs_mc.is_mob_griefing_enabled("snowman") then
 		return
 	end
 	-- Leave a trail of top snow behind.

@@ -1,5 +1,4 @@
 local S = core.get_translator("mobs_mc")
-local mobs_griefing = mobs_mc.is_mob_griefing_enabled("wither")
 local mob_class = mcl_mobs.mob_class
 
 ------------------------------------------------------------------------
@@ -100,7 +99,7 @@ local WITHER_DESCENT_BOOM = 7
 
 local function wither_unstuck (self, xz_exp)
 	local pos = self.object:get_pos()
-	if mobs_griefing then
+	if mobs_mc.is_mob_griefing_enabled("wither") then
 		local col = self.collisionbox
 		local pos1 = vector.offset(pos, col[1] - xz_exp, col[2], col[3] - xz_exp)
 		local pos2 = vector.offset(pos, col[4] + xz_exp, col[5], col[6] + xz_exp)
@@ -323,7 +322,7 @@ function wither_def:do_custom (dtime, moveresult)
 		if self._spawning <= 0 then
 			mcl_explosions.explode (pos, WITHER_INIT_BOOM, {
 				drop_chance = 1.0,
-				griefing = mobs_griefing,
+				griefing = mobs_mc.is_mob_griefing_enabled("wither"),
 			}, self.object)
 			self.object:set_texture_mod ("")
 			self._spawning = nil
@@ -607,7 +606,7 @@ function wither_def:run_ai (dtime, moveresult)
 		     or (self._immersion_depth or 0) > 0) then
 		local params = {
 			drop_chance = 1.0,
-			griefing = mobs_griefing,
+			griefing = mobs_mc.is_mob_griefing_enabled("wither"),
 		}
 		mcl_explosions.explode (vector.offset (self_pos, 0, self:get_eye_height (), 0),
 					WITHER_DESCENT_BOOM, params, self.object)
@@ -818,7 +817,7 @@ local function spawn_wither_rose (obj)
 	if n then
 		local p = vector.offset(n,0,1,0)
 		if core.get_node(p).name == "air" then
-			if not ( mobs_griefing and core.place_node(p,{name="mcl_flowers:wither_rose"}) ) then
+			if not ( mobs_mc.is_mob_griefing_enabled("wither") and core.place_node(p,{name="mcl_flowers:wither_rose"}) ) then
 				core.add_item(p,"mcl_flowers:wither_rose")
 			end
 		end
@@ -839,10 +838,10 @@ local skull_def = {
 	velocity = 17,
 	rotate = 90,
 	_lifetime = 500,
-	_explosioninfo = {
-		griefing = mobs_griefing,
+	_get_explosioninfo = function() return {
+		griefing = mobs_mc.is_mob_griefing_enabled("wither"),
 		damage_type = "wither_skull",
-	},
+	} end,
 	on_punch = function() end,
 
 	-- direct hit
@@ -863,7 +862,7 @@ local skull_def = {
 		local v = self.object:get_velocity ()
 		v.y = 0
 		local dir = vector.normalize (v)
-		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object, self._shooter)
+		mcl_explosions.explode (pos, 1, self._get_explosioninfo(), self.object, self._shooter)
 		if player:get_hp() <= 0 then
 			local shooter = self._shooter:get_luaentity()
 			if shooter then
@@ -890,7 +889,7 @@ local skull_def = {
 		local v = self.object:get_velocity ()
 		v.y = 0
 		local dir = vector.normalize (v)
-		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object, self._shooter)
+		mcl_explosions.explode (pos, 1, self._get_explosioninfo(), self.object, self._shooter)
 		local l = mob:get_luaentity()
 		if l and l.health - 8 <= 0 then
 			local shooter = self._shooter:get_luaentity()
@@ -904,7 +903,7 @@ local skull_def = {
 		end
 	end,
 	hit_node = function(self, pos)
-		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object, self._shooter)
+		mcl_explosions.explode (pos, 1, self._get_explosioninfo(), self.object, self._shooter)
 	end
 }
 
@@ -913,11 +912,11 @@ mcl_mobs.register_arrow("mobs_mc:wither_skull", skull_def)
 local strong_skull_def = table.copy (skull_def)
 strong_skull_def.velocity = 12
 strong_skull_def.redirectable = true
-strong_skull_def.explosioninfo = {
+strong_skull_def._get_explosioninfo = function() return {
 	drop_chance = 1.0,
 	max_blast_resistance = 0,
-	griefing = mobs_griefing,
-}
+	griefing = mobs_mc.is_mob_griefing_enabled("wither"),
+} end
 strong_skull_def.textures = {
 	"mobs_mc_wither_projectile_strong.png^[verticalframe:6:0", -- top
 	"mobs_mc_wither_projectile_strong.png^[verticalframe:6:1", -- bottom

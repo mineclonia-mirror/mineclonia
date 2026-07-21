@@ -4,7 +4,6 @@
 
 local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
-local mobs_griefing = mobs_mc.is_mob_griefing_enabled("ender_dragon")
 local dragon_debug
 	= core.settings:get_bool ("dragon_debug", false)
 
@@ -785,7 +784,7 @@ core.register_on_mods_loaded (function ()
 end)
 
 function dragon:check_walls (cbox)
-	if not cbox or not mobs_griefing then
+	if not cbox or not mobs_mc.is_mob_griefing_enabled("ender_dragon") then
 		return
 	end
 

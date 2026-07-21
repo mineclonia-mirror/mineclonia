@@ -7,7 +7,6 @@ local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
 local illager = mobs_mc.illager
 local posing_humanoid = mcl_mobs.posing_humanoid
-local mob_griefing = mobs_mc.is_mob_griefing_enabled("vindicator")
 
 ------------------------------------------------------------------------
 -- Vindicator.
@@ -217,7 +216,7 @@ function vindicator:gwp_open_door (door, nodedef, dtime)
 	-- On Normal and Hard, there is a 10% chance per tick that a
 	-- vindicator will choose to break rather than open a door.
 
-	if mob_griefing and mcl_vars.difficulty >= 2
+	if mobs_mc.is_mob_griefing_enabled("vindicator") and mcl_vars.difficulty >= 2
 		and pr:next (1, 10) == 1
 		and not core.is_protected (door, "") then
 		self:set_animation ("punch")

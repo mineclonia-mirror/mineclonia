@@ -3,7 +3,6 @@
 --###################
 
 local S = core.get_translator("mobs_mc")
-local mob_griefing = mobs_mc.is_mob_griefing_enabled("silverfish")
 local mob_class = mcl_mobs.mob_class
 
 ------------------------------------------------------------------------
@@ -83,7 +82,7 @@ function silverfish:receive_damage (mcl_reason, damage)
 	if self.health > 0 then
 		-- Potentially summon friends from nearby infested
 		-- blocks unless mob griefing is disabled.
-		if mob_griefing and (mcl_reason.type == "magic" or mcl_reason.direct) then
+		if mobs_mc.is_mob_griefing_enabled("silverfish") and (mcl_reason.type == "magic" or mcl_reason.direct) then
 			self._reinforcement_time = 1.0
 		end
 	end
@@ -111,7 +110,7 @@ local replacements = {
 local scale_chance = mcl_mobs.scale_chance
 
 local function silverfish_return_to_block (self, self_pos, dtime)
-	if not mob_griefing then
+	if not mobs_mc.is_mob_griefing_enabled("silverfish") then
 		return false
 	end
 	local chance = scale_chance (50, dtime)

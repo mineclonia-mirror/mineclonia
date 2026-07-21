@@ -5,7 +5,6 @@
 local mob_class = mcl_mobs.mob_class
 local F = core.formspec_escape
 local S = core.get_translator ("mobs_mc")
-local mob_griefing = mobs_mc.is_mob_griefing_enabled("villager")
 local villager_verbose
 	= core.settings:get_bool ("villager_verbose", false)
 local villager_debug
@@ -4448,7 +4447,7 @@ function villager:farm (self_pos, dtime)
 			self._farming_cooldown = 1.0
 			return true
 		end
-	elseif mob_griefing
+	elseif mobs_mc.is_mob_griefing_enabled("villager")
 		and self._profession == "farmer"
 		and self._job_site
 		and vector.distance (self_pos, self._job_site) then
@@ -4524,7 +4523,7 @@ function villager:fertilize_farmland (self_pos, dtime)
 		end
 		self._fertilize_farmland = nil
 		return true
-	elseif mob_griefing
+	elseif mobs_mc.is_mob_griefing_enabled("villager")
 		and self._profession == "farmer"
 		and self:check_timer ("start_bone_meal", 1.0)
 		and not self._bone_meal_cooldown then

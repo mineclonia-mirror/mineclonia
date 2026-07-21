@@ -288,8 +288,6 @@ end
 -- Rabbit AI.
 ------------------------------------------------------------------------
 
-local mob_griefing = mobs_mc.is_mob_griefing_enabled("rabbit")
-
 function rabbit:ai_step (dtime)
 	mob_class.ai_step (self, dtime)
 	self._grief_time
@@ -318,7 +316,7 @@ local function previous_stage (age)
 end
 
 local function rabbit_grief_garden (self, self_pos, dtime)
-	if not mob_griefing then
+	if not mobs_mc.is_mob_griefing_enabled("rabbit") then
 		return false
 	end
 	if self._griefing_garden then

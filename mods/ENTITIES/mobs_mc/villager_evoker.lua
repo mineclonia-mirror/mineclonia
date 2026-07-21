@@ -7,7 +7,6 @@ local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
 local posing_humanoid = mcl_mobs.posing_humanoid
 local illager = mobs_mc.illager
-local mob_griefing = mobs_mc.is_mob_griefing_enabled("evoker")
 
 --###################
 --################### EVOKER
@@ -494,7 +493,7 @@ local evoker_wololo_spell = define_spell ({
 	duration = 3.0,
 	interval = 7.0,
 	check_activate = function (self, self_pos, dtime)
-		return mob_griefing
+		return mobs_mc.is_mob_griefing_enabled("evoker")
 			and self:wololo_find_sheep (self_pos)
 	end,
 	step = function (self, self_pos, dtime, rem)

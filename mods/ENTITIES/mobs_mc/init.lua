@@ -19,7 +19,7 @@ mobs_mc.is_mob_griefing_enabled = function(mob_name)
 			return false
 		end
 	end
-	return core.settings:get_bool("mobs_griefing", true)
+	return mcl_vars.mobs_griefing
 end
 
 -- Load mobs in the right order.

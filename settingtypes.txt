@@ -171,7 +171,8 @@ mobs_drop_items (Mob drops) bool true
 
 # If enabled, mobs can take, place, change and
 # destroy blocks around them.
-mobs_griefing (Mob griefing) bool true
+# Can be changed with the `/gamerule mobs_griefing <value>` chat command for each world individually.
+mobs_griefing (Default mob griefing) bool true
 
 [Features]
 # Enabling this setting adds an inventory to bookshelves

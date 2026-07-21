@@ -2,7 +2,6 @@
 
 local S = core.get_translator("mobs_mc")
 
-local mobs_griefing = mobs_mc.is_mob_griefing_enabled("creeper")
 local mob_class = mcl_mobs.mob_class
 
 --###################
@@ -138,7 +137,7 @@ function creeper_defs:creeper_explode (pos, strength)
 	-- by the explosion by removing it now.
 	self:safe_remove ()
 	mcl_explosions.explode (pos, strength, {
-		griefing = mobs_griefing,
+		griefing = mobs_mc.is_mob_griefing_enabled("creeper"),
 	}, self.object)
 	-- Dissipate active status effects.
 	for name, val in pairs (mcl_potions.all_effects (self.object)) do

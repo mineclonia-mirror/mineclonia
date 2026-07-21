@@ -1,5 +1,4 @@
 local S = core.get_translator ("mobs_mc")
-local mob_griefing = mobs_mc.is_mob_griefing_enabled("sheep")
 local mob_class = mcl_mobs.mob_class
 
 local function sheared_textures(unicolor_group)
@@ -272,7 +271,7 @@ local function sheep_graze (self, self_pos, dtime)
 				node.name == "mcl_flowers:fern" or
 				node.name == "mcl_flowers:short_dry_grass" or
 				node.name == "mcl_flowers:tall_dry_grass" then
-				if mob_griefing then
+				if mobs_mc.is_mob_griefing_enabled("sheep") then
 					core.remove_node (self_pos)
 				end
 				play_graze_sound (self, self_pos, node)
@@ -282,7 +281,7 @@ local function sheep_graze (self, self_pos, dtime)
 				offset.y = math.floor (offset.y + 0.5) - 1
 				local below = core.get_node (offset)
 				if below.name == "mcl_core:dirt_with_grass" then
-					if mob_griefing then
+					if mobs_mc.is_mob_griefing_enabled("sheep") then
 						core.set_node (offset, {
 							name = "mcl_core:dirt",
 						})

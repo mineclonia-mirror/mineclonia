@@ -212,7 +212,6 @@ local select_enderman_animation = function(animation_type)
 	end
 end
 
-local mobs_griefing = mobs_mc.is_mob_griefing_enabled("enderman")
 local psdefs = {{
 	amount = 5,
 	minpos = vector.new(-0.6,0,-0.6),
@@ -434,7 +433,7 @@ function enderman:receive_damage (mcl_reason, damage)
 end
 
 local function enderman_grief (self, self_pos, dtime)
-	if not mobs_griefing or (self._taken_node and self._taken_node ~= "") then
+	if not mobs_mc.is_mob_griefing_enabled("enderman") or (self._taken_node and self._taken_node ~= "") then
 		return false
 	end
 
@@ -506,7 +505,7 @@ local function enderman_grief (self, self_pos, dtime)
 end
 
 local function enderman_ungrief (self, self_pos, dtime)
-	if not mobs_griefing or not self._taken_node
+	if not mobs_mc.is_mob_griefing_enabled("enderman") or not self._taken_node
 		or self._taken_node == "" then
 		return false
 	end
