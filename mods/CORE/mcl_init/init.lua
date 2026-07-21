@@ -458,7 +458,7 @@ local difficulty_aliases = {
 
 local world_settings = Settings(core.get_worldpath() .. "/world.mt")
 
-local difficulty = world_settings:get("mcl_difficulty") or core.settings:get("mcl_difficulty")
+local difficulty = world_settings:get("mcl_difficulty") or core.settings:get("mcl_difficulty") or "normal"
 
 local function set_mcl_vars_difficulty()
 	if difficulty == "peaceful" then
