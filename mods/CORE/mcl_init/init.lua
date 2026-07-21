@@ -444,8 +444,7 @@ mcl_difficulty = {
 		"easy",
 		"normal",
 		"hard",
-	},
-	registered_on_difficulty_change = {}
+	}
 }
 
 local difficulty_aliases = {
@@ -459,10 +458,6 @@ local difficulty_aliases = {
 	["h"] = "hard",
 }
 
-function mcl_difficulty.register_on_difficulty_change(func)
-	table.insert(mcl_difficulty.registered_on_difficulty_change, func)
-end
-
 local world_settings = Settings(core.get_worldpath() .. "/world.mt")
 
 function mcl_difficulty.get_difficulty()
@@ -471,12 +466,9 @@ end
 
 function mcl_difficulty.set_difficulty(d)
 	if table.indexof(mcl_difficulty.difficulties, d) == -1 then return false end
-	local old_d = mcl_difficulty.get_difficulty()
 	world_settings:set("mcl_difficulty", d)
 	world_settings:write()
-	for _, func in ipairs(mcl_difficulty.registered_on_difficulty_change) do
-		func(old_d, d)
-	end
+	set_mcl_vars_difficulty(d)
 	return true
 end
 
@@ -497,7 +489,7 @@ core.register_chatcommand("difficulty", {
 	end
 })
 
-local function set_mcl_vars_difficulty(_, difficulty)
+local function set_mcl_vars_difficulty(difficulty)
 	-- Difficulty.  Peaceful is 0, normal is 1,
 	if difficulty == "peaceful" then
 		mcl_vars.difficulty = 0
@@ -515,8 +507,6 @@ local function set_mcl_vars_difficulty(_, difficulty)
 	end
 end
 
-mcl_difficulty.register_on_difficulty_change(set_mcl_vars_difficulty)
-
-set_mcl_vars_difficulty(nil, mcl_difficulty.get_difficulty())
+set_mcl_vars_difficulty(mcl_difficulty.get_difficulty())
 
 dofile(modpath.."/outdated_warning.lua")
