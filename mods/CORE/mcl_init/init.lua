@@ -623,8 +623,10 @@ end
 local function get_gamerules()
 	local rules = {}
 
-	for rule in pairs(gamerules) do
-		table.insert(rules, rule)
+	for rule, def in pairs(gamerules) do
+		if not def.hidden then
+			table.insert(rules, rule)
+		end
 	end
 
 	table.sort(rules)
