@@ -497,15 +497,27 @@ local function set_difficulty(d)
 	return true
 end
 
+local function get_difficulties()
+	local ds = table.copy(difficulties)
+
+	for alias in pairs(difficulty_aliases) do
+		table.insert(ds, alias)
+	end
+
+	table.sort(ds)
+
+	return ds
+end
+
 core.register_chatcommand("difficulty", {
 	params = S("[<difficulty>]"),
-	description = S("Change difficulty (peaceful/easy/normal/hard/0/1/2/3/p/e/n/h)"),
+	description = S("Change difficulty"),
 	privs = { server = true },
 	func = function(_, param)
 		local d = unpack(param:split(" "))
 
 		if d and not set_difficulty(d) then
-			return false, S("Failed to set difficulty @1", d)
+			return false, S("Failed to set difficulty @1.\nValid values: @2", d, table.concat(get_difficulties(), ", "))
 		end
 
 		return true, S("Difficulty: @1", difficulty)
