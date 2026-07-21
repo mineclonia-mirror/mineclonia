@@ -4,7 +4,7 @@ local orig_func = core.registered_chatcommands["spawnentity"].func
 local cmd = table.copy(core.registered_chatcommands["spawnentity"])
 cmd.func = function(name, param)
 	local ent = core.registered_entities[param]
-	if core.settings:get_bool("only_peaceful_mobs", false) and ent and ent.is_mob and ent.type == "monster" then
+	if mcl_vars.only_peaceful_mobs and ent and ent.is_mob and ent.type == "monster" then
 		return false, S("Only peaceful mobs allowed!")
 	else
 		local bool, msg = orig_func(name, param)

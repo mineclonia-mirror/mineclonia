@@ -6,8 +6,6 @@
 local S = core.get_translator("mobs_mc")
 local mobs_griefing = mobs_mc.is_mob_griefing_enabled("ghast")
 local mob_class = mcl_mobs.mob_class
-local only_peaceful_mobs
-	= core.settings:get_bool ("only_peaceful_mobs", false)
 
 --###################
 --################### GHAST
@@ -263,7 +261,7 @@ local ghast_spawner = table.merge (mobs_mc.monster_spawner, {
 function ghast_spawner:test_spawn_position (spawn_pos, node_pos, sdata, node_cache,
 					    spawn_flag)
 	return mcl_vars.difficulty > 0
-		and not only_peaceful_mobs
+		and not mcl_vars.only_peaceful_mobs
 		and math.random (20) == 1
 		and monster_spawner.test_spawn_position (self, spawn_pos,
 							 node_pos, sdata,

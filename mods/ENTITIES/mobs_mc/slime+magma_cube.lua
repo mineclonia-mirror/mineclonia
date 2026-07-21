@@ -4,9 +4,6 @@ local S = core.get_translator ("mobs_mc")
 
 local slime_chunk_spawn_max = -24 -- Y=40 in Minecraft.
 
-local only_peaceful_mobs
-	= core.settings:get_bool ("only_peaceful_mobs", false)
-
 local function in_slime_chunk (pos)
 	return mcl_biome_dispatch.is_slime_chunk (pos.x, pos.z)
 end
@@ -389,7 +386,7 @@ end)
 
 function slime_spawner:test_spawn_position (spawn_pos, node_pos, sdata, node_cache,
 					    spawn_flag)
-	if mcl_vars.difficulty == 0 or only_peaceful_mobs then
+	if mcl_vars.difficulty == 0 or mcl_vars.only_peaceful_mobs then
 		return false
 	end
 

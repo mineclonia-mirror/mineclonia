@@ -4,8 +4,6 @@ local pairs = pairs
 local mob_class = mcl_mobs.mob_class
 local get_attachment_pos = mcl_attachments.get_attachment_pos
 
-local only_peaceful_mobs = core.settings:get_bool("only_peaceful_mobs", false)
-
 -- Invisibility mod check
 mcl_mobs.invis = {}
 
@@ -395,7 +393,7 @@ function mob_class:mob_activate (staticdata, dtime)
 		return false
 	end
 
-	if (mcl_vars.difficulty <= 0 or only_peaceful_mobs) and not self.persist_in_peaceful then
+	if (mcl_vars.difficulty <= 0 or mcl_vars.only_peaceful_mobs) and not self.persist_in_peaceful then
 		mcl_burning.extinguish(self.object)
 		self.object:remove()
 		return false

@@ -6,7 +6,6 @@ local disabled_structures = core.settings:get("mcl_disabled_structures")
 if disabled_structures then	disabled_structures = disabled_structures:split(",")
 else disabled_structures = {} end
 
-local peaceful = core.settings:get_bool("only_peaceful_mobs", false)
 local mob_cap_player = tonumber(core.settings:get("mcl_mob_cap_player")) or 75
 local mob_cap_animal = tonumber(core.settings:get("mcl_mob_cap_animal")) or 10
 local mobs_spawn = core.settings:get_bool("mobs_spawn", true) ~= false
@@ -163,7 +162,7 @@ function mcl_structures.spawn_mobs(mob, spawnon, p1 ,p2 ,_ ,n , water)
 	end
 	table.shuffle(sp)
 	for i,node in pairs(sp) do
-		if not peaceful and i <= n then
+		if not mcl_vars.only_peaceful_mobs and i <= n then
 			local pos = vector.offset(node,0,1,0)
 			if pos then
 				local sdata = core.serialize ({_structure_generation_spawn = true,})

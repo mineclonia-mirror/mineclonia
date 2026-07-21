@@ -2,8 +2,6 @@ local dim = {"x", "z"}
 
 local modpath = core.get_modpath(core.get_current_modname())
 
-local peaceful = core.settings:get_bool("only_peaceful_mobs", false)
-
 local function load_schem(filename)
 	local file = io.open(modpath .. "/schems/" .. filename, "r")
 	if file then
@@ -39,7 +37,7 @@ local function remove_schem(pos, schem)
 end
 
 local function wither_spawn(pos, player)
-	if peaceful then return end
+	if mcl_vars.only_peaceful_mobs then return end
 	for _, d in pairs(dim) do
 		for i = 0, 2 do
 			local p = vector.add(pos, {x = 0, y = -2, z = 0, [d] = -i})

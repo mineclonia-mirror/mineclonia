@@ -4,9 +4,6 @@
 
 local S = core.get_translator (core.get_current_modname ())
 
-local only_peaceful_mobs
-	= core.settings:get_bool ("only_peaceful_mobs", false)
-
 mobs_mc.overworld_biomes = {
 	"BambooJungle",
 	"Beach",
@@ -230,7 +227,7 @@ local monster_spawner = table.merge (default_spawner, {
 
 function monster_spawner:test_spawn_position (spawn_pos, node_pos, sdata, node_cache,
 					      spawn_flag)
-	if mcl_vars.difficulty == 0 or only_peaceful_mobs then
+	if mcl_vars.difficulty == 0 or mcl_vars.only_peaceful_mobs then
 		return false
 	end
 

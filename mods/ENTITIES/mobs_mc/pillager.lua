@@ -1,5 +1,3 @@
-local only_peaceful_mobs
-	= core.settings:get_bool ("only_peaceful_mobs", false)
 local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
 local posing_humanoid = mcl_mobs.posing_humanoid
@@ -338,7 +336,7 @@ core.register_on_mods_loaded (function ()
 end)
 
 core.register_globalstep (function (dtime)
-	if (mcl_vars.difficulty == 0 or not mobs_spawn or only_peaceful_mobs)
+	if (mcl_vars.difficulty == 0 or not mobs_spawn or mcl_vars.only_peaceful_mobs)
 		and not force_spawn then
 		return
 	end

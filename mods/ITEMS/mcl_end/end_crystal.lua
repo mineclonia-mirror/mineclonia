@@ -1,7 +1,5 @@
 local S = core.get_translator(core.get_current_modname())
 
-local peaceful = core.settings:get_bool("only_peaceful_mobs", false)
-
 local explosion_strength = 6
 
 local directions = {
@@ -73,7 +71,7 @@ local function spawn_crystal(pos)
 	for o in core.objects_inside_radius(pos, 64) do
 		local l = o:get_luaentity()
 		if l and l.name == "mobs_mc:enderdragon" then return end
-		if not peaceful then
+		if not mcl_vars.only_peaceful_mobs then
 			if o:is_player() then
 				awards.unlock(o:get_player_name(), "mcl:theEndAgain")
 			end

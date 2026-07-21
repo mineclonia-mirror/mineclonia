@@ -562,6 +562,11 @@ local gamerules = {
 		global_setting_key = "mcl_keepInventory",
 		type = "bool",
 	},
+	only_peaceful_mobs = {
+		setting_key = "mcl_only_peaceful_mobs",
+		global_setting_key = "only_peaceful_mobs",
+		type = "bool",
+	},
 }
 
 for rule, def in pairs(gamerules) do
