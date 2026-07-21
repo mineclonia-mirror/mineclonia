@@ -591,6 +591,12 @@ local gamerules = {
 		global_setting_key = "mcl_keepInventory",
 		type = "bool",
 	},
+	mobs_drop_items = {
+		setting_key = "mcl_mobs_drop_items",
+		global_setting_key = "mobs_drop_items",
+		type = "bool",
+		default_value = true,
+	},
 	mobs_griefing = {
 		setting_key = "mcl_mobs_griefing",
 		global_setting_key = "mobs_griefing",

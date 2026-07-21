@@ -13,10 +13,8 @@ local DEATH_DELAY = 0.5
 
 local get_attachment_pos = mcl_attachments.get_attachment_pos
 
-local mobs_drop_items = core.settings:get_bool ("mobs_drop_items") ~= false
-
 function mob_class:item_drop(cooked, looting_level, mcl_reason)
-	if not mobs_drop_items then return end
+	if not mcl_vars.mobs_drop_items then return end
 	looting_level = looting_level or 0
 	if (self.child and self.type ~= "monster") then
 		return

@@ -167,7 +167,8 @@ mobs_spawn (Default spawn mobs naturally) bool true
 only_peaceful_mobs (Default spawn only peaceful mobs) bool false
 
 # If enabled, mobs might drop items when they die.
-mobs_drop_items (Mob drops) bool true
+# Can be changed with the `/gamerule mobs_drop_items <value>` chat command for each world individually.
+mobs_drop_items (Default mob drops) bool true
 
 # If enabled, mobs can take, place, change and
 # destroy blocks around them.
