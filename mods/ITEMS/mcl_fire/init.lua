@@ -33,23 +33,6 @@ local function has_flammable(pos)
 	end
 end
 
--- When enabled, fire destroys other blocks.
-local fire_enabled = core.settings:get_bool("enable_fire", true)
-
--- Help texts
-local fire_help, eternal_fire_help
-if fire_enabled then
-	fire_help = S("Fire is a damaging and destructive but short-lived kind of block. It will destroy and spread towards near flammable blocks, but fire will disappear when there is nothing to burn left. It will be extinguished by nearby water and rain. Fire can be destroyed safely by punching it, but it is hurtful if you stand directly in it. If a fire is started above netherrack or a magma block, it will immediately turn into an eternal fire.")
-else
-	fire_help = S("Fire is a damaging but non-destructive short-lived kind of block. It will disappear when there is no flammable block around. Fire does not destroy blocks, at least not in this world. It will be extinguished by nearby water and rain. Fire can be destroyed safely by punching it, but it is hurtful if you stand directly in it. If a fire is started above netherrack or a magma block, it will immediately turn into an eternal fire.")
-end
-
-if fire_enabled then
-	eternal_fire_help = S("Eternal fire is a damaging block that might create more fire. It will create fire around it when flammable blocks are nearby. Eternal fire can be extinguished by punches and nearby water blocks. Other than (normal) fire, eternal fire does not get extinguished on its own and also continues to burn under rain. Punching eternal fire is safe, but it hurts if you stand inside.")
-else
-	eternal_fire_help = S("Eternal fire is a damaging block. Eternal fire can be extinguished by punches and nearby water blocks. Other than (normal) fire, eternal fire does not get extinguished on its own and also continues to burn under rain. Punching eternal fire is safe, but it hurts if you stand inside.")
-end
-
 local function spawn_fire(pos, age)
 	core.set_node(pos, {name="mcl_fire:fire", param2 = age})
 	core.check_single_for_falling({x=pos.x, y=pos.y+1, z=pos.z})
@@ -57,7 +40,8 @@ end
 
 core.register_node("mcl_fire:fire", {
 	description = S("Fire"),
-	_doc_items_longdesc = fire_help,
+	_doc_items_longdesc = S("When enable_fire is enabled fire is a damaging and destructive but short-lived kind of block. It will destroy and spread towards near flammable blocks, but fire will disappear when there is nothing to burn left. It will be extinguished by nearby water and rain. Fire can be destroyed safely by punching it, but it is hurtful if you stand directly in it. If a fire is started above netherrack or a magma block, it will immediately turn into an eternal fire.") .. "\n\n" ..
+		S("When enable_fire is disabled fire is a damaging but non-destructive short-lived kind of block. It will disappear when there is no flammable block around. Fire does not destroy blocks, at least not in this world. It will be extinguished by nearby water and rain. Fire can be destroyed safely by punching it, but it is hurtful if you stand directly in it. If a fire is started above netherrack or a magma block, it will immediately turn into an eternal fire."),
 	drawtype = "firelike",
 	tiles = {
 		{
@@ -103,7 +87,8 @@ core.register_node("mcl_fire:fire", {
 
 core.register_node("mcl_fire:eternal_fire", {
 	description = S("Eternal Fire"),
-	_doc_items_longdesc = eternal_fire_help,
+	_doc_items_longdesc = S("When enable_fire is enabled eternal fire is a damaging block that might create more fire. It will create fire around it when flammable blocks are nearby. Eternal fire can be extinguished by punches and nearby water blocks. Other than (normal) fire, eternal fire does not get extinguished on its own and also continues to burn under rain. Punching eternal fire is safe, but it hurts if you stand inside.") .. "\n\n" ..
+		S("When enable_fire is disabled eternal fire is a damaging block. Eternal fire can be extinguished by punches and nearby water blocks. Other than (normal) fire, eternal fire does not get extinguished on its own and also continues to burn under rain. Punching eternal fire is safe, but it hurts if you stand inside."),
 	drawtype = "firelike",
 	tiles = {
 		{
@@ -286,9 +271,6 @@ core.register_abm({
 	end,
 })
 
--- Enable the following ABMs according to 'enable fire' setting
-if not fire_enabled then
-
 	-- Occasionally remove fire if fire disabled
 	-- NOTE: Fire is normally extinguished in timer function
 	core.register_abm({
@@ -297,10 +279,11 @@ if not fire_enabled then
 		interval = 10,
 		chance = 10,
 		catch_up = false,
-		action = core.remove_node,
+		action = function(pos)
+			if mcl_vars.enable_fire then return end
+			core.remove_node (pos)
+		end,
 	})
-
-else -- Fire enabled
 
 	-- Fire Spread
 	core.register_abm({
@@ -310,6 +293,7 @@ else -- Fire enabled
 		chance = 12,
 		catch_up = false,
 		action = function(pos)
+			if not mcl_vars.enable_fire then return end
 			local p = get_ignitable(pos)
 			if p then
 				spawn_fire(p)
@@ -327,6 +311,7 @@ else -- Fire enabled
 		chance = 9,
 		catch_up = false,
 		action = function(pos)
+			if not mcl_vars.enable_fire then return end
 			local p=get_ignitable_by_lava(pos)
 			if p then
 				spawn_fire(p)
@@ -341,6 +326,7 @@ else -- Fire enabled
 		chance = 3,
 		catch_up = false,
 		action = function(pos)
+			if not mcl_vars.enable_fire then return end
 			local p=has_flammable(pos)
 			if p then
 				local n=core.get_node_or_nil(p)
@@ -362,6 +348,7 @@ else -- Fire enabled
 		chance = 18,
 		catch_up = false,
 		action = function(pos)
+			if not mcl_vars.enable_fire then return end
 			local p = has_flammable(pos)
 			if not p then
 				return
@@ -379,7 +366,6 @@ else -- Fire enabled
 			end
 		end
 	})
-end
 
 -- Set pointed_thing on (normal) fire.
 -- * pointed_thing: Pointed thing to ignite

@@ -592,6 +592,12 @@ local gamerules = {
 		type = "bool",
 		default_value = true,
 	},
+	enable_fire = {
+		setting_key = "mcl_enable_fire",
+		global_setting_key = "enable_fire",
+		type = "bool",
+		default_value = true,
+	},
 	explosions_griefing = {
 		setting_key = "mcl_explosions_griefing",
 		type = "bool",

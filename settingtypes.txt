@@ -6,7 +6,8 @@
 # Destructive fire may cause severe destruction.
 # Fire blocks will be non-destructive and stops spreading when this
 # setting is disabled, but they still deal damage to creatures.
-enable_fire (Destructive and spreading fire) bool true
+# Can be changed with the `/gamerule enable_fire <value>` chat command for each world individually.
+enable_fire (Default destructive and spreading fire) bool true
 
 # If enabled, the weather will change naturally over time.
 mcl_doWeatherCycle (Changing weather) bool true
