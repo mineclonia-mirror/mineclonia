@@ -681,21 +681,23 @@ core.register_chatcommand("gamerule", {
 			return true, S("Gamerules:") .. "\n" .. table.concat(cmd_gamerules, "\n")
 		end
 
-		if value then
-			-- Value is second parameter till last
-			table.remove(params, 1)
-			value = table.concat(params, " ")
-
-			if not set_gamerule(rule, value) then
-				return false, S("Failed to set gamerule @1: @2", rule, value)
+		if not value then
+			if not gamerules[rule] then
+				return false, S("Failed to get gamerule @1", rule)
 			end
+
+			return true, S("Gamerule @1: @2", rule, to_string(mcl_vars[rule]))
 		end
 
-		if not gamerules[rule] then
-			return false, S("Failed to get gamerule @1", rule)
+		-- Value is second parameter till last
+		table.remove(params, 1)
+		value = table.concat(params, " ")
+
+		if not set_gamerule(rule, value) then
+			return false, S("Failed to set gamerule @1: @2", rule, value)
 		end
 
-		return true, S("Gamerule @1: @2", rule, to_string(mcl_vars[rule]))
+		return true, S("Gamerule @1 set to @2.", rule, to_string(mcl_vars[rule]))
 	end
 })
 
