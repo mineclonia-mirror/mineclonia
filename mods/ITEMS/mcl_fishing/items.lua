@@ -35,8 +35,8 @@ core.register_craftitem("mcl_fishing:salmon_cooked", {
 })
 
 core.register_craftitem("mcl_fishing:clownfish_raw", {
-	description = S("Clownfish"),
-	_doc_items_longdesc = S("Clownfish may be obtained by fishing (and luck) and is a food item which can be eaten safely."),
+	description = S("Tropical Fish"),
+	_doc_items_longdesc = S("Tropical fish may be obtained by fishing (and luck) and is a food item which can be eaten safely."),
 	inventory_image = "mcl_fishing_clownfish_raw.png",
 	groups = { food=2, eatable = 1 },
 	_mcl_saturation = 0.2,
