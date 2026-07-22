@@ -38,8 +38,8 @@ core.register_craft({
 })
 
 mcl_lanterns.register_chain("chain", {
-	description = S("Chain"),
-	_doc_items_longdesc = S("Chains are metallic decoration blocks."),
+	description = S("Iron Chain"),
+	_doc_items_longdesc = S("Iron Chains are metallic decoration blocks."),
 	inventory_image = "mcl_lanterns_chain_inv.png",
 	tiles = {"mcl_lanterns_chain.png"},
 })
