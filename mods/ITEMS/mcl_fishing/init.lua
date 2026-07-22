@@ -130,7 +130,12 @@ local function fish(itemstack, player, pointed_thing)
 				items = mcl_loot.get_loot({ items = mcl_fishing.loot_fish, stacks_min = 1, stacks_max = 1 }, pr)
 				awards.unlock(player:get_player_name(), "mcl:fishyBusiness")
 			elseif r <= junk_value then
-				items = mcl_loot.get_loot({ items = jungle_biome_test(mcl_biome_dispatch.get_biome_name(bobbers[player]:get_pos())) and mcl_fishing.loot_junk_jungle or mcl_fishing.loot_junk, stacks_min = 1, stacks_max = 1 }, pr)
+				local biome = mcl_biome_dispatch.get_biome_name(bobbers[player]:get_pos())
+				local loot_junk = mcl_fishing.loot_junk
+				if jungle_biome_test(biome) then
+					loot_junk = mcl_fishing.loot_junk_jungle
+				end
+				items = mcl_loot.get_loot({ items = loot_junk, stacks_min = 1, stacks_max = 1 }, pr)
 			else
 				items = mcl_loot.get_loot({ items = mcl_fishing.loot_treasure, stacks_min = 1, stacks_max = 1 }, pr)
 			end
