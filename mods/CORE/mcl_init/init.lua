@@ -460,23 +460,21 @@ local function get_world_settings()
 	return Settings(core.get_worldpath() .. "/world.mt")
 end
 
-local difficulty = get_world_settings():get("mcl_difficulty") or core.settings:get("mcl_difficulty") or "normal"
+local difficulty = get_world_settings():get("mcl_difficulty") or core.settings:get("mcl_difficulty")
+if not difficulty or difficulty == "" then
+	difficulty = "normal"
+end
 
 local function set_mcl_vars_difficulty()
-	if difficulty == "peaceful" then
-		mcl_vars.difficulty = 0
-	elseif difficulty == "easy" then
-		mcl_vars.difficulty = 1
-	elseif difficulty == "normal"
-		or not difficulty
-		or difficulty == "" then
-		mcl_vars.difficulty = 2
-	elseif difficulty == "hard" then
-		mcl_vars.difficulty = 3
-	else
+	local i = table.indexof(difficulties, difficulty)
+
+	if i == -1 then
 		mcl_vars.difficulty = 2
 		core.log("warning", "mcl_difficulty is configured to an unknown value " .. difficulty)
+		return
 	end
+
+	mcl_vars.difficulty = i - 1 --> peaceful is at index 1, becomes 0; easy is 2 -> 1; etc
 end
 
 set_mcl_vars_difficulty()
