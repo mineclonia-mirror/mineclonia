@@ -38,7 +38,7 @@ local polar_bear = {
 	follow_bonus = 1.25,
 	attack_type = "melee",
 	drops = {
-		-- 3/4 chance to drop raw fish (poor approximation)
+		-- 3/4 chance to drop raw cod (poor approximation)
 		{
 			name = "mcl_fishing:fish_raw",
 			chance = 2,

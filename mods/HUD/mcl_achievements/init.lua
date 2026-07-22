@@ -366,7 +366,7 @@ awards.register_achievement("mcl:freeTheEnd", {
 -- Triggered in mcl_fishing
 awards.register_achievement("mcl:fishyBusiness", {
 	title = S("Fishy Business"),
-	description = S("Catch a fish.\nHint: Catch a fish, salmon, clownfish, or pufferfish."),
+	description = S("Catch a fish.\nHint: Catch a cod, salmon, clownfish, or pufferfish."),
 	icon = "mcl_fishing_fishing_rod.png",
 	type = "Advancement",
 	group = "Husbandry",

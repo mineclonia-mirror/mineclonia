@@ -1,8 +1,8 @@
 local S = core.get_translator(core.get_current_modname())
 
 core.register_craftitem("mcl_fishing:fish_raw", {
-	description = S("Raw Fish"),
-	_doc_items_longdesc = S("Raw fish is obtained by fishing and is a food item which can be eaten safely. Cooking it improves its nutritional value."),
+	description = S("Raw Cod"),
+	_doc_items_longdesc = S("Raw cod is obtained by fishing and is a food item which can be eaten safely. Cooking it improves its nutritional value."),
 	inventory_image = "mcl_fishing_fish_raw.png",
 	groups = { food=2, eatable = 2, smoker_cookable = 1, campfire_cookable = 1 },
 	_mcl_saturation = 0.4,
