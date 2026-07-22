@@ -41,7 +41,7 @@ Please read <https://minecraft.wiki/w/Breaking> to learn how digging times work 
     * `flammable=-1` Does not get destroyed by fire
 * `fire_encouragement`: How quickly this block catches fire
 * `fire_flammability`: How fast the block will burn away
-* `path_creation_possible=1`: Node can be turned into grass path by using a shovel on it
+* `path_creation_possible=1`: Node can be turned into dirt path by using a shovel on it
 * `spreading_dirt_type=1`: A dirt-type block with a cover (e.g. grass) which may spread to neighbor dirt blocks
 * `dirtifies_below_solid=1`: This node turns into dirt immediately when a solid or dirtifier node is placed on top
 * `dirtifier=1`: This node turns nodes the above group into dirt when placed above

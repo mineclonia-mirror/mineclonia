@@ -296,7 +296,7 @@ core.register_abm({
 	end
 })
 
--- Turn Grass Path and similar nodes to Dirt if a solid node is placed above it
+-- Turn Dirt Path and similar nodes to Dirt if a solid node is placed above it
 core.register_on_placenode(function(pos, newnode)
 	if core.get_item_group(newnode.name, "solid") ~= 0 or
 			core.get_item_group(newnode.name, "dirtifier") ~= 0 then
@@ -309,7 +309,7 @@ core.register_on_placenode(function(pos, newnode)
 end)
 
 core.register_abm({
-	label = "Turn Grass Path below solid block into Dirt",
+	label = "Turn Dirt Path below solid block into Dirt",
 	nodenames = {"mcl_core:grass_path"},
 	neighbors = {"group:solid"},
 	interval = 8,
@@ -703,7 +703,7 @@ core.register_abm({
 })
 
 function mcl_core.make_dirtpath(itemstack, placer, pointed_thing)
-	-- Only make grass path if tool used on side or top of target node
+	-- Only make dirt path if tool used on side or top of target node
 	if pointed_thing.above.y < pointed_thing.under.y then
 		return itemstack
 	end

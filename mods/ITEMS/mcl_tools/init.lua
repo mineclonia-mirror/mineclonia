@@ -37,8 +37,8 @@ mcl_tools.commondefs = {
 		}
 	},
 	["shovel"] = {
-		longdesc = S("Shovels are tools for digging coarse blocks, such as dirt, sand and gravel. They can also be used to turn grass blocks to grass paths. Shovels can be used as weapons, but they are very weak."),
-		usagehelp = S("To turn a grass block into a grass path, hold the shovel in your hand, then use (rightclick) the top or side of a grass block. This only works when there's air above the grass block."),
+		longdesc = S("Shovels are tools for digging coarse blocks, such as dirt, sand and gravel. They can also be used to turn grass blocks to dirt paths. Shovels can be used as weapons, but they are very weak."),
+		usagehelp = S("To turn a grass block into a dirt path, hold the shovel in your hand, then use (rightclick) the top or side of a grass block. This only works when there's air above the grass block."),
 		groups = { shovel = 1, tool = 1 },
 		diggroups = { shovely = {} },
 		craft_shapes = {

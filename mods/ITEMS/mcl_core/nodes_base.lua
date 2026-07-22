@@ -327,7 +327,7 @@ core.register_node("mcl_core:diorite_smooth", {
 -- Grass Block
 core.register_node("mcl_core:dirt_with_grass", {
 	description = S("Grass Block"),
-	_doc_items_longdesc = S("A grass block is dirt with a grass cover. Grass blocks are resourceful blocks which allow the growth of all sorts of plants. They can be turned into farmland with a hoe and turned into grass paths with a shovel. In light, the grass slowly spreads onto dirt nearby. Under an opaque block or a liquid, a grass block may turn back to dirt."),
+	_doc_items_longdesc = S("A grass block is dirt with a grass cover. Grass blocks are resourceful blocks which allow the growth of all sorts of plants. They can be turned into farmland with a hoe and turned into dirt paths with a shovel. In light, the grass slowly spreads onto dirt nearby. Under an opaque block or a liquid, a grass block may turn back to dirt."),
 	_doc_items_hidden = false,
 	paramtype2 = "color",
 	tiles = {"mcl_core_grass_block_top.png", { name="default_dirt.png", color="white" }, { name="default_dirt.png^mcl_dirt_grass_shadow.png", color="white" }},
@@ -369,8 +369,8 @@ mcl_core.register_snowed_node("mcl_core:dirt_with_grass_snow", "mcl_core:dirt_wi
 
 core.register_node("mcl_core:grass_path", {
 	tiles = {"mcl_core_grass_path_top.png", "default_dirt.png", "mcl_core_grass_path_side.png"},
-	description = S("Grass Path"),
-	_doc_items_longdesc = S("Grass paths are a decorative variant of grass blocks. Their top has a different color and they are a bit lower than grass blocks, making them useful to build footpaths. Grass paths can be created with a shovel. A grass path turns into dirt when it is below a solid block."),
+	description = S("Dirt Path"),
+	_doc_items_longdesc = S("Dirt paths are a decorative variant of dirt blocks. Their top has a different color and they are a bit lower than dirt blocks, making them useful to build footpaths. Dirt paths can be created with a shovel. A dirt path turns into dirt when it is below a solid block."),
 	drop = "mcl_core:dirt",
 	drawtype = "nodebox",
 	paramtype = "light",

@@ -35,7 +35,7 @@ end)
 -- usable by shovels
 doc.sub.items.register_factoid("nodes", "groups", function(itemstring, _)
 	if core.get_item_group(itemstring, "path_creation_possible") ~= 0 then
-		return S("This block can be turned into grass path with a shovel.")
+		return S("This block can be turned into dirt path with a shovel.")
 	end
 	return ""
 end)
