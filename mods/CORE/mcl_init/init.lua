@@ -671,7 +671,7 @@ table.sort(cmd_gamerules)
 
 core.register_chatcommand("gamerule", {
 	params = S("[<rule>] [<value>]"),
-	description = S("Change gamerule"),
+	description = S("Set or query gamerules"),
 	privs = { server = true },
 	func = function(_, param)
 		local params = param:split(" ")
