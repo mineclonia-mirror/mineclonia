@@ -473,7 +473,7 @@ local function set_mcl_vars_difficulty()
 		mcl_vars.difficulty = 3
 	else
 		mcl_vars.difficulty = 2
-		core.log ("warning", "mcl_difficulty is configured to an unknown value " .. difficulty)
+		core.log("warning", "mcl_difficulty is configured to an unknown value " .. difficulty)
 	end
 end
 
