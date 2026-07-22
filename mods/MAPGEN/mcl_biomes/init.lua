@@ -1688,7 +1688,7 @@ local function register_biomes()
 		},
 	})
 	-- The oak forest plateau of this biome.
-	-- This is a plateau for grass blocks, dry shrubs, tall grass, coarse dirt and oaks.
+	-- This is a plateau for grass blocks, dry shrubs, short grass, coarse dirt and oaks.
 	-- Strata don't generate here.
 	core.register_biome({
 		name = "MesaPlateauF_grasstop",
@@ -6057,7 +6057,7 @@ local function register_decorations()
 	register_seagrass_decoration("seagrass", 0, 0.5, b_seagrass)
 	register_seagrass_decoration("kelp", -0.5, 1, b_kelp)
 
-	-- Place tall grass on snow in Ice Plains and Extreme Hills+
+	-- Place short grass on snow in Ice Plains and Extreme Hills+
 	core.register_decoration({
 		deco_type = "schematic",
 		place_on = {"group:grass_block"},

@@ -814,9 +814,9 @@ function mcl_core.bone_meal_grass(_, _, pointed_thing)
 				local n2 = core.get_node(vector.offset(pos, 0, -1, 0))
 
 				if n.name ~= "" and n.name == "air" and (core.get_item_group(n2.name, "grass_block_no_snow") == 1) then
-					-- Randomly generate flowers, tall grass or nothing
+					-- Randomly generate flowers, short grass or nothing
 					if math.random(1, 100) <= 90 / ((math.abs(i) + math.abs(j)) / 2)then
-						-- 90% tall grass, 10% flower
+						-- 90% short grass, 10% flower
 						if math.random(1,100) <= 90 then
 							local col = n2.param2
 							core.set_node(pos, {name="mcl_flowers:tallgrass", param2=col})

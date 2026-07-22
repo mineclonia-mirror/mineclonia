@@ -62,7 +62,7 @@ core.register_craftitem("mcl_bone_meal:bone_meal", {
 	description = S("Bone Meal"),
 	_tt_help = S("Speeds up plant growth"),
 	_doc_items_longdesc = S("Bone meal is a white dye and also useful as a fertilizer to speed up the growth of many plants."),
-	_doc_items_usagehelp = S("Rightclick a sheep to turn its wool white. Rightclick a plant to speed up its growth. Note that not all plants can be fertilized like this. When you rightclick a grass block, tall grass and flowers will grow all over the place."),
+	_doc_items_usagehelp = S("Rightclick a sheep to turn its wool white. Rightclick a plant to speed up its growth. Note that not all plants can be fertilized like this. When you rightclick a grass block, short grass and flowers will grow all over the place."),
 	on_place = function(itemstack, user, pointed_thing)
 		local rc = mcl_util.call_on_rightclick(itemstack, user, pointed_thing)
 		if rc then return rc end

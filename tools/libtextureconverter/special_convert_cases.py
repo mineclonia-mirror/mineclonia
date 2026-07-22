@@ -651,7 +651,7 @@ def convert_grass_textures(
             "/mcl_core_vine.png",
             tempfile2.name)
 
-        # Tall grass, fern (inventory images)
+        # Short grass, fern (inventory images)
         pcol = "50+173"  # Plains grass color
         colorize_alpha(
             GRASS,

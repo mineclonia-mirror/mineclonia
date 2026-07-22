@@ -3,7 +3,7 @@ local modpath = core.get_modpath(modname)
 local S = core.get_translator(modname)
 
 -- Return a vegetation type with the following chances
---   Tall Grass: 52.08%
+--   Short Grass: 52.08%
 --   Moss Carpet: 26.04%
 --   Double Grass: 10.42%
 --   Azalea: 7.29%
