@@ -10,7 +10,7 @@ core.register_craftitem("mcl_fishing:fish_raw", {
 })
 
 core.register_craftitem("mcl_fishing:fish_cooked", {
-	description = S("Cooked Fish"),
+	description = S("Cooked Cod"),
 	_doc_items_longdesc = S("Mmh, fish! This is a healthy food item."),
 	inventory_image = "mcl_fishing_fish_cooked.png",
 	groups = { food=2, eatable=5 },
