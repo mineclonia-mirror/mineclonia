@@ -506,7 +506,7 @@ table.sort(cmd_difficulties)
 
 core.register_chatcommand("difficulty", {
 	params = S("[<difficulty>]"),
-	description = S("Change difficulty"),
+	description = S("Set or query the gameplay difficulty"),
 	privs = { server = true },
 	func = function(_, param)
 		local d = unpack(param:split(" "))
