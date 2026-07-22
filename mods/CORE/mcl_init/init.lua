@@ -507,15 +507,20 @@ table.sort(cmd_difficulties)
 core.register_chatcommand("difficulty", {
 	params = S("[<difficulty>]"),
 	description = S("Set or query the gameplay difficulty"),
-	privs = { server = true },
-	func = function(_, param)
+	func = function(player, param)
 		local d = unpack(param:split(" "))
 
-		if d and not set_difficulty(d) then
-			return false, S("Failed to set difficulty @1.\nValid values: @2", d, table.concat(cmd_difficulties, ", "))
+		if not d then
+			return true, S("Difficulty: @1", difficulty)
 		end
 
-		return true, S("Difficulty: @1", difficulty)
+		if not core.check_player_privs(player, "server") then
+			return false, S("This command requires server privileges to run.")
+		end
+
+		if not set_difficulty(d) then
+			return false, S("Failed to set difficulty @1.\nValid values: @2", d, table.concat(cmd_difficulties, ", "))
+		end
 	end
 })
 
