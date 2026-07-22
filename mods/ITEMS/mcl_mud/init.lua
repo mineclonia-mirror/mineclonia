@@ -52,6 +52,12 @@ mcl_stairs.register_stair_and_slab("mud_brick", {
 	overrides = {_mcl_stonecutter_recipes = {"mcl_mud:mud_bricks"}},{_mcl_stonecutter_recipes = {"mcl_mud:mud_bricks"}}
 })
 
+mcl_walls.register_wall_def(":mcl_walls:mudbrick", {
+	description = S("Mud Brick Wall"),
+	source = "mcl_mud:mud_bricks",
+	_mcl_stonecutter_recipes = {"mcl_mud:mud_bricks",},
+})
+
 -- packed mud
 core.register_craft({
 	type = "shapeless",

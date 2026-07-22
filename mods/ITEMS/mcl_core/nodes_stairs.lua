@@ -20,17 +20,34 @@ mcl_stairs.register_stair_and_slab("andesite", {
 	description_slab = S("Andesite Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:andesite"}},
 })
+mcl_walls.register_wall_def(":mcl_walls:andesite", {
+	description = S("Andesite Wall"),
+	source = "mcl_core:andesite",
+	_mcl_stonecutter_recipes = {"mcl_core:andesite"},
+})
+
 mcl_stairs.register_stair_and_slab("granite", {
 	baseitem = "mcl_core:granite",
 	description_stair = S("Granite Stairs"),
 	description_slab = S("Granite Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:granite"}},
 })
+mcl_walls.register_wall_def(":mcl_walls:granite", {
+	description = S("Granite Wall"),
+	source = "mcl_core:granite",
+	_mcl_stonecutter_recipes = {"mcl_core:granite",},
+})
+
 mcl_stairs.register_stair_and_slab("diorite", {
 	baseitem = "mcl_core:diorite",
 	description_stair = S("Diorite Stairs"),
 	description_slab = S("Diorite Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:diorite"}},
+})
+mcl_walls.register_wall_def(":mcl_walls:diorite", {
+	description = S("Diorite Wall"),
+	source = "mcl_core:diorite",
+	_mcl_stonecutter_recipes = {"mcl_core:diorite",},
 })
 
 mcl_stairs.register_stair_and_slab("cobble", {
@@ -39,11 +56,24 @@ mcl_stairs.register_stair_and_slab("cobble", {
 	description_slab = S("Cobblestone Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:cobble", "mcl_core:stone"}},
 })
+mcl_walls.register_wall_def(":mcl_walls:cobble",{
+	source = "mcl_core:cobble",
+	description = S("Cobblestone Wall"),
+	tiles = {"mcl_walls_cobble_wall_top.png", "default_cobble.png", "mcl_walls_cobble_wall_side.png"},
+	_mcl_stonecutter_recipes = { "mcl_core:cobble", "mcl_core:stone" },
+})
+
 mcl_stairs.register_stair_and_slab("mossycobble", {
 	baseitem = "mcl_core:mossycobble",
 	description_stair = S("Mossy Cobblestone Stairs"),
 	description_slab = S("Mossy Cobblestone Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:mossycobble"}},
+})
+mcl_walls.register_wall_def(":mcl_walls:mossycobble", {
+	source = "mcl_core:mossycobble",
+	description = S("Mossy Cobblestone Wall"),
+	tiles = {"mcl_walls_cobble_mossy_wall_top.png", "default_mossycobble.png", "mcl_walls_cobble_mossy_wall_side.png"},
+	_mcl_stonecutter_recipes = { "mcl_core:mossycobble" },
 })
 
 mcl_stairs.register_stair_and_slab("brick_block", {
@@ -52,7 +82,11 @@ mcl_stairs.register_stair_and_slab("brick_block", {
 	description_slab = S("Brick Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:brick_block"}},
 })
-
+mcl_walls.register_wall_def(":mcl_walls:brick", {
+	description = S("Brick Wall"),
+	source = "mcl_core:brick_block",
+	_mcl_stonecutter_recipes = {"mcl_core:brick_block",},
+})
 
 mcl_stairs.register_stair_and_slab("sandstone", {
 	baseitem = "mcl_core:sandstone",
@@ -60,6 +94,12 @@ mcl_stairs.register_stair_and_slab("sandstone", {
 	description_slab = S("Sandstone Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:sandstone"}},
 })
+mcl_walls.register_wall_def(":mcl_walls:sandstone", {
+	description = S("Sandstone Wall"),
+	source = "mcl_core:sandstone",
+	_mcl_stonecutter_recipes = {"mcl_core:sandstone",},
+})
+
 mcl_stairs.register_stair_and_slab("sandstonesmooth2", {
 	baseitem = "mcl_core:sandstonesmooth2",
 	description_stair = S("Smooth Sandstone Stairs"),
@@ -83,6 +123,11 @@ mcl_stairs.register_stair_and_slab("redsandstone", {
 	description_slab = S("Red Sandstone Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:redsandstone"}},
 })
+mcl_walls.register_wall_def(":mcl_walls:redsandstone", {
+	description = S("Red Sandstone Wall"),
+	source = "mcl_core:redsandstone",
+	_mcl_stonecutter_recipes = {"mcl_core:redsandstone",},
+})
 mcl_stairs.register_stair_and_slab("redsandstonesmooth2", {
 	baseitem = "mcl_core:redsandstonesmooth2",
 	description_stair = S("Smooth Red Sandstone Stairs"),
@@ -105,6 +150,11 @@ mcl_stairs.register_stair_and_slab("stonebrick", {
 	description_stair = S("Stone Brick Stairs"),
 	description_slab = S("Stone Brick Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:stone", "mcl_core:stonebrick"}},
+})
+mcl_walls.register_wall_def(":mcl_walls:stonebrick", {
+	description = S("Stone Brick Wall"),
+	source = "mcl_core:stonebrick",
+	_mcl_stonecutter_recipes = {"mcl_core:stonebrick", "mcl_core:stone"},
 })
 
 mcl_stairs.register_stair("andesite_smooth", {
@@ -148,4 +198,9 @@ mcl_stairs.register_stair_and_slab("stonebrickmossy", {
 	description_stair = S("Mossy Stone Brick Stairs"),
 	description_slab = S("Mossy Stone Brick Slab"),
 	overrides = {_mcl_stonecutter_recipes = {"mcl_core:stonebrickmossy"}},
+})
+mcl_walls.register_wall_def(":mcl_walls:stonebrickmossy", {
+	description = S("Mossy Stone Brick Wall"),
+	source = "mcl_core:stonebrickmossy",
+	_mcl_stonecutter_recipes = {"mcl_core:stonebrickmossy",},
 })

@@ -313,11 +313,25 @@ mcl_stairs.register_stair_and_slab("nether_brick", {
 	description_slab = S("Nether Brick Slab"),
 	overrides = {_mcl_stonecutter_recipes = { "mcl_nether:nether_brick" }},{_mcl_stonecutter_recipes = { "mcl_nether:nether_brick" }},
 })
+
+mcl_walls.register_wall_def(":mcl_walls:netherbrick", {
+	description = S("Nether Brick Wall"),
+	source = "mcl_nether:nether_brick",
+	_mcl_stonecutter_recipes = {"mcl_nether:nether_brick",},
+})
+
+
 mcl_stairs.register_stair_and_slab("red_nether_brick", {
 	baseitem = "mcl_nether:red_nether_brick",
 	description_stair = S("Red Nether Brick Stairs"),
 	description_slab = S("Red Nether Brick Slab"),
 	overrides = {_mcl_stonecutter_recipes = { "mcl_nether:red_nether_brick" }},{_mcl_stonecutter_recipes = { "mcl_nether:red_nether_brick" }},
+})
+
+mcl_walls.register_wall_def(":mcl_walls:rednetherbrick", {
+	description = S("Red Nether Brick Wall"),
+	source = "mcl_nether:red_nether_brick",
+	_mcl_stonecutter_recipes = {"mcl_nether:red_nether_brick",},
 })
 
 -- Nether Brick Fence (without fence gate!)

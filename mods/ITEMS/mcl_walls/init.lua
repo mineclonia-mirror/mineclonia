@@ -1,5 +1,4 @@
 local modname = core.get_current_modname()
-local modpath = core.get_modpath(modname)
 local S = core.get_translator(modname)
 
 mcl_walls = {}
@@ -285,8 +284,6 @@ function mcl_walls.register_wall_def(name,def)
 	def.source = nil
 	mcl_walls.register_wall(name, nil, source, nil, nil, nil, nil, def)
 end
-
-dofile(modpath.."/register.lua")
 
 core.register_on_placenode(update_wall_global)
 core.register_on_dignode(update_wall_global)

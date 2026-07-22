@@ -68,12 +68,19 @@ mcl_stairs.register_stair_and_slab("prismarine", {
 	description_slab = S("Prismarine Slab"),
 	overrides = {_mcl_stonecutter_recipes = { "mcl_ocean:prismarine" }},{_mcl_stonecutter_recipes = { "mcl_ocean:prismarine" }}
 })
+mcl_walls.register_wall_def(":mcl_walls:prismarine", {
+	description = S("Prismarine Wall"),
+	source = "mcl_ocean:prismarine",
+	_mcl_stonecutter_recipes = {"mcl_ocean:prismarine",},
+})
+
 mcl_stairs.register_stair_and_slab("prismarine_brick", {
 	baseitem = "mcl_ocean:prismarine_brick",
 	description_stair = S("Prismarine Brick Stairs"),
 	description_slab = S("Prismarine Brick Slab"),
 	overrides = {_mcl_stonecutter_recipes = { "mcl_ocean:prismarine_brick" }},{_mcl_stonecutter_recipes = { "mcl_ocean:prismarine_brick" }}
 })
+
 mcl_stairs.register_stair_and_slab("prismarine_dark", {
 	baseitem = "mcl_ocean:prismarine_dark",
 	description_stair = S("Dark Prismarine Stairs"),
