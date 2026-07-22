@@ -5604,7 +5604,7 @@ local function register_decorations()
 		num_spawn_by = 1,
 	})
 
-	-- Doubletall grass
+	-- Tall grass
 	function mcl_biomes.register_doubletall_grass(offset, scale, biomes)
 
 		for b=1, #biomes do

@@ -5,7 +5,7 @@ local S = core.get_translator(modname)
 -- Return a vegetation type with the following chances
 --   Short Grass: 52.08%
 --   Moss Carpet: 26.04%
---   Double Grass: 10.42%
+--   Tall Grass: 10.42%
 --   Azalea: 7.29%
 --   Flowering Azalea: 4.17%
 local function random_moss_vegetation()

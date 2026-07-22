@@ -266,8 +266,8 @@ mcl_flowers.fortune_wheat_seed_drop = {
 }
 
 mcl_flowers.add_large_plant("double_grass", {
-	desc = S("Double Tallgrass"),
-	longdesc = S("Double tallgrass a variant of short grass and occupies two blocks. It can be harvested for wheat seeds."),
+	desc = S("Tall Grass"),
+	longdesc = S("Tall grass is a variant of short grass and occupies two blocks. It can be harvested for wheat seeds."),
 	tiles_bottom = {"mcl_flowers_double_plant_grass_bottom.png"},
 	tiles_top = {"mcl_flowers_double_plant_grass_top.png"},
 	inv_img = "mcl_flowers_double_plant_grass_inv.png",
@@ -302,7 +302,7 @@ mcl_flowers.add_large_plant("double_fern", {
 local def_tallgrass = {
 	description = S("Short Grass"),
 	drawtype = "plantlike",
-	longdesc = S("Short grass is a small plant which often occurs on the surface of grasslands. It can be harvested for wheat seeds. By using bone meal, short grass can be turned into double tallgrass which is two blocks high."),
+	longdesc = S("Short grass is a small plant which often occurs on the surface of grasslands. It can be harvested for wheat seeds. By using bone meal, short grass can be turned into tall grass which is two blocks high."),
 	_doc_items_usagehelp = mcl_flowers.plant_usage_help,
 	_doc_items_hidden = false,
 	waving = 1,
