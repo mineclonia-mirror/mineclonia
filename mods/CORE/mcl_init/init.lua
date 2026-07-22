@@ -661,19 +661,13 @@ local function set_gamerule(rule, value)
 	return true
 end
 
-local function get_gamerules()
-	local rules = {}
-
-	for rule, def in pairs(gamerules) do
-		if not def.hidden then
-			table.insert(rules, rule)
-		end
+local cmd_gamerules = {}
+for rule, def in pairs(gamerules) do
+	if not def.hidden then
+		table.insert(cmd_gamerules, rule)
 	end
-
-	table.sort(rules)
-
-	return rules
 end
+table.sort(cmd_gamerules)
 
 core.register_chatcommand("gamerule", {
 	params = S("[<rule>] [<value>]"),
@@ -684,7 +678,7 @@ core.register_chatcommand("gamerule", {
 		local rule, value = unpack(params)
 
 		if not rule then
-			return true, S("Gamerules:") .. "\n" .. table.concat(get_gamerules(), "\n")
+			return true, S("Gamerules:") .. "\n" .. table.concat(cmd_gamerules, "\n")
 		end
 
 		if value then
