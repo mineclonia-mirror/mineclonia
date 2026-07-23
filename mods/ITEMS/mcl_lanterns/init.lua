@@ -92,6 +92,7 @@ function mcl_lanterns.register_lantern(name, def)
 	local sounds = mcl_sounds.node_sound_metal_defaults()
 
 	local groups = def.groups or {}
+	groups.handy = def.handy or 1
 	groups.pickaxey = def.pickaxey or 1
 	groups.attached_node = 1
 	groups.deco_block = 1
