@@ -460,8 +460,15 @@ local function get_world_settings()
 	return Settings(core.get_worldpath() .. "/world.mt")
 end
 
-local difficulty = get_world_settings():get("mcl_difficulty") or core.settings:get("mcl_difficulty")
-if not difficulty or difficulty == "" then
+local function is_empty_value(value)
+	return not value or value == ""
+end
+
+local difficulty = get_world_settings():get("mcl_difficulty")
+if is_empty_value(difficulty) then
+	difficulty = core.settings:get("mcl_difficulty")
+end
+if is_empty_value(difficulty) then
 	difficulty = "normal"
 end
 
