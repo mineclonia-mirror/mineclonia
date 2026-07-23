@@ -217,7 +217,7 @@ function mcl_lanterns.register_lantern(name, def)
 		node_placement_prediction = "",
 		sunlight_propagates = true,
 		light_source = def.light_level,
-		groups = {pickaxey = 1, attached_node = 1, deco_block = 1, lantern = 1, not_in_creative_inventory = 1},
+		groups = {handy = 1, pickaxey = 1, attached_node = 1, deco_block = 1, lantern = 1, not_in_creative_inventory = 1},
 		drop = itemstring_floor,
 		selection_box = {
 			type = "fixed",
