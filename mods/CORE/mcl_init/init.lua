@@ -521,6 +521,8 @@ core.register_chatcommand("difficulty", {
 		if not set_difficulty(d) then
 			return false, S("Failed to set difficulty @1.\nValid values: @2", d, table.concat(cmd_difficulties, ", "))
 		end
+
+		return true, S("Difficulty set to @1.", difficulty)
 	end
 })
 
