@@ -176,7 +176,7 @@ function mcl_player.player_set_model(player, model_name)
 		player:set_properties({
 			mesh = model_name,
 			visual = "mesh",
-			visual_size = model.visual_size or { x = 1, y = 1 },
+			visual_size = model.visual_size or { x = 1.07142857143, y = 1.07142857143 }, -- NOTE: Set both values back to "1" once the size of the player model itself has been fixed!
 			damage_texture_modifier = "^[colorize:red:130",
 		})
 		update_player_textures(player)

@@ -89,9 +89,9 @@ local zombie = table.merge (posing_humanoid, {
 	collisionbox = {-0.3, 0.0, -0.3, 0.3, 1.95, 0.3},
 	visual = "mesh",
 	mesh = "mobs_mc_zombie.b3d",
-	visual_size = {
-		x = 1,
-		y = 1.1,
+	visual_size = { -- NOTE: Set both to "1.06666666667" once the size of the model itself has been fixed!
+		x = 1.17333333333,
+		y = 1.17333333333,
 	},
 	textures = {
 		{
@@ -810,6 +810,7 @@ mcl_mobs.register_mob ("mobs_mc:baby_zombie", baby_zombie)
 
 local husk = table.merge (zombie, {
 	description = S ("Husk"),
+	visual_size = { x = 1.24666666666, y = 1.24666666666}, -- NOTE: Set both to "1.13333333333" once the size of the model itself has been fixed!
 	textures = {
 		"mobs_mc_empty.png", -- armor
 		"mobs_mc_husk.png", -- texture
