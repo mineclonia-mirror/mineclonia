@@ -290,20 +290,66 @@ core.register_node("mcl_lush_caves:dripleaf_big_tipped_half", dripleaf_big_tippe
 core.register_node("mcl_lush_caves:dripleaf_big_tipped_full", dripleaf_big_tipped_full)
 
 local player_dripleaf = {}
-core.register_globalstep(function(dtime)
-	for _,p in pairs(core.get_connected_players()) do
-		local pos = vector.offset(p:get_pos(),0,-1,0)
-		local node = core.get_node(pos)
-		if node and node.name == "mcl_lush_caves:dripleaf_big"
-			and mcl_redstone.get_power(pos) == 0 then
-			if not player_dripleaf[p] then player_dripleaf[p] = 0 end
-			player_dripleaf[p] = player_dripleaf[p] + dtime
-			if player_dripleaf[p] > 0.5 then
-				core.swap_node(pos,{name = "mcl_lush_caves:dripleaf_big_tipped_half", param2 = node.param2})
-				player_dripleaf[p] = nil
-				local t = core.get_node_timer(pos)
-				t:start(0.5)
+
+local function get_player_dripleaves(player)
+	local pos = player:get_pos()
+	local collisionbox = player:get_properties().collisionbox
+
+	local min_x = math.floor(pos.x + collisionbox[1] + 0.501)
+	local max_x = math.floor(pos.x + collisionbox[4] + 0.499)
+	local min_z = math.floor(pos.z + collisionbox[3] + 0.501)
+	local max_z = math.floor(pos.z + collisionbox[6] + 0.499)
+	local y = math.floor(pos.y + collisionbox[2] + 0.45)
+
+	local leaves = {}
+
+	for x = min_x, max_x do
+		for z = min_z, max_z do
+			local leaf_pos = vector.new(x, y, z)
+			local node = core.get_node(leaf_pos)
+
+			if node.name == "mcl_lush_caves:dripleaf_big"
+				and mcl_redstone.get_power(leaf_pos) == 0 then
+				leaves[core.hash_node_position(leaf_pos)] = {
+					pos = leaf_pos,
+					param2 = node.param2,
+				}
 			end
 		end
 	end
+
+	return leaves
+end
+
+core.register_globalstep(function(dtime)
+	for _, player in ipairs(core.get_connected_players()) do
+		local name = player:get_player_name()
+		local previous = player_dripleaf[name] or {}
+		local current = get_player_dripleaves(player)
+		local next_state = {}
+
+		for hash, leaf in pairs(current) do
+			local elapsed = (previous[hash] or 0) + dtime
+
+			if elapsed > 0.5 then
+				local node = core.get_node(leaf.pos)
+
+				if node.name == "mcl_lush_caves:dripleaf_big" then
+					core.swap_node(leaf.pos, {
+						name = "mcl_lush_caves:dripleaf_big_tipped_half",
+						param2 = node.param2,
+					})
+					core.get_node_timer(leaf.pos):start(0.5)
+				end
+			else
+				next_state[hash] = elapsed
+			end
+		end
+
+		player_dripleaf[name] = next(next_state) and next_state or nil
+	end
+end)
+
+core.register_on_leaveplayer(function(player)
+	player_dripleaf[player:get_player_name()] = nil
 end)
