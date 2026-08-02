@@ -1,6 +1,7 @@
 local S = core.get_translator(core.get_current_modname())
 local F = core.formspec_escape
 local C = core.colorize
+local GS = (1.5/core.settings:get("gui_scaling")) -- This helps keep the GUI look coherent at every size.
 mcl_crafting_table = {}
 
 mcl_crafting_table.formspec = table.concat({
@@ -11,32 +12,33 @@ mcl_crafting_table.formspec = table.concat({
 
 
 	-- Prepend default values.
-	"size[7.33333333333,6.91666666667]", -- The size of the formspec, in Luanti inventory slots.
-	"no_prepend[]", -- Disable the default Mineclonia prepends, as we want to define our own prepends which are more accurate to Minecraft.
+	"size["..(GS*7.33333333333)..","..(GS*6.91666666667).."]", -- The size of the formspec, in Luanti inventory slots.
+	"no_prepend[]", -- Disable the default prepends, as we want to define our own prepends which are more accurate to Minecraft.
 	"bgcolor[;true;#000000BB]", -- How much the background darkens when the GUI is open. Minecraft has a gradient darkening, so this is not 100% accurate.
 	"listcolors[#0000;#FFFFFF75;#0000;#0000007F;#FFFFFFFF]", -- The colour of the inventory slots, and the tooltips of items when hovering the cursor over them.
-	"style_type[list;size=0.666666666667,0.666666666667;spacing=0.0833333333333,0.0833333333333]", -- The size and spacing of the inventory slots within the GUI.
+	"style_type[label;font_size="..(GS*24).."]", -- The font size of the labels.
+	"style_type[list;size="..(GS*0.666666666667)..","..(GS*0.666666666667)..";".."spacing="..(GS*0.0833333333333)..","..(GS*0.0833333333333).."]", -- The size and spacing of the inventory slots within the GUI.
 	"style_type[button;border=false;bgimg=button.png;sound=mesecons_button_push]", -- The default state of the recipe book button.
 
 
 	-- The visual part of the GUI.
-	"image[0,0;10.6666666667,10.6666666667;crafting_table.png]", -- The GUI background.
+	"image[0,0;"..(GS*10.6666666667)..","..(GS*10.6666666667)..";".."crafting_table.png".."]", -- The GUI background.
 
-	"label[1.20833333333,0.46875;" .. F(C("#404040", S("Crafting"))) .. "]", -- The "Crafting" label.
+	"label["..(GS*1.20833333333)..","..(GS*0.46875)..";" .. F(C("#404040", S("Crafting"))) .. "]", -- The "Crafting" label.
 
 	"style[__mcl_craftguide:hovered,__mcl_craftguide:pressed;bgimg=button_highlighted.png]", -- The recipe book button.
 
-	"label[0.333333333333,3.21875;" .. F(C("#404040", S("Inventory"))) .. "]", -- The "Inventory" label.
+	"label["..(GS*0.333333333333)..","..(GS*3.21875)..";" .. F(C("#404040", S("Inventory"))) .. "]", -- The "Inventory" label.
 
 
 	-- The functional part of the GUI.
-	"list[current_player;craft;1.25,0.708333333333;3,3;]", -- The 3x3 crafting grid.
-	"list[current_player;craftpreview;5.16666666667,1.45833333333;1,1;]", -- The preview of the crafting output.
+	"list[current_player;craft;"..(GS*1.25)..","..(GS*0.708333333333)..";3,3;]", -- The 3x3 crafting grid.
+	"list[current_player;craftpreview;"..(GS*5.16666666667)..","..(GS*1.45833333333)..";1,1;]", -- The preview of the crafting output.
 
-	"button[0.208333333333,1.41666666667;0.833333333333,0.75;__mcl_craftguide;]", -- The recipe book button.
+	"button["..(GS*0.208333333333)..","..(GS*1.41666666667)..";"..(GS*0.833333333333)..","..(GS*0.75)..";__mcl_craftguide;]", -- The recipe book button.
 
-	"list[current_player;main;0.333333333333,3.5;9,3;9]", -- The player's backpack inventory.
-	"list[current_player;main;0.333333333333,5.91666666667;9,1;]", -- The player's HUD inventory.
+	"list[current_player;main;"..(GS*0.333333333333)..","..(GS*3.5)..";9,3;9]", -- The player's backpack inventory.
+	"list[current_player;main;"..(GS*0.333333333333)..","..(GS*5.91666666667)..";9,1;]", -- The player's HUD inventory.
 
 	"listring[current_player;craft]", -- This allows for shift-clicking functionality.
 	"listring[current_player;main]", -- This allows for shift-clicking functionality.
