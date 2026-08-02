@@ -4,33 +4,75 @@ local C = core.colorize
 mcl_crafting_table = {}
 
 mcl_crafting_table.formspec = table.concat({
-	-- The size of an inventory slot is 64x64 pixels, multiplied by the GUI scaling.
-	-- The below maths assume a GUI scaling of 1.5, which I have found to be the most "stable" scale.
+	-- Define the formspec version.
+	-- Luanti 5.10, which is currently the latest version on Debian Stable, supports up to formspec version 8.
+	-- Therefore, we will set the version to that.
+	"formspec_version[8]",
 
-	"formspec_version[8]", -- Supported by Luanti 5.10, the most recent version on the most recent Debian Stable release.
-	"size[7.33333333333,6.91666666667]", -- 704/96 = 7.33333333333 ; 664/96 = 6.91666666667
-	"image[0,0;10.6666666667,10.6666666667;crafting_table.png]", -- (256/176)*7.33333333333 = 10.6666666667 ; (256/166)*6.91666666667 = 10.6666666667
-	"bgcolor[;;#000000BB]", -- Minecraft has a slight gradient to its background darkening, so getting this perfect isn't currently possible.
-	"style_type[list;size=0.666666666667,0.666666666667;spacing=0.0833333333333,0.0833333333333]", -- 64/96 = 0.666666666667 ; 8/96 = 0.0833333333333 (No idea how to change colour of the list tiles.)
-	"style_type[button;bgimg=button.png;bgimg_hovered=button_highlighted.png;bgimg_middle=true;bgimg_pressed=button_highlighted.png;sound=mesecons_button_push]",
 
-	-- The crafting part of the crafting table GUI.
-	"label[1.20833333333,0.46875;" .. F(C("#404040", S("Crafting"))) .. "]", -- 116/96 = 1.20833333333 ; (24+21)/96 = 0.46875 (No idea how to get this stuff to valign bottom.)
+	-- Prepend default values.
+	"size[7.33333333333,6.91666666667]", -- The size of the formspec, in Luanti inventory slots.
+	"no_prepend[]", -- Disable the default Mineclonia prepends, as we want to define our own prepends which are more accurate to Minecraft.
+	"bgcolor[;true;#000000BB]", -- How much the background darkens when the GUI is open. Minecraft has a gradient darkening, so this is not 100% accurate.
+	"listcolors[#0000;#FFFFFF75;#0000;#0000007F;#FFFFFFFF]", -- The colour of the inventory slots, and the tooltips of items when hovering the cursor over them.
+	"style_type[list;size=0.666666666667,0.666666666667;spacing=0.0833333333333,0.0833333333333]", -- The size and spacing of the inventory slots within the GUI.
+	"style_type[button;border=false;bgimg=button.png;sound=mesecons_button_push]", -- The default state of the recipe book button.
 
-	"list[current_player;craft;1.25,0.708333333333;3,3;]", -- 120/96 = 1.25 ; 68/96 = 0.708333333333
-	"list[current_player;craftpreview;5.16666666667,1.45833333333;1,1;]", -- 496/96 = 5.16666666667 ; 140/96 = 1.45833333333
 
-	-- The inventory part of the crafting table GUI.
-	"label[0.333333333333,3.21875;" .. F(C("#404040", S("Inventory"))) .. "]", -- 32/96 = 0.333333333333 ;
+	-- The visual part of the GUI.
+	"image[0,0;10.6666666667,10.6666666667;crafting_table.png]", -- The GUI background.
 
-	"list[current_player;main;0.333333333333,3.5;9,3;9]", -- 32/96 = 0.333333333333 ; 336/96 = 3.5
-	"list[current_player;main;0.333333333333,5.91666666667;9,1;]", -- 32/96 = 0.333333333333 ; 568/96 = 5.91666666667
+	"label[1.20833333333,0.46875;" .. F(C("#404040", S("Crafting"))) .. "]", -- The "Crafting" label.
 
-	"listring[current_player;craft]",
-	"listring[current_player;main]",
+	"style[__mcl_craftguide:hovered,__mcl_craftguide:pressed;bgimg=button_highlighted.png]", -- The recipe book button.
 
-	-- The recipe book button.
-	"button[0.208333333333,1.41666666667;0.833333333333,0.75;__mcl_craftguide;]", -- 20/96 = 0.208333333333 ; 136/96 = 1.41666666667 & 80/96 = 0.833333333333 ; 72/96 = 0.75
+	"label[0.333333333333,3.21875;" .. F(C("#404040", S("Inventory"))) .. "]", -- The "Inventory" label.
+
+
+	-- The functional part of the GUI.
+	"list[current_player;craft;1.25,0.708333333333;3,3;]", -- The 3x3 crafting grid.
+	"list[current_player;craftpreview;5.16666666667,1.45833333333;1,1;]", -- The preview of the crafting output.
+
+	"button[0.208333333333,1.41666666667;0.833333333333,0.75;__mcl_craftguide;]", -- The recipe book button.
+
+	"list[current_player;main;0.333333333333,3.5;9,3;9]", -- The player's backpack inventory.
+	"list[current_player;main;0.333333333333,5.91666666667;9,1;]", -- The player's HUD inventory.
+
+	"listring[current_player;craft]", -- This allows for shift-clicking functionality.
+	"listring[current_player;main]", -- This allows for shift-clicking functionality.
+
+
+	-- The maths behind many of the above values.
+		-- Size W = 7.33333333333 (704/96)
+		-- Size H = 6.91666666667 (664/96)
+
+		-- List Size = 0.666666666667 (64/96)
+		-- List Spacing = 0.0833333333333 (8/96)
+
+		-- Image Size = 10.6666666667 ((256/176)*Size W) MUST BE THE SAME AS ((256/166)*Size H)
+
+		-- Crafting Label X = 1.20833333333 (116/96)
+		-- Crafting Label Y = 0.46875 ((24+21)/96) (No idea how to get this to valign bottom, so I had to offset the distance here.)
+
+		-- Inventory Label X = 0.333333333333 (32/96)
+		-- Inventory Label Y = 3.21875 ((288+21)/96) (No idea how to get this to valign bottom, so I had to offset the distance here.)
+
+		-- Crafting Grid X = 1.25 (120/96)
+		-- Crafting Grid Y = 0.708333333333 (68/96)
+
+		-- Crafting Preview X = 5.16666666667 (496/96)
+		-- Crafting Preview Y = 1.45833333333 (140/96)
+
+		-- Backpack Inventory X = 0.333333333333 (32/96)
+		-- Backpack Inventory Y = 3.5 (336/96)
+
+		-- HUD Inventory X = 0.333333333333 (32/96)
+		-- HUD Inventory Y = 5.91666666667 (568/96)
+
+		-- Recipe Book Button X = 0.208333333333 (20/96)
+		-- Recipe Book Button Y = 1.41666666667 (136/96)
+		-- Recipe Book Button W = 0.833333333333 (80/96)
+		-- Recipe Book Button H = 0.75 (72/96)
 })
 
 function mcl_crafting_table.has_crafting_table(player)
