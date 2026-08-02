@@ -842,6 +842,7 @@ local skull_def = {
 	_lifetime = 500,
 	_explosioninfo = {
 		griefing = mobs_griefing,
+		damage_type = "wither_skull",
 	},
 	on_punch = function() end,
 
@@ -863,7 +864,7 @@ local skull_def = {
 		local v = self.object:get_velocity ()
 		v.y = 0
 		local dir = vector.normalize (v)
-		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object)
+		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object, self._shooter)
 		if player:get_hp() <= 0 then
 			local shooter = self._shooter:get_luaentity()
 			if shooter then
@@ -890,7 +891,7 @@ local skull_def = {
 		local v = self.object:get_velocity ()
 		v.y = 0
 		local dir = vector.normalize (v)
-		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object)
+		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object, self._shooter)
 		local l = mob:get_luaentity()
 		if l and l.health - 8 <= 0 then
 			local shooter = self._shooter:get_luaentity()
@@ -904,7 +905,7 @@ local skull_def = {
 		end
 	end,
 	hit_node = function(self, pos)
-		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object)
+		mcl_explosions.explode (pos, 1, self._explosioninfo, self.object, self._shooter)
 	end
 }
 

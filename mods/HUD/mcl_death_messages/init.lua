@@ -162,7 +162,10 @@ local function get_plain_killer_message(obj, messages, reason)
 end
 
 local function get_killer_message(obj, messages, reason)
-	return reason.source and (get_item_killer_message(obj, messages, reason) or get_plain_killer_message(obj, messages, reason))
+	if not (reason.source and reason.source:is_valid()) then
+		return nil
+	end
+	return get_item_killer_message(obj, messages, reason) or get_plain_killer_message(obj, messages, reason)
 end
 
 local function get_assist_message(obj, messages, _)

@@ -151,6 +151,9 @@ mcl_explosions.add_particles = add_particles
 -- grief_protected - If true, the explosion will also destroy nodes which have
 --                   been protected
 --
+-- damage_type - Overrides the mcl_damage type used for entity damage
+--               (default: "explosion")
+--
 -- Note that this function has been optimized, it contains code which has been
 -- inlined to avoid function calls and unnecessary table creation. This was
 -- measured to give a significant performance increase.
@@ -303,7 +306,7 @@ local function trace_explode(pos, strength, raydirs, radius, info, direct, sourc
 				end
 				local damage = math.floor((impact * impact + impact) * 7 * strength + 1)
 
-				mcl_util.deal_damage(obj, damage, { type = "explosion", direct = direct, source = source })
+				mcl_util.deal_damage(obj, damage, { type = info.damage_type or "explosion", direct = direct, source = source })
 
 				if obj:is_player() or ent.tnt_knockback then
 					obj:add_velocity(vector.multiply(punch_dir, impact * 20))
@@ -401,6 +404,8 @@ end
 -- griefing - If true, the explosion will destroy nodes (default: true)
 -- grief_protected - If true, the explosion will also destroy nodes which have
 --                   been protected (default: false)
+-- damage_type - Overrides the mcl_damage type used for entity damage
+--               (default: "explosion")
 function mcl_explosions.explode(pos, strength, info, direct, source)
 	if info == nil then
 		info = {}

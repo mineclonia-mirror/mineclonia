@@ -26,13 +26,16 @@ function mcl_util.get_inventory(object, create)
 end
 
 function mcl_util.get_object_name(object)
+	if not object or not object:is_valid() then
+		return "something"
+	end
 	if object:is_player() then
 		return object:get_player_name()
 	else
 		local luaentity = object:get_luaentity()
 
 		if not luaentity then
-			return tostring(object)
+			return "something"
 		end
 
 		return luaentity.nametag and luaentity.nametag ~= "" and luaentity.nametag or luaentity.description or luaentity.name
