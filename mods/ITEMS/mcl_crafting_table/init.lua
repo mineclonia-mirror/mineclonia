@@ -1,6 +1,4 @@
 local S = core.get_translator(core.get_current_modname())
-local F = core.formspec_escape
-local C = core.colorize
 local LSN = (1.5/core.settings:get("gui_scaling"))/96 -- Luanti Scaling Negator (Required to negate Luanti's GUI scaling, so that we can implement our own system instead.)
 local MCS = math.ceil(core.settings:get("gui_scaling")/0.375) -- Minecraft Scaling
 mcl_crafting_table = {}
