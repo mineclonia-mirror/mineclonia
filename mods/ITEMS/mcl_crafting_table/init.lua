@@ -5,10 +5,8 @@ local GS = (1.5/core.settings:get("gui_scaling")) -- This helps keep the GUI loo
 mcl_crafting_table = {}
 
 mcl_crafting_table.formspec = table.concat({
-	-- Define the formspec version.
-	-- Luanti 5.10, which is currently the latest version on Debian Stable, supports up to formspec version 8.
-	-- Therefore, we will set the version to that.
-	"formspec_version[8]",
+	-- The formspec version.
+	"formspec_version[8]", -- Supported by Luanti 5.10, which is currently the latest version on Debian Stable.
 
 
 	-- Prepend default values.
@@ -24,11 +22,26 @@ mcl_crafting_table.formspec = table.concat({
 	-- The visual part of the GUI.
 	"image[0,0;"..(GS*10.6666666667)..","..(GS*10.6666666667)..";".."crafting_table.png".."]", -- The GUI background.
 
-	"label["..(GS*1.20833333333)..","..(GS*0.46875)..";" .. F(C("#404040", S("Crafting"))) .. "]", -- The "Crafting" label.
+	"image["..(GS*1.20833333333)..","..(GS*0.25)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:3,4" .."]", -- C
+	"image["..(GS*1.45833333333)..","..(GS*0.25)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:2,7" .."]", -- r
+	"image["..(GS*1.70833333333)..","..(GS*0.25)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:1,6" .."]", -- a
+	"image["..(GS*1.95833333333)..","..(GS*0.25)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:6,6" .."]", -- f
+	"image["..(GS*2.16666666667)..","..(GS*0.25)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:4,7" .."]", -- t
+	"image["..(GS*2.33333333333)..","..(GS*0.25)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:9,6" .."]", -- i
+	"image["..(GS*2.41666666667)..","..(GS*0.25)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:14,6".."]", -- n
+	"image["..(GS*2.66666666667)..","..(GS*0.25)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:7,6" .."]", -- g
 
 	"style[__mcl_craftguide:hovered,__mcl_craftguide:pressed;bgimg=button_highlighted.png]", -- The recipe book button.
 
-	"label["..(GS*0.333333333333)..","..(GS*3.21875)..";" .. F(C("#404040", S("Inventory"))) .. "]", -- The "Inventory" label.
+	"image["..(GS*0.333333333333)..","..(GS*3)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:9,4" .."]", -- I
+	"image["..(GS*0.5)           ..","..(GS*3)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:14,6".."]", -- n
+	"image["..(GS*0.75)          ..","..(GS*3)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:6,7" .."]", -- v
+	"image["..(GS*1)             ..","..(GS*3)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:5,6" .."]", -- e
+	"image["..(GS*1.25)          ..","..(GS*3)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:14,6".."]", -- n
+	"image["..(GS*1.5)           ..","..(GS*3)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:4,7" .."]", -- t
+	"image["..(GS*1.66666666667) ..","..(GS*3)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:15,6".."]", -- o
+	"image["..(GS*1.91666666667) ..","..(GS*3)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:2,7" .."]", -- r
+	"image["..(GS*2.16666666667) ..","..(GS*3)..";"..(GS*0.333333333333)..","..(GS*0.333333333333)..";".."ascii.png^[colorize:#404040^[sheet:16x16:9,7" .."]", -- y
 
 
 	-- The functional part of the GUI.
