@@ -5,12 +5,12 @@ mcl_crafting_table = {}
 
 mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlate with the amount of pixels!
 
-	-- The formspec version.
+-- The formspec version.
 
 	"formspec_version[8]", -- Supported by Luanti 5.10, which is currently the latest version on Debian Stable.
 
 
-	-- Prepend default values.
+-- Prepend default values.
 
 	"size["..(LSN*176*MCS)..","..(LSN*166*MCS).."]", -- The size of the GUI within Minecraft's default "crafting_table.png" texture.
 
@@ -25,7 +25,7 @@ mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlat
 	"style_type[button;border=false;bgimg=button.png;sound=mesecons_button_push]", -- The default state of the recipe book button.
 
 
-	-- The visual part of the GUI.
+-- The visual part of the GUI.
 
 	"image[0,0;"..(LSN*256*MCS)..","..(LSN*256*MCS)..";".."crafting_table.png".."]", -- The size of Minecraft's default "crafting_table.png" texture.
 
@@ -51,7 +51,7 @@ mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlat
 	"image["..(LSN*52*MCS)..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:9,7" .."]", -- y
 
 
-	-- The functional part of the GUI.
+-- The functional part of the GUI.
 
 	"list[current_player;craft;"       ..(LSN*30*MCS).. ","..(LSN*17*MCS)..";3,3;0]", -- The 3x3 crafting grid.
 	"list[current_player;craftpreview;"..(LSN*124*MCS)..","..(LSN*35*MCS)..";1,1;0]", -- The preview of the crafting output.
