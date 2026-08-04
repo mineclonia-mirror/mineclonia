@@ -1,6 +1,12 @@
 local S = core.get_translator(core.get_current_modname())
-local LSN = (1.5/core.settings:get("gui_scaling"))/96 -- Luanti Scaling Negator (Required to negate Luanti's GUI scaling, so that we can implement our own system instead.)
-local MCS = math.ceil(core.settings:get("gui_scaling")/0.375) -- Minecraft Scaling
+
+LSN = (1.5/core.settings:get("gui_scaling"))/96 -- Luanti Scaling Negator (Required to negate Luanti's GUI scaling, so that we can implement our own system instead.)
+MCS = math.ceil(core.settings:get("gui_scaling")/0.375) -- Minecraft Scaling (For MClike scaling.)
+
+local modname = core.get_current_modname()
+local modpath = core.get_modpath(modname)
+dofile(modpath.."/label.lua")
+
 mcl_crafting_table = {}
 
 mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlate with the amount of pixels!
@@ -29,26 +35,11 @@ mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlat
 
 	"image[0,0;"..(LSN*256*MCS)..","..(LSN*256*MCS)..";".."crafting_table.png".."]", -- The size of Minecraft's default "crafting_table.png" texture.
 
-	"image["..(LSN*29*MCS)..","..(LSN*6*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:3,4" .."]", -- C
-	"image["..(LSN*35*MCS)..","..(LSN*6*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:2,7" .."]", -- r
-	"image["..(LSN*41*MCS)..","..(LSN*6*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:1,6" .."]", -- a
-	"image["..(LSN*47*MCS)..","..(LSN*6*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:6,6" .."]", -- f
-	"image["..(LSN*52*MCS)..","..(LSN*6*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:4,7" .."]", -- t
-	"image["..(LSN*56*MCS)..","..(LSN*6*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:9,6" .."]", -- i
-	"image["..(LSN*58*MCS)..","..(LSN*6*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:14,6".."]", -- n
-	"image["..(LSN*64*MCS)..","..(LSN*6*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:7,6" .."]", -- g
+	get_gui_label(29, 6, "Crafting"), -- The "Crafting" label.
 
 	"style[__mcl_craftguide:hovered,__mcl_craftguide:pressed;bgimg=button_highlighted.png]", -- The recipe book button.
 
-	"image["..(LSN*8*MCS) ..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:9,4" .."]", -- I
-	"image["..(LSN*12*MCS)..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:14,6".."]", -- n
-	"image["..(LSN*18*MCS)..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:6,7" .."]", -- v
-	"image["..(LSN*24*MCS)..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:5,6" .."]", -- e
-	"image["..(LSN*30*MCS)..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:14,6".."]", -- n
-	"image["..(LSN*36*MCS)..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:4,7" .."]", -- t
-	"image["..(LSN*40*MCS)..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:15,6".."]", -- o
-	"image["..(LSN*46*MCS)..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:2,7" .."]", -- r
-	"image["..(LSN*52*MCS)..","..(LSN*72*MCS)..";"..(LSN*8*MCS)..","..(LSN*8*MCS)..";".."ascii.png^[colorize:#404040^[sheet:16x16:9,7" .."]", -- y
+	get_gui_label(8, 72, "Inventory"), -- The "Inventory" label.
 
 
 -- The functional part of the GUI.
