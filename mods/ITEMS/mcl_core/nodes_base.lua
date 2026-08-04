@@ -1056,7 +1056,7 @@ for i=1,8 do
 		on_construct = mcl_core.on_snow_construct,
 		on_place = on_place,
 		after_destruct = mcl_core.after_snow_destruct,
-		drop = "mcl_throwing:snowball "..(i+1),
+		drop = mcl_util.create_tool_group_drops("shovel", "mcl_throwing:snowball " .. i),
 		_mcl_hardness = 0.1,
 		_mcl_silk_touch_drop = {"mcl_core:snow " .. i},
 	})
