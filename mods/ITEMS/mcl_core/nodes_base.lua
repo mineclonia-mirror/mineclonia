@@ -1006,7 +1006,7 @@ local function on_place(itemstack, placer, pointed_thing)
 end
 
 for i=1,8 do
-	local id, desc, longdesc, usagehelp, tt_help, help, walkable, drawtype, node_box
+	local id, desc, longdesc, usagehelp, tt_help, help, walkable, drawtype, node_box, _mcl_silk_touch_drop
 	if i == 1 then
 		id = "mcl_core:snow"
 		desc = S("Top Snow")
@@ -1026,6 +1026,9 @@ for i=1,8 do
 			type = "fixed",
 			fixed = { -0.5, -0.5, -0.5, 0.5, -0.5 + (2*i)/16, 0.5 },
 		}
+		_mcl_silk_touch_drop = {"mcl_core:snow " .. i}
+	else
+		_mcl_silk_touch_drop = {"mcl_core:snowblock"}
 	end
 
 	core.register_node(id, {
@@ -1058,7 +1061,7 @@ for i=1,8 do
 		after_destruct = mcl_core.after_snow_destruct,
 		drop = mcl_util.create_tool_group_drops("shovel", "mcl_throwing:snowball " .. i),
 		_mcl_hardness = 0.1,
-		_mcl_silk_touch_drop = {"mcl_core:snow " .. i},
+		_mcl_silk_touch_drop = _mcl_silk_touch_drop,
 	})
 end
 
