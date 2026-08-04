@@ -1071,7 +1071,7 @@ core.register_node("mcl_core:snowblock", {
 	sounds = mcl_sounds.node_sound_snow_defaults(),
 	on_construct = mcl_core.on_snow_construct,
 	after_destruct = mcl_core.after_snow_destruct,
-	drop = "mcl_throwing:snowball 4",
+	drop = mcl_util.create_tool_group_drops("shovel", "mcl_throwing:snowball 4"),
 	_mcl_hardness = 0.1,
 	_mcl_silk_touch_drop = true,
 })
