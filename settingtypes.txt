@@ -311,6 +311,11 @@ mcl_serverplayer_enable_anticheat (Enable anti-cheat integration for CSM clients
 mcl_redstone_ordered_event_queue (Enable ordered event queue) bool false
 
 [Debugging]
+
+# Disable JIT. Useful for performance analysis or if the JIT on your platform
+# has known bugs.
+mcl_disable_jit (Disable JIT) bool false
+
 # If enabled mapgen timings will be dumped to log
 mcl_logging_mapgen (Log chunk generation) bool false
 

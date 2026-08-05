@@ -121,6 +121,10 @@ end
 if core and not core.get_mod_storage then
 	prefix = core.ipc_get ("mcl_levelgen:modpath")
 	mcl_vars = core.ipc_get ("mcl_levelgen:mcl_vars") -- luacheck: globals mcl_vars
+	if core.global_exists("jit") and mcl_vars.jit_off then
+		core.log("Disabling JIT compilation in async env")
+		jit.off()
+	end
 elseif core then
 	prefix = core.get_modpath (core.get_current_modname ())
 	core.ipc_set ("mcl_levelgen:modpath", prefix)

@@ -11,7 +11,7 @@ mcl_levelgen.initialize_portable_schematics ()
 
 -- local zone = require ("jit.zone")
 
-if core.global_exists ("jit") then
+if core.global_exists ("jit") and not mcl_vars.jit_off then
 	jit.opt.start ("maxmcode=40960", "maxtrace=100000",
 		       -- Just large enough that loops employing RNGs
 		       -- can be unrolled and compiled but the

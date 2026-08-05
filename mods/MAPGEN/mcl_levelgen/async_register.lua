@@ -2,7 +2,7 @@
 -- Feature generation environment registration.
 --------------------------------------------------------------------------
 
-if core.global_exists ("jit") then
+if core.global_exists ("jit") and not mcl_vars.jit_off then
 	jit.opt.start ("maxmcode=40960", "maxtrace=100000",
 		       "loopunroll=35", "maxside=1000")
 end

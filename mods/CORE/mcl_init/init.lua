@@ -30,6 +30,16 @@ mcl_vars.inventory_header = ""
 -- Tool wield size
 mcl_vars.tool_wield_scale = { x = 1.8, y = 1.8, z = 1 }
 
+-- JIT
+mcl_vars.jit_off = core.settings:get("mcl_disable_jit") == "true"
+if core.global_exists("jit") then
+	core.log(jit.version .. " on " .. jit.os .. "/" .. jit.arch)
+	if mcl_vars.jit_off then
+		core.log("Disabling JIT compilation")
+		jit.off()
+	end
+end
+
 -- Mapgen variables
 local mg_name = core.get_mapgen_setting("mg_name")
 local minecraft_height_limit = 320

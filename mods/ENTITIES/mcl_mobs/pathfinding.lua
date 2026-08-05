@@ -1674,7 +1674,7 @@ function mob_class:gwp_edges (context, node)
 	return array
 end
 
-if luajit_present then
+if luajit_present and not mcl_vars.jit_off then
 	-- jit.off (mob_class.gwp_edges, true)
 	-- jit.off (gwp_edges_1, true)
 	-- jit.off (mob_class.gwp_classify_node, true)
