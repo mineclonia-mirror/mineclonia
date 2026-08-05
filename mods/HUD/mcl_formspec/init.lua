@@ -60,7 +60,7 @@ function mcl_formspec.set_gui_label(x, y, text) -- Function which sets a special
 	repeat
 		for line in io.lines(modpath .. DIR_DELIM .. "label_characters.tsv") do
 			local tsvchar = line:split("\t")[1] -- Whichever character is at the "line"th line and the "[1]"th column of "label_characters.tsv".
-			local textchar = text:sub(counter+1):match('(.)') -- Whatever the first character of "text:sub(counter+1)" is.
+			local textchar = text:sub(counter+1):match('(.)') -- Whatever the first character of "text:sub(counter+1)" is. TODO: Find a way to support unicode characters!
 			if tsvchar == textchar then
 				c[counter] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter] = line:split("\t")[3]
@@ -69,7 +69,7 @@ function mcl_formspec.set_gui_label(x, y, text) -- Function which sets a special
 				k[counter] = pk[counter]-line:split("\t")[5]
 				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
 			else -- Otherwise, set the below values in order to avoid "nil" errors, and compare the next "line" of "label_characters.tsv".
-				c[counter] = "ascii.png^[sheet:16x16:15,15"
+				c[counter] = "ascii.png^[sheet:16x16:0,2"
 				w[counter] = 0
 				h[counter] = 0
 				k[counter] = 0
