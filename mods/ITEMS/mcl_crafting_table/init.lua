@@ -1,11 +1,7 @@
 local S = core.get_translator(core.get_current_modname())
 
-local LSM = (1.5/core.settings:get("gui_scaling"))/96 -- Luanti Scaling Minimiser (Minimises Luanti's GUI scaling, but this isn't yet perfect.)
-local MCS = math.round(core.settings:get("gui_scaling")/0.375) -- Minecraft Scaling (For MClike scaling.)
-
-local modname = core.get_current_modname()
-local modpath = core.get_modpath(modname)
-dofile(modpath.."/label.lua")
+local LSM = mcl_formspec.LSM
+local MCS = mcl_formspec.MCS
 
 mcl_crafting_table = {}
 
@@ -35,11 +31,11 @@ mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlat
 
 	"image[0,0;"..(LSM*256*MCS)..","..(LSM*256*MCS)..";".."crafting_table.png".."]", -- The size of Minecraft's default "crafting_table.png" texture.
 
-	get_gui_label(29, 6, "Crafting"), -- The "Crafting" label.
+	mcl_formspec.set_gui_label(29, 6, "Crafting"), -- The "Crafting" label.
 
 	"style[__mcl_craftguide:hovered,__mcl_craftguide:pressed;bgimg=button_highlighted.png]", -- The recipe book button.
 
-	get_gui_label(8, 72, "Inventory"), -- The "Inventory" label.
+	mcl_formspec.set_gui_label(8, 72, "Inventory"), -- The "Inventory" label.
 
 
 -- The functional part of the GUI.
