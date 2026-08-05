@@ -1,3 +1,6 @@
+local LSM = (1.5/core.settings:get("gui_scaling"))/96 -- Luanti Scaling Minimiser (Minimises Luanti's GUI scaling, but this isn't yet perfect.)
+local MCS = math.round(core.settings:get("gui_scaling")/0.375) -- Minecraft Scaling (For MClike scaling.)
+
 local modname = core.get_current_modname()
 local modpath = core.get_modpath(modname)
 
@@ -16,10 +19,8 @@ function get_gui_label(x, y, text) -- Function which utilises a font system more
 	repeat
 		for line in io.lines(modpath .. DIR_DELIM .. "label_characters.tsv") do
 			local tsvletter = line:split("\t")[1]
-			local newtext = text:sub(counter+1)
-			local newtextletter = newtext:match('(.)')
-			local newkern = line:split("\t")[5]
-			if tsvletter == newtextletter then
+			local textletter = text:sub(counter+1):match('(.)')
+			if tsvletter == textletter then
 				l[counter] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter] = line:split("\t")[3]
 				h[counter] = line:split("\t")[4]
