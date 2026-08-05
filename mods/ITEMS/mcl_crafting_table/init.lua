@@ -1,7 +1,7 @@
 local S = core.get_translator(core.get_current_modname())
 
-LSN = (1.5/core.settings:get("gui_scaling"))/96 -- Luanti Scaling Negator (Required to negate Luanti's GUI scaling, so that we can implement our own system instead.)
-MCS = math.ceil(core.settings:get("gui_scaling")/0.375) -- Minecraft Scaling (For MClike scaling.)
+LSM = (1.5/core.settings:get("gui_scaling"))/96 -- Luanti Scaling Minimiser (Minimises Luanti's GUI scaling, but this isn't yet perfect.)
+MCS = math.round(core.settings:get("gui_scaling")/0.375) -- Minecraft Scaling (For MClike scaling.)
 
 local modname = core.get_current_modname()
 local modpath = core.get_modpath(modname)
@@ -18,7 +18,7 @@ mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlat
 
 -- Prepend default values.
 
-	"size["..(LSN*176*MCS)..","..(LSN*166*MCS).."]", -- The size of the GUI within Minecraft's default "crafting_table.png" texture.
+	"size["..(LSM*176*MCS)..","..(LSM*166*MCS).."]", -- The size of the GUI within Minecraft's default "crafting_table.png" texture.
 
 	"no_prepend[]", -- Disable the default prepends, as we want to define our own prepends which are more accurate to Minecraft.
 
@@ -26,14 +26,14 @@ mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlat
 
 	"listcolors[#0000;#FFFFFF75;#0000;#0000007F;#FFFFFFFF]", -- The colour of the inventory slots, and the tooltips of items when hovering the cursor over them.
 
-	"style_type[list;".."size="..(LSN*16*MCS)..","..(LSN*16*MCS)..";".."spacing="..(LSN*2*MCS)..","..(LSN*2*MCS).."]", -- The size and spacing of the inventory slots within the GUI.
+	"style_type[list;".."size="..(LSM*16*MCS)..","..(LSM*16*MCS)..";".."spacing="..(LSM*2*MCS)..","..(LSM*2*MCS).."]", -- The size and spacing of the inventory slots within the GUI.
 
 	"style_type[button;border=false;bgimg=button.png;sound=mesecons_button_push]", -- The default state of the recipe book button.
 
 
 -- The visual part of the GUI.
 
-	"image[0,0;"..(LSN*256*MCS)..","..(LSN*256*MCS)..";".."crafting_table.png".."]", -- The size of Minecraft's default "crafting_table.png" texture.
+	"image[0,0;"..(LSM*256*MCS)..","..(LSM*256*MCS)..";".."crafting_table.png".."]", -- The size of Minecraft's default "crafting_table.png" texture.
 
 	get_gui_label(29, 6, "Crafting"), -- The "Crafting" label.
 
@@ -44,13 +44,13 @@ mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlat
 
 -- The functional part of the GUI.
 
-	"list[current_player;craft;"       ..(LSN*30*MCS).. ","..(LSN*17*MCS)..";3,3;0]", -- The 3x3 crafting grid.
-	"list[current_player;craftpreview;"..(LSN*124*MCS)..","..(LSN*35*MCS)..";1,1;0]", -- The preview of the crafting output.
+	"list[current_player;craft;"       ..(LSM*30*MCS).. ","..(LSM*17*MCS)..";3,3;0]", -- The 3x3 crafting grid.
+	"list[current_player;craftpreview;"..(LSM*124*MCS)..","..(LSM*35*MCS)..";1,1;0]", -- The preview of the crafting output.
 
-	"button["..(LSN*5*MCS)..","..(LSN*34*MCS)..";"..(LSN*20*MCS)..","..(LSN*18*MCS)..";__mcl_craftguide;]", -- The recipe book button.
+	"button["..(LSM*5*MCS)..","..(LSM*34*MCS)..";"..(LSM*20*MCS)..","..(LSM*18*MCS)..";__mcl_craftguide;]", -- The recipe book button.
 
-	"list[current_player;main;"..(LSN*8*MCS)..","..(LSN*84*MCS) ..";9,3;9]", -- The player's backpack inventory.
-	"list[current_player;main;"..(LSN*8*MCS)..","..(LSN*142*MCS)..";9,1;0]", -- The player's HUD inventory.
+	"list[current_player;main;"..(LSM*8*MCS)..","..(LSM*84*MCS) ..";9,3;9]", -- The player's backpack inventory.
+	"list[current_player;main;"..(LSM*8*MCS)..","..(LSM*142*MCS)..";9,1;0]", -- The player's HUD inventory.
 
 	"listring[current_player;craft]", -- This allows for shift-clicking functionality.
 	"listring[current_player;main]", -- This allows for shift-clicking functionality.
