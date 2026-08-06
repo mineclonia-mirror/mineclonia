@@ -1084,7 +1084,7 @@ core.register_node("mcl_core:snowblock", {
 	after_destruct = mcl_core.after_snow_destruct,
 	drop = mcl_util.create_tool_group_drops("shovel", "mcl_throwing:snowball 4"),
 	_mcl_hardness = 0.1,
-	_mcl_silk_touch_drop = true,
+	_mcl_silk_touch_drop = mcl_util.create_tool_group_drops("shovel", "mcl_core:snowblock"),
 })
 
 -- Add entry aliases for the Help
