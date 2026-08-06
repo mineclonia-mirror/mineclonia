@@ -67,3 +67,22 @@ function mcl_util.is_item_or_in_group(itemname, group_or_item)
 	end
 	return itemname == group_or_item
 end
+
+function mcl_util.create_tool_group_drops(group, drop, rarity)
+	if type(group) == "string" then
+		group = { group }
+	end
+	if type(drop) == "string" then
+		drop = { drop }
+	end
+	return {
+		max_items = 1,
+		items = {
+			{
+				rarity = rarity,
+				tool_groups = group,
+				items = drop,
+			}
+		},
+	}
+end
