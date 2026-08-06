@@ -182,6 +182,8 @@ function core.handle_node_drops(pos, drops, digger)
 		silk_touch_drop = true
 		if nodedef._mcl_silk_touch_drop == true then
 			drops = { dug_node.name }
+		elseif nodedef._mcl_silk_touch_drop.items then
+			drops = get_drops(nodedef._mcl_silk_touch_drop, tool:get_name(), dug_node.param2, nodedef.paramtype2)
 		else
 			drops = nodedef._mcl_silk_touch_drop
 		end

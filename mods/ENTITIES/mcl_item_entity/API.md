@@ -5,9 +5,10 @@ Originally ported from mtg item entity by Pilzadam (WTFPL)
 ### Fields
 #### _mcl_silk_touch_drop
 * true: Drop itself when dug by tool with silk touch enchantment
-* table: Drop every itemstring in this table when dug with silk touch
+* table: Drops when dug with silk touch. Either simple itemstring table or advanced drop chances like in the drop field
 #### _mcl_shears_drop
-* same as above for being dug by shears
+* true: Drop itself when dug by shears
+* table: Drop every itemstring in this table
 ### Callbacks
 #### _on_set_item_entity = function(stack, luaentity)
 * Called when an item is converted to an item entity (i.e. "dropped").
