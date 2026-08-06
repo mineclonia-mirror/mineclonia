@@ -1031,6 +1031,8 @@ for i=1,8 do
 		_mcl_silk_touch_drop = {"mcl_core:snowblock"}
 	end
 
+	local drop = "mcl_throwing:snowball " .. i
+
 	core.register_node(id, {
 		description = desc,
 		_tt_help = tt_help,
@@ -1059,7 +1061,13 @@ for i=1,8 do
 		on_construct = mcl_core.on_snow_construct,
 		on_place = on_place,
 		after_destruct = mcl_core.after_snow_destruct,
-		drop = mcl_util.create_tool_group_drops("shovel", "mcl_throwing:snowball " .. i),
+		drop = mcl_util.create_tool_group_drops("shovel", drop),
+		on_blast = function(pos, _, do_drop)
+			if do_drop then
+				core.add_item(pos, drop)
+			end
+			core.remove_node(pos)
+		end,
 		_mcl_hardness = 0.1,
 		_mcl_silk_touch_drop = _mcl_silk_touch_drop,
 	})
