@@ -1006,7 +1006,7 @@ local function on_place(itemstack, placer, pointed_thing)
 end
 
 for i=1,8 do
-	local id, desc, longdesc, usagehelp, tt_help, help, walkable, drawtype, node_box, _mcl_silk_touch_drop
+	local id, desc, longdesc, usagehelp, tt_help, help, walkable, drawtype, node_box, silk_touch_drop
 	if i == 1 then
 		id = "mcl_core:snow"
 		desc = S("Top Snow")
@@ -1026,9 +1026,9 @@ for i=1,8 do
 			type = "fixed",
 			fixed = { -0.5, -0.5, -0.5, 0.5, -0.5 + (2*i)/16, 0.5 },
 		}
-		_mcl_silk_touch_drop = {"mcl_core:snow " .. i}
+		silk_touch_drop = "mcl_core:snow " .. i
 	else
-		_mcl_silk_touch_drop = {"mcl_core:snowblock"}
+		silk_touch_drop = "mcl_core:snowblock"
 	end
 
 	local drop = "mcl_throwing:snowball " .. i
@@ -1069,7 +1069,7 @@ for i=1,8 do
 			core.remove_node(pos)
 		end,
 		_mcl_hardness = 0.1,
-		_mcl_silk_touch_drop = _mcl_silk_touch_drop,
+		_mcl_silk_touch_drop = mcl_util.create_tool_group_drops("shovel", silk_touch_drop),
 	})
 end
 
