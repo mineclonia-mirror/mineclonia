@@ -546,6 +546,8 @@ local anvildef = {
 			if destroyed then
 				-- See above for justification.
 				core.close_formspec(player:get_player_name(), "")
+			else
+				update_anvil_slots(meta, player)
 			end
 		elseif listname == "input" then
 			update_anvil_slots(meta, player)
