@@ -3,6 +3,9 @@ local modpath = core.get_modpath(modname)
 
 mcl_formspec = {}
 
+-- UTF-8 library from modlib
+local utf8 = mcl_util.utf8
+
 mcl_formspec.LSM = (1.5/core.settings:get("gui_scaling"))/96 -- Luanti Scaling Minimiser (Minimises Luanti's GUI scaling, but this isn't yet perfect.)
 mcl_formspec.MCS = math.round(core.settings:get("gui_scaling")/0.375) -- Minecraft Scaling (For Minecraft-like scaling.)
 local LSM = mcl_formspec.LSM -- We do this to prevent "mcl_formspec.set_gui_label" from appearing too messy.
@@ -47,36 +50,50 @@ end
 
 function mcl_formspec.set_gui_label(x, y, text) -- Function which sets a special kind of label, which is more compatible with Minecraft texture packs.
 
-	local counter = 0 -- Counts up to 16, which should be more than enough in any language for this.
+	local counter = 0 -- Counts up to 16, which should be plenty for almost any use case when it comes to GUI labels.
+	local offset =  0 -- Counts up whenever a non-ASCII character is used.
 
-	local c = {} -- Character
+	local c = {"","","","","","","","","","","","","","","",""} -- Characters
 
-	local w = {} -- Width
-	local h = {} -- Height
+	local w = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Widths
+	local h = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Heights
 
-	local pk = {} -- Previous Kerning (We need to remember how much the previous character was moved by its kerning!)
-	local k = {} -- Kerning
+	local pk = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Previous Kernings (We need to remember how much the previous character was moved by its kerning!)
+	local k =  {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Kernings
 
 	repeat
 		for line in io.lines(modpath .. DIR_DELIM .. "label_characters.tsv") do
-			local tsvchar = line:split("\t")[1] -- Whichever character is at the "line"th line and the "[1]"th column of "label_characters.tsv".
-			local textchar = text:sub(counter+1):match('(.)') -- Whatever the first character of "text:sub(counter+1)" is. TODO: Find a way to support unicode characters!
+			local tsvchar = utf8.codepoint(line:split("\t")[1]) -- The character at the "line"th line and the "[1]"th column of "label_characters.tsv".
+			local textchar = utf8.codepoint(text:sub(counter+1,counter+1)) -- The "counter+1"th letter of whatever was inputted for "text".
+			local textchartwobyte = utf8.codepoint(text:sub(counter+1,counter+2)) -- Required for characters that are two bytes long.
+			local textcharthreebyte = utf8.codepoint(text:sub(counter+1,counter+3)) -- Required for characters that are three bytes long.
 			if tsvchar == textchar then
-				c[counter] = line:split("\t")[2].."^[colorize:#404040"
-				w[counter] = line:split("\t")[3]
-				h[counter] = line:split("\t")[4]
-				pk[counter] = line:split("\t")[5]+(pk[counter-1] or 0)
-				k[counter] = pk[counter]-line:split("\t")[5]
+				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
+				w[counter-offset] = line:split("\t")[3]
+				h[counter-offset] = line:split("\t")[4]
+				pk[counter-offset] = line:split("\t")[5]+(pk[counter-offset-1] or 0)
+				k[counter-offset] = pk[counter-offset]-line:split("\t")[5]
 				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
-			else -- Otherwise, set the below values in order to avoid "nil" errors, and compare the next "line" of "label_characters.tsv".
-				c[counter] = "ascii.png^[sheet:16x16:0,2"
-				w[counter] = 0
-				h[counter] = 0
-				k[counter] = 0
-			end
+			elseif tsvchar == textchartwobyte then
+				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
+				w[counter-offset] = line:split("\t")[3]
+				h[counter-offset] = line:split("\t")[4]
+				pk[counter-offset] = line:split("\t")[5]+(pk[counter-offset-1] or 0)
+				k[counter-offset] = pk[counter-offset]-line:split("\t")[5]
+				offset = offset + 1 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
+				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
+			elseif tsvchar == textcharthreebyte then
+				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
+				w[counter-offset] = line:split("\t")[3]
+				h[counter-offset] = line:split("\t")[4]
+				pk[counter-offset] = line:split("\t")[5]+(pk[counter-offset-1] or 0)
+				k[counter-offset] = pk[counter-offset]-line:split("\t")[5]
+				offset = offset + 2 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
+				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
+			else end -- Do nothing, end this "if" loop, and go back to the "for" loop.
 		end
 		counter = counter + 1
-	until counter == 16
+	until counter == 16 + offset
 
 	return "image["..(LSM*(x    -k[0]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[0] *MCS)..","..(LSM*h[0] *MCS)..";"..c[0] .."]".. -- 1st character of the label.
 		   "image["..(LSM*(x+8  -k[1]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[1] *MCS)..","..(LSM*h[1] *MCS)..";"..c[1] .."]".. -- 2nd character of the label.
