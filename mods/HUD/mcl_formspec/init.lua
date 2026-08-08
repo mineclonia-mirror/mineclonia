@@ -50,6 +50,8 @@ end
 
 function mcl_formspec.set_gui_label(x, y, text) -- Function which sets a special kind of label, which is more compatible with Minecraft texture packs.
 
+	-- TODO: Fix issues with specific characters, such as "אַ" and "אָ"!
+
 	local counter = 0 -- Counts up to 16, which should be plenty for almost any use case when it comes to GUI labels.
 	local offset =  0 -- Counts up whenever a non-ASCII character is used.
 
@@ -58,8 +60,8 @@ function mcl_formspec.set_gui_label(x, y, text) -- Function which sets a special
 	local w = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Widths
 	local h = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Heights
 
-	local pk = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Previous Kernings (We need to remember how much the previous character was moved by its kerning!)
-	local k =  {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Kernings
+	local p = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Previous Kernings (We need to remember how much the previous character was moved by its kerning!)
+	local k = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Kernings
 
 	repeat
 		for line in io.lines(modpath .. DIR_DELIM .. "label_characters.tsv") do
@@ -71,23 +73,23 @@ function mcl_formspec.set_gui_label(x, y, text) -- Function which sets a special
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
-				pk[counter-offset] = line:split("\t")[5]+(pk[counter-offset-1] or 0)
-				k[counter-offset] = pk[counter-offset]-line:split("\t")[5]
+				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
+				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
 				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
 			elseif tsvchar == textchartwobyte then
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
-				pk[counter-offset] = line:split("\t")[5]+(pk[counter-offset-1] or 0)
-				k[counter-offset] = pk[counter-offset]-line:split("\t")[5]
+				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
+				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
 				offset = offset + 1 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
 				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
 			elseif tsvchar == textcharthreebyte then
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
-				pk[counter-offset] = line:split("\t")[5]+(pk[counter-offset-1] or 0)
-				k[counter-offset] = pk[counter-offset]-line:split("\t")[5]
+				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
+				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
 				offset = offset + 2 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
 				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
 			else end -- Do nothing, end this "if" loop, and go back to the "for" loop.
@@ -95,21 +97,21 @@ function mcl_formspec.set_gui_label(x, y, text) -- Function which sets a special
 		counter = counter + 1
 	until counter == 16 + offset
 
-	return "image["..(LSM*(x    -k[0]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[0] *MCS)..","..(LSM*h[0] *MCS)..";"..c[0] .."]".. -- 1st character of the label.
-		   "image["..(LSM*(x+8  -k[1]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[1] *MCS)..","..(LSM*h[1] *MCS)..";"..c[1] .."]".. -- 2nd character of the label.
-		   "image["..(LSM*(x+16 -k[2]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[2] *MCS)..","..(LSM*h[2] *MCS)..";"..c[2] .."]".. -- 3rd character of the label.
-		   "image["..(LSM*(x+24 -k[3]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[3] *MCS)..","..(LSM*h[3] *MCS)..";"..c[3] .."]".. -- 4th character of the label.
-		   "image["..(LSM*(x+32 -k[4]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[4] *MCS)..","..(LSM*h[4] *MCS)..";"..c[4] .."]".. -- 5th character of the label.
-		   "image["..(LSM*(x+40 -k[5]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[5] *MCS)..","..(LSM*h[5] *MCS)..";"..c[5] .."]".. -- 6th character of the label.
-		   "image["..(LSM*(x+48 -k[6]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[6] *MCS)..","..(LSM*h[6] *MCS)..";"..c[6] .."]".. -- 7th character of the label.
-		   "image["..(LSM*(x+56 -k[7]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[7] *MCS)..","..(LSM*h[7] *MCS)..";"..c[7] .."]".. -- 8th character of the label.
-		   "image["..(LSM*(x+64 -k[8]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[8] *MCS)..","..(LSM*h[8] *MCS)..";"..c[8] .."]".. -- 9th character of the label.
-		   "image["..(LSM*(x+72 -k[9]) *MCS)..","..(LSM*y*MCS)..";"..(LSM*w[9] *MCS)..","..(LSM*h[9] *MCS)..";"..c[9] .."]".. -- 10th character of the label.
-		   "image["..(LSM*(x+80 -k[10])*MCS)..","..(LSM*y*MCS)..";"..(LSM*w[10]*MCS)..","..(LSM*h[10]*MCS)..";"..c[10].."]".. -- 11th character of the label.
-		   "image["..(LSM*(x+88 -k[11])*MCS)..","..(LSM*y*MCS)..";"..(LSM*w[11]*MCS)..","..(LSM*h[11]*MCS)..";"..c[11].."]".. -- 12th character of the label.
-		   "image["..(LSM*(x+96 -k[12])*MCS)..","..(LSM*y*MCS)..";"..(LSM*w[12]*MCS)..","..(LSM*h[12]*MCS)..";"..c[12].."]".. -- 13th character of the label.
-		   "image["..(LSM*(x+104-k[13])*MCS)..","..(LSM*y*MCS)..";"..(LSM*w[13]*MCS)..","..(LSM*h[13]*MCS)..";"..c[13].."]".. -- 14th character of the label.
-		   "image["..(LSM*(x+112-k[14])*MCS)..","..(LSM*y*MCS)..";"..(LSM*w[14]*MCS)..","..(LSM*h[14]*MCS)..";"..c[14].."]".. -- 15th character of the label.
-		   "image["..(LSM*(x+120-k[15])*MCS)..","..(LSM*y*MCS)..";"..(LSM*w[15]*MCS)..","..(LSM*h[15]*MCS)..";"..c[15].."]"   -- 16th character of the label.
+	return "image["..(LSM*(x    -k[0]) *MCS)..","..(LSM*(y-(h[0] -w[0])) *MCS)..";"..(LSM*w[0] *MCS)..","..(LSM*h[0] *MCS)..";"..c[0] .."]".. -- 1st character of the label.
+		   "image["..(LSM*(x+8  -k[1]) *MCS)..","..(LSM*(y-(h[1] -w[1])) *MCS)..";"..(LSM*w[1] *MCS)..","..(LSM*h[1] *MCS)..";"..c[1] .."]".. -- 2nd character of the label.
+		   "image["..(LSM*(x+16 -k[2]) *MCS)..","..(LSM*(y-(h[2] -w[2])) *MCS)..";"..(LSM*w[2] *MCS)..","..(LSM*h[2] *MCS)..";"..c[2] .."]".. -- 3rd character of the label.
+		   "image["..(LSM*(x+24 -k[3]) *MCS)..","..(LSM*(y-(h[3] -w[3])) *MCS)..";"..(LSM*w[3] *MCS)..","..(LSM*h[3] *MCS)..";"..c[3] .."]".. -- 4th character of the label.
+		   "image["..(LSM*(x+32 -k[4]) *MCS)..","..(LSM*(y-(h[4] -w[4])) *MCS)..";"..(LSM*w[4] *MCS)..","..(LSM*h[4] *MCS)..";"..c[4] .."]".. -- 5th character of the label.
+		   "image["..(LSM*(x+40 -k[5]) *MCS)..","..(LSM*(y-(h[5] -w[5])) *MCS)..";"..(LSM*w[5] *MCS)..","..(LSM*h[5] *MCS)..";"..c[5] .."]".. -- 6th character of the label.
+		   "image["..(LSM*(x+48 -k[6]) *MCS)..","..(LSM*(y-(h[6] -w[6])) *MCS)..";"..(LSM*w[6] *MCS)..","..(LSM*h[6] *MCS)..";"..c[6] .."]".. -- 7th character of the label.
+		   "image["..(LSM*(x+56 -k[7]) *MCS)..","..(LSM*(y-(h[7] -w[7])) *MCS)..";"..(LSM*w[7] *MCS)..","..(LSM*h[7] *MCS)..";"..c[7] .."]".. -- 8th character of the label.
+		   "image["..(LSM*(x+64 -k[8]) *MCS)..","..(LSM*(y-(h[8] -w[8])) *MCS)..";"..(LSM*w[8] *MCS)..","..(LSM*h[8] *MCS)..";"..c[8] .."]".. -- 9th character of the label.
+		   "image["..(LSM*(x+72 -k[9]) *MCS)..","..(LSM*(y-(h[9] -w[9])) *MCS)..";"..(LSM*w[9] *MCS)..","..(LSM*h[9] *MCS)..";"..c[9] .."]".. -- 10th character of the label.
+		   "image["..(LSM*(x+80 -k[10])*MCS)..","..(LSM*(y-(h[10]-w[10]))*MCS)..";"..(LSM*w[10]*MCS)..","..(LSM*h[10]*MCS)..";"..c[10].."]".. -- 11th character of the label.
+		   "image["..(LSM*(x+88 -k[11])*MCS)..","..(LSM*(y-(h[11]-w[11]))*MCS)..";"..(LSM*w[11]*MCS)..","..(LSM*h[11]*MCS)..";"..c[11].."]".. -- 12th character of the label.
+		   "image["..(LSM*(x+96 -k[12])*MCS)..","..(LSM*(y-(h[12]-w[12]))*MCS)..";"..(LSM*w[12]*MCS)..","..(LSM*h[12]*MCS)..";"..c[12].."]".. -- 13th character of the label.
+		   "image["..(LSM*(x+104-k[13])*MCS)..","..(LSM*(y-(h[13]-w[13]))*MCS)..";"..(LSM*w[13]*MCS)..","..(LSM*h[13]*MCS)..";"..c[13].."]".. -- 14th character of the label.
+		   "image["..(LSM*(x+112-k[14])*MCS)..","..(LSM*(y-(h[14]-w[14]))*MCS)..";"..(LSM*w[14]*MCS)..","..(LSM*h[14]*MCS)..";"..c[14].."]".. -- 15th character of the label.
+		   "image["..(LSM*(x+120-k[15])*MCS)..","..(LSM*(y-(h[15]-w[15]))*MCS)..";"..(LSM*w[15]*MCS)..","..(LSM*h[15]*MCS)..";"..c[15].."]"   -- 16th character of the label.
 
 end
