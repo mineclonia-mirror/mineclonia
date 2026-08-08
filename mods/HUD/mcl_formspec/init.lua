@@ -50,7 +50,7 @@ end
 
 function mcl_formspec.set_gui_label(x, y, text) -- Function which sets a special kind of label, which is more compatible with Minecraft texture packs.
 
-	-- TODO: Fix issues with specific characters, such as "אַ" and "אָ"!
+	-- TODO: Fix issues with specific characters, such as "אַ" and "�"!
 
 	local counter = 0 -- Counts up to 16, which should be plenty for almost any use case when it comes to GUI labels.
 	local offset =  0 -- Counts up whenever a non-ASCII character is used.
