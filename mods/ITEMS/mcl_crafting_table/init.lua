@@ -5,54 +5,6 @@ local MCS = mcl_formspec.MCS
 
 mcl_crafting_table = {}
 
-mcl_crafting_table.formspec = table.concat({ -- NOTE: The numbers below correlate with the amount of pixels!
-
--- The formspec version.
-
-	"formspec_version[8]", -- Supported by Luanti 5.10, which is currently the latest version on Debian Stable.
-
-
--- Prepend default values.
-
-	"size["..(LSM*176*MCS)..","..(LSM*166*MCS).."]", -- The size of the GUI within Minecraft's default "crafting_table.png" texture.
-
-	"no_prepend[]", -- Disable the default prepends, as we want to define our own prepends which are more accurate to Minecraft.
-
-	"bgcolor[;true;#000000BB]", -- How much the background darkens when the GUI is open. Minecraft has a gradient darkening, so this is not 100% accurate.
-
-	"listcolors[#0000;#FFFFFF75;#0000;#0000007F;#FFFFFFFF]", -- The colour of the inventory slots, and the tooltips of items when hovering the cursor over them.
-
-	"style_type[list;".."size="..(LSM*16*MCS)..","..(LSM*16*MCS)..";".."spacing="..(LSM*2*MCS)..","..(LSM*2*MCS).."]", -- The size and spacing of the inventory slots within the GUI.
-
-	"style_type[button;border=false;bgimg=button.png;sound=mesecons_button_push]", -- The default state of the recipe book button.
-
-
--- The visual part of the GUI.
-
-	"image[0,0;"..(LSM*256*MCS)..","..(LSM*256*MCS)..";".."crafting_table.png".."]", -- The size of Minecraft's default "crafting_table.png" texture.
-
-	mcl_formspec.set_gui_label(29, 6, "Crafting"), -- The "Crafting" label.
-
-	"style[__mcl_craftguide:hovered,__mcl_craftguide:pressed;bgimg=button_highlighted.png]", -- The recipe book button.
-
-	mcl_formspec.set_gui_label(8, 72, "Inventory"), -- The "Inventory" label.
-
-
--- The functional part of the GUI.
-
-	"list[current_player;craft;"       ..(LSM*30*MCS).. ","..(LSM*17*MCS)..";3,3;0]", -- The 3x3 crafting grid.
-	"list[current_player;craftpreview;"..(LSM*124*MCS)..","..(LSM*35*MCS)..";1,1;0]", -- The preview of the crafting output.
-
-	"button["..(LSM*5*MCS)..","..(LSM*34*MCS)..";"..(LSM*20*MCS)..","..(LSM*18*MCS)..";__mcl_craftguide;]", -- The recipe book button.
-
-	"list[current_player;main;"..(LSM*8*MCS)..","..(LSM*84*MCS) ..";9,3;9]", -- The player's backpack inventory.
-	"list[current_player;main;"..(LSM*8*MCS)..","..(LSM*142*MCS)..";9,1;0]", -- The player's HUD inventory.
-
-	"listring[current_player;craft]", -- This allows for shift-clicking functionality.
-	"listring[current_player;main]", -- This allows for shift-clicking functionality.
-
-})
-
 function mcl_crafting_table.has_crafting_table(player)
 	if not player or not player:get_pos() then return end
 	local wdef = player:get_wielded_item():get_definition()
@@ -60,15 +12,69 @@ function mcl_crafting_table.has_crafting_table(player)
 	return core.is_creative_enabled(player:get_player_name()) or (core.find_node_near(player:get_pos(), range, { "group:crafting_table" }, true) ~= nil)
 end
 
--- track players that are viewing the crafting table formspec
-local formspec_shown = {}
+local formspec_shown = {} -- Track players that are viewing the crafting table formspec.
 
 function mcl_crafting_table.show_crafting_form(player)
-	if not mcl_crafting_table.has_crafting_table(player) then
-		return
-	end
+
+	if not mcl_crafting_table.has_crafting_table(player) then return end
+
 	formspec_shown[player] = true
-	core.show_formspec(player:get_player_name(), "main", mcl_crafting_table.formspec)
+
+	local playerlang = core.get_player_information(player:get_player_name()).lang_code
+
+	local craftinglabel  = core.get_translated_string(playerlang, S("Crafting"))
+	local inventorylabel = core.get_translated_string(playerlang, S("Inventory"))
+
+	core.show_formspec(player:get_player_name(), "main", table.concat({ -- NOTE: The numbers below correlate with the amount of pixels!
+
+	-- The formspec version.
+
+		"formspec_version[8]", -- Supported by Luanti 5.10, which is currently the latest version on Debian Stable.
+
+
+	-- Prepend default values.
+
+		"size["..(LSM*176*MCS)..","..(LSM*166*MCS).."]", -- The size of the GUI within Minecraft's default "crafting_table.png" texture.
+
+		"no_prepend[]", -- Disable the default prepends, as we want to define our own prepends which are more accurate to Minecraft.
+
+		"bgcolor[;true;#000000BB]", -- How much the background darkens when the GUI is open. Minecraft has a gradient darkening, so this is not 100% accurate.
+
+		"listcolors[#0000;#FFFFFF75;#0000;#0000007F;#FFFFFFFF]", -- The colour of the inventory slots, and the tooltips of items when hovering the cursor over them.
+
+		"style_type[label;font_size="..((LSM*96)*5*MCS).."]", -- The font size of the labels.
+
+		"style_type[list;".."size="..(LSM*16*MCS)..","..(LSM*16*MCS)..";".."spacing="..(LSM*2*MCS)..","..(LSM*2*MCS).."]", -- The size and spacing of the inventory slots within the GUI.
+
+		"style_type[button;border=false;bgimg=button.png;sound=mesecons_button_push]", -- The default state of the recipe book button.
+
+
+	-- The visual part of the GUI.
+
+		"image[0,0;"..(LSM*256*MCS)..","..(LSM*256*MCS)..";".."crafting_table.png".."]", -- The size of Minecraft's default "crafting_table.png" texture.
+
+		mcl_formspec.set_gui_label(29, 6, playerlang, craftinglabel), -- The "Crafting" label.
+
+		"style[__mcl_craftguide:hovered,__mcl_craftguide:pressed;bgimg=button_highlighted.png]", -- The recipe book button.
+
+		mcl_formspec.set_gui_label(8, 72, playerlang, inventorylabel), -- The "Inventory" label.
+
+
+	-- The functional part of the GUI.
+
+		"list[current_player;craft;"       ..(LSM*30*MCS).. ","..(LSM*17*MCS)..";3,3;0]", -- The 3x3 crafting grid.
+		"list[current_player;craftpreview;"..(LSM*124*MCS)..","..(LSM*35*MCS)..";1,1;0]", -- The preview of the crafting output.
+
+		"button["..(LSM*5*MCS)..","..(LSM*34*MCS)..";"..(LSM*20*MCS)..","..(LSM*18*MCS)..";__mcl_craftguide;]", -- The recipe book button.
+
+		"list[current_player;main;"..(LSM*8*MCS)..","..(LSM*84*MCS) ..";9,3;9]", -- The player's backpack inventory.
+		"list[current_player;main;"..(LSM*8*MCS)..","..(LSM*142*MCS)..";9,1;0]", -- The player's HUD inventory.
+
+		"listring[current_player;craft]", -- This allows for shift-clicking functionality.
+		"listring[current_player;main]", -- This allows for shift-clicking functionality.
+
+		})
+	)
 end
 
 core.register_on_player_receive_fields(function(player, formname, fields)

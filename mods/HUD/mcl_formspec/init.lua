@@ -1,6 +1,8 @@
 local modname = core.get_current_modname()
 local modpath = core.get_modpath(modname)
 
+local C = core.colorize
+
 mcl_formspec = {}
 
 -- UTF-8 library from modlib
@@ -48,9 +50,20 @@ function mcl_formspec.get_itemslot_bg_v4(x, y, w, h, size, texture)
 end
 
 
-function mcl_formspec.set_gui_label(x, y, text) -- Function which sets a special kind of label, which is more compatible with Minecraft texture packs.
+function mcl_formspec.set_gui_label(x, y, lang, text) -- Function which sets a special kind of label, which is more compatible with Minecraft texture packs.
 
-	-- TODO: Fix issues with specific characters, such as "אַ" and "�"!
+-- NOTE: The following languages use the regular label system instead of the special one:
+--
+-- Arabic, Persian, Hindi, Japanese, Kannada, Korean, Lao, Literary Chinese,
+-- Tamil, Thai, Simplified Chinese (China), Traditional Chinese (Hong Kong), Traditional Chinese (Taiwan), Malay
+--
+-- Luanti doesn't support all of them yet, so the below "if" statement only includes those who are.
+
+	if lang == "ja" or lang == "ko" or lang == "zh_CN" or lang == "zh_TW" then -- Use the regular label system if one of these languages is used.
+		return "label["..(LSM*x*MCS)..","..(LSM*(y+4.25)*MCS)..";"..C("#404040", text).."]"
+	end
+
+-- TODO: Fix issues with specific characters, such as "אַ" and "�".
 
 	local counter = 0 -- Counts up to 16, which should be plenty for almost any use case when it comes to GUI labels.
 	local offset =  0 -- Counts up whenever a non-ASCII character is used.
