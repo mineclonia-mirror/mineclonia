@@ -137,7 +137,7 @@ function mcl_farming:grow_plant(identifier, pos, node, stages, ignore_light, low
 	return true
 end
 
-function mcl_farming.place_seed(itemstack, placer, pointed_thing)
+local function place_seed(itemstack, placer, pointed_thing)
 	if not pointed_thing or pointed_thing.type ~= "node" then
 		return
 	end
@@ -147,16 +147,13 @@ function mcl_farming.place_seed(itemstack, placer, pointed_thing)
 
 	local placed = false
 	local above = pointed_thing.above
-	local under = pointed_thing.under
-	local anode = core.get_node(above)
-	local unode = core.get_node(under)
 	local plant = itemstack:get_definition()._mcl_places_plant
 
-	if anode.name ~= "air" or type(plant) ~= "string" or not core.registered_nodes[plant] then
+	if core.get_node(above).name ~= "air" or not core.registered_nodes[plant] then
 		return
 	end
 
-	if string.find(unode.name, "mcl_farming:soil") then
+	if string.find(core.get_node(pointed_thing.under).name, "mcl_farming:soil") then
 		core.place_node(above, {name = plant})
 		placed = true
 	end
@@ -170,6 +167,18 @@ function mcl_farming.place_seed(itemstack, placer, pointed_thing)
 	end
 
 	return itemstack
+end
+
+function mcl_farming.place_seed(...)
+	if select(1, ...) == mcl_farming then
+		local itemstack = select(2, ...)
+		local placer = select(3, ...)
+		local pointed_thing = select(4, ...)
+
+		return place_seed(itemstack, placer, pointed_thing)
+	end
+
+	return place_seed(...)
 end
 
 --[[ Helper function to create a gourd (e.g. melon, pumpkin), the connected stem nodes as
