@@ -691,9 +691,8 @@ function mob_class:check_dying (dtime)
 		if self.object then
 			local rot = self.object:get_rotation ()
 			local x = dtime * 20.0
-			local y = (mathpow (4, x) * rot.z) / mathpow (5, x)
-				- (mathpow (4, x) * pi) / (2 * mathpow (5, x))
-				+ pi * 0.5
+			local decay = mathpow (0.8, x)
+			local y = pi * 0.5 + decay * (rot.z - pi * 0.5)
 			rot.z = y
 			self.object:set_rotation (rot)
 		end
