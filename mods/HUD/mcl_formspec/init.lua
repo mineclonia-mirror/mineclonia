@@ -2,6 +2,7 @@ local modname = core.get_current_modname()
 local modpath = core.get_modpath(modname)
 
 local C = core.colorize
+local B = "blank.png^[opacity:0"
 
 mcl_formspec = {}
 
@@ -68,28 +69,29 @@ function mcl_formspec.set_gui_label(x, y, lang, text) -- Function which sets a s
 	local counter = 0 -- Counts up to 16, which should be plenty for almost any use case when it comes to GUI labels.
 	local offset =  0 -- Counts up whenever a non-ASCII character is used.
 
-	local c = {"","","","","","","","","","","","","","","",""} -- Characters
+	local c = {B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B} -- Characters
 
 	local w = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Widths
 	local h = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Heights
 
-	local p = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Previous Kernings (We need to remember how much the previous character was moved by its kerning!)
-	local k = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Kernings
+	local p = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Previous Kernings (We need to remember how much the previous character was moved!)
+	local k = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Kernings (Not really kerning, I think, but I don't know a better word for this.)
 
 	repeat
 		for line in io.lines(modpath .. DIR_DELIM .. "label_characters.tsv") do
-			local tsvchar = utf8.codepoint(line:split("\t")[1]) -- The character at the "line"th line and the "[1]"th column of "label_characters.tsv".
-			local textchar = utf8.codepoint(text:sub(counter+1,counter+1)) -- The "counter+1"th letter of whatever was inputted for "text".
+			local tsvcharbyte = utf8.codepoint(line:split("\t")[1]) -- The character at the "line"th line and the "[1]"th column of "label_characters.tsv".
+			local textcharbyte = utf8.codepoint(text:sub(counter+1,counter+1)) -- The "counter+1"th letter of whatever was inputted for "text".
 			local textchartwobyte = utf8.codepoint(text:sub(counter+1,counter+2)) -- Required for characters that are two bytes long.
 			local textcharthreebyte = utf8.codepoint(text:sub(counter+1,counter+3)) -- Required for characters that are three bytes long.
-			if tsvchar == textchar then
+			local textcharfourbyte = utf8.codepoint(text:sub(counter+1,counter+4)) -- Required for characters that are four bytes long.
+			if tsvcharbyte == textcharbyte then
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
 				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
 				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
 				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
-			elseif tsvchar == textchartwobyte then
+			elseif tsvcharbyte == textchartwobyte then
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
@@ -97,13 +99,21 @@ function mcl_formspec.set_gui_label(x, y, lang, text) -- Function which sets a s
 				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
 				offset = offset + 1 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
 				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
-			elseif tsvchar == textcharthreebyte then
+			elseif tsvcharbyte == textcharthreebyte then
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
 				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
 				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
 				offset = offset + 2 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
+				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
+			elseif tsvcharbyte == textcharfourbyte then
+				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
+				w[counter-offset] = line:split("\t")[3]
+				h[counter-offset] = line:split("\t")[4]
+				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
+				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
+				offset = offset + 3 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
 				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
 			else end -- Do nothing, end this "if" loop, and go back to the "for" loop.
 		end
