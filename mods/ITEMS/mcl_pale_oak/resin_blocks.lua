@@ -2,7 +2,8 @@ local S = core.get_translator("mcl_pale_oak")
 
 core.register_node("mcl_pale_oak:resin_clump", {
 	description = S("Resin Clump"),
-	drawtype = "signlike",
+	drawtype = "mesh",
+	mesh = "mcl_flowers_leaf_litter_4.obj",
 	inventory_image = "mcl_pale_oak_resin_clump.png",
 	wield_image = "mcl_pale_oak_resin_clump.png",
 	tiles = {"mcl_pale_oak_resin_clump_block.png"},
