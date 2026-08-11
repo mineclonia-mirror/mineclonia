@@ -15,6 +15,7 @@ core.register_node("mcl_pale_oak:resin_clump", {
 	},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
+	sounds = mcl_sounds.node_sound_resin_defaults(),
 	sunlight_propagates = true,
 	groups = {attached_node = 1, craftitem = 1, dig_by_piston = 1, dig_immediate = 3, unsticky = 1},
 	_mcl_crafting_output = {
@@ -27,6 +28,7 @@ core.register_craftitem("mcl_pale_oak:resin_brick", {
 	description = S("Resin Brick"),
 	inventory_image = "mcl_pale_oak_resin_brick.png",
 	groups = { craftitem = 1 },
+	sounds = mcl_sounds.node_sound_resin_brick_defaults(),
 	_mcl_crafting_output = {
 		square2 = {output = "mcl_pale_oak:resin_brick_block"}
 	},
@@ -39,6 +41,7 @@ core.register_node("mcl_pale_oak:block_of_resin", {
 	tiles = {"mcl_pale_oak_resin_block.png"},
 	_mcl_hardness = 0,
 	groups = { dig_immediate = 3 },
+	sounds = mcl_sounds.node_sound_resin_defaults(),
 	_mcl_crafting_output = {
 		single = {output = "mcl_pale_oak:resin_clump 9"}
 	}
@@ -47,6 +50,7 @@ core.register_node("mcl_pale_oak:block_of_resin", {
 core.register_node("mcl_pale_oak:resin_brick_block", {
 	description = S("Resin Bricks"),
 	tiles = {"mcl_pale_oak_resin_brick_block.png"},
+	sounds = mcl_sounds.node_sound_resin_brick_defaults(),
 	_mcl_hardness = 1.5,
 	_mcl_blast_resistance = 6,
 	groups = { pickaxey = 1, material_stone = 1 },
@@ -55,6 +59,7 @@ core.register_node("mcl_pale_oak:resin_brick_block", {
 core.register_node("mcl_pale_oak:chiseled_resin_brick", {
 	description = S("Chiseled Resin Brick"),
 	tiles = {"mcl_pale_oak_chiseled_resin_bricks.png"},
+	sounds = mcl_sounds.node_sound_resin_brick_defaults(),
 	_mcl_hardness = 1.5,
 	_mcl_blast_resistance = 6,
 	groups = { pickaxey = 1 },

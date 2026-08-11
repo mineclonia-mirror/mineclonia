@@ -187,6 +187,27 @@ function mcl_sounds.node_sound_lava_defaults(table)
 	return table
 end
 
+function mcl_sounds.node_sound_resin_defaults(table)
+	table = table or {}
+	table.footstep = table.footstep or
+			{name = "mcl_sounds_resin_footstep", gain = 1.0}
+	table.place = table.place or
+			{name = "mcl_sounds_resin_place", gain = 1.0}
+	table.dug = table.dug or
+			{name = "mcl_sounds_resin_dug", gain = 1.0}
+
+	return table
+end
+
+function mcl_sounds.node_sound_resin_brick_defaults(table)
+	table = table or {}
+	table.dig = table.dig or
+			{name = "mcl_sounds_resin_brick_dig", gain = 1.0}
+	table.dug = table.dug or
+			{name = "mcl_sounds_resin_brick_dug", gain = 1.0}
+
+	return table
+end
 -- Player death sound
 core.register_on_dieplayer(function(player)
 	-- TODO: Add separate death sound
