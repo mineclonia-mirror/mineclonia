@@ -53,88 +53,97 @@ end
 
 function mcl_formspec.set_gui_label(x, y, lang, text) -- Function which sets a special kind of label, which is more compatible with Minecraft texture packs.
 
--- NOTE: The following languages use the regular label system instead of the special one:
+-- NOTE: The following languages use the regular label system instead of the special one (this behaviour is also observed in Minecraft):
 --
 -- Arabic, Persian, Hindi, Japanese, Kannada, Korean, Lao, Literary Chinese,
 -- Tamil, Thai, Simplified Chinese (China), Traditional Chinese (Hong Kong), Traditional Chinese (Taiwan), Malay
 --
--- Luanti doesn't support all of them yet, so the below "if" statement only includes those who are.
+-- Luanti doesn't support all of these languages yet, so the below "if" statement only includes those who are.
 
-	if lang == "ja" or lang == "ko" or lang == "zh_CN" or lang == "zh_TW" then -- Use the regular label system if one of these languages is used.
+	if lang == "ja" or lang == "ko" or lang == "zh_CN" or lang == "zh_TW" then
 		return "label["..(LSM*x*MCS)..","..(LSM*(y+4.25)*MCS)..";"..C("#404040", text).."]"
 	end
 
--- TODO: Fix issues with specific characters, such as "אַ" and "�".
+
+-- If the language IS supported by the new label system, then the below code is ran instead.
 
 	local counter = 0 -- Counts up to 16, which should be plenty for almost any use case when it comes to GUI labels.
-	local offset =  0 -- Counts up whenever a non-ASCII character is used.
+	local offset =  0 -- Counts up whenever a non-ASCII character is used, to prevent spacing issues.
 
 	local c = {B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B} -- Characters
 
 	local w = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Widths
 	local h = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Heights
 
-	local p = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Previous Kernings (We need to remember how much the previous character was moved!)
-	local k = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Kernings (Not really kerning, I think, but I don't know a better word for this.)
+	local p = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Previous Spacings (We need to remember how much the previous character was moved!)
+	local s = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} -- Spacings
 
 	repeat
 		for line in io.lines(modpath .. DIR_DELIM .. "label_characters.tsv") do
-			local tsvcharbyte = utf8.codepoint(line:split("\t")[1]) -- The character at the "line"th line and the "[1]"th column of "label_characters.tsv".
-			local textcharbyte = utf8.codepoint(text:sub(counter+1,counter+1)) -- The "counter+1"th letter of whatever was inputted for "text".
-			local textchartwobyte = utf8.codepoint(text:sub(counter+1,counter+2)) -- Required for characters that are two bytes long.
-			local textcharthreebyte = utf8.codepoint(text:sub(counter+1,counter+3)) -- Required for characters that are three bytes long.
-			local textcharfourbyte = utf8.codepoint(text:sub(counter+1,counter+4)) -- Required for characters that are four bytes long.
-			if tsvcharbyte == textcharbyte then
+
+			local tsvchar = line:split("\t")[1] -- The character at the "line"th line and the "[1]"th column of "label_characters.tsv".
+			local txtchar = text:sub(counter+1,counter+4) -- The "counter+1"th letter of whatever was inputted for "text".
+
+			local tsvcharcode = utf8.codepoint(tsvchar) -- Same as the above, but converted into its unicode decimal value.
+			local txtcharcode = utf8.codepoint(text:sub(counter+1,counter+1)) -- Same as the above, but converted into its unicode decimal value.
+
+			local txtcharcode2 = utf8.codepoint(text:sub(counter+1,counter+2)) -- Required for characters that are 2 bytes long.
+			local txtcharcode3 = utf8.codepoint(text:sub(counter+1,counter+3)) -- Required for characters that are 3 bytes long.
+			local txtcharcode4 = utf8.codepoint(text:sub(counter+1,counter+4)) -- Required for characters that are 4 bytes long.
+
+			local hac = utf8.codepoint(txtchar:sub(3,4)) or 0 -- Hebrew Accents Checker (Not the cleanest solution, but it works.)
+
+			if tsvcharcode == txtcharcode and tsvchar ~= "�" then
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
 				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
-				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
-				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
-			elseif tsvcharbyte == textchartwobyte then
+				s[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
+				break
+			elseif tsvcharcode == txtcharcode2 and (hac < 1425 or hac > 1479) and tsvchar ~= "�" then
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
 				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
-				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
-				offset = offset + 1 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
-				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
-			elseif tsvcharbyte == textcharthreebyte then
+				s[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
+				offset = offset + 1
+				break
+			elseif tsvcharcode == txtcharcode3 and (hac < 1425 or hac > 1479) and tsvchar ~= "�" then
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
 				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
-				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
-				offset = offset + 2 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
-				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
-			elseif tsvcharbyte == textcharfourbyte then
+				s[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
+				offset = offset + 2
+				break
+			elseif tsvcharcode == txtcharcode4 and tsvchar == txtchar then
 				c[counter-offset] = line:split("\t")[2].."^[colorize:#404040"
 				w[counter-offset] = line:split("\t")[3]
 				h[counter-offset] = line:split("\t")[4]
 				p[counter-offset] = line:split("\t")[5]-(w[counter-offset]-8)+(p[counter-offset-1] or 0)
-				k[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
-				offset = offset + 3 -- Because non-ASCII characters count as more than 1 character in Lua, we have to increase the offset.
-				break -- Since we got what we were looking for, we break the "for" loop and reenter the "repeat" loop.
+				s[counter-offset] = p[counter-offset]-line:split("\t")[5]+(w[counter-offset]-8)
+				offset = offset + 3
+				break
 			else end -- Do nothing, end this "if" loop, and go back to the "for" loop.
 		end
 		counter = counter + 1
 	until counter == 16 + offset
 
-	return "image["..(LSM*(x    -k[0]) *MCS)..","..(LSM*(y-(h[0] -w[0])) *MCS)..";"..(LSM*w[0] *MCS)..","..(LSM*h[0] *MCS)..";"..c[0] .."]".. -- 1st character of the label.
-		   "image["..(LSM*(x+8  -k[1]) *MCS)..","..(LSM*(y-(h[1] -w[1])) *MCS)..";"..(LSM*w[1] *MCS)..","..(LSM*h[1] *MCS)..";"..c[1] .."]".. -- 2nd character of the label.
-		   "image["..(LSM*(x+16 -k[2]) *MCS)..","..(LSM*(y-(h[2] -w[2])) *MCS)..";"..(LSM*w[2] *MCS)..","..(LSM*h[2] *MCS)..";"..c[2] .."]".. -- 3rd character of the label.
-		   "image["..(LSM*(x+24 -k[3]) *MCS)..","..(LSM*(y-(h[3] -w[3])) *MCS)..";"..(LSM*w[3] *MCS)..","..(LSM*h[3] *MCS)..";"..c[3] .."]".. -- 4th character of the label.
-		   "image["..(LSM*(x+32 -k[4]) *MCS)..","..(LSM*(y-(h[4] -w[4])) *MCS)..";"..(LSM*w[4] *MCS)..","..(LSM*h[4] *MCS)..";"..c[4] .."]".. -- 5th character of the label.
-		   "image["..(LSM*(x+40 -k[5]) *MCS)..","..(LSM*(y-(h[5] -w[5])) *MCS)..";"..(LSM*w[5] *MCS)..","..(LSM*h[5] *MCS)..";"..c[5] .."]".. -- 6th character of the label.
-		   "image["..(LSM*(x+48 -k[6]) *MCS)..","..(LSM*(y-(h[6] -w[6])) *MCS)..";"..(LSM*w[6] *MCS)..","..(LSM*h[6] *MCS)..";"..c[6] .."]".. -- 7th character of the label.
-		   "image["..(LSM*(x+56 -k[7]) *MCS)..","..(LSM*(y-(h[7] -w[7])) *MCS)..";"..(LSM*w[7] *MCS)..","..(LSM*h[7] *MCS)..";"..c[7] .."]".. -- 8th character of the label.
-		   "image["..(LSM*(x+64 -k[8]) *MCS)..","..(LSM*(y-(h[8] -w[8])) *MCS)..";"..(LSM*w[8] *MCS)..","..(LSM*h[8] *MCS)..";"..c[8] .."]".. -- 9th character of the label.
-		   "image["..(LSM*(x+72 -k[9]) *MCS)..","..(LSM*(y-(h[9] -w[9])) *MCS)..";"..(LSM*w[9] *MCS)..","..(LSM*h[9] *MCS)..";"..c[9] .."]".. -- 10th character of the label.
-		   "image["..(LSM*(x+80 -k[10])*MCS)..","..(LSM*(y-(h[10]-w[10]))*MCS)..";"..(LSM*w[10]*MCS)..","..(LSM*h[10]*MCS)..";"..c[10].."]".. -- 11th character of the label.
-		   "image["..(LSM*(x+88 -k[11])*MCS)..","..(LSM*(y-(h[11]-w[11]))*MCS)..";"..(LSM*w[11]*MCS)..","..(LSM*h[11]*MCS)..";"..c[11].."]".. -- 12th character of the label.
-		   "image["..(LSM*(x+96 -k[12])*MCS)..","..(LSM*(y-(h[12]-w[12]))*MCS)..";"..(LSM*w[12]*MCS)..","..(LSM*h[12]*MCS)..";"..c[12].."]".. -- 13th character of the label.
-		   "image["..(LSM*(x+104-k[13])*MCS)..","..(LSM*(y-(h[13]-w[13]))*MCS)..";"..(LSM*w[13]*MCS)..","..(LSM*h[13]*MCS)..";"..c[13].."]".. -- 14th character of the label.
-		   "image["..(LSM*(x+112-k[14])*MCS)..","..(LSM*(y-(h[14]-w[14]))*MCS)..";"..(LSM*w[14]*MCS)..","..(LSM*h[14]*MCS)..";"..c[14].."]".. -- 15th character of the label.
-		   "image["..(LSM*(x+120-k[15])*MCS)..","..(LSM*(y-(h[15]-w[15]))*MCS)..";"..(LSM*w[15]*MCS)..","..(LSM*h[15]*MCS)..";"..c[15].."]"   -- 16th character of the label.
+	return "image["..(LSM*(x    -s[0]) *MCS)..","..(LSM*(y-(h[0] -w[0])) *MCS)..";"..(LSM*w[0] *MCS)..","..(LSM*h[0] *MCS)..";"..c[0] .."]".. -- 1st character of the label.
+		   "image["..(LSM*(x+8  -s[1]) *MCS)..","..(LSM*(y-(h[1] -w[1])) *MCS)..";"..(LSM*w[1] *MCS)..","..(LSM*h[1] *MCS)..";"..c[1] .."]".. -- 2nd character of the label.
+		   "image["..(LSM*(x+16 -s[2]) *MCS)..","..(LSM*(y-(h[2] -w[2])) *MCS)..";"..(LSM*w[2] *MCS)..","..(LSM*h[2] *MCS)..";"..c[2] .."]".. -- 3rd character of the label.
+		   "image["..(LSM*(x+24 -s[3]) *MCS)..","..(LSM*(y-(h[3] -w[3])) *MCS)..";"..(LSM*w[3] *MCS)..","..(LSM*h[3] *MCS)..";"..c[3] .."]".. -- 4th character of the label.
+		   "image["..(LSM*(x+32 -s[4]) *MCS)..","..(LSM*(y-(h[4] -w[4])) *MCS)..";"..(LSM*w[4] *MCS)..","..(LSM*h[4] *MCS)..";"..c[4] .."]".. -- 5th character of the label.
+		   "image["..(LSM*(x+40 -s[5]) *MCS)..","..(LSM*(y-(h[5] -w[5])) *MCS)..";"..(LSM*w[5] *MCS)..","..(LSM*h[5] *MCS)..";"..c[5] .."]".. -- 6th character of the label.
+		   "image["..(LSM*(x+48 -s[6]) *MCS)..","..(LSM*(y-(h[6] -w[6])) *MCS)..";"..(LSM*w[6] *MCS)..","..(LSM*h[6] *MCS)..";"..c[6] .."]".. -- 7th character of the label.
+		   "image["..(LSM*(x+56 -s[7]) *MCS)..","..(LSM*(y-(h[7] -w[7])) *MCS)..";"..(LSM*w[7] *MCS)..","..(LSM*h[7] *MCS)..";"..c[7] .."]".. -- 8th character of the label.
+		   "image["..(LSM*(x+64 -s[8]) *MCS)..","..(LSM*(y-(h[8] -w[8])) *MCS)..";"..(LSM*w[8] *MCS)..","..(LSM*h[8] *MCS)..";"..c[8] .."]".. -- 9th character of the label.
+		   "image["..(LSM*(x+72 -s[9]) *MCS)..","..(LSM*(y-(h[9] -w[9])) *MCS)..";"..(LSM*w[9] *MCS)..","..(LSM*h[9] *MCS)..";"..c[9] .."]".. -- 10th character of the label.
+		   "image["..(LSM*(x+80 -s[10])*MCS)..","..(LSM*(y-(h[10]-w[10]))*MCS)..";"..(LSM*w[10]*MCS)..","..(LSM*h[10]*MCS)..";"..c[10].."]".. -- 11th character of the label.
+		   "image["..(LSM*(x+88 -s[11])*MCS)..","..(LSM*(y-(h[11]-w[11]))*MCS)..";"..(LSM*w[11]*MCS)..","..(LSM*h[11]*MCS)..";"..c[11].."]".. -- 12th character of the label.
+		   "image["..(LSM*(x+96 -s[12])*MCS)..","..(LSM*(y-(h[12]-w[12]))*MCS)..";"..(LSM*w[12]*MCS)..","..(LSM*h[12]*MCS)..";"..c[12].."]".. -- 13th character of the label.
+		   "image["..(LSM*(x+104-s[13])*MCS)..","..(LSM*(y-(h[13]-w[13]))*MCS)..";"..(LSM*w[13]*MCS)..","..(LSM*h[13]*MCS)..";"..c[13].."]".. -- 14th character of the label.
+		   "image["..(LSM*(x+112-s[14])*MCS)..","..(LSM*(y-(h[14]-w[14]))*MCS)..";"..(LSM*w[14]*MCS)..","..(LSM*h[14]*MCS)..";"..c[14].."]".. -- 15th character of the label.
+		   "image["..(LSM*(x+120-s[15])*MCS)..","..(LSM*(y-(h[15]-w[15]))*MCS)..";"..(LSM*w[15]*MCS)..","..(LSM*h[15]*MCS)..";"..c[15].."]"   -- 16th character of the label.
 
 end
