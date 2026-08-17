@@ -727,6 +727,7 @@ for colorkey, colortab in pairs(mcl_banners.colors) do
 			end
 			return stack, {wield_item = stack:to_string()}
 		end,
+		_mcl_uses = 336,
 	})
 
 	local banner = "mcl_banners:banner_item_" .. color
