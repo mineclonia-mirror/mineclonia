@@ -715,6 +715,7 @@ for colorkey, colortab in pairs(mcl_banners.colors) do
 		_repair_material = "group:wood",
 		wield_scale = vector.new(2, 2, 2),
 		_placement_class = "shield",
+		_mcl_uses = 336,
 		_shield_color_key = colorkey,
 		_mcl_wieldview_item = "",
 		_mcl_generate_description = mcl_banners.update_description,
