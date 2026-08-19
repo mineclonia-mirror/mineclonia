@@ -25,7 +25,7 @@ function mcl_crafting_table.show_crafting_form(player)
 	local craftinglabel  = core.get_translated_string(playerlang, S("Crafting"))
 	local inventorylabel = core.get_translated_string(playerlang, S("Inventory"))
 
-	core.show_formspec(player:get_player_name(), "main", table.concat({ -- NOTE: The numbers below correlate with the amount of pixels!
+	core.show_formspec(player:get_player_name(), "main", table.concat({ -- NOTE: (LSM*[px]*MCS), with "Gui Scale: 1" in Minecraft!
 
 	-- The formspec version.
 
@@ -33,20 +33,21 @@ function mcl_crafting_table.show_crafting_form(player)
 
 
 	-- Prepend default values.
+	-- Many of the below values don't change across GUIs, and should therefore ideally be moved to the default prepends in the future.
 
-		"size["..(LSM*176*MCS)..","..(LSM*166*MCS).."]", -- The size of the GUI within Minecraft's default "crafting_table.png" texture.
+		"size["..(LSM*176*MCS)..","..(LSM*166*MCS).."]", -- The crafting table GUI was measured at 176px*166px in Minecraft, so we set these values to that.
 
-		"no_prepend[]", -- Disable the default prepends, as we want to define our own prepends which are more accurate to Minecraft.
+		"no_prepend[]", -- Disable the default prepends for now, as we want to define our own prepends which are more accurate to Minecraft.
 
 		"bgcolor[;true;#000000BB]", -- How much the background darkens when the GUI is open. Minecraft has a gradient darkening, so this is not 100% accurate.
 
-		"listcolors[#0000;#FFFFFF75;#0000;#0000007F;#FFFFFFFF]", -- The colour of the inventory slots, and the tooltips of items when hovering the cursor over them.
+		"listcolors[#0000;#FFFFFF75;#0000;#0000007F;#FFFFFFFF]", -- The colour of the inventory slots, and the colour of the tooltips of items when hovering the cursor over them.
 
-		"style_type[label;font_size="..((LSM*96)*5*MCS).."]", -- The font size of the labels.
+		"style_type[label;font_size="..((LSM*96)*5*MCS).."]", -- The font size of the labels. This only affects the fallback labels for unsupported languages.
 
-		"style_type[list;".."size="..(LSM*16*MCS)..","..(LSM*16*MCS)..";".."spacing="..(LSM*2*MCS)..","..(LSM*2*MCS).."]", -- The size and spacing of the inventory slots within the GUI.
+		"style_type[list;".."size="..(LSM*16*MCS)..","..(LSM*16*MCS)..";".."spacing="..(LSM*2*MCS)..","..(LSM*2*MCS).."]", -- The size and spacing of the inventory slots.
 
-		"style_type[button;border=false;bgimg=button.png;sound=mesecons_button_push]", -- The default state of the recipe book button.
+		"style_type[button;border=false;bgimg=button.png;sound=mesecons_button_push]", -- The default state of buttons.
 
 
 	-- The visual part of the GUI.
