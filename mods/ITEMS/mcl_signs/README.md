@@ -4,7 +4,7 @@
 * Adapted for MineClone2 by Wuzzy
 * Later massively extended by Michieal
 * Mostly rewritten for Mineclonia and simplified by cora
-* Reworked for VoxeLibre with UTF-8 support by rudzik8
+* Reworked for VoxeLibre with UTF-8 support by EmoryNB
 * Word wrap algorithm improved by kno10
 
 ## Characters
@@ -77,7 +77,7 @@ _UTF-8 strings_, or _u-strings_ for short.
 
 **Font:** CC0
 * Originally by PilzAdam (WTFPL)
-* Modified and massively extended by rudzik8
+* Modified and massively extended by EmoryNB
 * Can be found in the `/textures` sub-directory of game root, prefixed with `_`
 * See <https://creativecommons.org/publicdomain/zero/1.0/> for details
 
