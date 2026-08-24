@@ -135,6 +135,9 @@ function.
 
 Calls the function `func` after `delay` ticks.
 
+Its important to note that the callback might never get called if the
+server shuts down before the delay finishes
+
 ## `mcl_redstone.get_power(pos, dir)`
 
 Returns the power level coming from `dir` into the node at pos. The direction
