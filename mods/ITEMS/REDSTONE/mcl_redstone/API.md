@@ -154,6 +154,16 @@ Schedule an update to redstone component at `pos`.
 Like `minetest.swap_node` but will trigger redstone updates to surrounding
 nodes.
 
+## `mcl_redstone.get_current_tick()`
+
+Returns the current redstone tick. This counts ticks from the beginning of
+the world, not since server startup
+
+## `mcl_redstone.register_on_tick(callback)`
+
+Registers a callback to get called at the end of every redstone tick.
+`callback` gets passed the current tick as the first argument
+
 ## `mcl_redstone.tick_step()`
 
 When called, does the next redstone tick
