@@ -14,7 +14,19 @@ else
 	eventqueue = mcl_redstone._priority_queue()
 end
 
-local current_tick = 0
+local modstorage = core.get_mod_storage()
+
+local current_tick = modstorage:get_int("mcl_redstone_current_tick")
+
+core.register_on_shutdown(function()
+	modstorage:set_string("mcl_redstone_current_tick", current_tick)
+end)
+
+local registered_on_tick_callbacks = {}
+
+function mcl_redstone.register_on_tick(callback)
+	table.insert(registered_on_tick_callbacks, callback)
+end
 
 -- Table containing the highest priority update event for each node position.
 local update_event_tab = {}
@@ -60,7 +72,7 @@ function mcl_redstone._abort_pending_update(pos)
 	update_event_tab[h] = nil
 end
 
-function mcl_redstone._get_current_tick()
+function mcl_redstone.get_current_tick()
 	return current_tick
 end
 
@@ -162,6 +174,10 @@ function mcl_redstone.tick_step()
 		nupdates = nupdates + 1
 		mcl_redstone._call_update(pos)
 		mcl_redstone._pending_updates[h] = nil
+	end
+
+	for _, callback in pairs(registered_on_tick_callbacks) do
+		callback(current_tick)
 	end
 
 	log_redstone_events(false)
