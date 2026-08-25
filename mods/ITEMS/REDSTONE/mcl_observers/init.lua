@@ -60,7 +60,7 @@ local function on_scheduled(pos)
 
 	if is_on then
 		mcl_redstone.swap_node(pos, {name = ndef._mcl_observer_off, param2 = node.param2})
-		set_deactivation_time(pos, mcl_redstone._get_current_tick())
+		set_deactivation_time(pos, mcl_redstone.get_current_tick())
 	else
 		mcl_redstone.swap_node(pos, {name = ndef._mcl_observer_on, param2 = node.param2})
 		set_scheduled_update(pos)
@@ -84,7 +84,7 @@ function mcl_observers.observer_activate(pos)
 	-- The observer might have triggered by something else 1 tick before arrival. Turn off if so.
 	if is_on then
 		mcl_redstone.swap_node(pos, {name = ndef._mcl_observer_off, param2 = node.param2})
-		set_deactivation_time(pos, mcl_redstone._get_current_tick())
+		set_deactivation_time(pos, mcl_redstone.get_current_tick())
 		mcl_redstone._notify_observer_neighbours(pos)
 	end
 
@@ -141,7 +141,7 @@ local commdef_off = table.merge(commdef, {
 			-- the redstone implementation processes update callbacks during a later separate phase.
 			local frontnode   = core.get_node(from_pos)
 			local is_observer = core.get_item_group(frontnode.name, "observer") ~= 0
-			if not is_observer and get_deactivation_time(pos) == mcl_redstone._get_current_tick() then
+			if not is_observer and get_deactivation_time(pos) == mcl_redstone.get_current_tick() then
 				return
 			end
 
