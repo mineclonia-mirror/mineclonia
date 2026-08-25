@@ -207,7 +207,7 @@ local offdef = {
 					local frontdef  = core.registered_nodes[frontnode.name]
 					local h         = core.hash_node_position(pos)
 					-- Only detach if we pushed a block when extending
-					activation_time_tab[h] = frontdef and not frontdef.buildable_to and mcl_redstone._get_current_tick() or nil
+					activation_time_tab[h] = frontdef and not frontdef.buildable_to and mcl_redstone.get_current_tick() or nil
 				end
 
 				mcl_redstone.after(1, function()
@@ -240,7 +240,7 @@ local ondef = {
 				local detach = false
 				if ONE_TICK_DETACH then
 					local on_time = activation_time_tab[core.hash_node_position(pos)]
-					if on_time ~= nil and (mcl_redstone._get_current_tick() - on_time) <= 1 then
+					if on_time ~= nil and (mcl_redstone.get_current_tick() - on_time) <= 1 then
 						detach = true
 					end
 				end
