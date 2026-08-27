@@ -9,6 +9,7 @@ local end_fixes_in_singlenode = true
 --
 
 core.register_alias("mapgen_air", "air")
+core.register_alias("mapgen_dirt", "mcl_core:dirt")
 core.register_alias("mapgen_stone", "mcl_core:stone")
 core.register_alias("mapgen_water_source", "mcl_core:water_source")
 core.register_alias("mapgen_lava_source", "air") -- Built-in lava generator is too unpredictable, we generate lava on our own
