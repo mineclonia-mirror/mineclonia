@@ -233,12 +233,27 @@ function mcl_player.player_knockback (player, hitter, dir, tool_capabilities, da
 	end
 
 	if damage > 0 then
+		local amount_of_netherite_pieces = 0
+		local armor_list = player:get_inventory():get_list("armor")
+
+		for _, piece in pairs(armor_list) do
+			if core.get_item_group(piece:get_name(), "armor_netherite") > 0 then
+				amount_of_netherite_pieces = amount_of_netherite_pieces + 1
+			end
+		end
+
 		local velocity = player:get_velocity ()
 		local standing
 			= velocity.y < 0.2 and velocity.y > -0.2 -- Very dubious test.
 		local knockback
-			= mcl_util.calculate_knockback (velocity, knockback * 0.5,
-							0, standing, dir.x, dir.z)
+			= mcl_util.calculate_knockback (
+				velocity,
+				knockback * 0.5 * (1 - (amount_of_netherite_pieces * 0.1)),
+				0,
+				standing,
+				dir.x,
+				dir.z
+			)
 		if not mcl_serverplayer.is_csm_capable (player) then
 			local delta = vector.subtract (knockback, velocity)
 			player:add_velocity (delta)
