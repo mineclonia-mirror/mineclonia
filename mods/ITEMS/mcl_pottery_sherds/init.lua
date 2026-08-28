@@ -187,7 +187,7 @@ core.register_node("mcl_pottery_sherds:pot", {
 	is_ground_content = false,
 	groups = {
 		handy = 1, pickaxey = 1, dig_immediate = 3, deco_block = 1,
-		dig_by_piston = 1, not_in_creative_inventory = 1,
+		dig_by_piston = 1, not_in_creative_inventory = 0,
 		pathfinder_partial = 2, jigsaw_construct = 1,
 		jigsaw_preserve_meta = 1
 	},
