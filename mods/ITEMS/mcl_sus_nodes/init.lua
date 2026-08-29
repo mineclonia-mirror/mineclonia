@@ -11,17 +11,6 @@ local tpl = {
 	paramtype = "light",
 }
 
-local sus_drops_default = {
-	"mcl_core:diamond",
-	"mcl_farming:wheat_item",
-	"mcl_dyes:blue",
-	"mcl_dyes:white",
-	"mcl_dyes:orange",
-	"mcl_dyes:light_blue",
-	"mcl_core:coal_lump",
-	"mcl_flowerpots:flower_pot",
-}
-
 local desert_well_loot = {
 	stacks_min = 1,
 	stacks_max = 1,
@@ -262,7 +251,7 @@ local function get_random_item(pos)
 					return lootitems[1]
 				end
 			else
-				return sus_drops_default[pr:next(1, #sus_drops_default)]
+				return nil
 			end
 		end
 	end
@@ -278,9 +267,13 @@ local function brush_node(itemstack, user, pointed_thing)
 		local def = core.registered_nodes[node.name]
 
 		if not item_entities[ph] then
+			local item = get_random_item(pos)
+			if not item then
+				return
+			end
 			local o = core.add_entity(pos + (dir * 0.38),"mcl_sus_nodes:item_entity")
 			local l = o:get_luaentity()
-			l._item = get_random_item(pos)
+			l._item = item
 			if not l._item then
 				o:remove()
 				return
@@ -339,7 +332,6 @@ local function register_sus_node(name,source,overrides)
 	local sdef = core.registered_nodes[source]
 	assert(sdef, "[mcl_sus_nodes] trying to register "..tostring(name).." but source node "..tostring(source).."doesn't exist")
 	local main_itemstring = "mcl_sus_nodes:"..name
-	table.shuffle(sus_drops_default)
 	local def = table.merge(sdef, tpl, {
 		description = S("Suspicious "..name),
 		tiles = overlay_tiles(sdef.tiles,"mcl_sus_nodes_suspicious_overlay.png"),
