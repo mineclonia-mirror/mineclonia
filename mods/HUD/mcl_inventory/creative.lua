@@ -133,11 +133,13 @@ core.register_on_mods_loaded(function()
 			table.insert(inventory_lists["nici"], name)
 		end
 
+		local already_added = {}
 		if def._get_all_virtual_items then
 			for category, list in pairs(def._get_all_virtual_items()) do
 				for _, virtual_item in pairs(list) do
 					table.insert(inventory_lists[category], virtual_item)
-					if category ~= "nici" then
+					if category ~= "nici" and not already_added[virtual_item] then
+						already_added[virtual_item] = true
 						table.insert(inventory_lists["all"], virtual_item)
 					end
 				end
@@ -183,11 +185,13 @@ local function set_inv_search(filter, player)
 			end
 		end
 
+		local already_added = {}
 		if def._get_all_virtual_items then
 			for category, list in pairs(def._get_all_virtual_items()) do
 				if category ~= "nici" then
 					for _, virtual_item in pairs(list) do
-						if filter_item (virtual_item, core.strip_colors(ItemStack(virtual_item):get_description()), lang, filter) then
+						if filter_item (virtual_item, core.strip_colors(ItemStack(virtual_item):get_description()), lang, filter) and not already_added[virtual_item] then
+							already_added[virtual_item] = true
 							table.insert(creative_list, virtual_item)
 						end
 					end
