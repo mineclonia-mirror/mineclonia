@@ -242,12 +242,18 @@ core.register_node("mcl_grindstone:grindstone", {
 		local meta = core.get_meta(pos)
 		if from_list == "output" and to_list == "input" then
 			local inv = meta:get_inventory()
+			local xp_earnt = 0
 			for i = 1, inv:get_size("input") do
 				if i ~= to_index then
 					local istack = inv:get_stack("input", i)
+					xp_earnt = xp_earnt + calculate_xp(istack)
 					istack:set_count(math.max(0, istack:get_count() - count))
 					inv:set_stack("input", i, istack)
 				end
+			end
+
+			if mcl_experience.throw_xp and xp_earnt > 0 then
+				mcl_experience.throw_xp(pos, xp_earnt)
 			end
 		end
 		update_grindstone_slots(meta)
