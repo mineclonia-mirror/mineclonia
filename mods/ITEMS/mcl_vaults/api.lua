@@ -162,7 +162,7 @@ local function activate_item_entity(pos)
 	local count = 0
 	for o in core.objects_inside_radius(pos, 0.1) do
 		local lua_entity = o:get_luaentity()
-		if lua_entity.name == "mcl_vaults:item_entity" then
+		if lua_entity and lua_entity.name == "mcl_vaults:item_entity" then
 			count = count + 1
 			if count == 1 then
 				entity = o
