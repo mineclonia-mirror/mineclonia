@@ -225,8 +225,11 @@ core.register_node("mcl_pottery_sherds:pot", {
 		update_entities(pos, true)
 	end,
 	after_dig_node = function(pos, _, oldmeta, digger)
-		local wielded = digger:get_wielded_item()
-		local silk_touch = mcl_enchanting.get_enchantment(wielded, "silk_touch") ~= 0
+		local silk_touch = false
+		if digger and digger:is_player() then
+			local wielded = digger:get_wielded_item()
+			silk_touch = mcl_enchanting.get_enchantment(wielded, "silk_touch") ~= 0
+		end
 		drop_items(pos, oldmeta, silk_touch)
 	end,
 	on_rotate = function(_, _,  _, mode, _)
