@@ -242,18 +242,18 @@ core.register_node("mcl_grindstone:grindstone", {
 		local meta = core.get_meta(pos)
 		if from_list == "output" and to_list == "input" then
 			local inv = meta:get_inventory()
-			local xp_earnt = 0
+			local xp_retrieved = 0
 			for i = 1, inv:get_size("input") do
 				if i ~= to_index then
 					local istack = inv:get_stack("input", i)
-					xp_earnt = xp_earnt + calculate_xp(istack)
+					xp_retrieved = xp_retrieved + calculate_xp(istack)
 					istack:set_count(math.max(0, istack:get_count() - count))
 					inv:set_stack("input", i, istack)
 				end
 			end
 
-			if mcl_experience.throw_xp and xp_earnt > 0 then
-				mcl_experience.throw_xp(pos, xp_earnt)
+			if mcl_experience.throw_xp and xp_retrieved > 0 then
+				mcl_experience.throw_xp(pos, xp_retrieved)
 			end
 		end
 		update_grindstone_slots(meta)
@@ -261,32 +261,32 @@ core.register_node("mcl_grindstone:grindstone", {
 	on_metadata_inventory_take = function(pos, listname, _, stack)
 		local meta = core.get_meta(pos)
 		if listname == "output" then
-			local xp_earnt = 0
+			local xp_retrieved = 0
 			local inv = meta:get_inventory()
 			local input1 = inv:get_stack("input", 1)
 			local input2 = inv:get_stack("input", 2)
 			-- Both slots occupied?
 			if not input1:is_empty() and not input2:is_empty() then
 				-- Get xp earnt from the enchanted items
-				xp_earnt = calculate_xp(input1) + calculate_xp(input2)
+				xp_retrieved = calculate_xp(input1) + calculate_xp(input2)
 				input1:take_item(1)
 				input2:take_item(1)
 				inv:set_stack("input", 1, input1)
 				inv:set_stack("input", 2, input2)
 			else
 				if not input1:is_empty() then
-					xp_earnt = calculate_xp(input1)
+					xp_retrieved = calculate_xp(input1)
 					input1:set_count(math.max(0, input1:get_count() - stack:get_count()))
 					inv:set_stack("input", 1, input1)
 				end
 				if not input2:is_empty() then
-					xp_earnt = calculate_xp(input2)
+					xp_retrieved = calculate_xp(input2)
 					input2:set_count(math.max(0, input2:get_count() - stack:get_count()))
 					inv:set_stack("input", 2, input2)
 				end
 			end
-			if mcl_experience.throw_xp and xp_earnt > 0 then
-				mcl_experience.throw_xp(pos, xp_earnt)
+			if mcl_experience.throw_xp and xp_retrieved > 0 then
+				mcl_experience.throw_xp(pos, xp_retrieved)
 			end
 		elseif listname == "input" then
 			update_grindstone_slots(meta)
