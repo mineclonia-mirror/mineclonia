@@ -493,11 +493,6 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 		lay_down(player, nil, nil, false)
 		update_formspecs(false)
 	end
-
-	if fields.force then
-		update_formspecs(is_night_skip_enabled())
-		mcl_beds.sleep()
-	end
 end)
 
 core.register_on_player_hpchange(function(player, hp_change)
