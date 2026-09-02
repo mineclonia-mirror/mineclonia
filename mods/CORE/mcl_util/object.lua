@@ -27,7 +27,7 @@ end
 
 function mcl_util.get_object_name(object)
 	if not object or not object:is_valid() then
-		return "something"
+		return "[Invalid object]"
 	end
 	if object:is_player() then
 		return object:get_player_name()
@@ -35,7 +35,7 @@ function mcl_util.get_object_name(object)
 		local luaentity = object:get_luaentity()
 
 		if not luaentity then
-			return "something"
+			return tostring(object)
 		end
 
 		return luaentity.nametag and luaentity.nametag ~= "" and luaentity.nametag or luaentity.description or luaentity.name
