@@ -16,10 +16,10 @@ end
 
 local modstorage = core.get_mod_storage()
 
-local current_tick = modstorage:get_int("mcl_redstone_current_tick")
+local current_tick = modstorage:get_float("mcl_redstone_current_tick")
 
 core.register_on_shutdown(function()
-	modstorage:set_int("mcl_redstone_current_tick", current_tick)
+	modstorage:set_float("mcl_redstone_current_tick", current_tick)
 end)
 
 local registered_on_tick_callbacks = {}
