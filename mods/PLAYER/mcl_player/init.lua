@@ -213,6 +213,10 @@ mcl_damage.register_modifier(function(obj, damage, reason)
 end, -200)
 
 function mcl_player.player_knockback (player, hitter, dir, tool_capabilities, damage)
+	if mcl_shields and mcl_shields.is_blocking(player) then
+		return
+	end
+
 	local knockback = 1
 
 	if hitter and hitter:is_valid() then
