@@ -682,7 +682,7 @@ core.register_entity(":__builtin:item", {
 			-- Don't infinetly fall into unloaded map
 			self:disable_physics()
 			return
-		elseif core.registered_nodes[node.name]._on_object_in then
+		elseif node.name and core.registered_nodes[node.name] and core.registered_nodes[node.name]._on_object_in then
 			core.registered_nodes[node.name]._on_object_in(p, node, self.object)
 		end
 
