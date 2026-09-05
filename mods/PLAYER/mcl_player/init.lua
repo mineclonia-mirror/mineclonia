@@ -212,7 +212,7 @@ mcl_damage.register_modifier(function(obj, damage, reason)
 	end
 end, -200)
 
-function mcl_player.player_knockback (player, hitter, dir, tool_capabilities, damage)
+function mcl_player.player_knockback (player, hitter, dir, tool_capabilities, damage, reason)
 	local knockback = 1
 
 	if hitter and hitter:is_valid() then
@@ -232,10 +232,14 @@ function mcl_player.player_knockback (player, hitter, dir, tool_capabilities, da
 		damage = 1
 	end
 
-	local blocked = mcl_shields and mcl_shields.attack_blocked(player)
-
-	if blocked then
-		return
+	if mcl_shields and hitter and hitter:is_valid() then
+		local reason = {
+			type = hitter:is_player() and "player" or "mob",
+			direct = hitter,
+		}
+		if mcl_shields.can_block(player, nil, reason) then
+			return
+		end
 	end
 
 	if damage > 0 then
