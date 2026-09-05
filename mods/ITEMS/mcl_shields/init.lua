@@ -34,6 +34,7 @@ local overlay = mcl_enchanting.overlay
 local hud = "mcl_shield_hud.png"
 
 local shield_disables = {}
+local blocked_attacks = {}
 
 core.register_tool("mcl_shields:shield", {
 	description = S("Shield"),
@@ -327,6 +328,9 @@ end
 mcl_damage.register_modifier(function(obj, damage, reason)
 	local can_block, stack, dpos = mcl_shields.can_block (obj, nil, reason)
 	if can_block and dpos then
+		if reason.type ~= "explosion" then
+			blocked_attacks[obj] = true
+		end
 		local wielded_item = mcl_util.get_wielditem(reason.direct)
 		if core.get_item_group(wielded_item:get_name(), "axe") > 0 then
 			mcl_shields.disable_player_shield(obj)
@@ -343,6 +347,14 @@ mcl_damage.register_modifier(function(obj, damage, reason)
 		return 0
 	end
 end)
+
+function mcl_shields.attack_blocked(player)
+	if blocked_attacks[player] then
+		blocked_attacks[player] = nil
+		return true
+	end
+	return false
+end
 
 local function modify_shield(player, vpos, vrot, i)
 	local arm = "Right"
