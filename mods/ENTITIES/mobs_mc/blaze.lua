@@ -330,6 +330,10 @@ mcl_mobs.register_arrow ("mobs_mc:blaze_fireball", {
 
 	-- Direct hit, no fire... just plenty of pain
 	hit_player = function (self, player)
+		local can_block = mcl_shields.can_block(player)
+		if can_block then
+			return
+		end
 		mcl_mobs.get_arrow_damage_func (5, "fireball") (self, player)
 		mcl_burning.set_on_fire (player, 5)
 	end,
