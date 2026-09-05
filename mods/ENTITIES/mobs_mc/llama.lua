@@ -545,6 +545,12 @@ local llama_spit = {
 }
 
 function llama_spit:hit_object (object)
+	if object:is_player() then
+		local can_block = mcl_shields.can_block(object)
+		if can_block then
+			return
+		end
+	end
 	return mcl_mobs.get_arrow_damage_func (1, "spit", self._shooter) (self, object)
 end
 
