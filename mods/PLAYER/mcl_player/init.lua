@@ -212,7 +212,7 @@ mcl_damage.register_modifier(function(obj, damage, reason)
 	end
 end, -200)
 
-function mcl_player.player_knockback (player, hitter, dir, tool_capabilities, damage, reason)
+function mcl_player.player_knockback (player, hitter, dir, tool_capabilities, damage)
 	local knockback = 1
 
 	if hitter and hitter:is_valid() then
