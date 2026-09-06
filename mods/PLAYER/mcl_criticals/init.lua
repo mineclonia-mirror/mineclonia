@@ -1,9 +1,9 @@
 mcl_damage.register_modifier(function(obj, damage, reason)
 	if reason.type == "player" then
 		local hitter = reason.direct
-		if mcl_sprint.is_sprinting(hitter:get_player_name()) and (hitter:get_velocity() or hitter:get_velocity()).y >= 0 then
+		if mcl_sprint.is_sprinting(hitter:get_player_name()) and hitter:get_velocity().y >= 0 then
 			obj:add_velocity(hitter:get_velocity())
-		elseif (hitter:get_velocity() or hitter:get_velocity()).y < 0 and damage > 0 then
+		elseif hitter:get_velocity().y < 0 and damage > 0 then
 			local pos = mcl_util.get_object_center(obj)
 			core.add_particlespawner({
 				amount = 15,
