@@ -54,7 +54,7 @@ local function update_cartography_table(player)
 	})
 
 	local inv = player:get_inventory()
-	inv:set_stack ("cartography_table_sorter", 1, ItemStack (""))
+	inv:set_stack ("cartography_table_sorter", 1, ItemStack ())
 	local stack = inv:get_stack ("cartography_table_input", 1)
 	local operation_selected = false
 	local texture, id
@@ -86,7 +86,7 @@ local function update_cartography_table(player)
 				local def = stack:get_definition ()
 				stack:get_meta ():set_string ("description", table.concat {
 					def.description, "\n",
-					core.colorize (mcl_colors.GRAY,
+					C(mcl_colors.GRAY,
 						       mcl_maps.describe_map (map.x_start,
 									      map.z_start,
 									      map.scale + 1)),
@@ -131,7 +131,7 @@ local function update_cartography_table(player)
 				.. texture
 				.. "]"
 		end
-		inv:set_stack ("cartography_table_output", 1, nil)
+		inv:set_stack ("cartography_table_output", 1, ItemStack())
 	end
 
 	core.show_formspec (player:get_player_name(), formspec_name, formspec)
@@ -148,12 +148,12 @@ core.register_on_joinplayer(function(player)
 	-- The player might have items remaining in the slots from the previous join; this is likely
 	-- when the server has been shutdown and the server didn't clean up the player inventories.
 	mcl_util.move_player_list(player, "cartography_table_input")
-	player:get_inventory():set_list("cartography_table_output", {})
+	inv:set_stack("cartography_table_output", 1, ItemStack ())
 end)
 
 core.register_on_leaveplayer(function(player)
 	mcl_util.move_player_list(player, "cartography_table_input")
-	player:get_inventory():set_list("cartography_table_output", {})
+	player:get_inventory():set_stack("cartography_table_output", 1, ItemStack())
 end)
 
 local function remove_from_input(player, inventory, count)
@@ -234,13 +234,12 @@ core.register_allow_player_inventory_action(function(player, action, inventory, 
 							 "filled_map") > 0 then
 				return 1
 			end
-			if index == 2 and stack:get_name() == "mcl_core:paper" then
-				return inventory_info.count
-			end
-			if index == 2 and stack:get_name() == "mcl_maps:map_empty" then
-				return inventory_info.count
-			end
-			if index == 2 and stack:get_name() == "mcl_panes:pane_natural_flat" then
+			local name = stack:get_name()
+			if index == 2
+					and (
+					name == "mcl_core:paper"
+					or name == "mcl_maps:map_empty"
+					or name == "mcl_panes:pane_natural_flat") then
 				return inventory_info.count
 			end
 			return 0
@@ -280,7 +279,7 @@ core.register_on_player_inventory_action(function(player, action, inventory, inv
 			end
 
 			-- Leftovers should not exist here.
-			inventory:set_stack ("cartography_table_sorter", 1, ItemStack (""))
+			inventory:set_stack ("cartography_table_sorter", 1, ItemStack ())
 			update_cartography_table (player)
 		end
 	elseif action == "put" then
@@ -298,7 +297,7 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= formspec_name then return end
 	if fields.quit then
 		mcl_util.move_player_list(player, "cartography_table_input")
-		player:get_inventory():set_list("cartography_table_output", {})
+		player:get_inventory():set_stack("cartography_table_output", 1, ItemStack())
 		return
 	end
 end)
