@@ -633,73 +633,72 @@ local function create_new_map (itemstack, placer, pointed_thing)
 		return new_stack
 	end
 
-	if placer and placer:is_valid () then
-		if not enable_real_maps then
-			local msg = S ("Maps are not enabled on this server")
-			core.chat_send_player (placer:get_player_name (), msg)
-			return itemstack
-		end
-		local placer_pos = placer:get_pos ()
-		local pos = mcl_util.get_nodepos (placer_pos)
-		local dim = mcl_worlds.pos_to_dimension (pos)
-		if dim == "void" then
-			local msg = S ("Maps cannot be created at this position")
-			core.chat_send_player (placer:get_player_name (), msg)
-			return itemstack
-		end
-		local id = allocate_map_id ()
-		local id, map = create_new_map_1 (id, pos, dim)
-		local stack = ItemStack ("mcl_maps:map")
+	if not placer or not placer:is_valid () then
+		return
+	end
 
-		-- Prepare the map's heightmap and fill the map.
-		local y1 = pos.y - floor (MAP_UPDATE_AREA_Y / 2)
-		prepare_map_generation_vm (map, y1)
-		prepare_map_heights (map, y1)
-
-		local radius = CIRCLE_RADIUS
-		local x1 = mathmax (pos.x - radius, map.x_start)
-		local x2 = -1 + mathmin (pos.x + radius,
-					 map.x_start + MAP_UPDATE_AREA)
-		local z1 = mathmax (pos.z - radius, map.z_start)
-		local z2 = -1 + mathmin (pos.z + radius,
-					 map.z_start + MAP_UPDATE_AREA)
-
-		-- Generate so much of the map as is within range of
-		-- the player.
-		if x1 <= x2 and z1 <= z2 then
-			for z = z1, z2 do
-				-- Generate a sphere.
-				local dist = mathabs (z - pos.z)
-				local r = mathsqrt (CIRCLE_RADIUS_SQR - dist * dist)
-				local x1 = mathmax (x1, floor (pos.x - r + 0.5))
-					- map.x_start
-				local x2 = mathmin (x2, floor (pos.x + r + 0.5))
-					- map.x_start
-				if x2 >= x1 then
-					local turn = z - map.z_start
-					produce_map_turn (map, x1, y1, turn, x2 - x1 + 1)
-				end
-			end
-		end
-
-		-- Save the map and initialize the ItemStack.
-		write_map_data (id, map)
-		stack:get_meta ():set_string ("mcl_maps:map_id", id)
-		tt.reload_itemstack_description (stack)
-
-		itemstack:take_item ()
-		if itemstack:is_empty () then
-			return stack
-		end
-
-		local inv = placer:get_inventory()
-		if inv:room_for_item ("main", stack) then
-			inv:add_item ("main", stack)
-		else
-			core.add_item (placer_pos, stack)
-		end
+	if not enable_real_maps then
+		local msg = S ("Maps are not enabled on this server")
+		core.chat_send_player (placer:get_player_name (), msg)
 		return itemstack
 	end
+	local placer_pos = placer:get_pos ()
+	local pos = mcl_util.get_nodepos (placer_pos)
+	local dim = mcl_worlds.pos_to_dimension (pos)
+	if dim == "void" then
+		local msg = S ("Maps cannot be created at this position")
+		core.chat_send_player (placer:get_player_name (), msg)
+		return itemstack
+	end
+	local id = allocate_map_id ()
+	local id, map = create_new_map_1 (id, pos, dim)
+	local stack = ItemStack ("mcl_maps:map")
+
+	-- Prepare the map's heightmap and fill the map.
+	local y1 = pos.y - floor (MAP_UPDATE_AREA_Y / 2)
+	prepare_map_generation_vm (map, y1)
+	prepare_map_heights (map, y1)
+
+	local radius = CIRCLE_RADIUS
+	local x1 = mathmax (pos.x - radius, map.x_start)
+	local x2 = -1 + mathmin (pos.x + radius,
+				 map.x_start + MAP_UPDATE_AREA)
+	local z1 = mathmax (pos.z - radius, map.z_start)
+	local z2 = -1 + mathmin (pos.z + radius,
+				 map.z_start + MAP_UPDATE_AREA)
+
+	-- Generate so much of the map as is within range of
+	-- the player.
+	if x1 <= x2 and z1 <= z2 then
+		for z = z1, z2 do
+			-- Generate a sphere.
+			local dist = mathabs (z - pos.z)
+			local r = mathsqrt (CIRCLE_RADIUS_SQR - dist * dist)
+			local x1 = mathmax (x1, floor (pos.x - r + 0.5))
+				- map.x_start
+			local x2 = mathmin (x2, floor (pos.x + r + 0.5))
+				- map.x_start
+			if x2 >= x1 then
+				local turn = z - map.z_start
+				produce_map_turn (map, x1, y1, turn, x2 - x1 + 1)
+			end
+		end
+	end
+
+
+	mcl_maps.produce_map_test("singleplayer", 1)
+	-- Save the map and initialize the ItemStack.
+	write_map_data (id, map)
+	stack:get_meta ():set_string ("mcl_maps:map_id", id)
+	tt.reload_itemstack_description (stack)
+
+	itemstack:take_item ()
+	if itemstack:is_empty () then
+		return stack
+	end
+
+	mcl_util.give_item_to_player(placer, itemstack)
+	return itemstack
 end
 
 core.register_craftitem ("mcl_maps:map_empty", {
@@ -1068,12 +1067,7 @@ core.register_chatcommand ("explorer_map", {
 		local pos = mcl_util.get_nodepos (map_pos)
 		local stack = mcl_maps.create_explorer_map_now (pos, "mcl_maps:map")
 		if stack then
-			local inv = player:get_inventory ()
-			if inv:room_for_item ("main", stack) then
-				inv:add_item ("main", stack)
-			else
-				core.add_item (player:get_pos (), stack)
-			end
+			mcl_util.give_item_to_player(player, stack)
 		end
 	end
 })
@@ -1097,12 +1091,7 @@ core.register_chatcommand ("explorer_map_item", {
 		local pos = mcl_util.get_nodepos (map_pos)
 		local stack = mcl_maps.initialize_explorer_map (pos, ItemStack (id))
 		if stack then
-			local inv = player:get_inventory ()
-			if inv:room_for_item ("main", stack) then
-				inv:add_item ("main", stack)
-			else
-				core.add_item (player:get_pos (), stack)
-			end
+			mcl_util.give_item_to_player(player, stack)
 		end
 	end
 })
@@ -1573,12 +1562,8 @@ core.register_chatcommand ("scale_map", {
 					-- specified.
 					scaled:set_name ("mcl_maps:map_locked")
 				end
-				local inv = player:get_inventory ()
-				if inv:room_for_item ("main", scaled) then
-					inv:add_item ("main", scaled)
-				else
-					core.add_item (player:get_pos (), scaled)
-				end
+
+				mcl_util.give_item_to_player(player, scaled)
 			end
 		end
 	end
@@ -2101,12 +2086,7 @@ core.register_chatcommand ("create_old_map", {
 			pos.z = band (pos.z, -128)
 			meta:set_string ("mcl_maps:minp",
 					 core.pos_to_string (pos))
-			local inv = player:get_inventory ()
-			if inv:room_for_item ("main", stack) then
-				inv:add_item ("main", stack)
-			else
-				core.add_item (player:get_pos (), stack)
-			end
+			mcl_util.give_item_to_player(player, stack)
 		end
 	end
 })

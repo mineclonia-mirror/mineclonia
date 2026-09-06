@@ -1118,8 +1118,8 @@ function mcl_util.move_list(src_inv, src_listname, out_inv, out_listname, pos, d
 		end
 
 		stack:clear()
-		src_inv:set_stack(src_listname, i, stack)
 	end
+	src_inv:set_list(src_listname, src_list)
 end
 
 ---Move items from a player's inventory list to its main inventory list, drop items that do not fit in front of him.
@@ -1129,4 +1129,13 @@ function mcl_util.move_player_list(player, src_listname)
 	mcl_util.move_list(player:get_inventory(), src_listname, player:get_inventory(), "main",
 			   vector.offset(player:get_pos(), 0, 1.2, 0),
 			   player:get_look_dir(), false)
+end
+
+function mcl_util.give_item_to_player(player, stack)
+	local inv = player:get_inventory()
+	if inv:room_for_item ("main", stack) then
+		inv:add_item ("main", stack)
+	else
+		core.add_item (player:get_pos(), stack)
+	end
 end
