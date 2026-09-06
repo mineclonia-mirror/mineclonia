@@ -113,7 +113,7 @@ function mcl_serverplayer.step_maps (state, player, dtime)
 	local meta = wielditem:get_meta ()
 	local name = wielditem:get_name ()
 
-	-- Load the IDs to be compared aainst the outstanding map
+	-- Load the IDs to be compared against the outstanding map
 	-- request.
 	local id, explorer_map_id
 	if core.get_item_group (name, "explorer_map") > 0 then
