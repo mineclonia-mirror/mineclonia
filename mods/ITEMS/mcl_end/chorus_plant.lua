@@ -7,17 +7,6 @@ local S = core.get_translator(core.get_current_modname())
 
 local MAX_FLOWER_AGE = 5 -- Maximum age of chorus flower before it dies
 
-local chorus_flower_box = {
-	type = "fixed",
-	fixed = {
-		{-0.5, -0.375, -0.375, 0.5, 0.375, 0.375},
-		{-0.375, -0.375, 0.375, 0.375, 0.375, 0.5},
-		{-0.375, -0.375, -0.5, 0.375, 0.375, -0.375},
-		{-0.375, 0.375, -0.375, 0.375, 0.5, 0.375},
-		{-0.375, -0.5, -0.375, 0.375, -0.375, 0.375},
-	}
-}
-
 -- Helper function
 local function round(num, idp)
 	local mult = 10^(idp or 0)
@@ -110,36 +99,41 @@ function mcl_end.check_detach_chorus_plant(pos, _, _, digger)
 	mcl_end.detach_chorus_plant(pos, digger)
 end
 
-core.register_node("mcl_end:chorus_flower", {
+local chorus_flower_groups = {
+	handy = 1, axey = 1, dig_by_piston = 1, destroy_by_lava_flow = 1, chorus_plant = 1,
+	unsticky = 1, dig_by_trident = 1, not_breaking_cactus = 1
+}
+
+local tpl_chorus_flower = {
+	drawtype = "nodebox",
+	paramtype = "light",
+	sunlight_propagates = true,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.375, -0.375, 0.5, 0.375, 0.375},
+			{-0.375, -0.375, 0.375, 0.375, 0.375, 0.5},
+			{-0.375, -0.375, -0.5, 0.375, 0.375, -0.375},
+			{-0.375, 0.375, -0.375, 0.375, 0.5, 0.375},
+			{-0.375, -0.5, -0.375, 0.375, -0.375, 0.375},
+		}
+	},
+	selection_box = {type = "regular"},
+	sounds = mcl_sounds.node_sound_wood_defaults(),
+	after_dig_node = mcl_end.check_detach_chorus_plant,
+	_mcl_hardness = 0.4,
+	_on_arrow_hit = function(pos)
+		core.node_dig(pos, core.get_node(pos))
+	end,
+}
+
+core.register_node("mcl_end:chorus_flower", table.merge(tpl_chorus_flower, {
 	description = S("Chorus Flower"),
 	_tt_help = S("Grows on end stone"),
 	_doc_items_longdesc = S("A chorus flower is the living part of a chorus plant. It can grow into a tall chorus plant, step by step. When it grows, it may die on old age eventually. It also dies when it is unable to grow."),
 	_doc_items_usagehelp = S("Place it and wait for it to grow. It can only be placed on top of end stone, on top of a chorus plant stem, or at the side of exactly one chorus plant stem."),
-	tiles = {
-		"mcl_end_chorus_flower.png",
-		"mcl_end_chorus_flower.png",
-		"mcl_end_chorus_flower.png",
-		"mcl_end_chorus_flower.png",
-		"mcl_end_chorus_flower.png",
-		"mcl_end_chorus_flower.png",
-	},
-	drawtype = "nodebox",
-	paramtype = "light",
-	sunlight_propagates = true,
-	node_box = chorus_flower_box,
-	selection_box = { type = "regular" },
-	sounds = mcl_sounds.node_sound_wood_defaults(),
-	groups = {
-		handy = 1,
-		axey = 1,
-		deco_block = 1,
-		dig_by_piston = 1,
-		destroy_by_lava_flow = 1,
-		chorus_plant = 1,
-		unsticky = 1,
-		dig_by_trident = 1,
-		not_breaking_cactus = 1,
-	},
+	tiles = {"mcl_end_chorus_flower.png"},
+	groups = table.merge(chorus_flower_groups, {deco_block = 1}),
 	node_placement_prediction = "",
 	on_place = function(itemstack, placer, pointed_thing)
 		local node_under = core.get_node(pointed_thing.under)
@@ -200,44 +194,15 @@ core.register_node("mcl_end:chorus_flower", {
 			return itemstack
 		end
 	end,
-	after_dig_node = mcl_end.check_detach_chorus_plant,
-	_mcl_hardness = 0.4,
-})
+}))
 
-core.register_node("mcl_end:chorus_flower_dead", {
+core.register_node("mcl_end:chorus_flower_dead", table.merge(tpl_chorus_flower, {
 	description = S("Dead Chorus Flower"),
 	_doc_items_longdesc = S("This is a part of a chorus plant. It doesn't grow. Chorus flowers die of old age or when they are unable to grow. A dead chorus flower can be harvested to obtain a fresh chorus flower which is able to grow again."),
-	tiles = {
-		"mcl_end_chorus_flower_dead.png",
-		"mcl_end_chorus_flower_dead.png",
-		"mcl_end_chorus_flower_dead.png",
-		"mcl_end_chorus_flower_dead.png",
-		"mcl_end_chorus_flower_dead.png",
-		"mcl_end_chorus_flower_dead.png",
-	},
-	drawtype = "nodebox",
-	paramtype = "light",
-	sunlight_propagates = true,
-	node_box = chorus_flower_box,
-	selection_box = { type = "regular" },
-	sounds = mcl_sounds.node_sound_wood_defaults(),
+	tiles = {"mcl_end_chorus_flower_dead.png"},
 	drop = "mcl_end:chorus_flower",
-	groups = {
-		handy = 1,
-		axey = 1,
-		deco_block = 1,
-		dig_by_piston = 1,
-		destroy_by_lava_flow = 1,
-		chorus_plant = 1,
-		not_in_creative_inventory = 1,
-		unsticky = 1,
-		dig_by_trident = 1,
-		not_breaking_cactus = 1,
-	},
-	after_dig_node = mcl_end.check_detach_chorus_plant,
-	_mcl_blast_resistance = 2,
-	_mcl_hardness = 0.4,
-})
+	groups = table.merge(chorus_flower_groups, {not_in_creative_inventory = 1}),
+}))
 
 core.register_node("mcl_end:chorus_plant", {
 	description = S("Chorus Plant Stem"),
