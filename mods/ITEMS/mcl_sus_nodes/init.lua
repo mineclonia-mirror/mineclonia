@@ -38,7 +38,7 @@ local sus_node_loot = {
 				weight = 2,
 			},
 			{
-				itemstring = "mcl_tools:hoe_wood",
+				itemstring = "mcl_farming:hoe_wood",
 				weight = 2,
 			},
 			{
