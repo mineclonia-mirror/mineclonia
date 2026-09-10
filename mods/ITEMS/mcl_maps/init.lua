@@ -627,7 +627,7 @@ local function create_new_map_1 (id, pos, dim)
 	}
 	map.ttl = MAP_TTL
 	loaded_maps[id] = map
-	return id, map
+	return map
 end
 
 -- Radius of circle enclosing map update area.
@@ -659,7 +659,7 @@ local function create_new_map (itemstack, placer, pointed_thing)
 		return itemstack
 	end
 	local id = allocate_map_id ()
-	local id, map = create_new_map_1 (id, pos, dim)
+	local map = create_new_map_1 (id, pos, dim)
 	local stack = ItemStack ("mcl_maps:map")
 
 	-- Prepare the map's heightmap and fill the map.
@@ -1039,7 +1039,7 @@ local function create_explorer_map_1 (pos)
 		return nil, nil
 	end
 	local id = allocate_map_id ()
-	local id, map = create_new_map_1 (id, pos, dim)
+	local map = create_new_map_1 (id, pos, dim)
 	map.structure_pos = vector.copy (pos)
 	fill_explorer_map (map, pos.y)
 	write_map_data (id, map)
@@ -1137,8 +1137,8 @@ local explorer_map_toplevel = {
 }
 
 function mcl_maps.register_explorer_map (name, color, itemdef)
-	local merge = table.merge
-	core.register_craftitem (":" .. name, merge (explorer_map_toplevel, merge (itemdef, {
+	core.register_craftitem (":" .. name, table.merge (explorer_map_toplevel,
+							   itemdef, {
 		inventory_image = table.concat ({
 			"mcl_maps_map_filled.png",
 			"^(mcl_maps_map_filled_markings.png",
@@ -1146,7 +1146,7 @@ function mcl_maps.register_explorer_map (name, color, itemdef)
 		}),
 		_explorer_map_structures
 			= itemdef._explorer_map_structures or {},
-	})))
+	}))
 
 	local recipe = { name, }
 	for i = 2, 9 do
@@ -1163,10 +1163,8 @@ end
 
 local function build_map_icon_texture (x, y)
 	return table.concat ({
-		"blank.png^[resize:8x8^[combine:8x8:",
-		tostring (-(x * 8)), ",",
-		tostring (-(y * 8)), "=",
-		"mcl_maps_map_icons.png",
+		"mcl_maps_map_icons.png^[sheet:16x16:",
+		tostring (x), ",", tostring (y),
 	})
 end
 
@@ -1389,7 +1387,7 @@ function realize_explorer_map (stack)
 		mcl_biome_dispatch.locate_structure_near (pos, structures, dist,
 							  realize_explorer_map_1,
 							  id, nil, filter)
-		return maybe_realize_explorer_map (stack, id), id
+		return maybe_realize_explorer_map (id), id
 	end
 	return nil
 end
@@ -1604,7 +1602,22 @@ core.register_on_leaveplayer(function(player)
 	huds[player] = nil
 end)
 
-local function adjust_marker (player, id, img_arrow, img_dot, pos, minp, maxp)
+local function adjust_marker (player, id, marker, pos, minp, maxp)
+	if not marker then
+		player:hud_change (id, "text", "blank.png")
+		return
+	end
+
+	local light_overlay = "^[colorize:black:" .. 255 - (huds[player].light * 17)
+	player:hud_change (id, "text", marker .. light_overlay)
+	local f = 2 * 128 / (maxp.x - minp.x + 1)
+	player:hud_change (id, "offset", {
+		x = (pos.x - minp.x) * f - 128,
+		y = (maxp.z - pos.z) * f - 264,
+	})
+end
+
+local function adjust_player_marker (player, id, img_arrow, img_dot, pos, minp, maxp)
 	local marker = img_arrow
 
 	if pos.x < minp.x then
@@ -1634,18 +1647,7 @@ local function adjust_marker (player, id, img_arrow, img_dot, pos, minp, maxp)
 				.. (yaw - 45)
 		end
 	end
-	if not marker then
-		player:hud_change (id, "text", "blank.png")
-		return
-	end
-
-	local light_overlay = "^[colorize:black:" .. 255 - (huds[player].light * 17)
-	player:hud_change (id, "text", marker .. light_overlay)
-	local f = 2 * 128 / (maxp.x - minp.x + 1)
-	player:hud_change (id, "offset", {
-		x = (pos.x - minp.x) * f - 128,
-		y = (maxp.z - pos.z) * f - 264,
-	})
+	adjust_marker (player, id, marker, pos, minp, maxp)
 end
 
 function mcl_maps.clear_player_hud (player)
@@ -1709,14 +1711,14 @@ mcl_player.register_globalstep (function (player)
 		local maxp = vector.new (map.x_start + width - 1, 0,
 					 map.z_start + width - 1)
 
-		adjust_marker (player, hud.marker, "mcl_maps_player_arrow.png",
-			       "mcl_maps_player_dot.png", pos, minp, maxp)
+		adjust_player_marker (player, hud.marker, "mcl_maps_player_arrow.png",
+				      "mcl_maps_player_dot.png", pos, minp, maxp)
 		if map.structure_pos then
 			local def = wield:get_definition ()
 			if def and def._treasure_symbol then
 				adjust_marker (player, hud.treasure,
 					       def._treasure_symbol,
-					       nil, map.structure_pos,
+					       map.structure_pos,
 					       minp, maxp)
 			else
 				player:hud_change (hud.treasure, "text", "blank.png")
