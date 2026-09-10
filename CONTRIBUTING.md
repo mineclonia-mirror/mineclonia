@@ -46,6 +46,39 @@ features which are not available in this version. If one sees reason to drop
 compatibility in order to use later engine features, then one should make an
 issue about it so it can be discussed.
 
+## Use of Generative AI
+Project communications generated wholly or in part by generative artificial
+intelligence tools (or "genAI") — namely, large language models (LLMs; e.g.
+ChatGPT, Claude, Gemini, DeepSeek) and image diffusion models — are prohibited.
+This includes issue bodies (bug reports and feature suggestions), pull request
+descriptions, in-repo documentation (Markdown files and code comments), and
+commit messages (title/body). The generated content is generally low-quality:
+it is very verbose, sounds extremely confident, and is often wrong. Contributors
+are asked to write in their own words even if they don't have much to say.
+Translation of human-written prose using LLMs and LLM-based tools is allowed for
+contributors who do not speak English.
+
+Use of LLMs, including code agents (e.g. Codex, Claude Code), must be clearly
+disclosed for any proposed code changes. This includes patch file attachments
+and commits that are part of a pull request. Messages for commits that include
+code generated wholly or in part by an LLM should include an Assisted-by trailer
+(one for each model used) in the following format:
+
+```
+Assisted-by: [TOOL]
+```
+
+where `[TOOL]` identifies the model that was used (e.g. `gpt-5.6-sol`).
+
+Note that there is not yet a consensus on whether to accept AI-generated code
+into Mineclonia, and no changes proposed by an LLM will be merged until one is
+reached.[^ryvnf-ruling] Codeberg, the platform on which Mineclonia is hosted,
+also prohibits substantially AI-generated projects in [its Terms of Use](https://codeberg.org/Codeberg/org/src/branch/main/TermsOfUse.md).
+Contributors are encouraged to contribute human code due to legal, ethical, and
+environmental concerns linked to generative AI.
+
+[^ryvnf-ruling]: [#4369 (comment)](https://codeberg.org/mineclonia/mineclonia/issues/4369#issuecomment-17369903)
+
 ## Review guidelines
 - Legitimate review questions must be answered by the author. "Just read the
 code" is not an acceptable answer.

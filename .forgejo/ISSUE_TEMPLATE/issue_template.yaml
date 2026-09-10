@@ -1,0 +1,15 @@
+name: Comment
+about: Post a comment
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Using generative AI to write issues for you is forbidden.** Having an
+        LLM generate your bug report or feature suggestion only wastes your time
+        and the time of the readers. Write in your own words, even if you can
+        only comment on so much.
+  - type: textarea
+    id: body
+    attributes:
+      label: Description
+      placeholder: Leave a comment

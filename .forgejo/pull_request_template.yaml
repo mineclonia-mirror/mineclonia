@@ -1,0 +1,19 @@
+name: Pull request
+about: Suggest code changes
+ref: 'main'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Using generative AI to write pull request descriptions, code comments,
+        in-repo documentation, and commit messages is prohibited;** they will be
+        rejected. Having an LLM write for you only wastes your time and the time
+        of the reviewers; it also suggests that you, as the human submitter, had
+        no interest in the changes you're about to propose, since you can't
+        explain them in your own words. See [`CONTRIBUTING.md`](https://codeberg.org/mineclonia/mineclonia/src/branch/main/CONTRIBUTING.md)
+        for details.
+  - type: textarea
+    id: body
+    attributes:
+      label: Description
+      placeholder: Leave a comment
