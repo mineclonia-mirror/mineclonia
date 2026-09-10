@@ -145,8 +145,11 @@ end)
 
 --cache nodes near the player according to offsets defined above
 mcl_player.register_globalstep(function(player)
+	local pos = player:get_pos()
+	local nodes = mcl_player.players[player].nodes
+
 	for k, v in pairs(nodeinfo_pos) do
-		mcl_player.players[player].nodes[k] = node_ok(vector.add(player:get_pos(), v))
+		nodes[k] = node_ok(vector.add(pos, v))
 	end
 end)
 
