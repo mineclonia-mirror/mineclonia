@@ -693,8 +693,6 @@ local function create_new_map (itemstack, placer, pointed_thing)
 		end
 	end
 
-
-	mcl_maps.produce_map_test("singleplayer", 1)
 	-- Save the map and initialize the ItemStack.
 	write_map_data (id, map)
 	stack:get_meta ():set_string ("mcl_maps:map_id", id)
