@@ -703,7 +703,7 @@ local function create_new_map (itemstack, placer, pointed_thing)
 		return stack
 	end
 
-	mcl_util.give_item_to_player(placer, itemstack)
+	mcl_util.give_item_to_player (placer, stack)
 	return itemstack
 end
 
