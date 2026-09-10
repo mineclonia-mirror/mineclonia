@@ -91,15 +91,11 @@ end
 
 local load_map_id = mcl_maps.load_map_id
 
-local function get_map_id (itemstack)
-	return load_map_id (itemstack)
-end
-
 local function rotate_entity(pos, rot)
 	local l = find_entity(pos)
 	local meta = core.get_meta(pos)
 	local itemstack = meta:get_inventory():get_stack("main", 1)
-	local is_map = (get_map_id(itemstack) and 1 or 0)
+	local is_map = (load_map_id(itemstack) and 1 or 0)
 	if l then
 		l.object:set_rotation(vector.add(l.object:get_rotation(), vector.new(0, 0, 0.25 * math.pi * (rot or 1) * (is_map + 1))))
 		meta:set_int("mcl_item_rotation", (meta:get_int("mcl_item_rotation") + (rot == nil and 1 or 0)) % 8)
@@ -219,7 +215,7 @@ function mcl_itemframes.tpl_entity:set_item(itemstack, pos)
 	local def = mcl_itemframes.registered_itemframes[ndef._mcl_itemframe]
 	self._item = itemstack:get_name()
 	self._stack = itemstack
-	local id = get_map_id (itemstack)
+	local id = load_map_id (itemstack)
 	self._dynamic_map_id = id
 
 	local dir = core.wallmounted_to_dir(core.get_node(pos).param2)
