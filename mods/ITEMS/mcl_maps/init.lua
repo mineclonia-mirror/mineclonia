@@ -294,15 +294,23 @@ local function alloc_heightmap_data ()
 	return tbl
 end
 
-local function convert_map_data (dst, map)
+local char = string.char
+local concat = table.concat
+
+local function map_data_to_string (buf, map)
 	local i = 0
 	local data = map.data
 	for z = MAP_DATA_LENGTH - 1, 0, -1 do
 		for x = 0, MAP_DATA_LENGTH - 1 do
-			i = i + 1
-			dst[i] = data[(z + 1) * MAP_SIDE_LENGTH + x + 2]
+			local pixel = data[(z + 1) * MAP_SIDE_LENGTH + x + 2]
+			i = i + 4
+			buf[i] = char (rshift (pixel, 24))
+			buf[i - 1] = char (band (pixel, 0xff))
+			buf[i - 2] = char (band (rshift (pixel, 8), 0xff))
+			buf[i - 3] = char (band (rshift (pixel, 16), 0xff))
 		end
 	end
+	return concat (buf)
 end
 
 local v1 = vector.new ()
@@ -345,16 +353,17 @@ local function prepare_map_generation ()
 	end
 end
 
-local converted_data = {}
+local str_data = {}
 
 local function encode_map_png (map, compression)
-	convert_map_data (converted_data, map)
+	local str = map_data_to_string (str_data, map)
 	local png = core.encode_png (MAP_DATA_LENGTH,
 				     MAP_DATA_LENGTH,
-				     converted_data,
-				     compression)
+				     str, compression)
 	return png
 end
+
+local converted_data = {}
 
 local function irr_convert_map_data (dst, map)
 	local i = 0
@@ -427,7 +436,6 @@ local function allocate_map_id ()
 	return base .. i, image_name, map_name
 end
 
-local char = string.char
 local byte = string.byte
 
 local function serialize_data (dst, list, off)
