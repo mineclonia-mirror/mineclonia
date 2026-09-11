@@ -376,9 +376,11 @@ core.register_node("mcl_mangrove:mangrove_mud_roots", {
 })
 
 core.register_craft({
+	type = "shapeless",
 	output = "mcl_mangrove:mangrove_mud_roots",
 	recipe = {
-		{"mcl_mangrove:mangrove_roots", "mcl_mud:mud",},
+		"mcl_mangrove:mangrove_roots",
+		"mcl_mud:mud",
 	}
 })
 
