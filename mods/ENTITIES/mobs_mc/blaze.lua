@@ -331,11 +331,11 @@ mcl_mobs.register_arrow ("mobs_mc:blaze_fireball", {
 
 	-- Direct hit, no fire... just plenty of pain
 	hit_player = function (self, player)
-<<<<<<< Updated upstream
+		if not enable_pvp then return end
+
 		local can_block = mcl_shields.can_block(player)
 		if can_block then
 			return
-=======
 		local pos = self.object:get_pos()
 		local dot_attack = mcl_shields.find_angle(pos, player)
 		if dot_attack then
@@ -346,7 +346,6 @@ mcl_mobs.register_arrow ("mobs_mc:blaze_fireball", {
 				core.sound_play({ name = "mcl_block" }, { pos = player:get_pos(), max_hear_distance = 16 })
 				return
 			end
->>>>>>> Stashed changes
 		end
 		mcl_mobs.get_arrow_damage_func (5, "fireball") (self, player)
 		mcl_burning.set_on_fire (player, 5)
