@@ -5,6 +5,7 @@
 
 local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
+local enable_pvp = core.settings:get_bool("enable_pvp")
 
 --###################
 --################### BLAZE
@@ -330,9 +331,22 @@ mcl_mobs.register_arrow ("mobs_mc:blaze_fireball", {
 
 	-- Direct hit, no fire... just plenty of pain
 	hit_player = function (self, player)
+<<<<<<< Updated upstream
 		local can_block = mcl_shields.can_block(player)
 		if can_block then
 			return
+=======
+		local pos = self.object:get_pos()
+		local dot_attack = mcl_shields.find_angle(pos, player)
+		if dot_attack then
+			local can_block, stack = mcl_shields.can_block(player, dot_attack)
+			if can_block then
+				local damage = 0
+				mcl_shields.add_wear(player, damage, stack)
+				core.sound_play({ name = "mcl_block" }, { pos = player:get_pos(), max_hear_distance = 16 })
+				return
+			end
+>>>>>>> Stashed changes
 		end
 		mcl_mobs.get_arrow_damage_func (5, "fireball") (self, player)
 		mcl_burning.set_on_fire (player, 5)
