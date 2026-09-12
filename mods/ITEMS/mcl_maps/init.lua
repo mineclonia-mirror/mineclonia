@@ -1963,6 +1963,74 @@ end)
 
 dofile (modpath .. "/tgadec.lua")
 
+local function convert_old_map_1 (itemstack)
+	local meta = itemstack:get_meta ()
+	local old_map_id = meta:get_string ("mcl_maps:id")
+	local old_minp = meta:get_string ("mcl_maps:minp")
+	local pos = core.string_to_pos (old_minp)
+
+	if old_map_id == "" or not pos then
+		local msg = S ("This old map is invalid and cannot be converted.")
+		return nil, msg
+	end
+	local id = storage:get_string ("converted_map_" .. old_map_id)
+
+	if not id or id == "" then
+		local data_file = map_textures_path .. "mcl_maps_map_texture_"
+			.. old_map_id .. ".tga"
+		if not core.path_exists (data_file) then
+			local msg = S ("The map data previously generated for this map does not exist.")
+			return nil, msg
+		end
+
+		local map = {
+			x_start = pos.x,
+			z_start = pos.z,
+			dimension = mcl_worlds.pos_to_dimension (pos)
+				or "none",
+			scale = 1,
+		}
+
+		local file, _ = io.open (data_file, "rb")
+		if not file then
+			local msg = S ("Failed to open map file for conversion.")
+			return nil, msg
+		end
+		local data = file:read ("*all")
+		file:close ()
+		local ok, width, height, pixels
+			= pcall (mcl_maps.get_targa_pixels, data)
+		if not ok or width ~= MAP_DATA_LENGTH or height ~= MAP_DATA_LENGTH then
+			local msg = S ("Format of existing map data is invalid: @1",
+				       tostring (width))
+			return nil, msg
+		end
+
+		id = allocate_map_id ()
+		map.ttl = MAP_TTL
+		map.data = alloc_map_data ()
+		map.heightmap = alloc_heightmap_data ()
+
+		-- Write pixels into the updated map.
+		local dst = map.data
+		for z = 0, MAP_DATA_LENGTH - 1 do
+			local src_base = z * width + 1
+			local dst_base = (z + 1) * MAP_SIDE_LENGTH + 2
+			for x = 0, MAP_DATA_LENGTH - 1 do
+				dst[dst_base + x] = pixels[src_base + x]
+			end
+		end
+		loaded_maps[id] = map
+		write_map_data (id, map)
+		storage:set_string ("converted_map_" .. old_map_id, id)
+	end
+
+	itemstack:set_name ("mcl_maps:map_locked")
+	meta:set_string ("mcl_maps:map_id", id)
+	tt.reload_itemstack_description (itemstack)
+	return itemstack, nil
+end
+
 local function convert_old_map (itemstack, placer, pointed_thing)
 	local new_stack = mcl_util.call_on_rightclick (itemstack, placer,
 						       pointed_thing)
@@ -1971,76 +2039,18 @@ local function convert_old_map (itemstack, placer, pointed_thing)
 	end
 
 	if placer and placer:is_valid () then
-		local meta = itemstack:get_meta ()
-		local old_map_id = meta:get_string ("mcl_maps:id")
-		local old_minp = meta:get_string ("mcl_maps:minp")
-		local pos = core.string_to_pos (old_minp)
-
-		if old_map_id == "" or not pos then
-			local msg = S ("This old map is invalid and cannot be converted.")
+		local stack, msg = convert_old_map_1 (itemstack)
+		if msg then
 			core.chat_send_player (placer:get_player_name (), msg)
 			return nil
 		end
-		local id = storage:get_string ("converted_map_" .. old_map_id)
-
-		if not id or id == "" then
-			local data_file = map_textures_path .. "mcl_maps_map_texture_"
-				.. old_map_id .. ".tga"
-			if not core.path_exists (data_file) then
-				local msg = S ("The map data previously generated for this map does not exist.")
-				core.chat_send_player (placer:get_player_name (), msg)
-				return nil
-			end
-
-			local map = {
-				x_start = pos.x,
-				z_start = pos.z,
-				dimension = mcl_worlds.pos_to_dimension (pos)
-					or "none",
-				scale = 1,
-			}
-
-			local file, _ = io.open (data_file, "rb")
-			if not file then
-				local msg = S ("Failed to open map file for conversion.")
-				core.chat_send_player (placer:get_player_name (), msg)
-				return nil
-			end
-			local data = file:read ("*all")
-			file:close ()
-			local ok, width, height, pixels
-				= pcall (mcl_maps.get_targa_pixels, data)
-			if not ok or width ~= MAP_DATA_LENGTH or height ~= MAP_DATA_LENGTH then
-				local msg = S ("Format of existing map data is invalid: @1",
-					       tostring (width))
-				core.chat_send_player (placer:get_player_name (), msg)
-				return nil
-			end
-
-			id = allocate_map_id ()
-			map.ttl = MAP_TTL
-			map.data = alloc_map_data ()
-			map.heightmap = alloc_heightmap_data ()
-
-			-- Write pixels into the updated map.
-			local dst = map.data
-			for z = 0, MAP_DATA_LENGTH - 1 do
-				local src_base = z * width + 1
-				local dst_base = (z + 1) * MAP_SIDE_LENGTH + 2
-				for x = 0, MAP_DATA_LENGTH - 1 do
-					dst[dst_base + x] = pixels[src_base + x]
-				end
-			end
-			loaded_maps[id] = map
-			write_map_data (id, map)
-			storage:set_string ("converted_map_" .. old_map_id, id)
-		end
-
-		itemstack:set_name ("mcl_maps:map_locked")
-		meta:set_string ("mcl_maps:map_id", id)
-		tt.reload_itemstack_description (itemstack)
-		return itemstack
+		return stack
 	end
+end
+
+local function convert_old_map_entity (itemstack, entity)
+	local stack, _ = convert_old_map_1 (itemstack)
+	return stack, nil
 end
 
 core.register_alias ("mcl_maps:empty_map", "mcl_maps:map_empty")
@@ -2055,6 +2065,7 @@ core.register_craftitem ("mcl_maps:filled_map", {
 	},
 	on_place = convert_old_map,
 	on_secondary_use = convert_old_map,
+	_on_set_item_entity = convert_old_map_entity,
 })
 
 for _, skin_item in ipairs ({
