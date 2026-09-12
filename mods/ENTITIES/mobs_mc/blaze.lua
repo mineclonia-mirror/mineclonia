@@ -5,7 +5,6 @@
 
 local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
-local enable_pvp = core.settings:get_bool("enable_pvp")
 
 --###################
 --################### BLAZE
@@ -331,8 +330,6 @@ mcl_mobs.register_arrow ("mobs_mc:blaze_fireball", {
 
 	-- Direct hit, no fire... just plenty of pain
 	hit_player = function (self, player)
-		if not enable_pvp then return end
-
 		local can_block = mcl_shields.can_block(player)
 		if can_block then
 			return
