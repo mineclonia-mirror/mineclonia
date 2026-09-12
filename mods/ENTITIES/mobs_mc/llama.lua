@@ -2,6 +2,7 @@ local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
 local horse = mobs_mc.horse
 local is_valid = mcl_util.is_valid_objectref
+local enable_pvp = core.settings:get_bool("enable_pvp")
 
 -- table mapping unified color names to non-conforming color names in carpet texture filenames
 local messytextures = {
@@ -546,8 +547,21 @@ local llama_spit = {
 
 function llama_spit:hit_object (object)
 	if object:is_player() then
+<<<<<<< Updated upstream
 		local can_block = mcl_shields.can_block(object)
 		if can_block then
+=======
+		if not enable_pvp then return end
+
+		local dot_attack = mcl_shields.find_angle(self._prev_pos, object)
+		if not dot_attack then return end
+		local can_block, stack = mcl_shields.can_block(object, dot_attack)
+		if can_block then
+			local vec = self.object:get_velocity()
+			local damage = 0
+			mcl_shields.add_wear(object, damage, stack)
+			core.sound_play({ name = "mcl_block" }, { pos = object:get_pos(), max_hear_distance = 16 })
+>>>>>>> Stashed changes
 			return
 		end
 	end
