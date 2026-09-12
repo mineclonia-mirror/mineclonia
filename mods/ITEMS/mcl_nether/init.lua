@@ -314,7 +314,7 @@ mcl_stairs.register_stair_and_slab("nether_brick", {
 	overrides = {_mcl_stonecutter_recipes = { "mcl_nether:nether_brick" }},{_mcl_stonecutter_recipes = { "mcl_nether:nether_brick" }},
 })
 
-mcl_walls.register_wall_def(":mcl_walls:netherbrick", {
+mcl_walls.register_wall_def("mcl_walls:netherbrick", {
 	description = S("Nether Brick Wall"),
 	source = "mcl_nether:nether_brick",
 	_mcl_stonecutter_recipes = {"mcl_nether:nether_brick",},
@@ -328,7 +328,7 @@ mcl_stairs.register_stair_and_slab("red_nether_brick", {
 	overrides = {_mcl_stonecutter_recipes = { "mcl_nether:red_nether_brick" }},{_mcl_stonecutter_recipes = { "mcl_nether:red_nether_brick" }},
 })
 
-mcl_walls.register_wall_def(":mcl_walls:rednetherbrick", {
+mcl_walls.register_wall_def("mcl_walls:rednetherbrick", {
 	description = S("Red Nether Brick Wall"),
 	source = "mcl_nether:red_nether_brick",
 	_mcl_stonecutter_recipes = {"mcl_nether:red_nether_brick",},

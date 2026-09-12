@@ -167,7 +167,7 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 		if i == 15 or i == 0 then need_pillar = true end
 		if need_pillar then table.insert(take, pillar) end
 
-		core.register_node(nodename.."_"..i, table.merge({
+		core.register_node(":"..nodename.."_"..i, table.merge({
 			collision_box = {
 				type = "fixed",
 				fixed = {-4/16, -0.5, -4/16, 4/16, 1, 4/16}
@@ -194,7 +194,7 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 		doc.add_entry_alias("nodes", nodename, "nodes", nodename.."_"..i)
 	end
 
-	core.register_node(nodename.."_16", table.merge({
+	core.register_node(":"..nodename.."_16", table.merge({
 		drawtype = "nodebox",
 		collision_box = {
 				type = "fixed",
@@ -219,7 +219,7 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 	}, overrides or {}))
 	doc.add_entry_alias("nodes", nodename, "nodes", nodename.."_16")
 
-	core.register_node(nodename.."_21", table.merge({
+	core.register_node(":"..nodename.."_21", table.merge({
 		drawtype = "nodebox",
 		collision_box = {
 				type = "fixed",
@@ -244,7 +244,7 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 	doc.add_entry_alias("nodes", nodename, "nodes", nodename.."_21")
 
 	-- Inventory item
-	core.register_node(nodename, table.merge({
+	core.register_node(":"..nodename, table.merge({
 		description = description,
 		_doc_items_longdesc = S("A piece of wall. It cannot be jumped over with a simple jump. When multiple of these are placed to next to each other, they will automatically build a nice wall structure."),
 		paramtype = "light",

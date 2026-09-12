@@ -183,7 +183,7 @@ mcl_stairs.register_stair_and_slab("end_bricks", {
 	overrides = {_mcl_stonecutter_recipes = {"mcl_end:end_bricks","mcl_end:end_stone"}},{_mcl_stonecutter_recipes = {"mcl_end:end_bricks","mcl_end:end_stone"}}
 })
 
-mcl_walls.register_wall_def(":mcl_walls:endbricks", {
+mcl_walls.register_wall_def("mcl_walls:endbricks", {
 	description = S("End Stone Brick Wall"),
 	source = "mcl_end:end_bricks",
 	_mcl_stonecutter_recipes = {"mcl_end:end_bricks","mcl_end:end_stone"},
