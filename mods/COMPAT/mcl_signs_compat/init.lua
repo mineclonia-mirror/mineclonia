@@ -52,7 +52,6 @@ for old, new in pairs(signs) do
 	for _, rotkey in ipairs(rotkeys) do
 		old_rotsigns["mcl_signs:standing_sign"..rotkey..old] = newname
 	end
-	core.register_alias("mcl_signs:wall_sign"..old, "mcl_signs:wall_sign"..new)
 end
 
 local function upgrade_sign_meta(pos)
