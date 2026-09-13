@@ -31,4 +31,3 @@ dofile(modpath.."/nodes_misc.lua") -- Other and special nodes
 dofile(modpath.."/nodes_glow_lichen.lua")
 dofile(modpath.."/craftitems.lua")
 dofile(modpath.."/crafting.lua")
-dofile(modpath.."/compat.lua")
