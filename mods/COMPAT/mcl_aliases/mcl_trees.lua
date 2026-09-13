@@ -324,30 +324,7 @@ core.register_alias("mcl_stairs:slab_crimson_hyphae_tree_bark_double", "mcl_stai
 core.register_alias("mcl_stairs:slab_warped_hyphae_tree_bark_double", "mcl_stairs:slab_warped_bark_double")
 core.register_alias("mcl_stairs:slab_bamboo_block_double", "mcl_stairs:slab_bamboo_bark_double")
 
-core.register_alias("mesecons_button:button_wood_on","mcl_buttons:button_oak_on")
-core.register_alias("mesecons_button:button_sprucewood_on","mcl_buttons:button_spruce_on")
-core.register_alias("mesecons_button:button_acaciawood_on","mcl_buttons:button_acacia_on")
-core.register_alias("mesecons_button:button_junglewood_on","mcl_buttons:button_jungle_on")
-core.register_alias("mesecons_button:button_birchwood_on","mcl_buttons:button_birch_on")
-core.register_alias("mesecons_button:button_darkwood_on","mcl_buttons:button_dark_oak_on")
-core.register_alias("mesecons_button:button_warped_hyphae_on","mcl_buttons:button_warped_on")
-core.register_alias("mesecons_button:button_crimson_hyphae_on","mcl_buttons:button_crimson_on")
-core.register_alias("mesecons_button:button_mangrove_wood_on","mcl_buttons:button_mangrove_on")
-core.register_alias("mesecons_button:button_cherrywood_on","mcl_buttons:button_cherry_blossom_on")
-
-core.register_alias("mesecons_button:button_wood_off","mesecons_button:button_oak_off")
-core.register_alias("mesecons_button:button_sprucewood_off","mesecons_button:button_spruce_off")
-core.register_alias("mesecons_button:button_acaciawood_off","mesecons_button:button_acacia_off")
-core.register_alias("mesecons_button:button_junglewood_off","mesecons_button:button_jungle_off")
-core.register_alias("mesecons_button:button_birchwood_off","mesecons_button:button_birch_off")
-core.register_alias("mesecons_button:button_darkwood_off","mesecons_button:button_dark_oak_off")
-core.register_alias("mesecons_button:button_warped_hyphae_off","mesecons_button:button_warped_off")
-core.register_alias("mesecons_button:button_crimson_hyphae_off","mesecons_button:button_crimson_off")
-core.register_alias("mesecons_button:button_mangrove_wood_off","mesecons_button:button_mangrove_off")
-core.register_alias("mesecons_button:button_cherrywood_off","mesecons_button:button_cherry_blossom_off")
-
 core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_on","mcl_pressureplates:pressure_plate_cherry_blossom_on")
-
 core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_off","mcl_pressureplates:pressure_plate_cherry_blossom_off")
 
 local function alias_signs(oldwood,newwood)
