@@ -547,7 +547,6 @@ local llama_spit = {
 function llama_spit:hit_object (object)
 	local damage = 1
 	if object:is_player() then
-
 		local dot_attack = mcl_shields.find_angle(self._prev_pos, object)
 		local can_block, stack = mcl_shields.can_block(object, dot_attack)
 		if can_block then
