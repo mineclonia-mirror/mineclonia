@@ -17,6 +17,7 @@ local S = core.get_translator("mcl_craftguide")
 
 local DEFAULT_SIZE = 10
 local MIN_LIMIT, MAX_LIMIT = 10, 12
+local RED_COLOR = "#f7c5c5"
 DEFAULT_SIZE = math.min(MAX_LIMIT, math.max(MIN_LIMIT, DEFAULT_SIZE))
 
 local GRID_LIMIT = 5
@@ -404,6 +405,38 @@ local function get_recipe_fs(data, iY, player)
 		return table.concat(fs)
 	end
 
+	local recipe_items_set = {}
+	local recipe_groups_set = {}
+	local required_items = {}
+
+	for _, item in pairs(recipe.items) do
+		if string.sub(item, 1, 6) == "group:" then
+			recipe_groups_set[string.sub(item, 7, #item)] = true
+		else
+			recipe_items_set[item] = true
+		end
+		required_items[item] = 0
+	end
+
+	local player_inv = player:get_inventory()
+	local main_list = player_inv:get_list("main")
+	local has_all_ingredients = true
+
+	for _, stack in pairs(main_list) do
+		local stack_name = stack:get_name()
+
+		if recipe_items_set[stack_name] then
+			required_items[stack_name] = required_items[stack_name] + stack:get_count()
+		else
+			for group, _ in pairs(recipe_groups_set) do
+				if core.get_item_group(stack_name, group) > 0 then
+					local key = "group:" .. group
+					required_items[key] = required_items[key] + stack:get_count()
+				end
+			end
+		end
+	end
+
 	for i, item in pairs(recipe.items) do
 		local X = math.ceil((i - 1) % width + xoffset - width) - (0.2)
 		local Y = math.ceil(i / width + (iY + 2) - math.min(2, rows))
@@ -417,6 +450,14 @@ local function get_recipe_fs(data, iY, player)
 
 		if X > rightest then
 			rightest = X
+		end
+
+		local button_name = "ingredient_button_" .. i
+		if required_items[item] <= 0 then
+			fs[#fs + 1] = string.format("style[%s,%s:hovered,%s:focused+hovered;bgcolor=%s]", button_name, button_name, button_name, RED_COLOR)
+			has_all_ingredients = false
+		else
+			required_items[item] = required_items[item] - 1
 		end
 
 		local groups
@@ -436,7 +477,7 @@ local function get_recipe_fs(data, iY, player)
 			btn_size,
 			btn_size,
 			item,
-			string.match(item, "%S*"),
+			button_name,
 			F(label))
 
 		local burntime = mcl_util.get_burntime(item)
@@ -528,14 +569,17 @@ local function get_recipe_fs(data, iY, player)
 		-- show the button crafting button if recipe items are in
 		-- inventory and the recipe fits the available crafting grid
 		--
-		-- note that size of craft inv is only set when the
-		-- corresponding formspec is opened, so it can't be used here
-		--
 		-- TODO: unhardcode craft grid sizes
 		local has_table = mcl_crafting_table.has_crafting_table(player)
-		local width = has_table and 3 or 2
-		local height = has_table and 3 or 2
-		if recipe.type == "normal" and mcl_inventory.get_recipe_groups(player, recipe, width, height) then
+		local can_craft = has_all_ingredients
+			and (
+				has_table
+				or (
+					recipe.width <= 2
+					and math.ceil(table.max_index(recipe.items) / recipe.width) <= 2
+				)
+			)
+		if recipe.type == "normal" and can_craft then
 			fs[#fs + 1] = string.format("image_button[%f,%f;%f,%f;%s;%s_inv;%s]",
 				output_X + 2.7,
 				iY + 2.2,
