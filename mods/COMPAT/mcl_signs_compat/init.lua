@@ -1,3 +1,5 @@
+-- Register LBMs to update old standing signs' names
+
 -- these are the "rotation strings" of the old sign rotation scheme
 local rotkeys = {
 	"22_5",
