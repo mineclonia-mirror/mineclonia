@@ -549,7 +549,7 @@ function llama_spit:hit_object (object)
 	if object:is_player() then
 
 		local dot_attack = mcl_shields.find_angle(self._prev_pos, object)
-		local can_block, stack = mcl_shields.can_block(object, dot_attack)
+		local can_block = mcl_shields.can_block(object, dot_attack)
 		if can_block then
 			core.sound_play({ name = "mcl_block" }, { pos = object:get_pos(), max_hear_distance = 16 })
 			return
