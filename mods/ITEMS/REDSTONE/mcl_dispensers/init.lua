@@ -424,6 +424,6 @@ do
 		}
 	})
 
-	doc.add_entry_alias("nodes", "mcl_droppers:dropper", "nodes", "mcl_droppers:dropper_down")
-	doc.add_entry_alias("nodes", "mcl_droppers:dropper", "nodes", "mcl_droppers:dropper_up")
+	doc.add_entry_alias("nodes", "mcl_dispensers:dropper", "nodes", "mcl_dispensers:dropper_down")
+	doc.add_entry_alias("nodes", "mcl_dispensers:dropper", "nodes", "mcl_dispensers:dropper_up")
 end

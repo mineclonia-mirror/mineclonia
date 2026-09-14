@@ -74,5 +74,5 @@ core.register_craft({
 core.register_craft({
 	type = "shapeless",
 	output = "mcl_itemframes:glow_frame",
-	recipe = {"mcl_mobitems:glow_ink_sac", "mcl_itemframes:item_frame"},
+	recipe = {"mcl_mobitems:glow_ink_sac", "mcl_itemframes:frame"},
 })

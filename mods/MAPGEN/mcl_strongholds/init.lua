@@ -72,7 +72,7 @@ mcl_structures.register_structure("end_shrine",{
 				{ itemstring = "mcl_farming:bread", weight = 15, amount_min = 1, amount_max = 3 },
 				{ itemstring = "mcl_core:iron_ingot", weight = 10, amount_min = 1, amount_max = 5 },
 				{ itemstring = "mcl_throwing:ender_pearl", weight = 10, amount_min = 1, amount_max = 1 },
-				{ itemstring = "mesecons:wire_00000000_off", weight = 5, amount_min = 4, amount_max = 9 },
+				{ itemstring = "mcl_redstone:redstone", weight = 5, amount_min = 4, amount_max = 9 },
 				{ itemstring = "mcl_core:gold_ingot", weight = 5, amount_min = 1, amount_max = 3 },
 
 				{ itemstring = "mcl_tools:pick_iron", weight = 5, amount_min = 1, amount_max=3 },
@@ -85,7 +85,7 @@ mcl_structures.register_structure("end_shrine",{
 
 				{ itemstring = "mcl_core:diamond", weight = 3, amount_min = 1, amount_max = 3 },
 
-				{ itemstring = "mcl_jukebox:record_7", weight = 1, },
+				{ itemstring = "mcl_jukebox:record_mellohi", weight = 1, },
 				{ itemstring = "mcl_books:book", weight = 1, func = function(stack, pr)
 					mcl_enchanting.enchant_uniform_randomly(stack, {"soul_speed"}, pr)
 				end },

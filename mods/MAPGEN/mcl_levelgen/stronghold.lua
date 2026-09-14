@@ -27,7 +27,7 @@ local stronghold_loot_pools = {
 
 				{ itemstring = "mcl_core:diamond", weight = 3, amount_min = 1, amount_max = 3 },
 
-				{ itemstring = "mcl_jukebox:record_7", weight = 1, },
+				{ itemstring = "mcl_jukebox:record_mellohi", weight = 1, },
 				{
 					itemstring = "mcl_books:book", weight = 1,
 					func = function (stack, pr)

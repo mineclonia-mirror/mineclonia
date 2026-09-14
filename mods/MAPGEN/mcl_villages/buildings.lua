@@ -43,8 +43,8 @@ local function init_nodes(p1, p2, _, _, pr)
 	end
 
 	mcl_structures.construct_nodes(p1, p2, {
-		"mcl_itemframes:item_frame",
-		"mcl_itemframes:glow_item_frame",
+		"mcl_itemframes:frame",
+		"mcl_itemframes:glow_frame",
 		"mcl_furnaces:furnace",
 		"mcl_anvils:anvil",
 		"mcl_books:bookshelf",

@@ -5,7 +5,7 @@ end
 local modname = core.get_current_modname()
 local modpath = core.get_modpath(modname)
 
-local spawnon = {"mcl_core:stripped_oak","mcl_stairs:slab_birchwood_top"}
+local spawnon = {"mcl_trees:stripped_oak","mcl_stairs:slab_birch_top"}
 
 mcl_structures.register_structure("pillager_outpost",{
 	place_on = {"group:grass_block","group:dirt","mcl_core:dirt_with_grass","group:sand"},
