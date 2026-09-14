@@ -60,7 +60,7 @@ mcl_structures.register_structure("end_shipwreck",{
 				{ itemstring = "mcl_mobitems:bone", weight = 20, amount_min = 4, amount_max=6 },
 				{ itemstring = "mcl_farming:beetroot_seeds", weight = 16, amount_min = 1, amount_max=10 },
 				{ itemstring = "mcl_core:gold_ingot", weight = 15, amount_min = 2, amount_max = 7 },
-				{ itemstring = "mcl_bamboo:bamboo", weight = 15, amount_min = 1, amount_max=3 },
+				{ itemstring = "mcl_bamboo:bamboo_small", weight = 15, amount_min = 1, amount_max=3 },
 				{ itemstring = "mcl_core:iron_ingot", weight = 15, amount_min = 4, amount_max = 8 },
 				{ itemstring = "mcl_core:diamond", weight = 3, amount_min = 2, amount_max = 7 },
 				{ itemstring = "mcl_mobitems:saddle", weight = 3, },
