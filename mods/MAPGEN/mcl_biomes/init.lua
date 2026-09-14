@@ -4527,7 +4527,7 @@ local function register_decorations()
 		y_max = mcl_vars.mg_overworld_max,
 		param2 = 0,
 		param2_max = 3,
-		decoration = "mcl_bamboo:bamboo" ,
+		decoration = "mcl_bamboo:bamboo_small" ,
 	})
 	for i=1,3 do
 		core.register_decoration({
@@ -4541,7 +4541,7 @@ local function register_decorations()
 			biomes = {"BambooJungle", "Jungle", "JungleM", "JungleEdge", "MangroveSwamp"},
 			y_min = 1,
 			y_max = mcl_vars.mg_overworld_max,
-			decoration = "mcl_bamboo:bamboo"..i,
+			decoration = "mcl_bamboo:bamboo_small",
 		})
 	end
 
@@ -4556,7 +4556,7 @@ local function register_decorations()
 		y_max = mcl_vars.mg_overworld_max,
 		param2 = 0,
 		param2_max = 3,
-		decoration = "mcl_bamboo:bamboo" ,
+		decoration = "mcl_bamboo:bamboo_small" ,
 	})
 	for i=1,3 do
 		core.register_decoration({
@@ -4570,7 +4570,7 @@ local function register_decorations()
 			biomes = { "BambooJungle" },
 			y_min = 1,
 			y_max = mcl_vars.mg_overworld_max,
-			decoration = "mcl_bamboo:bamboo"..i,
+			decoration = "mcl_bamboo:bamboo_small",
 		})
 	end
 

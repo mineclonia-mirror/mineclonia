@@ -175,7 +175,7 @@ core.register_ore({
 
 core.register_ore({
 	ore_type       = "scatter",
-	ore            = "mcl_deepslate:infested_deepslate",
+	ore            = "mcl_monster_eggs:monster_egg_deepslate",
 	wherein        = "mcl_deepslate:deepslate",
 	clust_scarcity = 26 * 26 * 26,
 	clust_num_ores = 3,

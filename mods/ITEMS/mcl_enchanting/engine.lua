@@ -21,8 +21,7 @@ function mcl_enchanting.register_enchantment(name, def)
 end
 
 function mcl_enchanting.is_book(itemname)
-	return itemname == "mcl_books:book" or itemname == "mcl_enchanting:book_enchanted" or
-		itemname == "mcl_books:book_enchanted"
+	return itemname == "mcl_books:book" or itemname == "mcl_enchanting:book_enchanted"
 end
 
 function mcl_enchanting.get_enchantments(itemstack)

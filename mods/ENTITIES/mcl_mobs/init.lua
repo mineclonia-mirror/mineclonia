@@ -280,7 +280,7 @@ mcl_mobs.mob_class = {
 	_collision_count = 0,
 }
 mcl_mobs.mob_class_meta = {__index = mcl_mobs.mob_class}
-mcl_mobs.fallback_node = core.registered_aliases["mapgen_dirt"] or "mcl_core:dirt"
+mcl_mobs.fallback_node = "mcl_core:dirt"
 
 -- get node but use fallback for nil or unknown
 function mcl_mobs.node_ok(pos, fallback)
