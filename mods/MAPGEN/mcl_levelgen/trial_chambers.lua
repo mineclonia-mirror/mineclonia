@@ -105,7 +105,7 @@ mcl_levelgen.register_loot_table ("mcl_levelgen:trial_chambers_chest_supply_loot
 			{ itemstring = "mcl_deepslate:tuff", weight = 1, amount_min = 5, amount_max = 10 },
 			{ itemstring = "mcl_potions:poison_arrow", weight = 1, amount_min = 4, amount_max = 8 },
 			{ itemstring = "mcl_potions:slowness_arrow", weight = 1, amount_min = 4, amount_max = 8 },
-			{ itemstring = "mcl_core:acaciawood", weight = 1, amount_min = 3, amount_max = 6 },
+			{ itemstring = "mcl_trees:wood_acacia", weight = 1, amount_min = 3, amount_max = 6 },
 			{ itemstring = "mcl_torches:torch", weight = 1, amount_min = 3, amount_max = 6 },
 			{ itemstring = "mcl_bone_meal:bone_meal", weight = 1, amount_min = 2, amount_max = 5 },
 			{ itemstring = "mcl_lush_caves:moss", weight = 1, amount_min = 2, amount_max = 5 },

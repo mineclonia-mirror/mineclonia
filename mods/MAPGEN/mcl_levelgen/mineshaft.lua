@@ -25,7 +25,7 @@ local minecart_loot = {
 				  mcl_enchanting.enchant_uniform_randomly(stack, {"soul_speed"}, pr)
 			end },
 			{ itemstring = "", weight = 5},
-			{ itemstring = "mcl_core:pick_iron", weight = 5 },
+			{ itemstring = "mcl_tools:pick_iron", weight = 5 },
 			{ itemstring = "mcl_core:apple_gold_enchanted", weight = 1 },
 		}
 	},

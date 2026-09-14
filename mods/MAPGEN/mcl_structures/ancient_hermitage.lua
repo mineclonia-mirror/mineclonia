@@ -48,8 +48,8 @@ mcl_structures.register_structure("ancient_hermitage",{
 
 				{ itemstring = "mcl_sculk:catalyst", weight = 2, amount_min = 1, amount_max = 2 },
 				{ itemstring = "mcl_compass:compass", weight = 2, amount_min = 1, amount_max = 1 },
-				{ itemstring = "mcl_jukebox:record_1", weight = 2 },
-				{ itemstring = "mcl_jukebox:record_4", weight = 2 },
+				{ itemstring = "mcl_jukebox:record_133", weight = 2 },
+				{ itemstring = "mcl_jukebox:record_far", weight = 2 },
 
 				--{ itemstring = "mcl_mobitems:LEAD", weight = 2, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_mobitems:leather", weight = 2, amount_min = 1, amount_max = 5 },
@@ -58,7 +58,7 @@ mcl_structures.register_structure("ancient_hermitage",{
 				{ itemstring = "mcl_mobitems:diamond_horse_armor", weight = 2 },
 
 				{ itemstring = "mcl_core:apple_gold_enchanted", weight = 1 },
-				{ itemstring = "mcl_jukebox:record_8", weight = 2 },
+				{ itemstring = "mcl_jukebox:record_mall", weight = 2 },
 
 			}},
 		}

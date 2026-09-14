@@ -1469,7 +1469,7 @@ local villager_trades = {
 			{ { "mcl_fishing:pufferfish_raw", 4, 4 }, E(), 12, 30 },
 
 			--Boat cherry?
-			{ { "mcl_boats:boat", 1, 1 }, E(), 12, 30 },
+			{ { "mcl_boats:boat_oak", 1, 1 }, E(), 12, 30 },
 			{ { "mcl_boats:boat_acacia", 1, 1 }, E(), 12, 30 },
 			{ { "mcl_boats:boat_spruce", 1, 1 }, E(), 12, 30 },
 			{ { "mcl_boats:boat_dark_oak", 1, 1 }, E(), 12, 30 },
@@ -1529,9 +1529,9 @@ local villager_trades = {
 
 		{
 			{ { "mcl_dyes:black", 12, 12 }, E(), 16, 10 },
-			{ { "mcl_dyes:dark_grey", 12, 12 }, E(), 16, 10 },
+			{ { "mcl_dyes:grey", 12, 12 }, E(), 16, 10 },
 			{ { "mcl_dyes:green", 12, 12 }, E(), 16, 10 },
-			{ { "mcl_dyes:lightblue", 12, 12 }, E(), 16, 10 },
+			{ { "mcl_dyes:light_blue", 12, 12 }, E(), 16, 10 },
 			{ { "mcl_dyes:white", 12, 12 }, E(), 16, 10 },
 
 			{ E(), { "mcl_wool:white", 1, 1 }, 16, 5 },
@@ -1595,10 +1595,10 @@ local villager_trades = {
 		},
 
 		{
-			{ { "mcl_dyes:dark_green", 12, 12 }, E(), 16, 30 },
+			{ { "mcl_dyes:green", 12, 12 }, E(), 16, 30 },
 			{ { "mcl_dyes:brown", 12, 12 }, E(), 16, 30 },
 			{ { "mcl_dyes:blue", 12, 12 }, E(), 16, 30 },
-			{ { "mcl_dyes:violet", 12, 12 }, E(), 16, 30 },
+			{ { "mcl_dyes:purple", 12, 12 }, E(), 16, 30 },
 			{ { "mcl_dyes:cyan", 12, 12 }, E(), 16, 30 },
 			{ { "mcl_dyes:magenta", 12, 12 }, E(), 16, 30 },
 

@@ -196,7 +196,7 @@ mcl_structures.register_structure("shipwreck",{
 							mcl_enchanting.enchant_uniform_randomly(stack, {"soul_speed"}) end },
 					{ itemstring = "mcl_armor:boots_leather_enchanted", weight = 3, func = function(stack, _)
 							mcl_enchanting.enchant_uniform_randomly(stack, {"soul_speed"}) end },
-					{ itemstring = "mcl_bamboo:bamboo", weight = 2, amount_min = 1, amount_max = 3 },
+					{ itemstring = "mcl_bamboo:bamboo_small", weight = 2, amount_min = 1, amount_max = 3 },
 					{ itemstring = "mcl_farming:pumpkin", weight = 2, amount_min = 1, amount_max = 3 },
 					{ itemstring = "mcl_tnt:tnt", weight = 1, amount_min = 1, amount_max = 2 },
 				}

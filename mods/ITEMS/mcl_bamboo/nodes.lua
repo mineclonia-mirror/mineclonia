@@ -84,7 +84,7 @@ local bamboo_def = {
 		pathfinder_partial=2
 	},
 	sounds = mcl_sounds.node_sound_wood_defaults(),
-	drop = "mcl_bamboo:bamboo",
+	drop = "mcl_bamboo:bamboo_small",
 	inventory_image = "mcl_bamboo_bamboo_inv.png",
 	wield_image = "mcl_bamboo_bamboo_inv.png",
 	_mcl_burntime = 2.5,

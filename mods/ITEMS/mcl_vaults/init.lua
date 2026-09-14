@@ -104,7 +104,7 @@ mcl_vaults.register_vault("vault", {
 				{ nothing = true, weight = 36 },
 				{ itemstring = "mcl_core:apple_gold", weight = 4, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_armor:bolt", weight = 3, amount_min = 1, amount_max = 1 },
-				{ itemstring = "mcl_jukebox:record_8", weight = 2, amount_min = 1, amount_max = 1 },
+				{ itemstring = "mcl_jukebox:record_mall", weight = 2, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_banners:pattern_guster", weight = 2, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_tridents:trident", weight = 1, amount_min = 1, amount_max = 1 },
 			}
@@ -181,7 +181,7 @@ mcl_vaults.register_vault("ominous_vault", {
 				{ itemstring = "mcl_armor:flow", weight = 9, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_core:apple_gold_enchanted", weight = 9, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_banners:pattern_flow", weight = 6, amount_min = 1, amount_max = 1 },
-				{ itemstring = "mcl_jukebox:record_7", weight = 3, amount_min = 1, amount_max = 1 },
+				{ itemstring = "mcl_jukebox:record_mellohi", weight = 3, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_tools:heavy_core", weight = 3, amount_min = 1, amount_max = 1 },
 			}
 		}

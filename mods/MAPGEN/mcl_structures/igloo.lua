@@ -141,7 +141,7 @@ function mcl_structures.generate_igloo(pos, def, pr)
 		mcl_structures.generate_igloo_basement(bpos, rotation, def.loot, pr)
 		-- Place hidden trapdoor
 		core.after(5, function(tpos, dir)
-			core.swap_node(tpos, {name="mcl_doors:trapdoor", param2=20+core.dir_to_facedir(dir)}) -- TODO: more reliable param2
+			core.swap_node(tpos, {name="mcl_doors:trapdoor_oak", param2=20+core.dir_to_facedir(dir)}) -- TODO: more reliable param2
 		end, tpos, dir)
 	end
 	return success
