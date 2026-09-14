@@ -19,8 +19,8 @@ core.register_craft({
 core.register_craft({
 	output = "mcl_core:stick",
 	recipe = {
-		{"mcl_bamboo:bamboo"},
-		{"mcl_bamboo:bamboo"},
+		{"mcl_bamboo:bamboo_small"},
+		{"mcl_bamboo:bamboo_small"},
 	}
 })
 

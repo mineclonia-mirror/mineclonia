@@ -35,7 +35,7 @@ for _, x in pairs(block_exposure_level) do
 			recipe = {
 				{ "", "mcl_copper:block"..x..w, "" },
 				{ "mcl_copper:block"..x..w, "mcl_mobitems:blaze_rod", "mcl_copper:block"..x..w },
-				{ "", "mesecons:redstone", "" }
+				{ "", "mcl_redstone:redstone", "" }
 			}
 		})
 	end

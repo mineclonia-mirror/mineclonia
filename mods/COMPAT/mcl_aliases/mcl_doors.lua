@@ -17,7 +17,7 @@ for oldname, newname in pairs(doornames) do
 	core.register_alias("doors:"..oldname.."_b_2", "mcl_doors:"..newname.."_b_2")
 end
 
-core.register_alias("doors:trapdoor", "mcl_doors:trapdoor")
-core.register_alias("doors:trapdoor_open", "mcl_doors:trapdoor_open")
+core.register_alias("doors:trapdoor", "mcl_doors:trapdoor_oak")
+core.register_alias("doors:trapdoor_open", "mcl_doors:trapdoor_oak_open")
 core.register_alias("doors:iron_trapdoor", "mcl_doors:iron_trapdoor")
 core.register_alias("doors:iron_trapdoor_open", "mcl_doors:iron_trapdoor_open")
