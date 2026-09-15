@@ -116,20 +116,6 @@ mcl_pistons.register_on_move(function(moved_nodes)
 	end
 end)
 
-local half_blocks = {
-    {4/16, -0.5, -3/16, 0.5, 5/16, 3/16},
-    {-3/16, -0.5, 4/16, 3/16, 5/16, 0.5},
-    {-0.5, -0.5, -3/16, -4/16, 5/16, 3/16},
-    {-3/16, -0.5, -0.5, 3/16, 5/16, -4/16}
-}
-
-local pillar = {-4/16, -0.5, -4/16, 4/16, 0.5, 4/16}
-
-local full_blocks = {
-    {-0.5, -0.5, -3/16, 0.5, 5/16, 3/16},
-    {-3/16, -0.5, -0.5, 3/16, 5/16, 0.5}
-}
-
 local main_wall_groups = {
 	pickaxey = 1,
 	wall = 1,
@@ -155,6 +141,22 @@ local short_flat_wall_nodebox = {
 	fixed = {
 		8/16, 6/16, 3/16,
 		-8/16, -8/16, -3/16,
+	}
+}
+
+local short_flat_wall_collisionbox = {
+	type = "fixed",
+	fixed = {
+		8/16, 12/16, 3/16,
+		-8/16, -8/16, -3/16,
+	}
+}
+
+local pillar_collisionbox = {
+	type = "fixed",
+	fixed = {
+		6/16, 12/16, 6/16,
+		-6/16, -8/16, -6/16,
 	}
 }
 
@@ -232,24 +234,13 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 	if not base_groups then
 		base_groups = {pickaxey=1}
 	end
-	base_groups.wall = 1
-
-	local internal_groups = table.copy(base_groups)
-	internal_groups.not_in_creative_inventory = 1
-
-	local main_node_groups = table.copy(base_groups)
-	main_node_groups.deco_block = 1
-
-	-- TODO: Stop hardcoding blast resistance
 
 	if not sounds then
 		sounds = mcl_sounds.node_sound_stone_defaults()
 	end
 
-	if (not tiles) and source then
-		if core.registered_nodes[source] then
-			tiles = core.registered_nodes[source].tiles
-		end
+	if (not tiles) and source and core.registered_nodes[source] then
+		tiles = core.registered_nodes[source].tiles
 	end
 
 	local wall_instance_shared_def = {
@@ -262,29 +253,34 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 
 	core.register_node(":"..nodename.."_tall_flat", table.merge(tpl_wall, wall_instance_shared_def, {
 		paramtype2 = "4dir",
-		groups = internal_wall_groups,
+		groups = table.merge(internal_wall_groups, groups),
 		node_box = tall_flat_wall_nodebox,
 	}, overrides or {}))
 
 	core.register_node(":"..nodename.."_short_flat", table.merge(tpl_wall, wall_instance_shared_def , {
 		paramtype2 = "4dir",
-		groups = table.merge(internal_wall_groups, {wall_short = 1}),
+		groups = table.merge(internal_wall_groups, {wall_short = 1}, groups),
 		node_box = short_flat_wall_nodebox,
+		collision_box = short_flat_wall_collisionbox,
 	}, overrides or {}))
 
-	core.register_node(":"..nodename.."_short_pillar", table.merge(tpl_wall, {
+	core.register_node(":"..nodename.."_short_pillar", table.merge(tpl_wall, wall_instance_shared_def, {
+		description = description,
+		inventory_image = inventory_image,
 		_doc_items_longdesc = S("A piece of wall. It cannot be jumped over with a simple jump. When multiple of these are placed to next to each other, they will automatically build a nice wall structure."),
-		groups = table.merge(main_node_groups, {wall_short = 1, wall_pillar = 1}),
+		groups = table.merge(main_wall_groups, {wall_short = 1, wall_pillar = 1}, groups),
 		on_construct = function(pos)
 			mcl_walls.update_wall(pos)
 		end,
 		node_box = short_pillar_wall_nodebox,
+		collision_box = pillar_collisionbox,
 		connects_to = {"group:wall", "group:solid"},
 	}, overrides or {}))
 
-	core.register_node(":"..nodename.."_tall_pillar", table.merge({
-		groups = table.merge(internal_wall_groups, {wall_pillar = 1}),
+	core.register_node(":"..nodename.."_tall_pillar", table.merge(tpl_wall, wall_instance_shared_def, {
+		groups = table.merge(internal_wall_groups, {wall_pillar = 1}, groups),
 		node_box = tall_pillar_wall_nodebox,
+		collision_box = pillar_collisionbox,
 		connects_to = {"group:wall", "group:solid"},
 	}, overrides or {}))
 
