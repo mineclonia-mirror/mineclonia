@@ -59,7 +59,6 @@ mcl_structures.register_structure("woodland_cabin",{
 				stacks_max = 4,
 				items = {
 				--{ itemstring = "FIXME:lead", weight = 20, amount_min = 1, amount_max = 1 },
-				{ itemstring = "mcl_mobitems:nametag", weight = 2, amount_min = 1, amount_max = 3 },
 				{ itemstring = "mcl_books:book", weight = 1, func = function(stack, pr)mcl_enchanting.enchant_uniform_randomly(stack, {"soul_speed"}, pr) end },
 				{ itemstring = "mcl_armor:chestplate_chain", weight = 1, },
 				{ itemstring = "mcl_armor:chestplate_diamond", weight = 1, },
