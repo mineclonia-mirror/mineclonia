@@ -3,70 +3,82 @@ local S = core.get_translator(modname)
 
 mcl_walls = {}
 
-local function rshift(x, by)
-	return math.floor(x / 2 ^ by)
-end
-
 local directions = {
-	{x = 1, y = 0, z = 0},
-	{x = 0, y = 0, z = 1},
-	{x = -1, y = 0, z = 0},
-	{x = 0, y = 0, z = -1},
-	{x = 0, y = -1, z = 0},
+	vector.new(1, 0, 0),
+	vector.new(-1, 0, 0),
+	vector.new(0, 0, 1),
+	vector.new(0, 0, -1),
+	vector.new(0, -1, 0)
 }
 
-local function connectable(itemstring)
-	return (core.get_item_group(itemstring, "wall") == 1) or (core.get_item_group(itemstring, "solid") == 1)
+local function construct_wall_name(root, is_tall, is_pillar)
+	return root .. (is_tall and "_tall" or "_short") .. (is_pillar and "_pillar" or "_flat")
 end
 
 function mcl_walls.update_wall(pos)
-	local thisnode = core.get_node(pos)
+	local node = core.get_node(pos)
 
-	if core.get_item_group(thisnode.name, "wall") == 0 then
+	if core.get_item_group(node.name, "wall") <= 0 then
 		return
 	end
 
-	-- Get the node's base name, including the underscore since we will need it
-	local colonpos = thisnode.name:find(":")
-	local underscorepos
-	local itemname, basename, modname
-	if colonpos then
-		itemname = thisnode.name:sub(colonpos+1)
-		modname = thisnode.name:sub(1, colonpos-1)
-	end
-	underscorepos = itemname:find("_")
-	if underscorepos == nil then -- New wall
-		basename = thisnode.name .. "_"
-	else -- Already placed wall
-		basename = modname .. ":" .. itemname:sub(1, underscorepos)
+	local is_pillar = core.get_item_group(node.name, "wall_pillar") > 0
+
+	local function is_node_connectable(pos, off_x, off_y, off_z)
+		pos.x = pos.x + off_x
+		pos.y = pos.y + off_y
+		pos.z = pos.z + off_z
+		local offset_node = core.get_node(pos)
+		pos.x = pos.x - off_x
+		pos.y = pos.y - off_y
+		pos.z = pos.z - off_z
+		return core.get_item_group(offset_node.name, "solid") > 0 or core.get_item_group(offset_node.name, "wall") > 0
 	end
 
-	local sum = 0
+	local top_node = core.get_node(vector.offset(pos, 0, 1, 0))
+	local top_node_is_solid = core.get_item_group(top_node.name, "solid") > 0
+	local top_node_is_wall = core.get_item_group(top_node.name, "wall") > 0
+	local should_be_tall
 
-	-- Neighbouring walkable nodes
-	for i = 1, 4 do
-		local dir = directions[i]
-		local node = core.get_node({x = pos.x + dir.x, y = pos.y + dir.y, z = pos.z + dir.z})
-		if connectable(node.name) then
-			sum = sum + 2 ^ (i - 1)
-		end
+	local is_positive_x_connectable = is_node_connectable(pos, 1, 0, 0)
+	local is_negative_x_connectable = is_node_connectable(pos, -1, 0, 0)
+
+	local is_positive_z_connectable = is_node_connectable(pos, 0, 0, 1)
+	local is_negative_z_connectable = is_node_connectable(pos, 0, 0, -1)
+
+	local inline_with_x = is_positive_x_connectable and is_negative_x_connectable
+	local inline_with_z = is_positive_z_connectable and is_negative_z_connectable
+
+	local should_be_pillar =
+		top_node_is_wall
+		or not (
+			(inline_with_x and not is_positive_z_connectable and not is_negative_z_connectable)
+			or (inline_with_z and not is_positive_x_connectable and not is_negative_x_connectable)
+		)
+
+	if top_node_is_wall then
+		-- If top node is a wall, should be tall if both the current, and the top node connect at the same side
+		should_be_tall = (is_positive_x_connectable and is_node_connectable(pos, 1, 1, 0))
+			or (is_negative_x_connectable and is_node_connectable(pos, -1, 1, 0))
+			or (is_positive_z_connectable and is_node_connectable(pos, 0, 1, 1))
+			or (is_negative_z_connectable and is_node_connectable(pos, 0, 1, -1))
+	else
+		should_be_tall = top_node_is_solid
 	end
 
-	-- Torches or walkable nodes above the wall
-	local upnode = core.get_node({x = pos.x, y = pos.y+1, z = pos.z})
-	if sum == 5 or sum == 10 then
-		if (connectable(upnode.name))
-			or (core.get_item_group(upnode.name, "fence") == 1)
-			or (core.get_item_group(upnode.name, "torch") == 1) then
-			sum = sum + 11
-		end
+	local node_name_root = core.registered_nodes[node.name]._mcl_walls_name_root
+	local new_param2 = (not should_be_pillar and inline_with_z and 1) or 0
+
+	core.swap_node(pos,
+		{
+			name = construct_wall_name(node_name_root, should_be_tall, should_be_pillar),
+			param2 = new_param2
+		}
+	)
+
+	if is_pillar or should_be_pillar then
+		mcl_walls.update_wall(vector.offset(pos, 0, -1, 0))
 	end
-
-	--[[if sum == 0 then
-		sum = 15
-	end]]
-
-	core.set_node(pos, {name = basename..sum})
 end
 
 -- XXX: render this asynchronous and move it into nodeprops.lua.
@@ -84,12 +96,25 @@ mcl_levelgen.register_notification_handler ("mcl_walls:update_walls", function (
 	end
 end)
 
-local function update_wall_global(pos)
-	for i = 1,5 do
+local function update_surrounding_walls(pos)
+	for i = 1, #directions do
 		local dir = directions[i]
-		mcl_walls.update_wall({x = pos.x + dir.x, y = pos.y + dir.y, z = pos.z + dir.z})
+		pos.x = pos.x + dir.x
+		pos.y = pos.y + dir.y
+		pos.z = pos.z + dir.z
+		mcl_walls.update_wall(pos)
+		pos.x = pos.x - dir.x
+		pos.y = pos.y - dir.y
+		pos.z = pos.z - dir.z
 	end
 end
+
+mcl_pistons.register_on_move(function(moved_nodes)
+	for i = 1, #moved_nodes do
+		update_surrounding_walls(moved_nodes[i].pos)
+		update_surrounding_walls(moved_nodes[i].old_pos)
+	end
+end)
 
 local half_blocks = {
     {4/16, -0.5, -3/16, 0.5, 5/16, 3/16},
@@ -103,6 +128,93 @@ local pillar = {-4/16, -0.5, -4/16, 4/16, 0.5, 4/16}
 local full_blocks = {
     {-0.5, -0.5, -3/16, 0.5, 5/16, 3/16},
     {-3/16, -0.5, -0.5, 3/16, 5/16, 0.5}
+}
+
+local main_wall_groups = {
+	pickaxey = 1,
+	wall = 1,
+	deco_block = 1
+}
+
+local internal_wall_groups = {
+	pickaxey = 1,
+	wall = 1,
+	not_in_creative_inventory = 1
+}
+
+local tall_flat_wall_nodebox = {
+	type = "fixed",
+	fixed = {
+		8/16, 8/16, 3/16,
+		-8/16, -8/16, -3/16,
+	}
+}
+
+local short_flat_wall_nodebox = {
+	type = "fixed",
+	fixed = {
+		8/16, 6/16, 3/16,
+		-8/16, -8/16, -3/16,
+	}
+}
+
+local short_pillar_wall_nodebox = {
+	type = "connected",
+	fixed = {
+		4/16, 8/16, 4/16,
+		-4/16, -8/16, -4/16,
+	},
+	connect_back = {
+		3/16, 6/16, 8/16,
+		-3/16, -8/16, 0/16,
+	},
+	connect_front = {
+		3/16, 6/16, 0/16,
+		-3/16, -8/16, -8/16,
+	},
+	connect_right = {
+		8/16, 6/16, 3/16,
+		0/16, -8/16, -3/16,
+	},
+	connect_left = {
+		0/16, 6/16, 3/16,
+		-8/16, -8/16, -3/16,
+	}
+}
+
+local tall_pillar_wall_nodebox = {
+	type = "connected",
+	fixed = {
+		4/16, 8/16, 4/16,
+		-4/16, -8/16, -4/16,
+	},
+	connect_back = {
+		3/16, 8/16, 8/16,
+		-3/16, -8/16, 0/16,
+	},
+	connect_front = {
+		3/16, 8/16, 0/16,
+		-3/16, -8/16, -8/16,
+	},
+	connect_right = {
+		8/16, 8/16, 3/16,
+		0/16, -8/16, -3/16,
+	},
+	connect_left = {
+		0/16, 8/16, 3/16,
+		-8/16, -8/16, -3/16,
+	}
+}
+
+local tpl_wall = {
+	drawtype = "nodebox",
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	sounds = mcl_sounds.node_sound_stone_defaults(),
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 2,
+	_pathfinding_class = "FENCE",
 }
 
 --[[ Adds a new wall type.
@@ -140,137 +252,98 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 		end
 	end
 
-	for i = 0, 15 do
-		local need = {}
-		local need_pillar = false
-		for j = 1, 4 do
-			if rshift(i, j - 1) % 2 == 1 then
-				need[j] = true
-			end
-		end
+	core.register_node(":"..nodename.."_tall_flat", table.merge(tpl_wall, {
+		tiles = tiles,
+		paramtype2 = "4dir",
+		groups = internal_wall_groups,
+		drop = nodename,
+		node_box = tall_flat_wall_nodebox,
+		_mcl_stonecutter_recipes = {source},
+		_mcl_baseitem = nodename,
+		_mcl_walls_name_root = nodename,
+	}, overrides or {}))
 
-		local take = {}
-		if need[1] == true and need[3] == true then
-			need[1] = nil
-			need[3] = nil
-			table.insert(take, full_blocks[1])
-		end
-		if need[2] == true and need[4] == true then
-			need[2] = nil
-			need[4] = nil
-			table.insert(take, full_blocks[2])
-		end
-		for k, _ in pairs(need) do
-			table.insert(take, half_blocks[k])
-			need_pillar = true
-		end
-		if i == 15 or i == 0 then need_pillar = true end
-		if need_pillar then table.insert(take, pillar) end
+	core.register_node(":"..nodename.."_short_flat", table.merge(tpl_wall, {
+		tiles = tiles,
+		paramtype2 = "4dir",
+		groups = table.merge(internal_wall_groups, {wall_short = 1}),
+		drop = nodename,
+		node_box = short_flat_wall_nodebox,
+		_mcl_stonecutter_recipes = {source},
+		_mcl_baseitem = nodename,
+		_mcl_walls_name_root = nodename,
+	}, overrides or {}))
 
-		core.register_node(":"..nodename.."_"..i, table.merge({
-			collision_box = {
-				type = "fixed",
-				fixed = {-4/16, -0.5, -4/16, 4/16, 1, 4/16}
-			},
-			drawtype = "nodebox",
-			is_ground_content = false,
-			tiles = tiles,
-			paramtype = "light",
-			sunlight_propagates = true,
-			groups = internal_groups,
-			drop = nodename,
-			node_box = {
-				type = "fixed",
-				fixed = take
-			},
-			sounds = sounds,
-			_mcl_blast_resistance = 6,
-			_mcl_hardness = 2,
-			_mcl_stonecutter_recipes = {source},
-			_mcl_baseitem = nodename,
-			_pathfinding_class = "FENCE",
-		}, overrides or {}))
-
-		doc.add_entry_alias("nodes", nodename, "nodes", nodename.."_"..i)
-	end
-
-	core.register_node(":"..nodename.."_16", table.merge({
-		drawtype = "nodebox",
+	core.register_node(":"..nodename.."_short_pillar", table.merge(tpl_wall, {
+		description = "short pillar",
+		_doc_items_longdesc = S("A piece of wall. It cannot be jumped over with a simple jump. When multiple of these are placed to next to each other, they will automatically build a nice wall structure."),
 		collision_box = {
-				type = "fixed",
-				fixed = {-4/16, -0.5, -4/16, 4/16, 1, 4/16}
+			type = "fixed",
+			fixed = {
+				-4/16, -0.5, -4/16,
+				4/16, 1, 4/16}
 		},
+		drawtype = "nodebox",
+		is_ground_content = false,
 		tiles = tiles,
 		paramtype = "light",
 		sunlight_propagates = true,
-		is_ground_content = false,
-		groups = internal_groups,
+		groups = table.merge(main_node_groups, {wall_short = 1, wall_pillar = 1}),
 		drop = nodename,
-		node_box = {
-			type = "fixed",
-			fixed = {pillar, full_blocks[1]}
+		on_construct = function(pos)
+			mcl_walls.update_wall(pos)
+		end,
+		node_box = short_pillar_wall_nodebox,
+		connects_to = {
+			"group:wall", "group:solid"
 		},
 		sounds = sounds,
 		_mcl_blast_resistance = 6,
 		_mcl_hardness = 2,
 		_mcl_stonecutter_recipes = {source},
 		_mcl_baseitem = nodename,
+		_mcl_walls_name_root = nodename,
 		_pathfinding_class = "FENCE",
 	}, overrides or {}))
-	doc.add_entry_alias("nodes", nodename, "nodes", nodename.."_16")
 
-	core.register_node(":"..nodename.."_21", table.merge({
-		drawtype = "nodebox",
+	core.register_node(":"..nodename.."_tall_pillar", table.merge({
+		description = "short pillar",
 		collision_box = {
-				type = "fixed",
-				fixed = {-4/16, -0.5, -4/16, 4/16, 1, 4/16}
+			type = "fixed",
+			fixed = {
+				-4/16, -0.5, -4/16,
+				4/16, 1, 4/16}
 		},
+		drawtype = "nodebox",
+		is_ground_content = false,
 		tiles = tiles,
 		paramtype = "light",
 		sunlight_propagates = true,
-		is_ground_content = false,
-		groups = internal_groups,
+		groups = table.merge(internal_wall_groups, {wall_pillar = 1}),
 		drop = nodename,
-		node_box = {
-			type = "fixed",
-			fixed = {pillar, full_blocks[2]}
+		node_box = tall_pillar_wall_nodebox,
+		connects_to = {
+			"group:wall", "group:solid"
 		},
 		sounds = sounds,
 		_mcl_blast_resistance = 6,
 		_mcl_hardness = 2,
+		_mcl_stonecutter_recipes = {source},
 		_mcl_baseitem = nodename,
-		_pathfinding_class = "FENCE"
+		_mcl_walls_name_root = nodename,
+		_pathfinding_class = "FENCE",
 	}, overrides or {}))
-	doc.add_entry_alias("nodes", nodename, "nodes", nodename.."_21")
 
-	-- Inventory item
-	core.register_node(":"..nodename, table.merge({
-		description = description,
-		_doc_items_longdesc = S("A piece of wall. It cannot be jumped over with a simple jump. When multiple of these are placed to next to each other, they will automatically build a nice wall structure."),
-		paramtype = "light",
-		sunlight_propagates = true,
-		is_ground_content = false,
-		groups = main_node_groups,
-		tiles = tiles,
-		inventory_image = inventory_image,
-		drawtype = "nodebox",
-		node_box = {
-			type = "fixed",
-			fixed = pillar
-		},
-		collision_box = {
-				type = "fixed",
-				fixed = {-4/16, -0.5, -4/16, 4/16, 1, 4/16}
-		},
-		collisionbox = {-0.2, 0, -0.2, 0.2, 1.4, 0.2},
-		on_construct = mcl_walls.update_wall,
-		sounds = sounds,
-		_mcl_blast_resistance = 6,
-		_mcl_hardness = 2,
-	}, overrides or {}))
+	for i = 0, 16 do
+		core.register_alias(nodename.."_"..tostring(i), nodename.."_short_pillar")
+	end
+	core.register_alias(nodename.."_21", nodename.."_short_pillar")
+	core.register_alias(nodename, nodename.."_short_pillar")
+
 	if source then
+		rdb.log("adding entry", source)
 		core.register_craft({
-			output = nodename .. " 6",
+			output = nodename .. "_short_pillar 6",
 			recipe = {
 				{source, source, source},
 				{source, source, source},
@@ -285,5 +358,5 @@ function mcl_walls.register_wall_def(name,def)
 	mcl_walls.register_wall(name, nil, source, nil, nil, nil, nil, def)
 end
 
-core.register_on_placenode(update_wall_global)
-core.register_on_dignode(update_wall_global)
+core.register_on_placenode(update_surrounding_walls)
+core.register_on_dignode(update_surrounding_walls)
