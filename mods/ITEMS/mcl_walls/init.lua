@@ -252,86 +252,40 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 		end
 	end
 
-	core.register_node(":"..nodename.."_tall_flat", table.merge(tpl_wall, {
+	local wall_instance_shared_def = {
 		tiles = tiles,
+		drop = nodename,
+		_mcl_stonecutter_recipes = {source},
+		_mcl_baseitem = nodename,
+		_mcl_walls_name_root = nodename,
+	}
+
+	core.register_node(":"..nodename.."_tall_flat", table.merge(tpl_wall, wall_instance_shared_def, {
 		paramtype2 = "4dir",
 		groups = internal_wall_groups,
-		drop = nodename,
 		node_box = tall_flat_wall_nodebox,
-		_mcl_stonecutter_recipes = {source},
-		_mcl_baseitem = nodename,
-		_mcl_walls_name_root = nodename,
 	}, overrides or {}))
 
-	core.register_node(":"..nodename.."_short_flat", table.merge(tpl_wall, {
-		tiles = tiles,
+	core.register_node(":"..nodename.."_short_flat", table.merge(tpl_wall, wall_instance_shared_def , {
 		paramtype2 = "4dir",
 		groups = table.merge(internal_wall_groups, {wall_short = 1}),
-		drop = nodename,
 		node_box = short_flat_wall_nodebox,
-		_mcl_stonecutter_recipes = {source},
-		_mcl_baseitem = nodename,
-		_mcl_walls_name_root = nodename,
 	}, overrides or {}))
 
 	core.register_node(":"..nodename.."_short_pillar", table.merge(tpl_wall, {
-		description = "short pillar",
 		_doc_items_longdesc = S("A piece of wall. It cannot be jumped over with a simple jump. When multiple of these are placed to next to each other, they will automatically build a nice wall structure."),
-		collision_box = {
-			type = "fixed",
-			fixed = {
-				-4/16, -0.5, -4/16,
-				4/16, 1, 4/16}
-		},
-		drawtype = "nodebox",
-		is_ground_content = false,
-		tiles = tiles,
-		paramtype = "light",
-		sunlight_propagates = true,
 		groups = table.merge(main_node_groups, {wall_short = 1, wall_pillar = 1}),
-		drop = nodename,
 		on_construct = function(pos)
 			mcl_walls.update_wall(pos)
 		end,
 		node_box = short_pillar_wall_nodebox,
-		connects_to = {
-			"group:wall", "group:solid"
-		},
-		sounds = sounds,
-		_mcl_blast_resistance = 6,
-		_mcl_hardness = 2,
-		_mcl_stonecutter_recipes = {source},
-		_mcl_baseitem = nodename,
-		_mcl_walls_name_root = nodename,
-		_pathfinding_class = "FENCE",
+		connects_to = {"group:wall", "group:solid"},
 	}, overrides or {}))
 
 	core.register_node(":"..nodename.."_tall_pillar", table.merge({
-		description = "short pillar",
-		collision_box = {
-			type = "fixed",
-			fixed = {
-				-4/16, -0.5, -4/16,
-				4/16, 1, 4/16}
-		},
-		drawtype = "nodebox",
-		is_ground_content = false,
-		tiles = tiles,
-		paramtype = "light",
-		sunlight_propagates = true,
 		groups = table.merge(internal_wall_groups, {wall_pillar = 1}),
-		drop = nodename,
 		node_box = tall_pillar_wall_nodebox,
-		connects_to = {
-			"group:wall", "group:solid"
-		},
-		sounds = sounds,
-		_mcl_blast_resistance = 6,
-		_mcl_hardness = 2,
-		_mcl_stonecutter_recipes = {source},
-		_mcl_baseitem = nodename,
-		_mcl_walls_name_root = nodename,
-		_pathfinding_class = "FENCE",
+		connects_to = {"group:wall", "group:solid"},
 	}, overrides or {}))
 
 	for i = 0, 16 do
@@ -341,7 +295,6 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 	core.register_alias(nodename, nodename.."_short_pillar")
 
 	if source then
-		rdb.log("adding entry", source)
 		core.register_craft({
 			output = nodename .. "_short_pillar 6",
 			recipe = {
