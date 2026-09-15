@@ -150,6 +150,9 @@ function mcl_levelgen.read_structure_template (name)
 
 		local name = data.names[id]
 		if name ~= "mcl_levelgen:structure_void" then
+			if not core.registered_nodes[name] then
+				name = core.registered_aliases[name]
+			end
 			local ok, cid = pcall (core.get_content_id, name)
 			if not ok then
 				return nil, "Node not defined: " .. name
