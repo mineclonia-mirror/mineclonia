@@ -452,7 +452,8 @@ local function get_recipe_fs(data, iY, player)
 			rightest = X
 		end
 
-		local button_name = "ingredient_button_" .. i
+		local _, _, item_mod, item_name = string.find(item, "^([^:]*):(.*)$")
+		local button_name = "ingredient_button_" .. i .. "_" .. item_mod .. "$$$" .. item_name
 		if required_items[item] <= 0 then
 			fs[#fs + 1] = string.format("style[%s,%s:hovered,%s:focused+hovered;bgcolor=%s]", button_name, button_name, button_name, RED_COLOR)
 			has_all_ingredients = false
@@ -909,7 +910,18 @@ local function on_receive_fields(player, fields)
 	else
 		local item
 		for field, _ in pairs(fields) do
-			if string.find(field, ":") then
+			-- The buttons in the main list pass a field with format "<mod>:<item_name>"
+			--
+			-- While the buttons in the crafting grid pass a field with format "<ingredient_button_<slot id>_<mod>$$$<itemname>>"
+			-- This is because each button in the crafting grid needs to have a unique name, so they can be individually styled
+			--
+			-- Hence, this loop needs to support both formats
+
+			local _, _, item_mod, item_name = string.find(field, "^ingredient_button_%d+_(.*)%$%$%$(.*)$")
+			if item_mod then
+				item = string.format("%s:%s", item_mod, item_name)
+				break
+			elseif string.find(field, ":") then
 				item = field
 				break
 			end
