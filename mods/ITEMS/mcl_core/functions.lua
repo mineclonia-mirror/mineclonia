@@ -238,8 +238,8 @@ core.register_abm({
 			return
 		end
 		local above = {x=pos.x, y=pos.y+1, z=pos.z}
-		local abovenode = core.get_node(above)
-		if core.get_item_group(abovenode.name, "liquid") ~= 0 or core.get_item_group(abovenode.name, "opaque") == 1 or core.get_item_group(abovenode.name,"dirtifier") ~= 0 then
+		local name = core.get_node(above).name
+		if core.get_item_group(name, "liquid") ~= 0 or core.get_item_group(name, "opaque") == 1 or core.get_item_group(name,"dirtifier") ~= 0 then
 			-- Never grow directly below liquids or opaque blocks
 			return
 		end
