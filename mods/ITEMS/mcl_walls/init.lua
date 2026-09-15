@@ -230,15 +230,6 @@ local tpl_wall = {
 ]]
 function mcl_walls.register_wall(nodename, description, source, tiles, inventory_image, groups, sounds, overrides)
 
-	local base_groups = groups
-	if not base_groups then
-		base_groups = {pickaxey=1}
-	end
-
-	if not sounds then
-		sounds = mcl_sounds.node_sound_stone_defaults()
-	end
-
 	if (not tiles) and source and core.registered_nodes[source] then
 		tiles = core.registered_nodes[source].tiles
 	end
@@ -249,6 +240,7 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 		_mcl_stonecutter_recipes = {source},
 		_mcl_baseitem = nodename,
 		_mcl_walls_name_root = nodename,
+		sounds = sounds
 	}
 
 	core.register_node(":"..nodename.."_tall_flat", table.merge(tpl_wall, wall_instance_shared_def, {
