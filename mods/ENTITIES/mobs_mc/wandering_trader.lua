@@ -123,6 +123,7 @@ local trades_ordinary_table = {
 	{ E(), { "mcl_dripstone:pointed_dripstone", 2, 5, }, 5, 0 },
 	{ E(), { "mcl_lush_caves:rooted_dirt", 2, 2, }, 5, 0 },
 	{ E(), { "mcl_lush_caves:moss", 2, 2, }, 5, 0 },
+	{ E(1), { "mcl_mobitems:nametag", 1, 1, }, 5, 0 },
 	{ E(2), { "mcl_ocean:sea_pickle_1_dead_brain_coral_block", 1, 1, }, 5, 0 },
 	{ E(2), { "mcl_nether:glowstone", 1, 5, }, 5, 0 },
 	{ E(3), { "mcl_buckets:bucket_tropical_fish", 1, 1, }, 4, 0 },
