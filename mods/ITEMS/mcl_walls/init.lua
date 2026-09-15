@@ -38,6 +38,7 @@ function mcl_walls.update_wall(pos)
 	local top_node = core.get_node(vector.offset(pos, 0, 1, 0))
 	local top_node_is_solid = core.get_item_group(top_node.name, "solid") > 0
 	local top_node_is_wall = core.get_item_group(top_node.name, "wall") > 0
+	local top_node_is_pillar = core.get_item_group(top_node.name, "wall_pillar") > 0
 	local should_be_tall
 
 	local is_positive_x_connectable = is_node_connectable(pos, 1, 0, 0)
@@ -50,7 +51,7 @@ function mcl_walls.update_wall(pos)
 	local inline_with_z = is_positive_z_connectable and is_negative_z_connectable
 
 	local should_be_pillar =
-		top_node_is_wall
+		top_node_is_pillar
 		or not (
 			(inline_with_x and not is_positive_z_connectable and not is_negative_z_connectable)
 			or (inline_with_z and not is_positive_x_connectable and not is_negative_x_connectable)
@@ -58,10 +59,15 @@ function mcl_walls.update_wall(pos)
 
 	if top_node_is_wall then
 		-- If top node is a wall, should be tall if both the current, and the top node connect at the same side
-		should_be_tall = (is_positive_x_connectable and is_node_connectable(pos, 1, 1, 0))
+		local has_shared_connections_with_top_wall = (is_positive_x_connectable and is_node_connectable(pos, 1, 1, 0))
 			or (is_negative_x_connectable and is_node_connectable(pos, -1, 1, 0))
 			or (is_positive_z_connectable and is_node_connectable(pos, 0, 1, 1))
 			or (is_negative_z_connectable and is_node_connectable(pos, 0, 1, -1))
+		should_be_tall = has_shared_connections_with_top_wall
+
+		if not has_shared_connections_with_top_wall and not top_node_is_pillar then
+			should_be_pillar = true
+		end
 	else
 		should_be_tall = top_node_is_solid
 	end
