@@ -4519,7 +4519,7 @@ local function register_decorations()
 	core.register_decoration({
 		deco_type = "simple",
 		place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_mud:mud"},
-		fill_ratio = 0.004,
+		fill_ratio = 0.022,
 		height = 7,
 		height_max = 15,
 		biomes = {"BambooJungle", "Jungle", "JungleM", "JungleEdge", "MangroveSwamp"},
@@ -4529,26 +4529,11 @@ local function register_decorations()
 		param2_max = 3,
 		decoration = "mcl_bamboo:bamboo_small" ,
 	})
-	for i=1,3 do
-		core.register_decoration({
-			deco_type = "simple",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_mud:mud"},
-			fill_ratio = 0.004+(i*0.001),
-			height = 7,
-			height_max = 15,
-			param2 = 0,
-			param2_max = 3,
-			biomes = {"BambooJungle", "Jungle", "JungleM", "JungleEdge", "MangroveSwamp"},
-			y_min = 1,
-			y_max = mcl_vars.mg_overworld_max,
-			decoration = "mcl_bamboo:bamboo_small",
-		})
-	end
 
 	core.register_decoration({
 		deco_type = "simple",
 		place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_mud:mud"},
-		fill_ratio = 0.1,
+		fill_ratio = 0.406,
 		height = 7,
 		height_max = 15,
 		biomes = { "BambooJungle" },
@@ -4558,21 +4543,6 @@ local function register_decorations()
 		param2_max = 3,
 		decoration = "mcl_bamboo:bamboo_small" ,
 	})
-	for i=1,3 do
-		core.register_decoration({
-			deco_type = "simple",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_mud:mud"},
-			fill_ratio = 0.1+(i*0.001),
-			height = 7,
-			height_max = 15,
-			param2 = 0,
-			param2_max = 3,
-			biomes = { "BambooJungle" },
-			y_min = 1,
-			y_max = mcl_vars.mg_overworld_max,
-			decoration = "mcl_bamboo:bamboo_small",
-		})
-	end
 
 	core.register_decoration({
 		deco_type = "schematic",
