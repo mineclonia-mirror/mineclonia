@@ -190,6 +190,4 @@ core.register_craft({
 		   { "group:stick" } }
 })
 
-core.register_alias("doc_identifier:identifier", "doc_identifier:identifier_solid")
-
 doc.add_entry_alias("tools", "doc_identifier:identifier_solid", "tools", "doc_identifier:identifier_liquid")
