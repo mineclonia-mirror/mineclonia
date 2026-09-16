@@ -161,7 +161,7 @@ function mcl_panes.register_pane(name, def)
 		end,
 
 		-- Flat panes don't use connected nodeboxes, but its used in the code to know when to turn into a nodebox pane
-		connects_to = {"group:pane", "group:solid"},
+		connects_to = {"group:pane", "group:solid", "group:wall"},
 	})
 
 	core.register_node(":mcl_panes:" .. name, {
@@ -176,7 +176,7 @@ function mcl_panes.register_pane(name, def)
 		drop = drop,
 		sounds = def.sounds,
 		node_box = pane_nodebox,
-		connects_to = {"group:pane", "group:solid"},
+		connects_to = {"group:pane", "group:solid", "group:wall"},
 		_mcl_blast_resistance = def._mcl_blast_resistance,
 		_mcl_hardness = def._mcl_hardness,
 		_mcl_silk_touch_drop = def._mcl_silk_touch_drop and {node_name_flat},

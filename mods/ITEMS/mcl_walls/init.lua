@@ -43,11 +43,20 @@ function mcl_walls.update_wall(pos)
 		pos.x = pos.x + off_x
 		pos.y = pos.y + off_y
 		pos.z = pos.z + off_z
+
 		local offset_node = core.get_node(pos)
+		local ndef = core.registered_nodes[offset_node.name]
+
 		pos.x = pos.x - off_x
 		pos.y = pos.y - off_y
 		pos.z = pos.z - off_z
-		return core.get_item_group(offset_node.name, "solid") > 0 or core.get_item_group(offset_node.name, "wall") > 0
+
+		if not ndef then
+			return false
+		end
+
+		return (ndef.groups.solid or 0) > 0 or (ndef.groups.wall or 0) > 0 or (ndef.groups.pane or 0) > 0
+		-- return (ndef.groups.solid or 0) > 0 core.get_item_group(offset_node.name, "solid") > 0 or core.get_item_group(offset_node.name, "wall") > 0
 	end
 
 	local top_node = core.get_node(vector.offset(pos, 0, 1, 0))
@@ -291,14 +300,14 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 		end,
 		node_box = short_pillar_wall_nodebox,
 		collision_box = pillar_collisionbox,
-		connects_to = {"group:wall", "group:solid"},
+		connects_to = {"group:wall", "group:solid", "group:pane"},
 	}, overrides or {}))
 
 	core.register_node(":"..nodename.."_tall_pillar", table.merge(tpl_wall, wall_instance_shared_def, {
 		groups = table.merge(internal_wall_groups, {wall_pillar = 1}, groups),
 		node_box = tall_pillar_wall_nodebox,
 		collision_box = pillar_collisionbox,
-		connects_to = {"group:wall", "group:solid"},
+		connects_to = {"group:wall", "group:solid", "group:pane"},
 	}, overrides or {}))
 
 	for i = 0, 16 do
