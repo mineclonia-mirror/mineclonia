@@ -8,10 +8,10 @@ for _, name in ipairs({
 	"mcl_doors",
 	"mcl_dyes",
 	"mcl_panes",
+	"mcl_redstone",
 	"mcl_stairs",
 	"mcl_tools",
 	"mcl_trees",
-	"mesecons",
 }) do
 	dofile(modpath .. "/" .. name .. ".lua")
 end
