@@ -5,6 +5,7 @@ for _, name in ipairs({
 	"mcl_armor",
 	"mcl_armor_stand",
 	"mcl_bamboo",
+	"mcl_bells",
 	"mcl_copper",
 	"mcl_crimson",
 	"mcl_doors",
