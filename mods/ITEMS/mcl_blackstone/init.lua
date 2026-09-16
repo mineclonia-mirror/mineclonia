@@ -230,12 +230,6 @@ mcl_stairs.register_stair_and_slab("blackstone_brick_polished", {
 		_mcl_stonecutter_recipes = {"mcl_blackstone:blackstone", "mcl_blackstone:blackstone_polished", "mcl_blackstone:blackstone_brick_polished"}
 	},
 })
-core.register_alias("mcl_stairs:slab_blackstone_chiseled_polished_top", "mcl_stairs:slab_blackstone_polished_top")
-core.register_alias("mcl_stairs:slab_blackstone_chiseled_polished", "mcl_stairs:slab_blackstone_polished")
-core.register_alias("mcl_stairs:slab_blackstone_chiseled_polished_double", "mcl_stairs:slab_blackstone_polished_double")
-core.register_alias("mcl_stairs:stair_blackstone_chiseled_polished", "mcl_stairs:stair_blackstone_polished")
-core.register_alias("mcl_stairs:stair_blackstone_chiseled_polished_inner", "mcl_stairs:stair_blackstone_polished_inner")
-core.register_alias("mcl_stairs:stair_blackstone_chiseled_polished_outer", "mcl_stairs:stair_blackstone_polished_outer")
 
 mcl_torches.register_torch({
 	name="soul_torch",
