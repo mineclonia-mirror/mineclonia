@@ -152,8 +152,6 @@ local bell_def = {
 	},
 }
 
-core.register_alias ("mcl_bells:bell_floor", "mcl_bells:bell")
-
 core.register_node("mcl_bells:bell", table.merge(bell_def, {
 	node_box = {
 		type = "fixed",
