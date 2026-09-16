@@ -11,6 +11,20 @@ local directions = {
 	vector.new(0, -1, 0)
 }
 
+local always_pillar_under = {}
+
+core.register_on_mods_loaded(function()
+	for name, _ in pairs(core.registered_nodes) do
+		if
+				core.get_item_group(name, "torch_ground") > 0
+				or core.get_item_group(name, "pressure_plate") > 0
+				or core.get_item_group(name, "banner") > 0
+				or core.get_item_group(name, "standing_sign") > 0 then
+			always_pillar_under[name] = true
+		end
+	end
+end)
+
 local function construct_wall_name(root, is_tall, is_pillar)
 	return root .. (is_tall and "_tall" or "_short") .. (is_pillar and "_pillar" or "_flat")
 end
@@ -53,6 +67,7 @@ function mcl_walls.update_wall(pos)
 
 	local should_be_pillar =
 		top_node_is_pillar
+		or always_pillar_under[top_node.name]
 		or not (
 			(inline_with_x and not is_positive_z_connectable and not is_negative_z_connectable)
 			or (inline_with_z and not is_positive_x_connectable and not is_negative_x_connectable)
@@ -72,8 +87,6 @@ function mcl_walls.update_wall(pos)
 	else
 		should_be_tall = top_node_is_solid
 	end
-
-
 
 	if (is_pillar ~= should_be_pillar) or ((not is_short) ~= should_be_tall) then
 		local node_name_root = core.registered_nodes[node.name]._mcl_walls_name_root

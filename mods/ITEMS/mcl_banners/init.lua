@@ -168,6 +168,7 @@ local function on_dig_banner(pos, _, digger)
 
 	-- Remove node
 	core.remove_node(pos)
+	mcl_walls.update_wall(vector.offset(pos, 0, -1, 0))
 end
 
 local function on_destruct_banner(pos, hanging)
