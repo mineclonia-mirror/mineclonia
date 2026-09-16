@@ -23,6 +23,7 @@ function mcl_walls.update_wall(pos)
 	end
 
 	local is_pillar = core.get_item_group(node.name, "wall_pillar") > 0
+	local is_short = core.get_item_group(node.name, "wall_short") > 0
 
 	local function is_node_connectable(pos, off_x, off_y, off_z)
 		pos.x = pos.x + off_x
@@ -72,18 +73,23 @@ function mcl_walls.update_wall(pos)
 		should_be_tall = top_node_is_solid
 	end
 
-	local node_name_root = core.registered_nodes[node.name]._mcl_walls_name_root
-	local new_param2 = (not should_be_pillar and inline_with_z and 1) or 0
 
-	core.swap_node(pos,
-		{
-			name = construct_wall_name(node_name_root, should_be_tall, should_be_pillar),
-			param2 = new_param2
-		}
-	)
 
-	if is_pillar or should_be_pillar then
-		mcl_walls.update_wall(vector.offset(pos, 0, -1, 0))
+	if (is_pillar ~= should_be_pillar) or ((not is_short) ~= should_be_tall) then
+		local node_name_root = core.registered_nodes[node.name]._mcl_walls_name_root
+		local new_param2 = (not should_be_pillar and inline_with_z and 1) or 0
+		core.swap_node(pos,
+			{
+				name = construct_wall_name(node_name_root, should_be_tall, should_be_pillar),
+				param2 = new_param2
+			}
+		)
+
+		if is_pillar or should_be_pillar then
+			mcl_walls.update_wall(vector.offset(pos, 0, -1, 0))
+		end
+
+		mcl_redstone._notify_observer_neighbours(pos)
 	end
 end
 
