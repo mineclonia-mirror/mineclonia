@@ -213,7 +213,6 @@ core.register_craft({
 })
 
 -- Legacy handling
-core.register_alias("3d_armor_stand:armor_stand", "mcl_armor_stand:armor_stand")
 core.register_entity(":3d_armor_stand:armor_entity", {
 	on_activate = function(self)
 		core.log("action", "[mcl_armor_stand] Removing legacy entity: 3d_armor_stand:armor_entity")
