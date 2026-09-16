@@ -117,7 +117,7 @@ function mcl_torches.register_torch(def)
 		is_ground_content = false,
 		walkable = false,
 		light_source = def.light,
-		groups = groups,
+		groups = table.merge(groups, {torch_ground=1}),
 		drop = def.drop or itemstring,
 		use_texture_alpha = "clip",
 		selection_box = {

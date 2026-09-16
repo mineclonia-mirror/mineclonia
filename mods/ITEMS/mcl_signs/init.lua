@@ -530,6 +530,11 @@ local sign_wall = table.merge(sign_tpl, {
 	_mcl_sign_type = "wall",
 })
 
+-- Standing sign definition
+local sign_standing = table.merge(sign_tpl, {
+	groups = table.merge(sign_tpl.groups, {standing_sign=1}),
+})
+
 local function colored_texture(texture, color)
 	return texture.."^[multiply:"..color
 end
@@ -544,7 +549,7 @@ function mcl_signs.register_sign(name, color, def)
 	}
 
 	def = def or {}
-	core.register_node(":mcl_signs:standing_sign_"..name, table.merge(sign_tpl, newfields, def))
+	core.register_node(":mcl_signs:standing_sign_"..name, table.merge(sign_standing, newfields, def))
 	core.register_node(":mcl_signs:wall_sign_"..name, table.merge(sign_wall, newfields, def))
 end
 
