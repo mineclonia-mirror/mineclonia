@@ -1,0 +1,5 @@
+core.register_alias("mobs_mc:iron_horse_armor", "mcl_mobitems:iron_horse_armor")
+core.register_alias("mobs_mc:gold_horse_armor", "mcl_mobitems:gold_horse_armor")
+core.register_alias("mobs_mc:diamond_horse_armor", "mcl_mobitems:diamond_horse_armor")
+core.register_alias("mobs:nametag", "mcl_mobitems:nametag")
+core.register_alias("mcl_mobs:nametag", "mcl_mobitems:nametag")
