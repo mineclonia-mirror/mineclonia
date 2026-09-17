@@ -90,11 +90,6 @@ core.register_craftitem("mcl_clock:clock", {
 	end
 })
 
--- Register aliases for old clock items
-for a = 0, clock_frames - 1 do
-	core.register_alias("mcl_clock:clock_"..tostring(a), "mcl_clock:clock")
-end
-
 core.register_craft({
 	output = "mcl_clock:clock",
 	recipe = {
