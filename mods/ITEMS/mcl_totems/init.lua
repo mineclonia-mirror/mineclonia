@@ -17,7 +17,6 @@ core.register_craftitem("mcl_totems:totem", {
 	groups = {combat_item = 1, offhand_item = 1, rarity = 1},
 	_mcl_wieldview_item = "mcl_totems:totem_wielded",
 })
-core.register_alias("mobs_mc:totem", "mcl_totems:totem")
 
 core.register_craftitem("mcl_totems:totem_wielded", {
 	inventory_image = "mcl_totems_totem.png",
