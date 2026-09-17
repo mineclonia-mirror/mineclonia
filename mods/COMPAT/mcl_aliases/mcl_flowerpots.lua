@@ -1,0 +1,8 @@
+core.register_alias("mcl_flowerpots:flower_pot_sapling","mcl_flowerpots:flower_pot_sapling_oak")
+core.register_alias("mcl_flowerpots:flower_pot_acaciasapling","mcl_flowerpots:flower_pot_sapling_acacia")
+core.register_alias("mcl_flowerpots:flower_pot_birchsapling","mcl_flowerpots:flower_pot_sapling_birch")
+core.register_alias("mcl_flowerpots:flower_pot_big_oaksapling","mcl_flowerpots:flower_pot_sapling_dark_oak")
+core.register_alias("mcl_flowerpots:flower_pot_darksapling","mcl_flowerpots:flower_pot_sapling_dark_oak")
+core.register_alias("mcl_flowerpots:flower_pot_junglesapling","mcl_flowerpots:flower_pot_sapling_jungle")
+core.register_alias("mcl_flowerpots:flower_pot_sprucesapling","mcl_flowerpots:flower_pot_sapling_spruce")
+core.register_alias("mcl_flowerpots:flower_pot_bamboo_plant","mcl_flowerpots:flower_pot_bamboo")
