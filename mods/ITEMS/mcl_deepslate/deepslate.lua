@@ -25,7 +25,6 @@ core.register_node("mcl_deepslate:deepslate", {
 })
 
 mcl_monster_eggs.register_infested_block("mcl_deepslate:deepslate", S("Infested Deepslate"))
-core.register_alias("mcl_deepslate:infested_deepslate", "mcl_monster_eggs:monster_egg_deepslate")
 
 core.register_node("mcl_deepslate:deepslate_reinforced", {
 	description = S("Reinforced Deepslate"),
