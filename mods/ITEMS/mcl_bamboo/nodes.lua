@@ -175,10 +175,6 @@ core.register_node("mcl_bamboo:bamboo_big_leafbig", table.merge_deep(bamboo_def,
 	selection_box = cbox_big,
 	collision_box = cbox_big,
 }))
-core.register_alias("mcl_bamboo:bamboo", "mcl_bamboo:bamboo_small")
-core.register_alias("mcl_bamboo:bamboo_1", "mcl_bamboo:bamboo_small")
-core.register_alias("mcl_bamboo:bamboo_2", "mcl_bamboo:bamboo_small")
-core.register_alias("mcl_bamboo:bamboo_3", "mcl_bamboo:bamboo_small")
 
 mcl_flowerpots.register_potted_cube("mcl_bamboo:bamboo_small", {
 	name = "bamboo",
