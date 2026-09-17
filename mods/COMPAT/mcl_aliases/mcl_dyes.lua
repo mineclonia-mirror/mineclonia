@@ -24,18 +24,3 @@ core.register_alias("mcl_dyes:dark_green","mcl_dyes:green")
 core.register_alias("mcl_dyes:dark_grey","mcl_dyes:grey")
 core.register_alias("mcl_dyes:violet","mcl_dyes:purple")
 core.register_alias("mcl_dyes:lightblue","mcl_dyes:light_blue")
-
-local function register_alias_if_not_exists(alias, name)
-	if not core.registered_nodes[alias] then
-		core.register_alias(alias, name)
-	end
-end
-core.register_on_mods_loaded(function()
-	for name, cdef in pairs(mcl_dyes.colors) do
-		register_alias_if_not_exists("mcl_stairs:slab_concrete_"..cdef.mcl2, "mcl_stairs:slab_concrete_"..name)
-		register_alias_if_not_exists("mcl_stairs:slab_concrete_"..cdef.mcl2.."_double", "mcl_stairs:slab_concrete_"..name.."_double")
-		register_alias_if_not_exists("mcl_stairs:stair_concrete_"..cdef.mcl2, "mcl_stairs:stair_concrete_"..name)
-		register_alias_if_not_exists("mcl_stairs:stair_concrete_"..cdef.mcl2.."_inner", "mcl_stairs:stair_concrete_"..name.."_inner")
-		register_alias_if_not_exists("mcl_stairs:stair_concrete_"..cdef.mcl2.."_outer", "mcl_stairs:stair_concrete_"..name.."_outer")
-	end
-end)
