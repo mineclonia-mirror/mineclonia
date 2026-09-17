@@ -9,6 +9,7 @@ for _, name in ipairs({
 	"mcl_boats",
 	"mcl_bows",
 	"mcl_brewing",
+	"mcl_clock",
 	"mcl_copper",
 	"mcl_crafting_table",
 	"mcl_crimson",
