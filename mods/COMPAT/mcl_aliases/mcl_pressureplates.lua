@@ -1,0 +1,2 @@
+core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_on","mcl_pressureplates:pressure_plate_cherry_blossom_on")
+core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_off","mcl_pressureplates:pressure_plate_cherry_blossom_off")

@@ -89,6 +89,3 @@ core.register_alias("mcl_mangrove:mangrove_stripped_bark","mcl_trees:bark_stripp
 core.register_alias("mcl_crimson:stripped_warped_hyphae_bark","mcl_trees:bark_stripped_warped")
 core.register_alias("mcl_crimson:stripped_crimson_hyphae_bark","mcl_trees:bark_stripped_crimson")
 core.register_alias("mcl_cherry_blossom:stripped_cherrytree_bark","mcl_trees:bark_stripped_cherry_blossom")
-
-core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_on","mcl_pressureplates:pressure_plate_cherry_blossom_on")
-core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_off","mcl_pressureplates:pressure_plate_cherry_blossom_off")
