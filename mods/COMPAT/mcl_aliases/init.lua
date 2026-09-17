@@ -22,6 +22,7 @@ for _, name in ipairs({
 	"mcl_flowers",
 	"mcl_flowerpots",
 	"mcl_hoppers",
+	"mcl_jukebox",
 	"mcl_monster_eggs",
 	"mcl_panes",
 	"mcl_pressureplates",
