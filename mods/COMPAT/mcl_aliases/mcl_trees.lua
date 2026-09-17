@@ -107,62 +107,6 @@ core.register_alias("mcl_crimson:crimson_fence_gate_open","mcl_fences:crimson_fe
 core.register_alias("mcl_bamboo:bamboo_fence_gate_open","mcl_fences:bamboo_fence_gate_open")
 core.register_alias("mcl_cherry_blossom:cherry_fence_gate_open","mcl_fences:cherry_blossom_fence_gate_open")
 
-local function door_alias(oldmod,oldwood,newwood)
-	newwood = newwood or oldwood
-	core.register_alias(oldmod..":"..oldwood.."_door", "mcl_doors:door_"..newwood)
-	core.register_alias(oldmod..":"..oldwood.."_door_b_1", "mcl_doors:door_"..newwood.."_b_1")
-	core.register_alias(oldmod..":"..oldwood.."_door_t_1", "mcl_doors:door_"..newwood.."_t_1")
-	core.register_alias(oldmod..":"..oldwood.."_door_b_2", "mcl_doors:door_"..newwood.."_b_2")
-	core.register_alias(oldmod..":"..oldwood.."_door_t_2", "mcl_doors:door_"..newwood.."_t_2")
-
-	--alias mcl2/voxelibre's strange _3 and _4 doors
-	core.register_alias(oldmod..":"..oldwood.."_door_b_3", "mcl_doors:door_"..newwood.."_b_1")
-	core.register_alias(oldmod..":"..oldwood.."_door_t_3", "mcl_doors:door_"..newwood.."_t_1")
-	core.register_alias(oldmod..":"..oldwood.."_door_b_4", "mcl_doors:door_"..newwood.."_b_2")
-	core.register_alias(oldmod..":"..oldwood.."_door_t_4", "mcl_doors:door_"..newwood.."_t_2")
-end
-
-door_alias("mcl_doors","wooden","oak")
-door_alias("mcl_doors","jungle")
-door_alias("mcl_doors","acacia")
-door_alias("mcl_doors","dark_oak")
-door_alias("mcl_doors","spruce")
-door_alias("mcl_doors","birch")
-door_alias("mcl_mangrove","mangrove")
-door_alias("mcl_crimson","warped")
-door_alias("mcl_crimson","crimson")
-door_alias("mcl_bamboo","bamboo")
-door_alias("mcl_cherry_blossom","cherry","cherry_blossom")
-
-core.register_alias("mcl_doors:dark_door","mcl_doors:door_dark_oak") -- realy?
-
-core.register_alias("mcl_doors:iron_door_b_3","mcl_doors:iron_door_b_1")
-core.register_alias("mcl_doors:iron_door_t_3","mcl_doors:iron_door_t_1")
-core.register_alias("mcl_doors:iron_door_b_4","mcl_doors:iron_door_b_2")
-core.register_alias("mcl_doors:iron_door_t_4","mcl_doors:iron_door_t_2")
-
-local function trapdoor_alias(oldmod,oldwood, newwood)
-	local oldwood_ = (oldwood == "") and "" or oldwood.."_"
-	newwood = (oldwood == "") and "oak" or newwood or oldwood
-	core.register_alias(oldmod..":"..oldwood_.."trapdoor","mcl_doors:trapdoor_"..newwood)
-	core.register_alias(oldmod..":"..oldwood_.."trapdoor_open","mcl_doors:trapdoor_"..newwood.."_open")
-	core.register_alias(oldmod..":"..oldwood_.."trapdoor_ladder","mcl_doors:trapdoor_"..newwood.."_open")
-end
-
-trapdoor_alias("mcl_doors","")
-trapdoor_alias("mcl_doors","spruce")
-trapdoor_alias("mcl_doors","birch")
-trapdoor_alias("mcl_doors","acacia")
-trapdoor_alias("mcl_doors","jungle")
-trapdoor_alias("mcl_doors","dark_oak")
-trapdoor_alias("mcl_mangrove","mangrove")
-trapdoor_alias("mcl_crimson","warped")
-trapdoor_alias("mcl_crimson","crimson")
-trapdoor_alias("mcl_bamboo","bamboo")
-trapdoor_alias("mcl_cherry_blossom","cherry","cherry_blossom")
-
-core.register_alias("mcl_doors:iron_trapdoor_ladder","mcl_doors:iron_trapdoor_open")
-
 core.register_alias("mcl_core:stripped_oak","mcl_trees:stripped_oak")
 core.register_alias("mcl_core:stripped_jungle","mcl_trees:stripped_jungle")
 core.register_alias("mcl_core:stripped_acacia","mcl_trees:stripped_acacia")
