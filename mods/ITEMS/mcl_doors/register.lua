@@ -1,7 +1,7 @@
 local S = core.get_translator(core.get_current_modname())
 
 --- Iron Door ---
-mcl_doors:register_door("mcl_doors:iron_door", {
+mcl_doors:register_door("mcl_doors:door_iron", {
 	description = S("Iron Door"),
 	_doc_items_longdesc = S("Iron doors are 2-block high barriers which can only be opened or closed by a redstone signal, but not by hand."),
 	_doc_items_usagehelp = S("To open or close an iron door, supply its lower half with a redstone signal."),
@@ -18,7 +18,7 @@ mcl_doors:register_door("mcl_doors:iron_door", {
 })
 
 core.register_craft({
-	output = "mcl_doors:iron_door 3",
+	output = "mcl_doors:door_iron 3",
 	recipe = {
 		{"mcl_core:iron_ingot", "mcl_core:iron_ingot"},
 		{"mcl_core:iron_ingot", "mcl_core:iron_ingot"},
@@ -26,7 +26,7 @@ core.register_craft({
 	}
 })
 
-mcl_doors:register_trapdoor("mcl_doors:iron_trapdoor", {
+mcl_doors:register_trapdoor("mcl_doors:trapdoor_iron", {
 	description = S("Iron Trapdoor"),
 	_doc_items_longdesc = S("Iron trapdoors are horizontal barriers which can only be opened and closed by redstone signals, but not by hand. They occupy the upper or lower part of a block, depending on how they have been placed. When open, they can be climbed like a ladder."),
 	tile_front = "doors_trapdoor_steel.png",
@@ -42,7 +42,7 @@ mcl_doors:register_trapdoor("mcl_doors:iron_trapdoor", {
 })
 
 core.register_craft({
-	output = "mcl_doors:iron_trapdoor",
+	output = "mcl_doors:trapdoor_iron",
 	recipe = {
 		{"mcl_core:iron_ingot", "mcl_core:iron_ingot"},
 		{"mcl_core:iron_ingot", "mcl_core:iron_ingot"},
