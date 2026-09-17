@@ -365,9 +365,6 @@ register_leaves(
 	}
 )
 
-core.register_alias("mcl_lush_caves:azalea_leaves", "mcl_trees:leaves_azalea")
-core.register_alias("mcl_lush_caves:azalea_leaves_flowering", "mcl_trees:leaves_azalea_flowering")
-
 core.register_node("mcl_lush_caves:spore_blossom", {
 	description = S("Spore blossom"),
 	_doc_items_longdesc = S("Spore blossoms are a type of flower found in lush caves."),

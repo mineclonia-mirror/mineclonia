@@ -89,3 +89,6 @@ core.register_alias("mcl_mangrove:mangrove_stripped_bark","mcl_trees:bark_stripp
 core.register_alias("mcl_crimson:stripped_warped_hyphae_bark","mcl_trees:bark_stripped_warped")
 core.register_alias("mcl_crimson:stripped_crimson_hyphae_bark","mcl_trees:bark_stripped_crimson")
 core.register_alias("mcl_cherry_blossom:stripped_cherrytree_bark","mcl_trees:bark_stripped_cherry_blossom")
+
+core.register_alias("mcl_lush_caves:azalea_leaves", "mcl_trees:leaves_azalea")
+core.register_alias("mcl_lush_caves:azalea_leaves_flowering", "mcl_trees:leaves_azalea_flowering")
