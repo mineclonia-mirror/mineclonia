@@ -93,22 +93,6 @@ core.register_alias("mcl_cherry_blossom:stripped_cherrytree_bark","mcl_trees:bar
 core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_on","mcl_pressureplates:pressure_plate_cherry_blossom_on")
 core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_off","mcl_pressureplates:pressure_plate_cherry_blossom_off")
 
-local function alias_signs(oldwood,newwood)
-	core.register_alias("mcl_signs:wall_sign"..oldwood, "mcl_signs:wall_sign".. newwood)
-end --standing signs conversion in mcl_signs/compat.lua
-core.register_alias("mcl_signs:sign","mcl_signs:wall_sign_oak")
-
-alias_signs("","_oak")
-alias_signs("_acaciawood","_acacia")
-alias_signs("_junglewood","_jungle")
-alias_signs("_birchwood","_birch")
-alias_signs("_darkwood","_dark_oak")
-alias_signs("_sprucewood","_spruce")
-alias_signs("_mangrove_wood","_mangrove")
-alias_signs("_crimson_hyphae_wood","_crimson")
-alias_signs("_warped_hyphae_wood","_warped")
-alias_signs("_cherrywood","_cherry_blossom")
-
 core.register_alias("mcl_boats:boat","mcl_boats:boat_oak")
 core.register_alias("mcl_boats:boat_cherry","mcl_boats:boat_cherry_blossom")
 core.register_alias("mcl_boats:boat_obsidian","mcl_boats:boat_oak")
