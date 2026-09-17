@@ -26,9 +26,6 @@ mcl_villages.grundstellungen()
 
 local S = core.get_translator(core.get_current_modname())
 
-core.register_alias("mcl_villages:stonebrickcarved", "mcl_core:stonebrickcarved")
-core.register_alias("mcl_villages:structblock", "air")
-
 --
 -- on map generation, try to build a settlement
 --
