@@ -31,6 +31,7 @@ for _, name in ipairs({
 	"mcl_signs",
 	"mcl_stairs",
 	"mcl_tools",
+	"mcl_totems",
 	"mcl_trees",
 }) do
 	dofile(modpath .. "/" .. name .. ".lua")
