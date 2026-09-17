@@ -151,11 +151,6 @@ function mcl_compass.register_compass(name, def)
 	core.register_craftitem(":mcl_compass:"..(def.name or name), table.merge({}, def.overrides or {}, {
 		groups = table.merge({tool = 1, disable_repair = 1}, def.overrides.groups)
 	}))
-	if def.name_fmt then
-		for i = 0, compass_frames - 1 do
-			core.register_alias(string.format(def.name_fmt, i), "mcl_compass:"..(def.name or name))
-		end
-	end
 end
 
 --
@@ -163,7 +158,6 @@ end
 --
 mcl_compass.register_compass("compass", {
 	name = "compass",
-	name_fmt = "mcl_compass:%d",
 	overrides = {
 		description = S("Compass"),
 		_tt_help = S("Points to the world origin"),
@@ -188,7 +182,6 @@ core.register_craft({
 
 mcl_compass.register_compass("lodestone_compass", {
 	name = "compass_lodestone",
-	name_fmt = "mcl_compass:%d_lodestone",
 	overrides = {
 		description = S("Lodestone Compass"),
 		_tt_help = S("Points to a lodestone"),
@@ -204,7 +197,6 @@ mcl_compass.register_compass("lodestone_compass", {
 
 mcl_compass.register_compass("recovery_compass", {
 	name = "compass_recovery",
-	name_fmt = "mcl_compass:%d_recovery",
 	overrides = {
 		description = S("Recovery Compass"),
 		_tt_help = S("Points to your last death location"),
