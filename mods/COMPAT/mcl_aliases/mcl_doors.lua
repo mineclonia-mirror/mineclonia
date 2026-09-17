@@ -21,3 +21,12 @@ core.register_alias("doors:trapdoor", "mcl_doors:trapdoor_oak")
 core.register_alias("doors:trapdoor_open", "mcl_doors:trapdoor_oak_open")
 core.register_alias("doors:iron_trapdoor", "mcl_doors:iron_trapdoor")
 core.register_alias("doors:iron_trapdoor_open", "mcl_doors:iron_trapdoor_open")
+
+core.register_alias("mcl_doors:iron_trapdoor", "mcl_doors:trapdoor_iron")
+core.register_alias("mcl_doors:iron_trapdoor_open", "mcl_doors:trapdoor_iron_open")
+
+core.register_alias("mcl_doors:iron_door", "mcl_doors:door_iron")
+core.register_alias("mcl_doors:iron_door_t_1", "mcl_doors:door_iron_t_1")
+core.register_alias("mcl_doors:iron_door_b_1", "mcl_doors:door_iron_b_1")
+core.register_alias("mcl_doors:iron_door_t_2", "mcl_doors:door_iron_t_2")
+core.register_alias("mcl_doors:iron_door_b_2", "mcl_doors:door_iron_b_2")
