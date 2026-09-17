@@ -75,16 +75,16 @@ for _, x in pairs(block_exposure_level) do
 	})
 
 	core.register_craft({
-		output = "mcl_copper:door"..x.."_preserved",
+		output = "mcl_doors:door_copper"..x.."_preserved",
 		recipe = {
-			{ "mcl_copper:door"..x, "mcl_honey:honeycomb" }
+			{ "mcl_doors:door_copper"..x, "mcl_honey:honeycomb" }
 		}
 	})
 
 	core.register_craft({
-		output = "mcl_copper:trapdoor"..x.."_preserved",
+		output = "mcl_doors:trapdoor_copper"..x.."_preserved",
 		recipe = {
-			{ "mcl_copper:trapdoor"..x, "mcl_honey:honeycomb" }
+			{ "mcl_doors:trapdoor_copper"..x, "mcl_honey:honeycomb" }
 		}
 	})
 
@@ -132,7 +132,7 @@ for _, x in pairs(block_exposure_level) do
 end
 
 core.register_craft({
-	output = "mcl_copper:door 3",
+	output = "mcl_doors:door_copper 3",
 	recipe = {
 		{ "mcl_copper:copper_ingot", "mcl_copper:copper_ingot" },
 		{ "mcl_copper:copper_ingot", "mcl_copper:copper_ingot" },
@@ -141,7 +141,7 @@ core.register_craft({
 })
 
 core.register_craft({
-	output = "mcl_copper:trapdoor",
+	output = "mcl_doors:trapdoor_copper",
 	recipe = {
 		{ "mcl_copper:copper_ingot", "mcl_copper:copper_ingot" },
 		{ "mcl_copper:copper_ingot", "mcl_copper:copper_ingot" }
