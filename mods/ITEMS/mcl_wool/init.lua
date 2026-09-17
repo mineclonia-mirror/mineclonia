@@ -2,8 +2,6 @@ local S = core.get_translator(core.get_current_modname())
 local D = mcl_util.get_dynamic_translator()
 
 -- Backwards compatibility with jordach's 16-color wool mod
-core.register_alias("mcl_wool:dark_blue", "wool:blue")
-core.register_alias("mcl_wool:gold", "wool:yellow")
 
 local messy_textures = { --translator table for the bed texture filenames names not adhering to the common color names of mcl_dyes
 	["light_blue"] = "mcl_wool_light_blue",
