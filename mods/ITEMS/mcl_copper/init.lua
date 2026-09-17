@@ -65,10 +65,10 @@ for _, v in pairs({"", "_t_1", "_t_2", "_b_1", "_b_2"}) do
 		unpreserve_callback = "_on_axe_place",
 		undecay_callback = "_on_axe_place",
 		nodes = {
-			"mcl_copper:door"..v,
-			"mcl_copper:door_exposed"..v,
-			"mcl_copper:door_weathered"..v,
-			"mcl_copper:door_oxidized"..v,
+			"mcl_doors:door_copper"..v,
+			"mcl_doors:door_copper_exposed"..v,
+			"mcl_doors:door_copper_weathered"..v,
+			"mcl_doors:door_copper_oxidized"..v,
 		},
 	})
 end
@@ -79,10 +79,10 @@ for _, v in pairs({"", "_open"}) do
 		unpreserve_callback = "_on_axe_place",
 		undecay_callback = "_on_axe_place",
 		nodes = {
-			"mcl_copper:trapdoor"..v,
-			"mcl_copper:trapdoor_exposed"..v,
-			"mcl_copper:trapdoor_weathered"..v,
-			"mcl_copper:trapdoor_oxidized"..v,
+			"mcl_doors:trapdoor_copper"..v,
+			"mcl_doors:trapdoor_copper_exposed"..v,
+			"mcl_doors:trapdoor_copper_weathered"..v,
+			"mcl_doors:trapdoor_copper_oxidized"..v,
 		},
 	})
 end

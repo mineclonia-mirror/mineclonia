@@ -203,7 +203,7 @@ for n, desc in pairs(n_desc) do
 		_mcl_redstone = {connects_to = bulb_connects_to, update = bulb_update},
 	})
 
-	mcl_doors:register_trapdoor("mcl_copper:trapdoor"..n, {
+	mcl_doors:register_trapdoor("mcl_doors:trapdoor_copper"..n, {
 		description = D(desc .. "Copper Trapdoor"),
 		groups = { copper = 1, pickaxey = 2, deco_block = 1 },
 		sounds = mcl_sounds.node_sound_metal_defaults(),
@@ -215,7 +215,7 @@ for n, desc in pairs(n_desc) do
 		_mcl_hardness = 3
 	})
 
-	mcl_doors:register_door("mcl_copper:door"..n, {
+	mcl_doors:register_door("mcl_doors:door_copper"..n, {
 		description = D(desc .. "Copper Door"),
 		groups = { door = 1, copper = 1, pickaxey = 2, building_block = 1, door_iron = 1,},
 		inventory_image = "mcl_copper_door"..n..".png",

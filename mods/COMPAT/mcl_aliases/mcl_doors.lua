@@ -36,6 +36,36 @@ for mat, mod in pairs(doors) do
 	core.register_alias(mod..":"..oldmat.."trapdoor_ladder","mcl_doors:trapdoor_"..mat.."_open")
 end
 
+for _, mat in ipairs({
+	"",
+	"_exposed",
+	"_weathered",
+	"_oxidized",
+	"_preserved",
+	"_exposed_preserved",
+	"_weathered_preserved",
+	"_oxidized_preserved",
+}) do
+	for suf1, suf2 in pairs({
+		-- legacy doors
+		[""] = "",
+		["_b_1"] = "_b_1",
+		["_t_1"] = "_t_1",
+		["_b_2"] = "_b_2",
+		["_t_2"] = "_t_2",
+		-- mcl2/voxelibre's strange _3 and _4 doors
+		["_b_3"] = "_b_1",
+		["_t_3"] = "_t_1",
+		["_b_4"] = "_b_2",
+		["_t_4"] = "_t_2",
+	}) do
+		core.register_alias("mcl_copper:door"..mat..suf1, "mcl_doors:door_copper"..mat..suf2)
+	end
+	-- legacy trapdoors
+	core.register_alias("mcl_copper:trapdoor"..mat.."","mcl_doors:trapdoor_copper"..mat)
+	core.register_alias("mcl_copper:trapdoor"..mat.."_open","mcl_doors:trapdoor_copper"..mat.."_open")
+end
+
 core.register_alias("mcl_doors:dark_door","mcl_doors:door_dark_oak") -- realy?
 
 -- ancient doors
