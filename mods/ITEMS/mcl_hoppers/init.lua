@@ -437,7 +437,6 @@ core.register_craft({
 doc.add_entry_alias("nodes", "mcl_hoppers:hopper", "nodes", "mcl_hoppers:hopper_side")
 
 -- Legacy
-core.register_alias("mcl_hoppers:hopper_item", "mcl_hoppers:hopper")
 
 core.register_lbm({
 	label = "Update hopper formspecs (0.60.0",
