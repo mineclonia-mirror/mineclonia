@@ -92,20 +92,3 @@ core.register_alias("mcl_cherry_blossom:stripped_cherrytree_bark","mcl_trees:bar
 
 core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_on","mcl_pressureplates:pressure_plate_cherry_blossom_on")
 core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_off","mcl_pressureplates:pressure_plate_cherry_blossom_off")
-
-core.register_alias("mcl_boats:boat","mcl_boats:boat_oak")
-core.register_alias("mcl_boats:boat_cherry","mcl_boats:boat_cherry_blossom")
-core.register_alias("mcl_boats:boat_obsidian","mcl_boats:boat_oak")
-
-local function alias_chest_boat(oldwood,newwood)
-	newwood = newwood or oldwood
-	core.register_alias("mcl_boats:chest_boat"..oldwood,"mcl_boats:boat"..newwood.."_chest")
-end
-alias_chest_boat("","_oak")
-alias_chest_boat("_acacia")
-alias_chest_boat("_birch")
-alias_chest_boat("_cherry", "_cherry_blossom")
-alias_chest_boat("_dark_oak")
-alias_chest_boat("_jungle")
-alias_chest_boat("_mangrove")
-alias_chest_boat("_spruce")
