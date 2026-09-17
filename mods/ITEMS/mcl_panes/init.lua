@@ -126,10 +126,6 @@ end)
 
 mcl_panes.update_pane = update_pane
 function mcl_panes.register_pane(name, def)
-	for i = 1, 15 do
-		core.register_alias("mcl_panes:" .. name .. "_" .. i, "mcl_panes:" .. name .. "_flat")
-	end
-
 	local node_name_flat = "mcl_panes:" .. name .. "_flat"
 	local node_name = "mcl_panes:" .. name
 
