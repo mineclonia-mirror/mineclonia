@@ -498,7 +498,6 @@ core.register_craft({
 	}
 })
 
-core.register_alias("mcl_brewing:stand", "mcl_brewing:stand_000")
 
 doc.add_entry_alias("nodes", "mcl_brewing:stand_000", "nodes", "mcl_brewing:stand_001")
 doc.add_entry_alias("nodes", "mcl_brewing:stand_000", "nodes", "mcl_brewing:stand_010")
