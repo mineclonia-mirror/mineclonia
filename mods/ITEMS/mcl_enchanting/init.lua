@@ -162,7 +162,6 @@ core.register_craftitem("mcl_enchanting:book_enchanted", {
 	end
 })
 
-core.register_alias("mcl_books:book_enchanted", "mcl_enchanting:book_enchanted")
 
 local function spawn_book_entity(pos, respawn)
 	if respawn then

@@ -14,6 +14,7 @@ for _, name in ipairs({
 	"mcl_crimson",
 	"mcl_doors",
 	"mcl_dyes",
+	"mcl_enchanting",
 	"mcl_fences",
 	"mcl_flowerpots",
 	"mcl_monster_eggs",
