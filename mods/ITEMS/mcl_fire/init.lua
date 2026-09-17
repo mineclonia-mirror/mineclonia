@@ -416,9 +416,6 @@ function mcl_fire.set_fire(pointed_thing, player, allow_on_fire)
 	core.set_node(pointed_thing.above, {name="mcl_fire:fire"})
 end
 
-core.register_alias("mcl_fire:basic_flame", "mcl_fire:fire")
-core.register_alias("fire:basic_flame", "mcl_fire:fire")
-core.register_alias("fire:permanent_flame", "mcl_fire:eternal_fire")
 
 dofile(modpath.."/flint_and_steel.lua")
 dofile(modpath.."/fire_charge.lua")
