@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-09-07 18:26+0000\n"
+"PO-Revision-Date: 2026-09-07 20:26+0000\n"
 "Last-Translator: kvasovy <kvasovy@noreply.codeberg.org>\n"
 "Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_doc/uk/>\n"
@@ -161,7 +161,7 @@ msgstr ""
 
 #: mods/HELP/mcl_doc/init.lua:207
 msgid "Diamond Pickaxe"
-msgstr ""
+msgstr "Діамантове кайло"
 
 #: mods/HELP/mcl_doc/init.lua:207
 msgid "Iron Pickaxe"
@@ -173,7 +173,7 @@ msgstr "Кам'яне кайло"
 
 #: mods/HELP/mcl_doc/init.lua:207
 msgid "Golden Pickaxe"
-msgstr ""
+msgstr "Золоте кайло"
 
 #: mods/HELP/mcl_doc/init.lua:207
 msgid "Wooden Pickaxe"
@@ -181,43 +181,43 @@ msgstr "Дерев'яне кайло"
 
 #: mods/HELP/mcl_doc/init.lua:208
 msgid "Diamond Axe"
-msgstr ""
+msgstr "Діамантова сокира"
 
 #: mods/HELP/mcl_doc/init.lua:208
 msgid "Iron Axe"
-msgstr ""
+msgstr "Залізна сокира"
 
 #: mods/HELP/mcl_doc/init.lua:208
 msgid "Stone Axe"
-msgstr ""
+msgstr "Кам'яна сокира"
 
 #: mods/HELP/mcl_doc/init.lua:208
 msgid "Golden Axe"
-msgstr ""
+msgstr "Золота сокира"
 
 #: mods/HELP/mcl_doc/init.lua:208
 msgid "Wooden Axe"
-msgstr ""
+msgstr "Дерев'яна сокира"
 
 #: mods/HELP/mcl_doc/init.lua:209
 msgid "Diamond Shovel"
-msgstr ""
+msgstr "Діамантова лопата"
 
 #: mods/HELP/mcl_doc/init.lua:209
 msgid "Iron Shovel"
-msgstr ""
+msgstr "Залізна лопата"
 
 #: mods/HELP/mcl_doc/init.lua:209
 msgid "Stone Shovel"
-msgstr ""
+msgstr "Кам'яна лопата"
 
 #: mods/HELP/mcl_doc/init.lua:209
 msgid "Golden Shovel"
-msgstr ""
+msgstr "Золота лопата"
 
 #: mods/HELP/mcl_doc/init.lua:209
 msgid "Wooden Shovel"
-msgstr ""
+msgstr "Дерев'яна лопата"
 
 #: mods/HELP/mcl_doc/init.lua:215
 msgid "This block can be mined by any tool instantly."

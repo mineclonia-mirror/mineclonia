@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_amethyst x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-08-28 06:27+0000\n"
-"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-09-09 19:25+0000\n"
+"Last-Translator: kvasovy <kvasovy@noreply.codeberg.org>\n"
 "Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_amethyst/uk/>\n"
 "Language: uk\n"
@@ -17,25 +17,25 @@ msgstr ""
 
 #: mods/ITEMS/mcl_amethyst/init.lua:10
 msgid "Block of Amethyst"
-msgstr "Аметистовий Блок"
+msgstr "Аметистовий блок"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:11
 msgid ""
 "The Block of Amethyst is a decoration block crafted from amethyst shards."
 msgstr ""
-"Аметистовий Блок це декоративний блок, що створюється з аметистових осколків."
+"Аметистовий блок це декоративний блок, що створюється з аметистових уламків."
 
 #: mods/ITEMS/mcl_amethyst/init.lua:19
 msgid "Budding Amethyst"
-msgstr "Родючий Аметист"
+msgstr "Родючий аметист"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:20
 msgid "The Budding Amethyst can grow amethyst"
-msgstr "Родючий Аметист може виростити аметист"
+msgstr "Родючий аметист може виростити аметист"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:34
 msgid "Amethyst Shard"
-msgstr "Уламок аметисту"
+msgstr "Аметистовий уламок"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:35
 msgid "An amethyst shard is a crystalline mineral."
@@ -43,7 +43,7 @@ msgstr "Уламок аметисту - це кристалічний мінер
 
 #: mods/ITEMS/mcl_amethyst/init.lua:39
 msgid "Amethyst Material"
-msgstr ""
+msgstr "Аметистовий матеріал"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:45
 msgid "Calcite"
@@ -55,43 +55,43 @@ msgstr "Кальцит можна знайти в аметистових род�
 
 #: mods/ITEMS/mcl_amethyst/init.lua:55
 msgid "Tinted Glass"
-msgstr "Тоноване Скло"
+msgstr "Тоноване скло"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:56
 msgid ""
 "Tinted Glass is a type of glass which blocks lights while it is visually "
 "transparent."
 msgstr ""
-"Тоноване Скло це тип скла, що візуально прозорий, але не пропускає світло."
+"Тоноване скло це тип скла, що візуально прозорий, але не пропускає світло."
 
 #: mods/ITEMS/mcl_amethyst/init.lua:70
 msgid "Small Amethyst Bud"
-msgstr "Маленький Родючий Аметист"
+msgstr "Маленький зародок аметисту"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:71
 msgid "Small Amethyst Bud is the first growth of amethyst bud."
-msgstr "Маленький Родючий Аметист це перший ріст Родючого Аметисту."
+msgstr "Маленький зародок аметисту це перший ріст зародку аметисту."
 
 #: mods/ITEMS/mcl_amethyst/init.lua:80
 msgid "Medium Amethyst Bud"
-msgstr "Середній Родючий Аметист"
+msgstr "Середній зародок аметисту"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:81
 msgid "Medium Amethyst Bud is the second growth of amethyst bud."
-msgstr "Середній Родючий Аметист це другий етап росту Родючого Аметисту."
+msgstr "Середній зародок аметисту це другий етап росту зародку аметисту."
 
 #: mods/ITEMS/mcl_amethyst/init.lua:90
 msgid "Large Amethyst Bud"
-msgstr "Великий Родючий Аметист"
+msgstr "Великий зародок аметисту"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:91
 msgid "Large Amethyst Bud is the third growth of amethyst bud."
-msgstr "Великий Родючий Аметист це третій етап росту Родючого Аметисту."
+msgstr "Великий зародок аметисту це третій етап росту зародку аметисту."
 
 #: mods/ITEMS/mcl_amethyst/init.lua:127
 msgid "Amethyst Cluster"
-msgstr "Аметистовий Кластер"
+msgstr "Аметистова друза"
 
 #: mods/ITEMS/mcl_amethyst/init.lua:129
 msgid "Amethyst Cluster is the final growth of amethyst bud."
-msgstr "Аметистовий Кластер це фінальний етап росту Родючого Аметисту."
+msgstr "Аметистова друза це фінальний етап росту зародку аметисту."

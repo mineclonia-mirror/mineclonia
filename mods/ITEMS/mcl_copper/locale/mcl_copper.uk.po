@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_copper x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-18 19:32+0200\n"
-"PO-Revision-Date: 2026-09-06 14:25+0000\n"
+"PO-Revision-Date: 2026-09-09 21:25+0000\n"
 "Last-Translator: kvasovy <kvasovy@noreply.codeberg.org>\n"
 "Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_copper/uk/>\n"
@@ -125,15 +125,15 @@ msgstr "Мідний люк"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:19
 msgid "Cut Copper"
-msgstr ""
+msgstr "Тесана мідь"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:20
 msgid "Cut Copper Slab"
-msgstr ""
+msgstr "Плита з тесаної міді"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:21
 msgid "Cut Copper Stairs"
-msgstr ""
+msgstr "Сходи з тесаної міді"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:22
 msgid "Cut Copper is mostly a decorative block."
@@ -659,7 +659,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/nodes.lua:42
 msgid "Copper Ore"
-msgstr ""
+msgstr "Мідна руда"
 
 #: mods/ITEMS/mcl_copper/nodes.lua:43
 msgid ""
@@ -681,7 +681,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/nodes.lua:290
 msgid "Copper Torch"
-msgstr ""
+msgstr "Мідний смолоскип"
 
 #: mods/ITEMS/mcl_copper/nodes.lua:291
 msgid ""
