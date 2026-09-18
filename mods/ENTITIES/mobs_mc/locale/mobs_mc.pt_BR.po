@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-10 05:32+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-08-28 06:40+0000\n"
+"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
+"Language-Team: Portuguese (Brazil) <https://translate.codeberg.org/projects/"
+"mineclonia/mobs_mc/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #: mods/ENTITIES/mobs_mc/axolotl.lua:10 mods/ENTITIES/mobs_mc/axolotl.lua:331
 msgid "Axolotl"
@@ -54,8 +56,7 @@ msgstr "Bacalhau"
 msgid ""
 "Each mob spawned will form a school with the remainder of the mobs in the "
 "group."
-msgstr ""
-"Cada criatura gerada formará um bando com as demais criaturas do grupo."
+msgstr "Cada criatura gerada formará um bando com as demais criaturas do grupo."
 
 #: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:7
 #: mods/ENTITIES/mobs_mc/cow+mooshroom.lua:228
@@ -329,8 +330,7 @@ msgstr "Esqueleto Errante"
 
 #: mods/ENTITIES/mobs_mc/skeleton+stray.lua:489
 msgid "Moreover, the block where the mob is to spawn must be exposed to sky."
-msgstr ""
-"Além disso, o bloco onde o mob irá surgir precisa estar exposto ao céu."
+msgstr "Além disso, o bloco onde o mob irá surgir precisa estar exposto ao céu."
 
 #: mods/ENTITIES/mobs_mc/skeleton_wither.lua:15
 #: mods/ENTITIES/mobs_mc/skeleton_wither.lua:184
