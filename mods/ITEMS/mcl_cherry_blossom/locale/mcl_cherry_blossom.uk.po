@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_cherry_blossom x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-09-09 21:25+0000\n"
-"Last-Translator: kvasovy <kvasovy@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-08-28 06:14+0000\n"
+"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_cherry_blossom/uk/>\n"
 "Language: uk\n"
@@ -17,15 +17,15 @@ msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:1
 msgid "Cherry Bark"
-msgstr "Вишнева деревина"
+msgstr "Вишнева кора"
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:2
 msgid "Cherry Bark Slab"
-msgstr "Плита з вишневої деревини"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:3
 msgid "Cherry Bark Stairs"
-msgstr "Сходи з вишневої деревини"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:4
 msgid "Cherry Boat"
@@ -33,84 +33,84 @@ msgstr "Вишневий човен"
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:5
 msgid "Cherry Button"
-msgstr "Вишнева кнопка"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:6
 msgid "Cherry Chest Boat"
-msgstr "Вишневий човен зі скринею"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:7
 msgid "Cherry Door"
-msgstr "Вишневі двері"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:8
 msgid "Cherry Fence"
-msgstr "Вишневий паркан"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:9
 msgid "Cherry Fence Gate"
-msgstr "Вишнева хвіртка"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:10
 msgid "Cherry Hanging Sign"
-msgstr "Вишнева вивіска"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:11
 msgid "Cherry Leaves"
-msgstr "Вишневе листя"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:12
 msgid "Cherry Log"
-msgstr "Вишнева колода"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:13
 msgid "Cherry Planks"
-msgstr "Вишневі дошки"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:14
 msgid "Cherry Pressure Plate"
-msgstr "Вишнева натискна плита"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:15
 msgid "Cherry Sapling"
-msgstr "Паросток вишні"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:16
 msgid "Cherry Sign"
-msgstr "Вишнева табличка"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:17
 msgid "Cherry Slab"
-msgstr "Вишнева плита"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:18
 msgid "Cherry Stairs"
-msgstr "Вишневі сходи"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:19
 msgid "Cherry Trapdoor"
-msgstr "Вишневий люк"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:20
 msgid "Cherry leaves are grown from Cherry trees."
-msgstr "Вишневе листя росте на вишнях."
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:21
 msgid "Stripped Cherry Bark"
-msgstr "Обтесана вишнева деревина"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:22
 msgid "Stripped Cherry Log"
-msgstr "Обтесана вишнева колода"
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:23
 msgid "The stripped trunk of an Cherry tree."
-msgstr "Обтесаний стовбур вишні."
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:24
 msgid "The stripped wood of an Cherry tree."
-msgstr "Обтесана деревина вишні."
+msgstr ""
 
 #: mods/ITEMS/mcl_cherry_blossom/mcl_cherry_blossom_translations_tmp.lua:25
 msgid "The trunk of a Cherry tree."
-msgstr "Стовбур вишні."
+msgstr ""
