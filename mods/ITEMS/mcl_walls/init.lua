@@ -72,6 +72,11 @@ function mcl_walls.update_wall(pos)
 	local inline_with_x = is_positive_x_connectable and is_negative_x_connectable
 	local inline_with_z = is_positive_z_connectable and is_negative_z_connectable
 
+	-- Should be pillar if the top node is a pillar or a block that creates pillars when placed on walls (like walls).
+	-- Otherwise should be pillar if it doesn't satisfy the condition to be `flat`
+	--
+	-- The condition to be flat is as follows:
+	-- `Is flat if its inline with X and doesn't connect in -Z or +Z. Or if its inline with Z and doesn't connect in -X or +X`
 	local should_be_pillar =
 		top_node_is_pillar
 		or always_pillar_under[top_node.name]
@@ -82,7 +87,7 @@ function mcl_walls.update_wall(pos)
 
 	local should_be_tall
 	if top_node_is_wall then
-		-- If top node is a wall, should be tall if both the current, and the top node connect at the same side
+		-- Tall if this wall and the wall above connect on a common side
 		local has_shared_connections_with_top_wall = (is_positive_x_connectable and is_node_connectable(pos, 1, 1, 0))
 			or (is_negative_x_connectable and is_node_connectable(pos, -1, 1, 0))
 			or (is_positive_z_connectable and is_node_connectable(pos, 0, 1, 1))
