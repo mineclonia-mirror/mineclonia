@@ -219,8 +219,7 @@ msgstr "Vasúton"
 msgid ""
 "Travel by minecart for at least 1000 meters from your starting point in a "
 "single ride."
-msgstr ""
-"Utazz csillével legalább 1000 métert a kiindulási ponttól egy menetben."
+msgstr "Utazz csillével legalább 1000 métert a kiindulási ponttól egy menetben."
 
 #: mods/HUD/mcl_achievements/init.lua:255
 msgid "Sniper Duel"

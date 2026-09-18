@@ -450,8 +450,7 @@ msgstr "Lustrer"
 
 #: mods/HUD/mcl_achievements/init.lua:460
 msgid "Apply honeycomb to a copper block to protect it from the elements."
-msgstr ""
-"Appliquez un rayon de miel sur du cuivre pour le protéger des éléments."
+msgstr "Appliquez un rayon de miel sur du cuivre pour le protéger des éléments."
 
 #: mods/HUD/mcl_achievements/init.lua:467
 msgid "Wax Off"
