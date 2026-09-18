@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-12 07:46+0200\n"
-"PO-Revision-Date: 2026-08-28 06:42+0000\n"
-"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-08-28 20:25+0000\n"
+"Last-Translator: ygramul42 <ygramul42@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_mobs/de/>\n"
 "Language: de\n"
@@ -869,17 +869,17 @@ msgstr ""
 
 #: mods/ENTITIES/mcl_mobs/spawning.lua:1227
 msgid "Mobs will spawn in individual groups of 1."
-msgstr ""
+msgstr "Mobs spawnen einzeln."
 
 #: mods/ENTITIES/mcl_mobs/spawning.lua:1229
 msgid "Up to @1 mobs will spawn as a single group upon each spawning attempt."
-msgstr ""
+msgstr "Bis zu @1 Mobs spawnen als eine Gruppe für jeden Spawnversuch."
 
 #: mods/ENTITIES/mcl_mobs/spawning.lua:1231
 msgid ""
 "A group of @1 to @2 mobs will attempt to be spawned upon each spawning "
 "attempt."
-msgstr ""
+msgstr "Eine Gruppe von @1 bis @2 Kreaturen spawnt für jeden Spawnversuch."
 
 #: mods/ENTITIES/mcl_mobs/spawning.lua:1381
 msgid "Dumped spawners for biome: @1"
