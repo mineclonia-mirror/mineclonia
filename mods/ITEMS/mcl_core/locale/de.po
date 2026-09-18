@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-18 19:32+0200\n"
-"PO-Revision-Date: 2026-09-18 20:25+0000\n"
+"PO-Revision-Date: 2026-08-28 06:56+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_core/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.9.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
@@ -1268,48 +1268,41 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:659
 msgid "Brick Block"
-msgstr "Ziegelblock"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:660
 msgid ""
 "Brick blocks are a good building material for building solid houses and can "
 "take quite a punch."
 msgstr ""
-"Ziegelblöcke sind ein gutes Baumaterial für den Bau stabiler Gebäude und "
-"halten einiges aus."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:671
 msgid "Bedrock"
-msgstr "Grundgestein"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:672
 msgid ""
 "Bedrock is a very hard type of rock. It can not be broken, destroyed, "
 "collected or moved by normal means, unless in Creative Mode."
 msgstr ""
-"Grundgestein ist ein sehr harter Fels. Es kann mit normalen Mitteln nicht "
-"zerkleinert, zerstört, eingesammelt oder bewegt werden, außer im Kreativ-"
-"Modus."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:673
 msgid ""
 "In the End dimension, starting a fire on this block will create an eternal "
 "fire."
 msgstr ""
-"Zünden eines Feuers auf diesem Block in der End Dimension erschafft ein "
-"unendliches Feuer."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:715
 msgid "Cobblestone"
-msgstr "Kopfsteinpflaster"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:729
 msgid "Mossy Cobblestone"
-msgstr "Moosige Kopfsteinpflaster"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:740
 msgid "Block of Coal"
-msgstr "Kohleblock"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:741
 msgid ""
@@ -1319,7 +1312,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:753
 msgid "Block of Iron"
-msgstr "Eisenblock"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:754
 msgid ""
@@ -1329,7 +1322,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:765
 msgid "Block of Gold"
-msgstr "Goldblock"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:766
 msgid ""
@@ -1339,7 +1332,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:777
 msgid "Block of Diamond"
-msgstr "Diamantblock"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:778
 msgid ""
@@ -1349,7 +1342,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:789
 msgid "Block of Lapis Lazuli"
-msgstr "Lapislazuliblock"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:790
 msgid ""
@@ -1359,7 +1352,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:800
 msgid "Block of Emerald"
-msgstr "Emeraldblock"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:801
 msgid ""
@@ -1389,7 +1382,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:835
 msgid "Ice"
-msgstr "Eis"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:836
 msgid ""
@@ -1400,7 +1393,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:854
 msgid "Packed Ice"
-msgstr "Gepacktes Eis"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:855
 msgid "Packed ice is a compressed form of ice. It is opaque and solid."
@@ -1408,7 +1401,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:870
 msgid "Blue Ice"
-msgstr "Blaueis"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:871
 msgid ""
@@ -1423,7 +1416,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:917
 msgid "Frosted Ice"
-msgstr "Gefrorenes Eis"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:1012
 msgid "Top Snow"
@@ -1431,7 +1424,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:1013
 msgid "Stackable"
-msgstr "Stapelbar"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:1014
 msgid ""
@@ -1454,7 +1447,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:1066
 msgid "Snow"
-msgstr "Schnee"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:1067
 msgid ""
@@ -1465,15 +1458,15 @@ msgstr ""
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:6
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:54
 msgid "Cactus"
-msgstr "Kaktus"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:7
 msgid "Grows on sand"
-msgstr "Wächst auf Sand"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:7
 msgid "Contact damage: @1 per half second"
-msgstr "Kontaktschaden: @1 pro halbe Sekunde"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:8
 msgid ""
@@ -1487,24 +1480,22 @@ msgstr ""
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:9
 msgid "A cactus can only be placed on top of another cactus or any sand."
 msgstr ""
-"Ein Kaktus kann nur auf einem anderen Kaktus oder einem beliebigen Sand "
-"platziert werden."
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:77
 msgid "Cactus Flower"
-msgstr "Kaktusblüte"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:78
 msgid "Grows on cacti"
-msgstr "Wächst auf Kakteen"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:101
 msgid "Sugar Canes"
-msgstr "Zuckerrohr"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:102
 msgid "Grows on sand or dirt next to water"
-msgstr "Wächst auf Sand oder Erde neben Wasser"
+msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:103
 msgid ""
