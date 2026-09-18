@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_enchanting x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-08-28 06:15+0000\n"
+"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
+"Language-Team: Chinese (Traditional Han script) <https://"
+"translate.codeberg.org/projects/mineclonia/mcl_enchanting/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: mods/ITEMS/mcl_enchanting/enchantments.lua:15
 msgid "Bane of Arthropods"
@@ -20,8 +22,7 @@ msgstr "節肢剋星"
 msgid ""
 "Increases damage and applies Slowness IV to arthropod mobs (spiders, cave "
 "spiders, silverfish and endermites)."
-msgstr ""
-"增加對節肢生物（蜘蛛、洞穴蜘蛛、蠹魚和終界蟎）的傷害，並造成 緩速IV 效果。"
+msgstr "增加對節肢生物（蜘蛛、洞穴蜘蛛、蠹魚和終界蟎）的傷害，並造成 緩速IV 效果。"
 
 #: mods/ITEMS/mcl_enchanting/enchantments.lua:30
 msgid "Channeling"
@@ -129,8 +130,7 @@ msgstr "忠誠"
 
 #: mods/ITEMS/mcl_enchanting/enchantments.lua:270
 msgid "Trident returns after being thrown. Higher levels reduce return time."
-msgstr ""
-"使三叉戟在與任何方塊或實體接觸後返回投擲的玩家。附魔等級越高返回得越快。"
+msgstr "使三叉戟在與任何方塊或實體接觸後返回投擲的玩家。附魔等級越高返回得越快。"
 
 #: mods/ITEMS/mcl_enchanting/enchantments.lua:279
 msgid "Luck of the Sea"
