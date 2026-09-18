@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_torches x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-09-07 18:26+0000\n"
+"PO-Revision-Date: 2026-09-07 20:26+0000\n"
 "Last-Translator: kvasovy <kvasovy@noreply.codeberg.org>\n"
 "Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_torches/uk/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_torches/register.lua:5
 msgid "Torch"
-msgstr ""
+msgstr "Смолоскип"
 
 #: mods/ITEMS/mcl_torches/register.lua:6
 msgid ""
