@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-10 05:32+0200\n"
 "PO-Revision-Date: 2026-08-28 05:55+0000\n"
-"Last-Translator: baka_bo <baka_bo@noreply.codeberg.org>\n"
+"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_nether/ja/>\n"
 "Language: ja\n"
@@ -48,8 +48,7 @@ msgstr "ネザライトブロック"
 
 #: mods/ITEMS/mcl_nether/init.lua:60
 msgid "Netherite block is very hard and can be made of 9 netherite ingots."
-msgstr ""
-"ネザライトブロックは、非常に硬く、9個のネザライトインゴットから作れます。"
+msgstr "ネザライトブロックは、非常に硬く、9個のネザライトインゴットから作れます。"
 
 #: mods/ITEMS/mcl_nether/init.lua:99
 msgid "Netherrack"
@@ -115,8 +114,7 @@ msgstr "ネザーウォートブロック"
 
 #: mods/ITEMS/mcl_nether/init.lua:233
 msgid "A nether wart block is a purely decorative block made from nether wart."
-msgstr ""
-"ネザーウォートブロックは、ネザーウォートを使った純粋な装飾用ブロックです。"
+msgstr "ネザーウォートブロックは、ネザーウォートを使った純粋な装飾用ブロックです。"
 
 #: mods/ITEMS/mcl_nether/init.lua:247
 msgid "Block of Quartz"
@@ -225,8 +223,8 @@ msgid ""
 "Nether bricks are the main crafting ingredient for crafting nether brick "
 "blocks and nether fences."
 msgstr ""
-"ネザーレンガは、ネザーレンガブロックやネザーフェンスを製作するための主なクラ"
-"フト材料です。"
+"ネザーレンガは、ネザーレンガブロックやネザーフェンスを製作するための主な"
+"クラフト材料です。"
 
 #: mods/ITEMS/mcl_nether/init.lua:382
 msgid "Netherite Upgrade Template"
@@ -311,5 +309,5 @@ msgstr ""
 #: mods/ITEMS/mcl_nether/nether_wart.lua:108
 msgid "Place this item on soul sand to plant it and watch it grow."
 msgstr ""
-"このアイテムをソウルサンドの上に置いて植えると、その成長を見ることができま"
-"す。"
+"このアイテムをソウルサンドの上に置いて植えると、その成長を見ることができます"
+"。"
