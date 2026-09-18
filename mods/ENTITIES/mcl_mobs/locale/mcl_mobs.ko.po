@@ -20,9 +20,9 @@ msgid ""
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
 "ones."
 msgstr ""
-"지정된 거리 이내 또는 전체 범위의 모든 몹(이름표가 달린 몹 또는 길들인 몹 포"
-"함)을 제거합니다. 지정되지 않으면 길들였거나 이름표가 달린 몹을 제외한 모든 "
-"몹을 제거합니다."
+"지정된 거리 이내 또는 전체 범위의 모든 몹(이름표가 달린 몹 또는 길들인 몹 "
+"포함)을 제거합니다. 지정되지 않으면 길들였거나 이름표가 달린 몹을 제외한 "
+"모든 몹을 제거합니다."
 
 #: mods/ENTITIES/mcl_mobs/api.lua:750 mods/ENTITIES/mcl_mobs/api.lua:757
 msgid "Invalid syntax."
@@ -38,9 +38,9 @@ msgid ""
 "unless you hold down the sneak key while placing. If you place this on a mob "
 "spawner, you change the mob it spawns."
 msgstr ""
-"몹이 등장하기를 원하는 위치에 우클릭만 하면 됩니다. 우클릭 하는 동안 웅크리"
-"기 키를 누르고 있지 않으면 동물은 길들인 상태로 생성됩니다. 이 아이템을 몹 생"
-"성기에 우클릭 하면 생성되는 몹이 바뀝니다."
+"몹이 등장하기를 원하는 위치에 우클릭만 하면 됩니다. 우클릭 하는 동안 "
+"웅크리기 키를 누르고 있지 않으면 동물은 길들인 상태로 생성됩니다. 이 "
+"아이템을 몹 생성기에 우클릭 하면 생성되는 몹이 바뀝니다."
 
 #. ~amana/research/grid.pdf
 #. The ubiquitous slab method of intersecting rays with
