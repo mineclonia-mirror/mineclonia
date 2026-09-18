@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doc_basics x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-08-28 06:50+0000\n"
+"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
+"Language-Team: Basque <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_doc_basics/eu/>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:9
 msgid "Advanced usage"
@@ -335,8 +337,8 @@ msgid ""
 "spawnentity boats:boat” and “/spawnentity boats:boat 0,0,0”"
 msgstr ""
 "•/spawnentity [,]: Sarrera baliodunen artean daude \"/ spawnentity boats: "
-"boat\" eta \"/ spawnentity boats: boat 0,0,0\" <Nombre de la entidad> "
-"<X><Y><Z>"
+"boat\" eta \"/ spawnentity boats: boat 0,0,0\" <Nombre de la entidad> <X><Y>"
+"<Z>"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:97
 msgid "Some final remarks:"
@@ -397,8 +399,7 @@ msgstr ""
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:112
 msgid "To view your own privileges, issue the server command “/privs”."
-msgstr ""
-"Zure pribilegioak ikusteko, emaiozu \"/privs\" zerbitzariaren komandoa."
+msgstr "Zure pribilegioak ikusteko, emaiozu \"/privs\" zerbitzariaren komandoa."
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:114
 msgid "Here are a few basic privilege-related commands:"
@@ -429,8 +430,7 @@ msgstr "• /grant <jokalaria> <pribilegioa>: <pribilegioa> eman <jokalaria>-ri"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:123
 msgid "• /revoke <player> <privilege>: Revoke <privilege> from <player>"
-msgstr ""
-"• /revoke <jokalaria> <pribilegioa>: <pribilegioa> kendu <jokalaria>-ri"
+msgstr "• /revoke <jokalaria> <pribilegioa>: <pribilegioa> kendu <jokalaria>-ri"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:125
 msgid ""
@@ -1076,8 +1076,7 @@ msgstr "Itemek hainbat propietate dituzte, honako hauek barne:"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:122
 msgid "• Maximum stack size: Number of items which fit on 1 item stack"
-msgstr ""
-"• Pilaren gehienezko tamaina: item-pila batean sartzen den item-kopurua"
+msgstr "• Pilaren gehienezko tamaina: item-pila batean sartzen den item-kopurua"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:123
 msgid ""
@@ -2361,8 +2360,7 @@ msgstr ""
 
 #: mods/HELP/mcl_doc_basics/basics.lua:470
 msgid "The physics for swimming and diving in a liquid are:"
-msgstr ""
-"Hona hemen igeri egiteko eta likido batean igeri egiteko lege fisikoak:"
+msgstr "Hona hemen igeri egiteko eta likido batean igeri egiteko lege fisikoak:"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:471
 msgid "• The higher the viscosity, the slower you move"

@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doc_basics x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-08-28 06:51+0000\n"
+"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
+"Language-Team: Hungarian <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_doc_basics/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:9
 msgid "Advanced usage"
@@ -835,8 +837,7 @@ msgstr "• Shift: Lopakodás"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:53
 msgid "While on a ladder, swimming in a liquid or fly mode is active"
-msgstr ""
-"Létrán állva, vízben vagy más folyadékban úszva illetve repülési módban"
+msgstr "Létrán állva, vízben vagy más folyadékban úszva illetve repülési módban"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:54
 msgid "• Space: Move up"
@@ -1619,8 +1620,7 @@ msgstr "Többféle barkácsrecept létezik:"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:271
 msgid "• Shaped: Items need to be placed in a particular shape"
-msgstr ""
-"• Alakhoz kötött: A tárgyakat egy meghatározott alakban kell elhelyezni"
+msgstr "• Alakhoz kötött: A tárgyakat egy meghatározott alakban kell elhelyezni"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:272
 msgid ""
@@ -1717,8 +1717,7 @@ msgstr "Az éhség alapvető szabályai:"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:301
 msgid "• You start with 20/20 hunger points (more points = less hungry)"
-msgstr ""
-"• 20/20 éhségponttal kezdesz (minél több pont, annál kevésbé vagy éhes)"
+msgstr "• 20/20 éhségponttal kezdesz (minél több pont, annál kevésbé vagy éhes)"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:302
 msgid "• Actions like combat, jumping, sprinting, etc. decrease hunger points"
@@ -2446,8 +2445,8 @@ msgid ""
 "1)."
 msgstr ""
 "A mesterséges fény minden egyes átlátszó vagy félig átlátszó blokkon való "
-"áthaladáskor egy fényszintet veszít, míg végül csak a sötétség marad (1. "
-"kép)."
+"áthaladáskor egy fényszintet veszít, míg végül csak a sötétség marad (1. kép)"
+"."
 
 #: mods/HELP/mcl_doc_basics/basics.lua:509
 msgid ""
@@ -2605,8 +2604,7 @@ msgstr "• Tárgykupac: Azonos típusú tárgyak gyűjteménye"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:554
 msgid "• Maximum stack size: Maximum amount of items in an item stack"
-msgstr ""
-"• Maximális kupacméret: Egy tárgykupacban lévő tárgyak legnagyobb száma"
+msgstr "• Maximális kupacméret: Egy tárgykupacban lévő tárgyak legnagyobb száma"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:555
 msgid "• Slot / inventory slot: Can hold one item stack"
@@ -2718,8 +2716,7 @@ msgstr "Online többjátékos mód:"
 #: mods/HELP/mcl_doc_basics/basics.lua:583
 msgid ""
 "• PvP: Player vs Player. If active, players can deal damage to each other"
-msgstr ""
-"• PvP: Játékos kontra játékos. Ha aktív, a játékosok sebezhetik egymást"
+msgstr "• PvP: Játékos kontra játékos. Ha aktív, a játékosok sebezhetik egymást"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:584
 msgid ""
@@ -2785,8 +2782,8 @@ msgid ""
 msgstr ""
 "A Luanti (korábban Minetest) egy szabad szoftveres játékmotor voxel alapú "
 "játékmenetre épülő játékokhoz, amelyet az InfiniMiner, a Minecraft és "
-"hasonló játékok ihlettek. A Luantit eredetileg Perttu Ahola (más néven "
-"„celeron55”) hozta létre."
+"hasonló játékok ihlettek. A Luantit eredetileg Perttu Ahola (más néven „"
+"celeron55”) hozta létre."
 
 #: mods/HELP/mcl_doc_basics/basics.lua:602
 msgid ""
