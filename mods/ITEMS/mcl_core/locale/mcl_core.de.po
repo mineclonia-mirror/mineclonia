@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_core x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-18 19:32+0200\n"
-"PO-Revision-Date: 2026-08-28 15:26+0000\n"
-"Last-Translator: ygramul42 <ygramul42@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-09-18 20:25+0000\n"
+"Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_core-1/de/>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.8.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
@@ -1290,7 +1290,9 @@ msgstr ""
 msgid ""
 "In the End dimension, starting a fire on this block will create an eternal "
 "fire."
-msgstr "In der Ende-Dimension wird Feuer auf diesem Block ewig brennen."
+msgstr ""
+"Zünden eines Feuers auf diesem Block in der End Dimension erschafft ein "
+"unendliches Feuer."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:715
 msgid "Cobblestone"
@@ -1298,7 +1300,7 @@ msgstr "Kopfsteinpflaster"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:729
 msgid "Mossy Cobblestone"
-msgstr "Moosiges Kopfsteinpflaster"
+msgstr "Moosige Kopfsteinpflaster"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:740
 msgid "Block of Coal"
@@ -1351,7 +1353,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:789
 msgid "Block of Lapis Lazuli"
-msgstr ""
+msgstr "Lapislazuliblock"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:790
 msgid ""
@@ -1363,7 +1365,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:800
 msgid "Block of Emerald"
-msgstr "Smaragdblock"
+msgstr "Emeraldblock"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:801
 msgid ""
@@ -1411,7 +1413,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:854
 msgid "Packed Ice"
-msgstr "Packeis"
+msgstr "Gepacktes Eis"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:855
 msgid "Packed ice is a compressed form of ice. It is opaque and solid."
@@ -1419,7 +1421,7 @@ msgstr "Packeis ist eine kompakte Eisform. Es ist undurchsichtig und fest."
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:870
 msgid "Blue Ice"
-msgstr ""
+msgstr "Blaueis"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:871
 msgid ""
@@ -1436,7 +1438,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:917
 msgid "Frosted Ice"
-msgstr "Brüchiges Eis"
+msgstr "Gefrorenes Eis"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:1012
 msgid "Top Snow"
@@ -1495,7 +1497,7 @@ msgstr "Wächst auf Sand"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:7
 msgid "Contact damage: @1 per half second"
-msgstr "Kontaktschaden: @1 jede halbe Sekunde"
+msgstr "Kontaktschaden: @1 pro halbe Sekunde"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:8
 msgid ""
@@ -1514,16 +1516,16 @@ msgstr ""
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:9
 msgid "A cactus can only be placed on top of another cactus or any sand."
 msgstr ""
-"Ein Kaktus kann nur auf einem anderen Kaktus oder auf beliebigem Sand "
+"Ein Kaktus kann nur auf einem anderen Kaktus oder einem beliebigen Sand "
 "platziert werden."
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:77
 msgid "Cactus Flower"
-msgstr ""
+msgstr "Kaktusblüte"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:78
 msgid "Grows on cacti"
-msgstr ""
+msgstr "Wächst auf Kakteen"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:101
 msgid "Sugar Canes"
