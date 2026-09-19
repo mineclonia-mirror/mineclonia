@@ -203,32 +203,14 @@ core.register_node("mcl_sculk:sculk", {
 	_mcl_silk_touch_drop = true,
 })
 
-core.register_node("mcl_sculk:vein", {
+mcl_multiface.register_multiface_node("mcl_sculk:vein", {
 	description = S("Sculk Vein"),
 	_doc_items_longdesc = S("Sculk vein."),
-	drawtype = "signlike",
 	tiles = {"mcl_sculk_vein.png"},
 	inventory_image = "mcl_sculk_vein.png",
-	wield_image = "mcl_sculk_vein.png",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "wallmounted",
-	walkable = false,
-	climbable = true,
-	buildable_to = true,
-	selection_box = {
-		type = "wallmounted",
-	},
-	groups = {
-		handy = 1, axey = 1, shearsy = 1, swordy = 1, deco_block = 1,
-		dig_by_piston = 1, destroy_by_lava_flow = 1, sculk = 1, dig_by_water = 1,
-	},
+	group = {sculk = 1},
 	sounds = sounds,
-	drop = "",
-	_mcl_shears_drop = true,
-	node_placement_prediction = "",
 	_mcl_hardness = 0.2,
-	on_rotate = false,
 })
 
 core.register_node("mcl_sculk:catalyst", {
