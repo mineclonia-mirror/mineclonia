@@ -349,13 +349,6 @@ function mcl_minecarts.tpl_entity:on_step(dtime)
 		pos = self.object:get_pos()
 	end
 	if self._old_pos and not self._punched then
-		local flo_pos = vector.floor(pos)
-		local flo_old = vector.floor(self._old_pos)
-		if vector.equals(flo_pos, flo_old) and (not has_fuel) then
-			return
-			-- Prevent querying the same node over and over again
-		end
-
 		if not rou_pos then
 			rou_pos = vector.round(pos)
 		end
