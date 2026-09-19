@@ -576,8 +576,13 @@ local function get_recipe_fs(data, iY, player)
 			and (
 				has_table
 				or (
-					recipe.width <= 2
+					not shapeless
+					and recipe.width <= 2
 					and math.ceil(table.max_index(recipe.items) / recipe.width) <= 2
+				)
+				or (
+					shapeless
+					and table.max_index(recipe.items) <= 4
 				)
 			)
 		if recipe.type == "normal" and can_craft then
