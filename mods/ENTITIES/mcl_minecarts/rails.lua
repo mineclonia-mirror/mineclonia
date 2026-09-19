@@ -332,6 +332,8 @@ mcl_minecarts.register_rail("mcl_minecarts:activator_rail_on", {
 	drop = "mcl_minecarts:activator_rail",
 })
 
+doc.add_entry_alias("nodes", "mcl_minecarts:activator_rail", "nodes", "mcl_minecarts:activator_rail_on")
+
 -- Detector rail (off)
 mcl_minecarts.register_rail("mcl_minecarts:detector_rail", {
 	description = S("Detector Rail"),
@@ -374,3 +376,5 @@ mcl_minecarts.register_rail("mcl_minecarts:detector_rail_on", {
 	},
 	drop = "mcl_minecarts:detector_rail",
 })
+
+doc.add_entry_alias("nodes", "mcl_minecarts:detector_rail", "nodes", "mcl_minecarts:detector_rail_on")
