@@ -159,6 +159,7 @@ globals = {
 	"mcl_redstone",
 	"mcl_sculk",
 	"mcl_serverplayer",
+	"mcl_shelves",
 	"mcl_shields",
 	"mcl_signs",
 	"mcl_skins",
