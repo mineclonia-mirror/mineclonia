@@ -5,7 +5,7 @@ local tt_help_end = S("Sneak-click to remove")
 local function activate_tnt_minecart(self)
 	if self._boomtimer then return end
 	self.object:set_armor_groups({immortal = 1})
-	self._boomtimer = tnt.BOOMTIMER
+	self._boomtimer = mcl_tnt.BOOMTIMER
 	self.object:set_properties({textures = {
 		"mcl_tnt_blink.png",
 		"mcl_tnt_blink.png",
@@ -15,7 +15,7 @@ local function activate_tnt_minecart(self)
 		"mcl_tnt_blink.png",
 		"mcl_minecarts_minecart.png",
 	}})
-	self._blinktimer = tnt.BLINKTIMER
+	self._blinktimer = mcl_tnt.BLINKTIMER
 	core.sound_play("tnt_ignite", {pos = self.object:get_pos(), gain = 1.0, max_hear_distance = 15}, true)
 end
 
