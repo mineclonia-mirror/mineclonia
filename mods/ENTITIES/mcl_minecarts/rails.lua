@@ -1,66 +1,79 @@
 local S = core.get_translator(core.get_current_modname())
 
--- Template rail function
-local function register_rail(itemstring, tiles, def_extras, creative)
-	local groups = {handy=1,pickaxey=1, attached_node=1,rail=1,connect_to_raillike=core.raillike_group("rail"),transport=1, no_spawning_inside=1}
-	if creative == false then
-		groups.not_in_creative_inventory = 1
-	end
-	local ndef = {
-		drawtype = "raillike",
-		tiles = tiles,
-		is_ground_content = false,
-		inventory_image = tiles[1],
-		wield_image = tiles[1],
-		paramtype = "light",
-		walkable = false,
-		selection_box = {
-			type = "fixed",
-			fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
-		},
-		groups = groups,
-		sounds = mcl_sounds.node_sound_metal_defaults(),
-		_mcl_hardness = 0.7,
-		after_destruct = function(pos)
-			-- Scan for minecarts in this pos and force them to execute their "floating" check.
-			-- Normally, this will make them drop.
-			for obj in core.objects_inside_radius(pos, 1) do
-				local le = obj:get_luaentity()
-				if le then
-					-- All entities in this mod are minecarts, so this works
-					if string.sub(le.name, 1, 14) == "mcl_minecarts:" then
-						le._last_float_check = mcl_minecarts.check_float_time
-					end
+mcl_minecarts.tpl_rail_node = {
+	drawtype = "raillike",
+	is_ground_content = false,
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
+	},
+	groups = {
+		handy = 1, pickaxey = 1, attached_node = 1, rail = 1,
+		connect_to_raillike = core.raillike_group("rail"),
+		transport = 1, no_spawning_inside = 1
+	},
+	sounds = mcl_sounds.node_sound_metal_defaults(),
+	_mcl_hardness = 0.7,
+	after_destruct = function(pos)
+		-- Scan for minecarts in this pos and force them to execute their "floating" check.
+		-- Normally, this will make them drop.
+		for obj in core.objects_inside_radius(pos, 1) do
+			local le = obj:get_luaentity()
+			if le then
+				-- All entities in this mod are minecarts, so this works
+				if string.sub(le.name, 1, 14) == "mcl_minecarts:" then
+					le._last_float_check = mcl_minecarts.check_float_time
 				end
 			end
-		end,
-	}
-	if def_extras then
-		for k,v in pairs(def_extras) do
-			ndef[k] = v
 		end
+	end,
+}
+
+function mcl_minecarts.register_rail(name, def)
+	local ndef = table.merge(mcl_minecarts.tpl_rail_node, def, {
+		groups = table.merge(mcl_minecarts.tpl_rail_node.groups, def.groups or {})
+	})
+	if not ndef.inventory_image then
+		ndef.inventory_image = ndef.tiles[1]
 	end
-	core.register_node(itemstring, ndef)
+	if not ndef.wield_image then
+		ndef.wield_image = ndef.tiles[1]
+	end
+	core.register_node(name, ndef)
 end
 
-local railuse = S("Place them on the ground to build your railway, the rails will automatically connect to each other and will turn into curves, T-junctions, crossings and slopes as needed.")
+local rail_usagehelp = S("Place them on the ground to build your railway, the rails will automatically connect to each other and will turn into curves, T-junctions, crossings and slopes as needed.")
 
 -- Normal rail
-register_rail("mcl_minecarts:rail",
-	{"default_rail.png", "default_rail_curved.png", "default_rail_t_junction.png", "default_rail_crossing.png"},
-	{
-		description = S("Rail"),
-		_tt_help = S("Track for minecarts"),
-		_doc_items_longdesc = S("Rails can be used to build transport tracks for minecarts. Normal rails slightly slow down minecarts due to friction."),
-		_doc_items_usagehelp = railuse,
+mcl_minecarts.register_rail("mcl_minecarts:rail", {
+	description = S("Rail"),
+	tiles = {
+		"default_rail.png",
+		"default_rail_curved.png",
+		"default_rail_t_junction.png",
+		"default_rail_crossing.png"
+	},
+	_tt_help = S("Track for minecarts"),
+	_doc_items_longdesc = S("Rails can be used to build transport tracks for minecarts. Normal rails slightly slow down minecarts due to friction."),
+	_doc_items_usagehelp = rail_usagehelp,
+})
+
+core.register_craft({
+	output = "mcl_minecarts:rail 16",
+	recipe = {
+		{"mcl_core:iron_ingot", "", "mcl_core:iron_ingot"},
+		{"mcl_core:iron_ingot", "mcl_core:stick", "mcl_core:iron_ingot"},
+		{"mcl_core:iron_ingot", "", "mcl_core:iron_ingot"},
 	}
-)
+})
 
 local golden_rail_tab = {}
 local opaque_tab = {}
 
 core.register_on_mods_loaded(function()
-	for name, ndef in pairs(core.registered_nodes) do
+	for name, _ in pairs(core.registered_nodes) do
 		local cid = core.get_content_id(name)
 		opaque_tab[cid] = core.get_item_group(name, "opaque") ~= 0 and true or nil
 		if name == "mcl_minecarts:golden_rail" or name == "mcl_minecarts:golden_rail_on" then
@@ -179,7 +192,7 @@ local function propagate_golden_rail_power(pos, new_power, old_power, powered_on
 end
 
 local function push_minecart(pos)
-	local dir = mcl_minecarts:get_start_direction(pos)
+	local dir = mcl_minecarts.get_start_direction(pos)
 	if not dir then return end
 	for o in core.objects_inside_radius(pos, 1) do
 		local l = o:get_luaentity()
@@ -204,118 +217,26 @@ local function golden_rail_redstone_update(pos)
 end
 
 -- Powered rail (off = brake mode)
-register_rail("mcl_minecarts:golden_rail",
-	{"mcl_minecarts_rail_golden.png", "mcl_minecarts_rail_golden_curved.png", "mcl_minecarts_rail_golden_t_junction.png", "mcl_minecarts_rail_golden_crossing.png"},
-	{
-		description = S("Powered Rail"),
-		_tt_help = S("Track for minecarts").."\n"..S("Speed up when powered, slow down when not powered"),
-		_doc_items_longdesc = S("Rails can be used to build transport tracks for minecarts. Powered rails are able to accelerate and brake minecarts."),
-		_doc_items_usagehelp = railuse .. "\n" .. S("Without redstone power, the rail will brake minecarts. To make this rail accelerate minecarts, power it with redstone power."),
-		_rail_acceleration = -3,
-		_mcl_redstone = {
-			connects_to = function(node, dir)
-				return true
-			end,
-			update = golden_rail_redstone_update,
-		},
-	}
-)
-
--- Powered rail (on = acceleration mode)
-register_rail("mcl_minecarts:golden_rail_on",
-	{"mcl_minecarts_rail_golden_powered.png", "mcl_minecarts_rail_golden_curved_powered.png", "mcl_minecarts_rail_golden_t_junction_powered.png", "mcl_minecarts_rail_golden_crossing_powered.png"},
-	{
-		_doc_items_create_entry = false,
-		_rail_acceleration = 4,
-		_mcl_redstone = {
-			connects_to = function(node, dir)
-				return true
-			end,
-			update = golden_rail_redstone_update,
-		},
-		drop = "mcl_minecarts:golden_rail",
+mcl_minecarts.register_rail("mcl_minecarts:golden_rail", {
+	description = S("Powered Rail"),
+	tiles = {
+		"mcl_minecarts_rail_golden.png",
+		"mcl_minecarts_rail_golden_curved.png",
+		"mcl_minecarts_rail_golden_t_junction.png",
+		"mcl_minecarts_rail_golden_crossing.png"
 	},
-	false
-)
-
--- Activator rail (off)
-register_rail("mcl_minecarts:activator_rail",
-	{"mcl_minecarts_rail_activator.png", "mcl_minecarts_rail_activator_curved.png", "mcl_minecarts_rail_activator_t_junction.png", "mcl_minecarts_rail_activator_crossing.png"},
-	{
-		description = S("Activator Rail"),
-		_tt_help = S("Track for minecarts").."\n"..S("Activates minecarts when powered"),
-		_doc_items_longdesc = S("Rails can be used to build transport tracks for minecarts. Activator rails are used to activate special minecarts."),
-		_doc_items_usagehelp = railuse .. "\n" .. S("To make this rail activate minecarts, power it with redstone power and send a minecart over this piece of rail."),
-		_mcl_redstone = {
-			update = function(pos)
-				if mcl_redstone.get_power(pos) ~= 0 then
-					core.swap_node(pos, {name = "mcl_minecarts:activator_rail_on"})
-				end
-			end,
-		},
-	}
-)
-
--- Activator rail (on)
-register_rail("mcl_minecarts:activator_rail_on",
-	{"mcl_minecarts_rail_activator_powered.png", "mcl_minecarts_rail_activator_curved_powered.png", "mcl_minecarts_rail_activator_t_junction_powered.png", "mcl_minecarts_rail_activator_crossing_powered.png"},
-	{
-		_doc_items_create_entry = false,
-		_mcl_redstone = {
-			update = function(pos)
-				if mcl_redstone.get_power(pos) == 0 then
-					core.swap_node(pos, {name = "mcl_minecarts:activator_rail"})
-				else
-					local pos2 = { x = pos.x, y =pos.y + 1, z = pos.z }
-					for o in core.objects_inside_radius(pos2, 1) do
-						local l = o:get_luaentity()
-						if l and string.sub(l.name, 1, 14) == "mcl_minecarts:" and l.on_activate_by_rail then
-							l:on_activate_by_rail()
-						end
-					end
-				end
-			end,
-		},
-		drop = "mcl_minecarts:activator_rail",
+	_tt_help = S("Track for minecarts") .. "\n"
+		.. S("Speed up when powered, slow down when not powered"),
+	_doc_items_longdesc = S("Rails can be used to build transport tracks for minecarts. Powered rails are able to accelerate and brake minecarts."),
+	_doc_items_usagehelp = rail_usagehelp .. "\n"
+		.. S("Without redstone power, the rail will brake minecarts. To make this rail accelerate minecarts, power it with redstone power."),
+	_rail_acceleration = -3,
+	_mcl_redstone = {
+		connects_to = function(node, dir)
+			return true
+		end,
+		update = golden_rail_redstone_update,
 	},
-	false
-)
-
--- Detector rail (off)
-register_rail("mcl_minecarts:detector_rail",
-	{"mcl_minecarts_rail_detector.png", "mcl_minecarts_rail_detector_curved.png", "mcl_minecarts_rail_detector_t_junction.png", "mcl_minecarts_rail_detector_crossing.png"},
-	{
-		description = S("Detector Rail"),
-		_tt_help = S("Track for minecarts").."\n"..S("Emits redstone power when a minecart is detected"),
-		_doc_items_longdesc = S("Rails can be used to build transport tracks for minecarts. A detector rail is able to detect a minecart above it and powers redstone mechanisms."),
-		_doc_items_usagehelp = railuse .. "\n" .. S("To detect a minecart and provide redstone power, connect it to redstone trails or redstone mechanisms and send any minecart over the rail."),
-	}
-)
-
--- Detector rail (on)
-register_rail("mcl_minecarts:detector_rail_on",
-	{"mcl_minecarts_rail_detector_powered.png", "mcl_minecarts_rail_detector_curved_powered.png", "mcl_minecarts_rail_detector_t_junction_powered.png", "mcl_minecarts_rail_detector_crossing_powered.png"},
-	{
-		_doc_items_create_entry = false,
-		_mcl_redstone = {
-			get_power = function(node, dir)
-				return 15, dir.y < 0
-			end,
-		},
-		drop = "mcl_minecarts:detector_rail",
-	},
-	false
-)
-
-
--- Crafting
-core.register_craft({
-	output = "mcl_minecarts:rail 16",
-	recipe = {
-		{"mcl_core:iron_ingot", "", "mcl_core:iron_ingot"},
-		{"mcl_core:iron_ingot", "mcl_core:stick", "mcl_core:iron_ingot"},
-		{"mcl_core:iron_ingot", "", "mcl_core:iron_ingot"},
-	}
 })
 
 core.register_craft({
@@ -327,6 +248,51 @@ core.register_craft({
 	}
 })
 
+-- Powered rail (on = acceleration mode)
+mcl_minecarts.register_rail("mcl_minecarts:golden_rail_on", {
+	tiles = {
+		"mcl_minecarts_rail_golden_powered.png",
+		"mcl_minecarts_rail_golden_curved_powered.png",
+		"mcl_minecarts_rail_golden_t_junction_powered.png",
+		"mcl_minecarts_rail_golden_crossing_powered.png"
+	},
+	groups = {not_in_creative_inventory = 1},
+	_doc_items_create_entry = false,
+	_rail_acceleration = 4,
+	_mcl_redstone = {
+		connects_to = function(node, dir)
+			return true
+		end,
+		update = golden_rail_redstone_update,
+	},
+	drop = "mcl_minecarts:golden_rail",
+})
+
+doc.add_entry_alias("nodes", "mcl_minecarts:golden_rail", "nodes", "mcl_minecarts:golden_rail_on")
+
+-- Activator rail (off)
+mcl_minecarts.register_rail("mcl_minecarts:activator_rail", {
+	description = S("Activator Rail"),
+	tiles = {
+		"mcl_minecarts_rail_activator.png",
+		"mcl_minecarts_rail_activator_curved.png",
+		"mcl_minecarts_rail_activator_t_junction.png",
+		"mcl_minecarts_rail_activator_crossing.png"
+	},
+	_tt_help = S("Track for minecarts") .. "\n"
+		.. S("Activates minecarts when powered"),
+	_doc_items_longdesc = S("Rails can be used to build transport tracks for minecarts. Activator rails are used to activate special minecarts."),
+	_doc_items_usagehelp = rail_usagehelp .. "\n"
+		.. S("To make this rail activate minecarts, power it with redstone power and send a minecart over this piece of rail."),
+	_mcl_redstone = {
+		update = function(pos)
+			if mcl_redstone.get_power(pos) ~= 0 then
+				core.swap_node(pos, {name = "mcl_minecarts:activator_rail_on"})
+			end
+		end,
+	},
+})
+
 core.register_craft({
 	output = "mcl_minecarts:activator_rail 6",
 	recipe = {
@@ -334,6 +300,52 @@ core.register_craft({
 		{"mcl_core:iron_ingot", "mcl_redstone_torch:redstone_torch_on", "mcl_core:iron_ingot"},
 		{"mcl_core:iron_ingot", "mcl_core:stick", "mcl_core:iron_ingot"},
 	}
+})
+
+-- Activator rail (on)
+mcl_minecarts.register_rail("mcl_minecarts:activator_rail_on", {
+	tiles = {
+		"mcl_minecarts_rail_activator_powered.png",
+		"mcl_minecarts_rail_activator_curved_powered.png",
+		"mcl_minecarts_rail_activator_t_junction_powered.png",
+		"mcl_minecarts_rail_activator_crossing_powered.png"
+	},
+	groups = {not_in_creative_inventory = 1},
+	_doc_items_create_entry = false,
+	_mcl_redstone = {
+		update = function(pos)
+			core.log("activator rail update")
+			if mcl_redstone.get_power(pos) == 0 then
+				core.swap_node(pos, {name = "mcl_minecarts:activator_rail"})
+				return
+			end
+
+			local above = vector.offset(pos, 0, 1, 0)
+			for o in core.objects_inside_radius(above, 1) do
+				local l = o:get_luaentity()
+				if l and string.sub(l.name, 1, 14) == "mcl_minecarts:" and l._on_activate_by_rail then
+					l:_on_activate_by_rail()
+				end
+			end
+		end,
+	},
+	drop = "mcl_minecarts:activator_rail",
+})
+
+-- Detector rail (off)
+mcl_minecarts.register_rail("mcl_minecarts:detector_rail", {
+	description = S("Detector Rail"),
+	tiles = {
+		"mcl_minecarts_rail_detector.png",
+		"mcl_minecarts_rail_detector_curved.png",
+		"mcl_minecarts_rail_detector_t_junction.png",
+		"mcl_minecarts_rail_detector_crossing.png"
+	},
+	_tt_help = S("Track for minecarts") .. "\n"
+		.. S("Emits redstone power when a minecart is detected"),
+	_doc_items_longdesc = S("Rails can be used to build transport tracks for minecarts. A detector rail is able to detect a minecart above it and powers redstone mechanisms."),
+	_doc_items_usagehelp = rail_usagehelp .. "\n"
+		.. S("To detect a minecart and provide redstone power, connect it to redstone trails or redstone mechanisms and send any minecart over the rail."),
 })
 
 core.register_craft({
@@ -345,6 +357,20 @@ core.register_craft({
 	}
 })
 
-
-doc.add_entry_alias("nodes", "mcl_minecarts:golden_rail", "nodes", "mcl_minecarts:golden_rail_on")
-
+-- Detector rail (on)
+mcl_minecarts.register_rail("mcl_minecarts:detector_rail_on", {
+	tiles = {
+		"mcl_minecarts_rail_detector_powered.png",
+		"mcl_minecarts_rail_detector_curved_powered.png",
+		"mcl_minecarts_rail_detector_t_junction_powered.png",
+		"mcl_minecarts_rail_detector_crossing_powered.png"
+	},
+	groups = {not_in_creative_inventory = 1},
+	_doc_items_create_entry = false,
+	_mcl_redstone = {
+		get_power = function(node, dir)
+			return 15, dir.y < 0
+		end,
+	},
+	drop = "mcl_minecarts:detector_rail",
+})
