@@ -328,6 +328,7 @@ core.register_craftitem("mcl_lush_caves:glow_berry", {
 		if not core.is_creative_enabled(placer:get_player_name()) then
 			itemstack:take_item(1)
 		end
+		mcl_hunger.prevent_eating(placer)
 		return itemstack
 	end
 })
