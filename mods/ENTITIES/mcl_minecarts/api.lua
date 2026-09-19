@@ -302,7 +302,7 @@ function mcl_minecarts.tpl_entity:on_step(dtime)
 			self.object:remove()
 			return
 		else
-			tnt.smoke_step(pos)
+			mcl_tnt.smoke_step(pos)
 		end
 	end
 	if self._blinktimer then
@@ -332,7 +332,7 @@ function mcl_minecarts.tpl_entity:on_step(dtime)
 				"mcl_minecarts_minecart.png",
 				}})
 			end
-			self._blinktimer = tnt.BLINKTIMER
+			self._blinktimer = mcl_tnt.BLINKTIMER
 		end
 	end
 
