@@ -1,7 +1,5 @@
 mcl_multiface = {}
 
-local S = core.get_translator(core.get_current_modname())
-
 local SOLID_FACE = mcl_util.decompose_AABBs ({{
 	-0.5, -0.5, -0.5,
 	0.5, 0.5, 0.5,
@@ -166,99 +164,6 @@ function mcl_multiface.get_multiface_node_data(name, north, west, south, east, u
 	end
 end
 
--- function tpl._on_bone_meal (itemstack, placer, pointed_thing, pos, node)
--- 	local params = get_multiface_attachments (node)
--- 	local spread_poses = {}
---
--- 	-- Evaluate where this glow lichen block may spread.  A glow
--- 	-- lichen block is permitted to spread from its current
--- 	-- position to a contacting face or to the sides of any block
--- 	-- to which it is attached except along the axis of its
--- 	-- attachment.
---
--- 	for i = 1, #dirs do
--- 		local dir = dirs[i]
--- 		if not params[dir[1]] then
--- 			-- Attempt to spread to an adjacent face.
--- 			local off = vector.offset (pos, dir[2], dir[3], dir[4])
--- 			if test_wallmounted_face (off, dir[5], dir[6]) then
--- 				table.insert (spread_poses, {
--- 					position = pos,
--- 					spread_dir = i,
--- 				})
--- 			end
--- 		else
--- 			-- Or faces around this node.
--- 			local pos_behind = vector.offset (pos, dir[2], dir[3], dir[4])
--- 			for j = 1, #dirs do
--- 				local dir1 = dirs[j]
--- 				-- But not behind it.
--- 				if j ~= i then
--- 					-- Spread around this node.
--- 					if test_wallmounted_face (pos_behind, dir1[5], dir1[6]) then
--- 						table.insert (spread_poses, {
--- 							position = vector.offset (pos_behind, -dir1[2],
--- 										  -dir1[3], -dir1[4]),
--- 							spread_dir = j,
--- 						})
--- 					end
---
--- 					-- Spread crosswise.
--- 					local off = vector.offset (pos_behind, dir1[2],
--- 								   dir1[3], dir1[4])
--- 					if test_wallmounted_face (off, dir[5], dir[6]) then
--- 						local off_parallel_above
--- 							= vector.offset (off, -dir[2], -dir[3],
--- 									 -dir[4])
--- 						table.insert (spread_poses, {
--- 							position = off_parallel_above,
--- 							spread_dir = i,
--- 						})
--- 					end
--- 				end
--- 			end
--- 		end
--- 	end
---
--- 	if #spread_poses == 0 then
--- 		return false
--- 	end
---
--- 	table.shuffle (spread_poses)
---
--- 	-- Iterate through each eligible position and attempt to add a
--- 	-- lichen attachment at that position and in the direction
--- 	-- specified.
--- 	for _, attachment in ipairs (spread_poses) do
--- 		local node = core.get_node (attachment.position)
--- 		local attachments = attachments[attachment.spread_dir]
--- 		if core.get_item_group (node.name, "glow_lichen") > 0 then
--- 			-- Merge attachments.
--- 			local current = get_multiface_attachments (node)
--- 			for i = 1, #attachments do
--- 				current[i] = attachments[i] or current[i]
--- 			end
--- 			local name, param2 = get_multiface_node_data ("mcl_core:glow_lichen", unpack (current))
--- 			if name ~= node.name or param2 ~= node.param2 then
--- 				core.set_node (attachment.position, {
--- 						       name = name,
--- 						       param2 = param2,
--- 				})
--- 				return true
--- 			end
--- 		elseif node.name == "air" then
--- 			local name, param2 = get_multiface_node_data ("mcl_core:glow_lichen", unpack (attachments))
--- 			core.set_node (attachment.position, {
--- 					       name = name,
--- 					       param2 = param2,
--- 			})
--- 			return true
--- 		end
--- 	end
---
--- 	return false
--- end
-
 local nodebox_north = {
 	-0.5, -0.5, 0.495,
 	0.5, 0.5, 0.500,
@@ -351,7 +256,6 @@ local function register_multiface_variant (name, def, north, west, south, east, 
 			},
 		})
 
-		core.debug(varaint_name)
 		core.register_node (":" .. varaint_name, tbl)
 	end
 end
@@ -447,15 +351,3 @@ function mcl_multiface.register_multiface_node(name, def)
 		end
 	end
 end
-
--- core.register_node ("mcl_core:glow_lichen", glow_lichen_item)
--- mcl_multiface.register_multiface_node("mcl_core:glow_lichen", {
--- 	description = S ("Glow Lichen"),
--- 	_doc_items_longdesc = S ("Naturally generating non-solid block that emits a faint light and can attach to any surface of a solid block."),
--- 	inventory_image = "mcl_core_glow_lichen.png",
--- 	tiles = {"mcl_core_glow_lichen.png",},
--- 	sounds = mcl_sounds.node_sound_leaves_defaults (),
--- 	groups = {compostability = 50, flammable = 2, fire_encouragement = 15, fire_flammability = 100, glow_lichen = 1},
--- 	light_source = 7,
--- 	_mcl_hardness = 0.2,
--- })

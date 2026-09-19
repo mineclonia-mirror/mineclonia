@@ -139,6 +139,7 @@ globals = {
 	"mcl_monster_eggs",
 	"mcl_moon",
 	"mcl_mud",
+	"mcl_multiface",
 	"mcl_mushrooms",
 	"mcl_nether",
 	"mcl_nether_fortresses",
