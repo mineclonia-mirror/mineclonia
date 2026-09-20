@@ -323,8 +323,8 @@ mcl_minecarts.register_rail("mcl_minecarts:activator_rail_on", {
 			local above = vector.offset(pos, 0, 1, 0)
 			for o in core.objects_inside_radius(above, 1) do
 				local l = o:get_luaentity()
-				if l and string.sub(l.name, 1, 14) == "mcl_minecarts:" and l._on_activate_by_rail then
-					l:_on_activate_by_rail()
+				if l and string.sub(l.name, 1, 14) == "mcl_minecarts:" then
+					mcl_minecarts.activate_by_rail(l)
 				end
 			end
 		end,
