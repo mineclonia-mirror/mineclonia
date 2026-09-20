@@ -5,6 +5,41 @@ local SOLID_FACE = mcl_util.decompose_AABBs ({{
 	0.5, 0.5, 0.5,
 }})
 
+local facedir_enum = {
+	axis_px = 12,
+	axis_nx = 16,
+	axis_py = 0,
+	axis_ny = 20,
+	axis_pz = 4,
+	axis_nz = 8,
+
+	axis_mask = 28,
+	rotation_mask = 3,
+}
+
+local function wallmounted_like_after_place(pos, placer, itemstack, pointed_thing)
+	local dir = pointed_thing.under - pointed_thing.above
+	local facedir = 0
+
+	if dir.x == 1 then
+		facedir = facedir_enum.axis_px
+	elseif dir.x == -1 then
+		facedir = facedir_enum.axis_nx
+	elseif dir.y == 1 then
+		facedir = facedir_enum.axis_py
+	elseif dir.y == -1 then
+		facedir = facedir_enum.axis_ny
+	elseif dir.z == 1 then
+		facedir = facedir_enum.axis_pz
+	elseif dir.z == -1 then
+		facedir = facedir_enum.axis_nz
+	end
+
+	local node = core.get_node(pos)
+	node.param2 = facedir
+	core.swap_node(pos, node)
+end
+
 function mcl_multiface.test_wallmounted_face (pos, axis, dir)
 	local node = core.get_node (pos)
 	local def = core.registered_nodes[node.name]
@@ -56,14 +91,7 @@ local tpl = {
 	drawtype = "nodebox",
 	use_texture_alpha = "clip",
 	walkable = false,
-	paramtype2 = "wallmounted",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			-0.5, -0.5, -0.5,
-			0.5, -0.495, 0.5,
-		},
-	},
+	paramtype2 = "facedir",
 	groups = {
 		handy = 1, axey = 1, shearsy = 1, swordy = 1, deco_block = 1,
 		attached_node = 1, dig_by_piston = 1,
@@ -74,193 +102,183 @@ local tpl = {
 	node_placement_prediction = "",
 	paramtype = "light",
 	sunlight_propagates = true,
+	after_place_node = wallmounted_like_after_place
 }
 
+local side_varaints = {
+	{false, false, false, false},
+	{true, false, false, false},
+	{true, false, true, false},
+	{true, true, false, false},
+	{true, true, true, false},
+	{true, true, true, true},
+}
 
-function mcl_multiface.wallmounted_to_faces (param2)
-	if param2 == 4 then
-		return true, false, false, false, false, false
-	elseif param2 == 5 then
-		return false, false, true, false, false, false
-	elseif param2 == 2 then
-		return false, false, false, true, false, false
-	elseif param2 == 3 then
-		return false, true, false, false, false, false
-	elseif param2 == 0 then
-		return false, false, false, false, true, false
-	else
-		return false, false, false, false, false, true
+local function decompose_facdir(facedir)
+	return bit.band(facedir, facedir_enum.axis_mask), bit.band(facedir, facedir_enum.rotation_mask)
+end
+
+local function compose_facedir(axis, rotation)
+	return bit.bor(axis, rotation)
+end
+
+local function index_modulo(idx, wraparound)
+	-- The mathematical function `f(x) = x % n`, widely used in index related operations,
+	-- which was translated by [1, 1] to account for lua indexing starting with 1
+	return ((idx - 1) % wraparound) + 1
+end
+
+local function value_rotate(rotation, v1, v2, v3, v4)
+	assert(rotation < 4 and rotation > -4)
+	-- Look how nicely those brnaches align with the `then` (when tab length equals to 4 spaces)
+	--
+	-- Appreciate the small things in life
+	if rotation == 0 then
+		return v1, v2, v3, v4
+	elseif rotation == 1 then
+		return v4, v1, v2, v3
+	elseif rotation == 2 then
+		return v3, v4, v1, v2
+	elseif rotation == 3 then
+		return v2, v3, v4, v1
+	elseif rotation < 0 then
+		return value_rotate(4 + rotation, v1, v2, v3, v4)
 	end
 end
 
-function mcl_multiface.get_multiface_attachments (node)
-	local def = core.registered_nodes[node.name]
-	if def._mcl_multiface_faces then
-		return unpack (def._mcl_multiface_faces)
-	else
-		return mcl_multiface.wallmounted_to_faces (node.param2)
+local function faces_rotate(faces, rotation)
+	faces[1], faces[2], faces[3], faces[4] = value_rotate(rotation, faces[1], faces[2], faces[3], faces[4])
+end
+
+local function get_multiface_name_from_canonical_faces(nodename_root, canonical_faces)
+	local str_buf = {}
+	for i, face in pairs(canonical_faces) do
+		str_buf[i] = face and "1" or "0"
+	end
+	return nodename_root .. "_" .. table.concat(str_buf)
+end
+
+local function map_canonical_faces_to_absolute_faces(faces, axis, rotation)
+	faces = table.copy(faces)
+	faces_rotate(faces, rotation)
+
+	local back = faces[5]
+
+	--          +X        -X        +Y       -Y         +Z        -Z
+	if axis == facedir_enum.axis_py then
+		return {faces[4], faces[2], true,     back,     faces[3], faces[1]}
+	elseif axis == facedir_enum.axis_ny then
+		-- !!! This case doesn't follow the same rules as the others. Due to an engine quirk
+		--
+		-- Curtesy of lua_api.md
+		-- > * The node is rotated 90 degrees around the X or Z axis so that its top face
+		-- > points in the desired direction. *For the y- direction, it's rotated 180
+		-- > degrees around the Z axis.*
+		return {faces[2], faces[4], back,     true,     faces[3], faces[1]}
+	elseif axis == facedir_enum.axis_px then
+		return {true,     back,     faces[2], faces[4], faces[3], faces[1]}
+	elseif axis == facedir_enum.axis_nx then
+		return {back,     true,     faces[4], faces[2], faces[3], faces[1]}
+	elseif axis == facedir_enum.axis_pz then
+		return {faces[4], faces[2], faces[1], faces[3], true,     back}
+	elseif axis == facedir_enum.axis_nz then
+		return {faces[4], faces[2], faces[3], faces[1], back,     true}
 	end
 end
 
--- returns the item name and the param2 of a multiface with these connections
-function mcl_multiface.get_multiface_node_data(name, north, west, south, east, up, down)
-	local cnt = 0
-	if north then
-		cnt = cnt + 1
-	end
-	if south then
-		cnt = cnt + 1
-	end
-	if west then
-		cnt = cnt + 1
-	end
-	if east then
-		cnt = cnt + 1
-	end
-	if up then
-		cnt = cnt + 1
-	end
-	if down then
-		cnt = cnt + 1
+local function transform_faces_to_canonical_faces(faces)
+	for _, side_varaint in pairs(side_varaints) do
+		for offset_rotation = 0, 3 do
+			local matches = true
+			for i = 1, 4 do
+				local shifted_idx = index_modulo(i + offset_rotation, 4)
+				if side_varaint[shifted_idx] ~= faces[i] then
+					matches = false
+					break
+				end
+			end
+
+			if matches then
+				for i = 1, 4 do
+					faces[i] = side_varaint[i]
+				end
+				return 4 - offset_rotation
+			end
+		end
 	end
 
-	if cnt < 2 then
-		local param2
-		if north then
-			param2 = 4
-		elseif south then
-			param2 = 5
-		elseif east then
-			param2 = 2
-		elseif west then
-			param2 = 3
-		elseif up then
-			param2 = 0
-		else
-			param2 = 1
-		end
-		return name, param2
-	else
-		name = name .. "_"
-		if north then
-			name = name .. "n"
-		end
-		if west then
-			name = name .. "w"
-		end
-		if south then
-			name = name .. "s"
-		end
-		if east then
-			name = name .. "e"
-		end
-		if up then
-			name = name .. "u"
-		end
-		if down then
-			name = name .. "d"
-		end
-		return name, 0
+	error("Canonical form could not be found")
+end
+
+local function pointed_thing_to_axis(pointed_thing)
+	if pointed_thing.under.x - pointed_thing.above.x == 1 then
+		return facedir_enum.axis_px
+	elseif pointed_thing.under.x - pointed_thing.above.x == -1 then
+		return facedir_enum.axis_nx
+	elseif pointed_thing.under.y - pointed_thing.above.y == 1 then
+		return facedir_enum.axis_py
+	elseif pointed_thing.under.y - pointed_thing.above.y == -1 then
+		return facedir_enum.axis_ny
+	elseif pointed_thing.under.z - pointed_thing.above.z == 1 then
+		return facedir_enum.axis_pz
+	elseif pointed_thing.under.z - pointed_thing.above.z == -1 then
+		return facedir_enum.axis_nz
 	end
 end
 
-local nodebox_north = {
-	-0.5, -0.5, 0.495,
-	0.5, 0.5, 0.500,
-}
+local function map_absolute_faces_to_node(absolute_faces, root_name)
+	local selected_idx_as_front = -1
 
-local nodebox_south = {
-	-0.5, -0.5, -0.500,
-	0.5, 0.5, -0.495,
-}
-
-local nodebox_west = {
-	-0.500, -0.5, -0.5,
-	-0.495, 0.5, 0.5,
-}
-
-local nodebox_east = {
-	0.495, -0.5, -0.5,
-	0.500, 0.5, 0.5,
-}
-
-local nodebox_up = {
-	-0.5, 0.495, -0.5,
-	0.5, 0.500, 0.5,
-}
-
-local nodebox_down = {
-	-0.5, -0.500, -0.5,
-	0.5, -0.495, 0.5,
-}
-
-local function register_multiface_variant (name, def, north, west, south, east, up, down)
-	if north or west or south or east or up or down then
-		local boxes = {}
-		local varaint_name = name .. "_"
-		local shears_drops = {}
-		if north then
-			varaint_name = varaint_name .. "n"
-			table.insert (boxes, nodebox_north)
-			table.insert (shears_drops, name)
+	for i = 1, #absolute_faces do
+		if absolute_faces[i] then
+			selected_idx_as_front = i
 		end
-		if west then
-			varaint_name = varaint_name .. "w"
-			table.insert (boxes, nodebox_west)
-			table.insert (shears_drops, name)
-		end
-		if south then
-			varaint_name = varaint_name .. "s"
-			table.insert (boxes, nodebox_south)
-			table.insert (shears_drops, name)
-		end
-		if east then
-			varaint_name = varaint_name .. "e"
-			table.insert (boxes, nodebox_east)
-			table.insert (shears_drops, name)
-		end
-		if up then
-			varaint_name = varaint_name .. "u"
-			table.insert (boxes, nodebox_up)
-			table.insert (shears_drops, name)
-		end
-		if down then
-			varaint_name = varaint_name .. "d"
-			table.insert (boxes, nodebox_down)
-			table.insert (shears_drops, name)
-		end
-
-		local tbl = table.merge (def, {
-			groups = table.merge (def.groups, {
-				attached_node = 0,
-				not_in_creative_inventory = 1,
-			}),
-			paramtype2 = "none",
-			drawtype = "nodebox",
-			node_box = {
-				type = "fixed",
-				fixed = boxes,
-			},
-			selection_box = {
-				type = "fixed",
-				fixed = boxes,
-			},
-			_mcl_shears_drop = shears_drops,
-			_mcl_multiface_faces = {
-				north,
-				west,
-				south,
-				east,
-				up,
-				down,
-			},
-		})
-
-		core.register_node (":" .. varaint_name, tbl)
 	end
+
+	if selected_idx_as_front == -1 then
+		return {name = "air", param2 = 0}
+	end
+
+	local selected_axis_as_front
+
+	if selected_idx_as_front == 1 then
+		selected_axis_as_front = facedir_enum.axis_px
+	elseif selected_idx_as_front == 2 then
+		selected_axis_as_front = facedir_enum.axis_nx
+	elseif selected_idx_as_front == 3 then
+		selected_axis_as_front = facedir_enum.axis_py
+	elseif selected_idx_as_front == 4 then
+		selected_axis_as_front = facedir_enum.axis_ny
+	elseif selected_idx_as_front == 5 then
+		selected_axis_as_front = facedir_enum.axis_pz
+	elseif selected_idx_as_front == 6 then
+		selected_axis_as_front = facedir_enum.axis_nz
+	end
+
+	local faces
+	-- The below code is an exact inverse of the mapping in `map_canonical_faces_to_absolute_faces`
+	if selected_axis_as_front == facedir_enum.axis_px then
+		faces = {absolute_faces[6],absolute_faces[3], absolute_faces[5], absolute_faces[4], absolute_faces[2]}
+	elseif selected_axis_as_front == facedir_enum.axis_nx then
+		faces = {absolute_faces[6], absolute_faces[4], absolute_faces[5], absolute_faces[3], absolute_faces[1]}
+	elseif selected_axis_as_front == facedir_enum.axis_py then
+		faces = {absolute_faces[6], absolute_faces[2], absolute_faces[5], absolute_faces[1], absolute_faces[4]}
+	elseif selected_axis_as_front == facedir_enum.axis_ny then
+		faces = {absolute_faces[6], absolute_faces[1], absolute_faces[5], absolute_faces[2], absolute_faces[3]}
+	elseif selected_axis_as_front == facedir_enum.axis_pz then
+		faces = {absolute_faces[3], absolute_faces[2], absolute_faces[4], absolute_faces[1], absolute_faces[6]}
+	elseif selected_axis_as_front == facedir_enum.axis_nz then
+		faces = {absolute_faces[4], absolute_faces[1], absolute_faces[3], absolute_faces[2], absolute_faces[5]}
+	end
+
+	local rotation = transform_faces_to_canonical_faces(faces)
+
+	local varaint_name = get_multiface_name_from_canonical_faces(root_name, faces)
+
+	return {name = varaint_name, param2 = compose_facedir(selected_axis_as_front, rotation)}
 end
 
-local function multiface_merge (node, itemstack, pos, param2, placer)
+local function multiface_merge (node, itemstack, pos, place_axis, placer)
 	if placer:is_player () then
 		local name = placer:get_player_name ()
 		if core.is_protected (pos, name) then
@@ -270,31 +288,43 @@ local function multiface_merge (node, itemstack, pos, param2, placer)
 	end
 
 	local def = core.registered_nodes[node.name]
-	local north, west, south, east, up, down = mcl_multiface.get_multiface_attachments(node)
-	local north1, west1, south1, east1, up1, down1 = mcl_multiface.wallmounted_to_faces (param2)
 
-	if (north1 or north) ~= north
-		or (south1 or south) ~= south
-		or (west1 or west) ~= west
-		or (east1 or east) ~= east
-		or (up1 or up) ~= up
-		or (down1 or down) ~= down then
-		local name = placer:get_player_name ()
-		if not placer:is_player ()
-			or not core.is_creative_enabled (name) then
-			itemstack:take_item ()
-		end
-		local name, param2 = mcl_multiface.get_multiface_node_data (def._mcl_basename, north1 or north,
-							 west1 or west,
-							 south1 or south,
-							 east1 or east,
-							 up1 or up,
-							 down1 or down)
-		core.set_node (pos, {
-			name = name,
-			param2 = param2,
-		})
+	local faces = table.copy(def._mcl_multiface_canonical_faces)
+	local axis, rotation = decompose_facdir(node.param2)
+
+	local absolute_faces = map_canonical_faces_to_absolute_faces(faces, axis, rotation)
+
+	local face_idx = -1
+	if place_axis == facedir_enum.axis_px then
+		face_idx = 1
+	elseif place_axis == facedir_enum.axis_nx then
+		face_idx = 2
+	elseif place_axis == facedir_enum.axis_py then
+		face_idx = 3
+	elseif place_axis == facedir_enum.axis_ny then
+		face_idx = 4
+	elseif place_axis == facedir_enum.axis_pz then
+		face_idx = 5
+	elseif place_axis == facedir_enum.axis_nz then
+		face_idx = 6
 	end
+
+	if absolute_faces[face_idx] then
+		return
+	end
+
+	absolute_faces[face_idx] = true
+
+	local new_node = map_absolute_faces_to_node(absolute_faces, def._mcl_multiface_name_root)
+
+	core.swap_node(pos, new_node)
+
+	local name = placer:get_player_name()
+	if not placer:is_player()
+		or not core.is_creative_enabled(name) then
+		itemstack:take_item()
+	end
+
 	return itemstack
 end
 
@@ -309,45 +339,86 @@ function tpl.on_place (itemstack, placer, pointed_thing)
 	if not (def and def.walkable) then
 		return itemstack
 	end
+
 	local param2 = test_wallmounted_face_with_pointed_thing (pointed_thing)
 	if not param2 then
 		return itemstack
 	end
+
 	local node_at_pos = core.get_node (pointed_thing.above)
-	if core.get_item_group (node_at_pos.name, "multiface") > 0
-			and itemstack:get_name() == core.registered_nodes[node_at_pos.name]._mcl_basename then
+	if core.get_item_group (node_at_pos.name, "multiface") > 0 then
 		itemstack = multiface_merge (node_at_pos, itemstack,
-					       pointed_thing.above, param2,
+					       pointed_thing.above, pointed_thing_to_axis(pointed_thing),
 					       placer)
 		return itemstack
 	end
+
 	return core.item_place_node (itemstack, placer,
 				     pointed_thing, param2)
 end
+
+local front_nodebox = {
+		-0.5, 0.495, -0.5,
+		0.5, 0.500, 0.5,
+	}
+
+local faces_nodeboxes = {
+	{
+		-0.5, -0.5, -0.500,
+		0.5, 0.5, -0.495,
+	},
+	{
+		-0.500, -0.5, -0.5,
+		-0.495, 0.5, 0.5,
+	},
+	{
+		-0.5, -0.5, 0.495,
+		0.5, 0.5, 0.500,
+	},
+	{
+		0.495, -0.5, -0.5,
+		0.500, 0.5, 0.5,
+	},
+	{
+		-0.5, -0.500, -0.5,
+		0.5, -0.495, 0.5,
+	},
+}
 
 function mcl_multiface.register_multiface_node(name, def)
 	local instance_tpl = table.merge(tpl, def, {
 		groups = table.merge(tpl.groups, def.groups),
 		_mcl_basename = name,
 	})
-	core.register_node(":" .. name, instance_tpl)
 
-	for n = 0, 1 do
-		for w = 0, 1 do
-			for s = 0, 1 do
-				for e = 0, 1 do
-					for u = 0, 1 do
-						for d = 0, 1 do
-							register_multiface_variant (name, instance_tpl, n > 0,
-										  w > 0,
-										  s > 0,
-										  e > 0,
-										  u > 0,
-										  d > 0)
-						end
-					end
+	for i = 0, 1 do
+		for _, side_varaint in pairs(side_varaints) do
+			local faces = {side_varaint[1], side_varaint[2], side_varaint[3], side_varaint[4], i == 1}
+			local variant_name = get_multiface_name_from_canonical_faces(name, faces)
+
+			local nodeboxes = {front_nodebox}
+
+			for j, nodebox in pairs(faces_nodeboxes) do
+				if faces[j] then
+					table.insert(nodeboxes, nodebox)
 				end
 			end
+
+			core.register_node(":" .. variant_name, table.merge(instance_tpl, {
+				description = instance_tpl.description .. "(INTERNAL: " .. variant_name:sub(-5) .. ")",
+				groups = table.merge (instance_tpl.groups or {}, {
+					attached_node = 0,
+					-- not_in_creative_inventory = 1,
+				}),
+				node_box = {
+					type = "fixed",
+					fixed = nodeboxes,
+				},
+				-- _mcl_shears_drop = shears_drops,
+				_mcl_multiface_canonical_faces = faces,
+				_mcl_multiface_name_root = name,
+				_mcl_basename = name .. "_00000"
+			}))
 		end
 	end
 end
