@@ -2,50 +2,39 @@ local S = core.get_translator(core.get_current_modname())
 
 local tt_help_end = S("Sneak-click to remove")
 
-local function activate_tnt_minecart(self)
-	if self._boomtimer then return end
-	self.object:set_armor_groups({immortal = 1})
-	self._boomtimer = mcl_tnt.BOOMTIMER
-	self.object:set_properties({textures = {
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_minecarts_minecart.png",
-	}})
-	self._blinktimer = mcl_tnt.BLINKTIMER
-	core.sound_play("tnt_ignite", {pos = self.object:get_pos(), gain = 1.0, max_hear_distance = 15}, true)
+-- Minecart
+local function board_mob(self)
+	if mcl_minecarts.get_passenger(self) or math.random(1, 20) <= 15 then
+		return
+	end
+
+	for mob in core.objects_inside_radius(self.object:get_pos(), 1.3) do
+		local entity = mob:get_luaentity()
+		if entity and entity.is_mob and entity.can_ride_cart then
+			mcl_minecarts.attach_passenger(self, mob)
+			break
+		end
+	end
 end
 
--- Minecart
+local function award_long_ride(self)
+	local driver = mcl_minecarts.get_driver(self)
+	local pos = self.object:get_pos()
+	if driver and self._start_pos and pos and vector.distance(self._start_pos, pos) >= 1000 then
+		awards.unlock(driver:get_player_name(), "mcl:onARail")
+	end
+end
+
 mcl_minecarts.register_minecart("mcl_minecarts:minecart", {
 	entity = {
 		mesh = "mcl_minecarts_minecart.b3d",
 		textures = {"mcl_minecarts_minecart.png"},
-		on_rightclick = function(self, clicker)
-			if not clicker or not clicker:is_player() then return end
-			local name = clicker:get_player_name()
-			if self._driver and name == self._driver then
-				mcl_minecarts.detach_driver(self)
-			elseif not self._driver then
-				self._driver = name
-				self._start_pos = self.object:get_pos()
-				mcl_player.players[clicker].attached = true
-				clicker:set_attach(self.object, "", vector.new(0, -1.75, -2), vector.zero())
-				mcl_attachments.spawn_attachment_entity(clicker)
-				core.after(0.2, function(name)
-					local player = core.get_player_by_name(name)
-					if player then
-						mcl_player.player_set_animation(player, "sit" , 30)
-						mcl_title.set(clicker, "actionbar", {text=S("Sneak to dismount"), color="white", stay=60})
-					end
-				end, name)
-			end
-		end,
+		_rideable = true,
+		_driver_attach_position = vector.new(0, -1.75, -2),
+		_passenger_attach_position = mcl_minecarts.passenger_attach_position,
+		_on_step = board_mob,
+		_after_step = award_long_ride,
 		_drop = {"mcl_minecarts:minecart"},
-		_on_activate_by_rail = mcl_minecarts.detach_driver
 	},
 	item = {
 		description = S("Minecart"),
@@ -110,20 +99,50 @@ core.register_craft({
 mcl_wip.register_wip_item("mcl_minecarts:chest_minecart")
 
 -- Minecart with Furnace
+local furnace_textures = {
+	"default_furnace_top.png",
+	"default_furnace_top.png",
+	"default_furnace_front.png",
+	"default_furnace_side.png",
+	"default_furnace_side.png",
+	"default_furnace_side.png",
+	"mcl_minecarts_minecart.png",
+}
+
+local furnace_active_textures = {
+	"default_furnace_top.png",
+	"default_furnace_top.png",
+	"default_furnace_front_active.png",
+	"default_furnace_side.png",
+	"default_furnace_side.png",
+	"default_furnace_side.png",
+	"mcl_minecarts_minecart.png",
+}
+
+local function furnace_step(self, dtime)
+	if not self._fueltime or self._fueltime <= 0 then return end
+
+	self._fueltime = self._fueltime - dtime
+	if self._fueltime <= 0 then
+		self.object:set_properties({textures = furnace_textures})
+		self._fueltime = 0
+	end
+end
+
+local function furnace_get_drive(self)
+	if self._fueltime and self._fueltime > 0 then return 0.6 end
+	return 0
+end
+
 mcl_minecarts.register_minecart("mcl_minecarts:furnace_minecart", {
 	entity = {
 		mesh = "mcl_minecarts_minecart_block.b3d",
-		textures = {
-			"default_furnace_top.png",
-			"default_furnace_top.png",
-			"default_furnace_front.png",
-			"default_furnace_side.png",
-			"default_furnace_side.png",
-			"default_furnace_side.png",
-			"mcl_minecarts_minecart.png",
-		},
+		textures = furnace_textures,
 		_drop = {"mcl_minecarts:minecart", "mcl_furnaces:furnace"},
-		on_rightclick = function(self, clicker)
+		_fueltime = nil,
+		_on_step = furnace_step,
+		_get_drive = furnace_get_drive,
+		_on_rightclick = function(self, clicker)
 			if not clicker or not clicker:is_player() then return end
 			if not self._fueltime then
 				self._fueltime = 0
@@ -138,15 +157,7 @@ mcl_minecarts.register_minecart("mcl_minecarts:furnace_minecart", {
 				local inv = clicker:get_inventory()
 				inv:set_stack("main", index, held)
 			end
-			self.object:set_properties({textures = {
-				"default_furnace_top.png",
-				"default_furnace_top.png",
-				"default_furnace_front_active.png",
-				"default_furnace_side.png",
-				"default_furnace_side.png",
-				"default_furnace_side.png",
-				"mcl_minecarts_minecart.png",
-			}})
+			self.object:set_properties({textures = furnace_active_textures})
 		end,
 	},
 	item = {
@@ -197,6 +208,65 @@ mcl_minecarts.register_minecart("mcl_minecarts:command_block_minecart", {
 mcl_wip.register_wip_item("mcl_minecarts:command_block_minecart")
 
 -- Minecart with Hopper
+local function hopper_take_item(self)
+	local pos = self.object:get_pos()
+	if not pos then return end
+
+	local above_pos = vector.offset(pos, 0, 0.9, 0)
+	for object in core.objects_inside_radius(above_pos, 1.25) do
+		local entity = object:get_luaentity()
+		local taken_items = false
+
+		if entity and not entity._removed and entity.itemstring and entity.itemstring ~= "" then
+			local inv = mcl_entity_invs.load_inv(self, 5)
+			if not inv then return false end
+
+			local current_itemstack = ItemStack(entity.itemstring)
+			if inv:room_for_item("main", current_itemstack) then
+				inv:add_item("main", current_itemstack)
+				entity.itemstring = ""
+				object:remove()
+				taken_items = true
+			end
+
+			if not taken_items then
+				local items_remaining = current_itemstack:get_count()
+				for i = 1, self._inv_size do
+					local stack = inv:get_stack("main", i)
+					if current_itemstack:get_name() == stack:get_name() then
+						local room_for = stack:get_stack_max() - stack:get_count()
+						if room_for < items_remaining then
+							items_remaining = items_remaining - room_for
+							stack:set_count(stack:get_stack_max())
+							inv:set_stack("main", i, stack)
+							taken_items = true
+						elseif room_for ~= 0 then
+							stack:set_count(stack:get_count() + items_remaining)
+							inv:set_stack("main", i, stack)
+							entity.itemstring = ""
+							object:remove()
+							taken_items = true
+							break
+						end
+					end
+
+					if i == self._inv_size and taken_items then
+						current_itemstack:set_count(items_remaining)
+						entity.itemstring = current_itemstack:to_string()
+					end
+				end
+			end
+		end
+
+		if taken_items then
+			mcl_entity_invs.save_inv(entity)
+			return taken_items
+		end
+	end
+
+	return false
+end
+
 mcl_minecarts.register_minecart("mcl_minecarts:hopper_minecart", {
 	entity = {
 		mesh = "mcl_minecarts_minecart_hopper.b3d",
@@ -207,6 +277,7 @@ mcl_minecarts.register_minecart("mcl_minecarts:hopper_minecart", {
 			"mcl_hoppers_hopper_top.png",
 		},
 		_drop = {"mcl_minecarts:minecart", "mcl_hoppers:hopper"},
+		_on_step = hopper_take_item,
 	},
 	item = {
 		description = S("Minecart with Hopper"),
@@ -235,20 +306,79 @@ core.register_craft({
 mcl_wip.register_wip_item("mcl_minecarts:hopper_minecart")
 
 -- Minecart with TNT
+local tnt_textures = {
+	"default_tnt_top.png",
+	"default_tnt_bottom.png",
+	"default_tnt_side.png",
+	"default_tnt_side.png",
+	"default_tnt_side.png",
+	"default_tnt_side.png",
+	"mcl_minecarts_minecart.png",
+}
+
+local tnt_blink_textures = {
+	"mcl_tnt_blink.png",
+	"mcl_tnt_blink.png",
+	"mcl_tnt_blink.png",
+	"mcl_tnt_blink.png",
+	"mcl_tnt_blink.png",
+	"mcl_tnt_blink.png",
+	"mcl_minecarts_minecart.png",
+}
+
+local function tnt_step(self, dtime)
+	if self._boomtimer then
+		self._boomtimer = self._boomtimer - dtime
+		local pos = self.object:get_pos()
+		if self._boomtimer <= 0 then
+			mcl_explosions.explode(pos, 4, {}, self.object)
+			self.object:remove()
+			return
+		end
+		mcl_tnt.smoke_step(pos)
+	end
+
+	if self._blinktimer then
+		self._blinktimer = self._blinktimer - dtime
+		if self._blinktimer <= 0 then
+			self._blink = not self._blink
+			self.object:set_properties({textures = self._blink and tnt_textures or tnt_blink_textures})
+			self._blinktimer = mcl_tnt.BLINKTIMER
+		end
+	end
+end
+
+local function tnt_can_be_picked_up(self)
+	return not self._boomtimer
+end
+
+local function tnt_rail_lost(self, pos)
+	if not self._boomtimer then return end
+	mcl_explosions.explode(pos, 4, {}, self.object)
+	self.object:remove()
+end
+
+local function activate_tnt_minecart(self)
+	if self._boomtimer then return end
+	self.object:set_armor_groups({immortal = 1})
+	self._boomtimer = mcl_tnt.BOOMTIMER
+	self.object:set_properties({textures = tnt_blink_textures})
+	self._blinktimer = mcl_tnt.BLINKTIMER
+	core.sound_play("tnt_ignite", {pos = self.object:get_pos(), gain = 1.0, max_hear_distance = 15}, true)
+end
+
 mcl_minecarts.register_minecart("mcl_minecarts:tnt_minecart", {
 	entity = {
 		mesh = "mcl_minecarts_minecart_block.b3d",
-		textures = {
-			"default_tnt_top.png",
-			"default_tnt_bottom.png",
-			"default_tnt_side.png",
-			"default_tnt_side.png",
-			"default_tnt_side.png",
-			"default_tnt_side.png",
-			"mcl_minecarts_minecart.png",
-		},
+		textures = tnt_textures,
 		_drop = {"mcl_minecarts:minecart", "mcl_tnt:tnt"},
-		on_rightclick = function(self, clicker)
+		_boomtimer = nil,
+		_blinktimer = nil,
+		_blink = false,
+		_on_step = tnt_step,
+		_can_be_picked_up = tnt_can_be_picked_up,
+		_on_rail_lost = tnt_rail_lost,
+		_on_rightclick = function(self, clicker)
 			if not clicker or not clicker:is_player() or self._boomtimer then return end
 			local held = clicker:get_wielded_item()
 			if core.get_item_group(held:get_name(), "flint_and_steel") > 0 then

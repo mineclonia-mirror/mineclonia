@@ -1,6 +1,32 @@
+function mcl_minecarts.get_driver(self)
+	if not self._driver then return nil end
+	return core.get_player_by_name(self._driver)
+end
+
+function mcl_minecarts.is_occupied(self)
+	return self._driver ~= nil or self._passenger ~= nil
+end
+
+function mcl_minecarts.attach_driver(self, player)
+	if not player or not player:is_player() or self._driver then
+		return false
+	end
+
+	self._driver = player:get_player_name()
+	self._start_pos = self.object:get_pos()
+	mcl_player.players[player].attached = true
+	player:set_attach(
+		self.object,
+		self._driver_attach_bone or "",
+		self._driver_attach_position or vector.new(0, -1.75, -2),
+		self._driver_attach_rotation or vector.zero()
+	)
+	mcl_attachments.spawn_attachment_entity(player)
+	return true
+end
+
 function mcl_minecarts.detach_driver(self)
-	if not self._driver then return end
-	local player = core.get_player_by_name(self._driver)
+	local player = mcl_minecarts.get_driver(self)
 	self._driver = nil
 	self._start_pos = nil
 	if player then
@@ -9,6 +35,39 @@ function mcl_minecarts.detach_driver(self)
 		player:set_eye_offset(vector.zero(), vector.zero())
 		mcl_player.player_set_animation(player, "stand" , 30)
 	end
+end
+
+function mcl_minecarts.get_passenger(self)
+	local passenger = self._passenger
+	local object = passenger and passenger.object
+	if passenger and (not object or not object:is_valid()) then
+		self._passenger = nil
+		return nil
+	end
+	return passenger
+end
+
+function mcl_minecarts.attach_passenger(self, object)
+	if self._passenger or not object or not object:is_valid() then return false end
+	local passenger = object:get_luaentity()
+	if not passenger then return false end
+
+	self._passenger = passenger
+	object:set_attach(
+		self.object,
+		self._passenger_attach_bone or "",
+		self._passenger_attach_position or mcl_minecarts.passenger_attach_position,
+		self._passenger_attach_rotation or vector.zero()
+	)
+	mcl_attachments.spawn_attachment_entity(object)
+	return true
+end
+
+function mcl_minecarts.detach_passenger(self)
+	local passenger = self._passenger
+	self._passenger = nil
+	local object = passenger and passenger.object
+	if object and object:is_valid() then object:set_detach() end
 end
 
 function mcl_minecarts.velocity_to_dir(v)
