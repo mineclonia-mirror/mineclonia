@@ -169,8 +169,9 @@ function mob_class:remove_particlespawners(pn)
 	if not active_particlespawners[pn] then return end
 	if not active_particlespawners[pn][self.object] then return end
 	for _, v in pairs(active_particlespawners[pn][self.object]) do
-		core.delete_particlespawner(v)
+		core.delete_particlespawner(v, pn)
 	end
+	active_particlespawners[pn][self.object] = nil
 end
 
 function mob_class:add_particlespawners(pn)
@@ -447,7 +448,7 @@ core.register_on_leaveplayer(function(player)
 	if not active_particlespawners[pn] then return end
 	for _,m in pairs(active_particlespawners[pn]) do
 		for _, v in pairs(m) do
-			core.delete_particlespawner(v)
+			core.delete_particlespawner(v, pn)
 		end
 	end
 	active_particlespawners[pn] = nil
