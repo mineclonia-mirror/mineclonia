@@ -84,6 +84,4 @@ for techname, fishname in pairs(fish_names) do
 			return on_place_fish(stack, nil, fake_pt)
 		end,
 	})
-
-	core.register_alias("mcl_fishing:bucket_" .. techname, "mcl_buckets:bucket_" .. techname)
 end
