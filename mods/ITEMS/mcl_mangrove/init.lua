@@ -252,8 +252,6 @@ for i = 1, 5 do
 	end
 end
 
-core.register_alias("mcl_mangrove:hanging_propagule_1", "mcl_mangrove:propagule_hanging_5")
-
 core.register_abm({
 	label = "Grow hanging mangrove propagule",
 	nodenames = {
