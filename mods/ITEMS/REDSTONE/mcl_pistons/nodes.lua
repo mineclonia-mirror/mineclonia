@@ -448,6 +448,3 @@ core.register_lbm(
 		core.set_node(pos, {name = nodename, param2 = new_param2})
 	end
 })
-
-core.register_alias("mesecons_pistons:piston_normal_off", "mcl_pistons:piston_off")
-core.register_alias("mesecons_pistons:piston_sticky_off", "mcl_pistons:piston_sticky_off")
