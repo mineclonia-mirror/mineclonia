@@ -162,59 +162,10 @@ local function register_mushroom(color, species_id, template, d_cap, d_stem, d_s
 	register_mushroom_cap(block, full_block, 63)
 end
 
-
 local longdesc_red = S("Huge red mushroom blocks are the cap parts of huge red mushrooms. It consists of a red skin and can have pores on each of its sides.")
 local longdesc_red_stem = S("The stem part of a huge red mushroom.")
 register_mushroom("red", 1, red, S("Huge Red Mushroom Block"), S("Huge Red Mushroom Stem"), S("Huge Red Mushroom All-Faces Stem"), longdesc_red, longdesc_red_stem)
 
-
 local longdesc_brown = S("Huge brown mushroom blocks are the cap parts of huge brown mushrooms. It consists of a brown skin and can have pores on each of its sides.")
 local longdesc_brown_stem = S("The stem part of a huge brown mushroom.")
 register_mushroom("brown", 2, brown, S("Huge Brown Mushroom Block"), S("Huge Brown Mushroom Stem"), S("Huge Brown Mushroom All-Faces Stem"), longdesc_brown, longdesc_brown_stem)
-
--- Legacy support
-local colors = { "red", "brown" }
-for c=1, 2 do
-	local color = colors[c]
-	core.register_alias("mcl_mushrooms:"..color.."_mushroom_block_cap_full", "mcl_mushrooms:"..color.."_mushroom_block_cap_111111")
-	core.register_alias("mcl_mushrooms:"..color.."_mushroom_block_cap_top", "mcl_mushrooms:"..color.."_mushroom_block_cap_100000")
-	core.register_alias("mcl_mushrooms:"..color.."_mushroom_block_pores_full", "mcl_mushrooms:"..color.."_mushroom_block_cap_000000")
-end
-
-core.register_lbm({
-	label = "Replace legacy mushroom cap blocks",
-	name = "mcl_mushrooms:replace_legacy_mushroom_caps",
-	nodenames = { "mcl_mushrooms:brown_mushroom_block_cap_corner", "mcl_mushrooms:brown_mushroom_block_cap_side", "mcl_mushrooms:red_mushroom_block_cap_corner", "mcl_mushrooms:red_mushroom_block_cap_side" },
-	action = function(pos, node)
-		for c=1, 2 do
-			local color = colors[c]
-			if node.name == "mcl_mushrooms:"..color.."_mushroom_block_cap_side" then
-				if node.param2 == 0 then
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_100001"})
-				elseif node.param2 == 1 then
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_100100"}) -- OK
-				elseif node.param2 == 2 then
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_100010"})
-				elseif node.param2 == 3 then
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_101000"})
-				else
-					-- Fallback
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_101111"})
-				end
-			elseif node.name == "mcl_mushrooms:"..color.."_mushroom_block_cap_corner" then
-				if node.param2 == 0 then
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_101001"})
-				elseif node.param2 == 1 then
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_100101"}) -- OK
-				elseif node.param2 == 2 then
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_100110"}) -- OK
-				elseif node.param2 == 3 then
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_101010"})
-				else
-					-- Fallback
-					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_101111"})
-				end
-			end
-		end
-	end,
-})
