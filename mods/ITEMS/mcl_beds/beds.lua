@@ -47,13 +47,4 @@ for color, colordef in pairs(mcl_dyes.colors) do
 		doc.add_entry_alias("nodes", "mcl_beds:bed_"..canonical_color.."_bottom", "nodes", "mcl_beds:bed_"..color.."_bottom")
 		doc.add_entry_alias("nodes", "mcl_beds:bed_"..canonical_color.."_bottom", "nodes", "mcl_beds:bed_"..color.."_top")
 	end
-
-	-- Alias old non-uniform node names
-	if messy_textures[color] then
-		core.register_alias("mcl_beds:bed_"..texcol.."_top","mcl_beds:bed_"..color.."_top")
-		core.register_alias("mcl_beds:bed_"..texcol.."_bottom","mcl_beds:bed_"..color.."_bottom")
-	end
 end
-
-core.register_alias("beds:bed_bottom", "mcl_beds:bed_red_bottom")
-core.register_alias("beds:bed_top", "mcl_beds:bed_red_top")
