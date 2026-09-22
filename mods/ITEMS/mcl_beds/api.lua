@@ -69,7 +69,6 @@ local function rotate(pos, node, user, mode, new_param2)
 	return true
 end
 
-
 local function destruct_bed(pos, oldnode)
 	local node = oldnode or core.get_node_or_nil(pos)
 	if not node then return end
@@ -212,8 +211,6 @@ function mcl_beds.register_bed(name, def)
 		on_rotate = rotate,
 	})
 
-
-
 	core.register_node(name .. "_top", {
 		drawtype = "mesh",
 		mesh = "mcl_beds_bed_top.obj",
@@ -237,8 +234,6 @@ function mcl_beds.register_bed(name, def)
 		after_destruct = destruct_bed,
 		_mcl_baseitem = name .. "_bottom",
 	})
-
-	core.register_alias(name, name .. "_bottom")
 
 	if def.recipe then
 		core.register_craft({
