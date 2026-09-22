@@ -189,6 +189,3 @@ mcl_farming:add_plant("plant_beetroot", "mcl_farming:beetroot", {"mcl_farming:be
 for i = 1, 2 do
 	doc.add_entry_alias("nodes", "mcl_farming:beetroot_0", "nodes", "mcl_farming:beetroot_" .. i)
 end
-
-core.register_alias("beetroot_seeds", "mcl_farming:beetroot_seeds")
-core.register_alias("beetroot", "mcl_farming:beetroot_item")
