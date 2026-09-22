@@ -76,7 +76,6 @@ for i=0, 3 do
 			mcl_farming.on_bone_meal(itemstack,placer,pointed_thing,pos,node,"plant_sweet_berry_bush",1)
 		end,
 	})
-	core.register_alias("mcl_sweet_berry:sweet_berry_bush_" .. i, node_name)
 end
 
 local sweet_berry_placement_def = {
@@ -112,7 +111,6 @@ core.register_craftitem("mcl_farming:sweet_berry", {
 	end,
 	_placement_def = sweet_berry_placement_def,
 })
-core.register_alias("mcl_sweet_berry:sweet_berry", "mcl_farming:sweet_berry")
 
 -- TODO: Find proper interval and chance values for sweet berry bushes. Current interval and chance values are copied from mcl_farming:beetroot which has similar growth stages.
 mcl_farming:add_plant("plant_sweet_berry_bush", "mcl_farming:sweet_berry_bush_3", {"mcl_farming:sweet_berry_bush_0", "mcl_farming:sweet_berry_bush_1", "mcl_farming:sweet_berry_bush_2"}, 68, 3)
