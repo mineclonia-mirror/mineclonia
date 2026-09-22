@@ -35,6 +35,7 @@ mcl_multiface.register_multiface_node("mcl_core:glow_lichen", {
 	groups = {compostability = 50, flammable = 2, fire_encouragement = 15, fire_flammability = 100, glow_lichen = 1},
 	light_source = 7,
 	_mcl_hardness = 0.2,
+	_mcl_shears_drop = true,
 	_on_bone_meal = function (itemstack, placer, pointed_thing, pos, node)
 		local params = get_multiface_attachments_as_table (node)
 		local spread_poses = {}

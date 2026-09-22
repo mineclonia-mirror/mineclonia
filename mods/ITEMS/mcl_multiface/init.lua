@@ -376,33 +376,41 @@ local faces_nodeboxes = {
 }
 
 function mcl_multiface.register_multiface_node(name, def)
+	local should_shears_drop = def._mcl_shears_drop
 	local first_iteration = true
+	local basename = name .. "_00000"
 	for i = 0, 1 do
 		for _, side_variant in pairs(side_variants) do
 			local faces = {side_variant[1], side_variant[2], side_variant[3], side_variant[4], i == 1}
 			local variant_name = get_multiface_name_from_canonical_faces(name, faces)
 
 			local nodeboxes = {front_nodebox}
+			local shear_drops = {basename}
 
 			for j, nodebox in pairs(faces_nodeboxes) do
 				if faces[j] then
 					table.insert(nodeboxes, nodebox)
+					table.insert(shear_drops, basename)
 				end
 			end
 
+			local description = first_iteration and def.description or def.description .. "(INTERNAL: " .. variant_name:sub(-5) .. ")"
+
+			rdb.log(variant_name)
+
 			core.register_node(":" .. variant_name, table.merge(tpl, def, {
-				description = def.description .. "(INTERNAL: " .. variant_name:sub(-5) .. ")",
-				groups = table.merge (tpl.groups or {}, {
+				description = description,
+				groups = table.merge (tpl.groups, {
 					not_in_creative_inventory = first_iteration and 1 or 0,
-				}, def.groups),
+				}, def.groups or {}),
 				node_box = {
 					type = "fixed",
 					fixed = nodeboxes,
 				},
-				-- _mcl_shears_drop = shears_drops,
 				_mcl_multiface_canonical_faces = faces,
 				_mcl_multiface_name_root = name,
-				_mcl_basename = name .. "_00000"
+				_mcl_basename = basename,
+				_mcl_shears_drop = should_shears_drop and shear_drops
 			}))
 
 			first_iteration = false
