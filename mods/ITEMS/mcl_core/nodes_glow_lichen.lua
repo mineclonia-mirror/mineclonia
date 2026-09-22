@@ -29,6 +29,7 @@ mcl_multiface.register_multiface_node("mcl_core:glow_lichen", {
 	description = S ("Glow Lichen"),
 	_doc_items_longdesc = S ("Naturally generating non-solid block that emits a faint light and can attach to any surface of a solid block."),
 	inventory_image = "mcl_core_glow_lichen.png",
+	wield_image = "mcl_core_glow_lichen.png",
 	tiles = {"mcl_core_glow_lichen.png",},
 	sounds = mcl_sounds.node_sound_leaves_defaults (),
 	groups = {compostability = 50, flammable = 2, fire_encouragement = 15, fire_flammability = 100, glow_lichen = 1},

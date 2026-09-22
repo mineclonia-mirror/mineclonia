@@ -208,6 +208,7 @@ mcl_multiface.register_multiface_node("mcl_sculk:vein", {
 	_doc_items_longdesc = S("Sculk vein."),
 	tiles = {"mcl_sculk_vein.png"},
 	inventory_image = "mcl_sculk_vein.png",
+	wield_image = "mcl_sculk_vein.png",
 	group = {sculk = 1},
 	sounds = sounds,
 	_mcl_hardness = 0.2,

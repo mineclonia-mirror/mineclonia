@@ -93,8 +93,7 @@ local tpl = {
 	walkable = false,
 	paramtype2 = "facedir",
 	groups = {
-		handy = 1, axey = 1, shearsy = 1, swordy = 1, deco_block = 1,
-		attached_node = 1, dig_by_piston = 1,
+		handy = 1, axey = 1, shearsy = 1, swordy = 1, deco_block = 1, dig_by_piston = 1,
 		unsticky = 1, multiface = 1,
 	},
 	drop = "",
@@ -105,7 +104,7 @@ local tpl = {
 	after_place_node = wallmounted_like_after_place
 }
 
-local side_varaints = {
+local side_variants = {
 	{false, false, false, false},
 	{true, false, false, false},
 	{true, false, true, false},
@@ -187,12 +186,12 @@ local function map_canonical_faces_to_absolute_faces(faces, axis, rotation)
 end
 
 local function transform_faces_to_canonical_faces(faces)
-	for _, side_varaint in pairs(side_varaints) do
+	for _, side_variant in pairs(side_variants) do
 		for offset_rotation = 0, 3 do
 			local matches = true
 			for i = 1, 4 do
 				local shifted_idx = index_modulo(i + offset_rotation, 4)
-				if side_varaint[shifted_idx] ~= faces[i] then
+				if side_variant[shifted_idx] ~= faces[i] then
 					matches = false
 					break
 				end
@@ -200,7 +199,7 @@ local function transform_faces_to_canonical_faces(faces)
 
 			if matches then
 				for i = 1, 4 do
-					faces[i] = side_varaint[i]
+					faces[i] = side_variant[i]
 				end
 				return 4 - offset_rotation
 			end
@@ -268,14 +267,18 @@ local function map_absolute_faces_to_node(absolute_faces, root_name)
 	elseif selected_axis_as_front == facedir_enum.axis_pz then
 		faces = {absolute_faces[3], absolute_faces[2], absolute_faces[4], absolute_faces[1], absolute_faces[6]}
 	elseif selected_axis_as_front == facedir_enum.axis_nz then
-		faces = {absolute_faces[4], absolute_faces[1], absolute_faces[3], absolute_faces[2], absolute_faces[5]}
+		faces = {absolute_faces[4], absolute_faces[2], absolute_faces[3], absolute_faces[1], absolute_faces[5]}
 	end
+
+	rdb.log("mapping", selected_axis_as_front, faces)
 
 	local rotation = transform_faces_to_canonical_faces(faces)
 
-	local varaint_name = get_multiface_name_from_canonical_faces(root_name, faces)
+	rdb.log("rot", rotation)
 
-	return {name = varaint_name, param2 = compose_facedir(selected_axis_as_front, rotation)}
+	local variant_name = get_multiface_name_from_canonical_faces(root_name, faces)
+
+	return {name = variant_name, param2 = compose_facedir(selected_axis_as_front, rotation)}
 end
 
 local function multiface_merge (node, itemstack, pos, place_axis, placer)
@@ -309,6 +312,7 @@ local function multiface_merge (node, itemstack, pos, place_axis, placer)
 		face_idx = 6
 	end
 
+	rdb.log("abs", absolute_faces)
 	if absolute_faces[face_idx] then
 		return
 	end
@@ -386,14 +390,10 @@ local faces_nodeboxes = {
 }
 
 function mcl_multiface.register_multiface_node(name, def)
-	local instance_tpl = table.merge(tpl, def, {
-		groups = table.merge(tpl.groups, def.groups),
-		_mcl_basename = name,
-	})
-
+	local first_iteration = true
 	for i = 0, 1 do
-		for _, side_varaint in pairs(side_varaints) do
-			local faces = {side_varaint[1], side_varaint[2], side_varaint[3], side_varaint[4], i == 1}
+		for _, side_variant in pairs(side_variants) do
+			local faces = {side_variant[1], side_variant[2], side_variant[3], side_variant[4], i == 1}
 			local variant_name = get_multiface_name_from_canonical_faces(name, faces)
 
 			local nodeboxes = {front_nodebox}
@@ -404,12 +404,11 @@ function mcl_multiface.register_multiface_node(name, def)
 				end
 			end
 
-			core.register_node(":" .. variant_name, table.merge(instance_tpl, {
-				description = instance_tpl.description .. "(INTERNAL: " .. variant_name:sub(-5) .. ")",
-				groups = table.merge (instance_tpl.groups or {}, {
-					attached_node = 0,
-					-- not_in_creative_inventory = 1,
-				}),
+			core.register_node(":" .. variant_name, table.merge(tpl, def, {
+				description = def.description .. "(INTERNAL: " .. variant_name:sub(-5) .. ")",
+				groups = table.merge (tpl.groups or {}, {
+					not_in_creative_inventory = first_iteration and 1 or 0,
+				}, def.groups),
 				node_box = {
 					type = "fixed",
 					fixed = nodeboxes,
@@ -419,6 +418,8 @@ function mcl_multiface.register_multiface_node(name, def)
 				_mcl_multiface_name_root = name,
 				_mcl_basename = name .. "_00000"
 			}))
+
+			first_iteration = false
 		end
 	end
 end
