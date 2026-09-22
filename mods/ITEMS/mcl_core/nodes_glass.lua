@@ -72,6 +72,3 @@ for color,colordef in pairs(mcl_dyes.colors) do
 		doc.add_entry_alias("nodes", "mcl_core:glass_"..canonical_color, "nodes", "mcl_core:glass_"..color)
 	end
 end
-
--- legacy: for some reason glass was the only place where grey was spelled with an a
-core.register_alias("mcl_core:glass_gray","mcl_core:glass_grey")
