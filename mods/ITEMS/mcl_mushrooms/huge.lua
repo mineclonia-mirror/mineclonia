@@ -172,22 +172,12 @@ local longdesc_brown = S("Huge brown mushroom blocks are the cap parts of huge b
 local longdesc_brown_stem = S("The stem part of a huge brown mushroom.")
 register_mushroom("brown", 2, brown, S("Huge Brown Mushroom Block"), S("Huge Brown Mushroom Stem"), S("Huge Brown Mushroom All-Faces Stem"), longdesc_brown, longdesc_brown_stem)
 
--- Legacy support
-local colors = { "red", "brown" }
-for c=1, 2 do
-	local color = colors[c]
-	core.register_alias("mcl_mushrooms:"..color.."_mushroom_block_cap_full", "mcl_mushrooms:"..color.."_mushroom_block_cap_111111")
-	core.register_alias("mcl_mushrooms:"..color.."_mushroom_block_cap_top", "mcl_mushrooms:"..color.."_mushroom_block_cap_100000")
-	core.register_alias("mcl_mushrooms:"..color.."_mushroom_block_pores_full", "mcl_mushrooms:"..color.."_mushroom_block_cap_000000")
-end
-
 core.register_lbm({
 	label = "Replace legacy mushroom cap blocks",
 	name = "mcl_mushrooms:replace_legacy_mushroom_caps",
 	nodenames = { "mcl_mushrooms:brown_mushroom_block_cap_corner", "mcl_mushrooms:brown_mushroom_block_cap_side", "mcl_mushrooms:red_mushroom_block_cap_corner", "mcl_mushrooms:red_mushroom_block_cap_side" },
 	action = function(pos, node)
-		for c=1, 2 do
-			local color = colors[c]
+		for _, color in ipairs({"red", "brown"}) do
 			if node.name == "mcl_mushrooms:"..color.."_mushroom_block_cap_side" then
 				if node.param2 == 0 then
 					core.set_node(pos, {name = "mcl_mushrooms:"..color.."_mushroom_block_cap_100001"})
