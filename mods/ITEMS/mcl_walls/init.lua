@@ -314,12 +314,6 @@ function mcl_walls.register_wall(nodename, description, source, tiles, inventory
 		connects_to = {"group:wall", "group:solid", "group:pane"},
 	}, overrides or {}))
 
-	for i = 0, 16 do
-		core.register_alias(nodename.."_"..tostring(i), nodename.."_short_pillar")
-	end
-	core.register_alias(nodename.."_21", nodename.."_short_pillar")
-	core.register_alias(nodename, nodename.."_short_pillar")
-
 	if source then
 		core.register_craft({
 			output = nodename .. "_short_pillar 6",
