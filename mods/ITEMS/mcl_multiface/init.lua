@@ -113,7 +113,7 @@ local side_variants = {
 	{true, true, true, true},
 }
 
-local function decompose_facdir(facedir)
+local function decompose_facedir(facedir)
 	return bit.band(facedir, facedir_enum.axis_mask), bit.band(facedir, facedir_enum.rotation_mask)
 end
 
@@ -129,9 +129,6 @@ end
 
 local function value_rotate(rotation, v1, v2, v3, v4)
 	assert(rotation < 4 and rotation > -4)
-	-- Look how nicely those brnaches align with the `then` (when tab length equals to 4 spaces)
-	--
-	-- Appreciate the small things in life
 	if rotation == 0 then
 		return v1, v2, v3, v4
 	elseif rotation == 1 then
@@ -150,11 +147,11 @@ local function faces_rotate(faces, rotation)
 end
 
 local function get_multiface_name_from_canonical_faces(nodename_root, canonical_faces)
-	local str_buf = {}
-	for i, face in pairs(canonical_faces) do
-		str_buf[i] = face and "1" or "0"
+	local str_buf = {nodename_root, "_"}
+	for _, face in pairs(canonical_faces) do
+		table.insert(str_buf, face and "1" or "0")
 	end
-	return nodename_root .. "_" .. table.concat(str_buf)
+	return table.concat(str_buf)
 end
 
 local function map_canonical_faces_to_absolute_faces(faces, axis, rotation)
@@ -167,12 +164,6 @@ local function map_canonical_faces_to_absolute_faces(faces, axis, rotation)
 	if axis == facedir_enum.axis_py then
 		return {faces[4], faces[2], true,     back,     faces[3], faces[1]}
 	elseif axis == facedir_enum.axis_ny then
-		-- !!! This case doesn't follow the same rules as the others. Due to an engine quirk
-		--
-		-- Curtesy of lua_api.md
-		-- > * The node is rotated 90 degrees around the X or Z axis so that its top face
-		-- > points in the desired direction. *For the y- direction, it's rotated 180
-		-- > degrees around the Z axis.*
 		return {faces[2], faces[4], back,     true,     faces[3], faces[1]}
 	elseif axis == facedir_enum.axis_px then
 		return {true,     back,     faces[2], faces[4], faces[3], faces[1]}
@@ -270,11 +261,7 @@ local function map_absolute_faces_to_node(absolute_faces, root_name)
 		faces = {absolute_faces[4], absolute_faces[2], absolute_faces[3], absolute_faces[1], absolute_faces[5]}
 	end
 
-	rdb.log("mapping", selected_axis_as_front, faces)
-
 	local rotation = transform_faces_to_canonical_faces(faces)
-
-	rdb.log("rot", rotation)
 
 	local variant_name = get_multiface_name_from_canonical_faces(root_name, faces)
 
@@ -293,7 +280,7 @@ local function multiface_merge (node, itemstack, pos, place_axis, placer)
 	local def = core.registered_nodes[node.name]
 
 	local faces = table.copy(def._mcl_multiface_canonical_faces)
-	local axis, rotation = decompose_facdir(node.param2)
+	local axis, rotation = decompose_facedir(node.param2)
 
 	local absolute_faces = map_canonical_faces_to_absolute_faces(faces, axis, rotation)
 
@@ -312,7 +299,6 @@ local function multiface_merge (node, itemstack, pos, place_axis, placer)
 		face_idx = 6
 	end
 
-	rdb.log("abs", absolute_faces)
 	if absolute_faces[face_idx] then
 		return
 	end
@@ -325,7 +311,7 @@ local function multiface_merge (node, itemstack, pos, place_axis, placer)
 
 	local name = placer:get_player_name()
 	if not placer:is_player()
-		or not core.is_creative_enabled(name) then
+			or not core.is_creative_enabled(name) then
 		itemstack:take_item()
 	end
 
