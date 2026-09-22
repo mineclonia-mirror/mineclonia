@@ -302,9 +302,20 @@ core.register_on_placenode(function(pos, newnode)
 	if core.get_item_group(newnode.name, "solid") ~= 0 or
 			core.get_item_group(newnode.name, "dirtifier") ~= 0 then
 		local below = {x=pos.x, y=pos.y-1, z=pos.z}
-		local belownode = core.get_node(below)
-		if core.get_item_group(belownode.name, "dirtifies_below_solid") == 1 then
+		local belownodename = core.get_node(below).name
+		if core.get_item_group(belownodename, "dirtifies_below_solid") == 1 then
 			core.set_node(below, {name="mcl_core:dirt"})
+		end
+	end
+end)
+
+-- Turn Grass Path and similar nodes to Dirt if try placed it below solid node
+core.register_on_placenode(function(pos, newnode)
+	if core.get_item_group(newnode.name, "dirtifies_below_solid") == 1 then
+		local abovenodename = core.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name
+		if core.get_item_group(abovenodename, "solid") ~= 0 or
+			core.get_item_group(abovenodename, "dirtifier") ~= 0 then
+				core.set_node(pos, {name="mcl_core:dirt"})
 		end
 	end
 end)
