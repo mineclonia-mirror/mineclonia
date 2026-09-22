@@ -46,12 +46,3 @@ mcl_fences.register_fence_gate_def("nether_brick_fence", {
 	_mcl_fences_stickreplacer = "mcl_nether:netherbrick",
 	_mcl_fences_output_amount = 2
 })
-
--- Aliases for mcl_supplemental
-core.register_alias("mcl_supplemental:red_nether_brick_fence", "mclx_fences:red_nether_brick_fence")
-
-core.register_alias("mcl_supplemental:nether_brick_fence_gate", "mclx_fences:nether_brick_fence_gate")
-core.register_alias("mcl_supplemental:nether_brick_fence_gate_open", "mclx_fences:nether_brick_fence_gate_open")
-
-core.register_alias("mcl_supplemental:red_nether_brick_fence_gate", "mclx_fences:red_nether_brick_fence_gate")
-core.register_alias("mcl_supplemental:red_nether_brick_fence_gate_open", "mclx_fences:red_nether_brick_fence_gate_open")
