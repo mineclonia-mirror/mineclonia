@@ -1998,7 +1998,7 @@ function mcl_potions.detect_hit (obj, pos, moveresult, velocity)
 			elseif node then
 				-- Next, detect walkable nodes.
 				local def = core.registered_nodes[node.name]
-				if def.walkable then
+				if def and def.walkable then
 					val = val or {}
 				end
 			end
