@@ -370,8 +370,8 @@ local function Platform(p, radius, node, node2)
 			end
 		end
 	end
-	mcl_util.bulk_swap_node(n1,node)
-	mcl_util.bulk_swap_node(n2,node2)
+	core.bulk_swap_node(n1,node)
+	core.bulk_swap_node(n2,node2)
 end
 
 -- Chests

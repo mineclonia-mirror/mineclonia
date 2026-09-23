@@ -13,8 +13,8 @@ mcl_structures.register_structure("end_spawn_obsidian_platform",{
 		for x = -2, 2 do for y = 1, 3 do for z = -2, 2 do
 			table.insert(air, vector.offset(pos, x, y, z))
 		end end end
-		mcl_util.bulk_swap_node(obby,{name="mcl_core:obsidian"})
-		mcl_util.bulk_swap_node(air,{name="air"})
+		core.bulk_swap_node(obby,{name="mcl_core:obsidian"})
+		core.bulk_swap_node(air,{name="air"})
 		return true
 	end,
 })
@@ -29,7 +29,7 @@ mcl_structures.register_structure("end_exit_portal",{
 		local p2 = vector.offset(pos,16,21,16)
 		core.emerge_area(p1,p2,function(_, _, calls_remaining)
 			if calls_remaining > 0 then return end
-			mcl_util.bulk_swap_node(core.find_nodes_in_area(p1,p2,{"mcl_portals:portal_end", "mcl_torches:torch_wall"}),{name="air"})
+			core.bulk_swap_node(core.find_nodes_in_area(p1,p2,{"mcl_portals:portal_end", "mcl_torches:torch_wall"}),{name="air"})
 			local obj = core.add_entity(vector.offset(pos,3, 11, 3), "mobs_mc:enderdragon")
 			if obj then
 				local dragon_entity = obj:get_luaentity()
@@ -55,7 +55,7 @@ mcl_structures.register_structure("end_exit_portal_deferred",{
 		local p2 = vector.offset(pos,16,21,16)
 		core.emerge_area(p1,p2,function(_, _, calls_remaining)
 			if calls_remaining > 0 then return end
-			mcl_util.bulk_swap_node(core.find_nodes_in_area(p1,p2,{"mcl_portals:portal_end", "mcl_torches:torch_wall"}),{name="air"})
+			core.bulk_swap_node(core.find_nodes_in_area(p1,p2,{"mcl_portals:portal_end", "mcl_torches:torch_wall"}),{name="air"})
 			core.fix_light(p1,p2)
 		end)
 	end
@@ -92,7 +92,7 @@ local function make_endspike(pos,width,height)
 	for i = 1,math.ceil(#nn*0.55) do
 		get_tower(nn[i],height,nodes)
 	end
-	mcl_util.bulk_swap_node(nodes,{ name="mcl_core:obsidian"} )
+	core.bulk_swap_node(nodes,{ name="mcl_core:obsidian"} )
 	return vector.offset(pos,0,height,0)
 end
 
@@ -104,7 +104,7 @@ local function make_cage(pos,width)
 			table.insert(nodes,vector.add(pos,vector.new(x,y,z)))
 		end
 	end end end
-	mcl_util.bulk_swap_node(nodes,{ name="mcl_panes:bar_flat"} )
+	core.bulk_swap_node(nodes,{ name="mcl_panes:bar_flat"} )
 	for _,p in pairs(nodes) do
 		mcl_panes.update_pane(p)
 	end

@@ -845,14 +845,6 @@ function mcl_util.replace_node_vm(pos1, pos2, mat_from, mat_to, is_group)
 	vm:write_to_map(true)
 end
 
--- TODO: Remove and use core.bulk_swap_node directly after abandoning
--- compatibility with Minetest versions were it is not present.
-mcl_util.bulk_swap_node = core.bulk_swap_node or function(positions, node)
-	for _, pos in pairs(positions) do
-		core.swap_node(pos, node)
-	end
-end
-
 -- Voxel manip function to change nodes if they don't match in an area.
 function mcl_util.bulk_set_node_vm(pos1, pos2, mat_to)
 	local c_to = core.get_content_id(mat_to)

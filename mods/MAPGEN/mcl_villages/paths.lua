@@ -387,7 +387,7 @@ function mcl_villages.paths_new(blockseed, biome_name)
 				{ "mcl_villages:no_paths" }
 			)
 			if #no_paths_nodes > 0 then
-				mcl_util.bulk_swap_node(no_paths_nodes, { name = "air" })
+				core.bulk_swap_node(no_paths_nodes, { name = "air" })
 			end
 		end
 	end

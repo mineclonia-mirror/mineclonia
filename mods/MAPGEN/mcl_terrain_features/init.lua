@@ -31,8 +31,8 @@ local function makelake(pos,size,liquid,placein,border,pr,noair)
 			airtower(nn[i],air,10)
 			table.insert(lq,nn[i])
 		end
-		mcl_util.bulk_swap_node(lq,{name=liquid})
-		mcl_util.bulk_swap_node(air,{name="air"})
+		core.bulk_swap_node(lq,{name=liquid})
+		core.bulk_swap_node(air,{name="air"})
 		air = {}
 		local br = {}
 		local is_grass = border == "mcl_core:dirt_with_grass"
@@ -52,9 +52,9 @@ local function makelake(pos,size,liquid,placein,border,pr,noair)
 			end
 		end
 		for p2, nodes in pairs(br) do
-			mcl_util.bulk_swap_node(nodes,{name = border, param2 = p2})
+			core.bulk_swap_node(nodes,{name = border, param2 = p2})
 		end
-		mcl_util.bulk_swap_node(air,{name="air"})
+		core.bulk_swap_node(air,{name="air"})
 		return true
 	end)
 	return true
@@ -257,8 +257,8 @@ mcl_structures.register_structure("basalt_column",{
 				end
 			end
 		end
-		mcl_util.bulk_swap_node(magma,{name="mcl_nether:magma"})
-		mcl_util.bulk_swap_node(basalt,{name="mcl_blackstone:basalt"})
+		core.bulk_swap_node(magma,{name="mcl_nether:magma"})
+		core.bulk_swap_node(basalt,{name="mcl_blackstone:basalt"})
 		return true
 	end
 })
@@ -298,8 +298,8 @@ mcl_structures.register_structure("basalt_pillar",{
 				end
 			end
 		end
-		mcl_util.bulk_swap_node(basalt,{name="mcl_blackstone:basalt"})
-		mcl_util.bulk_swap_node(magma,{name="mcl_nether:magma"})
+		core.bulk_swap_node(basalt,{name="mcl_blackstone:basalt"})
+		core.bulk_swap_node(magma,{name="mcl_nether:magma"})
 		return true
 	end
 })
@@ -332,7 +332,7 @@ mcl_structures.register_structure("lavadelta",{
 		for i=1,pr:next(1,#nn) do
 			table.insert(lava,nn[i])
 		end
-		mcl_util.bulk_swap_node(lava,{name="mcl_nether:nether_lava_source"})
+		core.bulk_swap_node(lava,{name="mcl_nether:nether_lava_source"})
 		local basalt = {}
 		local magma = {}
 		for _,v in pairs(lava) do
@@ -347,8 +347,8 @@ mcl_structures.register_structure("lavadelta",{
 				table.insert(magma,v)
 			end
 		end
-		mcl_util.bulk_swap_node(basalt,{name="mcl_blackstone:basalt"})
-		mcl_util.bulk_swap_node(magma,{name="mcl_nether:magma"})
+		core.bulk_swap_node(basalt,{name="mcl_blackstone:basalt"})
+		core.bulk_swap_node(magma,{name="mcl_nether:magma"})
 		return true
 	end
 })

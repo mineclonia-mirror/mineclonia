@@ -6765,11 +6765,11 @@ local function mangrove_roots_gen(gennotify, pr)
 					if n:find("river") then
 						wl = "mcl_mangrove:river_water_logged_roots"
 					end
-					mcl_util.bulk_swap_node(core.find_nodes_in_area(vector.offset(v, 0, 0, 0), vector.offset(v, 0, -l, 0), {"group:water"}), {name = wl})
+					core.bulk_swap_node(core.find_nodes_in_area(vector.offset(v, 0, 0, 0), vector.offset(v, 0, -l, 0), {"group:water"}), {name = wl})
 				elseif n == "mcl_mud:mud" then
-					mcl_util.bulk_swap_node(core.find_nodes_in_area(vector.offset(v, 0, 0, 0), vector.offset(v, 0, -l, 0), {"mcl_mud:mud"}), {name = "mcl_mangrove:mangrove_mud_roots"})
+					core.bulk_swap_node(core.find_nodes_in_area(vector.offset(v, 0, 0, 0), vector.offset(v, 0, -l, 0), {"mcl_mud:mud"}), {name = "mcl_mangrove:mangrove_mud_roots"})
 				elseif n == "air" then
-					mcl_util.bulk_swap_node(core.find_nodes_in_area(vector.offset(v, 0, 0, 0), vector.offset(v, 0, -l, 0), {"air"}), {name = "mcl_mangrove:mangrove_roots"})
+					core.bulk_swap_node(core.find_nodes_in_area(vector.offset(v, 0, 0, 0), vector.offset(v, 0, -l, 0), {"air"}), {name = "mcl_mangrove:mangrove_roots"})
 				end
 			end
 		end

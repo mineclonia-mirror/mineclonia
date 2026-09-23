@@ -94,7 +94,7 @@ mcl_structures.register_structure("nether_outpost_with_bridges",{
 				table.insert(bricks,leg)
 			end
 		end
-		mcl_util.bulk_swap_node(bricks, {name = "mcl_nether:nether_brick", param2 = 2})
+		core.bulk_swap_node(bricks, {name = "mcl_nether:nether_brick", param2 = 2})
 
 		local p1 = vector.offset(pos,-45,13,-45)
 		local p2 = vector.offset(pos,45,13,45)
