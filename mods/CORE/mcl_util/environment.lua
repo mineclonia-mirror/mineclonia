@@ -1002,7 +1002,7 @@ function mcl_util.create_ground_turnip(pos, fwidth, fdepth)
 	end
 end
 
-if not core.has_feature("hud_hideable_field") then
+if not mcl_util.luanti_minimum_version("5.17") then
 	local old_get_natural_light = core.get_natural_light
 
 	function core.get_natural_light(pos,tod)
