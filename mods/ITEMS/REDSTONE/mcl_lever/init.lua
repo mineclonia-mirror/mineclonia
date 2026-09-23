@@ -90,11 +90,11 @@ core.register_node("mcl_lever:lever_off", table.merge(commdef, {
 			local actual = vector.subtract(under, dir)
 			local actualnode = core.get_node(actual)
 			def = core.registered_nodes[actualnode.name]
-			groups = def.groups
+			groups = def and def.groups
 		end
 
 		-- Only allow placement on full-cube solid opaque nodes
-		if type(def.placement_prevented) == "function" then
+		if type(def and def.placement_prevented) == "function" then
 			if
 				def.placement_prevented({
 					itemstack = itemstack,
