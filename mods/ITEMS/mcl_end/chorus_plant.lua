@@ -470,7 +470,7 @@ local function random_teleport(player)
 			end
 			local tdef = core.registered_nodes[tnode.name]
 			table.insert(node_cache, {pos=tpos, node=tnode})
-			if tdef.walkable then
+			if tdef and tdef.walkable then
 				ground_level = true
 				break
 			end
@@ -484,7 +484,7 @@ local function random_teleport(player)
 				local tnode = node_cache[c].node
 				local tdef = core.registered_nodes[tnode.name]
 				-- Player needs a space of 2 safe non-liquid nodes on top of a walkable node
-				if not tdef.walkable and tdef.liquidtype == "none" and tdef.damage_per_second <= 0 then
+				if tdef and (not tdef.walkable and tdef.liquidtype == "none" and tdef.damage_per_second <= 0) then
 					if (streak == 0 and last_was_walkable) or (streak > 0) then
 						streak = streak + 1
 					end
