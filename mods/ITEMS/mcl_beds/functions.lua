@@ -154,9 +154,9 @@ local function lay_down(player, pos, bed_pos, state, skip)
 		local n2 = core.get_node({x = bed_pos2.x,	y = bed_pos2.y + 1,	z = bed_pos2.z})
 		local def1 = core.registered_nodes[n1.name]
 		local def2 = core.registered_nodes[n2.name]
-		if def1.walkable or def2.walkable then
+		if (def1 and def1.walkable) or (def2 and def2.walkable) then
 			return false, S("You can't sleep, the bed is obstructed!")
-		elseif (def1.damage_per_second and def1.damage_per_second > 0) or (def2.damage_per_second and def2.damage_per_second > 0) then
+		elseif (def1 and def1.damage_per_second and def1.damage_per_second > 0) or (def2 and def2.damage_per_second and def2.damage_per_second > 0) then
 			return false, S("It's too dangerous to sleep here!")
 		end
 
