@@ -14,3 +14,14 @@
 #### Arguments:
   level: log level, defaults to "warning".
   moreinfo: optional extra informative message.
+
+
+### mcl_util.luanti_minimum_version(version)
+  Tests if the version of luanti the server is running is equal to or newer
+  than specified version string.
+  Note that specifying a version below 5.11.0 or a version that is not an
+  index in the `core.protocal_versions` table (eg 5.15.2) returns `false`.
+  Returns a boolean.
+
+#### Arguments:
+  version: luanti version string.

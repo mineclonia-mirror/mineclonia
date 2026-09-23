@@ -16,6 +16,10 @@ function mcl_util.log_deprecated_call(level, moreinfo_msg)
 	end
 end
 
+function mcl_util.luanti_minimum_version(ver)
+	return core.protocal_versions and core.protocol_versions[ver] ~= nil or false
+end
+
 -- Polyfills for legacy Luanti
 
 function mcl_util.is_valid_objectref (object)

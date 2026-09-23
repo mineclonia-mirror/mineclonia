@@ -9,6 +9,8 @@ core.register_mapgen_script (modpath .. "/table.lua")
 core.register_async_dofile (modpath .. "/table.lua")
 -- UTF-8 library (stripped down 5.3 backport) from modlib
 mcl_util.utf8 = dofile(modpath .. "/utf8.lua")
+-- Backwards compatibility
+dofile(modpath .. "/compat.lua")
 -- Utilities for environment access (nodes, mapgen)
 dofile(modpath .. "/environment.lua")
 -- Item-related utilities
@@ -23,8 +25,6 @@ mcl_util.queue = dofile(modpath .. "/queue.lua")
 mcl_util.ringbuffer = dofile(modpath .. "/ringbuffer.lua")
 -- Conversion to roman numerals
 dofile(modpath .. "/roman.lua")
--- Backwards compatibility
-dofile(modpath .. "/compat.lua")
 -- Shape library.
 dofile(modpath.."/shape.lua")
 core.register_mapgen_script (modpath .. "/shape.lua")
