@@ -337,7 +337,8 @@ core.register_node("mcl_flowers:tallgrass", table.merge(def_tallgrass, {
 	_on_bone_meal = function(_, _, _ , pos, n)
 		local toppos = vector.offset(pos, 0, 1, 0)
 		local topnode = core.get_node(toppos)
-		if core.registered_nodes[topnode.name].buildable_to then
+		local def = core.registered_nodes[topnode.name]
+		if def and def.buildable_to then
 			core.set_node(pos, {name = "mcl_flowers:double_grass", param2 = n.param2})
 			core.set_node(toppos, {name = "mcl_flowers:double_grass_top", param2 = n.param2})
 			return true
@@ -359,7 +360,8 @@ core.register_node("mcl_flowers:fern", table.merge(def_tallgrass, {
 	_on_bone_meal = function(_, _, _ , pos, n)
 		local toppos = vector.offset(pos, 0, 1, 0)
 		local topnode = core.get_node(toppos)
-		if core.registered_nodes[topnode.name].buildable_to then
+		local topdef = core.registered_nodes[topnode.name]
+		if topdef and topdef.buildable_to then
 			core.set_node(pos, {name = "mcl_flowers:double_fern", param2 = n.param2})
 			core.set_node(toppos, {name = "mcl_flowers:double_fern_top", param2 = n.param2})
 			return true

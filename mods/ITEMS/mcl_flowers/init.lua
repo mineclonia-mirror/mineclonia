@@ -283,12 +283,15 @@ local tpl_large_plant_bottom = table.merge(tpl_large_plant_top, {
 		else
 			bottom = pointed_thing.above
 		end
-		if not core.registered_nodes[core.get_node(bottom).name] then
+
+		local top = { x = bottom.x, y = bottom.y + 1, z = bottom.z }
+		local top_def = core.registered_nodes[core.get_node(top).name]
+		local bottom_def = core.registered_nodes[core.get_node(bottom).name]
+		if not bottom_def or not top_def then
 			return itemstack
 		end
-		local top = { x = bottom.x, y = bottom.y + 1, z = bottom.z }
-		local bottom_buildable = core.registered_nodes[core.get_node(bottom).name].buildable_to
-		local top_buildable = core.registered_nodes[core.get_node(top).name].buildable_to
+		local bottom_buildable =bottom_def.buildable_to
+		local top_buildable = top_def.buildable_to
 		local floor = core.get_node({x=bottom.x, y=bottom.y-1, z=bottom.z})
 		if not core.registered_nodes[floor.name] then
 			return itemstack
