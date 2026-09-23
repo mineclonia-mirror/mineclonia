@@ -121,7 +121,7 @@ local function activate_dispenser(pos, droppos, dropdir, inv, stack_)
 		-- Place head or pumpkin as node, if equipping it as armor has failed
 		if not stack:is_empty() then
 			if igroups.head or iname == "mcl_farming:pumpkin_face" then
-				if dropnodedef.buildable_to then
+				if dropnodedef and dropnodedef.buildable_to then
 					core.set_node(droppos, { name = iname, param2 = node.param2 })
 					stack:take_item()
 				end
