@@ -16,6 +16,22 @@ function mcl_util.log_deprecated_call(level, moreinfo_msg)
 	end
 end
 
+-- Test if luanti version is equal to or newer than specified version string.
+-- Returns boolean.
+function mcl_util.luanti_minimum_version(ver)
+	local feature = {
+		["5.10"] = "bulk_lbms",
+		["5.11"] = "biome_weights",
+		["5.12"] = "remove_item_match_meta",
+		["5.13"] = "object_guids",
+		["5.14"] = "on_timer_four_args",
+		["5.15"] = "chunksize_vector",
+		["5.16"] = "get_modnames_load_order",
+		["5.17"] = "hud_hideable_field",
+	}
+	return(core.has_feature(feature[ver]))
+end
+
 -- Polyfills for legacy Luanti
 
 function mcl_util.is_valid_objectref (object)

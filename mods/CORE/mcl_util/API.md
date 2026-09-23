@@ -14,3 +14,10 @@
 #### Arguments:
   level: log level, defaults to "warning".
   moreinfo: optional extra informative message.
+
+### mcl_util.luanti_minimum_version(version)
+  Tests if luanti version is equal to or newer than specified version string.
+  Returns a boolean.
+
+#### Arguments:
+  version: string containing a major luanti version (eg. "5.15")
