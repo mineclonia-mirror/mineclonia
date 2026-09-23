@@ -32,7 +32,8 @@ local function set_moss_with_chance_vegetation(pos)
 		local pos_up = vector.offset(pos, 0, 1, 0)
 		if vegetation == "mcl_flowers:double_grass" then
 			local pos_up2 = vector.offset(pos, 0, 2, 0)
-			if core.registered_nodes[core.get_node(pos_up2).name].buildable_to then
+			local def_up2 = core.registered_nodes[core.get_node(pos_up2).name]
+			if def_up2 and def_up2.buildable_to then
 				core.set_node(pos_up, { name = "mcl_flowers:double_grass" })
 				core.set_node(pos_up2, { name = "mcl_flowers:double_grass_top" })
 			else
