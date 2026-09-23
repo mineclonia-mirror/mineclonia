@@ -180,7 +180,7 @@ function strider:detach (driver, pos)
 		local def_1 = core.registered_nodes[node_1.name]
 
 		if vector.distance (self_pos, node_pos) <= 4
-			and not def.walkable and not def_1.walkable then
+			and def and not def.walkable and not def_1.walkable then
 			mob_class.detach (self, driver, vector.zero ())
 			core.after (0.1, function ()
 				if is_valid (driver) then
