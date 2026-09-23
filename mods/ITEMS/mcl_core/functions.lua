@@ -97,6 +97,7 @@ function mcl_core.grow_reeds(pos, amount)
 			local pos2 = top_pos:offset(0, i, 0)
 			local node2 = core.get_node(pos2)
 			local ndef = core.registered_nodes[node2.name]
+			if not ndef then break end
 			if node2.name ~= "air" and not ndef.buildable_to then
 				break
 			end
