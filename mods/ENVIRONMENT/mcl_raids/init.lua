@@ -71,8 +71,9 @@ local function is_opaque (node)
 end
 
 local function is_clear (node)
+	local def = core.registered_nodes[node.name]
 	return core.get_item_group (node.name, "liquid") == 0
-		and not core.registered_nodes[node.name].walkable
+		and def and not def.walkable
 end
 
 local function is_opaque_or_snow (node)
@@ -431,7 +432,7 @@ function mcl_raids.find_surface_position (node_pos)
 			local node = core.get_node (v)
 			local def = core.registered_nodes[node.name]
 			if node.name ~= "ignore"
-				and (def.groups.liquid or def.walkable) then
+				and def and (def.groups.liquid or def.walkable) then
 				break
 			end
 			v.y = v.y - 1
