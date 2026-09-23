@@ -444,7 +444,7 @@ function mcl_util.call_on_rightclick(itemstack, player, pointed_thing)
 		local node = core.get_node(pos)
 		if player and player:is_player() then
 			local nodedef = core.registered_nodes[node.name]
-			local on_rightclick_optional = nodedef and nodedef._mcl_on_rightclick_optional
+			local on_rightclick_optional = nodedef and nodedef._on_rightclick_optional
 			if on_rightclick_optional then
 				local rc = on_rightclick_optional(pos, node, player, itemstack, pointed_thing)
 				if rc ~= nil then
