@@ -1002,15 +1002,19 @@ function mcl_util.create_ground_turnip(pos, fwidth, fdepth)
 	end
 end
 
-local old_get_natural_light = core.get_natural_light
+if not core.has_feature("hud_hideable_field") then
+	local old_get_natural_light = core.get_natural_light
 
-function core.get_natural_light(pos,tod)
-	--pcall the elusive get_light "out of bounds error" bug
-	-- TODO: remove this hack when this is fixed in core.
-	local st,res = xpcall(function() return old_get_natural_light(pos, tod) end, debug.traceback)
-	if st then return res end
-	core.log("error","["..tostring(core.get_current_modname()).."] core.get_natural_light would have crashed: \n https://codeberg.org/mineclonia/mineclonia/issues/17\n".. tostring(res))
-	return 0
+	function core.get_natural_light(pos,tod)
+		-- pcall the elusive get_light "out of bounds error" bug in luanti.
+		--
+		-- since luanti 5.17 this bug has been fixed, see:
+		-- https://github.com/luanti-org/luanti/pull/17298
+		local st,res = xpcall(function() return old_get_natural_light(pos, tod) end, debug.traceback)
+		if st then return res end
+		core.log("error","["..tostring(core.get_current_modname()).."] core.get_natural_light would have crashed: \n https://codeberg.org/mineclonia/mineclonia/issues/17\n".. tostring(res))
+		return 0
+	end
 end
 
 function mcl_util.get_2d_block_direction (yaw)
