@@ -1798,7 +1798,7 @@ local cdef = {
 			mcl_mobs.players_selecting_mob[playername] = true
 		elseif param == "start" then
 			local mob = mcl_mobs.players_selecting_mob[playername]
-			if mob == true or not mob or not is_valid (mob) then
+			if mob == true or not mob or not mob:is_valid () then
 				local blurb = "You must select a valid mob"
 				core.chat_send_player (playername, blurb)
 				return
@@ -1836,7 +1836,7 @@ local cdef = {
 			end
 		elseif param == "classify" then
 			local mob = mcl_mobs.players_selecting_mob[playername]
-			if mob == true or not mob or not is_valid (mob) then
+			if mob == true or not mob or not mob:is_valid () then
 				local blurb = "You must select a valid mob"
 				core.chat_send_player (playername, blurb)
 				return

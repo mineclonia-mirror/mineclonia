@@ -108,7 +108,7 @@ local dragon_piece = {
 }
 
 function dragon_piece:on_step (dtime)
-	if not self._dragon or not is_valid (self._dragon) then
+	if not self._dragon or not self._dragon:is_valid () then
 		self.object:remove ()
 	else
 		-- This is not redundant: it arrests hitboxes if the
@@ -119,7 +119,7 @@ function dragon_piece:on_step (dtime)
 end
 
 function dragon_piece:deal_damage (damage, mcl_reason)
-	if not is_valid (self._dragon) then
+	if not self._dragon:is_valid () then
 		return false
 	end
 	return mcl_util.deal_damage (self._dragon, damage, mcl_reason)
@@ -127,7 +127,7 @@ end
 
 function dragon_piece:on_punch (puncher, time_from_last_punch,
 			tool_capabilities, dir, damage)
-	if not is_valid (self._dragon) then
+	if not self._dragon:is_valid () then
 		return false
 	end
 	core.sound_play ("default_punch", {
@@ -1254,7 +1254,7 @@ function dragon:crystal_destroyed (crystal, puncher)
 		if not puncher then
 			puncher = self:get_nearest_player (crystal, 128)
 		end
-		if puncher and is_valid (puncher)
+		if puncher and puncher:is_valid ()
 			and (not puncher:is_player ()
 				or self:attack_player_allowed (puncher)) then
 			self:strafe (puncher)
@@ -1918,7 +1918,7 @@ function dragon:check_crystals (dtime, self_pos)
 	local living = {}
 	local nearest, dist, nearest_pos
 	for _, crystal in pairs (self._crystals) do
-		if not is_valid (crystal) then
+		if not crystal:is_valid () then
 			-- A crystal was removed.
 			if crystal == self._current_crystal then
 				self._current_crystal = nil

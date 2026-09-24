@@ -212,7 +212,7 @@ function mob_class:get_staticdata_table ()
 	-- If rider(s) have been deactivated first, their staticdata
 	-- will none the less have been preserved by on_deactivate and
 	-- suchlike.
-	if self._jockey_rider and is_valid (self._jockey_rider) then
+	if self._jockey_rider and self._jockey_rider:is_valid () then
 		local entity = self._jockey_rider:get_luaentity ()
 		local rider_data = entity:get_staticdata_table ()
 		rider_data.name = entity.name

@@ -121,7 +121,7 @@ function mob_class:kill_me(msg)
 		core.log("action", "[mcl_mobs] Mob " .. self.name .. " despawns at " .. core.pos_to_string(self.object:get_pos(), 1) .. ": " .. msg)
 	end
 	if self._jockey_rider then
-		if is_valid (self._jockey_rider) then
+		if self._jockey_rider:is_valid () then
 			-- Detach this rider.
 			local entity = self._jockey_rider:get_luaentity ()
 			entity:unjock ()

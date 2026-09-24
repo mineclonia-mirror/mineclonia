@@ -387,7 +387,7 @@ function piglin:ai_step (dtime)
 	self._hunting_cooldown
 		= math.max (0, self._hunting_cooldown - dtime)
 	if self._piglin_provoker
-		and (not is_valid (self._piglin_provoker)
+		and (not self._piglin_provoker:is_valid ()
 			or self._piglin_provoker_timeout - dtime < 0) then
 		self._piglin_provoker = nil
 		self._piglin_provoker_timeout = nil
@@ -406,7 +406,7 @@ function piglin:ai_step (dtime)
 	-- If no nearby piglins have recently hunted, and huntable
 	-- hoglins are in the vicinity, initiate a hunt.
 	if self._hunting_cooldown == 0 and self._nearest_prey
-		and is_valid (self._nearest_prey) then
+		and self._nearest_prey:is_valid () then
 		for _, object in pairs (self._nearby_adults) do
 			local entity = object:get_luaentity ()
 			if entity
@@ -822,7 +822,7 @@ end
 
 function piglin:chuck_at_player (self_pos, object)
 	local player = self._nearest_visible_player
-	if player and is_valid (player) then
+	if player and player:is_valid () then
 		local dir = vector.direction (object:get_pos (), player:get_pos ())
 		local v = vector.multiply (dir, 5.0)
 		v.y = v.y + 1.0
@@ -974,7 +974,7 @@ local function piglin_seek_treasure (self, self_pos, dtime)
 		-- the treasure is first detected while still airborne
 		-- after being dropped by a player.
 			or self:navigation_finished ()
-			or not is_valid (self._treasure) then
+			or not self._treasure:is_valid () then
 			self._seeking_treasure = nil
 			return false
 		end
@@ -990,7 +990,7 @@ local function piglin_seek_treasure (self, self_pos, dtime)
 		end
 		return true
 	elseif self._nearest_target_item
-		and is_valid (self._nearest_target_item)
+		and self._nearest_target_item:is_valid ()
 		and not piglin_loves_item (wielditem_name) then
 		local treasure_pos = self._nearest_target_item:get_pos ()
 		if vector.distance (treasure_pos, self_pos) <= 1 then
@@ -1084,7 +1084,7 @@ function piglin:try_retaliate (source)
 		and #self._nearby_adults < self._n_visible_adult_hoglins then
 		self:beat_a_retreat (source)
 	elseif not self._retreat then
-		if not self.attack or not is_valid (self.attack)
+		if not self.attack or not self.attack:is_valid ()
 			or check_provoker_distance (self, source) then
 			self:enrage (source, true)
 		end
@@ -1213,7 +1213,7 @@ local function baby_piglin_mount_baby_hoglin (self, self_pos, dtime)
 	end
 
 	if self._ride_target then
-		if not is_valid (self._ride_target) then
+		if not self._ride_target:is_valid () then
 			self._ride_target = nil
 			return false
 		end
@@ -1267,7 +1267,7 @@ local function baby_piglin_mount_baby_hoglin (self, self_pos, dtime)
 		if t < 0 then
 			self._time_to_ride_start = pr:next (10, 40)
 			if self._nearest_baby_hoglin
-				and is_valid (self._nearest_baby_hoglin)
+				and self._nearest_baby_hoglin:is_valid ()
 				and get_jock_target (self._nearest_baby_hoglin) then
 				self._ride_target = self._nearest_baby_hoglin
 				self._ride_target_mounted = false
@@ -1305,7 +1305,7 @@ local function piglin_interact_with (self, self_pos, dtime)
 	elseif self.ai_idle_time >= 5
 		and pr:next (1, scale_chance (60, dtime)) == 1 then
 		for _, object in ipairs (self._nearby_adults) do
-			if object ~= self.object and is_valid (object) then
+			if object ~= self.object and object:is_valid () then
 				local pos = object:get_pos ()
 				if vector.distance (pos, self_pos) <= 8 then
 					if self:gopath (pos, 0.6, nil, 2) then
@@ -1608,7 +1608,7 @@ function piglin_brute:ai_step (dtime)
 	piglin_base.ai_step (self, dtime)
 
 	if self._piglin_provoker
-		and (not is_valid (self._piglin_provoker)
+		and (not self._piglin_provoker:is_valid ()
 			or self._piglin_provoker_timeout - dtime < 0) then
 		self._piglin_provoker = nil
 		self._piglin_provoker_timeout = nil
@@ -1672,7 +1672,7 @@ function piglin_brute:try_retaliate (source)
 		return
 	end
 
-	if not self.attack or not is_valid (self.attack)
+	if not self.attack or not self.attack:is_valid ()
 		or check_provoker_distance (self, source) then
 		self:enrage (source, true)
 	end

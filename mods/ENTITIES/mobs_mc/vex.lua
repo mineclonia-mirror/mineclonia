@@ -167,7 +167,7 @@ function vex:do_go_pos (dtime, moveresult)
 		local fv = vector.multiply (dir, vector.multiply (scale, modifier))
 		self.object:add_velocity (fv)
 
-		if self.attack and is_valid (self.attack) then
+		if self.attack and self.attack:is_valid () then
 			local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 			self:look_at (target_pos)
 		else
@@ -212,7 +212,7 @@ end
 function vex:ai_step (dtime)
 	mob_class.ai_step (self, dtime)
 
-	if self._summoned_by and not is_valid (self._summoned_by) then
+	if self._summoned_by and not self._summoned_by:is_valid () then
 		self._summoned_by = nil
 	end
 

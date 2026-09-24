@@ -1255,7 +1255,7 @@ function mob_class:check_attack (self_pos, dtime)
 		end
 	else
 		local target_pos
-		if not is_valid (self.attack)
+		if not self.attack:is_valid ()
 			or self:get_active_target (self_pos) ~= self.attack then
 			self.attack = nil
 			self:attack_end ()
@@ -1372,7 +1372,7 @@ function mob_class:display_wielditem (offhand)
 	end
 
 	if not self[objectname]
-		or not is_valid (self[objectname]) then
+		or not self[objectname]:is_valid () then
 		local self_pos = self.object:get_pos ()
 		self[objectname]
 			= core.add_entity (self_pos, "mcl_mobs:wielditem")
@@ -1448,7 +1448,7 @@ function mob_class:release_wielditem ()
 		self._using_wielditem = nil
 
 		local object = self._wielditem_object
-		if object and is_valid (object) then
+		if object and object:is_valid () then
 			local stack = ItemStack (self._wielditem)
 			local name = self:get_visual_wielditem (stack)
 
@@ -1521,7 +1521,7 @@ function mob_class:wielditem_step (dtime)
 			= self._using_wielditem + dtime
 
 		local object = self._wielditem_object
-		if object and is_valid (object) then
+		if object and object:is_valid () then
 			local stack = ItemStack (self._wielditem)
 			local name = self:get_visual_wielditem (stack)
 

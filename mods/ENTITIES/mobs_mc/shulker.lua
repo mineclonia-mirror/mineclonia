@@ -516,7 +516,7 @@ function shulker:check_head_swivel (attach_pos, dtime, clear)
 	end
 
 	local locked_object = self._locked_object
-	if locked_object and is_valid (locked_object) then
+	if locked_object and locked_object:is_valid () then
 		local target_pos = mcl_util.target_eye_pos (locked_object)
 		if self._look_target
 			and vector.equals (self._look_target, target_pos) then
@@ -1085,7 +1085,7 @@ function shulker_bullet:on_step (dtime, moveresult)
 		return
 	end
 
-	if not self._target or not is_valid (self._target)
+	if not self._target or not self._target:is_valid ()
 		or not self:attack_allowed (self._target) then
 		v.y = v.y - 0.8 * dtime / 0.05
 		self.object:set_velocity (v)

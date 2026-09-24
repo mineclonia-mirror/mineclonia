@@ -93,7 +93,7 @@ local NINETY_DEG = math.pi / 2
 local function golem_seek_target (self, self_pos, dtime)
 	if self._seeking_target then
 		local target = self._nearest_undesirable
-		if not target or not is_valid (target) then
+		if not target or not target:is_valid () then
 			self._seeking_target = false
 			return false
 		end
@@ -105,7 +105,7 @@ local function golem_seek_target (self, self_pos, dtime)
 		return false
 	elseif self._nearest_undesirable then
 		local target = self._nearest_undesirable
-		if target and is_valid (target) then
+		if target and target:is_valid () then
 			local dir = vector.direction (self_pos, target:get_pos ())
 			local target
 				= self:target_in_direction (self_pos, 16, 7, dir, NINETY_DEG)
@@ -197,7 +197,7 @@ local function golem_extend_flower (self, self_pos, dtime)
 			return false
 		end
 		local target = self._flower_recipient
-		if is_valid (target) then
+		if target:is_valid () then
 			self:look_at (target:get_pos ())
 			self:set_animation ("flower")
 			self._poppy_texture = "mcl_flowers_poppy.png"
@@ -270,7 +270,7 @@ function golem:ai_step (dtime)
 	if self._nearest_undesirable then
 		local obj = self._nearest_undesirable
 		local self_pos = self.object:get_pos ()
-		if not is_valid (obj)
+		if not obj:is_valid ()
 			or not self:should_continue_to_attack (obj)
 			or vector.distance (self_pos, obj:get_pos ()) > 64 then
 			self._nearest_undesirable = nil
@@ -425,7 +425,7 @@ local function golem_target_undesirables (self, self_pos, dtime, obj, is_current
 	-- is below -100 with any villager within 10 nodes, and pursue
 	-- such targets aggressively.
 	local undesirable = self._nearest_undesirable
-	if not undesirable or not is_valid (undesirable) then
+	if not undesirable or not undesirable:is_valid () then
 		undesirable = self:locate_undesirable (self_pos)
 		self._nearest_undesirable = undesirable
 	end

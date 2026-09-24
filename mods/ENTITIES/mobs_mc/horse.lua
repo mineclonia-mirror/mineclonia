@@ -237,7 +237,7 @@ local function horse_maybe_tame (self, self_pos, dtime)
 	local driver = self.driver
 
 	if self._evaluating_handler then
-		if not driver or not is_valid (driver) or self.tamed then
+		if not driver or not driver:is_valid () or self.tamed then
 			self:cancel_navigation ()
 			self:halt_in_tracks ()
 			self._evaluating_handler = false

@@ -355,7 +355,7 @@ function raid_mob:step_locked_target (self_pos, dtime)
 	local d = self.tracking_distance
 	if self.raidmob then
 		target = nil
-	elseif target and not is_valid (target) then
+	elseif target and not target:is_valid () then
 		target = nil
 	elseif target then
 		local target_pos

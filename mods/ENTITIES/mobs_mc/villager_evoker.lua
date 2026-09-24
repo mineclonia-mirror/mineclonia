@@ -127,7 +127,7 @@ function evoker:who_are_you_looking_at ()
 	if self._dont_stare then
 		self._locked_object = nil
 	elseif self._wololo and self._wololo_sheep
-		and is_valid (self._wololo_sheep) then
+		and self._wololo_sheep:is_valid () then
 		self._locked_object = self._wololo_sheep
 	else
 		mob_class.who_are_you_looking_at (self)
@@ -175,7 +175,7 @@ function evoker:ai_step (dtime)
 	end
 	if self._wololo
 		and self._wololo_sheep
-		and is_valid (self._wololo_sheep) then
+		and self._wololo_sheep:is_valid () then
 		self:look_at (self._wololo_sheep:get_pos ())
 	else
 		self._wololo_sheep = nil
@@ -429,7 +429,7 @@ local evoker_vex_spell = define_spell ({
 	interval = 17.0,
 	check_activate = function (self, self_pos, dtime)
 		if not self.attack
-			or not is_valid (self.attack) then
+			or not self.attack:is_valid () then
 			return false
 		else
 			local n_vexes = 0
@@ -500,7 +500,7 @@ local evoker_wololo_spell = define_spell ({
 	end,
 	step = function (self, self_pos, dtime, rem)
 		if self._wololo_sheep
-			and is_valid (self._wololo_sheep) then
+			and self._wololo_sheep:is_valid () then
 			local entity = self._wololo_sheep:get_luaentity ()
 			entity:set_color ("unicolor_red")
 		end

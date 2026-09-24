@@ -244,7 +244,7 @@ end
 
 function llama:check_caravan ()
 	if self._caravan_head
-		and not is_valid (self._caravan_head) then
+		and not self._caravan_head:is_valid () then
 		self._caravan_head = nil
 	end
 	-- Disband caravan if no longer leashed.
@@ -259,7 +259,7 @@ function llama:check_caravan ()
 		end
 	end
 	if self._caravan_tail
-		and not is_valid (self._caravan_tail) then
+		and not self._caravan_tail:is_valid () then
 		self._caravan_tail = nil
 	end
 end

@@ -397,7 +397,7 @@ end
 function mob_class:check_jockey_status ()
 	-- Remove any jockey that is no longer valid and was not
 	-- expressly removed.
-	if self._jockey_rider and not is_valid (self._jockey_rider) then
+	if self._jockey_rider and not self._jockey_rider:is_valid () then
 		self._jockey_rider = nil
 		self._jockey_staticdata = nil
 		core.log ("warning", "Rider of jockeyed mob "
@@ -445,7 +445,7 @@ function mob_class:on_deactivate (removal)
 		end
 	end
 
-	if self._jockey_rider and is_valid (self._jockey_rider) then
+	if self._jockey_rider and self._jockey_rider:is_valid () then
 		-- Save the rider's staticdata.
 		local entity = self._jockey_rider:get_luaentity ()
 		local staticdata = entity:get_staticdata_table ()
@@ -1175,14 +1175,14 @@ function mob_class:ai_step (dtime)
 	end
 	if self._recent_attacker then
 		self._recent_attacker_age = self._recent_attacker_age + dtime
-		if not is_valid (self._recent_attacker)
+		if not self._recent_attacker:is_valid ()
 			or self._recent_attacker_age > 5 then
 			self._recent_attacker = nil
 			self._recent_attacker_age = 0
 		end
 	end
 	if self._last_attacker then
-		if not is_valid (self._last_attacker) then
+		if not self._last_attacker:is_valid () then
 			self._last_attacker = nil
 		end
 	end
@@ -1205,7 +1205,7 @@ function mob_class:check_avoid (self_pos)
 	if self.avoiding then
 		if self:navigation_finished () then
 			self.avoiding = nil
-		elseif not is_valid (self.avoiding) then
+		elseif not self.avoiding:is_valid () then
 			self.avoiding = nil
 			self:cancel_navigation ()
 			self:halt_in_tracks ()
@@ -1626,7 +1626,7 @@ end
 
 function mob_class:check_schooling (self_pos, dtime)
 	if self._leader then
-		if not is_valid (self._leader) then
+		if not self._leader:is_valid () then
 			self._leader = nil
 			return false
 		end
@@ -1649,7 +1649,7 @@ function mob_class:check_schooling (self_pos, dtime)
 		-- entries from its list of members.
 		local cleaned = {}
 		for _, follower in ipairs (self._school) do
-			if is_valid (follower) then
+			if follower:is_valid () then
 				local entity = follower:get_luaentity ()
 				if entity._leader == self.object then
 					table.insert (cleaned, follower)

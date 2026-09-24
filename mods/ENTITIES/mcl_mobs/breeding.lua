@@ -123,7 +123,7 @@ function mob_class:grow_into_adult ()
 	self._mob_age = 0
 	local visual_size = self.base_size
 	if self.jockey_vehicle
-		and is_valid (self.jockey_vehicle) then
+		and self.jockey_vehicle:is_valid () then
 		local props = self.jockey_vehicle:get_properties ()
 		local vehicle_size = props.visual_size
 		visual_size = {

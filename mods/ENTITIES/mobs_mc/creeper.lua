@@ -95,7 +95,7 @@ function creeper_defs:update_swell ()
 	self:halt_in_tracks ()
 
 	if not self.attack
-		or not is_valid (self.attack)
+		or not self.attack:is_valid ()
 		or self._swell_time <= 0 then
 		self._swell_dir = -1
 	else

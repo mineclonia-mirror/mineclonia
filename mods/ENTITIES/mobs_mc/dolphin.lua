@@ -125,7 +125,7 @@ local function dolphin_swim_with_boat (self, self_pos, dtime)
 	if self._swim_with_driver then
 		local driver = self._swim_with_driver
 		local boat = self._swd_boat
-		if not is_valid (driver) or not is_accelerating (driver)
+		if not driver:is_valid () or not is_accelerating (driver)
 			or driver:get_attach () ~= boat then
 			self._swim_with_driver = nil
 			self:cancel_navigation ()
@@ -168,7 +168,7 @@ local function dolphin_swim_with_boat (self, self_pos, dtime)
 			if entity and (entity.name == "mcl_boats:boat"
 					or entity.name == "mcl_boats:chest_boat") then
 				if entity._driver
-					and is_valid (entity._driver)
+					and entity._driver:is_valid ()
 					and entity._driver:is_player ()
 					and is_accelerating (entity._driver) then
 					driver = entity._driver
@@ -279,7 +279,7 @@ local function dolphin_swim_with_player (self, self_pos, dtime)
 	local player = self._swimming_with
 
 	if player then
-		if not is_valid (player)
+		if not player:is_valid ()
 			or vector.distance (player:get_pos (), self_pos) >= 16
 			or (not mcl_player.players[player].is_swimming
 			    and not mcl_serverplayer.is_swimming (player)) then

@@ -476,7 +476,7 @@ local function wither_strafe_above_target (self, self_pos, dtime)
 		return true
 	elseif ws.wants_to_move
 		and self.attack
-		and is_valid (self.attack) then
+		and self.attack:is_valid () then
 		local target_pos = mcl_attachments.get_attachment_pos (self.attack)
 		local rx, rz = math.random (0, 20) - 10, math.random (0, 20) - 10
 		local dest = vector.offset (target_pos, rx, 0, rz)

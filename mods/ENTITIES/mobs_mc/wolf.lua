@@ -721,7 +721,7 @@ function wolf:get_wolf_owner_assailant ()
 		local source, serial, _ = unpack3 (data or {})
 
 		if serial and serial > self._owner_attacked_serial
-			and is_valid (source)
+			and source:is_valid ()
 			and self:should_attack_owner_assailant_or_target (source) then
 			self._owner_attacked_serial = serial
 			return source
@@ -737,7 +737,7 @@ function wolf:get_wolf_owner_target ()
 		local target, serial, _ = unpack3 (data or {})
 
 		if serial and serial > self._owner_target_serial
-			and is_valid (target)
+			and target:is_valid ()
 			and self:should_attack_owner_assailant_or_target (target) then
 			self._owner_target_serial = serial
 			return target
@@ -792,7 +792,7 @@ end
 local function wolf_check_beg (self, self_pos, dtime)
 	if self._interested_in then
 		local target = self._interested_in
-		if not is_valid (target)
+		if not target:is_valid ()
 			or self.attack or self._avoiding_llama
 			or not self:is_interested_in (target) then
 			self:visually_cancel_interest ()

@@ -343,7 +343,7 @@ function mob_class:check_head_swivel (attach_pos, dtime, clear)
 
 	local locked_object = self._locked_object
 	if locked_object
-		and is_valid (locked_object)
+		and locked_object:is_valid ()
 		and locked_object:get_hp () > 0 then
 		local locked_object_eye_height
 			= mcl_util.target_eye_height (locked_object)

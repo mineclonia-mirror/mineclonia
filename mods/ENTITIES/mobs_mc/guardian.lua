@@ -195,7 +195,7 @@ function guardian:check_head_swivel (attach_pos, dtime, clear)
 	end
 
 	if self._locked_object then
-		if not is_valid (self._locked_object) then
+		if not self._locked_object:is_valid () then
 			self._locked_object = nil
 			return
 		end

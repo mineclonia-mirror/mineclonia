@@ -216,7 +216,7 @@ function axolotl:track_current_target (self_pos, dtime, obj, persistence)
 	-- regeneration and remove mining fatigue.
 	if entity and entity.dead then
 		local attacker = entity._last_attacker
-		if attacker and is_valid (attacker)
+		if attacker and attacker:is_valid ()
 			and attacker:is_player ()
 			and vector.distance (attacker:get_pos (),
 						self.object:get_pos ()) < 20 then
