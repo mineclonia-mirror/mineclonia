@@ -5,6 +5,7 @@ mcl_buttons = {}
 -- Push the button
 function mcl_buttons.push_button(pos, node)
 	local def = core.registered_nodes[node.name]
+	if not def or not def._mcl_button_basename then return end
 	core.set_node(pos, {name="mcl_buttons:button_"..def._mcl_button_basename.."_on", param2=node.param2})
 	core.sound_play(def._mcl_redstone_push_sound, {pos=pos}, true)
 end
@@ -30,8 +31,10 @@ local function on_button_place(itemstack, placer, pointed_thing)
 		local actual = vector.subtract(under, dir)
 		local actualnode = core.get_node(actual)
 		def = core.registered_nodes[actualnode.name]
-		groups = def.groups
+		groups = def and def.groups or nil
 	end
+
+	if not def then return end
 
 	-- Only allow placement on full-cube solid opaque nodes
 	if type(def.placement_prevented) == "function" then
@@ -57,7 +60,7 @@ local function on_button_place(itemstack, placer, pointed_thing)
 	local itemstack, success = core.item_place_node(itemstack, placer, pointed_thing)
 
 	if success then
-		if idef.sounds and idef.sounds.place then
+		if idef and idef.sounds and idef.sounds.place then
 			core.sound_play(idef.sounds.place, {pos=pointed_thing.above, gain=1}, true)
 		end
 	end
