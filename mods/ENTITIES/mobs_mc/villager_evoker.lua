@@ -8,7 +8,6 @@ local mob_class = mcl_mobs.mob_class
 local posing_humanoid = mcl_mobs.posing_humanoid
 local illager = mobs_mc.illager
 local mob_griefing = mobs_mc.is_mob_griefing_enabled("evoker")
-local is_valid = mcl_util.is_valid_objectref
 
 --###################
 --################### EVOKER

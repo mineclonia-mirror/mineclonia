@@ -1,5 +1,4 @@
 local mob_class = mcl_mobs.mob_class
-local is_valid = mcl_util.is_valid_objectref
 local ipairs = ipairs
 local get_attachment_offsets = mcl_attachments.get_attachment_offsets
 

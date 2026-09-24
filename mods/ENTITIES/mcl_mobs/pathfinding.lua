@@ -2,7 +2,6 @@ local mob_class = mcl_mobs.mob_class
 local floor = math.floor
 local ipairs = ipairs
 local luajit_present = core.global_exists ("jit")
-local is_valid = mcl_util.is_valid_objectref
 
 local function shift_up (self, node, idx)
 	local priority = node.priority

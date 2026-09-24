@@ -1,7 +1,6 @@
 local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
 local horse = mobs_mc.horse
-local is_valid = mcl_util.is_valid_objectref
 
 -- table mapping unified color names to non-conforming color names in carpet texture filenames
 local messytextures = {

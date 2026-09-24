@@ -3,7 +3,6 @@ local active_particlespawners = {}
 local enable_blood = core.settings:get_bool("mcl_damage_particles", true)
 local DEFAULT_FALL_SPEED = -9.81*1.5
 
-local is_valid = mcl_util.is_valid_objectref
 local get_attachment_pos = mcl_attachments.get_attachment_pos
 
 local player_transfer_distance = tonumber(core.settings:get("player_transfer_distance")) or 128

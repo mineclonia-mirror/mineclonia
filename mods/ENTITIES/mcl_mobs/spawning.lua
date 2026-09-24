@@ -3,7 +3,6 @@ local ipairs = ipairs
 
 --lua locals
 local mob_class = mcl_mobs.mob_class
-local is_valid = mcl_util.is_valid_objectref
 
 local instant_despawn_range = 128
 local random_despawn_range = 32

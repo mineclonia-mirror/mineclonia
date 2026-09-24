@@ -1,7 +1,6 @@
 local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
 local posing_humanoid = mcl_mobs.posing_humanoid
-local is_valid = mcl_util.is_valid_objectref
 
 ------------------------------------------------------------------------
 -- Abstract piglin.  Models and armor.

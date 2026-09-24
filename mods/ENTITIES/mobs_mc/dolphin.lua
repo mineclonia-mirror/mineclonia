@@ -1,7 +1,6 @@
 local S = core.get_translator(core.get_current_modname())
 
 local mob_class = mcl_mobs.mob_class
-local is_valid = mcl_util.is_valid_objectref
 
 local food_items = {
 	"mcl_fishing:fish_raw",

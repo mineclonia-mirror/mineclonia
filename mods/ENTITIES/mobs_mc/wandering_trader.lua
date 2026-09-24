@@ -2,7 +2,6 @@ local mob_class = mcl_mobs.mob_class
 local modname = core.get_current_modname ()
 local S = core.get_translator (modname)
 local villager_base = mobs_mc.villager_base
-local is_valid = mcl_util.is_valid_objectref
 
 ------------------------------------------------------------------------
 -- Wandering Trader.

@@ -1,6 +1,5 @@
 local S = core.get_translator("mobs_mc")
 local mob_class = mcl_mobs.mob_class
-local is_valid = mcl_util.is_valid_objectref
 
 local function attach_driver(self, clicker)
 	if self:attach (clicker) then

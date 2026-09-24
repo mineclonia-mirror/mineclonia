@@ -1,7 +1,6 @@
 local S = core.get_translator("mobs_mc")
 local mobs_griefing = mobs_mc.is_mob_griefing_enabled("wither")
 local mob_class = mcl_mobs.mob_class
-local is_valid = mcl_util.is_valid_objectref
 
 ------------------------------------------------------------------------
 -- Wither.
