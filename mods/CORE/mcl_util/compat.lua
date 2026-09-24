@@ -19,6 +19,7 @@ end
 -- Polyfills for legacy Luanti
 
 function mcl_util.is_valid_objectref (object)
+	mcl_util.log_deprecated_call("warning", "use the object's `is_valid()` method instead")
 	return object:is_valid ()
 end
 
