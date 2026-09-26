@@ -398,7 +398,7 @@ mcl_shelves.tpl_shelf = {
 	paramtype = "light",
 	selection_box = shelf_box,
 	collision_box = shelf_box,
-	groups = {shelf = 1, deco_block = 1, container = 3, unmovable_by_piston = 1},
+	groups = {shelf = 1, deco_block = 1, container = 2, unmovable_by_piston = 1},
 	on_construct = function(pos)
 		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
