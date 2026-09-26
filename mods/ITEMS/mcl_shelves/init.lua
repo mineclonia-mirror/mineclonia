@@ -21,9 +21,20 @@ local function rotate_dir_90_deg_clockwise(dir)
 	return rotated_dir
 end
 
+-- get the powered shelf variant. substrings are returned variant first, base name second.
+-- get_shelf_variant("mcl_shelves:oak_powered_left") -> "mcl_shelves:oak", "_powered_left"
 local function get_shelf_variant(nodename)
-	local _, _, variant = string.find(nodename, ".*(_powered.*)")
-	return variant
+	local base_name, variant = nodename:match("^(mcl_shelves:.*)(_powered.*)$")
+	if not (base_name and core.get_item_group(base_name, "shelf") > 0) or
+			core.get_item_group(nodename, "shelf") <= 0 then
+		return nil, nil
+	end
+	return variant, base_name
+end
+
+local function swap_shelf_variant(pos, node, variant)
+	local _, base_name = get_shelf_variant(node.name)
+	return core.swap_node(pos, {name = (base_name or node.name) .. variant, param2 = node.param2})
 end
 
 local function clear_shelf_entities(pos)
@@ -143,10 +154,10 @@ local function normal_on_rightclick(pos, node, player, stack, pointed_thing)
 	return shelf_stack
 end
 
-local function powered_on_rightclick(pos, node, player, stack, pointed_thing)
+local function powered_on_rightclick(pos, node, player, stack)
 	if not core.is_player(player) then return end
 
-	local dir = pointed_thing.under - pointed_thing.above
+	local dir = core.facedir_to_dir(node.param2)
 	local perpendicular_dir = rotate_dir_90_deg_clockwise(dir)
 
 	local left_pos = pos + perpendicular_dir
@@ -205,6 +216,24 @@ local function powered_on_rightclick(pos, node, player, stack, pointed_thing)
 		shelf_positions = {pos}
 	end
 
+	local shelf_invs = {}
+	local expected_variants = ({
+		{"_powered"},
+		{"_powered_right", "_powered_left"},
+		{"_powered_right", "_powered_center", "_powered_left"},
+	})[#shelf_positions]
+	for i, shelf_pos in ipairs(shelf_positions) do
+		local shelf_node = core.get_node(shelf_pos)
+		local inv = core.get_inventory({type = "node", pos = shelf_pos})
+		if shelf_node.param2 ~= node.param2 or
+				get_shelf_variant(shelf_node.name) ~= expected_variants[i] or
+				not inv or inv:get_size("main") ~= 3 then
+			core.log("error", "Invalid shelf configuration")
+			return
+		end
+		shelf_invs[i] = inv
+	end
+
 	local player_name = player:get_player_name()
 	for _, shelf_pos in ipairs(shelf_positions) do
 		if core.is_protected(shelf_pos, player_name) then
@@ -227,7 +256,7 @@ local function powered_on_rightclick(pos, node, player, stack, pointed_thing)
 				set_shelf_entities(shelf_positions[(i / 3)], shelf_inv)
 				mcl_redstone.update_comparators(shelf_positions[(i / 3)])
 			end
-			shelf_inv = core.get_inventory({type = "node", pos = shelf_positions[(i / 3) + 1]})
+			shelf_inv = shelf_invs[(i / 3) + 1]
 		end
 
 		local shelf_inv_slot = 3 - (i % 3)
@@ -253,9 +282,11 @@ end
 -- I don't like this function...
 local function propagate_redstone_update(pos)
 	local node = core.get_node(pos)
-	local root_name = string.gsub(node.name, "_powered.*", "")
-
-	if core.get_item_group(root_name, "shelf") <= 0 then return end
+	if not get_shelf_variant(node.name) and
+			-- unpowered shelf; check manually
+			(not node.name:match("^mcl_shelves:") or core.get_item_group(node.name, "shelf") <= 0) then
+		return
+	end
 
 	local connect_left = false
 	local connect_right = false
@@ -276,9 +307,9 @@ local function propagate_redstone_update(pos)
 		local node_left_2_variant = get_shelf_variant(node_left_2.name)
 
 		if node_left_2_variant == "_powered_left" and node.param2 == node_left_2.param2 then
-			core.swap_node(pos_left_2, {name = root_name .. "_powered_left", param2 = node.param2})
-			core.swap_node(pos_left_1, {name = root_name .. "_powered_center", param2 = node.param2})
-			core.swap_node(pos,        {name = root_name .. "_powered_right", param2 = node.param2})
+			swap_shelf_variant(pos_left_2, node_left_2, "_powered_left")
+			swap_shelf_variant(pos_left_1, node_left_1, "_powered_center")
+			swap_shelf_variant(pos, node, "_powered_right")
 			return
 		end
 	end
@@ -290,9 +321,9 @@ local function propagate_redstone_update(pos)
 	if (node_right_1_variant == "_powered" or node_right_1_variant == "_powered_right") and
 			node.param2 == node_right_1.param2 then
 		if connect_left then
-			core.swap_node(pos_left_1,  {name = root_name .. "_powered_left", param2 = node.param2})
-			core.swap_node(pos,         {name = root_name .. "_powered_center", param2 = node.param2})
-			core.swap_node(pos_right_1, {name = root_name .. "_powered_right", param2 = node.param2})
+			swap_shelf_variant(pos_left_1, node_left_1, "_powered_left")
+			swap_shelf_variant(pos, node, "_powered_center")
+			swap_shelf_variant(pos_right_1, node_right_1, "_powered_right")
 			return
 		end
 
@@ -303,23 +334,23 @@ local function propagate_redstone_update(pos)
 		local node_right_2_variant = get_shelf_variant(node_right_2.name)
 
 		if node_right_2_variant == "_powered_right" and node.param2 == node_right_2.param2 then
-			core.swap_node(pos,         {name = root_name .. "_powered_left", param2 = node.param2})
-			core.swap_node(pos_right_1, {name = root_name .. "_powered_center", param2 = node.param2})
-			core.swap_node(pos_right_2, {name = root_name .. "_powered_right", param2 = node.param2})
+			swap_shelf_variant(pos, node, "_powered_left")
+			swap_shelf_variant(pos_right_1, node_right_1, "_powered_center")
+			swap_shelf_variant(pos_right_2, node_right_2, "_powered_right")
 			return
 		end
 	end
 
 	if connect_left then
-		core.swap_node(pos,        {name = root_name .. "_powered_right", param2 = node.param2})
-		core.swap_node(pos_left_1, {name = root_name .. "_powered_left",  param2 = node.param2})
+		swap_shelf_variant(pos, node, "_powered_right")
+		swap_shelf_variant(pos_left_1, node_left_1, "_powered_left")
 		return
 	elseif connect_right then
-		core.swap_node(pos,         {name = root_name .. "_powered_left",  param2 = node.param2})
-		core.swap_node(pos_right_1, {name = root_name .. "_powered_right", param2 = node.param2})
+		swap_shelf_variant(pos, node, "_powered_left")
+		swap_shelf_variant(pos_right_1, node_right_1, "_powered_right")
 		return
 	else
-		core.swap_node(pos, {name = root_name .. "_powered", param2 = node.param2})
+		swap_shelf_variant(pos, node, "_powered")
 		return
 	end
 end
