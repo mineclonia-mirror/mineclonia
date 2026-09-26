@@ -123,6 +123,12 @@ local function normal_on_rightclick(pos, node, player, stack, pointed_thing)
 
 	local slot = (from_left >= 0.15 and 1) or (from_left <= -0.15 and 3) or 2
 
+	local player_name = player:get_player_name()
+	if core.is_protected(pos, player_name) then
+		core.record_protection_violation(pos, player_name)
+		return
+	end
+
 	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 
@@ -197,6 +203,14 @@ local function powered_on_rightclick(pos, node, player, stack, pointed_thing)
 		}
 	else
 		shelf_positions = {pos}
+	end
+
+	local player_name = player:get_player_name()
+	for _, shelf_pos in ipairs(shelf_positions) do
+		if core.is_protected(shelf_pos, player_name) then
+			core.record_protection_violation(shelf_pos, player_name)
+			return
+		end
 	end
 
 	local player_inv = player:get_inventory()
