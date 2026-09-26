@@ -176,6 +176,11 @@ core.register_craftitem("mcl_paintings:painting", {
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type ~= "node" then return itemstack end
 
+		if core.is_protected(pointed_thing.above, placer:get_player_name()) then
+			core.record_protection_violation(pointed_thing.above, placer:get_player_name())
+			return itemstack
+		end
+
 		local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
 		if rc then return rc end
 
