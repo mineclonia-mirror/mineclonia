@@ -159,6 +159,11 @@ local function on_dripstone_place(itemstack, player, pointed_thing)
 	if rc then return rc end
 	if pointed_thing.type ~= "node" then return itemstack end
 
+	if core.is_protected(pointed_thing.above, player:get_player_name()) then
+		core.record_protection_violation(pointed_thing.above, player:get_player_name())
+		return itemstack
+	end
+
 	local under_node = core.get_node(pointed_thing.under)
 
 	if core.get_item_group(under_node.name, "solid") == 0 and core.get_item_group(under_node.name, "dripstone_stage") == 0 then return itemstack end
