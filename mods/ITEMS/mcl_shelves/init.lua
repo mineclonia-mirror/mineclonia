@@ -1,10 +1,5 @@
 mcl_shelves = {}
 
-local item_entity_offsets = {
-	vector.new(-0.3, 0, 0.3),
-	vector.new( 0.0, 0, 0.3),
-	vector.new( 0.3, 0, 0.3),
-}
 local shelf_item_entities = {}
 
 local function rotate_dir_90_deg_clockwise(dir)
@@ -51,25 +46,16 @@ end
 
 local function initalize_shelf(pos, inv)
 	local node = core.get_node(pos)
-
-	local rotation
-	if node.param2 == 0 then
-		rotation = 0
-	elseif node.param2 == 1 then
-		rotation = math.pi / 2
-	elseif node.param2 == 2 then
-		rotation = math.pi
-	else -- node.param2 == 3
-		rotation = math.pi * 3/2
-	end
+	local dir = core.fourdir_to_dir(node.param2)
+	local rot_dir = rotate_dir_90_deg_clockwise(dir)
 
 	local objects = {}
 	for i = 1, 3 do
 		local obj = core.add_entity(
-			pos + vector.rotate_around_axis(item_entity_offsets[i], vector.new(0, -1, 0), rotation),
+			pos + dir * 0.25 + rot_dir * ((2 - i) * 0.3),
 			"mcl_shelves:item_entity"
 		)
-		obj:set_yaw(rotation)
+		obj:set_rotation(vector.dir_to_rotation(dir))
 
 		local stack_name = inv:get_stack("main", i):get_name()
 		if stack_name == "" then
