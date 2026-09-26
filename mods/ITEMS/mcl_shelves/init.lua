@@ -448,6 +448,9 @@ core.register_entity("mcl_shelves:item_entity", {
 		textures = {"blank.png"},
 	},
 	_mcl_pistons_unmovable = true,
+	on_activate = function(self)
+		self.object:set_armor_groups({immortal = 1})
+	end,
 	get_staticdata = function(self)
 		if not self.about_to_be_removed then
 			clear_shelf_entities(vector.round(self.object:get_pos()))
