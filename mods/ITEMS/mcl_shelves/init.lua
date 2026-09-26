@@ -1,6 +1,5 @@
 mcl_shelves = {}
 
-local PLAYER_REACH = 8
 local item_entity_offsets = {
 	vector.new(-0.3, 0, 0.3),
 	vector.new( 0.0, 0, 0.3),
@@ -111,19 +110,14 @@ local function set_shelf_entities(pos, inv)
 	end
 end
 
-local function normal_on_rightclick(pos, node, player, stack, pointed_thing)
+local function normal_on_rightclick(pos, node, player, stack)
 	if not core.is_player(player) then return end
 
-	local dir = pointed_thing.under - pointed_thing.above
+	local dir = core.facedir_to_dir(node.param2)
 	local perpendicular_dir = rotate_dir_90_deg_clockwise(dir)
-	local player_pos = vector.offset(player:get_pos(), 0, 1.5, 0)
-	local look_dir = player:get_look_dir()
-	local ray_end = player_pos + vector.multiply(look_dir, PLAYER_REACH)
-
-	local ray = core.raycast(player_pos, ray_end, false, false)
-
-	local ray_pointed_thing = ray:next()
-	if ray_pointed_thing.type ~= "node" or not vector.equals(ray_pointed_thing.under, pos) then
+	local ray_pointed_thing = mcl_util.get_pointed_thing(player, false, false)
+	if not ray_pointed_thing or ray_pointed_thing.type ~= "node" or
+			not vector.equals(ray_pointed_thing.under, pos) then
 		return
 	end
 
