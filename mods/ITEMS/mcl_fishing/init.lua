@@ -23,9 +23,8 @@ mcl_fishing.loot_junk = {
 	{ itemstring = "mcl_mobitems:string", weight = 10 }, -- TODO: Tripwire Hook
 }
 
-mcl_fishing.loot_junk_jungle = table.merge(mcl_fishing.loot_junk, {
-	{ itemstring = "mcl_bamboo:bamboo", weight = 10 },
-})
+mcl_fishing.loot_junk_jungle = table.copy(mcl_fishing.loot_junk)
+table.insert(mcl_fishing.loot_junk_jungle, { itemstring = "mcl_bamboo:bamboo", weight = 10 })
 
 mcl_fishing.loot_treasure = {
 	{ itemstring = "mcl_bows:bow", wear_min = 49144, wear_max = 65535, func = function(stack, pr)
