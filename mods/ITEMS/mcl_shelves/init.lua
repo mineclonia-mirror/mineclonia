@@ -99,7 +99,7 @@ end
 local function normal_on_rightclick(pos, node, player, stack)
 	if not core.is_player(player) then return end
 
-	local dir = core.facedir_to_dir(node.param2)
+	local dir = core.fourdir_to_dir(node.param2)
 	local perpendicular_dir = rotate_dir_90_deg_clockwise(dir)
 	local ray_pointed_thing = mcl_util.get_pointed_thing(player, false, false)
 	if not ray_pointed_thing or ray_pointed_thing.type ~= "node" or
@@ -137,7 +137,7 @@ end
 local function powered_on_rightclick(pos, node, player, stack)
 	if not core.is_player(player) then return end
 
-	local dir = core.facedir_to_dir(node.param2)
+	local dir = core.fourdir_to_dir(node.param2)
 	local perpendicular_dir = rotate_dir_90_deg_clockwise(dir)
 
 	local left_pos = pos + perpendicular_dir
@@ -271,7 +271,7 @@ local function propagate_redstone_update(pos)
 	local connect_left = false
 	local connect_right = false
 
-	local dir = core.facedir_to_dir(node.param2)
+	local dir = core.fourdir_to_dir(node.param2)
 	local perpendicular_dir = rotate_dir_90_deg_clockwise(dir)
 
 	local pos_left_1 = pos + perpendicular_dir
@@ -342,7 +342,7 @@ local function propagate_redstone_removal(pos)
 
 	core.swap_node(pos, {name = root_name, param2 = node.param2})
 
-	local dir = core.facedir_to_dir(node.param2)
+	local dir = core.fourdir_to_dir(node.param2)
 	local perpendicular_dir = rotate_dir_90_deg_clockwise(dir)
 
 	if node_variant == "_powered_left" then
