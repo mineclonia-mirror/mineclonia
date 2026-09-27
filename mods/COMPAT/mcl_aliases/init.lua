@@ -55,6 +55,7 @@ for _, name in ipairs({
 	"mcl_walls",
 	"mcl_wool",
 	"mclx_fences",
+	"mesecons",
 	"screwdriver",
 }) do
 	dofile(modpath .. "/" .. name .. ".lua")

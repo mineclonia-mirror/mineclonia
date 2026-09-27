@@ -28,3 +28,11 @@ end
 
 core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_on","mcl_pressureplates:pressure_plate_cherry_blossom_on")
 core.register_alias("mcl_cherry_blossom:pressure_plate_cherrywood_off","mcl_pressureplates:pressure_plate_cherry_blossom_off")
+
+core.register_alias("mesecons:pressure_plate_acaciawood", "mcl_pressureplates:pressure_plate_acacia_off")
+core.register_alias("mesecons:pressure_plate_birchwood", "mcl_pressureplates:pressure_plate_birch_off")
+core.register_alias("mesecons:pressure_plate_darkwood", "mcl_pressureplates:pressure_plate_dark_oak_off")
+core.register_alias("mesecons:pressure_plate_junglewood", "mcl_pressureplates:pressure_plate_jungle_off")
+core.register_alias("mesecons:pressure_plate_sprucewood", "mcl_pressureplates:pressure_plate_spruce_off")
+core.register_alias("mesecons:pressure_plate_stone", "mcl_pressureplates:pressure_plate_stone_off")
+core.register_alias("mesecons:pressure_plate_wood", "mcl_pressureplates:pressure_plate_oak_off")
