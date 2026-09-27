@@ -13,6 +13,7 @@ for _, name in ipairs({
 	"mcl_buckets",
 	"mcl_buttons",
 	"mcl_clock",
+	"mcl_commandblock",
 	"mcl_compass",
 	"mcl_copper",
 	"mcl_core",
