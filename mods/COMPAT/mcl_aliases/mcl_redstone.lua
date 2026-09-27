@@ -1,8 +1,6 @@
 -- This file registers aliases for the /give /giveme commands.
 
 -- From before redstone rewrite
-core.register_alias("mesecons_commandblock:commandblock_off", "mcl_commandblock:commandblock_off")
-core.register_alias("mesecons_commandblock:commandblock_on", "mcl_commandblock:commandblock_on")
 core.register_alias("mesecons_delayer:delayer_off_1", "mcl_repeaters:repeater_off_1")
 core.register_alias("mesecons_delayer:delayer_off_2", "mcl_repeaters:repeater_off_2")
 core.register_alias("mesecons_delayer:delayer_off_3", "mcl_repeaters:repeater_off_3")
