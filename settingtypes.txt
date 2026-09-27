@@ -200,17 +200,23 @@ enable_real_maps (Real maps) bool true
 # by editing map_meta.txt.
 mcl_use_old_map_grid (Use old map grid) bool false
 
-# Enable minimap-style shading in cartography.
+# Controls the preferred way in which handheld maps are drawn. Before toggling
+# this on an existing world, note that the only maps created before this setting
+# changes are those that have been locked by Mineclonia (on legacy map
+# conversion) or by a player on a cartography table; all others will be redrawn
+# on update.
 #
-# If enabled, shading of pixels in maps will be performed with
-# reference to the normal of the surface at each position, rather than
-# the difference between the height of the node at such position and
-# the position above, as in Minecraft.
-#
-# Enabling this option produces maps where large or tall terrain
-# features are more legible, and which are more visually akin to the
-# built-in minimap.
-mcl_enable_minimap_map_shading (Use minimap-style shading in maps) bool false
+# Available algorithms:
+# - legacy: Uses height-based shading for maps, similar to how it was done
+#   before the cartography update. Not guaranteed to produce maps that look
+#   identical to ones drawn in previous versions since transparency is ignored.
+# - minecraft (default): Simulates the MC staircase shading for maps. Palette is
+#   specific to Mineclonia textures, and foliage is drawn biome-colored unlike
+#   MC, but MC mapart techniques should still be applicable.
+# - minimap: Shades maps in a way similar to the built-in Luanti HUD minimap.
+#   Large and tall terrain is more legible than it is with other algorithms, but
+#   mapart capabilities are worse due to applied smoothing.
+mcl_maps_shading_algorithm (Shading algorithm used for maps) enum minecraft legacy,minecraft,minimap
 
 # Place bonus chest near players' initial spawn point
 mcl_bonus_chest (Bonus chest) bool false

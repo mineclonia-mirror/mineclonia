@@ -44,8 +44,7 @@ local texture_colors = load_json_file ("colors")
 
 local enable_real_maps
 	= core.settings:get_bool ("enable_real_maps", true)
-local enable_minimap_shading
-	= core.settings:get_bool ("mcl_enable_minimap_map_shading", false)
+local shading_option = core.settings:get ("mcl_maps_shading_algorithm")
 
 ------------------------------------------------------------------------
 -- Dynamically updated maps.
@@ -204,7 +203,15 @@ local function produce_rgb_turn (map, z1, base_first, base, base_next,
 		local rgb = get_rgb (cid, param2)
 		if rgb then
 			local rv
-			if enable_minimap_shading then
+			if shading_option == "legacy" then
+				-- Match the height difference and channel clipping from the old map renderer.
+				local dheight = mathmin (mathmax ((current - heightmap[base_first + i]) * 8, -32), 32)
+				local r = mathmin (255, mathmax (0, band (rshift (rgb, 16), 0xff) + dheight))
+				local g = mathmin (255, mathmax (0, band (rshift (rgb, 8), 0xff) + dheight))
+				local b = mathmin (255, mathmax (0, band (rgb, 0xff) + dheight))
+				rgb = encode_rgb (r, g, b)
+				rv = 256
+			elseif shading_option == "minimap" then
 				-- Central differencing.
 				local t = heightmap[base_next + i]
 				local b = heightmap[base_first + i]
@@ -222,7 +229,7 @@ local function produce_rgb_turn (map, z1, base_first, base, base_next,
 				-- Relief value.
 				local f = p * 1 / mathsqrt (x * x + y * y + z * z)
 				rv = 192 + floor (64.0 * f)
-			else
+			else -- shading_option == "minecraft"
 				local t = heightmap[base_next + i]
 				local b = heightmap[base + i]
 				local d = (b - t) * map_r
