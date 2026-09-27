@@ -3,3 +3,6 @@ core.register_alias("mobs_mc:gold_horse_armor", "mcl_mobitems:gold_horse_armor")
 core.register_alias("mobs_mc:diamond_horse_armor", "mcl_mobitems:diamond_horse_armor")
 core.register_alias("mobs:nametag", "mcl_mobitems:nametag")
 core.register_alias("mcl_mobs:nametag", "mcl_mobitems:nametag")
+
+--MineClone 2 specials
+core.register_alias("mesecons_materials:glue", "mcl_mobitems:slimeball")

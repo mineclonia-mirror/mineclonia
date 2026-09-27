@@ -191,6 +191,3 @@ core.register_alias("mesecons_pistons:piston_up_normal", "mesecons_pistons:pisto
 core.register_alias("mesecons_pistons:piston_down_normal", "mesecons_pistons:piston_down_normal_on")
 core.register_alias("mesecons_pistons:piston_up_sticky", "mesecons_pistons:piston_up_sticky_on")
 core.register_alias("mesecons_pistons:piston_down_sticky", "mesecons_pistons:piston_down_sticky_on")
-
---MineClone 2 specials
-core.register_alias("mesecons_materials:glue", "mcl_mobitems:slimeball")
