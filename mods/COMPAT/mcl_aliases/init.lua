@@ -36,6 +36,7 @@ for _, name in ipairs({
 	"mcl_mobitems",
 	"mcl_monster_eggs",
 	"mcl_mushrooms",
+	"mcl_noteblock",
 	"mcl_panes",
 	"mcl_pistons",
 	"mcl_pressureplates",
