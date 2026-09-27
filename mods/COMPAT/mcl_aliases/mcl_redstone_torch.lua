@@ -6,3 +6,6 @@ core.register_alias("mesecons_torch:mesecon_torch_overheated", "mcl_redstone_tor
 core.register_alias("mesecons_torch:mesecon_torch_overheated_wall", "mcl_redstone_torch:redstone_torch_off_wall")
 
 core.register_alias("mesecons_torch:redstoneblock", "mcl_redstone_torch:redstoneblock")
+
+core.register_alias("mesecons:torch", "mcl_redstone_torch:redstone_torch_on")
+core.register_alias("mesecons:mesecon_torch", "mcl_redstone_torch:redstone_torch_on")
