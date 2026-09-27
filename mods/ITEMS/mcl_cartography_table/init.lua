@@ -156,17 +156,19 @@ core.register_on_leaveplayer(function(player)
 	player:get_inventory():set_stack("cartography_table_output", 1, ItemStack())
 end)
 
-local function remove_from_input(player, inventory, count)
+local function remove_from_input(player, inventory)
 	local astack = inventory:get_stack("cartography_table_input", 1)
 	if astack then
-		astack:set_count(math.max(0, astack:get_count() - count))
+		astack:set_count(math.max(0, astack:get_count() - 1))
 		inventory:set_stack("cartography_table_input", 1, astack)
 	end
 	local bstack = inventory:get_stack("cartography_table_input", 2)
 	if bstack then
-		bstack:set_count(math.max(0, bstack:get_count() - count))
+		bstack:set_count(math.max(0, bstack:get_count() - 1))
 		inventory:set_stack("cartography_table_input", 2, bstack)
 	end
+	-- Preserve the second output when a map is copied and only one map is taken.
+	mcl_util.move_player_list(player, "cartography_table_output")
 end
 
 core.register_allow_player_inventory_action(function(player, action, inventory, inventory_info)
@@ -259,7 +261,7 @@ end)
 core.register_on_player_inventory_action(function(player, action, inventory, inventory_info)
 	if action == "move" then
 		if inventory_info.from_list == "cartography_table_output" then
-			remove_from_input(player, inventory, inventory_info.count)
+			remove_from_input(player, inventory)
 		end
 		if inventory_info.to_list == "cartography_table_input"
 			or inventory_info.from_list == "cartography_table_input" then
@@ -288,7 +290,7 @@ core.register_on_player_inventory_action(function(player, action, inventory, inv
 		end
 	elseif action == "take" then
 		if inventory_info.listname == "cartography_table_output" then
-			remove_from_input(player, inventory, inventory_info.stack:get_count())
+			remove_from_input(player, inventory)
 		end
 	end
 end)
