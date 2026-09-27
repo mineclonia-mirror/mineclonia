@@ -33,15 +33,14 @@ end
 
 local function clear_shelf_entities(pos)
 	local hash = core.hash_node_position(pos)
-	local objects = shelf_item_entities[hash] or {}
-
-	for _, obj in pairs(objects) do
+	for _, obj in ipairs(shelf_item_entities[hash] or {}) do
 		if obj:is_valid() then
 			local l = obj:get_luaentity()
 			l.about_to_be_removed = true
 			obj:remove()
 		end
 	end
+	shelf_item_entities[hash] = nil
 end
 
 local function initalize_shelf(pos, inv)
