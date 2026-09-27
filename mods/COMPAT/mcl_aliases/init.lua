@@ -40,6 +40,7 @@ for _, name in ipairs({
 	"mcl_pistons",
 	"mcl_pressureplates",
 	"mcl_redstone",
+	"mcl_repeaters",
 	"mcl_signs",
 	"mcl_stairs",
 	"mcl_tools",

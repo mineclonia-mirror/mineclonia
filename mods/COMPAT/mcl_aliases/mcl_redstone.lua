@@ -1,16 +1,6 @@
 -- This file registers aliases for the /give /giveme commands.
 
 -- From before redstone rewrite
-core.register_alias("mesecons_delayer:delayer_off_1", "mcl_repeaters:repeater_off_1")
-core.register_alias("mesecons_delayer:delayer_off_2", "mcl_repeaters:repeater_off_2")
-core.register_alias("mesecons_delayer:delayer_off_3", "mcl_repeaters:repeater_off_3")
-core.register_alias("mesecons_delayer:delayer_off_4", "mcl_repeaters:repeater_off_4")
-core.register_alias("mesecons_delayer:delayer_off_locked", "mcl_repeaters:repeater_off_locked")
-core.register_alias("mesecons_delayer:delayer_on_1", "mcl_repeaters:repeater_on_1")
-core.register_alias("mesecons_delayer:delayer_on_2", "mcl_repeaters:repeater_on_2")
-core.register_alias("mesecons_delayer:delayer_on_3", "mcl_repeaters:repeater_on_3")
-core.register_alias("mesecons_delayer:delayer_on_4", "mcl_repeaters:repeater_on_4")
-core.register_alias("mesecons_delayer:delayer_on_locked", "mcl_repeaters:repeater_on_locked")
 core.register_alias("mesecons_lightstone:lightstone_off", "mcl_redstone_lamp:lamp_off")
 core.register_alias("mesecons_lightstone:lightstone_on", "mcl_redstone_lamp:lamp_on")
 core.register_alias("mesecons_noteblock:noteblock", "mcl_noteblock:noteblock")
