@@ -1060,57 +1060,71 @@ end
 -- Raid event initiation.
 ------------------------------------------------------------------------
 
-mcl_player.register_globalstep_slow (function (player, _)
-	local level = mcl_potions.get_effect_level (player, "bad_omen")
+function mcl_raids.start_raid(player)
+	local pos = player:get_pos()
+	local nodepos = mcl_util.get_nodepos(pos)
+	local dim = mcl_worlds.pos_to_dimension(pos)
 
-	if level == 0 then
-		return
-	end
-
-	local pos = player:get_pos ()
-	local nodepos = mcl_util.get_nodepos (pos)
-	local dim = mcl_worlds.pos_to_dimension (pos)
-
-	-- Raids cannot spawn in the Nether.
 	if dim == "nether" then
 		return
 	end
 
-	-- Locate nearby village centers.
-	local pois = mcl_villages.pois_in_radius (nodepos, 64.0,
-						  nil, nil)
+	local pois = mcl_villages.pois_in_radius(nodepos, 64.0)
+
 	if #pois == 0 then
 		return
 	end
 
-	-- Derive a focal point for the raid.
 	local x, y, z = 0, 0, 0
-	for _, poi in pairs (pois) do
+
+	for _, poi in pairs(pois) do
 		x = x + poi.min.x
 		y = y + poi.min.y
 		z = z + poi.min.z
 	end
-	local r = 1.0 / #pois
-	x = x * r
-	y = y * r
-	z = z * r
-	local center = vector.new (x, y, z)
 
-	-- Attempt to locate an ongoing raid.
-	local raid = find_active_raid (center)
+	local r = 1.0 / #pois
+	local center = vector.new(x * r, y * r, z * r)
+	local raid = find_active_raid(center)
+	local meta = player:get_meta()
+	local level = meta:get_int("mcl_potions:raid_omen_level")
+
 	if raid then
 		local level = raid.bad_omen_level + level
-		raid.bad_omen_level = math.min (5, level)
-		mcl_potions.clear_effect (player, "bad_omen")
+
+		raid.bad_omen_level = math.min(level, 5)
+		meta:set_int("mcl_potions:raid_omen_level", 0)
+
 		return
 	end
 
-	-- Start a new raid.
-	local uuid, _ = register_raid (level, center)
-	core.log ("action", table.concat ({
+	local uuid, _ = register_raid(level, center)
+
+	core.log("action", table.concat({
 		"Initializing raid ", uuid,
-		" at level ", tostring (level),
-		" and position ", vector.to_string (center),
+		" at level ", tostring(level),
+		" and position ", vector.to_string(center)
 	}))
-	mcl_potions.clear_effect (player, "bad_omen")
+
+	meta:set_int("mcl_potions:raid_omen_level", 0)
+end
+
+mcl_player.register_globalstep_slow(function (player, _)
+	local pos = player:get_pos()
+	local nodepos = mcl_util.get_nodepos(pos)
+	local level = mcl_potions.get_effect_level(player, "bad_omen")
+
+	if level == 0 or mcl_vars.difficulty == 0 then
+		return
+	end
+
+	local pois = mcl_villages.pois_in_radius(nodepos, 64.0)
+
+	if #pois == 0 then
+		return
+	end
+
+	player:get_meta():set_int("mcl_potions:raid_omen_level", level)
+	mcl_potions.clear_effect(player, "bad_omen")
+	mcl_potions.give_effect_by_level("raid_omen", player, level, 30)
 end)

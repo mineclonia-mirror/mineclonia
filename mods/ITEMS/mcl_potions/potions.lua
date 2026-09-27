@@ -329,6 +329,60 @@ core.register_craftitem("mcl_potions:dragon_breath", {
 	groups = { brewitem = 1, bottle = 1, rarity = 1 },
 })
 
+core.register_craftitem("mcl_potions:ominous", {
+	description = S("Ominous Bottle"),
+	groups = {brewitem = 1, food = 3, can_eat_when_full = 1, _mcl_potion = 1, potion = 1, rarity = 1},
+	_doc_items_longdesc = S("Attracts danger."),
+	inventory_image = "mcl_potions_ominous_potion.png",
+	_mcl_eat_effect = function(itemstack, player)
+		local meta = itemstack:get_meta()
+		local potency = meta:get_int("mcl_potions:potion_potent")
+		local level = meta:get_int("mcl_potions:bad_omen_level")
+
+		if level == 0 then
+			if potency > 0 then
+				level = potency + 1
+			else
+				level = 1
+			end
+		end
+
+		mcl_potions.give_effect_by_level("bad_omen", player, level, 6000)
+	end,
+	_get_all_virtual_items = function()
+		local output = {brew = {}}
+
+		for i = 2, 5 do
+			local stack = ItemStack("mcl_potions:ominous")
+			stack:get_meta():set_int("mcl_potions:bad_omen_level", i)
+			tt.reload_itemstack_description(stack)
+			table.insert(output.brew, stack:to_string())
+		end
+
+		return output
+	end,
+})
+
+tt.register_snippet(function(itemstring, _, itemstack)
+	if itemstring ~= "mcl_potions:ominous" or not itemstack then
+		return
+	end
+
+	local meta = itemstack:get_meta()
+	local potency = meta:get_int("mcl_potions:potion_potent")
+	local level = meta:get_int("mcl_potions:bad_omen_level")
+
+	if level == 0 then
+		if potency > 0 then
+			level = potency + 1
+		else
+			level = 1
+		end
+	end
+
+	return core.colorize(mcl_colors.BLUE, S("Bad Omen @1: 1:40:00", mcl_util.to_roman(level)))
+end)
+
 mcl_potions.register_potion({
 	name = "awkward",
 	desc_prefix = "Awkward",
@@ -586,22 +640,6 @@ mcl_potions.register_potion({
 	},
 	has_arrow = true,
 	nocreative = true,
-})
-
-mcl_potions.register_potion({
-	name = "ominous",
-	desc_whole = "Ominous Bottle",
-	groups = {brewitem=1, food=3, can_eat_when_full=1,
-	_mcl_potion=1, potion = 1, rarity = 1},
-	_tt = nil,
-	_longdesc = S("Attracts danger."),
-	image = "mcl_potions_ominous_potion.png",
-	_effect_list = {
-		bad_omen = {dur = 6000, dur_variable = false,},
-	},
-	has_splash = false,
-	has_lingering = false,
-	vanishing = true,
 })
 
 mcl_potions.register_potion({
