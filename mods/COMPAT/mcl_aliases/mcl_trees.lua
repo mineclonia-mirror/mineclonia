@@ -1,94 +1,62 @@
-core.register_alias("mcl_core:birchtree","mcl_trees:tree_birch")
-core.register_alias("mcl_core:darktree","mcl_trees:tree_dark_oak")
-core.register_alias("mcl_core:acaciatree","mcl_trees:tree_acacia")
-core.register_alias("mcl_core:jungletree","mcl_trees:tree_jungle")
-core.register_alias("mcl_core:sprucetree","mcl_trees:tree_spruce")
-core.register_alias("mcl_core:tree","mcl_trees:tree_oak")
-core.register_alias("default:tree","mcl_trees:tree_oak")
-core.register_alias("mcl_mangrove:mangrove_tree","mcl_trees:tree_mangrove")
-core.register_alias("mcl_crimson:crimson_hyphae","mcl_trees:tree_crimson")
-core.register_alias("mcl_crimson:warped_hyphae","mcl_trees:tree_warped")
-core.register_alias("mcl_bamboo:bamboo_block","mcl_trees:tree_bamboo")
-core.register_alias("mcl_cherry_blossom:cherrytree","mcl_trees:tree_cherry_blossom")
+local trees = {
+	["oak"] =		{"mcl_core:",		"",		"oak"},
+	["acacia"] =		{"mcl_core:",		"acacia"},
+	["birch"] =		{"mcl_core:",		"birch"},
+	["dark_oak"] =		{"mcl_core:",		"dark",		"dark_oak"},
+	["jungle"] =		{"mcl_core:",		"jungle"},
+	["spruce"] =		{"mcl_core:",		"spruce"},
+	["cherry_blossom"] =	{"mcl_cherry_blossom:",	"cherry",	"cherrytree"},
+}
 
-core.register_alias("mcl_core:birchleaves","mcl_trees:leaves_birch")
-core.register_alias("mcl_core:darkleaves","mcl_trees:leaves_dark_oak")
-core.register_alias("mcl_core:acacialeaves","mcl_trees:leaves_acacia")
-core.register_alias("mcl_core:jungleleaves","mcl_trees:leaves_jungle")
-core.register_alias("mcl_core:spruceleaves","mcl_trees:leaves_spruce")
-core.register_alias("mcl_core:leaves","mcl_trees:leaves_oak")
-core.register_alias("default:leaves","mcl_trees:leaves_oak")
-core.register_alias("mcl_mangrove:mangroveleaves","mcl_trees:leaves_mangrove")
-core.register_alias("mcl_cherry_blossom:cherryleaves","mcl_trees:leaves_cherry_blossom")
-core.register_alias("default:acacia_tree", "mcl_core:acaciatree")
-core.register_alias("default:acacia_leaves", "mcl_core:acacialeaves")
+for t, n in pairs(trees) do
+	core.register_alias(n[1]..n[2].."sapling","mcl_trees:sapling_"..t)
+	core.register_alias(n[1]..n[2].."leaves","mcl_trees:leaves_"..t)
+	core.register_alias(n[1]..n[2].."leaves_orphan","mcl_trees:leaves_"..t.."_orphan")
+	core.register_alias(n[1]..n[2].."wood","mcl_trees:wood_"..t)
+	core.register_alias(n[1]..n[2].."tree","mcl_trees:tree_"..t)
+	core.register_alias(n[1]..n[2].."tree".."_bark","mcl_trees:bark_"..t)
+	core.register_alias(n[1].."stripped_"..(n[3] or n[2]),"mcl_trees:stripped_"..t)
+	core.register_alias(n[1].."stripped_"..(n[3] or n[2]).."_bark","mcl_trees:bark_stripped_"..t)
+end
 
-core.register_alias("mcl_core:birchleaves_orphan","mcl_trees:leaves_birch_orphan")
-core.register_alias("mcl_core:darkleaves_orphan","mcl_trees:leaves_dark_oak_orphan")
-core.register_alias("mcl_core:acacialeaves_orphan","mcl_trees:leaves_acacia_orphan")
-core.register_alias("mcl_core:jungleleaves_orphan","mcl_trees:leaves_jungle_orphan")
-core.register_alias("mcl_core:spruceleaves_orphan","mcl_trees:leaves_spruce_orphan")
-core.register_alias("mcl_core:leaves_orphan","mcl_trees:leaves_oak_orphan")
-core.register_alias("mcl_mangrove:mangroveleaves_orphan","mcl_trees:leaves_mangrove_orphan")
-
-core.register_alias("mcl_core:birchwood","mcl_trees:wood_birch")
-core.register_alias("mcl_core:big_oakwood","mcl_trees:wood_dark_oak")
-core.register_alias("mcl_core:darkwood","mcl_trees:wood_dark_oak")
-core.register_alias("mcl_core:acaciawood","mcl_trees:wood_acacia")
-core.register_alias("mcl_core:junglewood","mcl_trees:wood_jungle")
-core.register_alias("mcl_core:sprucewood","mcl_trees:wood_spruce")
-core.register_alias("mcl_core:wood","mcl_trees:wood_oak")
-core.register_alias("mcl_crimson:warped_hyphae_wood","mcl_trees:wood_warped")
-core.register_alias("mcl_crimson:crimson_hyphae_wood","mcl_trees:wood_crimson")
-core.register_alias("mcl_mangrove:mangrove_wood","mcl_trees:wood_mangrove")
-core.register_alias("default:wood","mcl_trees:wood_oak")
-core.register_alias("mcl_bamboo:bamboo_plank","mcl_trees:wood_bamboo")
-core.register_alias("mcl_cherry_blossom:cherrywood","mcl_trees:wood_cherry_blossom")
-
-core.register_alias("mcl_core:birchtree_bark","mcl_trees:bark_birch")
-core.register_alias("mcl_core:big_oaktree_bark","mcl_trees:bark_dark_oak")
-core.register_alias("mcl_core:darktree_bark","mcl_trees:bark_dark_oak")
-core.register_alias("mcl_core:acaciatree_bark","mcl_trees:bark_acacia")
-core.register_alias("mcl_core:jungletree_bark","mcl_trees:bark_jungle")
-core.register_alias("mcl_core:sprucetree_bark","mcl_trees:bark_spruce")
-core.register_alias("mcl_core:tree_bark","mcl_trees:bark_oak")
-core.register_alias("mcl_crimson:warped_hyphae_bark","mcl_trees:bark_warped")
-core.register_alias("mcl_crimson:crimson_hyphae_bark","mcl_trees:bark_crimson")
-core.register_alias("mcl_mangrove:mangrove_tree_bark","mcl_trees:bark_mangrove")
-core.register_alias("mcl_cherry_blossom:cherrytree_bark","mcl_trees:bark_cherry_blossom")
-
-core.register_alias("mcl_core:birchsapling","mcl_trees:sapling_birch")
-core.register_alias("mcl_core:big_oaksapling","mcl_trees:sapling_dark_oak")
-core.register_alias("mcl_core:darksapling","mcl_trees:sapling_dark_oak")
-core.register_alias("mcl_core:acaciasapling","mcl_trees:sapling_acacia")
-core.register_alias("mcl_core:junglesapling","mcl_trees:sapling_jungle")
-core.register_alias("mcl_core:sprucesapling","mcl_trees:sapling_spruce")
-core.register_alias("mcl_core:sapling","mcl_trees:sapling_oak")
-core.register_alias("default:sapling","mcl_trees:sapling_oak")
-core.register_alias("mcl_cherry_blossom:cherrysapling","mcl_trees:sapling_cherry_blossom")
-
-core.register_alias("mcl_core:stripped_oak","mcl_trees:stripped_oak")
-core.register_alias("mcl_core:stripped_jungle","mcl_trees:stripped_jungle")
-core.register_alias("mcl_core:stripped_acacia","mcl_trees:stripped_acacia")
-core.register_alias("mcl_core:stripped_dark_oak","mcl_trees:stripped_dark_oak")
-core.register_alias("mcl_core:stripped_spruce","mcl_trees:stripped_spruce")
-core.register_alias("mcl_core:stripped_birch","mcl_trees:stripped_birch")
-core.register_alias("mcl_mangrove:mangrove_stripped_trunk","mcl_trees:stripped_mangrove")
-core.register_alias("mcl_crimson:stripped_warped_hyphae","mcl_trees:stripped_warped")
-core.register_alias("mcl_crimson:stripped_crimson_hyphae","mcl_trees:stripped_crimson")
-core.register_alias("mcl_bamboo:bamboo_block_stripped","mcl_trees:stripped_bamboo")
-core.register_alias("mcl_cherry_blossom:stripped_cherrytree","mcl_trees:stripped_cherry_blossom")
-
-core.register_alias("mcl_core:stripped_oak_bark","mcl_trees:bark_stripped_oak")
-core.register_alias("mcl_core:stripped_jungle_bark","mcl_trees:bark_stripped_jungle")
-core.register_alias("mcl_core:stripped_acacia_bark","mcl_trees:bark_stripped_acacia")
-core.register_alias("mcl_core:stripped_dark_oak_bark","mcl_trees:bark_stripped_dark_oak")
-core.register_alias("mcl_core:stripped_spruce_bark","mcl_trees:bark_stripped_spruce")
-core.register_alias("mcl_core:stripped_birch_bark","mcl_trees:bark_stripped_birch")
-core.register_alias("mcl_mangrove:mangrove_stripped_bark","mcl_trees:bark_stripped_mangrove")
-core.register_alias("mcl_crimson:stripped_warped_hyphae_bark","mcl_trees:bark_stripped_warped")
-core.register_alias("mcl_crimson:stripped_crimson_hyphae_bark","mcl_trees:bark_stripped_crimson")
-core.register_alias("mcl_cherry_blossom:stripped_cherrytree_bark","mcl_trees:bark_stripped_cherry_blossom")
-
+-- only leaves
 core.register_alias("mcl_lush_caves:azalea_leaves", "mcl_trees:leaves_azalea")
 core.register_alias("mcl_lush_caves:azalea_leaves_flowering", "mcl_trees:leaves_azalea_flowering")
+
+-- too irregular for simple loop
+core.register_alias("mcl_mangrove:mangrove_tree","mcl_trees:tree_mangrove")
+core.register_alias("mcl_mangrove:mangroveleaves","mcl_trees:leaves_mangrove")
+core.register_alias("mcl_mangrove:mangroveleaves_orphan","mcl_trees:leaves_mangrove_orphan")
+core.register_alias("mcl_mangrove:mangrove_wood","mcl_trees:wood_mangrove")
+core.register_alias("mcl_mangrove:mangrove_tree_bark","mcl_trees:bark_mangrove")
+core.register_alias("mcl_mangrove:mangrove_stripped_trunk","mcl_trees:stripped_mangrove")
+core.register_alias("mcl_mangrove:mangrove_stripped_bark","mcl_trees:bark_stripped_mangrove")
+
+core.register_alias("mcl_crimson:crimson_hyphae","mcl_trees:tree_crimson")
+core.register_alias("mcl_crimson:crimson_hyphae_wood","mcl_trees:wood_crimson")
+core.register_alias("mcl_crimson:crimson_hyphae_bark","mcl_trees:bark_crimson")
+core.register_alias("mcl_crimson:stripped_crimson_hyphae","mcl_trees:stripped_crimson")
+core.register_alias("mcl_crimson:stripped_crimson_hyphae_bark","mcl_trees:bark_stripped_crimson")
+
+core.register_alias("mcl_crimson:warped_hyphae","mcl_trees:tree_warped")
+core.register_alias("mcl_crimson:warped_hyphae_wood","mcl_trees:wood_warped")
+core.register_alias("mcl_crimson:warped_hyphae_bark","mcl_trees:bark_warped")
+core.register_alias("mcl_crimson:stripped_warped_hyphae","mcl_trees:stripped_warped")
+core.register_alias("mcl_crimson:stripped_warped_hyphae_bark","mcl_trees:bark_stripped_warped")
+
+core.register_alias("mcl_bamboo:bamboo_block","mcl_trees:tree_bamboo")
+core.register_alias("mcl_bamboo:bamboo_plank","mcl_trees:wood_bamboo")
+core.register_alias("mcl_bamboo:bamboo_block_stripped","mcl_trees:stripped_bamboo")
+
+-- legacy dark oak
+core.register_alias("mcl_core:big_oakwood","mcl_trees:wood_dark_oak")
+core.register_alias("mcl_core:big_oaktree_bark","mcl_trees:bark_dark_oak")
+core.register_alias("mcl_core:big_oaksapling","mcl_trees:sapling_dark_oak")
+
+-- ancient mtg legacy
+core.register_alias("default:tree","mcl_trees:tree_oak")
+core.register_alias("default:leaves","mcl_trees:leaves_oak")
+core.register_alias("default:wood","mcl_trees:wood_oak")
+core.register_alias("default:sapling","mcl_trees:sapling_oak")
+core.register_alias("default:acacia_tree", "mcl_core:acaciatree")
+core.register_alias("default:acacia_leaves", "mcl_core:acacialeaves")
