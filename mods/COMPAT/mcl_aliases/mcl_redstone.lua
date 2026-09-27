@@ -1,9 +1,6 @@
 -- This file registers aliases for the /give /giveme commands.
 
 -- From before redstone rewrite
-core.register_alias("mcl_droppers:dropper", "mcl_dispensers:dropper")
-core.register_alias("mcl_droppers:dropper_down", "mcl_dispensers:dropper_down")
-core.register_alias("mcl_droppers:dropper_up", "mcl_dispensers:dropper_up")
 core.register_alias("mesecons_commandblock:commandblock_off", "mcl_commandblock:commandblock_off")
 core.register_alias("mesecons_commandblock:commandblock_on", "mcl_commandblock:commandblock_on")
 core.register_alias("mesecons_delayer:delayer_off_1", "mcl_repeaters:repeater_off_1")
