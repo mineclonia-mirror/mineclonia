@@ -11,6 +11,7 @@ for _, name in ipairs({
 	"mcl_bows",
 	"mcl_brewing",
 	"mcl_buckets",
+	"mcl_buttons",
 	"mcl_clock",
 	"mcl_compass",
 	"mcl_copper",
