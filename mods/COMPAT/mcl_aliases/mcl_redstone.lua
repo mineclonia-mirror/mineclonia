@@ -1,8 +1,6 @@
 -- This file registers aliases for the /give /giveme commands.
 
 -- From before redstone rewrite
-core.register_alias("mesecons_lightstone:lightstone_off", "mcl_redstone_lamp:lamp_off")
-core.register_alias("mesecons_lightstone:lightstone_on", "mcl_redstone_lamp:lamp_on")
 core.register_alias("mesecons_noteblock:noteblock", "mcl_noteblock:noteblock")
 core.register_alias("mesecons_pressureplates:pressure_plate_acacia_off", "mcl_pressureplates:pressure_plate_acacia_off")
 core.register_alias("mesecons_pressureplates:pressure_plate_acacia_on", "mcl_pressureplates:pressure_plate_acacia_on")
