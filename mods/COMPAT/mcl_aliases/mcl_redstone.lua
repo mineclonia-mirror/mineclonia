@@ -1,7 +1,6 @@
 -- This file registers aliases for the /give /giveme commands.
 
 -- From before redstone rewrite
-core.register_alias("mesecons_noteblock:noteblock", "mcl_noteblock:noteblock")
 core.register_alias("mesecons:redstone", "mcl_redstone:redstone")
 core.register_alias("mesecons_solarpanel:solar_panel_inverted_off", "mcl_daylight_detector:daylight_detector_inverted")
 core.register_alias("mesecons_solarpanel:solar_panel_inverted_on", "mcl_daylight_detector:daylight_detector_inverted")
