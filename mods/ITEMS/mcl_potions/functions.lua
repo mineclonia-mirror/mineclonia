@@ -903,6 +903,20 @@ mcl_potions.register_effect({
 	uses_factor = false,
 })
 
+mcl_potions.register_effect({
+	name = "raid_omen",
+	description = S("Raid Omen"),
+	get_tt = function()
+		return S("danger is imminent")
+	end,
+	on_end = function(object)
+		if object and object:is_player() then
+			mcl_raids.start_raid(object)
+		end
+	end,
+	particle_color = "#DE4058",
+	uses_factor = true
+})
 
 mcl_potions.register_effect({
 	name = "hero_of_village",

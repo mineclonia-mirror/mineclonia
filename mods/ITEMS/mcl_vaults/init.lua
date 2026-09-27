@@ -29,6 +29,13 @@ local function enchant_random_level(stack, list, pr)
 	return stack
 end
 
+local function set_bad_omen_level(stack, level)
+	stack:get_meta():set_int("mcl_potions:bad_omen_level", level)
+	tt.reload_itemstack_description(stack)
+
+	return stack
+end
+
 mcl_vaults.register_vault("vault", {
 	key = {
 		name = "trial_key",
@@ -64,7 +71,7 @@ mcl_vaults.register_vault("vault", {
 				{ itemstring = "mcl_core:iron_ingot", weight = 69, amount_min = 1, amount_max = 4 },
 				{ itemstring = "mcl_charges:wind_charge", weight = 69, amount_min = 1, amount_max = 3 },
 				{ itemstring = "mcl_honey:honey_bottle", weight = 69, amount_min = 1, amount_max = 2 },
-				{ itemstring = "mcl_potions:ominous", weight = 48, amount_min = 1, amount_max = 2, func = function(stack, pr) set_potency(stack, pr:next(0, 1)) end },
+				{ itemstring = "mcl_potions:ominous", weight = 48, amount_min = 1, amount_max = 1, func = function(stack, pr) set_bad_omen_level(stack, pr:next(1, 2)) end },
 				{ itemstring = "mcl_shields:shield", weight = 300, amount_min = 1, amount_max = 1, wear_min = 5000, wear_max = 60000 },
 				{ itemstring = "mcl_bows:bow", weight = 300, func = function(stack, pr) mcl_enchanting.enchant_randomly(stack, pr:next(5, 15), true, true, false, pr) end },
 				{ itemstring = "mcl_charges:wind_charge", weight = 23, amount_min = 4, amount_max = 12 },
@@ -91,7 +98,7 @@ mcl_vaults.register_vault("vault", {
 				{ itemstring = "mcl_core:iron_ingot", weight = 3, amount_min = 1, amount_max = 4 },
 				{ itemstring = "mcl_charges:wind_charge", weight = 3, amount_min = 1, amount_max = 3 },
 				{ itemstring = "mcl_honey:honey_bottle", weight = 3, amount_min = 1, amount_max = 2 },
-				{ itemstring = "mcl_potions:ominous", weight = 2, amount_min = 1, amount_max = 2, func = function(stack, pr) set_potency(stack, pr:next(0, 1)) end },
+				{ itemstring = "mcl_potions:ominous", weight = 2, amount_min = 1, amount_max = 1, func = function(stack, pr) set_bad_omen_level(stack, pr:next(1, 2)) end },
 				{ itemstring = "mcl_charges:wind_charge", weight = 1, amount_min = 4, amount_max = 12 },
 				{ itemstring = "mcl_mobitems:breeze_rod", weight = 1, amount_min = 1, amount_max = 3 }, -- TODO remove when breeze are added
 				{ itemstring = "mcl_core:diamond", weight = 1, amount_min = 1, amount_max = 2 },
@@ -147,7 +154,7 @@ mcl_vaults.register_vault("ominous_vault", {
 				{ itemstring = "mcl_mobitems:breeze_rod", weight = 116, amount_min = 2, amount_max = 3 }, -- TODO remove when breeze are added
 				{ itemstring = "mcl_potions:slowness_arrow", weight = 87, amount_min = 4, amount_max = 12, func = function(stack) set_potency(stack, 3) end },
 				{ itemstring = "mcl_core:diamond", weight = 58, amount_min = 2, amount_max = 3 },
-				{ itemstring = "mcl_potions:ominous", weight = 29, amount_min = 1, amount_max = 1, func = function(stack, pr) set_potency(stack, pr:next(2, 4)) end },
+				{ itemstring = "mcl_potions:ominous", weight = 29, amount_min = 1, amount_max = 1, func = function(stack, pr) set_bad_omen_level(stack, pr:next(3, 5)) end },
 				{ itemstring = "mcl_core:emeraldblock", weight = 300, amount_min = 1, amount_max = 1 },
 				{ itemstring = "mcl_bows:crossbow", weight = 240, func = function(stack, pr) mcl_enchanting.enchant_randomly(stack, pr:next(10, 20), true, true, false, pr) end },
 				{ itemstring = "mcl_core:ironblock", weight = 240, amount_min = 1, amount_max = 1 },
@@ -167,10 +174,9 @@ mcl_vaults.register_vault("ominous_vault", {
 				{ itemstring = "mcl_core:emerald", weight = 5, amount_min = 4, amount_max = 10 },
 				{ itemstring = "mcl_charges:wind_charge", weight = 4, amount_min = 8, amount_max = 12 },
 				{ itemstring = "mcl_mobitems:breeze_rod", weight = 4, amount_min = 2, amount_max = 3 }, -- TODO remove when breeze are added
-
 				{ itemstring = "mcl_potions:slowness_arrow", weight = 3, amount_min = 4, amount_max = 12, func = function(stack) set_potency(stack, 3) end },
 				{ itemstring = "mcl_core:diamond", weight = 2, amount_min = 2, amount_max = 3 },
-				{ itemstring = "mcl_potions:ominous", weight = 1, amount_min = 1, amount_max = 1, func = function(stack, pr) set_potency(stack, pr:next(2, 4)) end },
+				{ itemstring = "mcl_potions:ominous", weight = 1, amount_min = 1, amount_max = 1, func = function(stack, pr) set_bad_omen_level(stack, pr:next(3, 5)) end },
 			},
 		},
 		{

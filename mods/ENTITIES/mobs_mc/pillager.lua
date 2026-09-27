@@ -137,8 +137,12 @@ function pillager:drop_custom (looting_level)
 	-- dropped by all raid captains spawned independently of
 	-- raids.  They are only dropped by Pillagers.
 	if not self:_get_active_raid () and self._raidcaptain then
+		local level = math.random(1, 5)
 		local self_pos = self.object:get_pos ()
 		local stack = ItemStack ("mcl_potions:ominous")
+
+		stack:get_meta():set_int("mcl_potions:bad_omen_level", level)
+		tt.reload_itemstack_description(stack)
 		core.add_item (self_pos, stack)
 	end
 end
