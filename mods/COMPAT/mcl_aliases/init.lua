@@ -43,6 +43,7 @@ for _, name in ipairs({
 	"mcl_pressureplates",
 	"mcl_redstone",
 	"mcl_redstone_lamp",
+	"mcl_redstone_torch",
 	"mcl_repeaters",
 	"mcl_signs",
 	"mcl_stairs",
