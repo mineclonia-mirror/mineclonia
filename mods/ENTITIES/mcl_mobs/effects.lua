@@ -188,10 +188,8 @@ function mob_class:check_particlespawners(dtime)
 	--core.log(dump(active_particlespawners))
 	if self._particle_timer and self._particle_timer >= 1 then
 		self._particle_timer = 0
-		local players = {}
 		for player in mcl_util.connected_players() do
 			local pn = player:get_player_name()
-			table.insert(players,pn)
 			if not active_particlespawners[pn] then
 				active_particlespawners[pn] = {} end
 
