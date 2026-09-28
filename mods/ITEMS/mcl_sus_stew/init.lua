@@ -44,7 +44,7 @@ core.register_craftitem("mcl_sus_stew:stew",{
 core.register_craft({
 	type = "shapeless",
 	output = "mcl_sus_stew:stew",
-	recipe = {"mcl_mushrooms:mushroom_red", "mcl_mushrooms:mushroom_brown", "mcl_core:bowl", "group:sus_stew_ingredient"},
+	recipe = {"group:stew_mushroom", "group:stew_mushroom", "mcl_core:bowl", "group:sus_stew_ingredient"},
 })
 
 core.register_on_craft(function(itemstack, _, old_craft_grid, _)

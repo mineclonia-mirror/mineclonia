@@ -103,7 +103,7 @@ core.register_node("mcl_mushrooms:mushroom_brown", {
 	groups = {
 		attached_node = 1, deco_block = 1, destroy_by_lava_flow = 1,
 		dig_immediate = 3, dig_by_water = 1, dig_by_piston = 1, unsticky = 1,
-		mushroom = 1, enderman_takable = 1, compostability = 65
+		mushroom = 1, stew_mushroom = 1, enderman_takable = 1, compostability = 65
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	light_source = 1,
@@ -132,7 +132,7 @@ core.register_node("mcl_mushrooms:mushroom_red", {
 	groups = {
 		attached_node = 1, deco_block = 1, destroy_by_lava_flow = 1,
 		dig_immediate = 3, dig_by_water = 1, dig_by_piston = 1, unsticky = 1,
-		mushroom = 1, enderman_takable = 1, compostability = 65
+		mushroom = 1, stew_mushroom = 1, enderman_takable = 1, compostability = 65
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	selection_box = {
@@ -170,7 +170,7 @@ core.register_craftitem("mcl_mushrooms:mushroom_stew", {
 core.register_craft({
 	type = "shapeless",
 	output = "mcl_mushrooms:mushroom_stew",
-	recipe = {"mcl_core:bowl", "mcl_mushrooms:mushroom_brown", "mcl_mushrooms:mushroom_red"}
+	recipe = {"mcl_core:bowl", "group:stew_mushroom", "group:stew_mushroom"}
 })
 
 --[[ Mushroom spread and death
