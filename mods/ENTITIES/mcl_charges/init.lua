@@ -111,7 +111,10 @@ function mcl_charges.register_charge(name, descr, def)
 		description = descr,
 		inventory_image = "mcl_charges_" .. name .. ".png",
 
-		on_place = function(itemstack, placer, _)
+		on_place = function(itemstack, placer, pointed_thing)
+			local rc = mcl_util.call_on_rightclick (itemstack, placer, pointed_thing)
+			if rc then return rc end
+
 			local playername = placer:get_player_name()
 			if mcl_charges_cooldown[playername] == nil then
 				mcl_charges_cooldown[playername] = 0
