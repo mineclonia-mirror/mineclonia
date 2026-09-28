@@ -276,6 +276,32 @@ core.register_craftitem("mcl_sculk:echo_shard", {
 	wield_image = "mcl_sculk_echo_shard.png"
 })
 
+core.register_alias("mcl_sculk:vein", "mcl_sculk:vein_00000")
+core.register_lbm({
+	label = "Upgrade legacy sculk veins",
+	name = "mcl_sculk:upgrade_legacy_sculk_veins",
+	nodenames = {"mcl_sculk:vein"},
+	action = function(pos, node)
+		local absolute_faces = {false, false, false, false, false, false}
+
+		if node.param2 == 0 then
+			absolute_faces[3] = true
+		elseif node.param2 == 1 then
+			absolute_faces[4] = true
+		elseif node.param2 == 2 then
+			absolute_faces[1] = true
+		elseif node.param2 == 3 then
+			absolute_faces[2] = true
+		elseif node.param2 == 4 then
+			absolute_faces[5] = true
+		elseif node.param2 == 5 then
+			absolute_faces[6] = true
+		end
+
+		core.swap_node(pos, mcl_multiface.map_absolute_faces_to_node(absolute_faces, "mcl_sculk:vein"))
+	end
+})
+
 local modpath = core.get_modpath (core.get_current_modname ())
 mcl_levelgen.register_levelgen_script (modpath .. "/lg_register.lua")
 

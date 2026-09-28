@@ -200,3 +200,64 @@ mcl_multiface.register_multiface_node("mcl_core:glow_lichen", {
 	_mcl_shears_drop = true,
 	_on_bone_meal = lichen_on_bonemeal
 })
+
+-- Compat code
+local legacy_names = {}
+
+for n = 0, 1 do
+	for w = 0, 1 do
+		for s = 0, 1 do
+			for e = 0, 1 do
+				for u = 0, 1 do
+					for d = 0, 1 do
+						local name = "mcl_core:glow_lichen_"
+
+						if n > 0 then
+							name = name .. "n"
+						end
+						if w > 0 then
+							name = name .. "w"
+						end
+						if s > 0 then
+							name = name .. "s"
+						end
+						if e > 0 then
+							name = name .. "e"
+						end
+						if u > 0 then
+							name = name .. "u"
+						end
+						if d > 0 then
+							name = name .. "d"
+						end
+
+						table.insert(legacy_names, name)
+					end
+				end
+			end
+		end
+	end
+end
+
+core.register_lbm({
+	label = "Upgrade legacy glow lichen",
+	name = "mcl_core:upgrade_legacy_glow_lichen",
+	nodenames = legacy_names,
+	run_at_every_load = true,
+	action = function(pos, node)
+		local _, _, n, w, s, e, u, d = string.find(node.name, "mcl_core:glow_lichen_(n?)(w?)(s?)(e?)(u?)(d?)")
+		core.swap_node(pos, mcl_multiface.map_absolute_faces_to_node(
+			{
+				e ~= "" and true or false,
+				w ~= "" and true or false,
+				u ~= "" and true or false,
+				d ~= "" and true or false,
+				n ~= "" and true or false,
+				s ~= "" and true or false,
+			},
+			"mcl_core:glow_lichen"
+		))
+	end
+})
+
+core.register_alias("mcl_core:glow_lichen", "mcl_core:glow_lichen_00000")
