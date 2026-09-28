@@ -87,10 +87,18 @@ for color,colordef in pairs(mcl_dyes.colors) do
 		_doc_items_create_entry = create_entry,
 		_doc_items_entry_name = ename_c,
 		tiles = {"mcl_colorblocks_concrete_"..color..".png"},
-		groups = {handy=1,pickaxey=1, concrete=1,building_block=1, material_stone=1},
+		groups = {handy=1,pickaxey=1, concrete=1,building_block=1, material_stone=1, stonecuttable=1},
 		is_ground_content = false,
 		sounds = mcl_sounds.node_sound_stone_defaults(),
 		_mcl_hardness = 1.8,
+	})
+
+	mcl_stairs.register_stair_and_slab("concrete_"..color, {
+		description_stair = D(colordef.readable_name .. " Concrete Stairs"),
+		description_slab = D(colordef.readable_name .. " Concrete Slab"),
+		baseitem="mcl_colorblocks:concrete_"..color,
+		recipeitem= "mcl_colorblocks:concrete_"..color,
+		overrides = {_mcl_stonecutter_recipes = {"mcl_colorblocks:concrete_"..color}}
 	})
 
 	local tex = "mcl_colorblocks_glazed_terracotta_"..color..".png"
@@ -114,6 +122,17 @@ for color,colordef in pairs(mcl_dyes.colors) do
 		doc.add_entry_alias("nodes", "mcl_colorblocks:glazed_terracotta_"..canonical_color, "nodes", "mcl_colorblocks:glazed_terracotta_"..color)
 		doc.add_entry_alias("nodes", "mcl_colorblocks:concrete_"..canonical_color, "nodes", "mcl_colorblocks:concrete_"..color)
 		doc.add_entry_alias("nodes", "mcl_colorblocks:concrete_powder_"..canonical_color, "nodes", "mcl_colorblocks:concrete_powder_"..color)
+
+		doc.add_entry_alias("nodes", "mcl_stairs:slab_concrete_"..canonical_color, "nodes", "mcl_stairs:slab_concrete_"..color)
+		doc.add_entry_alias("nodes", "mcl_stairs:slab_concrete_"..canonical_color.."_double", "nodes", "mcl_stairs:slab_concrete_"..color.."_double")
+		doc.add_entry_alias("nodes", "mcl_stairs:stair_concrete_"..canonical_color, "nodes", "mcl_stairs:stair_concrete_"..color)
+		core.override_item("mcl_stairs:slab_concrete_"..color, { _doc_items_create_entry = false })
+		core.override_item("mcl_stairs:slab_concrete_"..color.."_double", { _doc_items_create_entry = false })
+		core.override_item("mcl_stairs:stair_concrete_"..color, { _doc_items_create_entry = false })
+	else
+		core.override_item("mcl_stairs:slab_concrete_"..color, { _doc_items_entry_name = S("Concrete Slab") })
+		core.override_item("mcl_stairs:slab_concrete_"..color.."_double", { _doc_items_entry_name = S("Double Concrete Slab") })
+		core.override_item("mcl_stairs:stair_concrete_"..color, { _doc_items_entry_name = S("Concrete Stairs") })
 	end
 
 	-- Crafting recipes

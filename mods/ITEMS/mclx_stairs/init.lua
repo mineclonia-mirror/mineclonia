@@ -98,20 +98,9 @@ mcl_stairs.register_stair_and_slab("hardened_clay", {
 local canonical_color = "yellow"
 for name,cdef in pairs(mcl_dyes.colors) do
 	local is_canonical = name == canonical_color
-	local concrete_defs = core.registered_nodes["mcl_colorblocks:concrete_" .. name]
 	local clay_defs = core.registered_nodes["mcl_colorblocks:hardened_clay_" .. name]
 
-	core.override_item("mcl_colorblocks:concrete_" .. name, { groups = table.merge(concrete_defs.groups, { stonecuttable = extra_nodes and 1 or 0 }) })
 	core.override_item("mcl_colorblocks:hardened_clay_" .. name, { groups = table.merge(clay_defs.groups, { stonecuttable = extra_nodes and 1 or 0 }) })
-
-	mcl_stairs.register_stair_and_slab("concrete_"..name, {
-		description_stair = D(cdef.readable_name .. " Concrete Stairs"),
-		description_slab = D(cdef.readable_name .. " Concrete Slab"),
-		groups={not_in_creative_inventory=extra_nodes and 0 or 1},
-		baseitem="mcl_colorblocks:concrete_"..name,
-		recipeitem=extra_nodes and "mcl_colorblocks:concrete_"..name or "",
-		overrides = {_mcl_stonecutter_recipes = {"mcl_colorblocks:concrete_"..name}}
-	})
 
 	mcl_stairs.register_stair_and_slab("hardened_clay_"..name, {
 		description_stair = D(cdef.readable_name .. " Terracotta Stairs"),
@@ -122,19 +111,6 @@ for name,cdef in pairs(mcl_dyes.colors) do
 		overrides = {_mcl_stonecutter_recipes = {"mcl_colorblocks:hardened_clay_"..name}}
 	})
 
-
-	if not is_canonical then
-		doc.add_entry_alias("nodes", "mcl_stairs:slab_concrete_"..canonical_color, "nodes", "mcl_stairs:slab_concrete_"..name)
-		doc.add_entry_alias("nodes", "mcl_stairs:slab_concrete_"..canonical_color.."_double", "nodes", "mcl_stairs:slab_concrete_"..name.."_double")
-		doc.add_entry_alias("nodes", "mcl_stairs:stair_concrete_"..canonical_color, "nodes", "mcl_stairs:stair_concrete_"..name)
-		core.override_item("mcl_stairs:slab_concrete_"..name, { _doc_items_create_entry = false })
-		core.override_item("mcl_stairs:slab_concrete_"..name.."_double", { _doc_items_create_entry = false })
-		core.override_item("mcl_stairs:stair_concrete_"..name, { _doc_items_create_entry = false })
-	else
-		core.override_item("mcl_stairs:slab_concrete_"..name, { _doc_items_entry_name = S("Concrete Slab") })
-		core.override_item("mcl_stairs:slab_concrete_"..name.."_double", { _doc_items_entry_name = S("Double Concrete Slab") })
-		core.override_item("mcl_stairs:stair_concrete_"..name, { _doc_items_entry_name = S("Concrete Stairs") })
-	end
 
 	if not is_canonical then
 		doc.add_entry_alias("nodes", "mcl_stairs:slab_hardened_clay_"..canonical_color, "nodes", "mcl_stairs:slab_hardened_clay_"..name)

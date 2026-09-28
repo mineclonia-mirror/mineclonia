@@ -73,6 +73,22 @@ for color,colordef in pairs(mcl_dyes.colors) do
 		_mcl_burntime = 3.35
 	})
 
+	mcl_stairs.register_stair("wool_"..color, {
+		description = D(colordef.readable_name .. " Wool Stairs"),
+		baseitem="mcl_wool:"..color,
+		recipeitem="mcl_wool:"..color,
+		groups = {handy=1, shearsy_wool=1, flammable=1,fire_encouragement=30, fire_flammability=60, building_block=1 ,["unicolor_"..color]=1, wool_stair=1},
+		overrides = {}
+	})
+
+	mcl_stairs.register_slab("wool_"..color, {
+		description = D(colordef.readable_name .. " Wool Slab"),
+		baseitem="mcl_wool:"..color,
+		recipeitem="mcl_wool:"..color,
+		groups = {handy=1, shearsy_wool=1, flammable=1,fire_encouragement=30, fire_flammability=60, building_block=1 ,["unicolor_"..color]=1, wool_slab=1},
+		overrides = {}
+	})
+
 	if not is_canonical then
 		doc.add_entry_alias("nodes", "mcl_wool:"..canonical_color, "nodes", "mcl_wool:"..color)
 		doc.add_entry_alias("nodes", "mcl_wool:"..canonical_color.."_carpet", "nodes", "mcl_wool:"..color.."_carpet")
@@ -82,6 +98,18 @@ for color,colordef in pairs(mcl_dyes.colors) do
 		type = "shapeless",
 		output = "mcl_wool:"..color,
 		recipe = { "group:wool", "mcl_dyes:"..color }
+	})
+
+	core.register_craft({
+		type = "shapeless",
+		output = "mcl_stairs:stair_wool_"..color,
+		recipe = { "group:wool_stair", "mcl_dyes:"..color }
+	})
+
+	core.register_craft({
+		type = "shapeless",
+		output = "mcl_stairs:slab_wool_"..color,
+		recipe = { "group:wool_slab", "mcl_dyes:"..color }
 	})
 
     --java carpet dying recipe since MC 1.20-pre1, see https://minecraft.wiki/w/Carpet#Crafting
