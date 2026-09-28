@@ -192,7 +192,12 @@ local function transform_faces_to_canonical_faces(faces)
 				for i = 1, 4 do
 					faces[i] = side_variant[i]
 				end
-				return 4 - offset_rotation
+
+				if offset_rotation == 0 then
+					return 0
+				else
+					return 4 - offset_rotation
+				end
 			end
 		end
 	end
@@ -216,7 +221,7 @@ local function pointed_thing_to_axis(pointed_thing)
 	end
 end
 
-local function map_absolute_faces_to_node(absolute_faces, root_name)
+function mcl_multiface.map_absolute_faces_to_node(absolute_faces, root_name)
 	local selected_idx_as_front = -1
 
 	for i = 1, #absolute_faces do
@@ -268,6 +273,15 @@ local function map_absolute_faces_to_node(absolute_faces, root_name)
 	return {name = variant_name, param2 = compose_facedir(selected_axis_as_front, rotation)}
 end
 
+function mcl_multiface.get_node_absolute_faces(node)
+	local def = core.registered_nodes[node.name]
+
+	local faces = table.copy(def._mcl_multiface_canonical_faces)
+	local axis, rotation = decompose_facedir(node.param2)
+
+	return map_canonical_faces_to_absolute_faces(faces, axis, rotation)
+end
+
 local function multiface_merge (node, itemstack, pos, place_axis, placer)
 	if placer:is_player () then
 		local name = placer:get_player_name ()
@@ -278,11 +292,7 @@ local function multiface_merge (node, itemstack, pos, place_axis, placer)
 	end
 
 	local def = core.registered_nodes[node.name]
-
-	local faces = table.copy(def._mcl_multiface_canonical_faces)
-	local axis, rotation = decompose_facedir(node.param2)
-
-	local absolute_faces = map_canonical_faces_to_absolute_faces(faces, axis, rotation)
+	local absolute_faces = mcl_multiface.get_node_absolute_faces(node)
 
 	local face_idx = -1
 	if place_axis == facedir_enum.axis_px then
@@ -305,7 +315,7 @@ local function multiface_merge (node, itemstack, pos, place_axis, placer)
 
 	absolute_faces[face_idx] = true
 
-	local new_node = map_absolute_faces_to_node(absolute_faces, def._mcl_multiface_name_root)
+	local new_node = mcl_multiface.map_absolute_faces_to_node(absolute_faces, def._mcl_multiface_name_root)
 
 	core.swap_node(pos, new_node)
 
@@ -396,12 +406,10 @@ function mcl_multiface.register_multiface_node(name, def)
 
 			local description = first_iteration and def.description or def.description .. "(INTERNAL: " .. variant_name:sub(-5) .. ")"
 
-			rdb.log(variant_name)
-
 			core.register_node(":" .. variant_name, table.merge(tpl, def, {
 				description = description,
 				groups = table.merge (tpl.groups, {
-					not_in_creative_inventory = first_iteration and 1 or 0,
+					not_in_creative_inventory = first_iteration and 0 or 1,
 				}, def.groups or {}),
 				node_box = {
 					type = "fixed",
