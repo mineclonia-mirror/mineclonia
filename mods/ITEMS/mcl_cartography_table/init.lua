@@ -171,34 +171,74 @@ local function remove_from_input(player, inventory)
 	mcl_util.move_player_list(player, "cartography_table_output")
 end
 
+--> "copy"|"zoom"|"lock", ItemStack OR nil, nil
+local function get_output_operation(inventory, stack)
+	local input = inventory:get_stack("cartography_table_input", 1)
+	local addon = inventory:get_stack("cartography_table_input", 2)
+	local id = input:get_meta():get_string("mcl_maps:map_id")
+
+	-- Explorer maps are also copiable, so we don't expect ID here and we check
+	-- for that larger group rather than the itemstring.
+	if core.get_item_group(input:get_name(), "filled_map") > 0
+			and addon:get_name() == "mcl_maps:map_empty"
+			and input:peek_item():equals(stack:peek_item()) then
+		return "copy", input
+	end
+
+	if id == "" then return nil, nil end
+	if input:get_name() == "mcl_maps:map" and stack:get_name() == "mcl_maps:map"
+			and addon:get_name() == "mcl_core:paper" then
+		return "zoom", input
+	elseif input:get_name() == "mcl_maps:map"
+			and stack:get_name() == "mcl_maps:map_locked"
+			and addon:get_name() == "mcl_panes:pane_natural_flat"
+			and stack:get_meta():get_string("mcl_maps:map_id") == id then
+		return "lock", input
+	end
+end
+
+local function create_output_map(operation, input)
+	local stack
+	if operation == "zoom" then
+		stack = mcl_maps.scale_map_item(input)
+	elseif operation == "lock" then
+		stack = mcl_maps.lock_map_item(input)
+	end
+	if stack then
+		tt.reload_itemstack_description(stack)
+	end
+	return stack
+end
+
 core.register_allow_player_inventory_action(function(player, action, inventory, inventory_info)
-	-- Generate zoomed map
-	if (action == "move" or action == "take")
-		and inventory_info.from_list == "cartography_table_output"
-		and inventory_info.from_index == 1 then
-		local stack = inventory:get_stack ("cartography_table_output", 1)
-		local input = inventory:get_stack ("cartography_table_input", 1)
-		local addon = inventory:get_stack ("cartography_table_input", 2)
-		if stack:get_name () == "mcl_maps:map"
-			and addon:get_name () == "mcl_core:paper" then
-			local stack = mcl_maps.scale_map_item (input)
-			if not stack then
+	if (action == "move" and inventory_info.from_list == "cartography_table_output"
+			and inventory_info.from_index == 1)
+			or (action == "take" and inventory_info.listname == "cartography_table_output"
+			and inventory_info.index == 1) then
+		local stack = inventory:get_stack("cartography_table_output", 1)
+		local operation, input = get_output_operation(inventory, stack)
+		if not operation then return 0 end
+
+		if action == "move" then
+			if inventory_info.to_list == "cartography_table_input"
+					or inventory_info.to_list == "cartography_table_sorter"
+					or inventory_info.to_list == "cartography_table_output"
+					or (
+						operation ~= "copy" and
+						not inventory:get_stack(
+							inventory_info.to_list,
+							inventory_info.to_index
+						):is_empty()
+					) then
 				return 0
 			end
-			tt.reload_itemstack_description (stack)
-			inventory:set_stack ("cartography_table_output", 1, stack)
-		elseif stack:get_name () == "mcl_maps:map_locked"
-			and addon:get_name () == "mcl_panes:pane_natural_flat" then
-			local stack = mcl_maps.lock_map_item (input)
-			if not stack then
-				return 0
-			end
-			tt.reload_itemstack_description (stack)
-			inventory:set_stack ("cartography_table_output", 1, stack)
+		elseif operation ~= "copy" then
+			local processed = create_output_map(operation, input)
+			if not processed then return 0 end
+			inventory:set_stack("cartography_table_output", 1, processed)
 		end
 
-		-- Always allow taking items from the cartography table output
-		return stack:get_count ()
+		return stack:get_count()
 	end
 
 	if action == "move" or action == "put" then
@@ -261,6 +301,14 @@ end)
 core.register_on_player_inventory_action(function(player, action, inventory, inventory_info)
 	if action == "move" then
 		if inventory_info.from_list == "cartography_table_output" then
+			local stack = inventory:get_stack(inventory_info.to_list, inventory_info.to_index)
+			local operation, input = get_output_operation(inventory, stack)
+			if operation and operation ~= "copy" then
+				local processed = create_output_map(operation, input)
+				if processed then
+					inventory:set_stack(inventory_info.to_list, inventory_info.to_index, processed)
+				end
+			end
 			remove_from_input(player, inventory)
 		end
 		if inventory_info.to_list == "cartography_table_input"
@@ -291,6 +339,8 @@ core.register_on_player_inventory_action(function(player, action, inventory, inv
 	elseif action == "take" then
 		if inventory_info.listname == "cartography_table_output" then
 			remove_from_input(player, inventory)
+		elseif inventory_info.listname == "cartography_table_input" then
+			update_cartography_table(player)
 		end
 	end
 end)
