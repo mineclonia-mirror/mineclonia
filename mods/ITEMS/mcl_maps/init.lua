@@ -613,17 +613,22 @@ core.register_on_shutdown (save_all_maps)
 -- Map item implementation.
 ------------------------------------------------------------------------
 
+local function get_map_origins (x_start, z_start, s)
+	local mask = -lshift (1, 6 + s)
+	if not use_old_map_grid then
+		local start_x = band (x_start - 64, mask) + 64
+		local start_z = band (z_start + 64, mask) - 64
+		return start_x, start_z
+	else
+		local start_x = band (x_start, mask)
+		local start_z = band (z_start, mask)
+		return start_x, start_z
+	end
+end
+
 local function create_new_map_1 (id, pos, dim)
 	local gx, gz
-
-	if not use_old_map_grid then
-		gx = band (pos.x - 64, -128) + 64
-		gz = band (pos.z + 64, -128) - 64
-	else
-		gx = band (pos.x, -128)
-		gz = band (pos.z, -128)
-	end
-
+		= get_map_origins (pos.x, pos.z, 1)
 	local map = {
 		x_start = gx,
 		z_start = gz,
@@ -1284,7 +1289,10 @@ function mcl_maps.initialize_explorer_map (pos, stack)
 	-- Indices commence at 30000 to prevent
 	-- `realizing_explorer_maps' from being initialized as an
 	-- array.
-	local id = storage:get_int ("last_explorer_map_id") + 1 + 30000
+	local id = storage:get_int ("last_explorer_map_id") + 1
+	if id == 1 then
+		id = 30000
+	end
 	storage:set_int ("last_explorer_map_id", id)
 	local meta = stack:get_meta ()
 	meta:set_int ("mcl_maps:explorer_map_id", id)
@@ -1437,19 +1445,6 @@ local function scale_map_data_1 (gx, gz, scale, dim)
 	return id, map
 end
 
-local function scale_map_origins (x_start, z_start, s)
-	local mask = -lshift (1, 6 + s)
-	if not use_old_map_grid then
-		local start_x = band (x_start - 64, mask) + 64
-		local start_z = band (z_start + 64, mask) - 64
-		return start_x, start_z
-	else
-		local start_x = band (x_start, mask)
-		local start_z = band (z_start, mask)
-		return start_x, start_z
-	end
-end
-
 local function scale_map_data (map)
 	-- What should be the origin of the updated map?
 	local s = map.scale + 1
@@ -1457,8 +1452,8 @@ local function scale_map_data (map)
 		return nil, nil
 	end
 	local start_x, start_z
-		= scale_map_origins (map.x_start,
-				     map.z_start, s)
+		= get_map_origins (map.x_start,
+				   map.z_start, s)
 	local id, dst = scale_map_data_1 (start_x, start_z,
 					  s, map.dimension)
 
@@ -1913,9 +1908,9 @@ local function on_craft_predict (itemstack, _, old_craft_grid, _)
 				return ItemStack ()
 			end
 			local x_start, z_start
-				= scale_map_origins (map.x_start,
-						     map.z_start,
-						     map.scale + 1)
+				= get_map_origins (map.x_start,
+						   map.z_start,
+						   map.scale + 1)
 			local description
 				= core.colorize (mcl_colors.GRAY,
 						 describe_map (x_start,
