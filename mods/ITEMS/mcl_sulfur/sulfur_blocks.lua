@@ -4,7 +4,7 @@ local S = core.get_translator(core.get_current_modname())
 
 core.register_node("mcl_sulfur:sulfur", {
 	description = S("Sulfur"),
-	_doc_items_longdesc = S("Decorative variant of stone that can be found in sulfur caves"),
+	_doc_items_longdesc = S("Variant of stone that can be found in sulfur caves"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur.png"},
 	groups = {pickaxey=1, sulfur=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
@@ -33,6 +33,7 @@ mcl_walls.register_wall_def("mcl_sulfur:sulfur_wall", {
 -- Polished Sulfur
 core.register_node("mcl_sulfur:sulfur_polished", {
 	description = S("Polished Sulfur"),
+	_doc_items_longdesc = S("Decorative variant of sulfur"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur_polished.png"},
 	groups = {pickaxey=1, sulfur_polished=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
@@ -60,6 +61,7 @@ mcl_walls.register_wall_def("mcl_sulfur:sulfur_polished_wall", {
 
 core.register_node("mcl_sulfur:sulfur_bricks", {
 	description = S("Sulfur Bricks"),
+	_doc_items_longdesc = S("Decorative variant of sulfur"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur_bricks.png"},
 	groups = {pickaxey=1, sulfur_bricks=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
@@ -91,6 +93,7 @@ mcl_walls.register_wall_def("mcl_sulfur:sulfur_bricks_wall", {
 
 core.register_node("mcl_sulfur:sulfur_chiseled", {
 	description = S("Chiseled Sulfur"),
+	_doc_items_longdesc = S("Decorative variant of sulfur"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur_chiseled.png"},
 	groups = {pickaxey=1, sulfur_chiseled=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
