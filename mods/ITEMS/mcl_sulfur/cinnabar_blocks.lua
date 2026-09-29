@@ -73,13 +73,13 @@ mcl_stairs.register_stair_and_slab("cinnabar_bricks", {
 	baseitem = "mcl_sulfur:cinnabar_bricks",
 	description_stair = S("Cinnabar Brick Stairs"),
 	description_slab = S("Cinnabar Brick Slab"),
-	overrides = {_mcl_stonecutter_recipes = {"mcl_sulfur:cinnabar_bricks", "mcl_sulfur:cinnabar_chiseled", "mcl_sulfur:cinnabar"}},
+	overrides = {_mcl_stonecutter_recipes = {"mcl_sulfur:cinnabar_bricks", "mcl_sulfur:cinnabar_polished", "mcl_sulfur:cinnabar"}},
 })
 
 mcl_walls.register_wall_def("mcl_sulfur:cinnabar_bricks_wall", {
 	description = S("Cinnabar Brick Wall"),
 	source = "mcl_sulfur:cinnabar_bricks",
-	_mcl_stonecutter_recipes = {"mcl_sulfur:cinnabar_bricks", "mcl_sulfur:cinnabar_chiseled", "mcl_sulfur:cinnabar"},
+	_mcl_stonecutter_recipes = {"mcl_sulfur:cinnabar_bricks", "mcl_sulfur:cinnabar_polished", "mcl_sulfur:cinnabar"},
 })
 
 -- Chiseled cinnabar
