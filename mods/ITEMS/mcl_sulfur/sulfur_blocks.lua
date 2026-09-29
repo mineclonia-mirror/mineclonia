@@ -11,7 +11,10 @@ core.register_node("mcl_sulfur:sulfur", {
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
-	_mcl_crafting_output = {square2 = {output = "mcl_sulfur:sulfur_polished 4"}}
+	_mcl_crafting_output = {
+		square2 = {output = "mcl_sulfur:sulfur_polished 4"},
+		square3 = {output = "mcl_sulfur:sulfur_potent"}
+	}
 })
 
 mcl_stairs.register_stair_and_slab("sulfur", {
@@ -107,6 +110,8 @@ core.register_craft({
 
 -- Potent sulfur
 
+-- TOOD: potent sulfur's mechanics are not implemented
+
 core.register_node("mcl_sulfur:sulfur_potent", {
 	description = S("Potent Sulfur"),
 	_doc_items_hidden = false,
@@ -117,3 +122,5 @@ core.register_node("mcl_sulfur:sulfur_potent", {
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
 })
+
+mcl_wip.register_wip_item("mcl_sulfur:sulfur_potent")
