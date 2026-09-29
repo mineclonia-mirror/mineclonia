@@ -617,8 +617,8 @@ local function create_new_map_1 (id, pos, dim)
 	local gx, gz
 
 	if not use_old_map_grid then
-		gx = band (pos.x - 63, -128) + 64
-		gz = band (pos.z + 63, -128) - 64
+		gx = band (pos.x - 64, -128) + 64
+		gz = band (pos.z + 64, -128) - 64
 	else
 		gx = band (pos.x, -128)
 		gz = band (pos.z, -128)
