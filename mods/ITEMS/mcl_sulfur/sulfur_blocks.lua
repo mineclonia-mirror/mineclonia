@@ -8,7 +8,6 @@ core.register_node("mcl_sulfur:sulfur", {
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur.png"},
 	groups = {pickaxey=1, sulfur=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
-	drop = "mcl_core:cobble",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
@@ -34,7 +33,6 @@ core.register_node("mcl_sulfur:sulfur_polished", {
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur_polished.png"},
 	groups = {pickaxey=1, sulfur_polished=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
-	drop = "mcl_core:cobble",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
@@ -62,7 +60,6 @@ core.register_node("mcl_sulfur:sulfur_bricks", {
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur_bricks.png"},
 	groups = {pickaxey=1, sulfur_bricks=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
-	drop = "mcl_core:cobble",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
@@ -94,7 +91,6 @@ core.register_node("mcl_sulfur:sulfur_chiseled", {
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur_chiseled.png"},
 	groups = {pickaxey=1, sulfur_chiseled=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
-	drop = "mcl_core:cobble",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
@@ -107,4 +103,17 @@ core.register_craft({
 		{ "mcl_stairs:slab_sulfur" },
 		{ "mcl_stairs:slab_sulfur" },
 	},
+})
+
+-- Potent sulfur
+
+core.register_node("mcl_sulfur:sulfur_potent", {
+	description = S("Potent Sulfur"),
+	_doc_items_hidden = false,
+	tiles = {"mcl_sulfur_sulfur_potent.png"},
+	groups = {pickaxey=1, sulfur_potent=1, building_block=1, overworld_carvable=1, stone_ore_target=1, unsticky=1 , unmovable_by_piston=1},
+	_mcl_stonecutter_recipes = { "mcl_sulfur:sulfur", "mcl_sulfur:sulfur_bricks", "mcl_sulfur:sulfur_polished"},
+	sounds = mcl_sounds.node_sound_stone_defaults(),
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 1.5,
 })
