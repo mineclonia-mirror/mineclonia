@@ -4,7 +4,7 @@ local S = core.get_translator(core.get_current_modname())
 
 core.register_node("mcl_sulfur:cinnabar", {
 	description = S("Cinnabar"),
-	_doc_items_longdesc = S("Decorative variant of stone that can be found in sulfur caves"),
+	_doc_items_longdesc = S("Variant of stone that can be found in sulfur caves"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_cinnabar.png"},
 	groups = {pickaxey=1, cinnabar=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
@@ -30,6 +30,7 @@ mcl_walls.register_wall_def("mcl_sulfur:cinnabar_wall", {
 -- Polished Cinnabar
 core.register_node("mcl_sulfur:cinnabar_polished", {
 	description = S("Polished Cinnabar"),
+	_doc_items_longdesc = S("Decorative variant of cinnabar"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_cinnabar_polished.png"},
 	groups = {pickaxey=1, cinnabar_polished=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
@@ -57,6 +58,7 @@ mcl_walls.register_wall_def("mcl_sulfur:cinnabar_polished_wall", {
 
 core.register_node("mcl_sulfur:cinnabar_bricks", {
 	description = S("Cinnabar Bricks"),
+	_doc_items_longdesc = S("Decorative variant of cinnabar"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_cinnabar_bricks.png"},
 	groups = {pickaxey=1, cinnabar_bricks=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
@@ -88,6 +90,7 @@ mcl_walls.register_wall_def("mcl_sulfur:cinnabar_bricks_wall", {
 
 core.register_node("mcl_sulfur:cinnabar_chiseled", {
 	description = S("Chiseled Cinnabar"),
+	_doc_items_longdesc = S("Decorative variant of cinnabar"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_cinnabar_chiseled.png"},
 	groups = {pickaxey=1, cinnabar_chiseled=1, building_block=1, stonecuttable = 1, overworld_carvable = 1, stone_ore_target = 1, },
