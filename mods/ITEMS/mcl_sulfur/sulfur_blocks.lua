@@ -110,19 +110,3 @@ core.register_craft({
 		{ "mcl_stairs:slab_sulfur" },
 	},
 })
-
--- Potent sulfur
-
--- TOOD: potent sulfur's mechanics are not implemented
-
-core.register_node("mcl_sulfur:sulfur_potent", {
-	description = S("Potent Sulfur"),
-	_doc_items_hidden = false,
-	tiles = {"mcl_sulfur_sulfur_potent.png"},
-	groups = {pickaxey=1, sulfur_potent=1, building_block=1, unsticky=1 , unmovable_by_piston=1},
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 1.5,
-})
-
-mcl_wip.register_wip_item("mcl_sulfur:sulfur_potent")
