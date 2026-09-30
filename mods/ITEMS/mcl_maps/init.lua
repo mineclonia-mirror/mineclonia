@@ -147,6 +147,14 @@ local function scan_heightmap (current_height, x, z, y1, y2)
 				return y
 			end
 		end
+		-- Otherwise, if CURRENT_HEIGHT exists between Y1 and
+		-- Y2, the map is fully loaded between Y1 and
+		-- CURRENT_HEIGHT, and no solid nodes were discovered.
+		-- Reset the search height so terrain below Y1 may also
+		-- be found on a later update.
+		if y1 <= current_height then
+			return -32768, true
+		end
 	end
 	return current_height
 end
@@ -156,12 +164,19 @@ local function produce_heightmap_turn_1 (map, x1, y1, z1, base, i_start, i_end)
 	local x_start = map.x_start
 	local z_start = map.z_start + lshift (z1, scale)
 	local heightmap = map.heightmap
+	local data = map.data
 
 	for i = i_start, i_end do
-		local current = heightmap[base + i]
-		heightmap[base + i]
-			= scan_heightmap (current, x_start + lshift (i - 1, scale),
-					  z_start, y1, y1 + MAP_UPDATE_AREA_Y - 1)
+		local idx = base + i
+		local height, surface_removed
+			= scan_heightmap (heightmap[idx],
+					  x_start + lshift (i - 1, scale),
+					  z_start, y1,
+					  y1 + MAP_UPDATE_AREA_Y - 1)
+		heightmap[idx] = height
+		if surface_removed then
+			data[idx] = 0x0
+		end
 	end
 end
 
