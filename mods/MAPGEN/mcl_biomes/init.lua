@@ -4527,7 +4527,7 @@ local function register_decorations()
 		y_max = mcl_vars.mg_overworld_max,
 		param2 = 0,
 		param2_max = 3,
-		decoration = "mcl_bamboo:bamboo" ,
+		decoration = "mcl_bamboo:bamboo_small" ,
 	})
 	for i=1,3 do
 		core.register_decoration({
@@ -4556,7 +4556,7 @@ local function register_decorations()
 		y_max = mcl_vars.mg_overworld_max,
 		param2 = 0,
 		param2_max = 3,
-		decoration = "mcl_bamboo:bamboo" ,
+		decoration = "mcl_bamboo:bamboo_small" ,
 	})
 	for i=1,3 do
 		core.register_decoration({
