@@ -120,7 +120,6 @@ core.register_node("mcl_sulfur:sulfur_potent", {
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur_potent.png"},
 	groups = {pickaxey=1, sulfur_potent=1, building_block=1, unsticky=1 , unmovable_by_piston=1},
-	_mcl_stonecutter_recipes = { "mcl_sulfur:sulfur", "mcl_sulfur:sulfur_bricks", "mcl_sulfur:sulfur_polished"},
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
