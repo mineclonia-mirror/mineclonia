@@ -68,7 +68,7 @@ local function scan_water_column(potent_sulfur_pos)
 	return off_pos, water_column_height, is_valid
 end
 
-local function attempt_forming_noxious_gas(potent_sulfur_pos, surface_pos)
+local function add_noxious_gas(potent_sulfur_pos, surface_pos)
 	local sulfur_phash = core.hash_node_position(potent_sulfur_pos)
 
 	local entry
@@ -181,7 +181,7 @@ end
 
 local function potent_sulfur_on_timer(pos, elapsed, node, timeout)
 	-- Even though `on_timer` can be automatically restarted by returninng `true
-	-- the timer is started manually. This is because a crash in `on_timer` would 
+	-- the timer is started manually. This is because a crash in `on_timer` would
 	-- put the node in an invalid state
 	local timer = core.get_node_timer(pos)
 	timer:start(POTENT_SULFUR_TIMER_INTERVAL)
@@ -196,7 +196,7 @@ local function potent_sulfur_on_timer(pos, elapsed, node, timeout)
 		return
 	end
 
-	attempt_forming_noxious_gas(pos, surface_pos)
+	add_noxious_gas(pos, surface_pos)
 
 	add_to_vec(pos, 0, -1, 0)
 	local node_under = core.get_node(pos)
