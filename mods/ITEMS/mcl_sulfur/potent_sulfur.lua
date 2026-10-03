@@ -9,7 +9,7 @@ local GEYSER_RADIUS = 1
 local GEYSER_RADIUS_SQUARED = GEYSER_RADIUS^2
 
 local noxious_gas_entries = {}
-local geyser_erruption_entries = {}
+local geyser_eruption_entries = {}
 
 local function add_to_vec(vec, x, y, z)
 	vec.x = vec.x + x
@@ -87,16 +87,16 @@ local function set_geyser_state(meta, state, duration)
 	meta:set_string("mcl_sulfur_geyser_state", state)
 end
 
-local function delete_geyser_erruption_entry(phash)
-	local entry = geyser_erruption_entries[phash]
+local function delete_geyser_eruption_entry(phash)
+	local entry = geyser_eruption_entries[phash]
 	if entry and entry.particlespawner_handler then
 		core.delete_particlespawner(entry.particlespawner_handler)
 	end
 
-	geyser_erruption_entries[phash] = nil
+	geyser_eruption_entries[phash] = nil
 end
 
-local function start_geyser_erruption(potent_sulfur_pos, surface_pos, water_column_height)
+local function start_geyser_eruption(potent_sulfur_pos, surface_pos, water_column_height)
 	local phash = core.hash_node_position(potent_sulfur_pos)
 
 	-- Counting from the bottom of water
@@ -110,8 +110,8 @@ local function start_geyser_erruption(potent_sulfur_pos, surface_pos, water_colu
 		node = core.get_node(off_pos)
 	end
 
-	if geyser_erruption_entries[phash] then
-		delete_geyser_erruption_entry(phash)
+	if geyser_eruption_entries[phash] then
+		delete_geyser_eruption_entry(phash)
 	end
 
 	local particlespawner_handler = core.add_particlespawner({
@@ -138,7 +138,7 @@ local function start_geyser_erruption(potent_sulfur_pos, surface_pos, water_colu
 		}
 	})
 
-	geyser_erruption_entries[phash] = {
+	geyser_eruption_entries[phash] = {
 		potent_sulfur_pos = potent_sulfur_pos,
 		surface_pos = surface_pos,
 		geyser_height = geyser_height,
@@ -167,15 +167,15 @@ local function geyser_step(potent_sulfur_pos, surface_pos, water_column_height, 
 
 	if timeout <= 0 then
 		if geyser_state == "dormant" then
-			local erruption_value = get_geyser_eruption_value(phash)
-			local duration = (water_column_height - 1) + erruption_value
+			local eruption_value = get_geyser_eruption_value(phash)
+			local duration = (water_column_height - 1) + eruption_value
 
-			start_geyser_erruption(potent_sulfur_pos, surface_pos, water_column_height)
-			set_geyser_state(meta, "erruption", duration)
-		elseif geyser_state == "erruption" then
+			start_geyser_eruption(potent_sulfur_pos, surface_pos, water_column_height)
+			set_geyser_state(meta, "eruption", duration)
+		elseif geyser_state == "eruption" then
 			local dormant_value = get_geyser_dormant_value(phash)
 
-			delete_geyser_erruption_entry(phash)
+			delete_geyser_eruption_entry(phash)
 			set_geyser_state(meta, "dormant", 10 * (water_column_height - 1) + dormant_value)
 		end
 	else
@@ -197,7 +197,7 @@ local function potent_sulfur_on_timer(pos, elapsed, node, timeout)
 
 	if not is_valid then
 		noxious_gas_entries[phash] = nil
-		delete_geyser_erruption_entry(phash)
+		delete_geyser_eruption_entry(phash)
 		return
 	end
 
@@ -211,12 +211,12 @@ local function potent_sulfur_on_timer(pos, elapsed, node, timeout)
 	if node_under.name == "mcl_nether:magma" then
 		geyser_step(pos, surface_pos, water_column_height, elapsed)
 	elseif node_under.name == "mcl_core:lava_source" then
-		local erruption_entry = geyser_erruption_entries[phash]
-		if not erruption_entry or erruption_entry.surface_pos ~= surface_pos then
-			start_geyser_erruption(pos, surface_pos, water_column_height)
+		local eruption_entry = geyser_eruption_entries[phash]
+		if not eruption_entry or eruption_entry.surface_pos ~= surface_pos then
+			start_geyser_eruption(pos, surface_pos, water_column_height)
 		end
 	else
-		delete_geyser_erruption_entry(phash)
+		delete_geyser_eruption_entry(phash)
 	end
 
 	return true
@@ -229,7 +229,7 @@ end
 
 local function potent_sulfur_on_destruct(pos)
 	local phash = core.hash_node_position(pos)
-	delete_geyser_erruption_entry(phash)
+	delete_geyser_eruption_entry(phash)
 	noxious_gas_entries[phash] = nil
 end
 
@@ -237,7 +237,7 @@ core.register_node("mcl_sulfur:sulfur_potent", {
 	description = S("Potent Sulfur"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_sulfur_sulfur_potent.png"},
-	groups = {pickaxey=1, sulfur_potent=1, building_block=1, unsticky=1 , unmovable_by_piston=1},
+	groups = {pickaxey=1, sulfur_potent=1, building_block=1, unsticky=1, unmovable_by_piston=1},
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	on_construct = potent_sulfur_on_construct,
 	on_timer = potent_sulfur_on_timer,
@@ -271,7 +271,7 @@ core.register_globalstep(function(dtime)
 		end
 	end
 
-	for phash, entry in pairs(geyser_erruption_entries) do
+	for phash, entry in pairs(geyser_eruption_entries) do
 		local node = core.get_node(entry.potent_sulfur_pos)
 
 		if node.name == "mcl_sulfur:sulfur_potent" then
@@ -290,7 +290,7 @@ core.register_globalstep(function(dtime)
 				end
 			end
 		else
-			delete_geyser_erruption_entry(phash)
+			delete_geyser_eruption_entry(phash)
 		end
 	end
 end)
