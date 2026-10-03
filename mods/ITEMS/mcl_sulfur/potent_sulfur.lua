@@ -96,7 +96,7 @@ local function delete_geyser_erruption_entry(phash)
 	geyser_erruption_entries[phash] = nil
 end
 
-local function start_geyser_erruption(potent_sulfur_pos, surface_pos, water_column_height, duration)
+local function start_geyser_erruption(potent_sulfur_pos, surface_pos, water_column_height)
 	local phash = core.hash_node_position(potent_sulfur_pos)
 
 	-- Counting from the bottom of water
@@ -108,6 +108,10 @@ local function start_geyser_erruption(potent_sulfur_pos, surface_pos, water_colu
 		geyser_height = geyser_height + 1
 		add_to_vec(off_pos, 0, 1, 0)
 		node = core.get_node(off_pos)
+	end
+
+	if geyser_erruption_entries[phash] then
+		delete_geyser_erruption_entry(phash)
 	end
 
 	local particlespawner_handler = core.add_particlespawner({
@@ -134,10 +138,6 @@ local function start_geyser_erruption(potent_sulfur_pos, surface_pos, water_colu
 		}
 	})
 
-	if geyser_erruption_entries[phash] then
-		delete_geyser_erruption_entry(phash)
-	end
-
 	geyser_erruption_entries[phash] = {
 		potent_sulfur_pos = potent_sulfur_pos,
 		surface_pos = surface_pos,
@@ -154,8 +154,13 @@ local function geyser_step(potent_sulfur_pos, surface_pos, water_column_height, 
 	local geyser_state = meta:get_string("mcl_sulfur_geyser_state")
 
 	if geyser_state == "" then
-		set_geyser_state(meta, "dormant", 1)
+		local dormant_value = get_geyser_dormant_value(phash)
+		local duration = 10 * (water_column_height - 1) + dormant_value
+
+		set_geyser_state(meta, "dormant", duration)
+
 		geyser_state = "dormant"
+		timeout = duration
 	end
 
 	timeout = timeout - dtime
@@ -165,13 +170,13 @@ local function geyser_step(potent_sulfur_pos, surface_pos, water_column_height, 
 			local erruption_value = get_geyser_eruption_value(phash)
 			local duration = (water_column_height - 1) + erruption_value
 
-			start_geyser_erruption(potent_sulfur_pos, surface_pos, water_column_height, duration)
+			start_geyser_erruption(potent_sulfur_pos, surface_pos, water_column_height)
 			set_geyser_state(meta, "erruption", duration)
 		elseif geyser_state == "erruption" then
 			local dormant_value = get_geyser_dormant_value(phash)
 
 			delete_geyser_erruption_entry(phash)
-			set_geyser_state(meta, "dormant", 1 * (water_column_height - 1) + dormant_value)
+			set_geyser_state(meta, "dormant", 10 * (water_column_height - 1) + dormant_value)
 		end
 	else
 		meta:set_float("mcl_sulfur_geyser_timeout", timeout)
@@ -206,9 +211,12 @@ local function potent_sulfur_on_timer(pos, elapsed, node, timeout)
 	if node_under.name == "mcl_nether:magma" then
 		geyser_step(pos, surface_pos, water_column_height, elapsed)
 	elseif node_under.name == "mcl_core:lava_source" then
-		if not geyser_erruption_entries[phash] then
-			start_geyser_erruption(pos, surface_pos, water_column_height, 10)
+		local erruption_entry = geyser_erruption_entries[phash]
+		if not erruption_entry or erruption_entry.surface_pos ~= surface_pos then
+			start_geyser_erruption(pos, surface_pos, water_column_height)
 		end
+	else
+		delete_geyser_erruption_entry(phash)
 	end
 
 	return true
