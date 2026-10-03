@@ -119,7 +119,7 @@ local function start_geyser_eruption(potent_sulfur_pos, surface_pos, water_colum
 		time = 0,
 		size = {min = 5, max = 15},
 		texpool = {
-			"mcl_sulfur_geyser_particle.png",
+			"mcl_sulfur_geyser_particle_1.png",
 			"mcl_sulfur_geyser_particle_2.png"
 		},
 		pos = surface_pos,
