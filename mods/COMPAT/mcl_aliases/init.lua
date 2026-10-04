@@ -52,7 +52,6 @@ for _, name in ipairs({
 	"mcl_totems",
 	"mcl_trees",
 	"mcl_villages",
-	"mcl_walls",
 	"mcl_wool",
 	"mclx_fences",
 	"mesecons",
