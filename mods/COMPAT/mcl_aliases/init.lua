@@ -1,7 +1,6 @@
 local modpath = core.get_modpath(core.get_current_modname())
 
 for _, name in ipairs({
-	"doc_identifier",
 	"mcl_armor",
 	"mcl_armor_stand",
 	"mcl_bamboo",
