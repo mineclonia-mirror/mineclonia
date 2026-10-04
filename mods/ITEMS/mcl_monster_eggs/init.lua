@@ -27,7 +27,7 @@ local function register_infested_block(name, description, overrides)
 		after_dig_node = function (pos, _, _, digger)
 			local itemstack = digger:get_wielded_item()
 			local silk_touch = mcl_enchanting.has_enchantment(itemstack, "silk_touch")
-			local is_book = itemstack:get_name() == "mcl_enchanting:book_enchanted"
+			local is_book = mcl_enchanting.is_book(itemstack:get_name())
 			if not core.is_creative_enabled("") and (is_book and silk_touch)
 			or not core.is_creative_enabled("") and (not is_book and not silk_touch) then
 				core.add_entity(pos, "mobs_mc:silverfish")

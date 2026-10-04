@@ -155,7 +155,7 @@ function core.handle_node_drops(pos, drops, digger)
 	local is_book
 	if digger and digger:is_player() then
 		tool = wielded_tool or digger:get_wielded_item()
-		is_book = tool:get_name() == "mcl_enchanting:book_enchanted"
+		is_book = mcl_enchanting.is_book(tool:get_name())
 		tooldef = core.registered_items[tool:get_name()]
 
 		if not mcl_autogroup.can_harvest(dug_node.name, tool:get_name(), digger) then

@@ -83,10 +83,9 @@ local function sculk_after_dig_node(pos, oldnode, oldmetadata, digger) ---@diagn
 	-- Check if node will yield its useful drop by the digger's tool
 	if digger and digger:is_player() then
 		local tool = digger:get_wielded_item()
-		local is_book = tool:get_name() == "mcl_enchanting:book_enchanted"
 
 		if mcl_autogroup.can_harvest(oldnode.name, tool:get_name(), digger) then
-			if tool and not is_book and mcl_enchanting.get_enchantments(tool).silk_touch then
+			if tool and not mcl_enchanting.is_book(tool:get_name()) and mcl_enchanting.get_enchantments(tool).silk_touch then
 				-- Don't drop experience when mined with silk touch
 				return
 			end
