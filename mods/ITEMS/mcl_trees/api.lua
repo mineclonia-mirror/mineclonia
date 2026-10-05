@@ -366,7 +366,7 @@ function mcl_trees.generate_leaves_def(modname, subname, def, sapling, drop_appl
 	}
 end
 
-local function register_leaves(subname, def, sapling, drop_apples, sapling_chances)
+function mcl_trees.register_leaves(subname, def, sapling, drop_apples, sapling_chances)
 	local d = mcl_trees.generate_leaves_def("mcl_trees:", subname, def, sapling, drop_apples, sapling_chances)
 	core.register_node(":" .. d["leaves_id"], d["leaves_def"])
 	core.register_node(":" .. d["orphan_leaves_id"], d["orphan_leaves_def"])
@@ -463,7 +463,7 @@ function mcl_trees.register_wood(name, p)
 		}, p.leaves or {})
 		def.description = def.description or D(rname .. " Leaves")
 		def._doc_items_longdesc = def._doc_items_longdesc or D(rname .. " leaves are grown from " .. rname .. " trees.")
-		register_leaves("leaves_"..name, def,
+		mcl_trees.register_leaves("leaves_"..name, def,
 			p.saplingdrop or ( "mcl_trees:sapling_"..name ),
 			p.drop_apples or false,
 			p.sapling_chances or {20, 16, 12, 10}
