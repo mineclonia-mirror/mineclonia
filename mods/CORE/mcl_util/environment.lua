@@ -758,6 +758,17 @@ function mcl_util.safe_place(pos, node, player, itemstack)
 	return itemstack or true
 end
 
+-- Get the node at pos, even if the block containing it is not loaded or
+-- emerged yet.
+function mcl_util.get_node_forced(pos)
+	local node = core.get_node(pos)
+	if node.name == "ignore" then
+		core.get_voxel_manip():read_from_map(pos, pos)
+		node = core.get_node(pos)
+	end
+	return node
+end
+
 function mcl_util.get_pos_p2(pos, for_trees)
 	if not mcl_levelgen.levelgen_enabled then
 		local biomedef = core.registered_biomes[core.get_biome_name(core.get_biome_data(pos).biome)]
