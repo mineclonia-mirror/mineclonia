@@ -1,6 +1,6 @@
 local S = core.get_translator(core.get_current_modname())
 
--- Sulur
+-- Sulfur
 
 core.register_node("mcl_sulfur:sulfur", {
 	description = S("Sulfur"),
