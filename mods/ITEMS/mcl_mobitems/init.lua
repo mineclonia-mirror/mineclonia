@@ -445,7 +445,7 @@ core.register_craft({
 	output = "mcl_mobitems:rabbit_stew",
 	recipe = {
 		{ "", "mcl_mobitems:cooked_rabbit", "", },
-		{ "group:mushroom", "mcl_farming:potato_item_baked", "mcl_farming:carrot_item", },
+		{ "group:mushroom_stew", "mcl_farming:potato_item_baked", "mcl_farming:carrot_item", },
 		{ "", "mcl_core:bowl", "", },
 	},
 })
@@ -454,7 +454,7 @@ core.register_craft({
 	output = "mcl_mobitems:rabbit_stew",
 	recipe = {
 		{ "", "mcl_mobitems:cooked_rabbit", "", },
-		{ "mcl_farming:carrot_item", "mcl_farming:potato_item_baked", "group:mushroom", },
+		{ "mcl_farming:carrot_item", "mcl_farming:potato_item_baked", "group:stew_mushroom", },
 		{ "", "mcl_core:bowl", "", },
 	},
 })
