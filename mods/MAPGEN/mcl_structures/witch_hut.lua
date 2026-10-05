@@ -35,7 +35,7 @@ local function hut_placement_callback(pos,def,_)
 	local legs = core.find_nodes_in_area(vector.offset(pos,-hl,0,-hl),vector.offset(pos,hl,0,hl), {"mcl_trees:tree_oak"})
 	local tree = {}
 	for _,leg in pairs(legs) do
-		while core.get_item_group(mcl_vars.get_node(vector.offset(leg,0,-1,0)).name, "water") ~= 0 do
+		while core.get_item_group(mcl_util.get_node_forced(vector.offset(leg,0,-1,0)).name, "water") ~= 0 do
 			leg = vector.offset(leg,0,-1,0)
 			table.insert(tree,leg)
 		end
