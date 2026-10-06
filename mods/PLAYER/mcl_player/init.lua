@@ -323,6 +323,7 @@ function mcl_player.add_particlespawner(origin, ps)
 
 	particlespawners[particlespawners_next_id] = entry
 	particlespawners_next_id = particlespawners_next_id + 1
+	return particlespawners_next_id - 1
 end
 
 function mcl_player.delete_particlespawner(handle)
