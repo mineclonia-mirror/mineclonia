@@ -8,3 +8,4 @@ end
 -- Aliases for old MCL2 versions
 core.register_alias("mcl_farming:mushroom_red", "mcl_mushrooms:mushroom_red")
 core.register_alias("mcl_farming:mushroom_brown", "mcl_mushrooms:mushroom_brown")
+core.register_alias("mcl_mushrooms:mushroom_block_stem", "mcl_mushrooms:red_mushroom_block_stem")
