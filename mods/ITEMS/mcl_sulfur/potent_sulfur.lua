@@ -113,7 +113,10 @@ local function start_geyser_eruption(potent_sulfur_pos, surface_pos, water_colum
 		ndef = core.registered_nodes[node.name]
 	end
 
-	if geyser_eruption_entries[phash] then
+	local entry = geyser_eruption_entries[phash]
+	if entry and entry.geyser_height == geyser_height and entry.surface_pos == surface_pos then
+		return
+	elseif entry then
 		delete_geyser_eruption_entry(phash)
 	end
 
@@ -214,10 +217,7 @@ local function potent_sulfur_on_timer(pos, elapsed, node, timeout)
 	if node_under.name == "mcl_nether:magma" then
 		geyser_step(pos, surface_pos, water_column_height, elapsed)
 	elseif node_under.name == "mcl_core:lava_source" then
-		local eruption_entry = geyser_eruption_entries[phash]
-		if not eruption_entry or eruption_entry.surface_pos ~= surface_pos then
-			start_geyser_eruption(pos, surface_pos, water_column_height)
-		end
+		start_geyser_eruption(pos, surface_pos, water_column_height)
 	else
 		delete_geyser_eruption_entry(phash)
 	end
