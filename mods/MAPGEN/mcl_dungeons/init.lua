@@ -89,6 +89,10 @@ local loottable =
 	}
 }
 
+local function is_air(pos)
+	return mcl_util.get_node_forced(pos).name == "air"
+end
+
 local function ecb_spawn_dungeon(_, _, calls_remaining, param)
 	if calls_remaining >= 1 then return end
 
@@ -119,25 +123,25 @@ local function ecb_spawn_dungeon(_, _, calls_remaining, param)
 
 	local x2,z2 = x+dim.x+1, z+dim.z+1
 
-	if mcl_util.get_node_forced({x=x, y=y+1, z=z}).name == "air" and mcl_util.get_node_forced({x=x, y=y+2, z=z}).name == "air" then
+	if is_air({x=x, y=y+1, z=z}) and is_air({x=x, y=y+2, z=z}) then
 		openings_counter = openings_counter + 1
 		if not openings[x] then openings[x]={} end
 		openings[x][z] = true
 		table.insert(corners, {x=x, z=z})
 	end
-	if mcl_util.get_node_forced({x=x2, y=y+1, z=z}).name == "air" and mcl_util.get_node_forced({x=x2, y=y+2, z=z}).name == "air" then
+	if is_air({x=x2, y=y+1, z=z}) and is_air({x=x2, y=y+2, z=z}) then
 		openings_counter = openings_counter + 1
 		if not openings[x2] then openings[x2]={} end
 		openings[x2][z] = true
 		table.insert(corners, {x=x2, z=z})
 	end
-	if mcl_util.get_node_forced({x=x, y=y+1, z=z2}).name == "air" and mcl_util.get_node_forced({x=x, y=y+2, z=z2}).name == "air" then
+	if is_air({x=x, y=y+1, z=z2}) and is_air({x=x, y=y+2, z=z2}) then
 		openings_counter = openings_counter + 1
 		if not openings[x] then openings[x]={} end
 		openings[x][z2] = true
 		table.insert(corners, {x=x, z=z2})
 	end
-	if mcl_util.get_node_forced({x=x2, y=y+1, z=z2}).name == "air" and mcl_util.get_node_forced({x=x2, y=y+2, z=z2}).name == "air" then
+	if is_air({x=x2, y=y+1, z=z2}) and is_air({x=x2, y=y+2, z=z2}) then
 		openings_counter = openings_counter + 1
 		if not openings[x2] then openings[x2]={} end
 		openings[x2][z2] = true
@@ -145,13 +149,13 @@ local function ecb_spawn_dungeon(_, _, calls_remaining, param)
 	end
 
 	for wx = x+1, x+dim.x do
-		if mcl_util.get_node_forced({x=wx, y=y+1, z=z}).name == "air" and mcl_util.get_node_forced({x=wx, y=y+2, z=z}).name == "air" then
+		if is_air({x=wx, y=y+1, z=z}) and is_air({x=wx, y=y+2, z=z}) then
 			openings_counter = openings_counter + 1
 			if check and openings_counter > 5 then return end
 			if not openings[wx] then openings[wx]={} end
 			openings[wx][z] = true
 		end
-		if mcl_util.get_node_forced({x=wx, y=y+1, z=z2}).name == "air" and mcl_util.get_node_forced({x=wx, y=y+2, z=z2}).name == "air" then
+		if is_air({x=wx, y=y+1, z=z2}) and is_air({x=wx, y=y+2, z=z2}) then
 			openings_counter = openings_counter + 1
 			if check and openings_counter > 5 then return end
 			if not openings[wx] then openings[wx]={} end
@@ -159,13 +163,13 @@ local function ecb_spawn_dungeon(_, _, calls_remaining, param)
 		end
 	end
 	for wz = z+1, z+dim.z do
-		if mcl_util.get_node_forced({x=x, y=y+1, z=wz}).name == "air" and mcl_util.get_node_forced({x=x, y=y+2, z=wz}).name == "air" then
+		if is_air({x=x, y=y+1, z=wz}) and is_air({x=x, y=y+2, z=wz}) then
 			openings_counter = openings_counter + 1
 			if check and openings_counter > 5 then return end
 			if not openings[x] then openings[x]={} end
 			openings[x][wz] = true
 		end
-		if mcl_util.get_node_forced({x=x2, y=y+1, z=wz}).name == "air" and mcl_util.get_node_forced({x=x2, y=y+2, z=wz}).name == "air" then
+		if is_air({x=x2, y=y+1, z=wz}) and is_air({x=x2, y=y+2, z=wz}) then
 			openings_counter = openings_counter + 1
 			if check and openings_counter > 5 then return end
 			if not openings[x2] then openings[x2]={} end
