@@ -63,7 +63,8 @@ local function scan_water_column(potent_sulfur_pos)
 
 	local is_valid = water_column_height <= 4
 		and water_column_height ~= 0
-		and node.name == "air"
+		and core.registered_nodes[node.name]
+		and not core.registered_nodes[node.name].walkable
 
 	return off_pos, water_column_height, is_valid
 end
@@ -103,11 +104,13 @@ local function start_geyser_eruption(potent_sulfur_pos, surface_pos, water_colum
 	local geyser_height = water_column_height + 1
 	local off_pos = vector.offset(surface_pos, 0, 1, 0)
 	local node = core.get_node(off_pos)
+	local ndef = core.registered_nodes[node.name]
 
-	while node.name == "air" and geyser_height < water_column_height * 5 do
+	while ndef and not ndef.walkable and geyser_height < water_column_height * 5 do
 		geyser_height = geyser_height + 1
 		add_to_vec(off_pos, 0, 1, 0)
 		node = core.get_node(off_pos)
+		ndef = core.registered_nodes[node.name]
 	end
 
 	if geyser_eruption_entries[phash] then
