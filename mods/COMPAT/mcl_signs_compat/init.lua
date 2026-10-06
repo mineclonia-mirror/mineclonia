@@ -47,12 +47,16 @@ local signs = {
 
 local old_standingsigns = {}
 local old_rotsigns = {}
+local old_signs = {}
 for old, new in pairs(signs) do
 	local newname = "mcl_signs:standing_sign"..new
-
-	old_standingsigns["mcl_signs:standing_sign"..old] = newname
+	local oldname = "mcl_signs:standing_sign"..old
+	old_standingsigns[oldname] = newname
+	table.insert(old_signs, oldname)
 	for _, rotkey in ipairs(rotkeys) do
-		old_rotsigns["mcl_signs:standing_sign"..rotkey..old] = newname
+		oldname = "mcl_signs:standing_sign"..rotkey..old
+		old_rotsigns[oldname] = newname
+		table.insert(old_signs, oldname)
 	end
 end
 
@@ -123,12 +127,8 @@ core.register_lbm({
 	action = upgrade_sign_rot,
 })
 
-local old_rotnames = {}
-for k,_ in pairs(old_rotsigns) do table.insert(old_rotnames, k) end
-for k,_ in pairs(old_standingsigns) do table.insert(old_rotnames, k) end
-
 core.register_lbm({
-	nodenames = old_rotnames,
+	nodenames = old_signs,
 	name = "mcl_signs_compat:update_old_rotated_standing",
 	label = "Update old standing rotated signs",
 	run_at_every_load = true, -- these nodes are supposed to completely be replaced
@@ -136,7 +136,7 @@ core.register_lbm({
 })
 
 core.register_lbm({
-	nodenames = old_rotnames,
+	nodenames = old_signs,
 	name = "mcl_signs_compat:update_sign_meta",
 	label = "Update old standing rotated signs",
 	run_at_every_load = true, -- these nodes are supposed to completely be replaced
