@@ -2,7 +2,7 @@
 core.register_lbm(
 {
 	label = "update legacy mesecons pistons",
-	name = "mcl_pistons_compat:replace_legacy_pistons",
+	name = ":mcl_pistons:replace_legacy_pistons",
 	nodenames = {
 		"mesecons_pistons:piston_normal_off",
 		"mesecons_pistons:piston_up_normal_off",
