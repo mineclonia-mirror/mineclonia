@@ -272,7 +272,7 @@ local function update_old_meta(portal)
 		-- Initialize the destination portal so it will link with the
 		-- current portal.
 		local target_portal = core.get_position_from_hash(target_hash)
-		if mcl_vars.get_node(target_portal).name ~= "mcl_portals:portal" then
+		if mcl_util.get_node_forced(target_portal).name ~= "mcl_portals:portal" then
 			return
 		end
 
@@ -289,7 +289,7 @@ end
 
 -- Get portal at specified position. Returns (pos, node) for the portal.
 local function get_portal(pos)
-	local node = mcl_vars.get_node(pos)
+	local node = mcl_util.get_node_forced(pos)
 	if node.name == "mcl_portals:portal" then
 		update_old_meta(pos) -- For backwards compatibility.
 
