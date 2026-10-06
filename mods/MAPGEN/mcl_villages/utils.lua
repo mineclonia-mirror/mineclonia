@@ -27,7 +27,7 @@ function mcl_villages.find_surface(pos, _, quick)
 	end
 
 	-- check, in which direction to look for surface
-	local surface_node = mcl_vars.get_node(p6)
+	local surface_node = mcl_util.get_node_forced(p6)
 
 	if
 		surface_node.name == "air"
@@ -45,7 +45,7 @@ function mcl_villages.find_surface(pos, _, quick)
 		-- Check Surface_node and Node above
 		--
 		if mcl_villages.surface_mat[surface_node.name] then
-			local surface_node_plus_1 = mcl_vars.get_node(vector.offset(p6, 0, 1, 0))
+			local surface_node_plus_1 = mcl_util.get_node_forced(vector.offset(p6, 0, 1, 0))
 			if surface_node_plus_1 and surface_node and
 				(string.find(surface_node_plus_1.name,"air") or
 				string.find(surface_node_plus_1.name,"snow") or
@@ -70,7 +70,7 @@ function mcl_villages.find_surface(pos, _, quick)
 			return nil
 		end
 		cnt = cnt+1
-		surface_node = mcl_vars.get_node(p6)
+		surface_node = mcl_util.get_node_forced(p6)
 	end
 	mcl_villages.debug("find_surface5: cnt_max overflow")
 	return nil
