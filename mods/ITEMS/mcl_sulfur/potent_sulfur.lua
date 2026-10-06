@@ -284,9 +284,12 @@ core.register_globalstep(function(dtime)
 
 			for obj in core.objects_in_area(min_pos, max_pos) do
 				local obj_pos = obj:get_pos()
+				local is_player = obj:is_player()
+				local l = obj:get_luaentity()
 
 				local horizontal_distance_squared = ((entry.potent_sulfur_pos.z - obj_pos.z)^2 + (entry.potent_sulfur_pos.x - obj_pos.x)^2)
-				if obj_pos.y >= entry.potent_sulfur_pos.y
+				if (is_player or (l and (l.is_mob or l.name == "__builtin:item")))
+						and obj_pos.y >= entry.potent_sulfur_pos.y
 						and obj_pos.y <= geyser_end_y
 						and horizontal_distance_squared < GEYSER_RADIUS_SQUARED then
 					geyser_launch_object(obj, entry, dtime)
