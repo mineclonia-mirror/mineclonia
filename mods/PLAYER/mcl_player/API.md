@@ -146,10 +146,10 @@ mcl_player.show_player_settings(player)
 ## Partcle spawners
 
 In luanti particle spawners with an inifinie lifetime (`time == 0`) are sent to all players on the server. This exposes the
-particle's position to every only player. This is prone to abuse, especially on anarchy servers
+particle spawner's position to every only player. This is prone to abuse, especially on anarchy servers
 
-In light of this, `mcl_player` implements particle helpers that allow for creating particle spawners with an infinite lifespans,
-but only sends it to nearby players. And manages adding/deleting them as players enter/leave the range
+In light of this, `mcl_player` implements particle helpers that allow for creating particle spawners with an infinite lifespan,
+but only sends it to nearby players. It manages adding/deleting them as players enter/leave the range
 
 ### `mcl_player.add_particlespawner(origin, ps)`
 
