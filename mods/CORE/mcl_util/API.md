@@ -1,5 +1,16 @@
 # Common Mineclonia library functions
 
+## Environment access
+
+### `mcl_util.get_node_forced(pos)`
+  Get the node at a map position, even if the block containing it is not
+  loaded or emerged yet.
+  Returns a node table.
+
+#### Arguments:
+  pos: a vector.
+
+
 ## Compatibility functions
 
 ### `mcl_util.log_deprecated_call(level, moreinfo)`
