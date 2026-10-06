@@ -91,7 +91,7 @@ end
 local function delete_geyser_eruption_entry(phash)
 	local entry = geyser_eruption_entries[phash]
 	if entry and entry.particlespawner_handler then
-		core.delete_particlespawner(entry.particlespawner_handler)
+		mcl_player.delete_particlespawner(entry.particlespawner_handler)
 	end
 
 	geyser_eruption_entries[phash] = nil
@@ -120,7 +120,7 @@ local function start_geyser_eruption(potent_sulfur_pos, surface_pos, water_colum
 		delete_geyser_eruption_entry(phash)
 	end
 
-	local particlespawner_handler = core.add_particlespawner({
+	local particlespawner_handler = mcl_player.add_particlespawner(surface_pos, {
 		amount = 4 * (water_column_height * 5),
 		time = 0,
 		size = {min = 5, max = 15},

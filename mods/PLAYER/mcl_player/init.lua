@@ -296,6 +296,80 @@ core.register_on_punchplayer(function(player, hitter, time_from_last_punch, tool
 	mcl_player.player_knockback (player, hitter, dir, tool_capabilities, damage)
 end)
 
+local particlespawners_next_id = 1
+local particlespawners = {}
+
+local particlespawner_radius_squared = 128^2
+
+function mcl_player.add_particlespawner(origin, ps)
+	assert(ps.time == 0, "`mcl_player.add_particlespawner()` only supports spawners with infinite lifespans")
+
+	local entry = {
+		handles = {},
+		origin = origin,
+		spawner_def = ps
+	}
+
+	for _, player in pairs(core.get_connected_players()) do
+		local name = player:get_player_name()
+		local player_pos = player:get_pos()
+		local distance_squared = (player_pos.x - origin.x)^2 + (player_pos.y - origin.y)^2 + (player_pos.z - origin.z)^2
+
+		if distance_squared <= particlespawner_radius_squared then
+			ps.playername = name
+			entry.handles[player] = core.add_particlespawner(ps)
+		end
+	end
+
+	particlespawners[particlespawners_next_id] = entry
+	particlespawners_next_id = particlespawners_next_id + 1
+end
+
+function mcl_player.delete_particlespawner(handle)
+	if not particlespawners[handle] then
+		return
+	end
+
+	for player, engine_handle in pairs(particlespawners[handle].handles) do
+		if player:is_valid() then
+			core.delete_particlespawner(engine_handle, player:get_player_name())
+		end
+	end
+
+	particlespawners[handle] = nil
+end
+
+mcl_player.register_globalstep_slow(function()
+	for _, entry in pairs(particlespawners) do
+		local players_in_range = {}
+
+		for _, player in pairs(core.get_connected_players()) do
+			local player_pos = player:get_pos()
+			local distance_squared = (player_pos.x - entry.origin.x)^2 + (player_pos.y - entry.origin.y)^2 + (player_pos.z - entry.origin.z)^2
+
+			if distance_squared <= particlespawner_radius_squared then
+				players_in_range[player] = true
+			end
+		end
+
+		-- Checking for players that left range
+		for player, engine_handle in pairs(entry.handles) do
+			if not players_in_range[player] or not player:is_valid() then
+				core.delete_particlespawner(engine_handle, player:get_player_name())
+				entry.handles[player] = nil
+			end
+		end
+
+		-- Checking for players that entered the range
+		for player, _ in pairs(players_in_range) do
+			if not entry.handles[player] then
+				entry.spawner_def.playername = player:get_player_name()
+				entry.handles[player] = core.add_particlespawner(entry.spawner_def)
+			end
+		end
+	end
+end)
+
 -- Each player's influence on this metric is cumulative with those of
 -- others.  register_globalstep_slow is unsuitable because these
 -- global variables must only be reset once.

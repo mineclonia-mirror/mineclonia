@@ -142,3 +142,26 @@ mcl_inventory.set_player_setting(player, name, value)
 mcl_player.show_player_settings(player)
 
 ```
+
+## Partcle spawners
+
+In luanti particle spawners with an inifinie lifetime (`time == 0`) are sent to all players on the server. This exposes the
+particle's position to every only player. This is prone to abuse, especially on anarchy servers
+
+In light of this, `mcl_player` implements particle helpers that allow for creating particle spawners with an infinite lifespans,
+but only sends it to nearby players. And manages adding/deleting them as players enter/leave the range
+
+### `mcl_player.add_particlespawner(origin, ps)`
+
+Adds a particle spawner with a definition `ps` (same as `core.add_particlespawner()`). Uses `origin` (position) for checking if
+players are close to it
+
+returns a `handle` that can be passed to `mcl_player.delete_particlespawner(handle)` to delete the particle spawners.
+
+
+### `mcl_player.delete_particlespawner(handle)`
+
+Deletes a particle spawner with the `handle` (returned by `mcl_player.add_particlespawner()`). *Warning*, this handle is not
+interchangeable with the one returned by `core.add_particlespawner()`
+
+Not deleting a particle spawner will lead to a memory leak. Make sure to always delete particle spawners
