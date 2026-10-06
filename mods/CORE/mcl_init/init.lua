@@ -330,9 +330,9 @@ function mcl_vars.is_generated(pos)
 	return false
 end
 
--- Do core.get_node and if it returns "ignore", then try again after loading
--- its area using a voxel manipulator.
+-- This function is deprecated.
 function mcl_vars.get_node(pos)
+	mcl_util.log_deprecated_call("warning", "Use `mcl_util.get_node_forced()` instead.")
 	local node = core.get_node(pos)
 	if node.name ~= "ignore" then
 		return node
