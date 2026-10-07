@@ -226,7 +226,7 @@ core.register_entity(":__builtin:falling_node", {
 			npos2.y = npos2.y - 2
 			local lownode = core.get_node(npos2)
 			-- Special check required for fences and walls, because of their overhigh collision box.
-			if core.get_item_group(lownode.name, "fence") == 1 or core.get_item_group(lownode.name, "wall") == 1 then
+			if core.get_item_group(lownode.name, "fence") == 1 or core.get_item_group(lownode.name, "wall") == 1 or core.get_item_group(lownode.name, "fence_gate") == 1 then
 				-- Instantly stop the node if it is above a fence/wall. This is needed
 				-- because the falling node collides early with a fence/wall node.
 				-- Hacky, because the falling node will teleport a short distance, instead
