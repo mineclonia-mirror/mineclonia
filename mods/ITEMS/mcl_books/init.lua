@@ -322,22 +322,27 @@ local function close_forms(pos)
 	end
 end
 
+local bs_groups = {
+	handy = 1,
+	axey = 1,
+	deco_block = 1,
+	material_wood = 1,
+	flammable = 3,
+	fire_encouragement = 30,
+	fire_flammability = 20,
+}
+
+if bookshelf_inv then
+	bs_groups.container = 1
+end
+
 -- Bookshelf
 core.register_node("mcl_books:bookshelf", {
 	description = S("Bookshelf"),
 	_doc_items_longdesc = S("Bookshelves are used for decoration."),
 	tiles = { "mcl_books_bookshelf_top.png", "mcl_books_bookshelf_top.png", "default_bookshelf.png" },
 	is_ground_content = false,
-	groups = {
-		handy = 1,
-		axey = 1,
-		deco_block = 1,
-		material_wood = 1,
-		flammable = 3,
-		fire_encouragement = 30,
-		fire_flammability = 20,
-		container = 1
-	},
+	groups = bs_groups,
 	drop = "mcl_books:book 3",
 	sounds = mcl_sounds.node_sound_wood_defaults(),
 	_mcl_hardness = 1.5,
