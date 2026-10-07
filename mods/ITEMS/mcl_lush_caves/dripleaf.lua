@@ -323,8 +323,7 @@ end
 
 core.register_globalstep(function(dtime)
 	for _, player in ipairs(core.get_connected_players()) do
-		local name = player:get_player_name()
-		local previous = player_dripleaf[name] or {}
+		local previous = player_dripleaf[player] or {}
 		local current = get_player_dripleaves(player)
 		local next_state = {}
 
@@ -346,10 +345,10 @@ core.register_globalstep(function(dtime)
 			end
 		end
 
-		player_dripleaf[name] = next(next_state) and next_state or nil
+		player_dripleaf[player] = next(next_state) and next_state or nil
 	end
 end)
 
 core.register_on_leaveplayer(function(player)
-	player_dripleaf[player:get_player_name()] = nil
+	player_dripleaf[player] = nil
 end)
