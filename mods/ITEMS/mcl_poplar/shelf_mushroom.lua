@@ -5,7 +5,7 @@ local shelf_mushroom_tpl = {
 	propagate_light = true,
 	groups = {
 		dig_by_piston = 1, dig_by_water = 1, destroy_by_lava_flow = 1, stew_mushroom = 1,
-		bouncy = 75, fall_damage_add_percent=-50, compostability = 65, unsticky = 1, 
+		bouncy = 75, fall_damage_add_percent=-50, compostability = 65, unsticky = 1,
 		flammable = 1, fire_encouragement = 60, fire_flammability = 100
 	},
 	_mcl_hardness = 0
@@ -44,7 +44,7 @@ core.register_node("mcl_poplar:shelf_mushroom_big", table.merge(shelf_mushroom_t
 		"mcl_poplar_shelf_mushroom_big_side.png^[transformFX", "mcl_poplar_shelf_mushroom_big_side.png",
 		"mcl_poplar_shelf_mushroom_big_back.png", "mcl_poplar_shelf_mushroom_big_front.png",
 	},
-	groups = table.merge(shelf_mushroom_tpl.groups, {not_in_creative_inventory = 1,}),
+	groups = table.merge(shelf_mushroom_tpl.groups, {not_in_creative_inventory = 1}),
 	drop = "mcl_poplar:shelf_mushroom 2",
 	node_box = {
 		type = "fixed",
