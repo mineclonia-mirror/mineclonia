@@ -321,8 +321,8 @@ core.register_on_placenode(function(pos, newnode)
 end)
 
 core.register_abm({
-	label = "Turn Dirt Path below solid block into Dirt",
-	nodenames = {"mcl_core:grass_path"},
+	label = "Turn dirtifies_below_solid below solid block into Dirt",
+	nodenames = {"group:dirtifies_below_solid"},
 	neighbors = {"group:solid"},
 	interval = 8,
 	chance = 50,

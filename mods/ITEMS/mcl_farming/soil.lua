@@ -64,16 +64,6 @@ core.register_abm({
 			end
 		end
 
-		-- Turn back into dirt when covered by solid node
-		local above_node = core.get_node_or_nil({x=pos.x,y=pos.y+1,z=pos.z})
-		if above_node then
-			if core.get_item_group(above_node.name, "solid") ~= 0 then
-				node.name = "mcl_core:dirt"
-				core.set_node(pos, node)
-				return
-			end
-		end
-
 		-- Check an area of 9×2×9 around the node for nodename (9×9 on same level and 9×9 below)
 		local function check_surroundings(pos, nodename)
 			local nodes = core.find_nodes_in_area({x=pos.x-4,y=pos.y,z=pos.z-4}, {x=pos.x+4,y=pos.y+1,z=pos.z+4}, {nodename})
