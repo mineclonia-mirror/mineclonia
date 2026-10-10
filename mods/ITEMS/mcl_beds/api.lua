@@ -281,6 +281,9 @@ core.register_node("mcl_beds:straw_bed", {
 		local under = pointed_thing.under
 		local player_name = placer and placer:get_player_name() or ""
 
+		local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
+		if rc then return rc end
+
 		local dir = placer and placer:is_player() and placer:get_look_dir() and core.dir_to_facedir(placer:get_look_dir()) or 0
 
 		local front_pos = vector.add(pointed_thing.above, core.facedir_to_dir(dir))
