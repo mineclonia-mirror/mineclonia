@@ -119,6 +119,7 @@ local trades_ordinary_table = {
 	{ E(), { "mcl_lush_caves:dripleaf_small", 2, 2, }, 5, 0 },
 	{ E(), { "mcl_mushrooms:mushroom_brown", 3, 3, }, 4, 0 },
 	{ E(), { "mcl_mushrooms:mushroom_red", 3, 3, }, 4, 0 },
+	{ E(), { "mcl_poplar:shelf_mushroom", 3, 3, }, 12, 0 },
 	{ E(), { "mcl_dripstone:pointed_dripstone", 2, 5, }, 5, 0 },
 	{ E(), { "mcl_lush_caves:rooted_dirt", 2, 2, }, 5, 0 },
 	{ E(), { "mcl_lush_caves:moss", 2, 2, }, 5, 0 },
