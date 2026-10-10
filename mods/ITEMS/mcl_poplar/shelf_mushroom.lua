@@ -6,7 +6,7 @@ local shelf_mushroom_tpl = {
 	groups = {
 		dig_by_piston = 1, dig_by_water = 1, destroy_by_lava_flow = 1, stew_mushroom = 1,
 		bouncy = 75, fall_damage_add_percent=-50, compostability = 65, unsticky = 1,
-		flammable = 1, fire_encouragement = 60, fire_flammability = 100
+		flammable = 1, fire_encouragement = 60, fire_flammability = 100, attached_node = 2,
 	},
 	_mcl_hardness = 0
 }
