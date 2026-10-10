@@ -1,3 +1,17 @@
+local function shelf_mushroom_on_place(itemstack, placer, pointed_thing)
+	if pointed_thing.type ~= "node" then
+		return itemstack
+	end
+
+	local node = core.get_node(pointed_thing.under)
+
+	if core.get_item_group(node.name, "solid") <= 0 then
+		return itemstack
+	end
+
+	return core.item_place_node(itemstack, placer, pointed_thing)
+end
+
 local shelf_mushroom_tpl = {
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -8,6 +22,8 @@ local shelf_mushroom_tpl = {
 		bouncy = 75, fall_damage_add_percent=-50, compostability = 65, unsticky = 1,
 		flammable = 1, fire_encouragement = 60, fire_flammability = 100, attached_node = 2,
 	},
+	node_placement_prediction = "",
+	on_place =  shelf_mushroom_on_place,
 	_mcl_hardness = 0
 }
 
