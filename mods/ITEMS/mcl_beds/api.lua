@@ -278,7 +278,6 @@ core.register_node("mcl_beds:straw_bed", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3, 1.5}
 	},
 	on_place = function(itemstack, placer, pointed_thing)
-		local under = pointed_thing.under
 		local player_name = placer and placer:get_player_name() or ""
 
 		local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)

@@ -118,7 +118,6 @@ local function lay_down(player, pos, bed_pos, is_straw_bed, state, skip)
 	-- stand up
 	if state == false or (state == nil and not bed_pos) then
 		local p = mcl_beds.pos[name] or nil
-		local bpos = mcl_beds.bed_pos[name]
 		if mcl_beds.player[name] then
 			mcl_beds.player[name] = nil
 			player_in_bed = player_in_bed - 1
@@ -383,7 +382,8 @@ function mcl_beds.on_rightclick(pos, player, is_top)
 		if message then
 			mcl_title.set(player, "actionbar", {text=message, color="white", stay=60})
 		else -- someone just successfully entered a bed
-			local ges = #core.get_connected_players()
+			local connected_players = core.get_connected_players()
+			local ges = #connected_players
 			local sleep_hud_message = S("@1/@2 players currently in bed.", player_in_bed, math.ceil(players_in_bed_setting() * ges / 100))
 			for _, player in pairs(connected_players) do
 				-- only send message to players not sleeping and in the "overworld"
