@@ -13,6 +13,7 @@ mcl_dyes.colors = {
 		rgb = "#d0d6d7",
 		unicolor = "white",
 		mcl2 = "white",
+		inventory_image = "mcl_dyes_white_dye.png",
 		palette_index = 0
 	},
 	["silver"] = {
@@ -21,6 +22,7 @@ mcl_dyes.colors = {
 		rgb = "#818177",
 		unicolor = "grey",
 		mcl2 = "grey",
+		inventory_image = "mcl_dyes_light_grey_dye.png",
 		palette_index = 1
 	},
 	["grey"] = {
@@ -29,6 +31,7 @@ mcl_dyes.colors = {
 		rgb = "#383c40",
 		unicolor = "darkgrey",
 		mcl2 = "dark_grey",
+		inventory_image = "mcl_dyes_grey_dye.png",
 		palette_index = 2
 	},
 	["black"] = {
@@ -37,6 +40,7 @@ mcl_dyes.colors = {
 		rgb = "#080a10",
 		unicolor = "black",
 		mcl2 = "black",
+		inventory_image = "mcl_dyes_black_dye.png",
 		palette_index = 3
 	},
 	["purple"] = {
@@ -45,6 +49,7 @@ mcl_dyes.colors = {
 		rgb = "#6821a0",
 		unicolor = "violet",
 		mcl2 = "violet",
+		inventory_image = "mcl_dyes_purple_dye.png",
 		palette_index = 4
 	},
 	["blue"] = {
@@ -53,6 +58,7 @@ mcl_dyes.colors = {
 		rgb = "#2e3094",
 		unicolor = "blue",
 		mcl2 = "blue",
+		inventory_image = "mcl_dyes_blue_dye.png",
 		palette_index = 5
 	},
 	["light_blue"] = {
@@ -61,6 +67,7 @@ mcl_dyes.colors = {
 		rgb = "#258ec9",
 		unicolor = "light_blue",
 		mcl2 = "lightblue",
+		inventory_image = "mcl_dyes_light_blue_dye.png",
 		palette_index = 6
 	},
 	["cyan"] = {
@@ -69,6 +76,7 @@ mcl_dyes.colors = {
 		rgb = "#167b8c",
 		unicolor = "cyan",
 		mcl2 = "cyan",
+		inventory_image = "mcl_dyes_cyan_dye.png",
 		palette_index = 7
 	},
 	["green"] = {
@@ -77,6 +85,7 @@ mcl_dyes.colors = {
 		rgb = "#4b5e25",
 		unicolor = "dark_green",
 		mcl2 = "dark_green",
+		inventory_image = "mcl_dyes_green_dye.png",
 		palette_index = 8
 	},
 	["lime"] = {
@@ -85,6 +94,7 @@ mcl_dyes.colors = {
 		rgb = "#60ac19",
 		unicolor = "green",
 		mcl2 = "green",
+		inventory_image = "mcl_dyes_lime_dye.png",
 		palette_index = 9
 	},
 	["yellow"] = {
@@ -93,6 +103,7 @@ mcl_dyes.colors = {
 		rgb = "#f1b216",
 		unicolor = "yellow",
 		mcl2 = "yellow",
+		inventory_image = "mcl_dyes_yellow_dye.png",
 		palette_index = 10
 	},
 	["brown"] = {
@@ -101,6 +112,7 @@ mcl_dyes.colors = {
 		rgb = "#633d20",
 		unicolor = "dark_orange",
 		mcl2 = "brown",
+		inventory_image = "mcl_dyes_brown_dye.png",
 		palette_index = 11
 	},
 	["orange"] = {
@@ -109,6 +121,7 @@ mcl_dyes.colors = {
 		rgb = "#e26501",
 		unicolor = "orange",
 		mcl2 = "orange",
+		inventory_image = "mcl_dyes_orange_dye.png",
 		palette_index = 12
 	},
 	["red"] = {
@@ -117,6 +130,7 @@ mcl_dyes.colors = {
 		rgb = "#912222",
 		unicolor = "red",
 		mcl2 = "red",
+		inventory_image = "mcl_dyes_red_dye.png",
 		palette_index = 13
 	},
 	["magenta"] = {
@@ -125,6 +139,7 @@ mcl_dyes.colors = {
 		rgb = "#ab31a2",
 		unicolor = "red_violet",
 		mcl2 = "magenta",
+		inventory_image = "mcl_dyes_magenta_dye.png",
 		palette_index = 14
 	},
 	["pink"] = {
@@ -133,6 +148,7 @@ mcl_dyes.colors = {
 		rgb = "#d56791",
 		unicolor = "light_red",
 		mcl2 = "pink",
+		inventory_image = "mcl_dyes_pink_dye.png",
 		palette_index = 15
 	},
 }
@@ -168,7 +184,7 @@ for k, v in pairs(mcl_dyes.colors) do
 		_doc_items_usagehelp = S("Rightclick on a sheep to dye its wool. Other things are dyed by crafting."),
 		description = D(v.readable_name .. " Dye"),
 		groups = table.update({craftitem = 1, dye = 1}, v.groups),
-		inventory_image = "mcl_dye.png^(mcl_dye_mask.png^[colorize:"..v.rgb..")",
+		inventory_image = v.inventory_image,
 		on_place = function(itemstack, placer, pointed_thing)
 			local def = core.registered_nodes[core.get_node(pointed_thing.under).name]
 
