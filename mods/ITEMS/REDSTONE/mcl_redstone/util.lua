@@ -134,3 +134,42 @@ function mcl_redstone._priority_queue_ordered()
 		end,
 	}
 end
+
+local function get_inventory_data(pos, lists)
+	local fullness, slots = 0, 0
+	local inv = core.get_inventory({type="node", pos=pos})
+	if inv then
+		for _, listname in pairs(lists) do
+			slots = slots + inv:get_size(listname)
+			if not inv:is_empty(listname) then
+				for _, stack in pairs(inv:get_list(listname)) do
+					if stack then
+						fullness = fullness + stack:get_count() / stack:get_stack_max()
+					end
+				end
+			end
+		end
+	end
+	return fullness, slots
+end
+
+local function container_signal(fullness, slots)
+	-- formula copied from wiki
+	return fullness == 0 and 0 or  math.floor(1 + (fullness / slots) * 14)
+end
+
+function mcl_redstone.get_measure_container_function(lists)
+	return function(pos)
+		local fullness, slots = get_inventory_data(pos, lists)
+		return container_signal(fullness, slots)
+	end
+end
+
+function mcl_redstone.get_measure_double_chest_function(side)
+	return function(pos, node)
+		local other_pos = mcl_util.get_double_container_neighbor_pos(pos, node.param2, side)
+		local fullness1, slots1 = get_inventory_data(pos, {"main"})
+		local fullness2, slots2 = get_inventory_data(other_pos, {"main"})
+		return container_signal(fullness1 + fullness2, slots1 + slots2)
+	end
+end

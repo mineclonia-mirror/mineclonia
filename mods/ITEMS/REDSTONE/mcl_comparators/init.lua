@@ -24,57 +24,11 @@ function mcl_redstone.update_comparators(pos)
 	end
 end
 
-local function get_inventory_data(pos, lists)
-	if not lists or #lists == 0 then
-		lists = { "main" }
-	end
-
-	local inv = core.get_inventory({type="node", pos=pos})
-
-	if not inv then return 0 end
-
-	local empty, fullness, slots = true, 0, 0
-
-	for _, listname in pairs(lists) do
-		slots = slots + inv:get_size(listname)
-		if not inv:is_empty(listname) then
-			empty = false
-			for _, stack in pairs(inv:get_list(listname)) do
-				if stack then
-					fullness = fullness + stack:get_count() / stack:get_stack_max()
-				end
-			end
-		end
-	end
-
-	return empty, fullness, slots
-end
-
-local function measure_inventory(pos, _, _, lists)
-	local empty, fullness, slots = get_inventory_data(pos, lists)
-
-	-- formula copied from wiki
-	return empty and 0 or math.floor(1 + (fullness / slots) * 14)
-end
-
---- wrap measure_inventory to measure non main invs
-local function measure_complex_inventory(lists)
-	return function(pos)
-		return measure_inventory(pos, nil, nil, lists)
-	end
-end
-
-local function measure_double_chest(side)
-	return function(pos, node)
-		local other_pos = mcl_util.get_double_container_neighbor_pos(pos, node.param2, side)
-		local empty1, fullness1, slots1 = get_inventory_data(pos)
-		local empty2, fullness2, slots2 = get_inventory_data(other_pos)
-		local empty, fullness, slots = empty1 and empty2, fullness1 + fullness2, slots1 + slots2
-
-		-- apply formula to cumulated data
-		return empty and 0 or math.floor(1 + (fullness / slots) * 14)
-	end
-end
+local measure_inventory = mcl_redstone.get_measure_container_function({"main"})
+local measure_furnace = mcl_redstone.get_measure_container_function({"fuel", "src", "dst"})
+local measure_brewing_stand = mcl_redstone.get_measure_container_function({"fuel", "input", "stand"})
+local measure_double_chest_left = mcl_redstone.get_measure_double_chest_function("left")
+local measure_double_chest_right = mcl_redstone.get_measure_double_chest_function("right")
 
 local function measure_constant(power_level)
 	return function()
@@ -117,11 +71,6 @@ local function measure_item_frames(pos)
 	end
 	return 0
 end
-
-local measure_double_chest_left = measure_double_chest("left")
-local measure_double_chest_right = measure_double_chest("right")
-local measure_furnace = measure_complex_inventory({"fuel", "src", "dst"})
-local measure_brewing_stand = measure_complex_inventory({"fuel", "input", "stand"})
 
 -- measurable nodes mapped to their measuring function
 local measure_tab = {
