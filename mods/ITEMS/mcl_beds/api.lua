@@ -245,4 +245,82 @@ function mcl_beds.register_bed(name, def)
 	doc.add_entry_alias("nodes", name.."_bottom", "nodes", name.."_top")
 end
 
+core.register_node("mcl_beds:straw_bed", {
+	description = S("Straw Bed"),
+	_tt_help = S("Allows you to sleep without setting your respawn point"),
+
+	_doc_items_longdesc = beddesc,
+	_doc_items_usagehelp = beduse,
+	_doc_items_create_entry = true,
+	_doc_items_entry_name = "Straw Bed",
+
+	inventory_image = "mcl_beds_straw_bed_inv.png",
+	wield_image = "mcl_beds_straw_bed_inv.png",
+	drawtype = "mesh",
+	mesh = "mcl_beds_straw_bed.obj",
+	tiles = {"mcl_beds_straw_bed.png"},
+	use_texture_alpha = "clip",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	is_ground_content = false,
+	stack_max = 16,
+	groups = {handy = 1, flammable = -1, hoey = 1, bed = 2, dig_by_piston=1, unsticky = 1},
+	_mcl_hardness = 0.2,
+	_mcl_blast_resistance = 1,
+	sounds = mcl_sounds.node_sound_leaves_defaults(),
+	drop = "",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3, 1.5}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3, 1.5}
+	},
+	on_place = function(itemstack, placer, pointed_thing)
+		local under = pointed_thing.under
+		local player_name = placer and placer:get_player_name() or ""
+
+		local dir = placer and placer:is_player() and placer:get_look_dir() and core.dir_to_facedir(placer:get_look_dir()) or 0
+
+		local front_pos = vector.add(pointed_thing.above, core.facedir_to_dir(dir))
+		local front_node = core.get_node(front_pos)
+		local front_def = core.registered_nodes[front_node.name]
+
+		if not front_def or not front_def.buildable_to then
+			return itemstack
+		end
+
+		if core.is_protected(front_pos, player_name) and
+			not core.check_player_privs(player_name, "protection_bypass") then
+			core.record_protection_violation(front_pos, player_name)
+			return itemstack
+		end
+
+		local bed_node = {name = "mcl_beds:straw_bed", param2 = dir}
+
+		core.set_node(pointed_thing.above, bed_node)
+
+		if not core.is_creative_enabled(player_name) then
+			itemstack:take_item()
+			end
+
+		return itemstack
+	end,
+
+	on_rightclick = function(pos, _, clicker)
+		return mcl_beds.on_rightclick_straw_bed(pos, clicker)
+	end,
+
+	on_rotate = rotate,
+	after_destruct = destruct_bed,
+})
+
+core.register_craft({
+	output = "mcl_beds:straw_bed 4",
+	recipe = {
+		{"mcl_farming:hay_block", "mcl_farming:hay_block", "mcl_farming:hay_block"},
+	}
+})
+
 

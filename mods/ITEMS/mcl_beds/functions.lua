@@ -3,6 +3,7 @@ local F = core.formspec_escape
 
 local player_in_bed = 0
 local is_sp = core.is_singleplayer()
+local straw_bed_pos = {}
 
 -- Helper functions
 
@@ -65,7 +66,7 @@ local function prevents_sleep(mob_def,mob_ent)
 	return true
 end
 
-local function lay_down(player, pos, bed_pos, state, skip)
+local function lay_down(player, pos, bed_pos, is_straw_bed, state, skip)
 	local name = player:get_player_name()
 	local hud_flags = player:hud_get_flags()
 
@@ -80,9 +81,11 @@ local function lay_down(player, pos, bed_pos, state, skip)
 		bed_pos2 = {x = bed_pos.x - dir.x, y = bed_pos.y, z = bed_pos.z - dir.z}
 		bed_center = {x = bed_pos.x - dir.x/2, y = bed_pos.y + 0.1, z = bed_pos.z - dir.z/2}
 
-		-- save respawn position when entering bed
-		if mcl_spawn.set_spawn_pos(player, bed_pos, nil) then
-			core.chat_send_player(name, S("New respawn position set!"))
+		if not is_straw_bed then
+			-- save respawn position when entering bed
+			if mcl_spawn.set_spawn_pos(player, bed_pos, nil) then
+				core.chat_send_player(name, S("New respawn position set!"))
+			end
 		end
 
 
@@ -119,8 +122,9 @@ local function lay_down(player, pos, bed_pos, state, skip)
 	end
 
 	-- stand up
-	if state ~= nil and not state then
+	if tate == false or (state == nil and not bed_pos) then
 		local p = mcl_beds.pos[name] or nil
+		local bpos = mcl_beds.bed_pos[name]
 		if mcl_beds.player[name] then
 			mcl_beds.player[name] = nil
 			player_in_bed = player_in_bed - 1
@@ -134,6 +138,12 @@ local function lay_down(player, pos, bed_pos, state, skip)
 		-- skip here to prevent sending player specific changes (used for leaving players)
 		if skip then
 			return false
+		end
+
+		local straw_pos = straw_bed_pos[name]
+		if straw_pos then
+			core.remove_node(straw_pos)
+			straw_bed_pos[name] = nil
 		end
 
 		-- physics, eye_offset, etc
@@ -162,8 +172,13 @@ local function lay_down(player, pos, bed_pos, state, skip)
 
 		mcl_beds.player[name] = 1
 		mcl_beds.pos[name] = pos
-		mcl_beds.bed_pos[name] = bed_pos2
+		mcl_beds.bed_pos[name] = is_straw_bed and bed_pos or bed_pos2
 		player_in_bed = player_in_bed + 1
+
+		if is_straw_bed then
+			straw_bed_pos[name] = bed_pos
+		end
+
 		-- physics, eye_offset, etc
 		if not mcl_serverplayer.is_csm_capable (player) then
 			player:set_eye_offset({x = 0, y = -13, z = 0}, {x = 0, y = 0, z = 0})
@@ -366,10 +381,10 @@ function mcl_beds.on_rightclick(pos, player, is_top)
 	if not mcl_beds.player[name] then
 		local message
 		if is_top then
-			message = select(2, lay_down(player, ppos, pos))
+			message = select(2, lay_down(player, ppos, pos, false))
 		else
 			local other = mcl_beds.get_bed_top (pos)
-			message = select(2, lay_down(player, ppos, other))
+			message = select(2, lay_down(player, ppos, other, false))
 		end
 		if message then
 			mcl_title.set(player, "actionbar", {text=message, color="white", stay=60})
@@ -397,6 +412,45 @@ function mcl_beds.on_rightclick(pos, player, is_top)
 	end
 end
 
+function mcl_beds.on_rightclick_straw_bed(pos, player)
+	-- Anti-Inception: Don't allow to sleep while you're sleeping
+	if player:get_meta():get_string("mcl_beds:sleeping") == "true" then
+		return
+	end
+	local name = player:get_player_name()
+	local ppos = player:get_pos()
+
+	-- move to bed
+	if not mcl_beds.player[name] then
+		local message
+		message = select(2, lay_down(player, ppos, pos, true))
+
+		if message then
+			mcl_title.set(player, "actionbar", {text=message, color="white", stay=60})
+		else -- someone just successfully entered a bed
+			local connected_players = core.get_connected_players()
+			local ges = players_in_overworld(connected_players)
+			local sleep_hud_message = S("@1/@2 players currently in bed.", player_in_bed, math.ceil(players_in_bed_setting() * ges / 100))
+			for _, player in pairs(connected_players) do
+				-- only send message to players not sleeping and in the "overworld"
+				if not mcl_beds.player[player:get_player_name()] and mcl_worlds.pos_to_dimension(player:get_pos()) == "overworld" then
+					-- clear, old message is still being displayed
+					if mcl_title.params_get(player) then mcl_title.clear(player) end
+					mcl_title.set(player, "actionbar", {text=sleep_hud_message, color="white", stay=60})
+				end
+			end
+		end
+	else
+		lay_down(player, nil, nil, true, false)
+	end
+
+	update_formspecs(false)
+	-- skip the night and let all players stand up
+	if player_in_bed > 0 then
+		core.after(5, recheck_in_beds)
+	end
+end
+
 -- Callbacks
 core.register_on_joinplayer(function(player)
 	local meta = player:get_meta()
@@ -411,7 +465,7 @@ core.register_on_joinplayer(function(player)
 end)
 
 core.register_on_leaveplayer(function(player)
-	lay_down(player, nil, nil, false, true)
+	lay_down(player, nil, nil, false, false, true)
 	local players = core.get_connected_players()
 	local name = player:get_player_name()
 	for n, player in ipairs(players) do
@@ -490,8 +544,13 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 	end
 
 	if fields.quit or fields.leave then
-		lay_down(player, nil, nil, false)
+		lay_down(player, nil, nil, false, false)
 		update_formspecs(false)
+	end
+
+	if fields.force then
+		update_formspecs(is_night_skip_enabled())
+		mcl_beds.sleep()
 	end
 end)
 
