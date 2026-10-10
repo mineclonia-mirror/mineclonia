@@ -135,7 +135,7 @@ local trades_ordinary_table = {
 	{ E(3), { "mcl_ocean:fire_coral_block", 1, 1, }, 8, 0 },
 	{ E(3), { "mcl_ocean:horn_coral_block", 1, 1, }, 8, 0 },
 	{ E(4), { "mcl_mobitems:slimeball", 1, 1, }, 5, 0 },
-	{ E(5), { get_random_sapling, 8, 8, }, 8, 0 },
+	{ E(5), { get_random_sapling, 1, 1, }, 8, 0 },
 	{ E(5), { "mcl_mobitems:nautilus_shell", 1, 1, }, 5, 0 },
 }
 
