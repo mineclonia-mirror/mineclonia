@@ -141,7 +141,7 @@ local function redraw_bookshelf(node,pos)
 	local inv = meta:get_inventory()
 	local newnode = {name = get_node_name(get_bits(inv)), param2 = node.param2}
 	-- no need to copy meta; it is preserved
-	core.swap_node(pos, newnode)
+	mcl_redstone.swap_node(pos, newnode)
 	local infotext = ""
 	for i = 1, 6 do
 		local stack = inv:get_stack("main", i)
@@ -247,7 +247,8 @@ local basegroups = {
 		flammable = 3,
 		fire_encouragement = 30,
 		fire_flammability = 20,
-		container = 1
+		container = 1,
+		chiseled_bookshelf = 1,
 	}
 local basedef = {
 	description = S("Chiseled Bookshelf"),

@@ -151,7 +151,6 @@ local measure_tab = {
 	["mcl_smoker:smoker"] = measure_furnace,
 	["mcl_jukebox:jukebox"] = measure_jukebox,
 	["mcl_lectern:lectern_with_book"] = measure_lectern,
-	["mcl_books:chiseled_bookshelf"] = measure_chiseled_bookshelf,
 	["mcl_target:target_on"] = measure_target,
 	["mcl_itemframes:frame"] = measure_item_frames,
 	["mcl_itemframes:glow_frame"] = measure_item_frames,
@@ -160,6 +159,7 @@ local measure_tab = {
 	--[[ initalized using after_mods_loaded
 	["mcl_beds:respawn_anchor"] = measure_constant(comparator_signal),
 	["mcl_beds:respawn_anchor_charged_xxx"] = measure_constant(comparator_signal),
+	["mcl_books:chiseled_bookshelf_xxx"] = measure_chiseled_bookshelf,
 	["mcl_brewing:stand_xxx"] = measure_brewing_stand,
 	["mcl_chests:xxx_shulker_box"] = measure_inventory,
 	["mcl_cauldron:cauldron_xxx"] = measure_constant(comparator_signal),
@@ -174,7 +174,6 @@ local measure_tab = {
 	--["minecart_with_hopper"] = measure_inventory,
 	--["beehive"] = measure_beehive,
 	--["bees_nest"] = measure_beehive,
-	--["chiseled_bookshelf"] = measure_bookshelf,
 	--["command_block"] = measure_command_block,
 	--["crafter"] = measure_crafter,
 	--["item_frame"] = measure_item_frame,
@@ -440,6 +439,8 @@ core.register_on_mods_loaded(function()
 			measure_tab[name] = measure_inventory
 		elseif core.get_item_group(name, "brewing_stand") ~= 0 then
 			measure_tab[name] = measure_brewing_stand
+		elseif core.get_item_group(name, "chiseled_bookshelf") ~= 0 then
+			measure_tab[name] = measure_chiseled_bookshelf
 		elseif  -- comparator_signal == 0 still marks the node as comparator measurable
 			def.groups and def.groups.comparator_signal then
 			measure_tab[name] = measure_constant(def.groups.comparator_signal)
