@@ -177,6 +177,11 @@ function mcl_flowers.register_ground_flower(flowername, def, add_def)
 			local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
 			if rc then return rc end
 
+			if core.is_protected(pointed_thing.above, placer:get_player_name()) then
+				core.record_protection_violation(pointed_thing.above, placer:get_player_name())
+				return itemstack
+			end
+
 			local pos = pointed_thing.under
 			local node = core.get_node(pos)
 			local above_pos = {x=pos.x, y=pos.y+1, z=pos.z}
