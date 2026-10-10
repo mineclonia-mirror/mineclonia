@@ -72,7 +72,7 @@ local function measure_double_chest(side)
 		local empty, fullness, slots = empty1 and empty2, fullness1 + fullness2, slots1 + slots2
 
 		-- apply formula to cumulated data
-		return empty and 0 or math.floor(1 + (fullness / slots) * 14), fullness, slots
+		return empty and 0 or math.floor(1 + (fullness / slots) * 14)
 	end
 end
 
