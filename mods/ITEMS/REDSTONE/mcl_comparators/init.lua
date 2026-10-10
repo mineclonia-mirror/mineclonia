@@ -182,20 +182,12 @@ local measure_tab = {
 	--["shelf"] = measure_shelf,
 }
 
--- check if node at pos is 'interesting', returning multiple results
--- 1: measuring function for node from measure_tab or nil
--- 2: true, iff node has opaque group set to non zero
--- 3/4: node and nodedef (to avoid looking them up again later)
-local function is_measurable_or_opaque(pos)
-	local node = core.get_node_or_nil(pos)
-	local def = node and core.registered_nodes[node.name]
-
-	if not def then return nil, false, nil, nil end
-
-	local measuring_function = measure_tab[node.name]
-	local is_opaque = def.groups and def.groups.opaque and (def.groups.opaque ~= 0)
-
-	return measuring_function, is_opaque, node, def
+local function get_measure_function(name)
+	if measure_tab[name] then
+		return function(pos, node)
+			return math.max(0, math.min(15, measure_tab[name](pos, node)))
+		end
+	end
 end
 
 -- compute tile depending on state and mode
@@ -326,28 +318,27 @@ for _, mode in pairs{"comp", "sub"} do
 					local rear_power
 					-- first check whether the node in the back pos is measurable
 					local pos2 = vector.add(pos, back)
-					local measure, is_opaque, node2, def2 = is_measurable_or_opaque(pos2)
+					local node2 = core.get_node(pos2)
+					local measure = get_measure_function(node2.name)
 					if measure then
-						rear_power = measure(pos2, node2, def2)
+						rear_power = measure(pos2, node2)
 					else
-						rear_power = mcl_redstone.get_power(pos, back)
 						-- Rear input does accept power from opaque nodes, but
 						-- ignores it in preference of a measurable node (behind
 						-- the opaque node). Java edition makes an exception if
 						-- the power level is 15, we do not do so because we
 						-- mainly target bedrock.
-						if is_opaque then
+						local def2 = core.registered_nodes[node2.name]
+						if def2 and def2.groups and def2.groups.opaque and (def2.groups.opaque ~= 0) then
 							local pos3 = vector.add(pos2, back)
-							local measure, _, node3, def3 = is_measurable_or_opaque(pos3)
+							local node3 = core.get_node(pos3)
+							local measure = get_measure_function(node3.name)
 							if measure then
-								rear_power = measure(pos3, node3, def3)
+								rear_power = measure(pos3, node3)
 							end
 						end
 					end
-
-					-- make sure rear_power is an integer in the range [0..15]
-					rear_power = math.max(0, math.min(15, math.floor(rear_power)))
-
+					rear_power = rear_power or mcl_redstone.get_power(pos, back)
 					local output
 					if mode == "comp" then
 						output = rear_power >= side_power and rear_power or 0
