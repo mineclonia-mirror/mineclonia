@@ -4,7 +4,7 @@ See license.txt for license information.
 
 ## Authors of source code
 * Originally by `BlockMen` [MIT]
-* Various `Luanti developers and contributors` [MIT]
+* Various `Minetest developers and contributors` [MIT]
 * Various changes (e.g. Straw bed) by `Fhelron` [GPL-3.0-or-later](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ## Authors of media (textures)
