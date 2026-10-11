@@ -266,7 +266,15 @@ core.register_node("mcl_jukebox:jukebox", {
 	end,
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 2,
-	_mcl_burntime = 15
+	_mcl_burntime = 15,
+	_mcl_redstone = {
+		comparator_readout = function(pos)
+			local inv = core.get_inventory({type="node", pos=pos})
+			local record = inv and inv:get_stack("main", 1)
+			local def = record and mcl_jukebox.registered_records[record:get_name()]
+			return def and def.comparator_signal or 0
+		end
+	},
 })
 
 mcl_jukebox.register_record({
