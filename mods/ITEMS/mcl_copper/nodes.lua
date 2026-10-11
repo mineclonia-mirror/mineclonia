@@ -157,7 +157,11 @@ for n, desc in pairs(n_desc) do
 		_mcl_hardness = 3,
 		drop = "mcl_copper:bulb"..n.."_off",
 		_mcl_copper_bulb_switch_to = "mcl_copper:bulb"..n.."_off_powered",
-		_mcl_redstone = {connects_to = bulb_connects_to, update = bulb_update},
+		_mcl_redstone = {
+				connects_to = bulb_connects_to,
+				update = bulb_update,
+				comparator_readout = function() return 15 end,
+		},
 	})
 
 	core.register_node("mcl_copper:bulb"..n.."_on_powered", {
@@ -173,7 +177,11 @@ for n, desc in pairs(n_desc) do
 		_mcl_hardness = 3,
 		drop = "mcl_copper:bulb"..n.."_off",
 		_mcl_copper_bulb_switch_to = "mcl_copper:bulb"..n.."_on",
-		_mcl_redstone = {connects_to = bulb_connects_to, update = bulb_update}
+		_mcl_redstone = {
+				connects_to = bulb_connects_to,
+				update = bulb_update,
+				comparator_readout = function() return 15 end,
+		}
 	})
 
 	core.register_node("mcl_copper:bulb"..n.."_off", {
@@ -186,7 +194,11 @@ for n, desc in pairs(n_desc) do
 		_mcl_blast_resistance = 6,
 		_mcl_hardness = 3,
 		_mcl_copper_bulb_switch_to = "mcl_copper:bulb"..n.."_on_powered",
-		_mcl_redstone = {connects_to = bulb_connects_to, update = bulb_update},
+		_mcl_redstone = {
+				connects_to = bulb_connects_to,
+				update = bulb_update,
+				comparator_readout = function() return 0 end,
+		},
 	})
 
 	core.register_node("mcl_copper:bulb"..n.."_off_powered", {
@@ -200,7 +212,11 @@ for n, desc in pairs(n_desc) do
 		_mcl_hardness = 3,
 		drop = "mcl_copper:bulb"..n.."_off",
 		_mcl_copper_bulb_switch_to = "mcl_copper:bulb"..n.."_off",
-		_mcl_redstone = {connects_to = bulb_connects_to, update = bulb_update},
+		_mcl_redstone = {
+				connects_to = bulb_connects_to,
+				update = bulb_update,
+				comparator_readout = function() return 0 end,
+		},
 	})
 
 	mcl_doors:register_trapdoor("mcl_copper:trapdoor"..n, {
