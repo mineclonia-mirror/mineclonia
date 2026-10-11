@@ -425,6 +425,7 @@ local tpl_brewing_stand = {
 	on_rotate = screwdriver.rotate_simple,
 	_on_hopper_in = hopper_in,
 	_on_hopper_out = hopper_out,
+	_mcl_redstone = {comparator_readout = mcl_redstone.get_measure_container_function({"fuel", "input", "stand"})},
 }
 
 core.register_node("mcl_brewing:stand_000", table.merge(tpl_brewing_stand, {
