@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doc_basics x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-05-13 14:58+0000\n"
+"PO-Revision-Date: 2026-08-28 06:51+0000\n"
 "Last-Translator: syl <syl@noreply.codeberg.org>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_doc_basics/fr/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.17.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:9
 msgid "Advanced usage"
@@ -1159,8 +1159,7 @@ msgstr "• Clic du milieu : Prenez 10 objets de la pile d'objets"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:144
 msgid "• Mouse wheel down: take 1 item from the item stack"
-msgstr ""
-"• Molette de la souris vers le bas : Prenez 1 objet de la pile d'objets"
+msgstr "• Molette de la souris vers le bas : Prenez 1 objet de la pile d'objets"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:145
 msgid ""
@@ -2195,9 +2194,9 @@ msgid ""
 "might fall!"
 msgstr ""
 "Pour vous faufiler, maintenez enfoncée la touche furtive (par défaut : "
-"[Shift]). Lorsque vous le relâchez, vous arrêtez de vous faufiler. "
-"Attention : lorsque vous relâchez la touche furtive sur un rebord, vous "
-"risquez de tomber !"
+"[Shift]). Lorsque vous le relâchez, vous arrêtez de vous faufiler. Attention "
+": lorsque vous relâchez la touche furtive sur un rebord, vous risquez de "
+"tomber !"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:415
 msgid ""
@@ -2779,8 +2778,7 @@ msgstr "• Réapparition : Réapparaître dans le monde après la mort"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:573
 msgid "• Group: Puts similar things together, often affects gameplay"
-msgstr ""
-"• Groupe : Rassemble des choses similaires, affecte souvent le gameplay"
+msgstr "• Groupe : Rassemble des choses similaires, affecte souvent le gameplay"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:574
 msgid "• noclip: Allows to fly through walls"

@@ -3,68 +3,75 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_copper x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-18 19:32+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-09-09 21:25+0000\n"
+"Last-Translator: kvasovy <kvasovy@noreply.codeberg.org>\n"
+"Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_copper/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: mods/ITEMS/mcl_copper/items.lua:4
 msgid "Copper Ingot"
-msgstr ""
+msgstr "Мідний злиток"
 
 #: mods/ITEMS/mcl_copper/items.lua:5
 msgid "Molten Copper. It is used to craft armor, tools, and blocks."
 msgstr ""
+"Топлена мідь. Використовується для майстрування обладунків, інструментів та "
+"блоків."
 
 #: mods/ITEMS/mcl_copper/items.lua:9
 msgid "Copper Material"
-msgstr ""
+msgstr "Мідний матеріал"
 
 #: mods/ITEMS/mcl_copper/items.lua:18
 msgid "Copper Nugget"
-msgstr ""
+msgstr "Мідний самородок"
 
 #: mods/ITEMS/mcl_copper/items.lua:19
 msgid ""
 "Copper nuggets are very small pieces of molten copper; the main purpose is "
 "to create copper ingots."
 msgstr ""
+"Мідні самородки - це дуже маленькі шматочкі топленої міді, їх головне "
+"застосування - створення мідних злитків."
 
 #: mods/ITEMS/mcl_copper/items.lua:26
 msgid "Raw Copper"
-msgstr ""
+msgstr "Необроблена мідь"
 
 #: mods/ITEMS/mcl_copper/items.lua:27
 msgid "Raw Copper. Mine a Copper Ore to get it."
-msgstr ""
+msgstr "Необроблена мідь. Добудьте мідну руду, щоб її отримати."
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:1
 msgid "Block of Copper"
-msgstr ""
+msgstr "Мідний блок"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:2
 msgid "Block of Copper is mostly a decorative block."
-msgstr ""
+msgstr "Мідний блок - це здебільшого декоративний блок."
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:3
 msgid "Chiseled Copper"
-msgstr ""
+msgstr "Різьблена мідь"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:4
 msgid "Chiseled Copper is mostly a decorative block."
-msgstr ""
+msgstr "Різьблена мідь - це здебільшого декоративний блок."
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:5
 msgid "Copper Bars"
-msgstr ""
+msgstr "Мідні ґрати"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:6
 msgid "Copper Bulb"
-msgstr ""
+msgstr "Мідна колба"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:7
 msgid "Copper Bulb On"
@@ -84,7 +91,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:11
 msgid "Copper Chain"
-msgstr ""
+msgstr "Мідний ланцюг"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:12
 msgid "Copper Chains are metallic decoration blocks."
@@ -92,11 +99,11 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:13
 msgid "Copper Door"
-msgstr ""
+msgstr "Мідні двері"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:14
 msgid "Copper Grate"
-msgstr ""
+msgstr "Мідна решітка"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:15
 msgid "Copper Grate is mostly a decorative block."
@@ -104,7 +111,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:16
 msgid "Copper Lantern"
-msgstr ""
+msgstr "Мідний ліхтар"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:17
 msgid ""
@@ -114,19 +121,19 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:18
 msgid "Copper Trapdoor"
-msgstr ""
+msgstr "Мідний люк"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:19
 msgid "Cut Copper"
-msgstr ""
+msgstr "Тесана мідь"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:20
 msgid "Cut Copper Slab"
-msgstr ""
+msgstr "Плита з тесаної міді"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:21
 msgid "Cut Copper Stairs"
-msgstr ""
+msgstr "Сходи з тесаної міді"
 
 #: mods/ITEMS/mcl_copper/mcl_copper_translations_tmp.lua:22
 msgid "Cut Copper is mostly a decorative block."
@@ -652,7 +659,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/nodes.lua:42
 msgid "Copper Ore"
-msgstr ""
+msgstr "Мідна руда"
 
 #: mods/ITEMS/mcl_copper/nodes.lua:43
 msgid ""
@@ -674,7 +681,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_copper/nodes.lua:290
 msgid "Copper Torch"
-msgstr ""
+msgstr "Мідний смолоскип"
 
 #: mods/ITEMS/mcl_copper/nodes.lua:291
 msgid ""

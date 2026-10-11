@@ -3,109 +3,114 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_blackstone x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-09-10 19:26+0000\n"
+"Last-Translator: SomeTr <sometr@noreply.codeberg.org>\n"
+"Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_blackstone/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:4
 msgid "Blackstone"
-msgstr ""
+msgstr "Чорнокамінь"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:13
 msgid "Gilded Blackstone"
-msgstr ""
+msgstr "Позолочений чорнокамінь"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:50
 msgid "Nether Gold Ore"
-msgstr ""
+msgstr "Незерська золота руда"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:70
 msgid "Polished Basalt"
-msgstr ""
+msgstr "Полірований базальт"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:83
 msgid "Basalt"
-msgstr ""
+msgstr "Базальт"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:96
 msgid "Smooth Basalt"
-msgstr ""
+msgstr "Гладкий базальт"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:105
 msgid "Polished Blackstone"
-msgstr ""
+msgstr "Полірований чорнокамінь"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:116
 msgid "Chiseled Polished Blackstone"
-msgstr ""
+msgstr "Різьблений полірований чорнокамінь"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:126
 msgid "Polished Blackstone Bricks"
-msgstr ""
+msgstr "Полірована чорнокам'яна цегла"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:137
 msgid "Cracked Polished Blackstone Bricks"
-msgstr ""
+msgstr "Тріснута полірована чорнокам'яна цегла"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:146
 msgid "Quartz Bricks"
-msgstr ""
+msgstr "Кварцова цегла"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:155
 msgid "Soul Soil"
-msgstr ""
+msgstr "Ґрунт душ"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:162
 msgid "Eternal Soul Fire"
-msgstr ""
+msgstr "Вічний вогонь душ"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:211
 msgid "Blackstone Stairs"
-msgstr ""
+msgstr "Чорнокам'яні сходи"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:212
 msgid "Blackstone Slab"
-msgstr ""
+msgstr "Чорнокам'яна плита"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:219
 msgid "Polished Blackstone Stairs"
-msgstr ""
+msgstr "Поліровані чорнокам'яні сходи"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:220
 msgid "Polished Blackstone Slab"
-msgstr ""
+msgstr "Полірована чорнокам'яна плита"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:227
 msgid "Polished Blackstone Brick Stairs"
-msgstr ""
+msgstr "Поліровані чорнокам'яні цегляні сходи"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:228
 msgid "Polished Blackstone Brick Slab"
-msgstr ""
+msgstr "Полірована чорнокам'яна цегляна плита"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:242
 msgid "Soul Torch"
-msgstr ""
+msgstr "Смолоскип душ"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:243
 msgid ""
 "Torches are light sources which can be placed at the side or on the top of "
 "most blocks."
 msgstr ""
+"Смолоскипи — це джерела світла, які можна розташувати збоку або зверху "
+"більшості блоків."
 
 #: mods/ITEMS/mcl_blackstone/init.lua:258
 msgid "Blackstone Wall"
-msgstr ""
+msgstr "Чорнокам'яна стіна"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:263
 msgid "Polished Blackstone Wall"
-msgstr ""
+msgstr "Полірована чорнокам'яна стіна"
 
 #: mods/ITEMS/mcl_blackstone/init.lua:268
 msgid "Polished Blackstone Brick Wall"
-msgstr ""
+msgstr "Полірована чорнокам'яна цегляна стіна"

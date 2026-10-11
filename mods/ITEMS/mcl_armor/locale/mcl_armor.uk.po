@@ -3,18 +3,21 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_armor x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-09-07 20:26+0000\n"
+"Last-Translator: kvasovy <kvasovy@noreply.codeberg.org>\n"
+"Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_armor/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: mods/ITEMS/mcl_armor/api.lua:234
 msgid " "
-msgstr ""
+msgstr " "
 
 #: mods/ITEMS/mcl_armor/api.lua:508
 msgid "Upgrade:"
@@ -33,19 +36,19 @@ msgstr ""
 
 #: mods/ITEMS/mcl_armor/leather.lua:66
 msgid "Leather Cap"
-msgstr ""
+msgstr "Шкіряна шапка"
 
 #: mods/ITEMS/mcl_armor/leather.lua:67
 msgid "Leather Tunic"
-msgstr ""
+msgstr "Шкіряний тунік"
 
 #: mods/ITEMS/mcl_armor/leather.lua:68
 msgid "Leather Pants"
-msgstr ""
+msgstr "Шкіряні штани"
 
 #: mods/ITEMS/mcl_armor/leather.lua:69
 msgid "Leather Boots"
-msgstr ""
+msgstr "Шкіряні чоботи"
 
 #: mods/ITEMS/mcl_armor/leather.lua:153
 msgid "Colorize a piece of leather armor, or wash it"
@@ -65,7 +68,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_armor/leather.lua:171
 msgid "Player isn't online"
-msgstr ""
+msgstr "Граєць не в мережі"
 
 #: mods/ITEMS/mcl_armor/mcl_armor_translations_tmp.lua:1
 msgid "Bolt Armor Trim"
@@ -129,51 +132,51 @@ msgstr ""
 
 #: mods/ITEMS/mcl_armor/register.lua:6
 msgid "Golden Helmet"
-msgstr ""
+msgstr "Золотий шолом"
 
 #: mods/ITEMS/mcl_armor/register.lua:7
 msgid "Golden Chestplate"
-msgstr ""
+msgstr "Золотий нагрудник"
 
 #: mods/ITEMS/mcl_armor/register.lua:8
 msgid "Golden Leggings"
-msgstr ""
+msgstr "Золоті наголінники"
 
 #: mods/ITEMS/mcl_armor/register.lua:9
 msgid "Golden Boots"
-msgstr ""
+msgstr "Золоті чоботи"
 
 #: mods/ITEMS/mcl_armor/register.lua:29
 msgid "Chainmail Helmet"
-msgstr ""
+msgstr "Кольчужний шолом"
 
 #: mods/ITEMS/mcl_armor/register.lua:30
 msgid "Chainmail Chestplate"
-msgstr ""
+msgstr "Кольчужний нагрудник"
 
 #: mods/ITEMS/mcl_armor/register.lua:31
 msgid "Chainmail Leggings"
-msgstr ""
+msgstr "Кольчужні наголінники"
 
 #: mods/ITEMS/mcl_armor/register.lua:32
 msgid "Chainmail Boots"
-msgstr ""
+msgstr "Кольчужні чоботи"
 
 #: mods/ITEMS/mcl_armor/register.lua:52
 msgid "Copper Helmet"
-msgstr ""
+msgstr "Мідний шолом"
 
 #: mods/ITEMS/mcl_armor/register.lua:53
 msgid "Copper Chestplate"
-msgstr ""
+msgstr "Мідний нагрудник"
 
 #: mods/ITEMS/mcl_armor/register.lua:54
 msgid "Copper Leggings"
-msgstr ""
+msgstr "Мідні наголінники"
 
 #: mods/ITEMS/mcl_armor/register.lua:55
 msgid "Copper Boots"
-msgstr ""
+msgstr "Мідні чоботи"
 
 #: mods/ITEMS/mcl_armor/register.lua:75
 msgid "Iron Helmet"
@@ -181,11 +184,11 @@ msgstr "Залізний шолом"
 
 #: mods/ITEMS/mcl_armor/register.lua:76
 msgid "Iron Chestplate"
-msgstr ""
+msgstr "Залізний нагрудник"
 
 #: mods/ITEMS/mcl_armor/register.lua:77
 msgid "Iron Leggings"
-msgstr ""
+msgstr "Залізні наголінники"
 
 #: mods/ITEMS/mcl_armor/register.lua:78
 msgid "Iron Boots"
@@ -193,35 +196,35 @@ msgstr "Залізні чоботи"
 
 #: mods/ITEMS/mcl_armor/register.lua:98
 msgid "Diamond Helmet"
-msgstr ""
+msgstr "Діамантовий шолом"
 
 #: mods/ITEMS/mcl_armor/register.lua:99
 msgid "Diamond Chestplate"
-msgstr ""
+msgstr "Діамантовий нагрудник"
 
 #: mods/ITEMS/mcl_armor/register.lua:100
 msgid "Diamond Leggings"
-msgstr ""
+msgstr "Діамантові наголінники"
 
 #: mods/ITEMS/mcl_armor/register.lua:101
 msgid "Diamond Boots"
-msgstr ""
+msgstr "Діамантові чоботи"
 
 #: mods/ITEMS/mcl_armor/register.lua:122
 msgid "Netherite Helmet"
-msgstr ""
+msgstr "Незеритовий шолом"
 
 #: mods/ITEMS/mcl_armor/register.lua:123
 msgid "Netherite Chestplate"
-msgstr ""
+msgstr "Незеритовий нагрудник"
 
 #: mods/ITEMS/mcl_armor/register.lua:124
 msgid "Netherite Leggings"
-msgstr ""
+msgstr "Незеритові наголінники"
 
 #: mods/ITEMS/mcl_armor/register.lua:125
 msgid "Netherite Boots"
-msgstr ""
+msgstr "Незеритові чоботи"
 
 #: mods/ITEMS/mcl_armor/register.lua:143
 msgid "Projectile Protection"
@@ -257,7 +260,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_armor/register.lua:183
 msgid "Feather Falling"
-msgstr ""
+msgstr "Невагомість"
 
 #: mods/ITEMS/mcl_armor/register.lua:184
 msgid "Reduces fall damage."
@@ -277,7 +280,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_armor/register.lua:229
 msgid "Thorns"
-msgstr ""
+msgstr "Шипи"
 
 #: mods/ITEMS/mcl_armor/register.lua:236
 msgid ""
@@ -287,7 +290,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_armor/register.lua:249
 msgid "Elytra"
-msgstr ""
+msgstr "Елітри"
 
 #: mods/ITEMS/mcl_armor/trims.lua:10
 msgid "Smithing Template"

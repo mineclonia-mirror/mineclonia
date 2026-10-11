@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_death_messages x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-05-04 18:59+0000\n"
-"Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-08-28 06:32+0000\n"
+"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_death_messages/es/>\n"
 "Language: es\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: mods/HUD/mcl_death_messages/init.lua:8
 msgid "@1 went up in flames"
@@ -249,8 +249,7 @@ msgstr "@1 murió por un arbusto de bayas dulces"
 
 #: mods/HUD/mcl_death_messages/init.lua:132
 msgid "@1 was poked to death by a sweet berry bush whilst trying to escape @2"
-msgstr ""
-"@1 murió por un arbusto de bayas dulce mientras intentaba escapar de @2"
+msgstr "@1 murió por un arbusto de bayas dulce mientras intentaba escapar de @2"
 
 #: mods/HUD/mcl_death_messages/init.lua:135
 msgid "@1 froze to death"

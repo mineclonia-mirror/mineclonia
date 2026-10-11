@@ -3,14 +3,17 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_tools x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-09-07 20:26+0000\n"
+"Last-Translator: kvasovy <kvasovy@noreply.codeberg.org>\n"
+"Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_tools/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: mods/ITEMS/mcl_tools/init.lua:10
 msgid ""
@@ -103,15 +106,15 @@ msgstr "Дерев'яне кайло"
 
 #: mods/ITEMS/mcl_tools/register.lua:22
 msgid "Wooden Shovel"
-msgstr ""
+msgstr "Дерев'яна лопата"
 
 #: mods/ITEMS/mcl_tools/register.lua:30
 msgid "Wooden Sword"
-msgstr ""
+msgstr "Дерев'яний меч"
 
 #: mods/ITEMS/mcl_tools/register.lua:38
 msgid "Wooden Axe"
-msgstr ""
+msgstr "Дерев'яна сокира"
 
 #: mods/ITEMS/mcl_tools/register.lua:58
 msgid "Stone Pickaxe"
@@ -119,31 +122,31 @@ msgstr "Кам'яне кайло"
 
 #: mods/ITEMS/mcl_tools/register.lua:66
 msgid "Stone Shovel"
-msgstr ""
+msgstr "Кам'яна лопата"
 
 #: mods/ITEMS/mcl_tools/register.lua:74
 msgid "Stone Sword"
-msgstr ""
+msgstr "Кам'яний меч"
 
 #: mods/ITEMS/mcl_tools/register.lua:82
 msgid "Stone Axe"
-msgstr ""
+msgstr "Кам'яна сокира"
 
 #: mods/ITEMS/mcl_tools/register.lua:102
 msgid "Copper Pickaxe"
-msgstr ""
+msgstr "Мідне кайло"
 
 #: mods/ITEMS/mcl_tools/register.lua:110
 msgid "Copper Shovel"
-msgstr ""
+msgstr "Мідна лопата"
 
 #: mods/ITEMS/mcl_tools/register.lua:118
 msgid "Copper Sword"
-msgstr ""
+msgstr "Мідний меч"
 
 #: mods/ITEMS/mcl_tools/register.lua:126
 msgid "Copper Axe"
-msgstr ""
+msgstr "Мідна сокира"
 
 #: mods/ITEMS/mcl_tools/register.lua:146
 msgid "Iron Pickaxe"
@@ -151,60 +154,60 @@ msgstr "Залізне кайло"
 
 #: mods/ITEMS/mcl_tools/register.lua:154
 msgid "Iron Shovel"
-msgstr ""
+msgstr "Залізна лопата"
 
 #: mods/ITEMS/mcl_tools/register.lua:162
 msgid "Iron Sword"
-msgstr ""
+msgstr "Залізний меч"
 
 #: mods/ITEMS/mcl_tools/register.lua:170
 msgid "Iron Axe"
-msgstr ""
+msgstr "Залізна сокира"
 
 #: mods/ITEMS/mcl_tools/register.lua:190
 msgid "Golden Pickaxe"
-msgstr ""
+msgstr "Золоте кайло"
 
 #: mods/ITEMS/mcl_tools/register.lua:198
 msgid "Golden Shovel"
-msgstr ""
+msgstr "Золота лопата"
 
 #: mods/ITEMS/mcl_tools/register.lua:206
 msgid "Golden Sword"
-msgstr ""
+msgstr "Золотий меч"
 
 #: mods/ITEMS/mcl_tools/register.lua:214
 msgid "Golden Axe"
-msgstr ""
+msgstr "Золота сокира"
 
 #: mods/ITEMS/mcl_tools/register.lua:234
 msgid "Diamond Pickaxe"
-msgstr ""
+msgstr "Діамантове кайло"
 
 #: mods/ITEMS/mcl_tools/register.lua:244
 msgid "Diamond Shovel"
-msgstr ""
+msgstr "Діамантова лопата"
 
 #: mods/ITEMS/mcl_tools/register.lua:254
 msgid "Diamond Sword"
-msgstr ""
+msgstr "Діамантовий меч"
 
 #: mods/ITEMS/mcl_tools/register.lua:264
 msgid "Diamond Axe"
-msgstr ""
+msgstr "Діамантова сокира"
 
 #: mods/ITEMS/mcl_tools/register.lua:286
 msgid "Netherite Pickaxe"
-msgstr ""
+msgstr "Незеритове кайло"
 
 #: mods/ITEMS/mcl_tools/register.lua:294
 msgid "Netherite Shovel"
-msgstr ""
+msgstr "Незеритова лопата"
 
 #: mods/ITEMS/mcl_tools/register.lua:302
 msgid "Netherite Sword"
-msgstr ""
+msgstr "Незеритовий меч"
 
 #: mods/ITEMS/mcl_tools/register.lua:310
 msgid "Netherite Axe"
-msgstr ""
+msgstr "Незеритова сокира"

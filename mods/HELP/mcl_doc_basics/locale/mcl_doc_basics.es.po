@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doc_basics x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-04-27 09:04+0000\n"
+"PO-Revision-Date: 2026-08-28 06:50+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_doc_basics/es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:9
 msgid "Advanced usage"
@@ -426,8 +426,7 @@ msgstr "• /privs <jugador>: Lista los privilegios de <jugador>"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:118
 msgid "• /help privs: Shows a list and description about all privileges"
-msgstr ""
-"• /help privs: Muestra una lista y descripción de todos los privilegios"
+msgstr "• /help privs: Muestra una lista y descripción de todos los privilegios"
 
 #: mods/HELP/mcl_doc_basics/advanced.lua:120
 msgid "Players with the “privs” privilege can modify privileges at will:"
@@ -1095,8 +1094,7 @@ msgstr "Los ítems tienen varias propiedades, incluidas las siguientes:"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:122
 msgid "• Maximum stack size: Number of items which fit on 1 item stack"
-msgstr ""
-"• Tamaño máximo de pila: Número de ítems que caben en una pila de ítems"
+msgstr "• Tamaño máximo de pila: Número de ítems que caben en una pila de ítems"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:123
 msgid ""
@@ -1255,14 +1253,13 @@ msgid ""
 "“hotbar”, and contains the items you have put in the last row of your "
 "inventory."
 msgstr ""
-"En la parte inferior de la pantalla verás unos cuadrados. Estos se llama "
-"“barra de ítems”, y contienen los ítems que has colocado en la última fila "
-"de tu inventario."
+"En la parte inferior de la pantalla verás unos cuadrados. Estos se llama “"
+"barra de ítems”, y contienen los ítems que has colocado en la última fila de "
+"tu inventario."
 
 #: mods/HELP/mcl_doc_basics/basics.lua:166
 msgid "You can change the selected item with the mouse wheel or the keyboard:"
-msgstr ""
-"Puede cambiar el ítem seleccionado con la rueda del ratón o el teclado:"
+msgstr "Puede cambiar el ítem seleccionado con la rueda del ratón o el teclado:"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:168
 msgid "• Select previous item in hotbar: [Mouse wheel up] or [B]"
@@ -1692,8 +1689,8 @@ msgid ""
 "stone blocks."
 msgstr ""
 "En algunas recetas de fabricación, algunos ítems de entrada no necesitan ser "
-"un ítem en concreto, sino que deben ser miembros de un grupo (consulte "
-"“Conceptos básicos > Grupos”). Estas recetas ofrecen un poco más de libertad "
+"un ítem en concreto, sino que deben ser miembros de un grupo (consulte “"
+"Conceptos básicos > Grupos”). Estas recetas ofrecen un poco más de libertad "
 "en los ítems de entrada. Por ejemplo, al fabricar un horno se puede utilizar "
 "varios bloques de piedra de tipo adoquín."
 
@@ -2120,8 +2117,8 @@ msgid ""
 "is always your looking direction."
 msgstr ""
 "También hay dos modos de rotación diferentes. En el “modo cuadrado”, la "
-"rotación del minimapa es fija. Si presionas [Shift]+[F9] para cambiar al "
-"“modo círculo”, el minimapa rotará en la dirección en la que miras, por lo "
+"rotación del minimapa es fija. Si presionas [Shift]+[F9] para cambiar al “"
+"modo círculo”, el minimapa rotará en la dirección en la que miras, por lo "
 "que “arriba” siempre será la dirección en la que miras."
 
 #: mods/HELP/mcl_doc_basics/basics.lua:388
@@ -2212,8 +2209,8 @@ msgid ""
 "and a number of breath points (BP)."
 msgstr ""
 "Los jugadores son seres vivos. Comienzan con una cantidad determinada de "
-"puntos de salud (PS) y una cantidad determinada de puntos de respiración "
-"(BP)."
+"puntos de salud (PS) y una cantidad determinada de puntos de respiración (BP)"
+"."
 
 #: mods/HELP/mcl_doc_basics/basics.lua:425
 msgid ""
@@ -2498,8 +2495,7 @@ msgstr ""
 #: mods/HELP/mcl_doc_basics/basics.lua:505
 msgid ""
 "• Semi-transparent: Sunlight and artificial light go through with losses"
-msgstr ""
-"• Semitransparente: La luz solar y la luz artificial pasan con pérdidas"
+msgstr "• Semitransparente: La luz solar y la luz artificial pasan con pérdidas"
 
 #: mods/HELP/mcl_doc_basics/basics.lua:506
 msgid "• Opaque: No light passes through"

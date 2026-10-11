@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_farming x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-08 07:24+0200\n"
-"PO-Revision-Date: 2026-06-20 21:07+0000\n"
-"Last-Translator: newrizen <newrizen@noreply.codeberg.org>\n"
+"PO-Revision-Date: 2026-08-28 05:43+0000\n"
+"Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.codeberg.org/projects/"
 "mineclonia/mcl_farming/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: mods/ITEMS/mcl_farming/beetroot.lua:10
 msgid "Beetroot Seeds"
@@ -629,8 +629,7 @@ msgstr "O trigo é usado na produção. Alguns animais gostam de trigo."
 
 #: mods/ITEMS/mcl_farming/wheat.lua:122
 msgid "Use the “Place” key on an animal to try to feed it wheat."
-msgstr ""
-"Use a tecla \"Colocar\" em um animal para tentar o alimentar com trigo."
+msgstr "Use a tecla \"Colocar\" em um animal para tentar o alimentar com trigo."
 
 #: mods/ITEMS/mcl_farming/wheat.lua:139
 msgid "Cookie"

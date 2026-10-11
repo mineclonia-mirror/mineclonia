@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobitems x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-01 03:14+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-08-28 20:25+0000\n"
+"Last-Translator: ygramul42 <ygramul42@noreply.codeberg.org>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
+"mcl_mobitems/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: mtt_convert 0.1.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: mods/ITEMS/mcl_mobitems/init.lua:5
 msgid "Rotten Flesh"
@@ -200,8 +202,8 @@ msgid ""
 msgstr ""
 "Halten Sie den Knochen in der Nähe von Wölfen, um sie anzulocken. Benutzen "
 "Sie die „Platzieren“-Taste auf dem Wolf, um ihm den Knochen zu geben und ihn "
-"zu zähmen. Sie können dem gezähmten Wolf Befehle erteilen, indem Sie die "
-"„Platzieren“-Taste auf ihm benutzen."
+"zu zähmen. Sie können dem gezähmten Wolf Befehle erteilen, indem Sie die „"
+"Platzieren“-Taste auf ihm benutzen."
 
 #: mods/ITEMS/mcl_mobitems/init.lua:159
 msgid "Squid Ink Sac"
@@ -461,7 +463,7 @@ msgstr ""
 
 #: mods/ITEMS/mcl_mobitems/init.lua:363
 msgid "Copper Horse Armor"
-msgstr ""
+msgstr "Kupferpferderüstung"
 
 #: mods/ITEMS/mcl_mobitems/init.lua:364
 msgid ""

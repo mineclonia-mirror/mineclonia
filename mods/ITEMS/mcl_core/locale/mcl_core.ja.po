@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_core x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
 "POT-Creation-Date: 2026-07-18 19:32+0200\n"
-"PO-Revision-Date: 2026-07-10 02:07+0000\n"
+"PO-Revision-Date: 2026-08-28 07:11+0000\n"
 "Last-Translator: baka_bo <baka_bo@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_core-1/ja/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:4
 msgid "Stick"
@@ -22,8 +22,7 @@ msgstr "棒"
 msgid ""
 "Sticks are a very versatile crafting material; used in countless crafting "
 "recipes."
-msgstr ""
-"棒は非常に汎用性の高いクラフト材料で、たくさんのレシピで使われています。"
+msgstr "棒は非常に汎用性の高いクラフト材料で、たくさんのレシピで使われています。"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:14
 msgid "Paper"
@@ -93,8 +92,7 @@ msgstr "ダイヤモンド"
 msgid ""
 "Diamonds are precious minerals and useful to create the highest tier of "
 "armor and tools."
-msgstr ""
-"ダイヤモンドは貴重な鉱石であり、最高級の防具や道具を作るのに役立ちます。"
+msgstr "ダイヤモンドは貴重な鉱石であり、最高級の防具や道具を作るのに役立ちます。"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:61
 msgid "Diamond Material"
@@ -152,8 +150,8 @@ msgstr "ラピスラズリ"
 #: mods/ITEMS/mcl_core/craftitems.lua:113
 msgid "Lapis Lazuli are required for enchanting items on an enchanting table."
 msgstr ""
-"ラピスラズリは、エンチャントテーブルでアイテムをエンチャントするのに必要で"
-"す。"
+"ラピスラズリは、エンチャントテーブルでアイテムをエンチャントするのに必要です"
+"。"
 
 #: mods/ITEMS/mcl_core/craftitems.lua:117
 msgid "Lapis Material"
@@ -943,8 +941,7 @@ msgstr "ラピスラズリ鉱石"
 msgid ""
 "Lapis lazuli ore is the ore of lapis lazuli. It can be rarely found in "
 "clusters near the bottom of the world."
-msgstr ""
-"ラピスラズリ鉱石は、ワールドの深層あたりで群生しているのが稀に見つかります。"
+msgstr "ラピスラズリ鉱石は、ワールドの深層あたりで群生しているのが稀に見つかります。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:175
 msgid "Emerald Ore"
@@ -1046,9 +1043,9 @@ msgid ""
 "light, the grass slowly spreads onto dirt nearby. Under an opaque block or a "
 "liquid, a grass block may turn back to dirt."
 msgstr ""
-"草原とは、土に草を被せたものです。草原は、さまざまな植物を育てることができ"
-"る、資源的なブロックです。クワで農地にしたり、シャベルでオフロードにしたりで"
-"きます。光に当たると、近くの土の上に草がゆっくりと広がっていきます。不透明な"
+"草原とは、土に草を被せたものです。草原は、さまざまな植物を育てることができる"
+"、資源的なブロックです。クワで農地にしたり、シャベルでオフロードにしたりでき"
+"ます。光に当たると、近くの土の上に草がゆっくりと広がっていきます。不透明な"
 "ブロックや液体の下では、草原は土に戻ることがあります。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:368
@@ -1067,8 +1064,8 @@ msgid ""
 "path turns into dirt when it is below a solid block."
 msgstr ""
 "オフロードは、草原の装飾的なバリエーションです。上部の色が異なり、草原より少"
-"し低いので、道にうってつけです。シャベルで作れます。オフロードは、固いブロッ"
-"クの下にあると土になります。"
+"し低いので、道にうってつけです。シャベルで作れます。オフロードは、固い"
+"ブロックの下にあると土になります。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:392
 msgid "Mycelium"
@@ -1137,8 +1134,7 @@ msgstr "砂利"
 #: mods/ITEMS/mcl_core/nodes_base.lua:493
 msgid ""
 "This block consists of a couple of loose stones and can't support itself."
-msgstr ""
-"このブロックは緩い石の組み合わせで構成されており、自身を支えられません。"
+msgstr "このブロックは緩い石の組み合わせで構成されており、自身を支えられません。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:527
 msgid "Sand"
@@ -1257,8 +1253,7 @@ msgstr ""
 msgid ""
 "In the End dimension, starting a fire on this block will create an eternal "
 "fire."
-msgstr ""
-"エンドの次元では、このブロック上で火を起こすと、永続的な炎が生まれます。"
+msgstr "エンドの次元では、このブロック上で火を起こすと、永続的な炎が生まれます。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:715
 msgid "Cobblestone"
@@ -1313,8 +1308,8 @@ msgid ""
 "A block of diamond is mostly a shiny decorative block but also useful as a "
 "compact storage of diamonds."
 msgstr ""
-"ダイヤモンドブロックは、主に装飾用の輝くブロックですが、ダイヤモンドをコンパ"
-"クトに保管するのにも便利です。"
+"ダイヤモンドブロックは、主に装飾用の輝くブロックですが、ダイヤモンドを"
+"コンパクトに保管するのにも便利です。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:789
 msgid "Block of Lapis Lazuli"
@@ -1360,8 +1355,7 @@ msgstr "泣く黒曜石"
 msgid ""
 "Crying obsidian is a luminous obsidian that can generate as part of ruined "
 "portals."
-msgstr ""
-"泣く黒曜石は、廃墟のポータルの一部として生成可能な、発光する黒曜石です。"
+msgstr "泣く黒曜石は、廃墟のポータルの一部として生成可能な、発光する黒曜石です。"
 
 #: mods/ITEMS/mcl_core/nodes_base.lua:835
 msgid "Ice"
@@ -1444,8 +1438,8 @@ msgid ""
 "This is a full block of snow. Snow of this thickness is usually found in "
 "areas of extreme cold."
 msgstr ""
-"これは１ブロックサイズの雪です。この厚さの雪は、おおむね極寒の地で見られま"
-"す。"
+"これは１ブロックサイズの雪です。この厚さの雪は、おおむね極寒の地で見られます"
+"。"
 
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:6
 #: mods/ITEMS/mcl_core/nodes_cactuscane.lua:54
@@ -1551,8 +1545,8 @@ msgid ""
 "Stained glass is a decorative and mostly transparent block which comes in "
 "various different colors."
 msgstr ""
-"色ガラスは、そのほとんどが透明な装飾ブロックで、さまざまなカラーバリエーショ"
-"ンがあります。"
+"色ガラスは、そのほとんどが透明な装飾ブロックで、さまざまな"
+"カラーバリエーションがあります。"
 
 #: mods/ITEMS/mcl_core/nodes_glass.lua:34
 msgid "Stained Glass"
@@ -1619,8 +1613,8 @@ msgid ""
 "A lava source sets fire to a couple of air blocks above when they're next to "
 "a flammable block."
 msgstr ""
-"溶岩源は、可燃性ブロックの隣にあると、その上の空気ブロック数個に火をつけま"
-"す。"
+"溶岩源は、可燃性ブロックの隣にあると、その上の空気ブロック数個に火をつけます"
+"。"
 
 #: mods/ITEMS/mcl_core/nodes_liquid.lua:158
 msgid "Lava Source"
@@ -1662,8 +1656,7 @@ msgstr "スライムブロック"
 
 #: mods/ITEMS/mcl_core/nodes_misc.lua:20
 msgid "Slime blocks are very bouncy and prevent fall damage."
-msgstr ""
-"スライムブロックは非常に弾力性があり、落下ダメージを防ぐことができます。"
+msgstr "スライムブロックは非常に弾力性があり、落下ダメージを防ぐことができます。"
 
 #: mods/ITEMS/mcl_core/nodes_misc.lua:53
 msgid "Cobweb"
@@ -1685,8 +1678,7 @@ msgstr "枯れ木"
 msgid ""
 "Dead bushes are unremarkable plants often found in dry areas. They can be "
 "harvested for sticks."
-msgstr ""
-"枯れ木は、乾燥した場所によく見られる、路傍の植物です。棒として採取できます。"
+msgstr "枯れ木は、乾燥した場所によく見られる、路傍の植物です。棒として採取できます。"
 
 #: mods/ITEMS/mcl_core/nodes_misc.lua:122
 msgid "Barrier"
@@ -1704,8 +1696,7 @@ msgstr ""
 msgid ""
 "When you hold a barrier in hand, you reveal all placed barriers in a short "
 "distance around you."
-msgstr ""
-"バリアを手にすると、周囲の近距離に配置されたバリアがすべて表示されます。"
+msgstr "バリアを手にすると、周囲の近距離に配置されたバリアがすべて表示されます。"
 
 #: mods/ITEMS/mcl_core/nodes_misc.lua:176
 msgid "Realm Barrier"

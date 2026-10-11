@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_init x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
-"PO-Revision-Date: 2026-06-05 08:08+0000\n"
+"POT-Creation-Date: 2026-09-22 15:46+0200\n"
+"PO-Revision-Date: 2026-08-28 06:43+0000\n"
 "Last-Translator: bo_chan <bo_chan@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
 "mcl_init/ja/>\n"
@@ -12,7 +12,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.5\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#: mods/CORE/mcl_init/init.lua:515
+msgid "[<difficulty>]"
+msgstr ""
+
+#: mods/CORE/mcl_init/init.lua:516
+msgid "Set or query the gameplay difficulty"
+msgstr ""
+
+#: mods/CORE/mcl_init/init.lua:521
+msgid "Difficulty: @1"
+msgstr ""
+
+#: mods/CORE/mcl_init/init.lua:525
+msgid "This command requires server privileges to run."
+msgstr ""
+
+#: mods/CORE/mcl_init/init.lua:529
+msgid ""
+"Failed to set difficulty @1.\n"
+"Valid values: @2"
+msgstr ""
+
+#: mods/CORE/mcl_init/init.lua:532
+msgid "Difficulty set to @1."
+msgstr ""
 
 #: mods/CORE/mcl_init/outdated_warning.lua:6
 msgid "Outdated Client version detected!"
