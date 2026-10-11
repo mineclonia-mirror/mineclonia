@@ -1,5 +1,16 @@
 local S = core.get_translator(core.get_current_modname())
 
+-- TODO:
+-- command_block
+-- copper_golem
+-- crafter
+-- creaking_heart
+-- decorated_pot
+-- minecart_with_chest
+-- minecart_with_hopper
+-- sculk_sensor
+-- shelf
+
 local fourdirs = {
 	[0] = vector.new(0, 0, 1),
 	[1] = vector.new(1, 0, 0),
@@ -23,113 +34,6 @@ function mcl_redstone.update_comparators(pos)
 		end
 	end
 end
-
-local measure_inventory = mcl_redstone.get_measure_container_function({"main"})
-local measure_furnace = mcl_redstone.get_measure_container_function({"fuel", "src", "dst"})
-local measure_brewing_stand = mcl_redstone.get_measure_container_function({"fuel", "input", "stand"})
-local measure_double_chest_left = mcl_redstone.get_measure_double_chest_function("left")
-local measure_double_chest_right = mcl_redstone.get_measure_double_chest_function("right")
-
-local function measure_constant(power_level)
-	return function()
-		return power_level
-	end
-end
-
-local function measure_lectern(pos)
-	local meta = core.get_meta(pos)
-	local pages = tonumber(meta:get_string("pages")) or 1
-	local page = tonumber(meta:get_string("page")) or 1
-	local power = 15
-	if pages > 1 then
-		-- formula copied from wiki
-		power = math.floor((14 * (page - 1)) / (pages - 1) + 1)
-	end
-	return power
-end
-
-local function measure_jukebox(pos)
-	local inv = core.get_inventory({type="node", pos=pos})
-	local record = inv and inv:get_stack("main", 1)
-	local def = record and mcl_jukebox.registered_records[record:get_name()]
-	return def and def.comparator_signal or 0
-end
-
-local function measure_chiseled_bookshelf(pos)
-	local meta = core.get_meta(pos)
-	return math.floor(meta:get_float("last_slot_used") or 0)
-end
-
-local function measure_target(pos)
-	return core.get_node(pos).param2
-end
-
-local function measure_item_frames(pos)
-	local meta = core.get_meta(pos)
-	if meta:get_inventory():get_stack("main", 1):get_name() ~= "" then
-		return meta:get_int("mcl_item_rotation") + 1
-	end
-	return 0
-end
-
--- measurable nodes mapped to their measuring function
-local measure_tab = {
-	["mcl_barrels:barrel_closed"] = measure_inventory,
-	["mcl_barrels:barrel_open"] = measure_inventory,
-	["mcl_chests:chest_small"] = measure_inventory,
-	["mcl_chests:chest_left"] = measure_double_chest_left,
-	["mcl_chests:chest_right"] = measure_double_chest_right,
-	["mcl_chests:trapped_chest_small"] = measure_inventory,
-	["mcl_chests:trapped_chest_left"] = measure_double_chest_left,
-	["mcl_chests:trapped_chest_right"] = measure_double_chest_right,
-	["mcl_chests:trapped_chest_on_small"] = measure_inventory,
-	["mcl_chests:trapped_chest_on_left"] = measure_double_chest_left,
-	["mcl_chests:trapped_chest_on_right"] = measure_double_chest_right,
-	["mcl_dispensers:dispenser"] = measure_inventory,
-	["mcl_dispensers:dispenser_down"] = measure_inventory,
-	["mcl_dispensers:dispenser_up"] = measure_inventory,
-	["mcl_dispensers:dropper"] = measure_inventory,
-	["mcl_dispensers:dropper_down"] = measure_inventory,
-	["mcl_dispensers:dropper_up"] = measure_inventory,
-	["mcl_furnaces:furnace"] = measure_furnace,
-	["mcl_blast_furnace:blast_furnace"] = measure_furnace,
-	["mcl_smoker:smoker"] = measure_furnace,
-	["mcl_hoppers:hopper"] = measure_inventory,
-	["mcl_hoppers:hopper_disabled"] = measure_inventory,
-	["mcl_hoppers:hopper_side"] = measure_inventory,
-	["mcl_hoppers:hopper_side_disabled"] = measure_inventory,
-	["mcl_itemframes:frame"] = measure_item_frames,
-	["mcl_itemframes:glow_frame"] = measure_item_frames,
-	["mcl_itemframes:invisible_frame"] = measure_item_frames,
-	["mcl_itemframes:invisible_glow_frame"] = measure_item_frames,
-	["mcl_jukebox:jukebox"] = measure_jukebox,
-	["mcl_lectern:lectern_with_book"] = measure_lectern,
-	["mcl_target:target_on"] = measure_target,
-	--[[ initalized using after_mods_loaded
-	["mcl_beds:respawn_anchor"] = measure_constant(comparator_signal),
-	["mcl_beds:respawn_anchor_charged_xxx"] = measure_constant(comparator_signal),
-	["mcl_beehives:beehive_xxx"] = measure_constant(comparator_signal),
-	["mcl_beehives:bee_nest_xxx"] = measure_constant(comparator_signal),
-	["mcl_books:chiseled_bookshelf_xxx"] = measure_chiseled_bookshelf,
-	["mcl_brewing:stand_xxx"] = measure_brewing_stand,
-	["mcl_cake:cake_x"] = measure_constant(comparator_signal),
-	["mcl_cauldron:cauldron_xxx"] = measure_constant(comparator_signal),
-	["mcl_chests:xxx_shulker_box"] = measure_inventory,
-	["mcl_composters:composter_xxx"] = measure_constant(comparator_signal),
-	["mcl_copper:bulb_xxx"] = measure_constant(comparator_signal),
-	["mcl_portals:end_portal_frame_xxx"] = measure_constant(comparator_signal),
-	]]
-	-- TODO:
-	--["command_block"] = measure_command_block,
-	--["copper_golem"] = measure_golem,
-	--["crafter"] = measure_crafter,
-	--["creaking_heart"] = measure_creaking_heart,
-	--["decorated_pot"] = measure_inventory,
-	--["minecart_with_chest"] = measure_inventory,
-	--["minecart_with_hopper"] = measure_inventory,
-	--["sculc_sensor"] = measure_sculc_sensor,
-	--["shelf"] = measure_shelf,
-}
 
 local function get_measure_function(def)
 	local measure = def and def._mcl_redstone and def._mcl_redstone.comparator_readout
