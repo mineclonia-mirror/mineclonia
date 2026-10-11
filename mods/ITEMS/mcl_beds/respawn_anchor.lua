@@ -56,7 +56,8 @@ core.register_node("mcl_beds:respawn_anchor", table.merge(tpl_anchor, {
 	},
 	groups = {
 		pickaxey = 5, material_stone = 1, deco_block = 1, respawn_anchor = 1, comparator_signal = 0
-	}
+	},
+	_mcl_redstone = {comparator_readout = function() return 0 end},
 }))
 
 for i = 1, 4 do
@@ -79,6 +80,7 @@ for i = 1, 4 do
 			}
 		},
 		light_source = light_level[i],
+		_mcl_redstone = {comparator_readout = function() return i end},
 	}))
 end
 
