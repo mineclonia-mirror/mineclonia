@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-07-12 07:46+0200\n"
+"POT-Creation-Date: 2026-10-10 04:50+0200\n"
 "PO-Revision-Date: 2026-08-28 06:42+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Polish <https://translate.codeberg.org/projects/mineclonia/"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:738
+#: mods/ENTITIES/mcl_mobs/api.lua:737
 msgid ""
 "Remove all, nametagged or tamed mobs within the specified distance or "
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
@@ -25,15 +25,15 @@ msgstr ""
 "odległości lub wszędzie. Jeśli nie określono, usuń wszystkie moby z "
 "wyjątkiem oswojonych i oznaczonych."
 
-#: mods/ENTITIES/mcl_mobs/api.lua:751 mods/ENTITIES/mcl_mobs/api.lua:758
+#: mods/ENTITIES/mcl_mobs/api.lua:750 mods/ENTITIES/mcl_mobs/api.lua:757
 msgid "Invalid syntax."
 msgstr "Błąd składni."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:682
+#: mods/ENTITIES/mcl_mobs/init.lua:680
 msgid "This allows you to place a single mob."
 msgstr "Pozwala to na umieszczenie pojedynczego moba."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:683
+#: mods/ENTITIES/mcl_mobs/init.lua:681
 msgid ""
 "Just place it where you want the mob to appear. Animals will spawn tamed, "
 "unless you hold down the sneak key while placing. If you place this on a mob "
@@ -807,7 +807,7 @@ msgstr ""
 #. player approaches, or when damage
 #. is sustained from any source.
 #. Detach this rider.
-#: mods/ENTITIES/mcl_mobs/spawning.lua:137
+#: mods/ENTITIES/mcl_mobs/spawning.lua:136
 msgid ""
 "spawn_mob is a chatcommand that allows you to type in the name of a mob "
 "without 'typing mobs_mc:' all the time like so; 'spawn_mob spider'. however, "
@@ -840,11 +840,11 @@ msgstr ""
 "spawn_mob skeleton:var<jump_height=NUM10>:\n"
 "ustawia wysokość skoku skelly'ego na 10. Jeśli chcesz dokonać wielu zmian w "
 "mobie, możesz na przykład: \n"
-"spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>"
-"::var<fly=true>:\n"
+"spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 "etc."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1210
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1209
 msgid ""
 "This mob will spawn on solid and opaque nodes with a surface occupying a "
 "full node when no obstructions exist within a volume @1 nodes in size around "
@@ -854,7 +854,7 @@ msgstr ""
 "zajmującą cały węzeł, gdy w przestrzeni o rozmiarze @1 węzła wokół środka "
 "górnej powierzchni takiego węzła nie ma żadnych przeszkód."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1213
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1212
 msgid ""
 "This mob will spawn in water when the node above is not opaque and no "
 "obstructions exist within a volume @1 nodes in size around the center of the "
@@ -864,7 +864,7 @@ msgstr ""
 "nie ma żadnych przeszkód w objętości @1 węzła wokół środka podstawy danego "
 "węzła płynu."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1216
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1215
 msgid ""
 "This mob will spawn on flowing lava and lava sources when no liquid or solid "
 "obstructions exist within a volume @1 nodes in size."
@@ -873,21 +873,21 @@ msgstr ""
 "rozmiarze @1 węzła nie ma żadnych przeszkód w postaci cieczy ani ciał "
 "stałych."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1219
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1218
 msgid "This mob does not document its spawning requirements."
 msgstr "Ten mob nie ujawnia warunków odradzania."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1227
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1226
 msgid "Mobs will spawn in individual groups of 1."
 msgstr "Moby będą pojawiać się w grupach po 1 osobniku."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1229
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1228
 msgid "Up to @1 mobs will spawn as a single group upon each spawning attempt."
 msgstr ""
 "Do @1 mobów pojawi się jako pojedyncza grupa przy każdej próbie odrodzenia "
 "się."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1231
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1230
 msgid ""
 "A group of @1 to @2 mobs will attempt to be spawned upon each spawning "
 "attempt."
@@ -895,16 +895,16 @@ msgstr ""
 "Grupa od @1 do @2 mobów spróbuje się pojawić przy każdej próbie odradzania "
 "się."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1381
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1380
 msgid "Dumped spawners for biome: @1"
 msgstr "Porzucone spawnery dla biomu: @1"
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1478
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1477
 msgid "Environmental spawning requirements and mechanics:"
 msgstr "Wymagania środowiskowe i mechanika odradzania się:"
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1482
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1485
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1481
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1484
 msgid ""
 "\n"
 "When spawned from spawner:"
@@ -912,7 +912,7 @@ msgstr ""
 "\n"
 "Gdy pojawi się ze spawnera:"
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1488
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1487
 msgid ""
 "\n"
 "Mob does not spawn environmentally."
@@ -920,7 +920,7 @@ msgstr ""
 "\n"
 "Moby nie pojawiają się środowiskowo."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1494
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1493
 msgid ""
 "\n"
 "When spawned in biome(s): "
@@ -928,11 +928,11 @@ msgstr ""
 "\n"
 "@nGdy pojawi się w biomie(ach): "
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1500
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1499
 msgid "and when spawned in structure(s): "
 msgstr "i gdy pojawi się w strukturze(ach): "
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1502
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1501
 msgid ""
 "\n"
 "When spawned in structure(s): "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 21:41+0200\n"
+"POT-Creation-Date: 2026-07-24 06:38+0200\n"
 "PO-Revision-Date: 2026-08-28 07:06+0000\n"
 "Last-Translator: AndrewHK <andrewhk@noreply.codeberg.org>\n"
 "Language-Team: Vietnamese <https://translate.codeberg.org/projects/"
@@ -329,7 +329,7 @@ msgstr ""
 #: mods/HUD/mcl_achievements/init.lua:369
 msgid ""
 "Catch a fish.\n"
-"Hint: Catch a fish, salmon, clownfish, or pufferfish."
+"Hint: Catch a cod, salmon, tropical fish, or pufferfish."
 msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:377

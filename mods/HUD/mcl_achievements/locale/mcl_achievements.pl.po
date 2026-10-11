@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_achievements x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-24 06:38+0200\n"
 "PO-Revision-Date: 2026-08-28 06:37+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Polish <https://translate.codeberg.org/projects/mineclonia/"
@@ -338,7 +338,7 @@ msgstr ""
 #: mods/HUD/mcl_achievements/init.lua:369
 msgid ""
 "Catch a fish.\n"
-"Hint: Catch a fish, salmon, clownfish, or pufferfish."
+"Hint: Catch a cod, salmon, tropical fish, or pufferfish."
 msgstr ""
 
 #: mods/HUD/mcl_achievements/init.lua:377

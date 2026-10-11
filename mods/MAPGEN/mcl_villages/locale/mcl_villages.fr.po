@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_villages x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-10-02 03:14+0200\n"
 "PO-Revision-Date: 2026-08-28 05:30+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/mineclonia/"
@@ -22,7 +22,7 @@ msgstr "Le type de culture @1 n'est pas pris en charge"
 msgid "The timer for this @1 has not run yet!"
 msgstr "La minuterie de ce @1 n'est pas encore écoulée !"
 
-#: mods/MAPGEN/mcl_villages/init.lua:188
+#: mods/MAPGEN/mcl_villages/init.lua:185
 msgid ""
 "Prevent paths from being placed during villager generation. Replaced by air "
 "after village path generation"
@@ -30,12 +30,12 @@ msgstr ""
 "Empêche les chemins d'être placés pendant la génération des villageois. "
 "Remplacé par l'air après la génération des chemins du village"
 
-#: mods/MAPGEN/mcl_villages/init.lua:200
+#: mods/MAPGEN/mcl_villages/init.lua:197
 msgid "Mark the node as a good place for paths to connect to"
 msgstr ""
 "Marquer le nœud comme un bon endroit pour que les chemins s'y connectent"
 
-#: mods/MAPGEN/mcl_villages/init.lua:441
+#: mods/MAPGEN/mcl_villages/init.lua:438
 msgid "A place to plant @1 crops"
 msgstr "Un endroit pour planter des cultures @1"
 

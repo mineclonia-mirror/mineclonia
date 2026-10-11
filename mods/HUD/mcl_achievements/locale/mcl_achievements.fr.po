@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_achievements x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-07-24 06:38+0200\n"
 "PO-Revision-Date: 2026-08-28 06:36+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/mineclonia/"
@@ -350,9 +350,10 @@ msgid "Fishy Business"
 msgstr "Merci pour le poisson"
 
 #: mods/HUD/mcl_achievements/init.lua:369
+#, fuzzy
 msgid ""
 "Catch a fish.\n"
-"Hint: Catch a fish, salmon, clownfish, or pufferfish."
+"Hint: Catch a cod, salmon, tropical fish, or pufferfish."
 msgstr ""
 "Attrapez un poisson. \n"
 "Astuce : attrapez un poisson, saumon, poisson-clown, ou poisson-globe."
@@ -449,7 +450,8 @@ msgstr "Lustrer"
 
 #: mods/HUD/mcl_achievements/init.lua:460
 msgid "Apply honeycomb to a copper block to protect it from the elements."
-msgstr "Appliquez un rayon de miel sur du cuivre pour le protéger des éléments."
+msgstr ""
+"Appliquez un rayon de miel sur du cuivre pour le protéger des éléments."
 
 #: mods/HUD/mcl_achievements/init.lua:467
 msgid "Wax Off"

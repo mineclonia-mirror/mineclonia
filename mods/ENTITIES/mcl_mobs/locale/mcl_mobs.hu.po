@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-07-12 07:46+0200\n"
+"POT-Creation-Date: 2026-10-10 04:50+0200\n"
 "PO-Revision-Date: 2026-08-28 06:42+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Hungarian <https://translate.codeberg.org/projects/mineclonia/"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:738
+#: mods/ENTITIES/mcl_mobs/api.lua:737
 msgid ""
 "Remove all, nametagged or tamed mobs within the specified distance or "
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
@@ -24,15 +24,15 @@ msgstr ""
 "megadott távolságon belül, vagy bárhol. Ha nincs megadva, távolítson el "
 "minden mobot, kivéve a megszelídített és névtáblás példányokat."
 
-#: mods/ENTITIES/mcl_mobs/api.lua:751 mods/ENTITIES/mcl_mobs/api.lua:758
+#: mods/ENTITIES/mcl_mobs/api.lua:750 mods/ENTITIES/mcl_mobs/api.lua:757
 msgid "Invalid syntax."
 msgstr "Hibás szintaxis."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:682
+#: mods/ENTITIES/mcl_mobs/init.lua:680
 msgid "This allows you to place a single mob."
 msgstr "Ennek segítségével letehetsz egy lényt."
 
-#: mods/ENTITIES/mcl_mobs/init.lua:683
+#: mods/ENTITIES/mcl_mobs/init.lua:681
 msgid ""
 "Just place it where you want the mob to appear. Animals will spawn tamed, "
 "unless you hold down the sneak key while placing. If you place this on a mob "
@@ -806,7 +806,7 @@ msgstr ""
 #. player approaches, or when damage
 #. is sustained from any source.
 #. Detach this rider.
-#: mods/ENTITIES/mcl_mobs/spawning.lua:137
+#: mods/ENTITIES/mcl_mobs/spawning.lua:136
 msgid ""
 "spawn_mob is a chatcommand that allows you to type in the name of a mob "
 "without 'typing mobs_mc:' all the time like so; 'spawn_mob spider'. however, "
@@ -839,11 +839,11 @@ msgstr ""
 " spawn_mob skeleton:var<jump_height=NUM10>:\n"
 " Ez a beállítás a csontváz ugrásmagasságát 10-re állítja. Ha több "
 "változtatást akarsz végrehajtani egy mobon, megteheted, például:\n"
-" spawn_mob skeleton:var<passive=true>::var<jump_height=NUM10>"
-"::var<fly_in=air>::var<fly=true>:\n"
+" spawn_mob "
+"skeleton:var<passive=true>::var<jump_height=NUM10>::var<fly_in=air>::var<fly=true>:\n"
 " stb."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1210
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1209
 msgid ""
 "This mob will spawn on solid and opaque nodes with a surface occupying a "
 "full node when no obstructions exist within a volume @1 nodes in size around "
@@ -853,7 +853,7 @@ msgstr ""
 "teljes blokkméretű mezőt foglal el, amennyiben nincs akadály egy @1 "
 "blokkméretű térfogatban a blokk felső felületének középpontja körül."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1213
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1212
 msgid ""
 "This mob will spawn in water when the node above is not opaque and no "
 "obstructions exist within a volume @1 nodes in size around the center of the "
@@ -863,7 +863,7 @@ msgstr ""
 "nincs akadály egy @1 blokkméretű térfogatban a folyadék blokk alapjának "
 "középpontja körül."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1216
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1215
 msgid ""
 "This mob will spawn on flowing lava and lava sources when no liquid or solid "
 "obstructions exist within a volume @1 nodes in size."
@@ -871,35 +871,36 @@ msgstr ""
 "Ez a mob folyó láván és lávaforrásokon fog születni, ha nincs folyadék vagy "
 "szilárd akadály egy @1 blokkméretű térfogatban."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1219
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1218
 msgid "This mob does not document its spawning requirements."
 msgstr "Ez a mob nem dokumentálja a születési feltételeit."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1227
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1226
 msgid "Mobs will spawn in individual groups of 1."
 msgstr "A mobok egyesével fognak születni."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1229
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1228
 msgid "Up to @1 mobs will spawn as a single group upon each spawning attempt."
-msgstr "Legfeljebb @1 mob születhet egyetlen csoportként minden próbálkozásnál."
+msgstr ""
+"Legfeljebb @1 mob születhet egyetlen csoportként minden próbálkozásnál."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1231
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1230
 msgid ""
 "A group of @1 to @2 mobs will attempt to be spawned upon each spawning "
 "attempt."
 msgstr ""
 "Egy @1 és @2 közötti mobcsoport próbálkozik születni minden kísérletnél."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1381
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1380
 msgid "Dumped spawners for biome: @1"
 msgstr "Kibontott keltetők a következő biomhoz: @1"
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1478
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1477
 msgid "Environmental spawning requirements and mechanics:"
 msgstr "Környezeti spawnolási feltételek és mechanikák:"
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1482
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1485
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1481
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1484
 msgid ""
 "\n"
 "When spawned from spawner:"
@@ -907,7 +908,7 @@ msgstr ""
 "\n"
 "Amikor keltetőből születik:"
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1488
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1487
 msgid ""
 "\n"
 "Mob does not spawn environmentally."
@@ -915,7 +916,7 @@ msgstr ""
 "\n"
 "A mob nem spawnol a környezetben."
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1494
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1493
 msgid ""
 "\n"
 "When spawned in biome(s): "
@@ -923,11 +924,11 @@ msgstr ""
 "\n"
 "Amikor biom(ok)ban születik: "
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1500
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1499
 msgid "and when spawned in structure(s): "
 msgstr "és amikor építményekben születik: "
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1502
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1501
 msgid ""
 "\n"
 "When spawned in structure(s): "
