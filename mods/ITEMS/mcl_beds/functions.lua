@@ -163,9 +163,9 @@ local function lay_down(player, pos, bed_pos, is_straw_bed, state, skip)
 		local n2 = core.get_node({x = bed_pos2.x,	y = bed_pos2.y + 1,	z = bed_pos2.z})
 		local def1 = core.registered_nodes[n1.name]
 		local def2 = core.registered_nodes[n2.name]
-		if (def1 and def1.walkable) or (def2 and def2.walkable) then
+		if def1.walkable or def2.walkable then
 			return false, S("You can't sleep, the bed is obstructed!")
-		elseif (def1 and def1.damage_per_second and def1.damage_per_second > 0) or (def2 and def2.damage_per_second and def2.damage_per_second > 0) then
+		elseif (def1.damage_per_second and def1.damage_per_second > 0) or (def2.damage_per_second and def2.damage_per_second > 0) then
 			return false, S("It's too dangerous to sleep here!")
 		end
 
@@ -420,10 +420,9 @@ function mcl_beds.on_rightclick_straw_bed(pos, player)
 	if dim == "nether" or dim == "end" then
 		-- Bed just removes itself in Nether or End.
 		local node = core.get_node(pos)
-		local dir = core.facedir_to_dir(node.param2)
 
 		core.remove_node(pos)
-		return itemstack
+		return mcl_util.return_itemstack_if_alive(player)
 		-- returning the old itemstack here would result in it still being in hand *after* death
 	end
 	local name = player:get_player_name()
