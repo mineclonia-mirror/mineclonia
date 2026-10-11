@@ -318,6 +318,7 @@ local def_hopper = {
 		connects_to = function(node, dir)
 			return true
 		end,
+		comparator_readout = mcl_redstone.get_measure_container_function({"main"}),
 	},
 }
 
