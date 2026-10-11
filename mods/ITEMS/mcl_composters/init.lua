@@ -248,6 +248,7 @@ core.register_node("mcl_composters:composter", {
 	_mcl_burntime = 15,
 	on_rightclick = composter_add_item,
 	_on_hopper_in = on_hopper_in,
+	_mcl_redstone = {comparator_readout = function() return 0 end},
 })
 
 --- Template function for composters with compost.
@@ -284,6 +285,7 @@ local function register_filled_composter(level)
 		on_timer = composter_ready,
 		_on_hopper_in = level < 7 and on_hopper_in or nil,
 		_mcl_baseitem = "mcl_composters:composter",
+		_mcl_redstone = {comparator_readout = function() return level end},
 	})
 
 	doc.add_entry_alias("nodes", "mcl_composters:composter", "nodes", id)
@@ -335,6 +337,7 @@ core.register_node("mcl_composters:composter_ready", {
 	on_rightclick = composter_harvest,
 	_on_hopper_out = on_hopper_out,
 	_mcl_baseitem = "mcl_composters:composter",
+	_mcl_redstone = {comparator_readout = function() return 8 end},
 })
 
 doc.add_entry_alias("nodes", "mcl_composters:composter", "nodes", "mcl_composters:composter_ready" )
