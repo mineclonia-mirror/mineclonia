@@ -174,14 +174,6 @@ function mcl_util.move_item(source_inventory, source_list, source_stack_id, dest
 			stack:take_item()
 			source_inventory:set_stack(source_list, source_stack_id, stack)
 			destination_inventory:add_item(destination_list, new_stack)
-			local source_location = source_inventory:get_location()
-			if source_location and source_location.type == "node" then
-				mcl_redstone.update_comparators(source_location.pos)
-			end
-			local destination_location = destination_inventory:get_location()
-			if destination_location.type == "node" then
-				mcl_redstone.update_comparators(destination_location.pos)
-			end
 			return true
 		end
 	end
@@ -231,6 +223,14 @@ function mcl_util.move_item_container(source_pos, destination_pos, source_list, 
 	dpos, dnode, dctype = normalize_double_container(dpos, dnode, dctype)
 	if not spos or not dpos then return false end
 
+	local left_spos, left_dpos,right_spos, right_dpos = spos, dpos
+	if sctype == 5 then
+		right_spos = mcl_util.get_double_container_neighbor_pos(left_spos, snode.param2, "left")
+	end
+	if dctype == 5 then
+		right_dpos = mcl_util.get_double_container_neighbor_pos(left_dpos, dnode.param2, "left")
+	end
+
 	local smeta = core.get_meta(spos)
 	local dmeta = core.get_meta(dpos)
 
@@ -278,7 +278,7 @@ function mcl_util.move_item_container(source_pos, destination_pos, source_list, 
 		if not source_stack_id then
 			-- Try again if source is a double container
 			if snode and sctype == 5 then
-				spos = mcl_util.get_double_container_neighbor_pos(spos, snode.param2, "left")
+				spos = right_spos
 				smeta = core.get_meta(spos)
 				sinv = smeta:get_inventory()
 
@@ -312,11 +312,22 @@ function mcl_util.move_item_container(source_pos, destination_pos, source_list, 
 
 			-- Try transfer to neighbor node if transfer failed and double container
 			if dnode and not ok and dctype == 5 then
-				dpos = mcl_util.get_double_container_neighbor_pos(dpos, dnode.param2, "left")
+				dpos = right_dpos
 				dmeta = core.get_meta(dpos)
 				dinv = dmeta:get_inventory()
 
 				ok = mcl_util.move_item(sinv, source_list, source_stack_id, dinv, destination_list)
+			end
+
+			if ok then
+				mcl_redstone.update_comparators(vector.copy(left_spos))
+				if right_spos then
+					mcl_redstone.update_comparators(vector.copy(right_spos))
+				end
+				mcl_redstone.update_comparators(vector.copy(left_dpos))
+				if right_dpos then
+					mcl_redstone.update_comparators(vector.copy(right_dpos))
+				end
 			end
 
 			-- Update furnace
