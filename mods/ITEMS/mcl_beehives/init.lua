@@ -108,6 +108,7 @@ core.register_node("mcl_beehives:beehive", {
 	_mcl_burntime = 15,
 	drop = "",
 	after_dig_node = dig_hive,
+	_mcl_redstone = {comparator_readout = function() return 0 end},
 })
 
 for l = 1, 4 do
@@ -128,6 +129,7 @@ for l = 1, 4 do
 		_mcl_baseitem = "mcl_beehives:beehive",
 		drop = "",
 		after_dig_node = dig_hive,
+		_mcl_redstone = {comparator_readout = function() return l end},
 	})
 end
 
@@ -147,6 +149,7 @@ core.register_node("mcl_beehives:beehive_5", {
 	on_rightclick = honey_harvest,
 	drop = "",
 	after_dig_node = dig_hive,
+	_mcl_redstone = {comparator_readout = function() return 5 end},
 })
 
 -- Bee Nest
@@ -165,6 +168,7 @@ core.register_node("mcl_beehives:bee_nest", {
 	_mcl_burntime = 15,
 	drop = "",
 	after_dig_node = dig_hive,
+	_mcl_redstone = {comparator_readout = function() return 0 end},
 })
 
 for i = 1, 4 do
@@ -185,6 +189,7 @@ for i = 1, 4 do
 		_mcl_baseitem = "mcl_beehives:bee_nest",
 		drop = "",
 		after_dig_node = dig_hive,
+		_mcl_redstone = {comparator_readout = function() return i end},
 	})
 end
 
@@ -205,6 +210,7 @@ core.register_node("mcl_beehives:bee_nest_5", {
 	on_rightclick = honey_harvest,
 	drop = "",
 	after_dig_node = dig_hive,
+	_mcl_redstone = {comparator_readout = function() return 5 end},
 })
 
 -- Crafting
