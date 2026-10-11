@@ -275,6 +275,7 @@ local commdef  = {
 				param2 = node.param2 % 32 + (powered and 32 or 0),
 			}
 		end,
+		comparator_readout = mcl_redstone.get_measure_container_function({"main"}),
 	},
 }
 
