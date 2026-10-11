@@ -419,8 +419,6 @@ function mcl_beds.on_rightclick_straw_bed(pos, player)
 	local dim = mcl_worlds.pos_to_dimension(pos)
 	if dim == "nether" or dim == "end" then
 		-- Bed just removes itself in Nether or End.
-		local node = core.get_node(pos)
-
 		core.remove_node(pos)
 		return mcl_util.return_itemstack_if_alive(player)
 		-- returning the old itemstack here would result in it still being in hand *after* death
