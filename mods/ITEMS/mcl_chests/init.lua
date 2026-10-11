@@ -605,7 +605,9 @@ local function register_chest(basename, desc, longdesc, usagehelp, tt_help, tile
 		on_destruct = function(pos)
 			close_forms(canonical_basename, pos)
 		end,
-		_mcl_redstone = redstone,
+		_mcl_redstone = table.merge(redstone or {}, {
+				comparator_readout = mcl_redstone.get_measure_container_function({"main"}),
+		}),
 		on_rotate = simple_rotate,
 	})
 
@@ -790,7 +792,9 @@ local function register_chest(basename, desc, longdesc, usagehelp, tt_help, tile
 			player_chest_open(clicker, pos, left_name, left_textures, node.param2, true, "default_chest",
 				"mcl_chests_chest")
 		end,
-		_mcl_redstone = redstone,
+		_mcl_redstone = table.merge(redstone or {}, {
+				comparator_readout = mcl_redstone.get_measure_double_chest_function("left"),
+		}),
 		on_rotate = no_rotate,
 	})
 
@@ -962,7 +966,9 @@ local function register_chest(basename, desc, longdesc, usagehelp, tt_help, tile
 			player_chest_open(clicker, pos_other, left_name, left_textures, node.param2, true, "default_chest",
 				"mcl_chests_chest")
 		end,
-		_mcl_redstone = redstone,
+		_mcl_redstone = table.merge(redstone or {}, {
+				comparator_readout = mcl_redstone.get_measure_double_chest_function("right"),
+		}),
 		on_rotate = no_rotate,
 	})
 
