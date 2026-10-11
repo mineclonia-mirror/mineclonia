@@ -131,12 +131,9 @@ local measure_tab = {
 	--["shelf"] = measure_shelf,
 }
 
-local function get_measure_function(name)
-	if measure_tab[name] then
-		return function(pos, node)
-			return math.max(0, math.min(15, measure_tab[name](pos, node)))
-		end
-	end
+local function get_measure_function(def)
+	local measure = def and def._mcl_redstone and def._mcl_redstone.comparator_readout
+	return measure
 end
 
 -- compute tile depending on state and mode
@@ -268,7 +265,8 @@ for _, mode in pairs{"comp", "sub"} do
 					-- first check whether the node in the back pos is measurable
 					local pos2 = vector.add(pos, back)
 					local node2 = core.get_node(pos2)
-					local measure = get_measure_function(node2.name)
+					local def2 = core.registered_nodes[node2.name]
+					local measure = get_measure_function(def2)
 					if measure then
 						rear_power = measure(pos2, node2)
 					else
@@ -277,17 +275,24 @@ for _, mode in pairs{"comp", "sub"} do
 						-- the opaque node). Java edition makes an exception if
 						-- the power level is 15, we do not do so because we
 						-- mainly target bedrock.
-						local def2 = core.registered_nodes[node2.name]
 						if def2 and def2.groups and def2.groups.opaque and (def2.groups.opaque ~= 0) then
 							local pos3 = vector.add(pos2, back)
 							local node3 = core.get_node(pos3)
-							local measure = get_measure_function(node3.name)
+							local def3 = core.registered_nodes[node3.name]
+							local measure = get_measure_function(def3)
 							if measure then
 								rear_power = measure(pos3, node3)
 							end
 						end
 					end
 					rear_power = rear_power or mcl_redstone.get_power(pos, back)
+					if rear_power < 0 or rear_power > 15 then
+						core.log("warning", string.format(
+							"Comparator at %s received illegal rear value %s!",
+							core.pos_to_string(pos), tostring(rear_power)
+						))
+						rear_power = math.max(0, math.min(15, rear_power))
+					end
 					local output
 					if mode == "comp" then
 						output = rear_power >= side_power and rear_power or 0
@@ -341,7 +346,8 @@ core.register_craft({
 })
 
 local function check_for_update(pos, node)
-	if node and measure_tab[node.name] then
+	local def = core.registered_nodes[node.name]
+	if get_measure_function(def) then
 		mcl_redstone.update_comparators(pos)
 	end
 	-- double chest support
@@ -362,7 +368,9 @@ core.register_on_dignode(function (pos, node)
 end)
 
 core.register_on_placenode(function (pos, newnode, _, oldnode)
-	if (newnode and measure_tab[newnode.name]) or (oldnode and measure_tab[oldnode.name]) then
+	local olddef = core.registered_nodes[oldnode.name]
+	local newdef = core.registered_nodes[newnode.name]
+	if get_measure_function(newdef) or get_measure_function(olddef) then
 		mcl_redstone.update_comparators(pos)
 	end
 end)
@@ -376,22 +384,11 @@ mcl_pistons.register_on_move(function(moved_nodes)
 end)
 
 core.register_on_mods_loaded(function()
-	for name, def in pairs(core.registered_nodes) do
-		if core.get_item_group(name, "shulker_box") ~= 0 then
-			measure_tab[name] = measure_inventory
-		elseif core.get_item_group(name, "brewing_stand") ~= 0 then
-			measure_tab[name] = measure_brewing_stand
-		elseif core.get_item_group(name, "chiseled_bookshelf") ~= 0 then
-			measure_tab[name] = measure_chiseled_bookshelf
-		elseif  -- comparator_signal == 0 still marks the node as comparator measurable
-			def.groups and def.groups.comparator_signal then
-			measure_tab[name] = measure_constant(def.groups.comparator_signal)
-		end
-	end
-
 	local measureable_nodes = {}
-	for name, _ in pairs(measure_tab) do
-		table.insert(measureable_nodes, name)
+	for name, def in pairs(core.registered_nodes) do
+		if get_measure_function(def) then
+			table.insert(measureable_nodes, name)
+		end
 	end
 	mcl_redstone.register_action(mcl_redstone.update_comparators, measureable_nodes)
 end)
