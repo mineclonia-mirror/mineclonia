@@ -38,6 +38,15 @@ mcl_itemframes.tpl_node = {
 	allow_metadata_inventory_move = function() return 0 end,
 	allow_metadata_inventory_put = function() return 0 end,
 	allow_metadata_inventory_take = function() return 0 end,
+	_mcl_redstone = {
+			comparator_readout = function(pos)
+				local meta = core.get_meta(pos)
+				if meta:get_inventory():get_stack("main", 1):get_name() ~= "" then
+					return meta:get_int("mcl_item_rotation") + 1
+				end
+				return 0
+			end
+	}
 }
 
 local tpl_groups = {
