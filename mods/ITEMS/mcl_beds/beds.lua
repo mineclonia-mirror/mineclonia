@@ -1,3 +1,20 @@
+--[[
+Copyright (C) 2026  Fhelron
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+]]
+
 local S = core.get_translator(core.get_current_modname())
 local D = mcl_util.get_dynamic_translator()
 
@@ -47,4 +64,13 @@ for color, colordef in pairs(mcl_dyes.colors) do
 		doc.add_entry_alias("nodes", "mcl_beds:bed_"..canonical_color.."_bottom", "nodes", "mcl_beds:bed_"..color.."_bottom")
 		doc.add_entry_alias("nodes", "mcl_beds:bed_"..canonical_color.."_bottom", "nodes", "mcl_beds:bed_"..color.."_top")
 	end
+
+	-- Alias old non-uniform node names
+	if messy_textures[color] then
+		core.register_alias("mcl_beds:bed_"..texcol.."_top","mcl_beds:bed_"..color.."_top")
+		core.register_alias("mcl_beds:bed_"..texcol.."_bottom","mcl_beds:bed_"..color.."_bottom")
+	end
 end
+
+core.register_alias("beds:bed_bottom", "mcl_beds:bed_red_bottom")
+core.register_alias("beds:bed_top", "mcl_beds:bed_red_top")
