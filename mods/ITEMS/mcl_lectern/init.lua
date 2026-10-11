@@ -175,6 +175,17 @@ core.register_node("mcl_lectern:lectern_with_book", table.merge( lectern_tpl,{
 				}
 			end
 		end,
+		comparator_readout = function(pos)
+			local meta = core.get_meta(pos)
+			local pages = tonumber(meta:get_string("pages")) or 1
+			local page = tonumber(meta:get_string("page")) or 1
+			local power = 15
+			if pages > 1 then
+				-- formula copied from wiki
+				power = math.floor((14 * (page - 1)) / (pages - 1) + 1)
+			end
+			return power
+		end
 	},
 }))
 
