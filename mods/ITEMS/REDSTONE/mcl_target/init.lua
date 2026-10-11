@@ -53,7 +53,10 @@ end
 local commdef = {
 	_mcl_hardness = 0.5,
 	_mcl_redstone = {
-		connects_to = function() return true end
+		connects_to = function() return true end,
+		comparator_readout = function(pos)
+			return core.get_node(pos).param2
+		end
 	},
 	description = S("Target"),
 	groups = {hoey = 1},
