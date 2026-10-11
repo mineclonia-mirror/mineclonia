@@ -1622,6 +1622,7 @@ for color, desc in pairs(boxtypes) do
 		end,
 		_mcl_blast_resistance = 6,
 		_mcl_hardness = 2,
+		_mcl_redstone = {comparator_readout = mcl_redstone.get_measure_container_function({"main"})},
 	})
 
 	if not is_canonical then
