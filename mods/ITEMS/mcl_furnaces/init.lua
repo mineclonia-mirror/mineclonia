@@ -541,6 +541,7 @@ mcl_furnaces.tpl_furnace_node = {
 	_on_hopper_in = mcl_furnaces.on_hopper_in,
 	_on_hopper_out = mcl_furnaces.on_hopper_out,
 	on_rotate = mcl_furnaces.on_rotate,
+	_mcl_redstone = {comparator_readout = mcl_redstone.get_measure_container_function({"fuel", "src", "dst"})},
 }
 
 mcl_furnaces.tpl_furnace_node_normal = table.merge(mcl_furnaces.tpl_furnace_node,{
