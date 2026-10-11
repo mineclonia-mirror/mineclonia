@@ -150,7 +150,8 @@ core.register_node("mcl_barrels:barrel_closed", {
 	on_rightclick = barrel_open,
 	on_destruct = close_forms,
 	_mcl_hardness = 2.5,
-	_mcl_burntime = 15
+	_mcl_burntime = 15,
+	_mcl_redstone = {comparator_readout = mcl_redstone.get_measure_container_function({"main"})}
 })
 
 core.register_node("mcl_barrels:barrel_open", {
@@ -198,6 +199,7 @@ core.register_node("mcl_barrels:barrel_open", {
 	on_destruct = close_forms,
 	_mcl_hardness = 2.5,
 	_mcl_baseitem = "mcl_barrels:barrel_closed",
+	_mcl_redstone = {comparator_readout = mcl_redstone.get_measure_container_function({"main"})}
 })
 
 core.register_on_player_receive_fields(function(player, formname, fields)
