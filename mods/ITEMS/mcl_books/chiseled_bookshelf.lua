@@ -271,6 +271,12 @@ local basedef = {
 	on_rightclick = on_chiseled_bookshelf_rightclick,
 	_on_hopper_out = on_hopper_out,
 	_on_hopper_in = on_hopper_in,
+	_mcl_redstone = {
+		comparator_readout = function(pos)
+			local meta = core.get_meta(pos)
+			return math.floor(meta:get_float("last_slot_used") or 0)
+		end
+	},
 }
 
 -- This is the dirty trick to show the different books in different slots: use a unique node
