@@ -382,6 +382,7 @@ core.register_node("mcl_portals:end_portal_frame", {
 
 	_mcl_blast_resistance = 36000000,
 	_mcl_hardness = -1,
+	_mcl_redstone = {comparator_readout = function() return 0 end},
 })
 
 core.register_node("mcl_portals:end_portal_frame_eye", {
@@ -418,6 +419,7 @@ core.register_node("mcl_portals:end_portal_frame_eye", {
 
 	_mcl_blast_resistance = 36000000,
 	_mcl_hardness = -1,
+	_mcl_redstone = {comparator_readout = function() return 15 end},
 })
 
 doc.add_entry_alias("nodes", "mcl_portals:end_portal_frame", "nodes", "mcl_portals:end_portal_frame_eye")
