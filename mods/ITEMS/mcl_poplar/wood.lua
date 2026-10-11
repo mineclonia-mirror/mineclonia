@@ -3,6 +3,49 @@ local S = core.get_translator(core.get_current_modname())
 local modname = core.get_current_modname()
 local modpath = core.get_modpath(modname)
 
+local shelf_mushroom_canditates = {
+	{
+		offset_x = 1,
+		offset_z = 0,
+		param2 = 3,
+	},
+	{
+		offset_x = -1,
+		offset_z = 0,
+		param2 = 1,
+	},
+	{
+		offset_x = 0,
+		offset_z = 1,
+		param2 = 2,
+	},
+	{
+		offset_x = 0,
+		offset_z = -1,
+		param2 = 0,
+	}
+}
+
+-- This function's implementation is completely arbitrary and doesn't reflect how minecraft actually does it
+local function poplar_sapling_after_grow(pos)
+	for y_offset = 2, 3 do
+		for candidate_idx = 1, 4 do
+			if math.random() > 0.85 then
+				local candidate = shelf_mushroom_canditates[candidate_idx]
+				local offset_pos = vector.offset(pos, candidate.offset_x, y_offset, candidate.offset_z)
+				local node = core.get_node(offset_pos)
+
+				if node.name == "air" then
+					core.set_node(offset_pos, {
+						name = math.random() > 0.66 and "mcl_poplar:shelf_mushroom_big" or "mcl_poplar:shelf_mushroom",
+						param2 = candidate.param2
+					})
+				end
+			end
+		end
+	end
+end
+
 mcl_trees.register_wood("poplar",{
 	readable_name = "Poplar",
 	sign_color = "#9f8d83",
@@ -28,6 +71,7 @@ mcl_trees.register_wood("poplar",{
 		tiles = {"mcl_poplar_sapling.png"},
 		inventory_image = "mcl_poplar_sapling.png",
 		wield_image = "mcl_poplar_sapling.png",
+		_after_grow = poplar_sapling_after_grow,
 	},
 	potted_sapling = {
 		image = "mcl_poplar_sapling.png",
