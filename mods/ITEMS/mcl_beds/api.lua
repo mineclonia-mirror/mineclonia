@@ -1,3 +1,20 @@
+--[[
+Copyright (C) 2026  Fhelron
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+]]
+
 local S = core.get_translator(core.get_current_modname())
 
 local function get_bed_next_node(pos, node)
@@ -68,6 +85,7 @@ local function rotate(pos, node, user, mode, new_param2)
 
 	return true
 end
+
 
 local function destruct_bed(pos, oldnode)
 	local node = oldnode or core.get_node_or_nil(pos)
@@ -210,6 +228,8 @@ function mcl_beds.register_bed(name, def)
 		on_rotate = rotate,
 	})
 
+
+
 	core.register_node(name .. "_top", {
 		drawtype = "mesh",
 		mesh = "mcl_beds_bed_top.obj",
@@ -233,6 +253,8 @@ function mcl_beds.register_bed(name, def)
 		after_destruct = destruct_bed,
 		_mcl_baseitem = name .. "_bottom",
 	})
+
+	core.register_alias(name, name .. "_bottom")
 
 	if def.recipe then
 		core.register_craft({
