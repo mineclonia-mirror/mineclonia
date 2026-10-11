@@ -66,7 +66,8 @@ core.register_node("mcl_cake:cake", table.merge(tpl_cake, {
 		type = "fixed",
 		fixed = cake_boxes.full_cake
 	},
-	groups = table.merge(cake_groups, {comparator_signal = 14, cake = 7, compostability = 100})
+	groups = table.merge(cake_groups, {comparator_signal = 14, cake = 7, compostability = 100}),
+	_mcl_redstone = {comparator_readout = function() return 14 end},
 }))
 
 for i = 1, 6 do
@@ -85,7 +86,8 @@ for i = 1, 6 do
 		},
 		groups = table.merge(cake_groups, {
 			comparator_signal = i * 2, not_in_creative_inventory = 1, cake = i
-		})
+		}),
+		_mcl_redstone = {comparator_readout = function() return i * 2 end},
 	}))
 
 	doc.add_entry_alias("nodes", "mcl_cake:cake", "nodes", name)
