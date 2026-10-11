@@ -179,8 +179,7 @@ function mcl_beds.register_bed(name, def)
 				core.dir_to_facedir(placer:get_look_dir()) or 0
 			local botpos = vector.add(pos, core.facedir_to_dir(dir))
 
-			if core.is_protected(botpos, player_name) and
-					not core.check_player_privs(player_name, "protection_bypass") then
+			if core.is_protected(botpos, player_name) and not core.check_player_privs(player_name, "protection_bypass") then
 				core.record_protection_violation(botpos, player_name)
 				return itemstack
 			end
@@ -261,14 +260,14 @@ core.register_node("mcl_beds:straw_bed", {
 	tiles = {"mcl_beds_straw_bed.png"},
 	use_texture_alpha = "clip",
 	paramtype = "light",
-	paramtype2 = "facedir",
+	paramtype2 = "4dir",
 	is_ground_content = false,
 	stack_max = 16,
 	groups = {handy = 1, flammable = -1, hoey = 1, bed = 2, dig_by_piston=1, unsticky = 1},
 	_mcl_hardness = 0.2,
-	_mcl_blast_resistance = 1,
+	_mcl_blast_resistance = 0.2,
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
-	drop = "",
+	drop = "mcl_beds:straw_bed",
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, -0.3, 1.5}
@@ -324,5 +323,3 @@ core.register_craft({
 		{"mcl_farming:hay_block", "mcl_farming:hay_block", "mcl_farming:hay_block"},
 	}
 })
-
-

@@ -29,6 +29,12 @@ local function is_night_skip_enabled()
 	return players_in_bed_setting() <= 100
 end
 
+local function players_in_overworld(players)
+	return table.count(players, function(_, player)
+		return mcl_worlds.pos_to_dimension(player:get_pos()) == "overworld"
+	end)
+end
+
 local function check_in_beds(players)
 	if not players then
 		players = core.get_connected_players()
@@ -36,7 +42,7 @@ local function check_in_beds(players)
 	if player_in_bed <= 0 then
 		return false
 	end
-	return players_in_bed_setting() <= (player_in_bed * 100) / #players
+	return players_in_bed_setting() <= (player_in_bed * 100) / players_in_overworld(players)
 end
 
 function mcl_beds.is_night(tod)
@@ -214,7 +220,7 @@ mcl_player.register_globalstep_slow(function(player)
 end)
 
 local function update_formspecs(finished, players)
-	local ges = #core.get_connected_players()
+	local ges = players_in_overworld(players or core.get_connected_players())
 	local form_n = "size[12,5;true]"
 	local all_in_bed = ges and players_in_bed_setting() <= (player_in_bed * 100) / ges or 0
 	local night_skip = is_night_skip_enabled()
@@ -383,7 +389,7 @@ function mcl_beds.on_rightclick(pos, player, is_top)
 			mcl_title.set(player, "actionbar", {text=message, color="white", stay=60})
 		else -- someone just successfully entered a bed
 			local connected_players = core.get_connected_players()
-			local ges = #connected_players
+			local ges = players_in_overworld(connected_players)
 			local sleep_hud_message = S("@1/@2 players currently in bed.", player_in_bed, math.ceil(players_in_bed_setting() * ges / 100))
 			for _, player in pairs(connected_players) do
 				-- only send message to players not sleeping and in the "overworld"
@@ -410,6 +416,16 @@ function mcl_beds.on_rightclick_straw_bed(pos, player)
 	if player:get_meta():get_string("mcl_beds:sleeping") == "true" then
 		return
 	end
+	local dim = mcl_worlds.pos_to_dimension(pos)
+	if dim == "nether" or dim == "end" then
+		-- Bed just removes itself in Nether or End.
+		local node = core.get_node(pos)
+		local dir = core.facedir_to_dir(node.param2)
+
+		core.remove_node(pos)
+		return itemstack
+		-- returning the old itemstack here would result in it still being in hand *after* death
+	end
 	local name = player:get_player_name()
 	local ppos = player:get_pos()
 
@@ -422,7 +438,7 @@ function mcl_beds.on_rightclick_straw_bed(pos, player)
 			mcl_title.set(player, "actionbar", {text=message, color="white", stay=60})
 		else -- someone just successfully entered a bed
 			local connected_players = core.get_connected_players()
-			local ges = #connected_players
+			local ges = players_in_overworld(connected_players)
 			local sleep_hud_message = S("@1/@2 players currently in bed.", player_in_bed, math.ceil(players_in_bed_setting() * ges / 100))
 			for _, player in pairs(connected_players) do
 				-- only send message to players not sleeping and in the "overworld"
@@ -539,11 +555,6 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 	if fields.quit or fields.leave then
 		lay_down(player, nil, nil, false, false)
 		update_formspecs(false)
-	end
-
-	if fields.force then
-		update_formspecs(is_night_skip_enabled())
-		mcl_beds.sleep()
 	end
 end)
 
