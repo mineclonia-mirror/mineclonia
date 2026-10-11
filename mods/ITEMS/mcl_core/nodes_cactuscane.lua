@@ -156,19 +156,28 @@ core.register_node("mcl_core:reeds", {
 			return false
 		end
 
-		-- Legal water position rules are the same as for decoration spawn_by rules.
-		-- This differs from MC, which does not allow diagonal neighbors
-		-- and neighbors 1 layer above.
-		local np1 = {x=soil_pos.x-1, y=soil_pos.y, z=soil_pos.z-1}
-		local np2 = {x=soil_pos.x+1, y=soil_pos.y+1, z=soil_pos.z+1}
-		if #core.find_nodes_in_area(np1, np2, {"group:water", "group:frosted_ice"}) > 0 then
-			-- Water found! Sugar canes are happy! :-)
-			return true
-		end
+		local valid_node_directions = {
+			{x =  1, y = 0, z =  0},
+			{x = -1, y = 0, z =  0},
+			{x =  0, y = 0, z =  1},
+			{x =  0, y = 0, z = -1}
+		}
+		local essential_environment = {
+			"group:water",
+			"group:frosted_ice"
+		}
 
+		for _,dir in pairs(valid_node_directions) do
+			local target_node_name=core.get_node({x=soil_pos.x+dir.x,y=soil_pos.y+dir.y,z=soil_pos.z+dir.z}).name
+			for _,name in pairs(essential_environment) do
+				if target_node_name == name or core.get_item_group (target_node_name,string.gsub(name,"group:","")) ~= 0 then
+			-- Water found! Sugar canes are happy! :-)
+					return true
+				end
+			end
+		end
 		-- No water found! Sugar canes are not amuzed and refuses to be placed. :-(
 		return false
-
 	end),
 	on_construct = function(pos)
 		local node = core.get_node(pos)
