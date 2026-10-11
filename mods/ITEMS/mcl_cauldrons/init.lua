@@ -167,6 +167,7 @@ core.register_node("mcl_cauldrons:cauldron", {
 	_mcl_hardness = 2,
 	_on_bucket_place = bucket_place,
 	_on_bottle_place = bottle_place,
+	_mcl_redstone = {comparator_readout = function() return 0 end},
 })
 
 -- Template function for cauldrons with water
@@ -231,6 +232,7 @@ local function register_filled_cauldron(water_level, description, liquid)
 			end
 			return itemstack
 		end,
+		_mcl_redstone = {comparator_readout = function() return water_level end},
 	})
 
 	doc.add_entry_alias("nodes", "mcl_cauldrons:cauldron", "nodes", id)
