@@ -180,6 +180,9 @@ function mcl_flowers.register_ground_flower(flowername, def, add_def)
 			if core.is_protected(pointed_thing.above, placer:get_player_name()) then
 				core.record_protection_violation(pointed_thing.above, placer:get_player_name())
 				return itemstack
+			elseif core.is_protected(pointed_thing.under, placer:get_player_name()) then
+				core.record_protection_violation(pointed_thing.under, placer:get_player_name())
+				return itemstack
 			end
 
 			local pos = pointed_thing.under
