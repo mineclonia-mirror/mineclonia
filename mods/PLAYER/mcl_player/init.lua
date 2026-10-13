@@ -340,6 +340,7 @@ function mcl_player.delete_particlespawner(handle)
 	particlespawners[handle] = nil
 end
 
+-- This globalstep can probably be even slower
 mcl_player.register_globalstep_slow(function()
 	for _, entry in pairs(particlespawners) do
 		local players_in_range = {}
@@ -355,7 +356,7 @@ mcl_player.register_globalstep_slow(function()
 
 		-- Checking for players that left range
 		for player, engine_handle in pairs(entry.handles) do
-			if not players_in_range[player] or not player:is_valid() then
+			if not players_in_range[player] then
 				core.delete_particlespawner(engine_handle, player:get_player_name())
 				entry.handles[player] = nil
 			end
@@ -368,6 +369,12 @@ mcl_player.register_globalstep_slow(function()
 				entry.handles[player] = core.add_particlespawner(entry.spawner_def)
 			end
 		end
+	end
+end)
+
+core.register_on_leaveplayer(function(player)
+	for _, entry in pairs(particlespawners) do
+		entry.handles[player] = nil
 	end
 end)
 
