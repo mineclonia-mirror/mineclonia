@@ -356,7 +356,7 @@ local function recheck_in_beds()
 	end
 end
 
-function mcl_beds.on_rightclick(pos, player, is_top)
+function mcl_beds.on_rightclick(pos, player, is_top, is_straw_bed)
 	-- Anti-Inception: Don't allow to sleep while you're sleeping
 	if player:get_meta():get_string("mcl_beds:sleeping") == "true" then
 		return
@@ -368,8 +368,10 @@ function mcl_beds.on_rightclick(pos, player, is_top)
 		local dir = core.facedir_to_dir(node.param2)
 
 		core.remove_node(pos)
-		core.remove_node(string.sub(node.name, -4) == "_top" and vector.subtract(pos, dir) or vector.add(pos, dir))
-		mcl_explosions.explode(pos, 5, {fire = true})
+		if not is_straw_bed then
+			core.remove_node(string.sub(node.name, -4) == "_top" and vector.subtract(pos, dir) or vector.add(pos, dir))
+			mcl_explosions.explode(pos, 5, {fire = true})
+		end
 		return mcl_util.return_itemstack_if_alive(player)
 		-- returning the old itemstack here would result in it still being in hand *after* death
 	end
@@ -380,10 +382,10 @@ function mcl_beds.on_rightclick(pos, player, is_top)
 	if not mcl_beds.player[name] then
 		local message
 		if is_top then
-			message = select(2, lay_down(player, ppos, pos, false))
+			message = select(2, lay_down(player, ppos, pos, is_straw_bed))
 		else
 			local other = mcl_beds.get_bed_top (pos)
-			message = select(2, lay_down(player, ppos, other, false))
+			message = select(2, lay_down(player, ppos, other, is_straw_bed))
 		end
 		if message then
 			mcl_title.set(player, "actionbar", {text=message, color="white", stay=60})
@@ -401,53 +403,7 @@ function mcl_beds.on_rightclick(pos, player, is_top)
 			end
 		end
 	else
-		lay_down(player, nil, nil, false)
-	end
-
-	update_formspecs(false)
-	-- skip the night and let all players stand up
-	if player_in_bed > 0 then
-		core.after(5, recheck_in_beds)
-	end
-end
-
-function mcl_beds.on_rightclick_straw_bed(pos, player)
-	-- Anti-Inception: Don't allow to sleep while you're sleeping
-	if player:get_meta():get_string("mcl_beds:sleeping") == "true" then
-		return
-	end
-	local dim = mcl_worlds.pos_to_dimension(pos)
-	if dim == "nether" or dim == "end" then
-		-- Bed just removes itself in Nether or End.
-		core.remove_node(pos)
-		return mcl_util.return_itemstack_if_alive(player)
-		-- returning the old itemstack here would result in it still being in hand *after* death
-	end
-	local name = player:get_player_name()
-	local ppos = player:get_pos()
-
-	-- move to bed
-	if not mcl_beds.player[name] then
-		local message
-		message = select(2, lay_down(player, ppos, pos, true))
-
-		if message then
-			mcl_title.set(player, "actionbar", {text=message, color="white", stay=60})
-		else -- someone just successfully entered a bed
-			local connected_players = core.get_connected_players()
-			local ges = players_in_overworld(connected_players)
-			local sleep_hud_message = S("@1/@2 players currently in bed.", player_in_bed, math.ceil(players_in_bed_setting() * ges / 100))
-			for _, player in pairs(connected_players) do
-				-- only send message to players not sleeping and in the "overworld"
-				if not mcl_beds.player[player:get_player_name()] and mcl_worlds.pos_to_dimension(player:get_pos()) == "overworld" then
-					-- clear, old message is still being displayed
-					if mcl_title.params_get(player) then mcl_title.clear(player) end
-					mcl_title.set(player, "actionbar", {text=sleep_hud_message, color="white", stay=60})
-				end
-			end
-		end
-	else
-		lay_down(player, nil, nil, true, false)
+		lay_down(player, nil, nil, is_straw_bed)
 	end
 
 	update_formspecs(false)

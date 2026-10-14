@@ -1,10 +1,11 @@
 # Mineclonia mod: beds
 Original mod by `Blockmen` shared under [MIT] --> [beds](https://github.com/BlockMen/beds)
-See license.txt for license information.
+This mod was heavily modified by the authors below.
 
 ## Authors of source code
 * Originally by `BlockMen` [MIT]
 * Various `Minetest developers and contributors` [MIT]
+Modified by:
 * Various `Mineclone and Mineclonia developers and contributors` [GPL-3.0-or-later](https://www.gnu.org/licenses/gpl-3.0.html)
 * Various changes (e.g. Straw bed) by `Fhelron` [GPL-3.0-or-later](https://www.gnu.org/licenses/gpl-3.0.html)
 
