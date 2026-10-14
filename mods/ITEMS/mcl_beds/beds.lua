@@ -61,8 +61,8 @@ core.register_node("mcl_beds:straw_bed", {
 	description = S("Straw Bed"),
 	_tt_help = S("Allows you to sleep without setting your respawn point"),
 
-	_doc_items_longdesc = beddesc,
-	_doc_items_usagehelp = beduse,
+	_doc_items_longdesc = strawbeddesc,
+	_doc_items_usagehelp = strawbeduse,
 	_doc_items_create_entry = true,
 	_doc_items_entry_name = "Straw Bed",
 
