@@ -3,7 +3,6 @@ local D = mcl_util.get_dynamic_translator()
 
 local strawbeddesc = S("Straw beds allow you to sleep at night and make the time pass faster.\n Straw beds won't set the respawn point for your next life. The Straw bed breaks and drops nothing when you get out of the bed.")
 local strawbeduse = S("To use a straw bed, stand close to it and right-click the bed to sleep in it. Sleeping only works when the sun sets, at night or during a thunderstorm. The bed must also be clear of any danger.")
-end
 if core.settings:get_bool("enable_bed_night_skip") == false then
 	strawbeddesc = strawbeddesc .. "\n" .. S("In this world, going to straw bed won't skip the night, but it will skip thunderstorms.")
 else
