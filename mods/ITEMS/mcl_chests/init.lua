@@ -552,6 +552,7 @@ local function register_chest(basename, desc, longdesc, usagehelp, tt_help, tile
 			if listname == "input" then
 				local inv = core.get_inventory({ type = "node", pos = pos })
 				inv:add_item("main", stack)
+				inv:remove_item("input", stack)
 			end
 			-- END OF LISTRING WORKAROUND
 			mcl_redstone.update_comparators(pos)
