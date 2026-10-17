@@ -224,7 +224,11 @@ function mcl_spawn.spawn(player)
 
 			local node = core.get_node(pos)
 			local ndef = core.registered_nodes[node.name]
-			if ndef and (ndef.walkable or ndef.liquidtype ~= "none") then
+			if node.name == "ignore" then
+				-- area not generated, trust engine calculation
+				core.log("Respawn position not yet generated...")
+				break
+			elseif ndef.walkable or ndef.liquidtype ~= "none" then
 				break
 			end
 		end
