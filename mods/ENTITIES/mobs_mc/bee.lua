@@ -28,12 +28,6 @@ local bee = {
 	texture_list = {
 		{"mobs_mc_bee.png"},
 	},
-	fly = true,
-	fly_in = {"air"},
-	fly_velocity = 4,
-	view_range = 16,
-	stepheight = 1.1,
-	_no_fall_damage = true,
 	animation = {
 		-- Holding Item = 200,220
 		--
@@ -44,8 +38,10 @@ local bee = {
 		dance_start = 110, dance_end = 185, dance_speed = 80,
 	},
 	attack_type = "melee",
-	gravity_drag = 0.6,
+	_no_fall_damage = true,
 	floats = 1,
+	-- True flight
+	motion_step = mob_class.flying_step,
 	physical = true,
 	movement_speed = 4.0,
 	airborne = true,
@@ -87,15 +83,29 @@ local bee = {
 	end,
 }
 
+function bee:_validate_home()
+	if not self._home then return end
+	local n = core.get_node(self._home)
+	if core.get_item_group(n.name, "beehive") == 0 and core.get_item_group(n.name, "bee_nest") == 0 then
+		self._home = nil
+		self._home_front = nil
+	elseif not self._home_front then
+		self._home_front = vector.subtract(self._home, core.facedir_to_dir(n.param2))
+	end
+end
+
 function bee:_find_new_home()
 	local v = self.view_range
 	local p = self.object:get_pos()
 	local nn = core.find_nodes_in_area(p:add(-v), p:add(v), {"group:beehive", "group:bee_nest"})
 	for _, n in pairs(nn) do
+		local node = core.get_node(n)
+		local front = vector.subtract(n, core.facedir_to_dir(node.param2))
 		local m = core.get_meta(n)
 		local bees = m:get_int("mobs_mc:bees")
 		if bees < BEES_PER_HIVE then
 			self._home = n
+			self._home_front = front
 			m:set_int("mobs_mc:bees", bees + 1)
 			return true
 		end
@@ -107,13 +117,9 @@ function bee:_should_go_home()
 end
 
 function bee:_nest()
+	-- make sure home actually exists
+	self:_validate_home()
 	if not self._home then return end
-
-	local n = core.get_node(self._home).name
-	if core.get_item_group(n, "beehive") == 0 and core.get_item_group(n, "bee_nest") == 0 then
-		self._home = nil
-		return
-	end
 
 	local m = core.get_meta(self._home)
 	local bees_current = m:get_int("mobs_mc:bees_present")
@@ -127,6 +133,7 @@ end
 function bee:_collect_nectar(pos)
 	local v = self.view_range
 	local nodes = core.find_nodes_in_area_under_air(pos:add(-v), pos:add(v), {"group:nectar_bearing"})
+	local targets = {}
 	for _, n in pairs(nodes) do
 		if vector.distance(pos, n) < 1.5 then
 			if self._nectar_timer and self._nectar_timer < 0 then
@@ -134,17 +141,19 @@ function bee:_collect_nectar(pos)
 				self._nectar_timer = nil
 				self._fertilize_count = 10
 				self:update_textures()
-				return self._home
+				return self._home_front
 			else
 				if not self._nectar_timer then
 					self._nectar_timer = 20
 				end
 				return n
 			end
+		else
+			table.insert(targets, n)
 		end
 	end
-	if #nodes > 0 then
-		return vector.offset(nodes[math.random(#nodes)], 0, 1, 0)
+	if #targets > 0 then
+		return vector.offset(nodes[math.random(#targets)], 0, 0.3, 0)
 	end
 end
 
@@ -166,19 +175,29 @@ function bee:_fertilize(pos)
 	end
 end
 
+function bee:_get_home_target()
+	if not self._home_front then
+		self:_validate_home()
+	end
+	return self._home_front
+end
+
 function bee:airborne_pacing_target(pos, width, height, groups)
+	-- home may no longer exist, but the bee can't know until it gets close
 	if self._home and self:_should_go_home() then
-		return self._home
+		return self:_get_home_target()
 	else
 		if not self._home then
-			if self:_find_new_home() then return self._home end
+			if self:_find_new_home() then
+				return self:_get_home_target()
+			end
 		end
 		local target = self:_collect_nectar(pos)
 		if target then return target end
 	end
 	local target = mob_class.airborne_pacing_target(self, pos, width, height, groups)
 	if target and self._home and vector.distance(target, self._home) > 25 then
-		return self._home
+		return self:_get_home_target()
 	end
 	return target
 end
@@ -230,22 +249,26 @@ function bee:ai_step(dtime)
 
 	if self._got_nectar and math.random() <= FERTILIZE_CHANCE then
 		self:_fertilize(pos)
-	elseif self._home and vector.distance(pos, self._home) < 1.5 then
-		if self._got_nectar then
-			mcl_beehives.add_level(self._home, 1)
-			self._got_nectar = false
-			self._fertilize_count = 0
-			self:update_textures()
-			self:_nest()
-		end
-		if mcl_beehives.bees_should_sleep(pos) then
-			self:_nest()
-		end
 	elseif self.attack and not self.dead then
 		self._alert_interval = self._alert_interval - dtime
 		if self._alert_interval <= 0 then
 			self:_alert_other_bees()
 			self._alert_interval = mcl_util.float_random(2, 5)
+		end
+	elseif self._home and vector.distance(pos, self._home) < 2.5 then
+		-- check whether home still exists
+		self:_validate_home()
+		if self._home and vector.distance(pos, self._home_front) < 0.5 then
+			if self._got_nectar then
+				mcl_beehives.add_level(self._home, 1)
+				self._got_nectar = false
+				self._fertilize_count = 0
+				self:update_textures()
+				self:_nest()
+			end
+			if mcl_beehives.bees_should_sleep(pos) then
+				self:_nest()
+			end
 		end
 	end
 	if self.attack then

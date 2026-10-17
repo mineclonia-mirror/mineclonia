@@ -202,7 +202,7 @@ function mcl_beehives.release_bees(pos, bees, digger)
 		if core.get_node(front).name =="air" then
 			for i = 1, bees do
 				if i > bees_current then break end
-				local o = mcl_mobs.spawn(front, "mobs_mc:bee", core.serialize({_home = pos}))
+				local o = mcl_mobs.spawn(front, "mobs_mc:bee", core.serialize({_home = pos, _home_front = front}))
 				if digger and o then
 					local l = o:get_luaentity()
 					if l then
