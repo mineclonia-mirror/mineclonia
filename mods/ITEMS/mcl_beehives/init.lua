@@ -171,6 +171,11 @@ core.register_craft({
 
 function mcl_beehives.add_level(pos, add_levels)
 	local node = core.get_node(pos)
+	if not (core.get_item_group(node.name, "beehive") ~= 0
+		or core.get_item_group(node.name, "bee_nest") ~= 0) then
+		core.log("error", debug.traceback("[mcl_beehives] trying to call add_level on non bee hive/nest at " .. core.pos_to_string(pos)))
+		return
+	end
 	local def = core.registered_nodes[node.name]
 	if def and def._mcl_baseitem then
 		local honey_level = core.get_item_group(node.name, "honey_level")
