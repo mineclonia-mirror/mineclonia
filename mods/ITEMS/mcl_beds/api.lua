@@ -7,7 +7,7 @@ local function get_bed_next_node(pos, node)
 	local dir = core.facedir_to_dir(node.param2)
 
 	local pos2, bottom
-	if string.sub(node.name, -4) == "_top" then
+	if core.get_item_group(node.name, "bed_top") > 0 then
 		pos2 = vector.subtract(pos, dir)
 	else
 		pos2 = vector.add(pos, dir)
@@ -77,18 +77,35 @@ local function destruct_bed(pos, oldnode)
 	local pos2, node2, bottom = get_bed_next_node(pos, oldnode)
 
 	if bottom then
-		if node2 and string.sub(node2.name, -4) == "_top" then
+		if node2 and core.get_item_group(node2.name, "bed_top") > 0 then
 			core.remove_node(pos2)
 		end
 	else
-		if node2 and string.sub(node2.name, -7) == "_bottom" then
+		if node2 and core.get_item_group(node2.name, "bed_bottom") > 0 then
 			core.remove_node(pos2)
 			mobs_mc.notify_bed_deleted (pos2)
 		end
 	end
 end
 
-local function kick_player_after_destruct(destruct_pos)
+function mcl_beds.destruct_straw_bed(pos, oldnode)
+	local node = oldnode or core.get_node_or_nil(pos)
+	if not node then return end
+
+	local pos2, node2, bottom = get_bed_next_node(pos, oldnode)
+
+	if bottom then
+		if node2 and core.get_item_group(node2.name, "bed_top") > 0 then
+			core.remove_node(pos2)
+		end
+	else
+		if node2 and core.get_item_group(node2.name, "bed_bottom") > 0 then
+			core.remove_node(pos2)
+		end
+	end
+end
+
+function mcl_beds.kick_player_after_destruct(destruct_pos)
 	for name, player_bed_pos in pairs(mcl_beds.bed_pos) do
 		if vector.distance(destruct_pos, player_bed_pos) < 0.1 then
 			local player = core.get_player_by_name(name)
@@ -100,17 +117,17 @@ local function kick_player_after_destruct(destruct_pos)
 	end
 end
 
-local beddesc = S("Beds allow you to sleep at night and make the time pass faster.")
-local beduse = S("To use a bed, stand close to it and right-click the bed to sleep in it. Sleeping only works when the sun sets, at night or during a thunderstorm. The bed must also be clear of any danger.")
+local bed_desc = S("Beds allow you to sleep at night and make the time pass faster.")
+local bed_use = S("To use a bed, stand close to it and right-click the bed to sleep in it. Sleeping only works when the sun sets, at night or during a thunderstorm. The bed must also be clear of any danger.")
 if core.settings:get_bool("enable_bed_respawn") == false then
-	beddesc = beddesc .. "\n" .. S("You have heard of other worlds in which a bed would set the start point for your next life. But this world is not one of them.")
+	bed_desc = bed_desc .. "\n" .. S("You have heard of other worlds in which a bed would set the start point for your next life. But this world is not one of them.")
 else
-	beddesc = beddesc .. "\n" .. S("By using a bed, you set the starting point for your next life. If you die, you will start your next life at this bed, unless it is obstructed or destroyed.")
+	bed_desc = bed_desc .. "\n" .. S("By using a bed, you set the starting point for your next life. If you die, you will start your next life at this bed, unless it is obstructed or destroyed.")
 end
 if core.settings:get_bool("enable_bed_night_skip") == false then
-	beddesc = beddesc .. "\n" .. S("In this world, going to bed won't skip the night, but it will skip thunderstorms.")
+	bed_desc = bed_desc .. "\n" .. S("In this world, going to bed won't skip the night, but it will skip thunderstorms.")
 else
-	beddesc = beddesc .. "\n" .. S("Sleeping allows you to skip the night. The night is skipped when all players in this world went to sleep. The night is skipped after sleeping for a few seconds. Thunderstorms can be skipped in the same manner.")
+	bed_desc = bed_desc .. "\n" .. S("Sleeping allows you to skip the night. The night is skipped when all players in this world went to sleep. The night is skipped after sleeping for a few seconds. Thunderstorms can be skipped in the same manner.")
 end
 
 local default_sounds = mcl_sounds.node_sound_wood_defaults({
@@ -127,8 +144,8 @@ function mcl_beds.register_bed(name, def)
 		description = def.description,
 		_tt_help = S("Allows you to sleep"),
 
-		_doc_items_longdesc = def._doc_items_longdesc or beddesc,
-		_doc_items_usagehelp = def._doc_items_usagehelp or beduse,
+		_doc_items_longdesc = def._doc_items_longdesc or bed_desc,
+		_doc_items_usagehelp = def._doc_items_usagehelp or bed_use,
 		_doc_items_create_entry = def._doc_items_create_entry,
 		_doc_items_entry_name = def._doc_items_entry_name,
 		inventory_image = def.inventory_image,

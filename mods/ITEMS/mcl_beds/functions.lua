@@ -66,7 +66,7 @@ local function prevents_sleep(mob_def,mob_ent)
 	return true
 end
 
-local function lay_down(player, pos, bed_pos, is_straw_bed, state, skip)
+local function lay_down(player, pos, bed_pos, is_straw_bed)
 	local name = player:get_player_name()
 	local hud_flags = player:hud_get_flags()
 
@@ -121,85 +121,100 @@ local function lay_down(player, pos, bed_pos, is_straw_bed, state, skip)
 		end
 	end
 
-	-- stand up
-	if state == false or (state == nil and not bed_pos) then
-		local p = mcl_beds.pos[name] or nil
-		if mcl_beds.player[name] then
-			mcl_beds.player[name] = nil
-			player_in_bed = player_in_bed - 1
-		end
-		mcl_beds.pos[name] = nil
-		mcl_beds.bed_pos[name] = nil
-		if p then
-			player:set_pos(p)
-		end
-
-		-- skip here to prevent sending player specific changes (used for leaving players)
-		if skip then
-			return false
-		end
-
-		local straw_pos = straw_bed_pos[name]
-		if straw_pos then
-			core.remove_node(straw_pos)
-			straw_bed_pos[name] = nil
-		end
-
-		-- physics, eye_offset, etc
-		player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
-		if player:get_look_vertical() > 0 then
-			player:set_look_vertical(0)
-		end
-		mcl_player.players[player].attached = false
-		playerphysics.remove_physics_factor(player, "speed", "mcl_beds:sleeping")
-		playerphysics.remove_physics_factor(player, "jump", "mcl_beds:sleeping")
-		player:get_meta():set_string("mcl_beds:sleeping", "false")
-		hud_flags.wielditem = true
-		mcl_player.player_set_animation(player, "stand" , 30)
-		mcl_serverplayer.override_pose (player, nil)
-	-- lay down
-	else
-		local n1 = core.get_node({x = bed_pos.x,	y = bed_pos.y + 1,	z = bed_pos.z})
-		local n2 = core.get_node({x = bed_pos2.x,	y = bed_pos2.y + 1,	z = bed_pos2.z})
-		local def1 = core.registered_nodes[n1.name]
-		local def2 = core.registered_nodes[n2.name]
-		if def1.walkable or def2.walkable then
-			return false, S("You can't sleep, the bed is obstructed!")
-		elseif (def1.damage_per_second and def1.damage_per_second > 0) or (def2.damage_per_second and def2.damage_per_second > 0) then
-			return false, S("It's too dangerous to sleep here!")
-		end
-
-		mcl_beds.player[name] = 1
-		mcl_beds.pos[name] = pos
-		mcl_beds.bed_pos[name] = is_straw_bed and bed_pos or bed_pos2
-		player_in_bed = player_in_bed + 1
-
-		if is_straw_bed then
-			straw_bed_pos[name] = bed_pos
-		end
-
-		-- physics, eye_offset, etc
-		if not mcl_serverplayer.is_csm_capable (player) then
-			player:set_eye_offset({x = 0, y = -13, z = 0}, {x = 0, y = 0, z = 0})
-		end
-		player:set_look_horizontal(yaw)
-
-		-- With head tracking:
-		player:set_look_vertical(0)
-		-- Without head tracking:
-		-- player:set_look_vertical(-(math.pi/2))
-
-		player:get_meta():set_string("mcl_beds:sleeping", "true")
-		playerphysics.add_physics_factor(player, "speed", "mcl_beds:sleeping", 0)
-		playerphysics.add_physics_factor(player, "jump", "mcl_beds:sleeping", 0)
-		player:add_velocity(-player:get_velocity())
-		player:set_pos(bed_center)
-		mcl_player.players[player].attached = true
-		hud_flags.wielditem = false
-		mcl_player.player_set_animation(player, "lay" , 0)
-		mcl_serverplayer.override_pose (player, mcl_serverplayer.POSE_SLEEPING)
-		awards.unlock(player:get_player_name(), "mcl:sweetDreams")
+	local n1 = core.get_node({x = bed_pos.x,	y = bed_pos.y + 1,	z = bed_pos.z})
+	local n2 = core.get_node({x = bed_pos2.x,	y = bed_pos2.y + 1,	z = bed_pos2.z})
+	local def1 = core.registered_nodes[n1.name]
+	local def2 = core.registered_nodes[n2.name]
+	if (def1 and def1.walkable) or (def2 and def2.walkable) then
+		return false, S("You can't sleep, the bed is obstructed!")
+	elseif (def1 and def1.damage_per_second and def1.damage_per_second > 0) or (def2 and def2.damage_per_second and def2.damage_per_second > 0) then
+		return false, S("It's too dangerous to sleep here!")
 	end
+
+	mcl_beds.player[name] = 1
+	mcl_beds.pos[name] = pos
+	mcl_beds.bed_pos[name] = is_straw_bed and bed_pos or bed_pos2
+	player_in_bed = player_in_bed + 1
+
+	if is_straw_bed then
+		straw_bed_pos[name] = bed_pos
+	end
+
+	-- physics, eye_offset, etc
+	if not mcl_serverplayer.is_csm_capable (player) then
+		player:set_eye_offset({x = 0, y = -13, z = 0}, {x = 0, y = 0, z = 0})
+	end
+	player:set_look_horizontal(yaw)
+
+	-- With head tracking:
+	player:set_look_vertical(0)
+	-- Without head tracking:
+	-- player:set_look_vertical(-(math.pi/2))
+
+	player:get_meta():set_string("mcl_beds:sleeping", "true")
+	playerphysics.add_physics_factor(player, "speed", "mcl_beds:sleeping", 0)
+	playerphysics.add_physics_factor(player, "jump", "mcl_beds:sleeping", 0)
+	player:add_velocity(-player:get_velocity())
+	player:set_pos(bed_center)
+	mcl_player.players[player].attached = true
+	hud_flags.wielditem = false
+	mcl_player.player_set_animation(player, "lay" , 0)
+	mcl_serverplayer.override_pose (player, mcl_serverplayer.POSE_SLEEPING)
+	awards.unlock(player:get_player_name(), "mcl:sweetDreams")
+
+	player:hud_set_flags(hud_flags)
+	return true
+end
+
+local function stand_up(player, pos, bed_pos, skip)
+	local name = player:get_player_name()
+	local hud_flags = player:hud_get_flags()
+
+	if not player or not name then
+		return false
+	end
+
+	local p = mcl_beds.pos[name] or nil
+	if mcl_beds.player[name] then
+		mcl_beds.player[name] = nil
+		player_in_bed = player_in_bed - 1
+	end
+	mcl_beds.pos[name] = nil
+	mcl_beds.bed_pos[name] = nil
+	if p then
+		player:set_pos(p)
+	end
+
+	local straw_pos = straw_bed_pos[name]
+	if straw_pos then
+		local node = core.get_node(straw_pos)
+		local dir = core.facedir_to_dir(node.param2)
+		local top_pos = vector.add(straw_pos, dir)
+
+		core.remove_node(straw_pos)
+		if core.get_item_group(top_pos.name, "bed_top") > 1 then
+			core.remove_node(top_pos)
+		end
+		straw_bed_pos[name] = nil
+	end
+
+	-- skip here to prevent sending player specific changes (used for leaving players)
+	if skip then
+		return false
+	end
+
+	-- physics, eye_offset, etc
+	player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+	if player:get_look_vertical() > 0 then
+		player:set_look_vertical(0)
+	end
+	mcl_player.players[player].attached = false
+	playerphysics.remove_physics_factor(player, "speed", "mcl_beds:sleeping")
+	playerphysics.remove_physics_factor(player, "jump", "mcl_beds:sleeping")
+	player:get_meta():set_string("mcl_beds:sleeping", "false")
+	hud_flags.wielditem = true
+	mcl_player.player_set_animation(player, "stand" , 30)
+	mcl_serverplayer.override_pose (player, nil)
 
 	player:hud_set_flags(hud_flags)
 	return true
@@ -309,7 +324,7 @@ end
 function mcl_beds.kick_players()
 	for name, _ in pairs(mcl_beds.player) do
 		local player = core.get_player_by_name(name)
-		lay_down(player, nil, nil, false)
+		stand_up(player, nil, nil, false)
 	end
 	update_formspecs(false)
 end
@@ -318,7 +333,7 @@ end
 function mcl_beds.kick_player(player)
 	local name = player:get_player_name()
 	if mcl_beds.player[name] then
-		lay_down(player, nil, nil, false)
+		stand_up(player, nil, nil, false)
 		update_formspecs(false)
 		core.close_formspec(name, "mcl_beds_form")
 	end
@@ -367,9 +382,11 @@ function mcl_beds.on_rightclick(pos, player, is_top, is_straw_bed)
 		local node = core.get_node(pos)
 		local dir = core.facedir_to_dir(node.param2)
 
-		core.remove_node(pos)
-		if not is_straw_bed then
-			core.remove_node(string.sub(node.name, -4) == "_top" and vector.subtract(pos, dir) or vector.add(pos, dir))
+		if is_straw_bed then
+			core.remove_node(pos)
+			core.remove_node(core.get_item_group(node.name, "bed_top") > 0 and vector.subtract(pos, dir) or vector.add(pos, dir))
+		else
+			core.remove_node(core.get_item_group(node.name, "bed_top") > 0 and vector.subtract(pos, dir) or vector.add(pos, dir))
 			mcl_explosions.explode(pos, 5, {fire = true})
 		end
 		return mcl_util.return_itemstack_if_alive(player)
@@ -427,7 +444,7 @@ core.register_on_joinplayer(function(player)
 end)
 
 core.register_on_leaveplayer(function(player)
-	lay_down(player, nil, nil, false, false, true)
+	stand_up(player, nil, nil, true)
 	local players = core.get_connected_players()
 	local name = player:get_player_name()
 	for n, player in ipairs(players) do
@@ -506,7 +523,7 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 	end
 
 	if fields.quit or fields.leave then
-		lay_down(player, nil, nil, false, false)
+		stand_up(player, nil, nil, false)
 		update_formspecs(false)
 	end
 end)
