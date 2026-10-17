@@ -122,11 +122,15 @@ function bee:_nest()
 	if not self._home then return end
 
 	local m = core.get_meta(self._home)
+	local bees = m:get_int("mobs_mc:bees")
 	local bees_current = m:get_int("mobs_mc:bees_present")
 	if bees_current < BEES_PER_HIVE then
 		m:set_int("mobs_mc:bees_present", bees_current + 1)
+		if bees == bees_current then
+			core.log("warning", "[bee] missed bee changing home to " .. core.pos_to_string(self._home))
+			m:set_int("mobs_mc:bees", bees_current + 1)
+		end
 		self:safe_remove()
-		return self._home
 	end
 end
 
