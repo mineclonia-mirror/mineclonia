@@ -69,7 +69,7 @@ local function rotate(pos, node, user, mode, new_param2)
 	return true
 end
 
-local function destruct_bed(pos, oldnode)
+function mcl_beds.destruct_bed(pos, oldnode)
 	local node = oldnode or core.get_node_or_nil(pos)
 	if not node then return end
 	mobs_mc.notify_bed_deleted (pos)
@@ -216,9 +216,9 @@ function mcl_beds.register_bed(name, def)
 			return itemstack
 		end,
 
-		after_destruct = destruct_bed,
+		after_destruct = mcl_beds.destruct_bed,
 
-		on_destruct = kick_player_after_destruct,
+		on_destruct = mcl_beds.kick_player_after_destruct,
 
 		on_rightclick = function(pos, _, clicker)
 			return mcl_beds.on_rightclick(pos, clicker, false, false)
@@ -247,7 +247,7 @@ function mcl_beds.register_bed(name, def)
 		end,
 
 		on_rotate = rotate,
-		after_destruct = destruct_bed,
+		after_destruct = mcl_beds.destruct_bed,
 		_mcl_baseitem = name .. "_bottom",
 	})
 
