@@ -158,7 +158,7 @@ core.register_node("mcl_beds:straw_bed_top", {
 	drop = "",
 	groups = {not_in_creative_inventory = 1, bed_top = 1, bed = 2},
 
-	after_destruct = destruct_bed,
+	after_destruct = mcl_beds.destruct_bed,
 })
 
 core.register_craft({
