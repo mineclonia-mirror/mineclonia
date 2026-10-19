@@ -1305,8 +1305,9 @@ core.register_chatcommand ("spawn_cycle", {
 	privs = { server = true, },
 	params = "[ end | overworld | nether ]",
 	func = function (n, param)
-		mcl_mobs.spawn_cycle (param)
-		mcl_mobs.spawn_cycle (param, true)
+		local chunks, n_chunks = collect_all_unique_chunks ()
+		mcl_mobs.spawn_cycle (param, chunks, n_chunks)
+		mcl_mobs.spawn_cycle (param, chunks, n_chunks, true)
 	end,
 })
 
