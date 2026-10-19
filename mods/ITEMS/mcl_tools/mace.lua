@@ -12,7 +12,7 @@ core.register_node("mcl_tools:heavy_core", {
     _doc_items_longdesc = heavy_core_longdesc,
     tiles = {"mcl_tools_heavy_core_top.png", "mcl_tools_heavy_core_bottom.png", "mcl_tools_heavy_core_side.png"},
     is_ground_content = false,
-    groups = {pickaxey = 1, deco_block = 1, rarity = 3},
+    groups = {handy = 1, pickaxey = 1, deco_block = 1, rarity = 3},
     sounds = mcl_sounds.node_sound_stone_defaults(),
     paramtype2 = "facedir",
     drawtype = "nodebox",
