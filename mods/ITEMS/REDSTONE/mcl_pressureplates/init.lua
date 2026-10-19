@@ -179,7 +179,7 @@ mcl_pressureplates.register_pressure_plate("stone", {
 	texture = "default_stone.png",
 	recipeitem = "mcl_core:stone",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
-	groups = {pickaxey=1, material_stone=1},
+	groups = {handy=1, pickaxey=1, material_stone=1},
 	activated_by = { player = true, mob = true },
 	longdesc = S("A stone pressure plate is a redstone component which supplies its surrounding blocks with redstone power while a player or mob stands on top of it. It is not triggered by anything else."),
 })
@@ -189,7 +189,7 @@ mcl_pressureplates.register_pressure_plate("polished_blackstone", {
 	texture = "mcl_blackstone_polished.png",
 	recipeitem = "mcl_blackstone:blackstone_polished",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
-	groups = {pickaxey=1, material_stone=1},
+	groups = {handy=1, pickaxey=1, material_stone=1},
 	activated_by = { player = true, mob = true },
 	longdesc = S("A polished blackstone pressure plate is a redstone component which supplies its surrounding blocks with redstone power while a player or mob stands on top of it. It is not triggered by anything else."),
 })
@@ -199,7 +199,7 @@ mcl_pressureplates.register_pressure_plate("light", {
 	texture = "default_gold_block.png",
 	recipeitem = "mcl_core:gold_ingot",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
-	groups = {pickaxey=1},
+	groups = {handy=1, pickaxey=1},
 	weighted = 1,
 	longdesc = S("A heavy weighted pressure plate is a redstone component which supplies its surrounding blocks with one redstone power for every movable object (including dropped items, players and mobs) that rests on top of it."),
 })
@@ -209,7 +209,7 @@ mcl_pressureplates.register_pressure_plate("heavy", {
 	texture = "default_steel_block.png",
 	recipeitem = "mcl_core:iron_ingot",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
-	groups = {pickaxey=1},
+	groups = {handy=1, pickaxey=1},
 	weighted = 10,
 	longdesc = S("A heavy weighted pressure plate is a redstone component which supplies its surrounding blocks with one redstone power for every 10 movable objects (including dropped items, players and mobs) that rest on top of it."),
 })
