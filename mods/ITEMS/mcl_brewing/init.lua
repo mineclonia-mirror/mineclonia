@@ -370,7 +370,7 @@ local tpl_brewing_stand = {
 	description = S("Brewing Stand"),
 	_doc_items_create_entry = false,
 	_tt_help = S("Brew Potions"),
-	groups = {pickaxey = 1, container = 1, not_in_creative_inventory = 1, not_in_craft_guide = 1,
+	groups = {handy = 1, pickaxey = 1, container = 1, not_in_creative_inventory = 1, not_in_craft_guide = 1,
 			brewing_stand = 1, pathfinder_partial = 2},
 	tiles = {
 		"mcl_brewing_stand.png",
