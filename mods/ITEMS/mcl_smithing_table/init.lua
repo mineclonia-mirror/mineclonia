@@ -147,7 +147,7 @@ core.register_node("mcl_smithing_table:table", {
 	_doc_items_usagehelp = S("Rightclick on a smithing table to access its interface. Put armor or tools in the upper left slot. The top right slot is reserved for mineral items. The bottom slot is for smithing templates. To upgrade your diamond armor and tools to netherite, the netherite upgrade template is required.").."\n"..
 	S("To trim your armor, you need a mineral item and a smithing template. Each piece of armor can be given an trimming pattern. The items are consumed after trimming and the armor piece receives the pattern defined by the template.").."\n\n"..
 	S("List of mineral items:\n• Amethyst Shard\n• Copper Ingot\n• Diamond\n• Emerald\n• Gold Ingot\n• Iron Ingot\n• Lapis Lazuli\n• Netherite Ingot\n• Quartz\n• Redstone"),
-	groups = { pickaxey = 2, deco_block = 1 },
+	groups = { handy = 1, pickaxey = 2, deco_block = 1 },
 	_configures_formspec = true,
 	tiles = {
 		"mcl_smithing_table_top.png",
