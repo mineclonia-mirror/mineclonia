@@ -91,6 +91,7 @@ local bell_def = {
 	groups = {
 		bell = 1,
 		dig_by_piston = 1,
+		handy = 1,
 		pickaxey = 2,
 		deco_block = 1,
 		pathfinder_partial = 2,
