@@ -163,20 +163,13 @@ core.register_node("mcl_lush_caves:hanging_roots", {
 	end,
 })
 
-core.register_node("mcl_lush_caves:cave_vines", {
-	description = S("Cave vines"),
-	_doc_items_create_entry = S("Cave vines"),
-	_doc_items_entry_name = S("Cave vines"),
-	_doc_items_longdesc = S("Cave vines are decorative blocks growing from the ceiling of lush caves."),
+local tpl_cave_vines = {
 	_doc_items_hidden = false,
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
 	climbable = true,
 	drawtype = "plantlike",
-	tiles = {"mcl_lush_caves_cave_vines.png"},
-	inventory_image = "mcl_lush_caves_cave_vines.png",
-	wield_image = "mcl_lush_caves_cave_vines.png",
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -190,13 +183,22 @@ core.register_node("mcl_lush_caves:cave_vines", {
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	_mcl_hardness = 0,
+}
+
+core.register_node("mcl_lush_caves:cave_vines", table.merge(tpl_cave_vines, {
+	description = S("Cave vines"),
+	_doc_items_create_entry = S("Cave vines"),
+	_doc_items_entry_name = S("Cave vines"),
+	_doc_items_longdesc = S("Cave vines are decorative blocks growing from the ceiling of lush caves."),
+	tiles = {"mcl_lush_caves_cave_vines.png"},
+	inventory_image = "mcl_lush_caves_cave_vines.png",
+	wield_image = "mcl_lush_caves_cave_vines.png",
 	drop = "",
 	_on_bone_meal = function(_, _, _, pos, node)
 		core.set_node(pos,{name="mcl_lush_caves:cave_vines_lit",
 			param2=node.param2})
 		return true
 	end,
-
 	_on_shears_place = function(itemstack, placer, pointed_thing)
 		local pos = pointed_thing.under
 		local tip = mcl_util.traverse_tower(pos, -1)
@@ -210,43 +212,25 @@ core.register_node("mcl_lush_caves:cave_vines", {
 		end
 		return itemstack, true
 	end
-})
+}))
 
-core.register_node("mcl_lush_caves:cave_vines_lit", {
+core.register_node("mcl_lush_caves:cave_vines_lit", table.merge(tpl_cave_vines, {
 	description = S("Lit Cave vines"),
 	_doc_items_create_entry = S("Lit Cave vines"),
 	_doc_items_entry_name = S("Lit Cave vines"),
 	_doc_items_longdesc = S("Lit cave vines are light emitting decorative blocks growing from the ceiling of lush caves."),
-	_doc_items_hidden = false,
-	paramtype = "light",
-	sunlight_propagates = true,
-	walkable = false,
-	climbable = true,
-	drawtype = "plantlike",
 	light_source = 14,
 	tiles = {"mcl_lush_caves_cave_vines_lit.png"},
 	inventory_image = "mcl_lush_caves_cave_vines_lit.png",
 	wield_image = "mcl_lush_caves_cave_vines_lit.png",
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-7/16, -0.5, -7/16, 7/16, 0.5, 7/16}
-		},
-	},
-	groups = {
-		handy = 1, plant = 1, vinelike_node = 2, cave_vine = 2,
-		dig_by_water = 1, destroy_by_lava_flow = 1, dig_by_piston = 1,
-		deco_block = 1, not_in_creative_inventory = 1,
-	},
-	sounds = mcl_sounds.node_sound_leaves_defaults(),
-	_mcl_hardness = 0,
 	drop = "mcl_lush_caves:glow_berry",
 	on_rightclick = function(pos, node)
 		core.add_item(pos,"mcl_lush_caves:glow_berry")
 		core.set_node(pos,{name="mcl_lush_caves:cave_vines",
 			param2=node.param2})
 	end,
-})
+	groups = table.merge(tpl_cave_vines.groups, {cave_vine = 2})
+}))
 
 core.register_node("mcl_lush_caves:rooted_dirt", {
 	description = S("Rooted dirt"),
