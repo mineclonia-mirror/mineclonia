@@ -280,53 +280,29 @@ core.register_craftitem("mcl_lush_caves:glow_berry", {
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
-		if rc then return rc end
-
-		if not pointed_thing.under
-			or vector.direction (pointed_thing.under, pointed_thing.above).y ~= -1 then
-			if placer and not mcl_serverplayer.is_csm_at_least (placer, 1) then
-				return itemstack
-			end
+		if rc then
+			return rc
+		end
+		if vector.direction(pointed_thing.under, pointed_thing.above).y ~= -1 then
 			return
 		end
-
-		if mcl_util.check_position_protection(pointed_thing.above, placer) then
-			return
-		end
-
-		local vine = "mcl_lush_caves:cave_vines"
-
-		-- Age the vine being extended.
 		local node = core.get_node(pointed_thing.under)
-
 		if core.get_item_group (node.name, "vinelike_node") == 2
 				and core.get_item_group (node.name, "cave_vine") == 0 then
 			return
 		end
-
-		-- Prevent nodes which ought not to be overwritten
-		-- from being replaced by the new vine.
-		local pos = vector.offset (pointed_thing.under, 0, -1, 0)
-		local node1 = core.get_node (pos)
-		local def = core.registered_nodes[node1.name]
-		if not def or not def.buildable_to then
-			return
+		local vine = "mcl_lush_caves:cave_vines"
+		if math.random() <= 0.11 then
+			vine = "mcl_lush_caves:cave_vines_lit"
 		end
-
 		local age = 0
 		if core.get_item_group(node.name, "cave_vine") > 0 then
 			age = node.param2 + 1
 		end
-
-		core.place_node (pointed_thing.under, {name=vine}, placer)
-
-		-- Grow berry if lucky
-		if math.random() <= 0.11 then
-			vine = "mcl_lush_caves:cave_vines_lit"
+		local _, res = core.item_place_node(ItemStack(vine), placer, pointed_thing, age)
+		if not res then
+			return
 		end
-		core.swap_node (pos, {name=vine, param2=age})
-
-		core.sound_play(core.registered_nodes[vine].sounds.place, {pos=pointed_thing.above, gain=1}, true)
 		if not core.is_creative_enabled(placer:get_player_name()) then
 			itemstack:take_item(1)
 		end
