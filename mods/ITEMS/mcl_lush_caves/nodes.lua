@@ -415,35 +415,34 @@ local tpl_azalea = {
 	end
 }
 
-local azalea = table.merge(
-	tpl_azalea, {
-		description = S("Azalea"),
-		_doc_items_longdesc = S("Azalea is a small plant which often occurs in lush caves. It can be broken by hand or any tool. By using bone meal, azalea can be turned into an azalea tree."),
-		_doc_items_hidden = false,
-		tiles = {
-			"mcl_lush_caves_azalea_side.png",
-			"mcl_lush_caves_azalea_top.png",
-			"mcl_lush_caves_azalea_plant.png",
-		},
-		groups = table.merge(tpl_azalea.groups, {compostability = 85 }),
-	}
-)
-core.register_node("mcl_lush_caves:azalea", azalea)
+core.register_node("mcl_lush_caves:azalea", table.merge(tpl_azalea, {
+	description = S("Azalea"),
+	_doc_items_longdesc = S("Azalea is a small plant which often occurs in lush caves. It can be broken by hand or any tool. By using bone meal, azalea can be turned into an azalea tree."),
+	_doc_items_hidden = false,
+	tiles = {
+		"mcl_lush_caves_azalea_side.png",
+		"mcl_lush_caves_azalea_top.png",
+		"mcl_lush_caves_azalea_plant.png",
+	},
+	groups = table.merge(tpl_azalea.groups, {
+		compostability = 65
+	}),
+}))
 
-local azalea_flowering = table.merge(
-	tpl_azalea, {
-		description = S("Flowering Azalea"),
-		_doc_items_longdesc = S("Flowering azalea is a small plant which often occurs in lush caves. It can be broken by hand or any tool. By using bone meal, flowering azalea can be turned into an azalea tree."),
-		_doc_items_entry_name = S("Flowering Azalea"),
-		_doc_items_hidden = false,
-		tiles = {
-			"mcl_lush_caves_azalea_flowering_side.png",
-			"mcl_lush_caves_azalea_flowering_top.png",
-			"mcl_lush_caves_azalea_plant.png"
-		},
-		groups = table.merge(tpl_azalea.groups, {flower = 1, compostability = 85 }),
-})
-core.register_node("mcl_lush_caves:azalea_flowering", azalea_flowering)
+core.register_node("mcl_lush_caves:azalea_flowering", table.merge(tpl_azalea, {
+	description = S("Flowering Azalea"),
+	_doc_items_longdesc = S("Flowering azalea is a small plant which often occurs in lush caves. It can be broken by hand or any tool. By using bone meal, flowering azalea can be turned into an azalea tree."),
+	_doc_items_entry_name = S("Flowering Azalea"),
+	_doc_items_hidden = false,
+	tiles = {
+		"mcl_lush_caves_azalea_flowering_side.png",
+		"mcl_lush_caves_azalea_flowering_top.png",
+		"mcl_lush_caves_azalea_plant.png"
+	},
+	groups = table.merge(tpl_azalea.groups, {
+		flower = 1, compostability = 85
+	}),
+}))
 
 
 core.register_node("mcl_lush_caves:spore_blossom", {
