@@ -81,7 +81,13 @@ core.register_node("mcl_lush_caves:moss", {
 	_doc_items_entry_name = S("Moss"),
 	_doc_items_hidden = false,
 	tiles = {"mcl_lush_caves_moss_block.png"},
-	groups = {handy=1, hoey=2, dirt=1, soil=1, soil_flower=1, soil_generic_plant=1, soil_bamboo=1, soil_sapling=2, soil_sugarcane=1, soil_fungus=1, enderman_takable=1, building_block=1, grass_block_no_snow=1, compostability=65, dig_by_piston=1},
+	groups = {
+		handy = 1, hoey = 2, dirt = 1, soil = 1, soil_flower = 1,
+		soil_generic_plant = 1, soil_bamboo = 1, soil_sapling = 2,
+		soil_sugarcane = 1, soil_fungus = 1, enderman_takable = 1,
+		building_block = 1, grass_block_no_snow = 1, compostability = 65,
+		dig_by_piston = 1,
+	},
 	sounds = mcl_sounds.node_sound_dirt_defaults(),
 	_mcl_hardness = 0.1,
 	_on_bone_meal = mcl_lush_caves.bone_meal_moss,
@@ -93,8 +99,11 @@ core.register_node("mcl_lush_caves:moss_carpet", {
 	is_ground_content = false,
 	tiles = {"mcl_lush_caves_moss_carpet.png"},
 	wield_image ="mcl_lush_caves_moss_carpet.png",
-	wield_scale = { x=1, y=1, z=0.5 },
-	groups = {handy=1, carpet=1, supported_node=1, deco_block=1, compostability=30, dig_by_water=1, dig_by_piston=1},
+	wield_scale = {x = 1, y = 1, z = 0.5},
+	groups = {
+		handy = 1, carpet = 1, supported_node = 1, deco_block = 1,
+		compostability = 30, dig_by_water = 1, dig_by_piston = 1,
+	},
 	sounds = mcl_sounds.node_sound_wool_defaults(),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -119,16 +128,6 @@ core.register_node("mcl_lush_caves:hanging_roots", {
 	_doc_items_longdesc = S("Hanging roots are a decorative block found hanging from rooted dirt in lush caves."),
 	_doc_items_hidden = false,
 	paramtype = "light",
-	on_place = function(itemstack, placer, pointed_thing)
-		local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
-		if rc then return rc end
-		if pointed_thing.type ~= "node" then
-			return itemstack
-		end
-		if pointed_thing.under.y > pointed_thing.above.y then
-			return core.item_place_node(itemstack, placer, pointed_thing)
-		end
-	end,
 	node_placement_prediction = "",
 	sunlight_propagates = true,
 	walkable = false,
@@ -142,11 +141,26 @@ core.register_node("mcl_lush_caves:hanging_roots", {
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
 		},
 	},
-	groups = {handy=1, plant=1, flammable=2, fire_encouragement=30, fire_flammability=60, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1, compostability=30, attached_node=4, deco_block=1},
+	groups = {
+		handy = 1, plant = 1, attached_node = 4, deco_block = 1,
+		flammable = 2, fire_encouragement = 30, fire_flammability = 60,
+		dig_by_water = 1, destroy_by_lava_flow = 1, dig_by_piston = 1,
+		compostability = 30,
+	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	_mcl_hardness = 0,
 	drop = "",
 	_mcl_shears_drop = true,
+	on_place = function(itemstack, placer, pointed_thing)
+		local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
+		if rc then return rc end
+		if pointed_thing.type ~= "node" then
+			return itemstack
+		end
+		if pointed_thing.under.y > pointed_thing.above.y then
+			return core.item_place_node(itemstack, placer, pointed_thing)
+		end
+	end,
 })
 
 core.register_node("mcl_lush_caves:cave_vines", {
@@ -170,9 +184,9 @@ core.register_node("mcl_lush_caves:cave_vines", {
 		},
 	},
 	groups = {
-		handy=1, plant=1, vinelike_node=2, cave_vine=1,
-		dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1,
-		deco_block=1, not_in_creative_inventory=1
+		handy = 1, plant = 1, vinelike_node = 2, cave_vine = 1,
+		dig_by_water = 1, destroy_by_lava_flow = 1, dig_by_piston = 1,
+		deco_block = 1, not_in_creative_inventory = 1,
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	_mcl_hardness = 0,
@@ -220,9 +234,9 @@ core.register_node("mcl_lush_caves:cave_vines_lit", {
 		},
 	},
 	groups = {
-		handy=1, plant=1, vinelike_node=2, cave_vine=2,
-		dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1,
-		deco_block=1, not_in_creative_inventory=1
+		handy = 1, plant = 1, vinelike_node = 2, cave_vine = 2,
+		dig_by_water = 1, destroy_by_lava_flow = 1, dig_by_piston = 1,
+		deco_block = 1, not_in_creative_inventory = 1,
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	_mcl_hardness = 0,
@@ -239,7 +253,11 @@ core.register_node("mcl_lush_caves:rooted_dirt", {
 	_doc_items_longdesc = S("Rooted dirt is type of dirt found in lush caves."),
 	_doc_items_hidden = false,
 	tiles = {"mcl_lush_caves_rooted_dirt.png"},
-	groups = {handy=1, shovely=1, dirt=1, soil_flower=1, soil_generic_plant=1, soil_sugarcane=1, soil_fungus=1, building_block=1, path_creation_possible=1, converts_to_moss=1, cultivatable=1, converts_to_mud=1},
+	groups = {
+		handy = 1, shovely = 1, dirt = 1, soil_flower = 1,
+		soil_generic_plant = 1, soil_sugarcane = 1, soil_fungus = 1,
+		building_block = 1, path_creation_possible = 1,
+		converts_to_moss = 1, cultivatable = 1, converts_to_mud = 1},
 	sounds = mcl_sounds.node_sound_dirt_defaults(),
 	_mcl_hardness = 0.5,
 	_on_bottle_place = mcl_core.bottle_dirt,
@@ -344,38 +362,6 @@ register_leaves(
 	}
 )
 
-core.register_node("mcl_lush_caves:spore_blossom", {
-	description = S("Spore blossom"),
-	_doc_items_longdesc = S("Spore blossoms are a type of flower found in lush caves."),
-	_doc_items_hidden = false,
-	tiles = {"mcl_lush_caves_spore_blossom_base.png", "mcl_lush_caves_spore_blossom.png"},
-	drawtype = "mesh",
-	mesh = "mcl_lush_caves_spore_blossom.obj",
-	use_texture_alpha = "clip",
-	paramtype = "light",
-	walkable = false,
-	groups = {handy = 1, plant = 1, deco_block = 1, attached_node = 4},
-	sounds = mcl_sounds.node_sound_dirt_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.375, 0.3125, -0.375, 0.375, 0.5, 0.375},
-	},
-	_mcl_hardness = 0.5,
-	node_placement_prediction = "",
-	on_place = mcl_util.generate_on_place_plant_function(function(place_pos)
-		local above = vector.offset(place_pos,0,1,0)
-		local node_above = core.get_node_or_nil(above)
-		if not node_above then return false end
-		local node_above_name = node_above.name
-		if not node_above_name then return false end
-		local is_opaque = core.get_item_group(node_above_name,"opaque") > 0
-		local is_upright_stair = core.get_item_group(node_above_name,"stair") > 0 and node_above.param2 < 20
-		local is_bottom_slab = core.get_item_group(node_above_name, "slab") > 0 and core.get_item_group(node_above_name, "slab_top") == 0
-		local is_valid = is_opaque or is_upright_stair or is_bottom_slab
-		return is_valid
-	end)
-})
-
 local azalea_box = {
 	type = "fixed",
 	fixed = {
@@ -459,3 +445,36 @@ local azalea_flowering = table.merge(
 })
 azalea_flowering.groups.compostability = 85
 core.register_node("mcl_lush_caves:azalea_flowering", azalea_flowering)
+
+
+core.register_node("mcl_lush_caves:spore_blossom", {
+	description = S("Spore blossom"),
+	_doc_items_longdesc = S("Spore blossoms are a type of flower found in lush caves."),
+	_doc_items_hidden = false,
+	tiles = {"mcl_lush_caves_spore_blossom_base.png", "mcl_lush_caves_spore_blossom.png"},
+	drawtype = "mesh",
+	mesh = "mcl_lush_caves_spore_blossom.obj",
+	use_texture_alpha = "clip",
+	paramtype = "light",
+	walkable = false,
+	groups = {handy = 1, plant = 1, deco_block = 1, attached_node = 4},
+	sounds = mcl_sounds.node_sound_dirt_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.375, 0.3125, -0.375, 0.375, 0.5, 0.375},
+	},
+	_mcl_hardness = 0.5,
+	node_placement_prediction = "",
+	on_place = mcl_util.generate_on_place_plant_function(function(place_pos)
+		local above = vector.offset(place_pos,0,1,0)
+		local node_above = core.get_node_or_nil(above)
+		if not node_above then return false end
+		local node_above_name = node_above.name
+		if not node_above_name then return false end
+		local is_opaque = core.get_item_group(node_above_name,"opaque") > 0
+		local is_upright_stair = core.get_item_group(node_above_name,"stair") > 0 and node_above.param2 < 20
+		local is_bottom_slab = core.get_item_group(node_above_name, "slab") > 0 and core.get_item_group(node_above_name, "slab_top") == 0
+		local is_valid = is_opaque or is_upright_stair or is_bottom_slab
+		return is_valid
+	end)
+})
