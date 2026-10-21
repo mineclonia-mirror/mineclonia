@@ -464,15 +464,14 @@ core.register_node("mcl_lush_caves:spore_blossom", {
 	_mcl_hardness = 0.5,
 	node_placement_prediction = "",
 	on_place = mcl_util.generate_on_place_plant_function(function(place_pos)
-		local above = vector.offset(place_pos,0,1,0)
+		local above = vector.offset(place_pos, 0, 1, 0)
 		local node_above = core.get_node_or_nil(above)
-		if not node_above then return false end
-		local node_above_name = node_above.name
-		if not node_above_name then return false end
-		local is_opaque = core.get_item_group(node_above_name,"opaque") > 0
-		local is_upright_stair = core.get_item_group(node_above_name,"stair") > 0 and node_above.param2 < 20
-		local is_bottom_slab = core.get_item_group(node_above_name, "slab") > 0 and core.get_item_group(node_above_name, "slab_top") == 0
-		local is_valid = is_opaque or is_upright_stair or is_bottom_slab
-		return is_valid
+		if node_above and node_above.name then
+			return core.get_item_group(node_above.name,"opaque") > 0
+				or (core.get_item_group(node_above.name,"stair") > 0 and node_above.param2 < 20)
+				or (core.get_item_group(node_above.name, "slab") > 0 and core.get_item_group(node_above.name, "slab_top") == 0)
+		else
+			return false
+		end
 	end)
 })
