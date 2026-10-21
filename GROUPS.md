@@ -210,6 +210,9 @@ These groups are used mostly for informational purposes
 
 * `breaking_cactus=1`: When cactus is placed adjacent to this node, it breaks (assign only if the node isn't already walkable)
 * `not_breaking_cactus=1`: When cactus is placed adjacent to this node, it stays (assign only if the node is walkable)
+* `cave_vine` Node is a cave vine
+   * `cave_vine=1` : regular cave vine
+   * `cave_vine=2` : cave vine with glow berries
 
 * `pickaxe=1`: Pickaxe
 * `shovel=1`: Shovel

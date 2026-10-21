@@ -170,7 +170,7 @@ core.register_node("mcl_lush_caves:cave_vines", {
 		},
 	},
 	groups = {
-		handy=1, plant=1, vinelike_node=2,
+		handy=1, plant=1, vinelike_node=2, cave_vine=1,
 		dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1,
 		deco_block=1, not_in_creative_inventory=1
 	},
@@ -220,7 +220,7 @@ core.register_node("mcl_lush_caves:cave_vines_lit", {
 		},
 	},
 	groups = {
-		handy=1, plant=1, vinelike_node=2,
+		handy=1, plant=1, vinelike_node=2, cave_vine=2,
 		dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1,
 		deco_block=1, not_in_creative_inventory=1
 	},
@@ -300,7 +300,7 @@ core.register_craftitem("mcl_lush_caves:glow_berry", {
 		local node = core.get_node(pointed_thing.under)
 
 		if core.get_item_group (node.name, "vinelike_node") == 2
-			and node.name ~= vine then
+				and core.get_item_group (node.name, "cave_vine") == 0 then
 			return
 		end
 
@@ -313,10 +313,11 @@ core.register_craftitem("mcl_lush_caves:glow_berry", {
 			return
 		end
 
-		local age = node.param2 + 1
-		if node.name ~= vine then
-			age = 0
+		local age = 0
+		if core.get_item_group(node.name, "cave_vine") > 0 then
+			age = node.param2 + 1
 		end
+
 		core.place_node (pointed_thing.under, {name=vine}, placer)
 
 		-- Grow berry if lucky
