@@ -425,9 +425,9 @@ local azalea = table.merge(
 			"mcl_lush_caves_azalea_top.png",
 			"mcl_lush_caves_azalea_plant.png",
 		},
+		groups = table.merge(tpl_azalea.groups, {compostability = 85 }),
 	}
 )
-azalea.groups.compostability = 65
 core.register_node("mcl_lush_caves:azalea", azalea)
 
 local azalea_flowering = table.merge(
@@ -441,9 +441,8 @@ local azalea_flowering = table.merge(
 			"mcl_lush_caves_azalea_flowering_top.png",
 			"mcl_lush_caves_azalea_plant.png"
 		},
-		groups = table.merge(tpl_azalea.groups, {flower = 1}),
+		groups = table.merge(tpl_azalea.groups, {flower = 1, compostability = 85 }),
 })
-azalea_flowering.groups.compostability = 85
 core.register_node("mcl_lush_caves:azalea_flowering", azalea_flowering)
 
 
