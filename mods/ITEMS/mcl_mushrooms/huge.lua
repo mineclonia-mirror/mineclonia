@@ -125,11 +125,13 @@ end
 
 register_mushroom_block("mushroom_stem", {
 	description = S("Mushroom Stem"),
+	longdesc = S("Mushroom stems are part of the huge mushrooms. It consists of a white skin and can have pores on each of its sides."),
 	drop = "",
 	texture = "mcl_mushrooms_mushroom_block_skin_stem.png"
 })
 register_mushroom_block("red_mushroom_block", {
 	description = S("Red Mushroom Block"),
+	longdesc = S("Huge red mushroom blocks are the cap parts of huge red mushrooms. It consists of a red skin and can have pores on each of its sides."),
 	drop = {
 		items = {
 			{ items = {"mcl_mushrooms:mushroom_red"}, rarity = 9 },
@@ -142,6 +144,7 @@ register_mushroom_block("red_mushroom_block", {
 })
 register_mushroom_block("brown_mushroom_block", {
 	description = S("Brown Mushroom Block"),
+	longdesc = S("Huge brown mushroom blocks are the cap parts of huge brown mushrooms. It consists of a brown skin and can have pores on each of its sides."),
 	drop = {
 		items = {
 			{ items = {"mcl_mushrooms:mushroom_brown"}, rarity = 9 },
