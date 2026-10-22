@@ -295,8 +295,10 @@ core.register_craftitem("mcl_lush_caves:glow_berry", {
 			return
 		end
 		local node = core.get_node(pointed_thing.under)
-		if core.get_item_group (node.name, "vinelike_node") == 2
-				and core.get_item_group (node.name, "cave_vine") == 0 then
+		-- FIXME there is no group for "full bottom", so "solid" is used instead, which
+		-- mostly does the job, but if a better group is implemented, change this test:
+		if core.get_item_group(node.name, "solid") == 0
+				and core.get_item_group(node.name, "cave_vine") == 0 then
 			return
 		end
 		local vine = "mcl_lush_caves:cave_vines"
