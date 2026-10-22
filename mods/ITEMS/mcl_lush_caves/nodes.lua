@@ -154,9 +154,6 @@ core.register_node("mcl_lush_caves:hanging_roots", {
 	on_place = function(itemstack, placer, pointed_thing)
 		local rc = mcl_util.call_on_rightclick(itemstack, placer, pointed_thing)
 		if rc then return rc end
-		if pointed_thing.type ~= "node" then
-			return itemstack
-		end
 		if pointed_thing.under.y > pointed_thing.above.y then
 			return core.item_place_node(itemstack, placer, pointed_thing)
 		end
