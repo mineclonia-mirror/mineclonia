@@ -183,6 +183,21 @@ local tpl_cave_vines = {
 	},
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	_mcl_hardness = 0,
+	_on_shears_place = function(itemstack, placer, pointed_thing)
+		local pos = pointed_thing.under
+		local tip = mcl_util.traverse_tower(pos, -1)
+
+		if vector.equals(pos, tip) then
+			core.sound_play("mcl_tools_shears_cut", {pos = pos}, true)
+			local node = core.get_node(pos)
+			core.swap_node(pos, {
+				name = node.name,
+				param2 = 25
+			})
+			return itemstack
+		end
+		return itemstack, true
+	end,
 }
 
 core.register_node("mcl_lush_caves:cave_vines", table.merge(tpl_cave_vines, {
@@ -201,21 +216,6 @@ core.register_node("mcl_lush_caves:cave_vines", table.merge(tpl_cave_vines, {
 		})
 		return true
 	end,
-	_on_shears_place = function(itemstack, placer, pointed_thing)
-		local pos = pointed_thing.under
-		local tip = mcl_util.traverse_tower(pos, -1)
-
-		if vector.equals(pos, tip) then
-			core.sound_play("mcl_tools_shears_cut", {pos = pos}, true)
-			local node = core.get_node(pos)
-			core.swap_node(pos, {
-				name = node.name,
-				param2 = 25
-			})
-			return itemstack
-		end
-		return itemstack, true
-	end
 }))
 
 core.register_node("mcl_lush_caves:cave_vines_lit", table.merge(tpl_cave_vines, {
