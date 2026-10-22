@@ -195,8 +195,10 @@ core.register_node("mcl_lush_caves:cave_vines", table.merge(tpl_cave_vines, {
 	wield_image = "mcl_lush_caves_cave_vines.png",
 	drop = "",
 	_on_bone_meal = function(_, _, _, pos, node)
-		core.set_node(pos,{name="mcl_lush_caves:cave_vines_lit",
-			param2=node.param2})
+		core.swap_node(pos, {
+			name = "mcl_lush_caves:cave_vines_lit",
+			param2 = node.param2
+		})
 		return true
 	end,
 	_on_shears_place = function(itemstack, placer, pointed_thing)
@@ -206,8 +208,10 @@ core.register_node("mcl_lush_caves:cave_vines", table.merge(tpl_cave_vines, {
 		if vector.equals(pos, tip) then
 			core.sound_play("mcl_tools_shears_cut", {pos = pos}, true)
 			local node = core.get_node(pos)
-			node.param2 = 25
-			core.swap_node(pos,node)
+			core.swap_node(pos, {
+				name = node.name,
+				param2 = 25
+			})
 			return itemstack
 		end
 		return itemstack, true
@@ -225,9 +229,11 @@ core.register_node("mcl_lush_caves:cave_vines_lit", table.merge(tpl_cave_vines, 
 	wield_image = "mcl_lush_caves_cave_vines_lit.png",
 	drop = "mcl_lush_caves:glow_berry",
 	on_rightclick = function(pos, node)
-		core.add_item(pos,"mcl_lush_caves:glow_berry")
-		core.set_node(pos,{name="mcl_lush_caves:cave_vines",
-			param2=node.param2})
+		core.add_item(pos, "mcl_lush_caves:glow_berry")
+		core.swap_node(pos, {
+			name = "mcl_lush_caves:cave_vines",
+			param2 = node.param2
+		})
 	end,
 	groups = table.merge(tpl_cave_vines.groups, {cave_vine = 2})
 }))
