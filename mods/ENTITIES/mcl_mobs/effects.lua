@@ -284,7 +284,7 @@ function mob_class:who_are_you_looking_at()
 			self._locked_object = nil
 		end
 	elseif not self._locked_object then
-		if math.random(1, 30) then
+		if math.random(1, 30) == 1 then
 			-- For the wither this was 20/60=0.33, so probably need to rebalance and divide rates.
 			-- but frequency of check isn't good as it is costly. Making others too infrequent requires testing
 			local look_at_player_chance = math.random(math.max(1,20/self.curiosity))
