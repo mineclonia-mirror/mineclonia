@@ -1,7 +1,7 @@
 -- Tree nodes: Wood, Wooden Planks, Sapling, Leaves, Stripped Wood
 local S = core.get_translator(core.get_current_modname())
 local D = mcl_util.get_dynamic_translator()
-local bark_stairs = core.settings:get_bool("mcl_extra_nodes",true)
+local extra_nodes = core.settings:get_bool("mcl_extra_nodes",true)
 
 local wood_groups = {
 	handy = 1, axey = 1, material_wood = 1,
@@ -557,8 +557,8 @@ function mcl_trees.register_wood(name, p)
 			copy.description = nil
 			def = table.merge({
 				baseitem="mcl_trees:bark_"..name,
-				groups = { bark_stairs = 1 },
-				recipeitem=bark_stairs and "mcl_trees:bark_"..name or "",
+				groups = { bark_stairs = 1, not_in_creative_inventory = extra_nodes and 0 or 1 },
+				recipeitem=extra_nodes and "mcl_trees:bark_"..name or "",
 				overrides = {
 					_mcl_burntime = 15
 				},
@@ -585,8 +585,8 @@ function mcl_trees.register_wood(name, p)
 			copy.description = nil
 			def = table.merge({
 				baseitem="mcl_trees:bark_"..name,
-				groups = { bark_slab = 1 },
-				recipeitem=bark_stairs and "mcl_trees:bark_"..name or "",
+				groups = { bark_slab = 1, not_in_creative_inventory = extra_nodes and 0 or 1 },
+				recipeitem=extra_nodes and "mcl_trees:bark_"..name or "",
 				overrides = {
 					_mcl_burntime = 7.5,
 				},
