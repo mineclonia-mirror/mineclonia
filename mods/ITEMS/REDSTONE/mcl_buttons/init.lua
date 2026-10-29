@@ -118,9 +118,9 @@ function mcl_buttons.register_button(basename, def)
 	core.register_node(":mcl_buttons:button_"..basename.."_off", table.merge(commdef, {
 		node_box = {
 			type = "wallmounted",
-			wall_side = { -8/16, -2/16, -4/16, -6/16, 2/16, 4/16 },
-			wall_bottom = { -4/16, -8/16, -2/16, 4/16, -6/16, 2/16 },
-			wall_top = { -4/16, 6/16, -2/16, 4/16, 8/16, 2/16 },
+			wall_side = { -8/16, -2/16, -3/16, -6/16, 2/16, 3/16 },
+			wall_bottom = { -3/16, -8/16, -2/16, 3/16, -6/16, 2/16 },
+			wall_top = { -3/16, 6/16, -2/16, 3/16, 8/16, 2/16 },
 		},
 		groups = table.merge(commdef.groups, {button=1}),
 		on_rightclick = function(pos, node)
@@ -140,9 +140,9 @@ function mcl_buttons.register_button(basename, def)
 	core.register_node(":mcl_buttons:button_"..basename.."_on", table.merge(commdef, {
 		node_box = {
 			type = "wallmounted",
-			wall_side = { -8/16, -2/16, -4/16, -7/16, 2/16, 4/16 },
-			wall_bottom = { -4/16, -8/16, -2/16, 4/16, -7/16, 2/16 },
-			wall_top = { -4/16, 7/16, -2/16, 4/16, 8/16, 2/16 },
+			wall_side = { -8/16, -2/16, -3/16, -7/16, 2/16, 3/16 },
+			wall_bottom = { -3/16, -8/16, -2/16, 3/16, -7/16, 2/16 },
+			wall_top = { -3/16, 7/16, -2/16, 3/16, 8/16, 2/16 },
 		},
 		groups = table.merge(commdef.groups, {button=2, button_on=1, not_in_creative_inventory=1}),
 		drop = "mcl_buttons:button_"..basename.."_off",
