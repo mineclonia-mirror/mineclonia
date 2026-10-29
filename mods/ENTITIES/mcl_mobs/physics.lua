@@ -552,7 +552,7 @@ function mob_class:apply_environment_damage (attach_pos, immersion_depth,
 	end
 
 	if self.ignited_by_sunlight and not skip_burning
-		and math.random (scale_chance (dtime, 30)) == 1 then
+		and math.random (scale_chance (30, dtime)) == 1 then
 		local _, dim = mcl_worlds.y_to_layer (node_pos.y)
 		if dim == "overworld" then
 			node_pos.y = mathfloor (attach_pos.y + eye_height + 0.5)
