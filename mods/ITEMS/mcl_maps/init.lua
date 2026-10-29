@@ -1621,12 +1621,17 @@ end)
 
 local function adjust_marker (player, id, marker, pos, minp, maxp)
 	if not marker then
+		huds[player].last_marker_text = "blank.png"
 		player:hud_change (id, "text", "blank.png")
 		return
 	end
 
-	local light_overlay = "^[colorize:black:" .. 255 - (huds[player].light * 17)
-	player:hud_change (id, "text", marker .. light_overlay)
+	local text = marker .. "^[colorize:black:" .. 255 - (huds[player].light * 17)
+	if text ~= huds[player].last_marker_text then
+		huds[player].last_marker_text = text
+		player:hud_change (id, "text", text)
+	end
+
 	local f = 2 * 128 / (maxp.x - minp.x + 1)
 	player:hud_change (id, "offset", {
 		x = (pos.x - minp.x) * f - 128,
