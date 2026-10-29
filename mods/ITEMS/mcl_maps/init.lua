@@ -480,6 +480,17 @@ local function serialize_data (dst, list, off)
 	end
 end
 
+local function serialize_heightmap (dst, list, off)
+	assert (#list == MAP_SIDE_LENGTH * MAP_SIDE_LENGTH)
+	for i = 1, #list do
+		local value = list[i]
+		local b0 = band (value, 0xff)
+		local b1 = rshift (band (value, 0xff00), 8)
+		dst[off + i * 2 - 1] = char (b0)
+		dst[off + i * 2] = char (b1)
+	end
+end
+
 local function write_map_data (id, map)
 	local tbl = {
 		x_start = map.x_start,
@@ -506,8 +517,10 @@ local function write_map_data (id, map)
 		error ("Could not write map texture for " .. id)
 	end
 
+	local tga_header = bytes(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, MAP_SIDE_LENGTH, 0, MAP_SIDE_LENGTH, 0, 16, 0)
+
 	local heightmap = {}
-	serialize_data (heightmap, map.heightmap, #heightmap)
+	serialize_heightmap (heightmap, map.heightmap, #heightmap)
 	local heightmap_bytes = tga_header .. table.concat (heightmap) .. tga_footer
 	local rc = core.safe_file_write (heightmap_name (id), heightmap_bytes)
 	if not rc then
@@ -523,6 +536,14 @@ local function deserialize_data (dst, str, offset)
 		local b3 = byte (str, i * 4 + offset)
 		dst[i] = bor (b0, lshift (b1, 8), lshift (b2, 16),
 			      lshift (b3, 24))
+	end
+end
+
+local function deserialize_heightmap(dst, str, offset)
+	for i = 1, MAP_SIDE_LENGTH * MAP_SIDE_LENGTH do
+		local b0 = byte (str, i * 2 - 1 + offset)
+		local b1 = byte (str, i * 2 + offset)
+		dst[i] = bor (b0, lshift (b1, 8))
 	end
 end
 
@@ -584,7 +605,7 @@ local function load_map_1 (id)
 	local heightmap_data = heightmap_file:read ("*all")
 	heightmap_file:close()
 	map.heightmap = {}
-	deserialize_data (map.heightmap, heightmap_data, 18)
+	deserialize_heightmap (map.heightmap, heightmap_data, 18)
 
 	return map
 end
