@@ -85,7 +85,7 @@ local function update_pp(pos)
 	local n_entities = count_obj_touching_plate_pos(pos)
 
 	if n_entities > 0 then
-		local power = math.min(weighted and (n_entities / weighted) or 15, 15)
+		local power = math.min(weighted and math.ceil(n_entities / weighted) or 15, 15)
 		core.set_node(pos, { name = basename .. "_on", param2 = power })
 	end
 
