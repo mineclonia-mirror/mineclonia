@@ -1214,7 +1214,7 @@ function mob_class:check_avoid (self_pos)
 			end
 		end
 		return true
-	else
+	elseif self:check_timer ("check_avoid", 0.5) then
 		-- Search for nearby mobs to avoid.
 		local target, min_distance, target_pos
 		local range = self.runaway_view_range
