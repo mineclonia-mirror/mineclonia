@@ -139,6 +139,9 @@ mcl_death_messages = {
 			killer = NS ("@1 was impaled by @2"),
 			item = NS ("@1 was impaled by @2 with @3"),
 		},
+		sting = {
+			plain = NS("@1 was stung to death")
+		}
 		-- Missing snowballs: The Minecraft wiki mentions them but it doesn't seem like they have a dedicated death message in MC
 	},
 }

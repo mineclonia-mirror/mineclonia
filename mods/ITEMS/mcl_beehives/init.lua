@@ -49,7 +49,7 @@ local honey_harvest = function(pos, node, player, itemstack)
 		end
 		--TODO: damage type = "mob" since this is supposed to be done by bee mobs which aren't a thing yet
 		--Once bees exist this branch should spawn them and/or make them aggro
-		if not campfire[1] then mcl_util.deal_damage(player, 10, {type = "mob"}) end
+		if not campfire[1] then mcl_util.deal_damage(player, 10, {type = "sting"}) end
 		node.name = original_block
 		mcl_redstone.swap_node(pos, node)
 	end
@@ -69,7 +69,7 @@ local dig_hive = function(pos, node, _, digger)
 	if beehive then
 		if not is_creative then
 			if not silk_touch then
-				mcl_util.deal_damage(digger, 10, {type = "mob"})
+				mcl_util.deal_damage(digger, 10, {type = "sting"})
 				core.add_item(pos, "mcl_beehives:beehive")
 			else
 
@@ -84,7 +84,7 @@ local dig_hive = function(pos, node, _, digger)
 				awards.unlock(digger:get_player_name(), "mcl:total_beelocation")
 				core.add_item(pos, node.name)
 			else
-				mcl_util.deal_damage(digger, 10, {type = "mob"})
+				mcl_util.deal_damage(digger, 10, {type = "sting"})
 			end
 		elseif is_creative and inv:room_for_item("main", "mcl_beehives:bee_nest") and not inv:contains_item("main", "mcl_beehives:bee_nest") then
 			inv:add_item("main", "mcl_beehives:bee_nest")
