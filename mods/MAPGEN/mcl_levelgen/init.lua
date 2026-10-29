@@ -126,8 +126,8 @@ end
 mcl_levelgen = { prefix = prefix, }
 mcl_levelgen.report_consing = report_consing
 mcl_levelgen.md5 = dofile (prefix .. "/md5.lua")
-mcl_levelgen.sha = dofile (prefix .. "/sha2.lua")
 mcl_levelgen.lighting_disabled = false
+
 if core and core.settings and core.get_mapgen_setting then
 	mcl_levelgen.use_ffi
 		= core.settings:get_bool ("mcl_levelgen_use_ffi", false)

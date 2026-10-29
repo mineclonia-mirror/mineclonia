@@ -1536,7 +1536,7 @@ local function biomeseedull (dst, seed)
 		.. string.char (band (rshift (hi, 0x8), 0xff))
 		.. string.char (band (rshift (hi, 0x10), 0xff))
 		.. string.char (band (rshift (hi, 0x18), 0xff))
-	local shasum = mcl_levelgen.sha.sha256 (str):sub (1, 16)
+	local shasum = core.sha256 (str):sub (1, 16)
 	lo = 0
 	for i = 0, 3 do
 		local byte = tonumber (shasum:sub (i * 2 + 1, i * 2 + 2), 16)
