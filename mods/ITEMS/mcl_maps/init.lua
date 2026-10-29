@@ -1619,7 +1619,7 @@ core.register_on_leaveplayer(function(player)
 	huds[player] = nil
 end)
 
-local function adjust_marker (player, id, marker, pos, minp, maxp)
+local function adjust_marker(player, id, marker, pos, minp, maxp)
 	if not marker then
 		huds[player].last_marker_text = "blank.png"
 		player:hud_change (id, "text", "blank.png")
@@ -1633,10 +1633,13 @@ local function adjust_marker (player, id, marker, pos, minp, maxp)
 	end
 
 	local f = 2 * 128 / (maxp.x - minp.x + 1)
-	player:hud_change (id, "offset", {
-		x = (pos.x - minp.x) * f - 128,
-		y = (maxp.z - pos.z) * f - 264,
-	})
+	local ox = floor((pos.x - minp.x) * f - 128 + 0.5)
+	local oy = floor((maxp.z - pos.z) * f - 264 + 0.5)
+	if huds[player].last_ox ~= ox or huds[player].last_oy ~= oy then
+		huds[player].last_ox = ox
+		huds[player].last_oy = oy
+		player:hud_change(id, "offset", { x = ox, y = oy })
+	end
 end
 
 local function adjust_player_marker (player, id, img_arrow, img_dot, pos, minp, maxp)
