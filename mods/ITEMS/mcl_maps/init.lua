@@ -1746,9 +1746,13 @@ mcl_player.register_globalstep (function (player)
 					       map.structure_pos,
 					       minp, maxp)
 			else
-				player:hud_change (hud.treasure, "text", "blank.png")
+				if huds[player].last_treasure_text  ~= "blank.png" then
+					huds[player].last_treasure_text = "blank.png"
+					player:hud_change (hud.treasure, "text", "blank.png")
+				end
 			end
-		else
+		elseif huds[player].last_treasure_text  ~= "blank.png" then
+			huds[player].last_treasure_text = "blank.png"
 			player:hud_change (hud.treasure, "text", "blank.png")
 		end
 	elseif maps[player] then
