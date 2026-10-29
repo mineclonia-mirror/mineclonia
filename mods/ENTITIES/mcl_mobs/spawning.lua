@@ -6,6 +6,7 @@ local mob_class = mcl_mobs.mob_class
 
 local instant_despawn_range = 128
 local random_despawn_range = 32
+local despawn_check_interval = 0.5
 
 --do mobs spawn?
 local mobs_spawn = core.settings:get_bool("mobs_spawn", true) ~= false
@@ -85,7 +86,14 @@ function mob_class:check_despawn (pos, dtime)
 	if not self:despawn_allowed () then
 		return
 	end
-	local min_dist = math.huge
+
+	local t = dtime + (self._despawn_timer or 0)
+	if despawn_check_interval < t then
+		self._despawn_timer = t
+	end
+	self._despawn_timer = 0
+
+		local min_dist = math.huge
 	for player in mcl_util.connected_players () do
 		min_dist = math.min (min_dist, vector.distance (player:get_pos (), pos))
 	end
