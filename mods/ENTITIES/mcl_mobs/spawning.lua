@@ -82,35 +82,36 @@ end
 local scale_chance = mcl_mobs.scale_chance
 
 function mob_class:check_despawn (pos, dtime)
-	if self:despawn_allowed () then
-		local min_dist = math.huge
-		for player in mcl_util.connected_players () do
-			min_dist = math.min (min_dist, vector.distance (player:get_pos (), pos))
-		end
+	if not self:despawn_allowed () then
+		return
+	end
+	local min_dist = math.huge
+	for player in mcl_util.connected_players () do
+		min_dist = math.min (min_dist, vector.distance (player:get_pos (), pos))
+	end
 
-		if not self:despawn_ok (min_dist) then
-			self._inactivity_timer = 0
-			return false
-		elseif min_dist > instant_despawn_range then
-			self:kill_me ("no players within distance " .. instant_despawn_range)
-			return true
-		elseif min_dist > random_despawn_range then
-			if self._inactivity_timer >= 30.0 then
-				if math.random (1, scale_chance (800, dtime)) == 1 then
-					self:kill_me ("random chance at distance " .. math.round(min_dist))
-					return true
-				end
-			else
-				local t = self._inactivity_timer + dtime
-
-				-- This timer should be reset once a
-				-- player approaches, or when damage
-				-- is sustained from any source.
-				self._inactivity_timer = t
+	if not self:despawn_ok (min_dist) then
+		self._inactivity_timer = 0
+		return false
+	elseif min_dist > instant_despawn_range then
+		self:kill_me ("no players within distance " .. instant_despawn_range)
+		return true
+	elseif min_dist > random_despawn_range then
+		if self._inactivity_timer >= 30.0 then
+			if math.random (1, scale_chance (800, dtime)) == 1 then
+				self:kill_me ("random chance at distance " .. math.round(min_dist))
+				return true
 			end
+		else
+			local t = self._inactivity_timer + dtime
 
-			return false
+			-- This timer should be reset once a
+			-- player approaches, or when damage
+			-- is sustained from any source.
+			self._inactivity_timer = t
 		end
+
+		return false
 	end
 	return false
 end
