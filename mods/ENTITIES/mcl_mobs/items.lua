@@ -266,6 +266,7 @@ function mob_class:default_pickup (object, stack, def, itemname)
 end
 
 function mob_class:check_item_pickup ()
+	if not self:check_timer("item_pickup", 0.5) then return end
 	if self.can_wield_items	or self._inventory_size
 		or (self.wears_armor and self.wears_armor ~= "no_pickup") then
 		local self_pos = self.object:get_pos ()
