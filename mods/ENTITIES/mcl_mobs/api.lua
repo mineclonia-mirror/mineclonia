@@ -541,13 +541,6 @@ local floor = math.floor
 local node_name_with_fallback = mcl_mobs.node_name_with_fallback
 local v = vector.zero ()
 
-local function vector_copy_into (v, src)
-	v.x = src.x
-	v.y = src.y
-	v.z = src.z
-	return v
-end
-
 function mob_class:on_step (dtime, moveresult)
 	if self.removed then
 		self.object:remove ()
@@ -610,7 +603,8 @@ function mob_class:on_step (dtime, moveresult)
 
 	-- Get nodes early for use in other functions
 	local cbox = self.collisionbox
-	local feet = vector_copy_into (v, attach_pos)
+	local feet = v
+	feet.x, feet.y, feet.z = attach_pos.x, attach_pos.y, attach_pos.z
 	local bbase = pos.y + self.collisionbox[2] + 0.5
 	feet.y = floor (bbase + 1.0e-2)
 	if bbase - feet.y <= 1.0e-2 then
