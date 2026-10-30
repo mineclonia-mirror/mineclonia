@@ -126,6 +126,18 @@ core.register_node("mcl_end:end_rod", {
 	_mcl_hardness = 0,
 })
 
+local egg_box = {
+	type = "fixed",
+	fixed = {
+		{-0.3125, -0.5, -0.3125, 0.3125, 0.3125, 0.3125},
+		{-0.375, -0.4375, -0.375, 0.375, 0.1875, 0.375},
+		{-0.4375, -0.3125, -0.4375, 0.4375, 0, 0.4375},
+		{-0.25, 0.3125, -0.25, 0.25, 0.375, 0.25},
+		{-0.1875, 0.375, -0.1875, 0.1875, 0.4375, 0.1875},
+		{-0.125, 0.4375, -0.125, 0.125, 0.5, 0.125},
+	}
+}
+
 core.register_node("mcl_end:dragon_egg", {
 	description = S("Dragon Egg"),
 	_doc_items_longdesc = S("A dragon egg is a decorative item which can be placed."),
@@ -141,20 +153,8 @@ core.register_node("mcl_end:dragon_egg", {
 	is_ground_content = false,
 	paramtype = "light",
 	light_source = 1,
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.3125, -0.5, -0.3125, 0.3125, 0.3125, 0.3125},
-			{-0.375, -0.4375, -0.375, 0.375, 0.1875, 0.375},
-			{-0.4375, -0.3125, -0.4375, 0.4375, 0, 0.4375},
-			{-0.25, 0.3125, -0.25, 0.25, 0.375, 0.25},
-			{-0.1875, 0.375, -0.1875, 0.1875, 0.4375, 0.1875},
-			{-0.125, 0.4375, -0.125, 0.125, 0.5, 0.125},
-		}
-	},
-	selection_box = {
-		type = "regular",
-	},
+	node_box = egg_box,
+	selection_box = egg_box,
 	groups = {handy = 1, falling_node = 1, deco_block = 1, dig_by_piston = 1, unsticky =1, rarity = 3},
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 9,
