@@ -465,18 +465,46 @@ end
 
 local byte = string.byte
 
-local function serialize_data (dst, list, off)
+local function serialize_texture (dst, list, off)
 	assert (#list == MAP_SIDE_LENGTH * MAP_SIDE_LENGTH)
+	-- When serializing a map texture, a one pixel wide border
+	-- that is used as padding in the internal representation of
+	-- map textures (to make them match heightmap dimensions) is
+	-- removed … to not write ~2kb of useless transparent pixels.
+	--
+	-- This is a kludge to hide the questionable internal 130×130
+	-- representation of map textures used for the “minimap-like”
+	-- shading algorithm from the outside world. If this was not
+	-- done, all texture processing (internal and external to
+	-- Luanti) would have to take the padding into account.
+	--
+	-- Ideally the overscan of the heightmap should not affect the
+	-- representation of any map textures, but the original author
+	-- wrote the code that way. Not forcing others to take it into
+	-- account helps reducing the “blast radius” of that decision.
+	--
+	-- If you think this is not elegant and should be removed, fix
+	-- the shading code first so that it does not require textures
+	-- to have 1px padding at each border. Fixing that should not
+	-- only simplify code overall, but result in a minor speedup.
+	local j = 1
 	for i = 1, #list do
-		local value = list[i]
-		local b0 = band (value, 0xff)
-		local b1 = rshift (band (value, 0xff00), 8)
-		local b2 = rshift (band (value, 0xff0000), 16)
-		local b3 = rshift (band (value, 0xff000000), 24)
-		dst[off + i * 4 - 3] = char (b0)
-		dst[off + i * 4 - 2] = char (b1)
-		dst[off + i * 4 - 1] = char (b2)
-		dst[off + i * 4] = char (b3)
+		if not (
+			i <= MAP_SIDE_LENGTH or -- top
+			i > MAP_SIDE_LENGTH * (MAP_SIDE_LENGTH - 1) or -- bottom
+			i % MAP_SIDE_LENGTH <= 1 -- sides
+		) then
+			local value = list[i]
+			local b0 = band (value, 0xff)
+			local b1 = rshift (band (value, 0xff00), 8)
+			local b2 = rshift (band (value, 0xff0000), 16)
+			local b3 = rshift (band (value, 0xff000000), 24)
+			dst[off + j * 4 - 3] = char (b0)
+			dst[off + j * 4 - 2] = char (b1)
+			dst[off + j * 4 - 1] = char (b2)
+			dst[off + j * 4] = char (b3)
+			j = j + 1
+		end
 	end
 end
 
@@ -506,11 +534,11 @@ local function write_map_data (id, map)
 	end
 
 	local bytes = string.char
-	local tga_header = bytes(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, MAP_SIDE_LENGTH, 0, MAP_SIDE_LENGTH, 0, 32, 8)
+	local tga_header = bytes(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, MAP_DATA_LENGTH, 0, MAP_DATA_LENGTH, 0, 32, 8)
 	local tga_footer = bytes(0, 0, 0, 0, 0, 0, 0, 0) .. "TRUEVISION-XFILE." .. bytes(0)
 
 	local texture = {}
-	serialize_data (texture, map.data, #texture)
+	serialize_texture (texture, map.data, #texture)
 	local texture_bytes = tga_header .. table.concat (texture) .. tga_footer
 	local rc = core.safe_file_write (texture_name (id), texture_bytes)
 	if not rc then
@@ -528,14 +556,33 @@ local function write_map_data (id, map)
 	end
 end
 
-local function deserialize_data (dst, str, offset)
+local function deserialize_texture (dst, str, offset)
+	-- When deserializing a map texture, a one pixel wide border
+	-- that is used as padding in the internal representation of
+	-- map textures (to make them match heightmap dimensions) is
+	-- added.
+	--
+	-- All border processing code in texture (de)serialization can
+	-- be safely removed once the shading code no longer relies on
+	-- the internal heightmap and texture buffers having exactly
+	-- the same dimensions.
+	local j = 1
 	for i = 1, MAP_SIDE_LENGTH * MAP_SIDE_LENGTH do
-		local b0 = byte (str, i * 4 - 3 + offset)
-		local b1 = byte (str, i * 4 - 2 + offset)
-		local b2 = byte (str, i * 4 - 1 + offset)
-		local b3 = byte (str, i * 4 + offset)
-		dst[i] = bor (b0, lshift (b1, 8), lshift (b2, 16),
-			      lshift (b3, 24))
+		if (
+			i <= MAP_SIDE_LENGTH or -- top
+			i > MAP_SIDE_LENGTH * (MAP_SIDE_LENGTH - 1) or -- bottom
+			i % MAP_SIDE_LENGTH <= 1 -- sides
+		) then
+			dst[i] = byte(0)
+		else
+			local b0 = byte (str, j * 4 - 3 + offset)
+			local b1 = byte (str, j * 4 - 2 + offset)
+			local b2 = byte (str, j * 4 - 1 + offset)
+			local b3 = byte (str, j * 4 + offset)
+			dst[i] = bor (b0, lshift (b1, 8), lshift (b2, 16),
+				      lshift (b3, 24))
+			j = j + 1
+		end
 	end
 end
 
@@ -599,7 +646,7 @@ local function load_map_1 (id)
 	local texture_data = texture_file:read ("*all")
 	texture_file:close()
 	map.data = {}
-	deserialize_data (map.data, texture_data, 18)
+	deserialize_texture (map.data, texture_data, 18)
 
 	local heightmap_file = assert (io.open (heightmap_name (id), "rb"))
 	local heightmap_data = heightmap_file:read ("*all")
