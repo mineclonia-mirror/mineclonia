@@ -259,6 +259,10 @@ local function allow_put(pos, listname, _, stack, player)
 	return stack:get_count()
 end
 
+local function start_timer_if_not_running(pos)
+	local timer = core.get_node_timer(pos)
+	if not timer:is_started() then timer:start(1.0) end
+end
 local function start_stand_if_not_empty(pos)
 	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
@@ -271,7 +275,7 @@ local function start_stand_if_not_empty(pos)
 		end
 	end
 	core.swap_node(pos, {name = "mcl_brewing:stand_"..str})
-	core.get_node_timer(pos):start(1.0)
+	start_timer_if_not_running(pos)
 	mcl_redstone.update_comparators(pos)
 end
 
@@ -332,16 +336,14 @@ local function hopper_in(pos, to_pos)
 		local slot_id,_ = mcl_util.get_eligible_transfer_item_slot(sinv, "main", dinv, "fuel", function(itemstack)
 			return itemstack:get_name() == "mcl_mobitems:blaze_powder"
 		end)
-		if slot_id then
-			mcl_util.move_item(sinv, "main", slot_id, dinv, "fuel")
-			core.get_node_timer(to_pos):start(1.0)
+		if slot_id and mcl_util.move_item(sinv, "main", slot_id, dinv, "fuel") then
+			start_timer_if_not_running(to_pos)
 		else
 			local slot_id,_ = mcl_util.get_eligible_transfer_item_slot(sinv, "main", dinv, "stand", function(itemstack)
 				return sort_stack (itemstack) == "stand"
 			end)
-			if slot_id then
-				mcl_util.move_item(sinv, "main", slot_id, dinv, "stand")
-				core.get_node_timer(to_pos):start(1.0)
+			if slot_id and mcl_util.move_item(sinv, "main", slot_id, dinv, "stand") then
+				start_timer_if_not_running(to_pos)
 			end
 		end
 		return true
@@ -349,9 +351,8 @@ local function hopper_in(pos, to_pos)
 	local slot_id,_ = mcl_util.get_eligible_transfer_item_slot(sinv, "main", dinv, "input", function(itemstack)
 		return core.get_item_group(itemstack:get_name(), "brewing_ingredient" ) > 0
 	end)
-	if slot_id then
-		mcl_util.move_item(sinv, "main", slot_id, dinv, "input")
-		core.get_node_timer(to_pos):start(1.0)
+	if slot_id and mcl_util.move_item(sinv, "main", slot_id, dinv, "input") then
+		start_timer_if_not_running(to_pos)
 	end
 	return true
 end
