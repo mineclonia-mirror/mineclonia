@@ -134,11 +134,8 @@ core.register_node("mcl_beds:straw_bed", {
 
 		return itemstack
 	end,
-
 	after_destruct = mcl_beds.destruct_straw_bed,
-
 	on_destruct = mcl_beds.kick_player_after_destruct,
-
 	on_rightclick = function(pos, _, clicker)
 		return mcl_beds.on_rightclick(pos, clicker, true, true)
 	end,
@@ -157,7 +154,6 @@ core.register_node("mcl_beds:straw_bed_top", {
 	floodable = false,
 	drop = "",
 	groups = {not_in_creative_inventory = 1, bed_top = 1, bed = 2},
-
 	after_destruct = mcl_beds.destruct_bed,
 })
 

@@ -382,11 +382,10 @@ function mcl_beds.on_rightclick(pos, player, is_top, is_straw_bed)
 		local node = core.get_node(pos)
 		local dir = core.facedir_to_dir(node.param2)
 
-		if is_straw_bed then
-			core.remove_node(pos)
-			core.remove_node(core.get_item_group(node.name, "bed_top") > 0 and vector.subtract(pos, dir) or vector.add(pos, dir))
-		else
-			core.remove_node(core.get_item_group(node.name, "bed_top") > 0 and vector.subtract(pos, dir) or vector.add(pos, dir))
+		core.remove_node(pos)
+		core.remove_node(core.get_item_group(node.name, "bed_top") > 0 and vector.subtract(pos, dir) or vector.add(pos, dir))
+
+		if not is_straw_bed then
 			mcl_explosions.explode(pos, 5, {fire = true})
 		end
 		return mcl_util.return_itemstack_if_alive(player)
