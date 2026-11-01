@@ -260,8 +260,6 @@ function mcl_mobs.set_animation(self, anim)
 end
 
 function mob_class:who_are_you_looking_at()
-	local pos = self.object:get_pos()
-
 	if self.order == "sleep" then
 		self._locked_object = nil
 		return
@@ -285,6 +283,7 @@ function mob_class:who_are_you_looking_at()
 		end
 	elseif not self._locked_object then
 		if math.random(1, 30) == 1 then
+			local pos = self.object:get_pos()
 			-- For the wither this was 20/60=0.33, so probably need to rebalance and divide rates.
 			-- but frequency of check isn't good as it is costly. Making others too infrequent requires testing
 			local look_at_player_chance = math.random(math.max(1,20/self.curiosity))
