@@ -294,14 +294,12 @@ function mob_class:who_are_you_looking_at()
 			local look_at_player = look_at_player_chance == 1
 
 			for obj in core.objects_inside_radius(pos, 8) do
+				local l = obj:get_luaentity()
 				if obj:is_player() and vector.distance(pos,obj:get_pos()) < 4
 					and obj ~= self.driver then
 					self._locked_object = obj
 					break
-				elseif obj:is_player()
-					or (obj:get_luaentity()
-						and obj:get_luaentity().name == self.name
-						and self ~= obj:get_luaentity()) then
+				elseif obj:is_player() or (l and l.name == self.name and self ~= l) then
 					if look_at_player and obj ~= self.driver then
 						self._locked_object = obj
 						break
