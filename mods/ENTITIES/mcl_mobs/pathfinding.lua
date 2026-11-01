@@ -2150,6 +2150,7 @@ local function waterbound_gwp_classify_node (self, context, pos)
 	-- 	gwp_cc_misses = gwp_cc_misses + 1
 	-- end
 
+	local vector = gwp_classify_node_scratch
 	local b_width, b_height
 	b_width = context.mob_width - 1
 	b_height = context.mob_height - 1
@@ -2181,6 +2182,7 @@ local function waterbound_gwp_classify_for_movement (self, pos)
 	local height = math.max (0, collisionbox[5] - collisionbox[2])
 	local length = math.max (0, collisionbox[6] - collisionbox[3])
 
+	local vector = gwp_classify_node_scratch
 	b_width = floor (math.max (width, length) + 1.0) - 1
 	b_height = math.ceil (height) - 1
 
