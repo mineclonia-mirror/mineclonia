@@ -123,11 +123,11 @@ core.register_node("mcl_lectern:lectern_with_book", table.merge( lectern_tpl,{
 	mesh = "mcl_lectern_lectern_with_book.obj",
 	on_receive_fields = function(pos, _, fields, sender)
 		local sender_name = sender:get_player_name()
-		if core.is_protected(pos, sender_name) then
-			core.record_protection_violation(pos, sender_name)
-			return
-		end
 		if fields and fields.take then
+			if core.is_protected(pos, sender_name) then
+				core.record_protection_violation(pos, sender_name)
+				return
+			end
 			local inv = sender:get_inventory()
 			local node = core.get_node(pos)
 			local nm = core.get_meta(pos)
