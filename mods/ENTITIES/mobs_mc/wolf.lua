@@ -991,7 +991,7 @@ mcl_mobs.register_spawner (wolf_spawner_grove)
 
 local dog = table.copy (wolf)
 
-function dog:mob_activate (self_pos)
+function dog:mob_activate()
 	local staticdata = {
 		owner = self.owner,
 		_collar_color = self._collar_color,
