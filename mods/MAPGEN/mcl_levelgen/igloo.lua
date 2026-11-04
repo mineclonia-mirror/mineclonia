@@ -24,6 +24,7 @@ mcl_levelgen.register_loot_table ("mcl_levelgen:igloo", {
 			{ itemstring = "mcl_tools:axe_stone", weight = 2 },
 			{ itemstring = "mcl_core:emerald", weight = 1 },
 			{ itemstring = "mcl_core:apple_gold", weight = 1 },
+			{ itemstring = "mcl_jukebox:record_blocks", weight = 3 },
 		},
 	},
 })
