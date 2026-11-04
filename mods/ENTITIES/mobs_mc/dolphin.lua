@@ -149,7 +149,7 @@ local function dolphin_swim_with_boat (self, self_pos, dtime)
 		end
 		if self._swd_phase == 1 then
 			if vector.distance (self_pos, driver_pos) > 12 then
-				self.swd_phase = 0
+				self._swd_phase = 0
 			else
 				local driver_yaw = boat:get_yaw ()
 				local dir = core.yaw_to_dir (driver_yaw)
