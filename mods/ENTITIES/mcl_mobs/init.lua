@@ -514,7 +514,7 @@ mcl_mobs.arrow_class_meta = {__index = mcl_mobs.arrow_class}
 function mcl_mobs.register_arrow(name, def)
 	if not name or not def then return end -- errorcheck
 
-	local init_props = mcl_mobs.arrow_class.initial_properties
+	local init_props = table.copy(mcl_mobs.arrow_class.initial_properties)
 	for _,k in pairs(object_properties) do
 		if def[k] ~= nil then
 			if type(def[k]) == "table" then
