@@ -896,7 +896,7 @@ function mob_class:poll_navigation_state (self_pos, dtime, timeout, new_target)
 			session.last_partial = nil
 
 			if count >= session.max_frustration then
-				return "failure"
+				return "failed"
 			end
 		end
 
