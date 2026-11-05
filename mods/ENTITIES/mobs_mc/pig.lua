@@ -225,13 +225,7 @@ function pig:on_rightclick (clicker)
 		return
 	end
 
-	-- Mount or detach player
-	if self.driver and clicker == self.driver then -- and self.driver:get_wielded_item():get_name() ~= "mcl_mobitems:carrot_on_a_stick" then -- Note: This is for when the ability to make the pig go faster is implemented
-		-- Detach if already attached
-		self:detach(clicker, {x=1, y=0, z=0})
-		return
-
-	elseif not self.driver and self.saddle == "yes" then
+	if not self.driver and self.saddle == "yes" then
 		-- Initialize attachment properties.
 		local vsize = self.object:get_properties ().visual_size
 		self.driver_attach_at = {x = 0.0, y = 6.5, z = -3.75}
