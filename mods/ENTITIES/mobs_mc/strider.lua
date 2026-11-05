@@ -304,8 +304,6 @@ function strider:on_rightclick (clicker)
 				end
 				inv:set_stack("main",self.driver:get_wield_index(), wielditem)
 			end
-		else
-			self:detach (clicker, {x = 1, y = 0, z = 0})
 		end
 	end
 end
