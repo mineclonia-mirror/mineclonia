@@ -62,7 +62,7 @@ end
 
 -- extracts the direction from dripstone's name
 local function extract_direction(name)
-	return string.sub(name, 26, 31) == "bottom" and -1 or 1
+	return string.find(name, "bottom") and -1 or 1
 end
 
 -- it is assumed pos is at the tip of the dripstone
@@ -287,14 +287,17 @@ for i = 1, #dripstone_stages do
 end
 
 core.register_on_dignode(function(pos)
-	local offset_pos = vector.copy(vector.offset(pos, 0, -1, 0))
-	local nn = core.get_node(offset_pos).name
-	if core.get_item_group(nn, "dripstone_stage") ~= 0 and extract_direction(nn) == 1 then
-		if core.get_item_group(core.get_node(offset_pos).name, "dripstone_stage") ~= 0 then
-			break_dripstone(offset_pos, 1)
-			spawn_dripstone_entity(offset_pos)
-			core.swap_node(offset_pos, {name = "air"})
-		end
+	local top_offset_pos = vector.copy(vector.offset(pos, 0, -1, 0))
+	local bottom_offset_pos = vector.copy(vector.offset(pos, 0, 1, 0))
+	local top_nn = core.get_node(top_offset_pos).name
+	local bottom_nn = core.get_node(bottom_offset_pos).name
+	if core.get_item_group(top_nn, "dripstone_stage") ~= 0 and extract_direction(top_nn) == 1 then
+		break_dripstone(top_offset_pos, 1)
+		spawn_dripstone_entity(top_offset_pos)
+		core.swap_node(top_offset_pos, {name = "air"})
+	elseif core.get_item_group(bottom_nn, "dripstone_stage") ~= 0 and extract_direction(bottom_nn) == -1 then
+		break_dripstone(bottom_offset_pos, -1)
+		core.swap_node(bottom_offset_pos, {name = "air"})
 	end
 end)
 
