@@ -494,6 +494,20 @@ local function serialize_heightmap (dst, list, off)
 	end
 end
 
+local function encode_tga_header (tga_type, width, height, bpp, bpp_alpha)
+	return char (
+		0, 0, tga_type, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		width % 256, math.floor (width / 256),
+		height % 256, math.floor (height / 256),
+		bpp,  -- bits per pixel (8, 16, 24, 32)
+		bpp_alpha  -- bits per pixel alpha channel (0, 1, 8)
+	)
+end
+
+local texture_tga_header = encode_tga_header (2, MAP_DATA_LENGTH, MAP_DATA_LENGTH, 32, 8)
+local heightmap_tga_header = encode_tga_header (2, MAP_SIDE_LENGTH, MAP_SIDE_LENGTH, 16, 0)
+local tga_footer = char (0, 0, 0, 0, 0, 0, 0, 0) .. "TRUEVISION-XFILE." .. char (0)
+
 local function write_map_data (id, map)
 	local tbl = {
 		x_start = map.x_start,
@@ -508,23 +522,17 @@ local function write_map_data (id, map)
 		error ("Could not write map metadata for " .. id)
 	end
 
-	local bytes = string.char
-	local tga_header = bytes(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, MAP_DATA_LENGTH, 0, MAP_DATA_LENGTH, 0, 32, 8)
-	local tga_footer = bytes(0, 0, 0, 0, 0, 0, 0, 0) .. "TRUEVISION-XFILE." .. bytes(0)
-
 	local texture = {}
 	serialize_texture (texture, map.data, #texture)
-	local texture_bytes = tga_header .. table.concat (texture) .. tga_footer
+	local texture_bytes = texture_tga_header .. table.concat (texture) .. tga_footer
 	local rc = core.safe_file_write (texture_name (id), texture_bytes)
 	if not rc then
 		error ("Could not write map texture for " .. id)
 	end
 
-	local tga_header = bytes(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, MAP_SIDE_LENGTH, 0, MAP_SIDE_LENGTH, 0, 16, 0)
-
 	local heightmap = {}
 	serialize_heightmap (heightmap, map.heightmap, #heightmap)
-	local heightmap_bytes = tga_header .. table.concat (heightmap) .. tga_footer
+	local heightmap_bytes = heightmap_tga_header .. table.concat (heightmap) .. tga_footer
 	local rc = core.safe_file_write (heightmap_name (id), heightmap_bytes)
 	if not rc then
 		error ("Could not write map heightmap for " .. id)
