@@ -62,7 +62,11 @@ end
 
 -- extracts the direction from dripstone's name
 local function extract_direction(name)
-	return string.find(name, "bottom") and -1 or 1
+	return core.get_item_group(name, "dripstone_direction")
+end
+
+local function get_stage(name)
+	return core.get_item_group(name, "dripstone_stage")
 end
 
 -- it is assumed pos is at the tip of the dripstone
@@ -73,7 +77,7 @@ local function get_dripstone_length(pos, direction)
 	repeat
 		length = length + 1
 		offset_pos = vector.offset(offset_pos, 0, direction, 0)
-		stage = core.get_item_group(core.get_node(offset_pos).name, "dripstone_stage")
+		stage = get_stage(core.get_node(offset_pos).name)
 	until(stage == 0)
 	return length
 end
@@ -111,7 +115,7 @@ local function break_dripstone(pos, direction)
 	local offset_pos = vector.copy(pos)
 	while true do
 		offset_pos = vector.offset(offset_pos, 0, -direction, 0)
-		local stage = core.get_item_group(core.get_node(offset_pos).name, "dripstone_stage")
+		local stage = get_stage(core.get_node(offset_pos).name)
 		if stage == 1 and extract_direction(core.get_node(offset_pos).name) == -direction then
 			core.swap_node(offset_pos, {name = get_dripstone_node(2, -direction)})
 			break
@@ -141,7 +145,7 @@ local function update_dripstone(pos, direction)
 	while true do
 		pos = vector.offset(pos, 0, direction, 0)
 		previous_stage = stage
-		stage = core.get_item_group(core.get_node(pos).name, "dripstone_stage")
+		stage = get_stage(core.get_node(pos).name)
 		if stage == 4 or stage == 5 then
 			break
 		elseif stage == 0 then
@@ -166,7 +170,7 @@ local function on_dripstone_place(itemstack, player, pointed_thing)
 
 	local under_node = core.get_node(pointed_thing.under)
 
-	if core.get_item_group(under_node.name, "solid") == 0 and core.get_item_group(under_node.name, "dripstone_stage") == 0 then return itemstack end
+	if core.get_item_group(under_node.name, "solid") == 0 and get_stage(under_node.name) == 0 then return itemstack end
 	if pointed_thing.above.x ~= pointed_thing.under.x or pointed_thing.above.z ~= pointed_thing.under.z then return itemstack end
 
 	local direction = pointed_thing.under.y - pointed_thing.above.y
@@ -192,12 +196,12 @@ local on_dripstone_destruct = function(pos)
 	break_dripstone(pos, direction)
 
 	local offset_pos = vector.copy(vector.offset(pos, 0, direction, 0))
-	if core.get_item_group(core.get_node(offset_pos).name, "dripstone_stage") ~= 0 then
+	if get_stage(core.get_node(offset_pos).name) ~= 0 then
 		core.swap_node(offset_pos, {name = get_dripstone_node(2, direction)})
 
 		while true do
 			offset_pos = vector.offset(offset_pos, 0, direction, 0)
-			local stage = core.get_item_group(core.get_node(offset_pos).name, "dripstone_stage")
+			local stage = get_stage(core.get_node(offset_pos).name)
 			if stage == 3 then
 				core.swap_node(offset_pos, {name = get_dripstone_node(2, direction)})
 			elseif stage == 4 or stage == 5 then
@@ -246,6 +250,7 @@ for i = 1, #dripstone_stages do
 			dripstone_stage = i,
 			pathfinder_partial = 2,
 			dig_by_trident = 1,
+			dripstone_direction = 1,
 		},
 		sunlight_propagates = true,
 		paramtype = "light",
@@ -273,6 +278,7 @@ for i = 1, #dripstone_stages do
 			dripstone_stage = i,
 			pathfinder_partial = 2,
 			dig_by_trident = 1,
+			dripstone_direction = -1
 		},
 		sunlight_propagates = true,
 		paramtype = "light",
@@ -291,12 +297,12 @@ core.register_on_dignode(function(pos)
 	local bottom_offset_pos = vector.copy(vector.offset(pos, 0, 1, 0))
 	local top_nn = core.get_node(top_offset_pos).name
 	local bottom_nn = core.get_node(bottom_offset_pos).name
-	if core.get_item_group(top_nn, "dripstone_stage") ~= 0 and extract_direction(top_nn) == 1 then
-		break_dripstone(top_offset_pos, 1)
+	if get_stage(top_nn) ~= 0 and extract_direction(top_nn) == 1 then
+		break_dripstone(pos, 1)
 		spawn_dripstone_entity(top_offset_pos)
 		core.swap_node(top_offset_pos, {name = "air"})
-	elseif core.get_item_group(bottom_nn, "dripstone_stage") ~= 0 and extract_direction(bottom_nn) == -1 then
-		break_dripstone(bottom_offset_pos, -1)
+	elseif get_stage(bottom_nn) ~= 0 and extract_direction(bottom_nn) == -1 then
+		break_dripstone(pos, -1)
 		core.swap_node(bottom_offset_pos, {name = "air"})
 	end
 end)
