@@ -414,19 +414,19 @@ local loaded_maps = {}
 local update_all_maps
 
 local function map_name (id)
-	return map_textures_path .. id .. ".lua"
+	return map_textures_path  .. "mcl_maps_map_meta_" .. id .. ".lua"
 end
 
 local function texture_name (id)
-	return map_textures_path .. id .. '_texture.tga'
+	return map_textures_path .. "mcl_maps_map_texture_" .. id .. '.tga'
 end
 
 local function heightmap_name (id)
-	return map_textures_path .. id .. "_heightmap.tga"
+	return map_textures_path .. "mcl_maps_map_heightmap_" .. id .. ".tga"
 end
 
 local function allocate_map_id ()
-	local base = os.date ("map_%Y%m%d%H%M%S_")
+	local base = os.date ("%Y%m%d%H%M%S_")
 	local i = 0
 	while core.path_exists (map_name (base .. i)) do
 		i = i + 1
