@@ -193,6 +193,10 @@ end
 
 local on_dripstone_destruct = function(pos)
 	local direction = extract_direction(core.get_node(pos).name)
+	if direction == 1 then
+		-- top dripstone has no drop, spawn entity instead
+		spawn_dripstone_entity(pos)
+	end
 	break_dripstone(pos, direction)
 
 	local offset_pos = vector.copy(vector.offset(pos, 0, direction, 0))
@@ -242,7 +246,7 @@ for i = 1, #dripstone_stages do
 		_doc_items_hidden = true,
 		drawtype = "plantlike",
 		tiles = {"pointed_dripstone_" .. stage .. ".png"},
-		drop = "mcl_dripstone:pointed_dripstone",
+		drop = "",
 		groups = {
 			handy = 1,
 			pickaxey = 1,
@@ -299,7 +303,6 @@ core.register_on_dignode(function(pos)
 	local bottom_nn = core.get_node(bottom_offset_pos).name
 	if get_stage(top_nn) ~= 0 and extract_direction(top_nn) == 1 then
 		break_dripstone(pos, 1)
-		spawn_dripstone_entity(top_offset_pos)
 		core.swap_node(top_offset_pos, {name = "air"})
 	elseif get_stage(bottom_nn) ~= 0 and extract_direction(bottom_nn) == -1 then
 		break_dripstone(pos, -1)
