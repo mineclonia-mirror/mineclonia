@@ -53,10 +53,7 @@ function mcl_core.grow_cactus(pos, _)
 
 		if math.random() < (height >= 3 and 0.25 or 0.1) then
 			if core.get_node(pos).name == "air"
-				and core.get_node(vector.offset(pos,  1, 0,  0)).name == "air"
-				and core.get_node(vector.offset(pos, -1, 0,  0)).name == "air"
-				and core.get_node(vector.offset(pos,  0, 0,  1)).name == "air"
-				and core.get_node(vector.offset(pos,  0, 0, -1)).name == "air" then
+				and #mcl_util.find_nodes_adjacent(pos, {"air"}) == 4 then
 				core.set_node(pos, {name="mcl_core:cactus_flower"})
 			end
 
