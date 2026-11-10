@@ -1150,3 +1150,36 @@ function mcl_util.give_item_to_player(player, stack)
 		core.add_item (player:get_pos(), stack)
 	end
 end
+
+local adjacent = {
+	vector.new( 0,  1,  0), -- UP
+	vector.new( 0, -1,  0), -- DOWN
+	vector.new( 1,  0,  0), -- EAST
+	vector.new(-1,  0,  0), -- WEST
+	vector.new( 0,  0,  1), -- NORTH
+	vector.new( 0,  0, -1), -- SOUTH
+}
+
+local function iterate_adjacent(state)
+	if state.index < 6 then
+		state.index = state.index + 1
+		return adjacent[state.index]:add(state.pos)
+	end
+end
+
+function mcl_util.iterate_adjacent(pos, include_up_down)
+	return iterate_adjacent, { pos = pos, index = include_up_down and 0 or 2 }
+end
+
+function mcl_util.find_nodes_adjacent(pos, node_names)
+	local matching = {}
+	for adjacent_pos in mcl_util.iterate_adjacent(pos) do
+		local node_name = core.get_node(adjacent_pos).name
+		for _, group_or_name in pairs(node_names) do
+			if mcl_util.is_item_or_in_group(node_name, group_or_name) then
+				table.insert(matching, adjacent_pos)
+			end
+		end
+	end
+	return matching
+end

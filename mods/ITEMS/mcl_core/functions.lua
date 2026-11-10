@@ -79,7 +79,7 @@ function mcl_core.grow_reeds(pos, amount)
 
 	local name = core.get_node(ground_pos).name
 	if core.get_item_group(name, "soil_sugarcane") ~= 0 then
-		if core.find_node_near(ground_pos, 1, {"group:water"}) == nil and core.find_node_near(ground_pos, 1, {"group:frosted_ice"}) == nil then
+		if #mcl_util.find_nodes_adjacent(ground_pos, {"group:water", "group:frosted_ice"}) == 0 then
 			core.remove_node(vector.offset(ground_pos,0,1,0))
 			core.add_item(vector.offset(ground_pos,0,1,0), "mcl_core:reeds")
 			core.check_for_falling(vector.offset(ground_pos,0,2,0))
