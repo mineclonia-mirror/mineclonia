@@ -1150,3 +1150,24 @@ function mcl_util.give_item_to_player(player, stack)
 		core.add_item (player:get_pos(), stack)
 	end
 end
+
+local neighbor_offsets = {
+	{x =  1, y = 0, z =  0},
+	{x = -1, y = 0, z =  0},
+	{x =  0, y = 0, z =  1},
+	{x =  0, y = 0, z = -1}
+}
+
+function mcl_util.find_node_neighbors(pos, node_names)
+	local matching_neighbors = {}
+	for _, dir in pairs(neighbor_offsets) do
+		local neighbor_pos = vector.add(pos, dir)
+		local node_name = core.get_node(neighbor_pos).name
+		for _, group_or_name in pairs(node_names) do
+			if mcl_util.is_item_or_in_group(node_name, group_or_name) then
+				table.insert(matching_neighbors, neighbor_pos)
+			end
+		end
+	end
+	return matching_neighbors
+end
