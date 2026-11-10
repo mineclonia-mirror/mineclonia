@@ -5550,7 +5550,7 @@ local function register_decorations()
 		height = 1,
 		height_max = 3,
 		spawn_by = { "mcl_core:water_source", "group:frosted_ice" },
-		num_spawn_by = 1,
+		num_spawn_by = 2,
 	})
 	core.register_decoration({
 		deco_type = "simple",
@@ -5571,7 +5571,7 @@ local function register_decorations()
 		height = 1,
 		height_max = 3,
 		spawn_by = { "mcl_core:water_source", "group:frosted_ice" },
-		num_spawn_by = 1,
+		num_spawn_by = 2,
 	})
 
 	-- Tall grass
