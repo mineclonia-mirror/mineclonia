@@ -113,9 +113,9 @@ end
 
 local MAP_UPDATE_AREA = 128
 local MAP_UPDATE_AREA_Y = 96
-local MAP_SIDE_LENGTH = 130
-local MAP_DATA_LENGTH = MAP_SIDE_LENGTH - 2
-mcl_maps.MAP_DATA_LENGTH = MAP_DATA_LENGTH
+local HEIGHTMAP_SIDE_LENGTH = 130
+local TEXTURE_SIDE_LENGTH = HEIGHTMAP_SIDE_LENGTH - 2
+mcl_maps.TEXTURE_SIDE_LENGTH = TEXTURE_SIDE_LENGTH
 
 local cid_ignore = core.CONTENT_IGNORE
 local map_get_node_raw = core.get_node_raw
@@ -208,7 +208,7 @@ local function produce_rgb_turn (map, z1, base_first, base, base_next,
 	local heightmap = map.heightmap
 	local data = map.data
 	local map_r = 4.0 / (lshift (1, scale) + 4.0)
-	local cz = z1 - MAP_DATA_LENGTH - 1
+	local cz = z1 - TEXTURE_SIDE_LENGTH - 1
 
 	for i = i_start, i_end do
 		local current = heightmap[base + i]
@@ -271,15 +271,15 @@ local function produce_rgb_turn (map, z1, base_first, base, base_next,
 end
 
 local function prepare_map_heights (map, y1)
-	for turn = 0, MAP_SIDE_LENGTH - 1 do
-		local idx = turn * MAP_SIDE_LENGTH + 1
+	for turn = 0, HEIGHTMAP_SIDE_LENGTH - 1 do
+		local idx = turn * HEIGHTMAP_SIDE_LENGTH + 1
 		produce_heightmap_turn_1 (map, -1, y1, turn - 1, idx, 0,
-					  MAP_SIDE_LENGTH - 1)
+					  HEIGHTMAP_SIDE_LENGTH - 1)
 	end
 end
 
 local function produce_heightmap_turn (map, x1, y1, z1, n)
-	local idx = (z1 + 1) * MAP_SIDE_LENGTH + 1
+	local idx = (z1 + 1) * HEIGHTMAP_SIDE_LENGTH + 1
 	produce_heightmap_turn_1 (map, x1 - 1, y1, z1, idx, x1,
 				  -- The heightmap extends beyond the
 				  -- image in both directions.
@@ -287,22 +287,22 @@ local function produce_heightmap_turn (map, x1, y1, z1, n)
 end
 
 local function produce_map_turn (map, x1, y1, z1, n)
-	-- Each index addresses a row of MAP_SIDE_LENGTH elements in
+	-- Each index addresses a row of HEIGHTMAP_SIDE_LENGTH elements in
 	-- DATA and HEIGHTMAP representing the maximum recorded height
 	-- and the current value of the map at that row.
 	local turn = z1 + 1
-	local idx_first = (turn - 1) * MAP_SIDE_LENGTH + 1
-	local idx_turn = turn * MAP_SIDE_LENGTH + 1
-	local idx_next = (turn + 1) * MAP_SIDE_LENGTH + 1
+	local idx_first = (turn - 1) * HEIGHTMAP_SIDE_LENGTH + 1
+	local idx_turn = turn * HEIGHTMAP_SIDE_LENGTH + 1
+	local idx_next = (turn + 1) * HEIGHTMAP_SIDE_LENGTH + 1
 	local i_start, i_end
-		= x1 + 1, mathmin (x1 + n, MAP_DATA_LENGTH)
+		= x1 + 1, mathmin (x1 + n, TEXTURE_SIDE_LENGTH)
 	produce_rgb_turn (map, z1, idx_first, idx_turn,
 			  idx_next, i_start, i_end)
 end
 
 local function alloc_map_data ()
 	local tbl = {}
-	for i = 1, MAP_SIDE_LENGTH * MAP_SIDE_LENGTH do
+	for i = 1, HEIGHTMAP_SIDE_LENGTH * HEIGHTMAP_SIDE_LENGTH do
 		tbl[i] = 0x0
 	end
 	return tbl
@@ -310,7 +310,7 @@ end
 
 local function alloc_heightmap_data ()
 	local tbl = {}
-	for i = 1, MAP_SIDE_LENGTH * MAP_SIDE_LENGTH do
+	for i = 1, HEIGHTMAP_SIDE_LENGTH * HEIGHTMAP_SIDE_LENGTH do
 		tbl[i] = -32767
 	end
 	return tbl
@@ -322,9 +322,9 @@ local concat = table.concat
 local function map_data_to_string (buf, map)
 	local i = 0
 	local data = map.data
-	for z = MAP_DATA_LENGTH - 1, 0, -1 do
-		for x = 0, MAP_DATA_LENGTH - 1 do
-			local pixel = data[(z + 1) * MAP_SIDE_LENGTH + x + 2]
+	for z = TEXTURE_SIDE_LENGTH - 1, 0, -1 do
+		for x = 0, TEXTURE_SIDE_LENGTH - 1 do
+			local pixel = data[(z + 1) * HEIGHTMAP_SIDE_LENGTH + x + 2]
 			i = i + 4
 			buf[i] = char (rshift (pixel, 24))
 			buf[i - 1] = char (band (pixel, 0xff))
@@ -379,8 +379,8 @@ local str_data = {}
 
 local function encode_map_png (map, compression)
 	local str = map_data_to_string (str_data, map)
-	local png = core.encode_png (MAP_DATA_LENGTH,
-				     MAP_DATA_LENGTH,
+	local png = core.encode_png (TEXTURE_SIDE_LENGTH,
+				     TEXTURE_SIDE_LENGTH,
 				     str, compression)
 	return png
 end
@@ -390,10 +390,10 @@ local converted_data = {}
 local function irr_convert_map_data (dst, map)
 	local i = 0
 	local data = map.data
-	for z = 0, MAP_DATA_LENGTH - 1 do
-		for x = 0, MAP_DATA_LENGTH - 1 do
+	for z = 0, TEXTURE_SIDE_LENGTH - 1 do
+		for x = 0, TEXTURE_SIDE_LENGTH - 1 do
 			i = i + 1
-			dst[i] = data[(z + 1) * MAP_SIDE_LENGTH + x + 2]
+			dst[i] = data[(z + 1) * HEIGHTMAP_SIDE_LENGTH + x + 2]
 		end
 	end
 end
@@ -441,7 +441,7 @@ end
 local byte = string.byte
 
 local function serialize_texture (dst, list, off)
-	assert (#list == MAP_SIDE_LENGTH * MAP_SIDE_LENGTH)
+	assert (#list == HEIGHTMAP_SIDE_LENGTH * HEIGHTMAP_SIDE_LENGTH)
 	-- When serializing a map texture, a one pixel wide border
 	-- that is used as padding in the internal representation of
 	-- map textures (to make them match heightmap dimensions) is
@@ -465,9 +465,9 @@ local function serialize_texture (dst, list, off)
 	local j = 1
 	for i = 1, #list do
 		if not (
-			i <= MAP_SIDE_LENGTH or -- top
-			i > MAP_SIDE_LENGTH * (MAP_SIDE_LENGTH - 1) or -- bottom
-			i % MAP_SIDE_LENGTH <= 1 -- sides
+			i <= HEIGHTMAP_SIDE_LENGTH or -- top
+			i > HEIGHTMAP_SIDE_LENGTH * (HEIGHTMAP_SIDE_LENGTH - 1) or -- bottom
+			i % HEIGHTMAP_SIDE_LENGTH <= 1 -- sides
 		) then
 			local value = list[i]
 			local b0 = band (value, 0xff)
@@ -484,7 +484,7 @@ local function serialize_texture (dst, list, off)
 end
 
 local function serialize_heightmap (dst, list, off)
-	assert (#list == MAP_SIDE_LENGTH * MAP_SIDE_LENGTH)
+	assert (#list == HEIGHTMAP_SIDE_LENGTH * HEIGHTMAP_SIDE_LENGTH)
 	for i = 1, #list do
 		local value = list[i]
 		local b0 = band (value, 0xff)
@@ -504,8 +504,8 @@ local function encode_tga_header (tga_type, width, height, bpp, bpp_alpha)
 	)
 end
 
-local texture_tga_header = encode_tga_header (2, MAP_DATA_LENGTH, MAP_DATA_LENGTH, 32, 8)
-local heightmap_tga_header = encode_tga_header (2, MAP_SIDE_LENGTH, MAP_SIDE_LENGTH, 16, 0)
+local texture_tga_header = encode_tga_header (2, TEXTURE_SIDE_LENGTH, TEXTURE_SIDE_LENGTH, 32, 8)
+local heightmap_tga_header = encode_tga_header (2, HEIGHTMAP_SIDE_LENGTH, HEIGHTMAP_SIDE_LENGTH, 16, 0)
 local tga_footer = char (0, 0, 0, 0, 0, 0, 0, 0) .. "TRUEVISION-XFILE." .. char (0)
 
 local function write_map_data (id, map)
@@ -550,11 +550,11 @@ local function deserialize_texture (dst, str, offset)
 	-- the internal heightmap and texture buffers having exactly
 	-- the same dimensions.
 	local j = 1
-	for i = 1, MAP_SIDE_LENGTH * MAP_SIDE_LENGTH do
+	for i = 1, HEIGHTMAP_SIDE_LENGTH * HEIGHTMAP_SIDE_LENGTH do
 		if (
-			i <= MAP_SIDE_LENGTH or -- top
-			i > MAP_SIDE_LENGTH * (MAP_SIDE_LENGTH - 1) or -- bottom
-			i % MAP_SIDE_LENGTH <= 1 -- sides
+			i <= HEIGHTMAP_SIDE_LENGTH or -- top
+			i > HEIGHTMAP_SIDE_LENGTH * (HEIGHTMAP_SIDE_LENGTH - 1) or -- bottom
+			i % HEIGHTMAP_SIDE_LENGTH <= 1 -- sides
 		) then
 			dst[i] = byte(0)
 		else
@@ -570,7 +570,7 @@ local function deserialize_texture (dst, str, offset)
 end
 
 local function deserialize_heightmap(dst, str, offset)
-	for i = 1, MAP_SIDE_LENGTH * MAP_SIDE_LENGTH do
+	for i = 1, HEIGHTMAP_SIDE_LENGTH * HEIGHTMAP_SIDE_LENGTH do
 		local b0 = byte (str, i * 2 - 1 + offset)
 		local b1 = byte (str, i * 2 + offset)
 		dst[i] = bor (b0, lshift (b1, 8))
@@ -591,7 +591,7 @@ local function load_map_error ()
 	local str = assert (core.decompress (data, "zstd"))
 	map.data = {}
 	map.heightmap = {}
-	local offset = (MAP_SIDE_LENGTH * MAP_SIDE_LENGTH * 4)
+	local offset = (HEIGHTMAP_SIDE_LENGTH * HEIGHTMAP_SIDE_LENGTH * 4)
 	deserialize_data (map.data, str, 0)
 	deserialize_data (map.heightmap, str, offset)
 	return map
@@ -877,14 +877,14 @@ core.register_craftitem ("mcl_maps:map_locked", {
 local map_update_cnt = 0
 local N = 4 -- Number of rows to update on each globalstep.
 mcl_maps.N = N
-local STEPS_PER_MAP = MAP_DATA_LENGTH / N
+local STEPS_PER_MAP = TEXTURE_SIDE_LENGTH / N
 local STEP_MASK = 0x1f
 
 local function update_one_map_unscaled (nodepos, map)
 	local radius = CIRCLE_RADIUS
 	local xmin = nodepos.x - radius
 	local xmax = nodepos.x + radius - 1
-	local x_end = map.x_start + MAP_DATA_LENGTH - 1
+	local x_end = map.x_start + TEXTURE_SIDE_LENGTH - 1
 	local map_updated = false
 	if xmin <= x_end and xmax >= map.x_start then
 		local y1 = nodepos.y - floor (MAP_UPDATE_AREA_Y / 2)
@@ -892,7 +892,7 @@ local function update_one_map_unscaled (nodepos, map)
 			- map.x_start
 		local x2 = mathmin (xmax, x_end)
 			- map.x_start
-		local z_end = map.z_start + MAP_DATA_LENGTH - 1
+		local z_end = map.z_start + TEXTURE_SIDE_LENGTH - 1
 		local z1 = mathmax (nodepos.z - radius, map.z_start)
 			- map.z_start
 		local z2 = mathmin (nodepos.z + radius - 1, z_end)
@@ -919,7 +919,7 @@ local function update_one_map_unscaled (nodepos, map)
 					if i == 0 then
 						produce_heightmap_turn (map, x1, y1, i - 1,
 									x2 - x1 + 1)
-					elseif i == MAP_DATA_LENGTH - 1 then
+					elseif i == TEXTURE_SIDE_LENGTH - 1 then
 						produce_heightmap_turn (map, x1, y1, i + 1,
 									x2 - x1 + 1)
 					end
@@ -937,7 +937,7 @@ local function update_one_map (nodepos, map)
 	local radius = CIRCLE_RADIUS
 	local xmin = nodepos.x - radius
 	local xmax = nodepos.x + radius - 1
-	local data_compass = lshift (MAP_DATA_LENGTH - 1, scale)
+	local data_compass = lshift (TEXTURE_SIDE_LENGTH - 1, scale)
 	local x_end = map.x_start + data_compass
 	local map_updated = false
 	if xmin <= x_end and xmax >= map.x_start then
@@ -1024,10 +1024,10 @@ local dst = {}
 function mcl_maps.encode_map_update (map, update_cnt)
 	local data = map.data
 	local idx = 1
-	for i = 0, MAP_DATA_LENGTH - 1 do
+	for i = 0, TEXTURE_SIDE_LENGTH - 1 do
 		if band (i, STEP_MASK) == update_cnt then
-			local base = (i + 1) * MAP_SIDE_LENGTH + 2
-			for src_idx = base, base + MAP_DATA_LENGTH - 1 do
+			local base = (i + 1) * HEIGHTMAP_SIDE_LENGTH + 2
+			for src_idx = base, base + TEXTURE_SIDE_LENGTH - 1 do
 				dst[idx] = data[src_idx]
 				idx = idx + 1
 			end
@@ -1097,7 +1097,7 @@ local get_cartography_biome
 
 local function fill_explorer_map (map, y)
 	local s = map.scale - 1
-	local compass = lshift (MAP_DATA_LENGTH - 1, s)
+	local compass = lshift (TEXTURE_SIDE_LENGTH - 1, s)
 	local x1 = map.x_start
 	local z1 = map.z_start
 	local dim = prepare_cartography_biomes (y, x1, z1, compass,
@@ -1107,9 +1107,9 @@ local function fill_explorer_map (map, y)
 	end
 
 	local data = map.data
-	for dz = 0, MAP_DATA_LENGTH - 1 do
-		local base = (dz + 1) * MAP_SIDE_LENGTH + 1
-		for dx = 0, MAP_DATA_LENGTH - 1 do
+	for dz = 0, TEXTURE_SIDE_LENGTH - 1 do
+		local base = (dz + 1) * HEIGHTMAP_SIDE_LENGTH + 1
+		for dx = 0, TEXTURE_SIDE_LENGTH - 1 do
 			local i = dx + 1
 			local biome
 				= get_cartography_biome (dim, x1 + lshift (dx, s),
@@ -1548,15 +1548,15 @@ local function scale_map_data (map)
 	local dst_heightmap = dst.heightmap
 	local dst_data = dst.data
 
-	for z = 1, MAP_SIDE_LENGTH - 1, 2 do
-		local src_base = z * MAP_SIDE_LENGTH + 1
+	for z = 1, HEIGHTMAP_SIDE_LENGTH - 1, 2 do
+		local src_base = z * HEIGHTMAP_SIDE_LENGTH + 1
 		local i = rshift (z, 1) + dz + 1
-		local dst_base = i * MAP_SIDE_LENGTH + 1
+		local dst_base = i * HEIGHTMAP_SIDE_LENGTH + 1
 		-- The first item is never preserved in the scaled
 		-- map, as node indices are scaled by the map's scale,
 		-- and `-1' would yield `-2', which is not present in
 		-- the map data.
-		for x = 1, MAP_SIDE_LENGTH - 1, 2 do
+		for x = 1, HEIGHTMAP_SIDE_LENGTH - 1, 2 do
 			local i = rshift (x, 1) + dx + 1
 			dst_heightmap[dst_base + i] = src_heightmap[src_base + x]
 			dst_data[dst_base + i] = src_data[src_base + x]
@@ -1600,7 +1600,7 @@ local function copy_map_data (src)
 	local dst_data = map.data
 	local dst_heightmap = map.heightmap
 
-	for i = 1, MAP_SIDE_LENGTH * MAP_SIDE_LENGTH do
+	for i = 1, HEIGHTMAP_SIDE_LENGTH * HEIGHTMAP_SIDE_LENGTH do
 		dst_data[i] = src_data[i]
 		dst_heightmap[i] = src_heightmap[i]
 	end
@@ -1796,7 +1796,7 @@ mcl_player.register_globalstep (function (player)
 		end
 
 		local pos = mcl_util.get_nodepos (player:get_pos ())
-		local width = lshift (MAP_DATA_LENGTH, map.scale - 1)
+		local width = lshift (TEXTURE_SIDE_LENGTH, map.scale - 1)
 		local minp = vector.new (map.x_start, 0, map.z_start)
 		local maxp = vector.new (map.x_start + width - 1, 0,
 					 map.z_start + width - 1)
@@ -1945,7 +1945,7 @@ local function is_scaling_recipe (craft_grid)
 end
 
 local function describe_map (start_x, start_z, scale)
-	local compass = lshift (MAP_DATA_LENGTH, scale - 1)
+	local compass = lshift (TEXTURE_SIDE_LENGTH, scale - 1)
 	local tbl = {
 		S ("Displays area: (@1, @2) - (@3, @4)", start_x, start_z,
 		   start_x + compass - 1, start_z + compass - 1), "\n",
@@ -2094,7 +2094,7 @@ local function convert_old_map_1 (itemstack)
 		file:close ()
 		local ok, width, height, pixels
 			= pcall (mcl_maps.get_targa_pixels, data)
-		if not ok or width ~= MAP_DATA_LENGTH or height ~= MAP_DATA_LENGTH then
+		if not ok or width ~= TEXTURE_SIDE_LENGTH or height ~= TEXTURE_SIDE_LENGTH then
 			local msg = S ("Format of existing map data is invalid: @1",
 				       tostring (width))
 			return nil, msg
@@ -2107,10 +2107,10 @@ local function convert_old_map_1 (itemstack)
 
 		-- Write pixels into the updated map.
 		local dst = map.data
-		for z = 0, MAP_DATA_LENGTH - 1 do
+		for z = 0, TEXTURE_SIDE_LENGTH - 1 do
 			local src_base = z * width + 1
-			local dst_base = (z + 1) * MAP_SIDE_LENGTH + 2
-			for x = 0, MAP_DATA_LENGTH - 1 do
+			local dst_base = (z + 1) * HEIGHTMAP_SIDE_LENGTH + 2
+			for x = 0, TEXTURE_SIDE_LENGTH - 1 do
 				dst[dst_base + x] = pixels[src_base + x]
 			end
 		end

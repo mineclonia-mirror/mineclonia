@@ -329,11 +329,11 @@ function mcl_serverplayer.send_map_metadata (player, metadata)
 end
 
 -- Assume that map IDs may be up to 99 characters in length.
-local MAX_MAP_DATA_LENGTH = MAX_PAYLOAD - 100
-mcl_serverplayer.MAX_MAP_DATA_LENGTH = MAX_MAP_DATA_LENGTH
+local MAX_TEXTURE_SIDE_LENGTH = MAX_PAYLOAD - 100
+mcl_serverplayer.MAX_TEXTURE_SIDE_LENGTH = MAX_TEXTURE_SIDE_LENGTH
 
 function mcl_serverplayer.send_map_data_packet (player, map, packet)
-	assert (#packet <= MAX_MAP_DATA_LENGTH,
+	assert (#packet <= MAX_TEXTURE_SIDE_LENGTH,
 		"oversized ClientboundMapDataPacket")
 	modchannels[player]:send_all (table.concat {
 		CLIENTBOUND_MAP_DATA_PACKET,
@@ -344,7 +344,7 @@ function mcl_serverplayer.send_map_data_packet (player, map, packet)
 end
 
 function mcl_serverplayer.send_map_data_finish (player, map, packet)
-	assert (#packet <= MAX_MAP_DATA_LENGTH,
+	assert (#packet <= MAX_TEXTURE_SIDE_LENGTH,
 		"oversized ClientboundMapDataFinish")
 	modchannels[player]:send_all (table.concat {
 		CLIENTBOUND_MAP_DATA_FINISH,
