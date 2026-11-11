@@ -18,10 +18,10 @@ local send_map_data_packet = mcl_serverplayer.send_map_data_packet
 local send_map_data_finish = mcl_serverplayer.send_map_data_finish
 local send_map_data_update = mcl_serverplayer.send_map_data_update
 
-local MAP_DATA_LENGTH = mcl_maps.MAP_DATA_LENGTH
-local MAP_SIZE = MAP_DATA_LENGTH * MAP_DATA_LENGTH
+local TEXTURE_SIDE_LENGTH = mcl_maps.TEXTURE_SIDE_LENGTH
+local MAP_SIZE = TEXTURE_SIDE_LENGTH * TEXTURE_SIDE_LENGTH
 local N = mcl_maps.N
-local UPDATE_SIZE = N * MAP_DATA_LENGTH
+local UPDATE_SIZE = N * TEXTURE_SIDE_LENGTH
 
 local function serialize_argb_data (dst, list, size)
 	for i = 1, size do
@@ -42,7 +42,7 @@ local function serialize_map_data (dst, list)
 end
 
 local dst = {}
-local MAX_MAP_DATA_LENGTH = mcl_serverplayer.MAX_MAP_DATA_LENGTH
+local MAX_TEXTURE_SIDE_LENGTH = mcl_serverplayer.MAX_TEXTURE_SIDE_LENGTH
 
 local function send_map_to_player (player, id, map, encoded_map)
 	serialize_map_data (dst, encoded_map)
@@ -68,11 +68,11 @@ local function send_map_to_player (player, id, map, encoded_map)
 
 	-- Send the encoded map data.
 	local len = #encoded_string
-	for i = 1, len, MAX_MAP_DATA_LENGTH do
+	for i = 1, len, MAX_TEXTURE_SIDE_LENGTH do
 		local rem = len - i + 1
 
-		if rem > MAX_MAP_DATA_LENGTH then
-			local str_end = i + MAX_MAP_DATA_LENGTH - 1
+		if rem > MAX_TEXTURE_SIDE_LENGTH then
+			local str_end = i + MAX_TEXTURE_SIDE_LENGTH - 1
 			local substr = encoded_string:sub (i, str_end)
 			send_map_data_packet (player, id, substr)
 		else
