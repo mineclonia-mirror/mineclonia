@@ -41,7 +41,7 @@ core.register_globalstep(function(dtime)
 	current_frame = new_frame
 end)
 
-mcl_player.register_globalstep(function(player, dtime)
+mcl_player.register_globalstep(function(player, dtime, plcache)
 	local frame
 	-- Clocks do not work in certain zones
 	if not mcl_worlds.clock_works(player:get_pos()) then
@@ -49,8 +49,7 @@ mcl_player.register_globalstep(function(player, dtime)
 	else
 		frame = current_frame
 	end
-	local inv = player:get_inventory()
-	for s, stack in pairs(inv:get_list("main")) do
+	for s, stack in pairs(plcache.inventory:get_list("main")) do
 		if core.get_item_group(stack:get_name(), "clock") > 0 then
 			if stack:get_name() ~= "mcl_clock:clock" then
 				-- compat to update inventories - aliases do not do this.
@@ -59,7 +58,7 @@ mcl_player.register_globalstep(function(player, dtime)
 			local m = stack:get_meta()
 			m:set_string("wield_image", clock_images[frame])
 			m:set_string("inventory_image", clock_images[frame])
-			inv:set_stack("main", s, stack)
+			plcache.inventory:set_stack("main", s, stack)
 		end
 	end
 end)

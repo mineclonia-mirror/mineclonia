@@ -120,7 +120,11 @@ core.register_globalstep(function(dtime)
 	for player in mcl_util.connected_players() do
 		for _, func in pairs(mcl_player.registered_globalsteps) do
 			if mcl_player.players[player] then
-				func(player, dtime)
+				func(player, dtime, {
+					wielded_item = player:get_wielded_item(),
+					inventory = player:get_inventory(),
+					properties = player:get_properties(),
+				})
 			end
 		end
 		table.insert (connected_player_cache, {
