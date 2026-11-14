@@ -474,10 +474,23 @@ local function serialize_texture (dst, list, off)
 			local b1 = rshift (band (value, 0xff00), 8)
 			local b2 = rshift (band (value, 0xff0000), 16)
 			local b3 = rshift (band (value, 0xff000000), 24)
-			dst[off + j * 4 - 3] = char (b0)
-			dst[off + j * 4 - 2] = char (b1)
-			dst[off + j * 4 - 1] = char (b2)
-			dst[off + j * 4] = char (b3)
+
+			-- encode A1R5G5B5
+			local a1 = b3 > 128 and 1 or 0
+			local r5 = rshift (b2, 3)
+			local g5 = rshift (b1, 3)
+			local b5 = rshift (b0, 3)
+
+			local pixel = bor(
+				lshift (a1, 15),
+				lshift (r5, 10),
+				lshift (g5, 5),
+				b5
+			)
+			local b0 = band (pixel, 0xff)
+			local b1 = rshift (pixel, 8)
+			dst[off + j * 2 - 1] = char (b0)
+			dst[off + j * 2] = char (b1)
 			j = j + 1
 		end
 	end
@@ -504,7 +517,7 @@ local function encode_tga_header (tga_type, width, height, bpp, bpp_alpha)
 	)
 end
 
-local texture_tga_header = encode_tga_header (2, TEXTURE_SIDE_LENGTH, TEXTURE_SIDE_LENGTH, 32, 8)
+local texture_tga_header = encode_tga_header (2, TEXTURE_SIDE_LENGTH, TEXTURE_SIDE_LENGTH, 16, 1)
 local heightmap_tga_header = encode_tga_header (2, HEIGHTMAP_SIDE_LENGTH, HEIGHTMAP_SIDE_LENGTH, 16, 0)
 local tga_footer = char (0, 0, 0, 0, 0, 0, 0, 0) .. "TRUEVISION-XFILE." .. char (0)
 
@@ -539,6 +552,11 @@ local function write_map_data (id, map)
 	end
 end
 
+local function expand5 (x)
+	x = band (x, 0x1f)
+	return bor (lshift (x, 3), rshift (x, 2))
+end
+
 local function deserialize_texture (dst, str, offset)
 	-- When deserializing a map texture, a one pixel wide border
 	-- that is used as padding in the internal representation of
@@ -558,12 +576,22 @@ local function deserialize_texture (dst, str, offset)
 		) then
 			dst[i] = byte(0)
 		else
-			local b0 = byte (str, j * 4 - 3 + offset)
-			local b1 = byte (str, j * 4 - 2 + offset)
-			local b2 = byte (str, j * 4 - 1 + offset)
-			local b3 = byte (str, j * 4 + offset)
-			dst[i] = bor (b0, lshift (b1, 8), lshift (b2, 16),
-				      lshift (b3, 24))
+			-- decode A1R5G5B5
+			local b0 = byte (str, j * 2 - 1 + offset)
+			local b1 = byte (str, j * 2 + offset)
+
+			local pixel = bor (lshift (b1, 8), b0)
+
+			local r = expand5 (rshift (pixel, 10))
+			local g = expand5 (rshift (pixel, 5))
+			local b = expand5 (pixel)
+
+			dst[i] = bor (
+			   band (-rshift (pixel, 15), 0xff000000),
+			   lshift (r, 16),
+			   lshift (g, 8),
+			   b
+			)
 			j = j + 1
 		end
 	end
