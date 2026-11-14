@@ -25,7 +25,23 @@ core.register_node("mcl_nether:glowstone", {
 		min_count = 2,
 		max_count = 4,
 		cap = 4,
-	}
+	},
+	_on_dispense = function(stack, _, droppos, dropnode, _)
+		print(dump(dropnode))
+		if core.get_item_group(dropnode.name, "respawn_anchor") > 0 then
+			if mcl_beds.charge_respawn_anchor(droppos, dropnode) then
+				return nil
+			end
+		else
+			local def = core.registered_nodes[dropnode.name]
+			if def and not def.walkable then
+				mcl_util.drop_item_stack(droppos, stack)
+				return nil
+			end
+		end
+		return stack
+	end,
+	_dispense_into_walkable = true,
 })
 
 core.register_node("mcl_nether:quartz_ore", {

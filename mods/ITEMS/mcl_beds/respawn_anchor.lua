@@ -6,24 +6,36 @@ local S = core.get_translator(core.get_current_modname())
 
 local light_level = {3, 7, 11, core.LIGHT_MAX}
 
-local function rightclick(pos, node, clicker, itemstack)
+function mcl_beds.charge_respawn_anchor(pos, node)
+	local node = node or core.get_node(pos)
+	if core.get_item_group(node.name, "respawn_anchor") == 0 then
+		return false
+	end
 	local charge_level = core.get_item_group(node.name, "charge_level")
+	if charge_level < 4 then
+		mcl_redstone.swap_node(pos, {name="mcl_beds:respawn_anchor_charged_"..charge_level+1})
+		return true
+	end
+	return false
+end
+
+local function rightclick(pos, node, clicker, itemstack)
 	local player_name = clicker:get_player_name()
 	if core.is_protected(pos, player_name) then
 		core.record_protection_violation(pos, player_name)
 		return itemstack
 	end
-	if itemstack:get_name() == "mcl_nether:glowstone" and charge_level ~= 4 then
-		mcl_redstone.swap_node(pos, {name="mcl_beds:respawn_anchor_charged_"..charge_level+1})
-		if not core.is_creative_enabled(player_name) then
+	local charge_level = core.get_item_group(node.name, "charge_level")
+	if itemstack:get_name() == "mcl_nether:glowstone" then
+		if mcl_beds.charge_respawn_anchor(pos, node) and not core.is_creative_enabled(player_name) then
 			itemstack:take_item()
 		end
 	elseif mcl_worlds.pos_to_dimension(pos) ~= "nether" then
-		if node.name ~= "mcl_beds:respawn_anchor" then --only charged respawn anchors are exploding in the overworld & end in minecraft
+		if charge_level > 0 then --only charged respawn anchors are exploding in the overworld & end in minecraft
 			core.remove_node(pos)
 			mcl_explosions.explode(pos, 5, {fire = true})
 		end
-	elseif string.match(node.name, "mcl_beds:respawn_anchor_charged_") then
+	elseif charge_level > 0 then
 		core.chat_send_player(player_name, S("New respawn position set!"))
 		mcl_spawn.set_spawn_pos(clicker, pos, nil)
 		if charge_level == 4 then
