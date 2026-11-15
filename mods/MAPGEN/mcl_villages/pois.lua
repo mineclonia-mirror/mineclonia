@@ -611,7 +611,9 @@ mcl_villages.register_poi ("mcl_villages:armorer", {
 	is_valid = function (nodepos)
 		local node = core.get_node (nodepos)
 		return (node.name == "ignore"
-			or node.name == "mcl_blast_furnace:blast_furnace")
+			or node.name == "mcl_blast_furnace:blast_furnace"
+			or node.name == "mcl_blast_furnace:blast_furnace_active"
+		)
 	end,
 	village_center = true,
 })
@@ -620,7 +622,9 @@ mcl_villages.register_poi ("mcl_villages:butcher", {
 	is_valid = function (nodepos)
 		local node = core.get_node (nodepos)
 		return (node.name == "ignore"
-			or node.name == "mcl_smoker:smoker")
+			or node.name == "mcl_smoker:smoker"
+			or node.name == "mcl_smoker:smoker_active"
+		)
 	end,
 	village_center = true,
 })
@@ -756,6 +760,7 @@ local function any_poi_valid ()
 		local node = core.get_node (nodepos)
 		return (node.name == "ignore"
 			or node.name == "mcl_blast_furnace:blast_furnace"
+			or node.name == "mcl_blast_furnace:blast_furnace_active"
 			or node.name == "mcl_cartography_table:cartography_table"
 			or node.name == "mcl_fletching_table:fletching_table"
 			or node.name == "mcl_grindstone:grindstone"
@@ -763,6 +768,7 @@ local function any_poi_valid ()
 			or node.name == "mcl_loom:loom"
 			or node.name == "mcl_smithing_table:table"
 			or node.name == "mcl_smoker:smoker"
+			or node.name == "mcl_smoker:smoker_active"
 			or node.name == "mcl_stonecutter:stonecutter"
 			or node.name == "mcl_barrels:barrel_closed"
 			or node.name == "mcl_barrels:barrel_open"
