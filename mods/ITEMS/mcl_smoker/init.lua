@@ -2,6 +2,7 @@ local modname = core.get_current_modname()
 local S = core.get_translator(modname)
 
 mcl_furnaces.register_furnace("mcl_smoker:smoker", {
+	name = "smoker",
 	cook_group = "smoker_cookable",
 	factor = 2,
 	node_normal = {

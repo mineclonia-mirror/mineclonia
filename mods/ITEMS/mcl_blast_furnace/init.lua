@@ -2,6 +2,7 @@ local modname = core.get_current_modname()
 local S = core.get_translator(modname)
 
 mcl_furnaces.register_furnace("mcl_blast_furnace:blast_furnace", {
+	name = "blast_furnace",
 	cook_group = "blast_furnace_smeltable",
 	factor = 2,
 	node_normal = {
