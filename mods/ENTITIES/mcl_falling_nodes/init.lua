@@ -135,8 +135,8 @@ core.register_entity(":__builtin:falling_node", {
 	on_step = function(self, dtime)
 		-- Set gravity
 		local acceleration = self.object:get_acceleration()
-		if not vector.equals(acceleration, {x = 0, y = -10, z = 0}) then
-			self.object:set_acceleration({x = 0, y = -10, z = 0})
+		if not vector.equals(acceleration, vector.new(0, -10, 0)) then
+			self.object:set_acceleration(vector.new(0, -10, 0))
 		end
 		-- Turn to actual node when colliding with ground, or continue to move
 		local pos = self.object:get_pos()
@@ -151,7 +151,7 @@ core.register_entity(":__builtin:falling_node", {
 		end
 
 		-- Position of bottom center point
-		local bcp = {x = pos.x, y = pos.y - 0.7, z = pos.z}
+		local bcp = vector.offset(pos, 0, -0.7, 0)
 		-- Avoid bugs caused by an unloaded node below
 		local bcn = core.get_node_or_nil(bcp)
 		local bcd = bcn and core.registered_nodes[bcn.name]
@@ -220,7 +220,7 @@ core.register_entity(":__builtin:falling_node", {
 		end
 		local vel = self.object:get_velocity()
 		-- Fix position if entity does not move
-		if vector.equals(vel, {x = 0, y = 0, z = 0}) then
+		if vector.equals(vel, vector.zero()) then
 			local npos = vector.round(self.object:get_pos())
 			local npos2 = table.copy(npos)
 			npos2.y = npos2.y - 2
