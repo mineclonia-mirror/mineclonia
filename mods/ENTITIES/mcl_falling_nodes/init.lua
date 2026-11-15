@@ -142,7 +142,7 @@ core.register_entity(":__builtin:falling_node", {
 		local pos = self.object:get_pos()
 
 		-- Portal check
-		local np = {x = pos.x, y = pos.y + 0.3, z = pos.z}
+		local np = vector.offset(pos, 0, 0.3, 0)
 		local n2 = core.get_node(np)
 		if n2.name == "mcl_portals:portal_end" then
 			-- TODO: Teleport falling node.
