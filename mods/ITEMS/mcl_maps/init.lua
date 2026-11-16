@@ -564,9 +564,17 @@ local function write_map_data (id, map)
 	end
 end
 
-local function expand5 (x)
-	x = band (x, 0x1f)
-	return bor (lshift (x, 3), rshift (x, 2))
+
+local function scale_sample_5_to_8 (input_sample)
+	-- this function scales a 5 bit sample to 8 bit
+	-- <https://www.w3.org/TR/2003/REC-PNG-20031110/#12Sample-depth-scaling>
+	return math.floor ((input_sample * 255 / 31) + 0.5)
+end
+
+local SCALE_CACHE_5_TO_8 = {}
+
+for i = 0,31 do
+	SCALE_CACHE_5_TO_8[i] = scale_sample_5_to_8 (i)
 end
 
 local function deserialize_texture (dst, str, offset)
@@ -594,9 +602,9 @@ local function deserialize_texture (dst, str, offset)
 
 			local pixel = bor (lshift (b1, 8), b0)
 
-			local r = expand5 (rshift (pixel, 10))
-			local g = expand5 (rshift (pixel, 5))
-			local b = expand5 (pixel)
+			local r = SCALE_CACHE_5_TO_8[band (rshift (pixel, 10), 31)]
+			local g = SCALE_CACHE_5_TO_8[band (rshift (pixel, 5), 31)]
+			local b = SCALE_CACHE_5_TO_8[band (pixel, 31)]
 
 			dst[i] = bor (
 			   band (-rshift (pixel, 15), 0xff000000),
