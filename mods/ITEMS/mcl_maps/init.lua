@@ -440,6 +440,18 @@ end
 
 local byte = string.byte
 
+local function rescale_sample_8_to_5 (input_sample)
+	-- this function rescales an 8 bit sample to 5 bit
+	-- <https://www.w3.org/TR/2003/REC-PNG-20031110/#13Sample-depth-rescaling>
+	return math.floor ((input_sample * 31 / 255) + 0.5)
+end
+
+local RESCALE_CACHE_8_TO_5 = {}
+
+for i = 0,255 do
+	RESCALE_CACHE_8_TO_5[i] = rescale_sample_8_to_5 (i)
+end
+
 local function serialize_texture (dst, list, off)
 	assert (#list == HEIGHTMAP_SIDE_LENGTH * HEIGHTMAP_SIDE_LENGTH)
 	-- When serializing a map texture, a one pixel wide border
@@ -477,9 +489,9 @@ local function serialize_texture (dst, list, off)
 
 			-- encode A1R5G5B5
 			local a1 = b3 > 128 and 1 or 0
-			local r5 = rshift (b2, 3)
-			local g5 = rshift (b1, 3)
-			local b5 = rshift (b0, 3)
+			local r5 = RESCALE_CACHE_8_TO_5[b2]
+			local g5 = RESCALE_CACHE_8_TO_5[b1]
+			local b5 = RESCALE_CACHE_8_TO_5[b0]
 
 			local pixel = bor(
 				lshift (a1, 15),
