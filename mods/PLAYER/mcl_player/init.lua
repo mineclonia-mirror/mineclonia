@@ -48,10 +48,64 @@ end
 
 local slow_gs_timer = 0.5
 
+local cache_funcs = {
+	"get_pos",
+	"get_wielded_item",
+	"get_properties",
+	"get_inventory",
+	"get_player_name",
+	"get_velocity",
+	"get_look_horizontal",
+	"get_look_vertical",
+}
+
+local function create_fake_player(player)
+	local obj = {
+		player = player,
+		cache = {},
+		cached = {},
+		is_fake_player = true,
+	}
+
+	function obj:refresh()
+		for _, f in pairs(cache_funcs) do
+			self.cache[f] = self.player[f](self.player)
+			self.cached[f] = true
+		end
+	end
+
+	function obj:get(f, ...)
+		if self.cached[f] then
+			return self.cache[f]
+		elseif type(self.player[f]) == "function" then
+			return self.player[f](self.player, ...)
+		end
+	end
+
+	setmetatable(obj, {
+		__index = function(self, k)
+			if type(self.player[k]) == "function" then
+				return function(_, ...)
+					return self:get(k, ...)
+				end
+			end
+			return self.player[k]
+		end,
+	})
+	return obj
+end
+
+
 core.register_on_joinplayer(function(player)
-	mcl_player.players[player] = table.copy(tpl_playerinfo)
-	mcl_player.players[player].inventory_formspecs = {}
-	mcl_player.players[player].nodes = {}
+	local fp = create_fake_player(player)
+	local pl = table.merge(tpl_playerinfo, {
+		inventory_formspecs = {},
+		nodes = {},
+		fake_player = fp,
+		player = player,
+	})
+	mcl_player.players[fp] = pl
+	mcl_player.players[player] = pl
 	player:get_inventory():set_size("hand", 1)
 	for bone, pos in pairs(bone_start_positions) do
 		mcl_util.set_bone_position(player, bone, pos, vector.zero())
@@ -118,9 +172,10 @@ end
 core.register_globalstep(function(dtime)
 	connected_player_cache = {}
 	for player in mcl_util.connected_players() do
+		mcl_player.players[player].fake_player:refresh()
 		for _, func in pairs(mcl_player.registered_globalsteps) do
 			if mcl_player.players[player] then
-				func(player, dtime)
+				func(player, dtime, mcl_player.players[player].fake_player)
 			end
 		end
 		table.insert (connected_player_cache, {
@@ -136,7 +191,7 @@ core.register_globalstep(function(dtime)
 	for player in mcl_util.connected_players() do
 		for _, func in pairs(mcl_player.registered_globalsteps_slow) do
 			if mcl_player.players[player] then
-				func(player, dtime)
+				func(player, dtime, mcl_player.players[player].fake_player)
 			end
 		end
 		mcl_player.players[player].lastPos = player:get_pos()
