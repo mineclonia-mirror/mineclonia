@@ -610,6 +610,18 @@ mcl_potions.register_effect({
 
 mcl_mobs.make_physics_factor_persistent ("mcl_potions:levitation")
 
+local function step2lut(step)
+	if not step then return {} end
+	local step = math.max(1, math.min(step, 16))
+	local lut = {}
+	local b = 255
+	for i = 16,0,-step do
+		b = b - step
+		lut[i] = b
+	end
+	return lut
+end
+
 mcl_potions.register_effect({
 	name = "night_vision",
 	description = S("Night Vision"),
@@ -619,7 +631,12 @@ mcl_potions.register_effect({
 	on_start = function(object)
 		if object:is_player () then
 			object:get_meta():set_int("night_vision", 1)
-			mcl_weather.skycolor.update_sky_color({object})
+			object:set_lighting({
+				static = {
+					light_curve = step2lut(5)
+				}
+			})
+			--mcl_weather.skycolor.update_sky_color({object})
 		end
 	end,
 	on_load = function(object)
@@ -636,9 +653,14 @@ mcl_potions.register_effect({
 	end,
 	on_end = function(object)
 		if object:is_player () then
-		local meta = object:get_meta()
-		meta:set_int("night_vision", 0)
-		mcl_weather.skycolor.update_sky_color({object})
+			local meta = object:get_meta()
+			meta:set_int("night_vision", 0)
+			object:set_lighting({
+				static = {
+					light_curve = step2lut()
+				}
+			})
+			--mcl_weather.skycolor.update_sky_color({object})
 		end
 	end,
 	particle_color = "#C2FF66",
