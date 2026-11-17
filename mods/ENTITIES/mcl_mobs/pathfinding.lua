@@ -1675,12 +1675,6 @@ function mob_class:gwp_edges (context, node)
 end
 
 if luajit_present and not mcl_vars.jit_off then
-	-- jit.off (mob_class.gwp_edges, true)
-	-- jit.off (gwp_edges_1, true)
-	-- jit.off (mob_class.gwp_classify_node, true)
-	-- jit.off (gwp_basic_classify, true)
-	-- jit.off (mob_class.gwp_essay_drop, true)
-	-- jit.off (mob_class.gwp_essay_jump, true)
 	jit.opt.start ("maxtrace=24000", "maxrecord=32000",
 		       "minstitch=3", "maxmcode=163840",
 		       "loopunroll=40", "maxside=1000")

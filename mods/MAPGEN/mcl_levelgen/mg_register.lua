@@ -9,8 +9,6 @@ local mathmax = math.max
 mcl_levelgen.initialize_nodeprops_in_async_env ()
 mcl_levelgen.initialize_portable_schematics ()
 
--- local zone = require ("jit.zone")
-
 if core.global_exists ("jit") and not mcl_vars.jit_off then
 	jit.opt.start ("maxmcode=40960", "maxtrace=100000",
 		       -- Just large enough that loops employing RNGs
@@ -19,9 +17,6 @@ if core.global_exists ("jit") and not mcl_vars.jit_off then
 		       -- not.
 		       "loopunroll=35", "maxside=8000", "maxsnap=1000",
 		       "maxrecord=8000")
-	-- require ("jit.dump").start ("+birxmT", "server_perf.txt")
-	-- local profile = require ("jit.p")
-	-- profile.start ("fv")
 end
 
 -- Load carvers into biome descriptions.
@@ -40,28 +35,6 @@ local function index (x, y, z)
 end
 
 local floor = math.floor
-
--- local profile = require ("jit.p")
--- local v = require ("jit.v")
-
--- local function do_jit_ctrl ()
--- 	if core.ipc_get ("mcl_levelgen:jit_flush") then
--- 		jit.flush ()
--- 		core.ipc_set ("mcl_levelgen:jit_flush", false)
--- 	end
--- 	if core.ipc_get ("mcl_levelgen:jit_profiler") then
--- 		profile.start ("f2v")
--- 		core.ipc_set ("mcl_levelgen:jit_profiler", false)
--- 	end
--- 	if core.ipc_get ("mcl_levelgen:jit_v") then
--- 		require ("jit.v").start ()
--- 		core.ipc_set ("mcl_levelgen:jit_profiler", false)
--- 	end
--- 	if core.ipc_get ("mcl_levelgen:jit_profiler_flush") then
--- 		profile.stop ()
--- 		core.ipc_set ("mcl_levelgen:jit_profiler_flush", false)
--- 	end
--- end
 
 local function unpack6 (x)
 	return x[1], x[2], x[3], x[4], x[5], x[6]
@@ -92,8 +65,6 @@ end
 local dims_intersecting = mcl_levelgen.dims_intersecting
 
 core.register_on_generated (function (vmanip, minp, maxp, _)
-	-- profile.start ("5fv")
-	-- do_jit_ctrl ()
 	local emin, emax = vmanip:get_emerged_area ()
 	area = VoxelArea (vector.subtract (emin, minp),
 			  vector.subtract (emax, minp))
@@ -120,15 +91,9 @@ core.register_on_generated (function (vmanip, minp, maxp, _)
 		local level_height = preset.height / 16
 		assert (level_min == floor (level_min))
 		assert (level_height == floor (level_height))
-		-- print (string.format ("{%d,%d,%d,%d,%d,%d,},", minp.x, minp.y, minp.z,
-		-- 		      maxp.x, maxp.y, maxp.z))
-		-- local clock = core.get_us_time ()
-		-- zone ("Biome generation")
 		mcl_levelgen.generate_biomes_at_block (preset, biomes, block_x,
 						       level_min, block_z,
 						       mt_chunksize.x, level_height)
-		-- zone ()
-		-- zone ("Terrain generation")
 		if not terrain:generate (minp.x, dim.y_offset + minp.y,
 					 -minp.z - chunksize, cids, param2s,
 					 structuremask, index, biomes) then
@@ -138,8 +103,6 @@ core.register_on_generated (function (vmanip, minp, maxp, _)
 			core.save_gen_notify ("mcl_levelgen:structure_pieces", nil)
 			return
 		end
-		-- print (string.format ("%.2f", (core.get_us_time () - clock) / 1000))
-		-- zone ()
 		vmanip:set_data (cids)
 		vmanip:set_param2_data (param2s)
 
@@ -155,13 +118,11 @@ core.register_on_generated (function (vmanip, minp, maxp, _)
 		transform_structure_pieces (pieces, dim, minp, maxp)
 		core.save_gen_notify ("mcl_levelgen:structure_pieces", pieces)
 
-		-- zone ("Biome encoding")
 		local compressed
 			= mcl_levelgen.encode_biomes (biomes, block_y - level_min,
 						      mt_chunksize.y, mt_chunksize.x,
 						      level_height)
 		core.save_gen_notify ("mcl_levelgen:biome_data", compressed)
-		-- zone ()
 
 		core.save_gen_notify ("mcl_levelgen:level_height_map", {
 			level = terrain.heightmap,

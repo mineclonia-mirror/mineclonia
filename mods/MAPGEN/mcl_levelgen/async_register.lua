@@ -7,9 +7,6 @@ if core.global_exists ("jit") and not mcl_vars.jit_off then
 		       "loopunroll=35", "maxside=1000")
 end
 
--- jit.p = require ("jit.p")
--- jit.p.start ("fvm1")
-
 mcl_levelgen.load_feature_environment = true
 
 -- Load `features.lua' a second time to define the feature generation

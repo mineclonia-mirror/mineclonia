@@ -826,7 +826,7 @@ local function seed_from_position (seed, x, y, z)
 	ashrull (seed, 16)
 end
 
-if true and detect_luajit () then
+if detect_luajit () then
 	local str = [[
 	local rshift = bit.rshift
 	local arshift = bit.arshift
