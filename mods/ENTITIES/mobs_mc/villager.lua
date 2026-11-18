@@ -628,25 +628,27 @@ style_type[label;textcolor=white]
 
 -- arg 1 = %f = H for container
 -- arg 2 = %i = trade number
--- arg 3 = %s = wanted 1
--- arg 4 = %s = wanted 1 tooltip
--- arg 5 = %s = wanted 1 count
+-- arg 3 = %s = wanted 1 element (item_image or image)
+-- arg 4 = %s = wanted 1
+-- arg 5 = %s = wanted 1 tooltip
+-- arg 6 = %s = wanted 1 count
 local fs_trade_start_template = [[
 container[0.1,%f2]
 	button[0.0,0.0;3.05,0.6;trade_%i;]
 
-	item_image[0.02,0.03;0.5,0.5;%s]
+	%s[0.02,0.03;0.5,0.5;%s]
 	tooltip[0.1,0.0;0.5,0.5;%s]
 	label[0.3,0.35;%s]
 
 ]]
 
--- arg 1 = %s = wanted 2
--- arg 2 = %s = wanted 2 tooltip
--- arg 3 = %s = wanted 2 count
+-- arg 1 = %s = wanted 2 element (item_image or image)
+-- arg 2 = %s = wanted 2
+-- arg 3 = %s = wanted 2 tooltip
+-- arg 4 = %s = wanted 2 count
 local fs_trade_wants2_template = [[
 
-	item_image[0.6,0.03;0.5,0.5;%s]
+	%s[0.6,0.03;0.5,0.5;%s]
 	tooltip[0.6,0.1;0.5,0.5;%s]
 	label[0.8,0.35;%s]
 
@@ -675,11 +677,12 @@ local fs_trade_disabled_template = [[
 
 ]]
 
--- arg 1 = %s = offered
--- arg 2 = %s = offered tooltip
--- arg 3 = %s = offered count
+-- arg 1 = %s = offered element (item_image or image)
+-- arg 2 = %s = offered
+-- arg 3 = %s = offered tooltip
+-- arg 4 = %s = offered count
 local fs_trade_end_template = [[
-	item_image[2.5,0.03;0.5,0.5;%s]
+	%s[2.5,0.03;0.5,0.5;%s]
 	tooltip[2.5,0.0;0.5,0.5;%s]
 	label[2.8,0.35;%s]
 
@@ -710,34 +713,37 @@ mcl_formspec.get_itemslot_bg_v4(3.97,7.98,9,1)
 
 ]]
 
--- arg 1 = %s = wanted
--- arg 2 = %s = wanted tooltip
--- arg 3 = %s = wanted count
+-- arg 1 = %s = wanted element (item_image or image)
+-- arg 2 = %s = wanted
+-- arg 3 = %s = wanted tooltip
+-- arg 4 = %s = wanted count
 local fs_wants_template = [[
 
-	item_image[6.4,0.75;1.0,1.0;%s]
+	%s[6.4,0.75;1.0,1.0;%s]
 	tooltip[6.4,0.75;1.0,1.0;%s]
 	label[7.20,1.7;%s]
 
 ]]
 
--- arg 1 = %s = wanted 2
--- arg 2 = %s = wanted 2 tooltip
--- arg 3 = %s = wanted 2 count
+-- arg 1 = %s = wanted 2 element (item_image or image)
+-- arg 2 = %s = wanted 2
+-- arg 3 = %s = wanted 2 tooltip
+-- arg 4 = %s = wanted 2 count
 local fs_wants2_template = [[
 
-	item_image[7.6,0.75;1.0,1.0;%s]
+	%s[7.6,0.75;1.0,1.0;%s]
 	tooltip[7.6,0.75;1.0,1.0;%s]
 	label[8.5,1.7;%s]
 
 ]]
 
--- arg 1 = %s = offered
--- arg 2 = %s = offered tooltip
--- arg 3 = %s = offered count
+-- arg 1 = %s = offered element (item_image or image)
+-- arg 2 = %s = offered
+-- arg 3 = %s = offered tooltip
+-- arg 4 = %s = offered count
 local fs_offered_template = [[
 
-	item_image[11.1,0.75;1.0,1.0;%s]
+	%s[11.1,0.75;1.0,1.0;%s]
 	tooltip[11.1,0.75;1.0,1.0;%s]
 	label[11.95,1.7;%s]
 
@@ -764,6 +770,16 @@ local function count_string (count)
 		count = ""
 	end
 	return tostring (count)
+end
+
+local function get_item_image(stack)
+	local inventory_overlay = stack:get_meta():get_string("inventory_overlay")
+
+	if inventory_overlay and inventory_overlay != "" then
+		return "image", inventory_overlay
+	end
+
+	return "item_image", stack:get_name()
 end
 
 function villager_base:show_trade_formspec (player, tradenum)
@@ -815,33 +831,40 @@ function villager_base:show_trade_formspec (player, tradenum)
 			h = h + 0.2
 		end
 
+		local image_element, image_name
+
 		if i == tradenum then
 			table.insert (formspec, fs_trade_pushed_template)
-			str = string.format (fs_wants_template, wanted1:get_name (),
+			image_element, image_name = get_item_image(wanted1)
+			str = string.format (fs_wants_template, image_element, image_name,
 					     F (wanted1:get_description ()),
 					     count_string (wanted1:get_count ()))
 			table.insert (trade_str, str)
 			if not wanted2:is_empty () then
-				str = string.format (fs_wants2_template, wanted2:get_name (),
+				image_element, image_name = get_item_image(wanted2)
+				str = string.format (fs_wants2_template, image_element, image_name,
 						     F (wanted2:get_description ()),
 						     count_string (wanted2:get_count ()))
 				table.insert (trade_str, str)
 			end
-			str = string.format (fs_offered_template, offered:get_name (),
+			image_element, image_name = get_item_image(offered)
+			str = string.format (fs_offered_template, image_element, image_name,
 					     F (offered:get_description ()),
 					     count_string (offered:get_count ()))
 			table.insert (trade_str, str)
 		end
 
+		image_element, image_name = get_item_image(wanted1)
 		str = string.format (fs_trade_start_template, h, i,
-				     wanted1:get_name (),
+				     image_element, image_name,
 				     F (wanted1:get_description ()),
 				     count_string (wanted1:get_count ()))
 		table.insert (formspec, str)
 
 		if not wanted2:is_empty () then
+			image_element, image_name = get_item_image(wanted2)
 			str = string.format (fs_trade_wants2_template,
-					     wanted2:get_name (),
+					     image_element, image_name,
 					     F (wanted2:get_description ()),
 					     count_string (wanted2:get_count ()))
 			table.insert (formspec, str)
@@ -853,8 +876,9 @@ function villager_base:show_trade_formspec (player, tradenum)
 			table.insert (formspec, fs_trade_arrow_template)
 		end
 
+		image_element, image_name = get_item_image(offered)
 		str = string.format (fs_trade_end_template,
-				     offered:get_name (),
+				     image_element, image_name,
 				     F (offered:get_description ()),
 				     count_string (offered:get_count ()))
 		table.insert (formspec, str)
