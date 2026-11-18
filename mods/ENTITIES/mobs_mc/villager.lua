@@ -132,6 +132,15 @@ end
 
 function trade_class:get_offered ()
 	local stack = ItemStack (self.offered)
+
+	-- Fix librarians with candles which previously had wrong description
+	if stack:get_name() == "mcl_candles:candle_1" then
+		local description = stack:get_meta():get_string("description")
+		if not description or description == "" then
+			tt.reload_itemstack_description(stack)
+		end
+	end
+
 	if mcl_enchanting.is_enchanted (stack:get_name ()) then
 		mcl_enchanting.load_enchantments (stack)
 	end
@@ -1733,6 +1742,7 @@ local villager_trades = {
 					local stack = ItemStack("mcl_candles:candle_1")
 					if core.global_exists("mcl_candles") then
 						mcl_candles.set_candle_properties(stack, "red")
+						tt.reload_itemstack_description(stack)
 					end
 					return stack
 				end, 1, 1 }, 12, 1},
@@ -1740,6 +1750,7 @@ local villager_trades = {
 					local stack = ItemStack("mcl_candles:candle_1")
 					if core.global_exists("mcl_candles") then
 						mcl_candles.set_candle_properties(stack, "yellow")
+						tt.reload_itemstack_description(stack)
 					end
 					return stack
 				end, 1, 1 }, 12, 1}
