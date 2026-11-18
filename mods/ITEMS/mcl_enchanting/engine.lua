@@ -811,6 +811,7 @@ end
 function mcl_enchanting.look_at(self, pos2)
 	local pos1 = self.object:get_pos()
 	local vec = vector.subtract(pos1, pos2)
+	if vec.x == 0 then return end
 	local yaw = math.atan(vec.z / vec.x) - math.pi / 2
 	yaw = yaw + (pos1.x >= pos2.x and math.pi or 0)
 	self.object:set_yaw(yaw + math.pi)
