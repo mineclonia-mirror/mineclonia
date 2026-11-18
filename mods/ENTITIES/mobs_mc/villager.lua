@@ -1684,6 +1684,7 @@ local villager_trades = {
 					local stack = ItemStack("mcl_candles:candle_1")
 					if core.global_exists("mcl_candles") then
 						mcl_candles.set_candle_properties(stack, "red")
+						tt.reload_itemstack_description(stack)
 					end
 					return stack
 				end, 1, 1 }, 12, 1},
@@ -1691,6 +1692,7 @@ local villager_trades = {
 					local stack = ItemStack("mcl_candles:candle_1")
 					if core.global_exists("mcl_candles") then
 						mcl_candles.set_candle_properties(stack, "yellow")
+						tt.reload_itemstack_description(stack)
 					end
 					return stack
 				end, 1, 1 }, 12, 1}
