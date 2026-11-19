@@ -19,7 +19,6 @@ mobs_mc.is_mob_griefing_enabled = function(mob_name)
 	return mcl_vars.mobs_griefing
 end
 
--- Load mobs in the right order.
 local path = core.get_modpath(core.get_current_modname())
 local files = {
 	"spawning.lua",
@@ -77,6 +76,7 @@ local files = {
 	"zombiepig.lua",
 	"piglin.lua",
 }
-for _, file in pairs (files) do
+for _, file in ipairs (files) do 
+	--must use ipairs because the order is significant according to previous comments even though it used to be pairs for the longest time
 	dofile (path .. "/" .. file)
 end
