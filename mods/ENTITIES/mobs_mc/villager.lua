@@ -1102,7 +1102,7 @@ local villager_professions = {
 	},
 	{
 		description = S ("Shepherd"),
-		name = "shepherd",
+		name = "shepherdo",
 		poi = "mcl_villages:shepherd",
 		group = "mcl_loom:loom",
 		texture = "mobs_mc_villager_profession_shepherd.png",
@@ -1465,9 +1465,11 @@ function villager:reload_trades ()
 		self:update_trades ({})
 		return
 	end
-
 	local trades = villager_trades[self._profession]
-	assert (trades)
+	if not trades then
+		return --if the profession is set but unknown try not to touch it
+	end
+
 	local villager_trades = {}
 	for tier, trade_list in ipairs (trades) do
 		if tier > self._tier then
@@ -1789,7 +1791,7 @@ function villager:mob_activate (staticdata, dtime)
 	end
 	if self._profession then
 		local profession = professions_by_name[self._profession]
-		self.description = profession.description
+		self.description = profession and profession.description or tostring(self.profession)
 	end
 	return true
 end
