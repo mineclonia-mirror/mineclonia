@@ -1436,7 +1436,7 @@ function mob_class:get_wielditem ()
 end
 
 function mob_class:use_wielditem ()
-	if self._wielditem ~= "" then
+	if self._wielditem and self._wielditem ~= "" then
 		self._using_wielditem = 0.0
 	end
 end
