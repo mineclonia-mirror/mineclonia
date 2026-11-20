@@ -22,8 +22,8 @@ core.register_on_mods_loaded(function()
 	end
 end)
 
-mcl_player.register_globalstep(function(player)
-	local pos = player:get_pos()
+mcl_player.register_globalstep(function(player, dtime, cached_player)
+	local pos = cached_player:get_pos()
 	local npos = vector.add(pos, mcl_player.node_offsets.stand)
 	local node = core.get_node(npos)
 	if on_object_over[mcl_player.players[player].nodes.stand] then
