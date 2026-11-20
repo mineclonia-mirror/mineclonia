@@ -135,7 +135,7 @@ core.register_on_leaveplayer(function(player)
 	mcl_bossbars.bars[name] = nil
 end)
 
-mcl_player.register_globalstep(function(player, dtime)
+mcl_player.register_globalstep(function(_, dtime, player)
 	local name = player:get_player_name()
 	local bars = mcl_bossbars.bars[name]
 	local huds = mcl_bossbars.huds[name]
