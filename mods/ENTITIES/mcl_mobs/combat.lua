@@ -1279,8 +1279,6 @@ function mob_class:check_attack (self_pos, dtime)
 		elseif attack_type == "melee" then
 			self:attack_melee (attach_pos, self_pos, dtime, target_pos,
 					   line_of_sight)
-		else
-			core.log ("warning", "Attack type undefined: " .. self.attack_type)
 		end
 
 		return true
