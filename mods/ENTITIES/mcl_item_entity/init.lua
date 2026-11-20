@@ -63,7 +63,7 @@ local function find_closest_player (player, object, range) -- Find players close
 	return result
 end
 
-mcl_player.register_globalstep(function(player)
+mcl_player.register_globalstep(function(_, _, player)
 	if player:get_hp() > 0 or not enabled_damage then
 		local range_item = item_drop_settings.radius_magnet
 		local range_xp = item_drop_settings.xp_radius_magnet
