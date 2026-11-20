@@ -964,7 +964,7 @@ function mob_class:attack_melee (attach_pos, self_pos, dtime, target_pos, line_o
 	self._gopath_delay = delay
 
 	-- Can the target be attacked?
-	local delay = math.max (self._attack_delay - dtime, 0)
+	delay = math.max (self._attack_delay - dtime, 0)
 	if self:pre_melee_attack (distance, delay, line_of_sight) then
 		self:look_at (target_pos)
 		self:custom_attack ()
