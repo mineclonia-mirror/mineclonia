@@ -794,7 +794,7 @@ function mob_class:attack_bowshoot (attach_pos, self_pos, dtime, target_pos,
 		if not line_of_sight and vistime < -3 then
 			self:release_wielditem ()
 		elseif line_of_sight then
-			if self._using_wielditem > 1.0 then
+			if self._using_wielditem >= mcl_bows.BOW_CHARGE_TIME_FULL then
 				self:release_wielditem ()
 				local vec = {
 					x = target.x - shoot_pos.x,
