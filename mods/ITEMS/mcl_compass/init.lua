@@ -134,7 +134,7 @@ local function update_recovery_compass(stack, player)
 	return update_compass_img(stack, frame)
 end
 
-mcl_player.register_globalstep(function(player, dtime)
+mcl_player.register_globalstep(function(_, _, player)
 	local inv = player:get_inventory()
 	for j, stack in pairs(inv:get_list("main")) do
 		local compass_group = core.get_item_group(stack:get_name(), "compass")
