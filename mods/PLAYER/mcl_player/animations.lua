@@ -260,10 +260,10 @@ end
 
 local ENTITY_CRAMMING_MAX = 24
 
-mcl_player.register_globalstep (function (player, dtime)
+mcl_player.register_globalstep (function (player, dtime, cached_player)
 	local tbl = mcl_player.players[player]
 	local cx, cz, count = player_collision (player)
-	local self_pos = player:get_pos ()
+	local self_pos = cached_player:get_pos ()
 
 	if tbl.cram_timer then
 		local t = tbl.cram_timer - dtime
@@ -279,7 +279,7 @@ mcl_player.register_globalstep (function (player, dtime)
 		}
 		mcl_damage.finish_reason (reason)
 		mcl_util.deal_damage (player, 6.0, reason)
-		if player:get_hp () == 0 then
+		if cached_player:get_hp () == 0 then
 			return
 		end
 	end
@@ -310,15 +310,15 @@ mcl_player.register_globalstep (function (player, dtime)
 			tbl._has_impulse = self_pos
 		end
 	end
-	local name = player:get_player_name()
+	local name = cached_player:get_player_name()
 	local model_name = tbl.model
 	local model = model_name and mcl_player.registered_player_models[model_name]
-	local control = player:get_player_control()
-	local parent = player:get_attach()
-	local wielded = player:get_wielded_item()
+	local control = cached_player:get_player_control()
+	local parent = cached_player:get_attach()
+	local wielded = cached_player:get_wielded_item()
 	local wielded_def = wielded:get_definition()
-	local wielded_itemname = player:get_wielded_item():get_name()
-	local player_velocity = player:get_velocity()
+	local wielded_itemname = cached_player:get_wielded_item():get_name()
+	local player_velocity = cached_player:get_velocity()
 	local elytra = tbl.elytra and tbl.elytra.active
 
 	if player_velocity.x + player_velocity.y < .5 then
@@ -326,8 +326,8 @@ mcl_player.register_globalstep (function (player, dtime)
 	end
 
 	-- control head bone
-	local pitch = - math.deg(player:get_look_vertical())
-	local yaw = math.deg(player:get_look_horizontal())
+	local pitch = - math.deg(cached_player:get_look_vertical())
+	local yaw = math.deg(cached_player:get_look_horizontal())
 
 	local player_vel_yaw = math.deg(core.dir_to_yaw(player_velocity))
 	if player_vel_yaw == 0 then
@@ -373,10 +373,10 @@ mcl_player.register_globalstep (function (player, dtime)
 		-- ask if player is sprinting
 		local is_sprinting = mcl_sprint.is_sprinting(name)
 
-		local velocity = player:get_velocity()
+		local velocity = cached_player:get_velocity()
 
 		-- Apply animations based on what the player is doing
-		if player:get_hp() == 0 then --dead
+		if cached_player:get_hp() == 0 then --dead
 			mcl_player.player_set_animation(player, "die")
 		elseif elytra then --using elytra
 			prev_yaw = prev_yaw or yaw
