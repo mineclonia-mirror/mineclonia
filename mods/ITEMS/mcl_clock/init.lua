@@ -41,7 +41,7 @@ core.register_globalstep(function(dtime)
 	current_frame = new_frame
 end)
 
-mcl_player.register_globalstep(function(player, dtime)
+mcl_player.register_globalstep(function(_, dtime, player)
 	local frame
 	-- Clocks do not work in certain zones
 	if not mcl_worlds.clock_works(player:get_pos()) then
