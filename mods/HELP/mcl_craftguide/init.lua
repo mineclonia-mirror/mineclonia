@@ -1096,7 +1096,7 @@ if progressive_mode then
 
 	-- Workaround. Need engine support to detect when a player inventory
 	-- changes instead.
-	local function poll_new_items(player)
+	local function poll_new_items(_, _, player)
 		local inv = player:get_inventory()
 		local progress = get_progress(player)
 
