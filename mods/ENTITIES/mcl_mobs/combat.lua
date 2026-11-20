@@ -1625,6 +1625,7 @@ function mob_class:generate_default_equipment (mob_factor, do_armor, do_wieldite
 			self.armor_list[slot] = stack:to_string ()
 			local probability = self.armor_drop_probability[slot]
 			self:set_armor_drop_probability (slot, probability)
+			armor_generated = true
 		end
 		self:set_armor_texture ()
 	end
