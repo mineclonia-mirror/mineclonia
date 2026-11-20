@@ -841,7 +841,7 @@ end)
 -- This is necessary because get_player_window_information may return nil in
 -- on_joinplayer.
 -- (Also, Minetest plans to add support for toggling touchscreen mode in-game.)
-mcl_player.register_globalstep_slow(function(player)
+mcl_player.register_globalstep_slow(function(_, _, player)
 	local name = player:get_player_name()
 
 	if core.is_creative_enabled(name) then
