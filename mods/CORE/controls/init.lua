@@ -39,7 +39,7 @@ core.register_on_leaveplayer(function(player)
 	controls.players[name] = nil
 end)
 
-mcl_player.register_globalstep(function(player)
+mcl_player.register_globalstep(function(_, _, player) --3rd arg is the cached "fake" player, this should maybe be rewritten to use the player object as index in which case the "real" player would be needed again
 	local player_name = player:get_player_name()
 	local player_controls = player:get_player_control()
 	for cname, cbool in pairs(player_controls) do
