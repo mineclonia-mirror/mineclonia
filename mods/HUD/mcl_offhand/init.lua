@@ -81,16 +81,16 @@ local function update_wear_bar(player, itemstack)
 	player:hud_change(wear_bar, "offset", {x = -320 - (20 - player:hud_get(wear_bar).scale.x / 2), y = -13})
 end
 
-mcl_player.register_globalstep(function(player)
+mcl_player.register_globalstep(function(player, dtime, cached_player)
 	if not mcl_offhand[player] then
 		mcl_offhand[player] = {
 			hud = {},
-			last_wear = offhand_get_wear(player),
-			last_count = offhand_get_count(player),
+			last_wear = offhand_get_wear(cached_player),
+			last_count = offhand_get_count(cached_player),
 		}
 	end
 
-	local itemstack = mcl_offhand.get_offhand(player)
+	local itemstack = mcl_offhand.get_offhand(cached_player)
 	local offhand_item = itemstack:get_name()
 	local offhand = mcl_offhand[player]
 	local offhand_hud = offhand.hud
