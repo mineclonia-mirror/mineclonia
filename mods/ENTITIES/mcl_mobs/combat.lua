@@ -1264,9 +1264,10 @@ function mob_class:check_attack (self_pos, dtime)
 		local line_of_sight = self:target_visible (self_pos, self.attack)
 		local attack_type = self.attack_type
 		local attach_pos = get_attachment_pos (self.object)
-		if attack_type == "null" and self.attack_null then
-			self:attack_null (attach_pos, self_pos, dtime, target_pos,
-					  line_of_sight)
+		if attack_type == "null" then
+			if self.attack_null then
+				self:attack_null (attach_pos, self_pos, dtime, target_pos, line_of_sight)
+			end
 		elseif attack_type == "bowshoot" then
 			self:attack_bowshoot (attach_pos, self_pos, dtime, target_pos,
 					      line_of_sight)
