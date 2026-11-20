@@ -53,6 +53,7 @@ local cache_funcs = {
 	"get_wielded_item",
 	"get_properties",
 	"get_inventory",
+	"get_meta",
 	"get_player_name",
 	"get_velocity",
 	"get_look_horizontal",
