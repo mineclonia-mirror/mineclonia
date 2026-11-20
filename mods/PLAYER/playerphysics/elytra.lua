@@ -406,7 +406,7 @@ core.register_chatcommand ("attach_elytra", {
 local jump_counters = {}
 local jump_min_interval = 0.1
 
-mcl_player.register_globalstep(function (player)
+mcl_player.register_globalstep(function (_, _, player)
 	if mcl_serverplayer.is_csm_capable (player) then
 		return
 	end
