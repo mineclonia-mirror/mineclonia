@@ -92,13 +92,13 @@ local food_tick_timers = {} -- one food_tick_timer per player, keys are the play
 local peaceful_heal_timer = {}
 local peaceful_nourish_timer = {}
 
-mcl_player.register_globalstep(function(player, dtime)
+mcl_player.register_globalstep(function(player, dtime, cached_player)
 	local food_tick_timer = food_tick_timers[player] and food_tick_timers[player] + dtime or 0
-	local player_name = player:get_player_name()
-	local food_level = mcl_hunger.get_hunger(player)
-	local food_saturation_level = mcl_hunger.get_saturation(player)
-	local player_health = mcl_damage.get_hp (player)
-	local props = player:get_properties ()
+	local player_name = cached_player:get_player_name()
+	local food_level = mcl_hunger.get_hunger(cached_player)
+	local food_saturation_level = mcl_hunger.get_saturation(cached_player)
+	local player_health = mcl_damage.get_hp (cached_player)
+	local props = cached_player:get_properties ()
 
 	if mcl_vars.difficulty == 0 then
 		-- Heal player by 1 heart every two seconds and grant
@@ -113,7 +113,7 @@ mcl_player.register_globalstep(function(player, dtime)
 				= peaceful_heal_timer[player] + dtime
 		end
 		if (peaceful_nourish_timer[player] or 0.5) >= 0.5 then
-			local hunger = mcl_hunger.get_hunger (player)
+			local hunger = mcl_hunger.get_hunger(cached_player)
 			if hunger < 20 then
 				mcl_hunger.set_hunger (player, hunger + 1, true)
 			end
@@ -158,11 +158,11 @@ mcl_player.register_globalstep(function(player, dtime)
 end)
 
 -- JUMP EXHAUSTION
-mcl_player.register_globalstep(function(player, dtime)
+mcl_player.register_globalstep(function(player, dtime, cached_player)
 	if mcl_serverplayer.is_csm_capable (player) then
 		return
 	end
-	local name = player:get_player_name()
+	local name = cached_player:get_player_name()
 	local node_stand, node_stand_below, node_head, node_feet, node_head_top
 
 	-- Update jump status immediately since we need this info in real time.
@@ -172,7 +172,7 @@ mcl_player.register_globalstep(function(player, dtime)
 		mcl_player.players[player].jump_cooldown = mcl_player.players[player].jump_cooldown - dtime
 	end
 
-	if player:get_player_control().jump and mcl_player.players[player].jump_cooldown <= 0 then
+	if cached_player:get_player_control().jump and mcl_player.players[player].jump_cooldown <= 0 then
 		node_stand = mcl_player.players[player].nodes.stand
 		node_stand_below = mcl_player.players[player].nodes.stand_below
 		node_head = mcl_player.players[player].nodes.head
