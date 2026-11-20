@@ -61,7 +61,7 @@ local function get_first_line(text)
 	return text
 end
 
-mcl_player.register_globalstep(function(player, dtime)
+mcl_player.register_globalstep(function(_, dtime, player)
 	local player_name = player:get_player_name()
 	local wstack = player:get_wielded_item()
 	local wname = wstack:get_name()
