@@ -1,12 +1,20 @@
-
-local storage = core.get_mod_storage()
-local __player_data
+--local storage = core.get_mod_storage()
+local __player_data = {}
 
 -- Table Save Load Functions
-function awards.save()
-	storage:set_string("player_data", core.write_json(__player_data))
+function awards.save_player(pl)
+	local name = pl:get_player_name()
+	local m = pl:get_meta()
+	m:set_string("awards:data", core.write_json(__player_data[name]))
 end
 
+function awards.save()
+	for pl in mcl_util.connected_players() do
+		awards.save_player(pl)
+	end
+end
+
+--[[
 local function convert_data()
 	core.log("warning", "Importing awards data from previous version")
 
@@ -66,24 +74,27 @@ local function convert_data()
 		end
 	end
 end
+--]]
+
+function awards.load_player(pl)
+	local m = pl:get_meta()
+	local name = pl:get_player_name()
+	local s =core.parse_json(m:get_string("awards:data"))
+	if not __player_data then
+		__player_data = {}
+	end
+	__player_data[name] = (s ~= "" and s) or {}
+end
+
+function awards.unload_player(pl)
+	local name = pl:get_player_name()
+	awards.save_player(pl)
+	__player_data[name] = nil
+end
 
 function awards.load()
-	local old_save_path = core.get_worldpath().."/awards.txt"
-	local file = io.open(old_save_path, "r")
-	if file then
-		local table = core.deserialize(file:read("*all"))
-		if type(table) == "table" then
-			__player_data = table
-			convert_data()
-		else
-			__player_data = {}
-		end
-		file:close()
-		os.rename(old_save_path, core.get_worldpath().."/awards.bk.txt")
-		awards.save()
-	else
-		local json = storage:get("player_data")
-		__player_data = json and core.parse_json(json) or {}
+	for pl in mcl_util.connected_players() do
+		awards.load_player(pl)
 	end
 end
 
@@ -111,4 +122,13 @@ end
 
 function awards.clear_player(name)
 	__player_data[name] = {}
+	awards.save_player(core.get_player_by_name(name))
 end
+
+core.register_on_joinplayer(function(pl)
+	awards.load_player(pl)
+end)
+
+core.register_on_leaveplayer(function(pl)
+	awards.unload_player(pl)
+end)
