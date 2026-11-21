@@ -84,6 +84,14 @@ tt.register_snippet(function(itemstring)
 	end
 end)
 
+tt.register_snippet(function(itemstring, _, itemstack)
+	if not itemstack then itemstack = ItemStack(itemstring) end
+	local def = itemstack:get_definition()
+	if def and def._mcl_burntime and def._mcl_burntime > 0 then
+		return S("Fuel: @1", def._mcl_burntime / 10), mcl_colors.ORANGE
+	end
+end)
+
 tt.register_snippet(function(itemstring)
 	if itemstring == "mcl_heads:zombie" then
 		return S("Zombie view range: -50%")

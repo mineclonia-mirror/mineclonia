@@ -15,6 +15,7 @@ mcl_colors = {
 	LIGHT_PURPLE = "#FF55FF",
 	YELLOW = "#FFFF55",
 	WHITE = "#FFFFFF",
+	ORANGE = "#FF8811",
 	background = {
 		BLACK = "#000000",
 		DARK_BLUE = "#00002A",

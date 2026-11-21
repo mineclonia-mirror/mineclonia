@@ -76,7 +76,7 @@ for color,colordef in pairs(mcl_dyes.colors) do
 		baseitem="mcl_wool:"..color,
 		recipeitem="mcl_wool:"..color,
 		groups = {handy=1, shearsy_wool=1, flammable=1,fire_encouragement=30, fire_flammability=60, building_block=1 ,["unicolor_"..color]=1, wool_stair=1},
-		overrides = {}
+		overrides = {_mcl_burntime = 5}
 	})
 
 	mcl_stairs.register_slab("wool_"..color, {
@@ -84,7 +84,7 @@ for color,colordef in pairs(mcl_dyes.colors) do
 		baseitem="mcl_wool:"..color,
 		recipeitem="mcl_wool:"..color,
 		groups = {handy=1, shearsy_wool=1, flammable=1,fire_encouragement=30, fire_flammability=60, building_block=1 ,["unicolor_"..color]=1, wool_slab=1},
-		overrides = {}
+		overrides = {_mcl_burntime = 2.5}
 	})
 
 	if not is_canonical then
