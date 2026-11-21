@@ -81,6 +81,7 @@ local sus_node_loot = {
 					}
 					local color = colors[pr:next (1, #colors)]
 					mcl_candles.set_candle_properties (stack, color)
+					tt.reload_itemstack_description(stack)
 				end,
 			},
 			{
