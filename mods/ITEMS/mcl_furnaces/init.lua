@@ -580,11 +580,7 @@ mcl_furnaces.tpl_furnace_node_active = table.merge(mcl_furnaces.tpl_furnace_node
 function mcl_furnaces.register_furnace(nodename, def)
 	local timer_func = mcl_furnaces.get_timer_function(nodename, nodename.."_active", (def.factor or 1), def.cook_group)
 	local function get_name_groups(n)
-		local g = mcl_furnaces.tpl_furnace_node_normal.groups
-		if def.name then
-			return table.merge(g, { [def.name] = n })
-		end
-		return g
+		return def.name and { [def.name] = n } or {}
 	end
 	core.register_node(nodename, table.merge(mcl_furnaces.tpl_furnace_node_normal,{
 		on_construct = function(pos)
@@ -605,14 +601,14 @@ function mcl_furnaces.register_furnace(nodename, def)
 			inv:set_size("fuel", 1)
 			inv:set_size("dst", 1)
 		end,
-		groups = get_name_groups(1),
+		groups = table.merge(mcl_furnaces.tpl_furnace_node_normal.groups, get_name_groups(1)),
 		on_timer = timer_func,
 		_mcl_furnaces_cook_group = def.cook_group,
 		_mcl_furnaces_get_active_formspec = def.get_active_formspec,
 		_mcl_furnaces_get_inactive_formspec = def.get_inactive_formspec,
 	},def.node_normal))
 	core.register_node(nodename.."_active", table.merge(mcl_furnaces.tpl_furnace_node_active,{
-		groups = get_name_groups(2),
+		groups = table.merge(mcl_furnaces.tpl_furnace_node_active.groups, get_name_groups(2)),
 		on_timer = timer_func,
 		drop = nodename,
 		_mcl_baseitem = nodename,
