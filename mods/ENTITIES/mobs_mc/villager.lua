@@ -781,10 +781,20 @@ local function count_string (count)
 	return tostring (count)
 end
 
-local function get_item_image(stack)
+local function get_inventory_overlay(stack)
 	local inventory_overlay = stack:get_meta():get_string("inventory_overlay")
 
-	if inventory_overlay and inventory_overlay != "" then
+	if not inventory_overlay or inventory_overlay == "" then
+		return nil
+	end
+
+	return inventory_overlay
+end
+
+local function get_item_image(stack)
+	local inventory_overlay = get_inventory_overlay(stack)
+
+	if inventory_overlay then
 		return "image", inventory_overlay
 	end
 
@@ -6866,6 +6876,14 @@ end
 
 function villager:actionable_on_rightclick (player)
 	return true
+end
+
+function villager:get_visual_wielditem(stack)
+	if not get_inventory_overlay(stack) then
+		return mob_class.get_visual_wielditem(self, stack)
+	end
+
+	return stack:to_string()
 end
 
 mcl_mobs.register_mob ("mobs_mc:villager", villager)
