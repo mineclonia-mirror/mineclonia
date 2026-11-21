@@ -779,11 +779,11 @@ local function any_poi_valid ()
 end
 
 mcl_villages.register_poi ("mcl_villages:provisional_poi", {
-	is_valid = any_poi_valid,
+	is_valid = any_poi_valid(),
 	village_center = false,
 })
 
 mcl_villages.register_poi ("mcl_villages:worldgen_reservation", {
-	is_valid = any_poi_valid,
+	is_valid = any_poi_valid(),
 	village_center = false,
 })
