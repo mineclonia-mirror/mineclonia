@@ -30,6 +30,7 @@ dofile(modpath .. "/splash.lua")
 dofile(modpath .. "/lingering.lua")
 dofile(modpath .. "/tipped_arrow.lua")
 dofile(modpath .. "/potions.lua")
+dofile(modpath .. "/register_potions.lua")
 local potions = mcl_potions.registered_potions
 
 core.register_craftitem("mcl_potions:fermented_spider_eye", {
