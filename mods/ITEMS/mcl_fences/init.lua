@@ -124,7 +124,7 @@ local tpl_fence_gates = {
 	},
 	selection_box = {
 		type = "fixed",
-		fixed = {{ -0.5, -0.1875, -0.0625, 0.5, 0.5, 0.0625 }}
+		fixed = {{ -0.5, -0.5, -0.125, 0.5, 0.5, 0.125 }}
 	},
 	on_construct = function(pos)
 		local meta = core.get_meta(pos)
@@ -175,7 +175,7 @@ local tpl_fence_gates_open = {
 	},
 	selection_box = {
 		type = "fixed",
-		fixed = {{ -0.5, -0.1875, -0.0625, 0.5, 0.5, 0.0625 }}
+		fixed = {{ -0.5, -0.5, -0.125, 0.5, 0.5, 0.125 }}
 	},
 	on_rightclick = function(pos, node, _)
 		punch_gate(pos, node)
