@@ -489,15 +489,26 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 	local skin = mcl_skins.player_skins[player]
 	if not skin then return true end
 
+	if active_tab == "arm" then
+		if fields.thick_arms then
+			skin.slim_arms = false
+		elseif fields.slim_arms then
+			skin.slim_arms = true
+		end
+		mcl_skins.update_player_skin(player)
+		mcl_skins.show_formspec(player)
+		return true
+	end
+
 	if fields.next_page then
 		local page_num = formspec_data.page_num
 		page_num = page_num + 1
 
-		local page_count
-		if active_tab == "skin" then
-			page_count = math.ceil((#mcl_skins.simple_skins + 2) / 8)
-		else
+		local page_count = 1
+		if mcl_skins[active_tab] then
 			page_count = math.ceil(#mcl_skins[active_tab] / 16)
+		elseif active_tab == "skin" then
+			page_count = math.ceil((#mcl_skins.simple_skins + 2) / 8)
 		end
 
 		if page_num > page_count then
@@ -511,17 +522,6 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 		page_num = page_num - 1
 		if page_num < 1 then page_num = 1 end
 		formspec_data.page_num = page_num
-		mcl_skins.show_formspec(player)
-		return true
-	end
-
-	if active_tab == "arm" then
-		if fields.thick_arms then
-			skin.slim_arms = false
-		elseif fields.slim_arms then
-			skin.slim_arms = true
-		end
-		mcl_skins.update_player_skin(player)
 		mcl_skins.show_formspec(player)
 		return true
 	end
