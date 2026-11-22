@@ -117,13 +117,18 @@ core.register_entity("mcl_pottery_sherds:pot_face",{
 	end
 })
 
-local potbox = {
+local pot_node_box = {
 	type = "fixed",
 	fixed = {
 		{ -4/16,  9/16, -4/16,  4/16,  12/16,  4/16 },
 		{ -3/16,  8/16, -3/16,  3/16,  9/16,  3/16 },
 		{ -7/16,  -8/16, -7/16,  7/16,  8/16,  7/16 },
 	}
+}
+
+local pot_collision_box = {
+	type = "fixed",
+	fixed = { -7/16, -8/16, -7/16, 7/16, 8/16, 7/16 }
 }
 
 local function get_sherd_desc(face)
@@ -172,9 +177,9 @@ core.register_node("mcl_pottery_sherds:pot", {
 	_doc_items_longdesc = S("Pots are decorative blocks."),
 	_doc_items_usagehelp = S("Specially decorated pots can be crafted using pottery sherds"),
 	drawtype = "nodebox",
-	node_box = potbox,
-	selection_box = potbox,
-	collision_box = potbox,
+	node_box = pot_node_box,
+	selection_box = pot_collision_box,
+	collision_box = pot_collision_box,
 	tiles = {
 		{ name = "mcl_pottery_sherds_pot_top.png", align_style = "world" },
 		{ name = "mcl_pottery_sherds_pot_bottom.png", align_style = "world" },
