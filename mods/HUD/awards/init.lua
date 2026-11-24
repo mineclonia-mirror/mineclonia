@@ -14,6 +14,7 @@ awards = {
 
 -- Load files
 local modpath = core.get_modpath(core.get_current_modname()).."/src"
+dofile(modpath.."/compat.lua")
 dofile(modpath.."/data.lua")
 dofile(modpath.."/api_awards.lua")
 dofile(modpath.."/api_triggers.lua")

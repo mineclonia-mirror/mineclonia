@@ -1,4 +1,3 @@
---local storage = core.get_mod_storage()
 local __player_data = {}
 
 -- Table Save Load Functions
@@ -8,75 +7,8 @@ function awards.save_player(pl)
 	m:set_string("awards:data", core.write_json(__player_data[name]))
 end
 
-function awards.save()
-	for pl in mcl_util.connected_players() do
-		awards.save_player(pl)
-	end
-end
-
---[[
-local function convert_data()
-	core.log("warning", "Importing awards data from previous version")
-
-	local old_players = __player_data
-	__player_data = {}
-	for name, data in pairs(old_players) do
-		while name.name do
-			name = name.name
-		end
-		if type(name) == "string" then
-			data.name = name
-			print("Converting data for " .. name)
-
-			-- Just rename counted
-			local counted = {
-				chats  = "chat",
-				deaths = "death",
-				joins  = "join",
-			}
-			for from, to in pairs(counted) do
-				data[to]   = data[from]
-				data[from] = nil
-			end
-
-			data.death = {
-				unknown = data.death,
-				__total = data.death,
-			}
-
-			-- Convert item db to new format
-			local counted_items = {
-				count = "dig",
-				place = "place",
-				craft = "craft",
-			}
-			for from, to in pairs(counted_items) do
-				local ret = {}
-
-				local count = 0
-				if data[from] then
-					for modname, items in pairs(data[from]) do
-						for itemname, value in pairs(items) do
-							itemname = modname .. ":" .. itemname
-							local key = core.registered_aliases[itemname] or itemname
-							ret[key] = value
-							count = count + value
-						end
-					end
-				end
-
-				ret.__total = count
-				data[from] = nil
-				data[to] = ret
-			end
-
-			__player_data[name] = data
-		end
-	end
-end
---]]
-
 function awards.load_player(pl)
+	if awards.compat_load(pl) then return end
 	local m = pl:get_meta()
 	local name = pl:get_player_name()
 	local s =core.parse_json(m:get_string("awards:data"))
@@ -90,6 +22,12 @@ function awards.unload_player(pl)
 	local name = pl:get_player_name()
 	awards.save_player(pl)
 	__player_data[name] = nil
+end
+
+function awards.save()
+	for pl in mcl_util.connected_players() do
+		awards.save_player(pl)
+	end
 end
 
 function awards.load()
