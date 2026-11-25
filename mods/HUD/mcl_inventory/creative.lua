@@ -634,7 +634,7 @@ function mcl_inventory.set_creative_formspec(player)
 		end
 
 		formspec = formspec .. table.concat({
-			"field[5.325,0.15;6.1,0.6;search;;" .. core.formspec_escape(filter) .. "]",
+			"field[5.325,0.15;6.1,0.6;search;;" .. F(filter) .. "]",
 			"field_enter_after_edit[search;true]",
 			"field_close_on_enter[search;false]",
 			"set_focus[search;true]",

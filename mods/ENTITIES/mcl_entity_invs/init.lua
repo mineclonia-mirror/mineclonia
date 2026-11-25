@@ -1,5 +1,7 @@
 mcl_entity_invs = {}
 
+local F = core.formspec_escape
+
 local function check_distance(inv,player,count)
 	for o in core.objects_inside_radius(player:get_pos(), 5) do
 		local l = o:get_luaentity()
@@ -83,11 +85,11 @@ local function load_default_formspec (ent, text)
 	local spacing = (9 - cols) / 2
 
 	local formspec = "size[9,8.75]"
-			.. "label[0,0;" .. core.formspec_escape(
+			.. "label[0,0;" .. F(
 			core.colorize("#313131", ent._inv_title .. " ".. text)) .. "]"
 			.. "list[detached:"..ent._inv_id..";main;"..spacing..",0.5;"..cols..","..rows..";]"
 			.. mcl_formspec.get_itemslot_bg(spacing,0.5,cols,rows)
-			.. "label[0,4.0;" .. core.formspec_escape(
+			.. "label[0,4.0;" .. F(
 			core.colorize("#313131", "Inventory")) .. "]"
 			.. "list[current_player;main;0,4.5;9,3;9]"
 			.. mcl_formspec.get_itemslot_bg(0,4.5,9,3)

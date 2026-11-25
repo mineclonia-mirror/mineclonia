@@ -1,4 +1,5 @@
 local S = core.get_translator("mobs_mc")
+local F = core.formspec_escape
 local mob_class = mcl_mobs.mob_class
 local horse = mobs_mc.horse
 
@@ -425,9 +426,9 @@ function llama:generate_inventory_formspec ()
 		return "formspec_version[6]"
 	end
 	local objectname = mcl_util.get_object_name (self.object)
-	objectname = core.formspec_escape (objectname)
+	objectname = F(objectname)
 	local armorname = self._armor_inv_name
-	armorname = core.formspec_escape ("detached:" .. armorname)
+	armorname = F("detached:" .. armorname)
 	local chest_itemslots
 	if self._chest then
 		chest_itemslots = string.format ("list[detached:%s;main;5.375,0.875;%d,3;]",

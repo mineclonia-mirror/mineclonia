@@ -28,7 +28,7 @@ local function get_formspec_preview_button (x, y, layers, base_unicolor, unicolo
 	local name = "item_button_" .. preview_item_prefix .. pattern_id
 	local new_layers = layers and table.copy(layers) or {}
 	table.insert(new_layers, { color = "unicolor_"..unicolor, pattern = pattern_id })
-	local it = core.formspec_escape(mcl_banners.make_banner_texture("unicolor_"..base_unicolor, new_layers, "item"))
+	local it = F(mcl_banners.make_banner_texture("unicolor_"..base_unicolor, new_layers, "item"))
 	local result = string.format("image_button[%f,%f;%f,%f;%s;%s;%s]",x,y,1.1,1.1, it, name, "")
 	result = result .. string.format("tooltip[%s;%s]", name, mcl_banners.make_pattern_name("unicolor_"..unicolor, pattern_id))
 	return result
@@ -87,15 +87,15 @@ local function get_formspec(pos)
 			end
 		end
 		if selected_preview ~= "" then
-			local b, esc, tesc = mcl_banners, core.formspec_escape, mcl_util.escape_texture
+			local b, tesc = mcl_banners, mcl_util.escape_texture
 			local banner_color = banner:get_definition()._unicolor
 			local preview_layers = table.copy(layers)
 			table.insert(preview_layers, {color = "unicolor_"..color, pattern = selected_preview})
 			preview_texture = b.make_banner_texture(banner_color, preview_layers, "item")
 			preview_texture = "[combine:30x48:-9,0=" .. tesc(preview_texture)
-			preview_texture = esc(preview_texture)
+			preview_texture = F(preview_texture)
 			b.write_layers(banner:get_meta(), preview_layers)
-			preview_tooltip = "tooltip[btn_loom_craft;"..esc(b.update_description(banner, b.max_craftable_layers)).."]"
+			preview_tooltip = "tooltip[btn_loom_craft;"..F(b.update_description(banner, b.max_craftable_layers)).."]"
 		end
 	elseif inv:is_empty("banner") then
 		selected_pattern_by_pos[tostring(pos)] = nil -- Clear pattern selection when banner is emptied

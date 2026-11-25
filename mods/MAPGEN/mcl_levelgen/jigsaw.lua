@@ -1,4 +1,5 @@
 local S = core.get_translator (core.get_current_modname ())
+local F = core.formspec_escape
 
 local huge = math.huge
 local mathmin = math.min
@@ -349,7 +350,7 @@ local function load_formspec_processor (pos, _)
 		= meta.rotation == "270" and "[270]" or "270"
 
 	return string.format (load_formspec,
-			      core.formspec_escape (meta.structure_name),
+			      F(meta.structure_name),
 			      meta.dx,
 			      meta.dy,
 			      meta.dz,
@@ -641,7 +642,7 @@ local function save_formspec_processor (pos, _)
 	local meta = core.get_meta (pos)
 	local meta = save_save_data (meta)
 	return string.format (save_formspec,
-			      core.formspec_escape (meta.structure_name),
+			      F(meta.structure_name),
 			      meta.dx,
 			      meta.dy,
 			      meta.dz,
@@ -718,9 +719,9 @@ local function data_formspec_processor (pos, _)
 	local meta = core.get_meta (pos)
 	local meta = data_save_data (meta)
 	return string.format (data_formspec,
-			      core.formspec_escape (meta.value),
-			      core.formspec_escape (meta.param1),
-			      core.formspec_escape (meta.param2))
+			      F(meta.value),
+			      F(meta.param1),
+			      F(meta.param2))
 end
 
 local function data_on_rightclick (pos, node, clicker, itemstack, pointed_thing)
@@ -765,8 +766,7 @@ mcl_levelgen.corner_save_data = corner_save_data
 local function corner_formspec_processor (pos, _)
 	local meta = core.get_meta (pos)
 	local meta = corner_save_data (meta)
-	return string.format (corner_formspec,
-			      core.formspec_escape (meta.structure_name))
+	return string.format (corner_formspec, F(meta.structure_name))
 end
 
 local function corner_on_rightclick (pos, node, clicker, itemstack, pointed_thing)
@@ -1148,15 +1148,13 @@ local function jigsaw_formspec_processor (pos, player)
 	local keep_jigsaws = fspec.replace_jigsaws and "OFF" or "ON"
 	local axis = floor (node.param2 / 4)
 	local joint_type = (axis == 0 or axis == 5)
-		and string.format (joint_type_formspec,
-				   core.formspec_escape (data.joint_type))
-		or ""
+		and string.format (joint_type_formspec, F(data.joint_type)) or ""
 
 	local formspec = string.format (jigsaw_formspec,
-					core.formspec_escape (data.target_pool),
-					core.formspec_escape (data.name),
-					core.formspec_escape (data.target_name),
-					core.formspec_escape (data.turns_into),
+					F(data.target_pool),
+					F(data.name),
+					F(data.target_name),
+					F(data.turns_into),
 					data.selection_priority,
 					data.placement_priority,
 					joint_type,

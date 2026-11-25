@@ -37,7 +37,7 @@ local function get_active_formspec(fuel_percent, item_percent, name)
 		"list[current_player;main;0.375,9.05;9,1;]",
 
 		"image_button[7.85,0.6;1,1;craftguide_book.png;craftguide;]"..
-		"tooltip[craftguide;"..core.formspec_escape(S("Recipe book")).."]"..
+		"tooltip[craftguide;"..F(S("Recipe book")).."]"..
 
 		"listring[context;dst]",
 		"listring[current_player;main]",
@@ -76,7 +76,7 @@ local function get_inactive_formspec(name)
 		"list[current_player;main;0.375,9.05;9,1;]",
 
 		"image_button[7.85,0.6;1,1;craftguide_book.png;craftguide;]"..
-		"tooltip[craftguide;"..core.formspec_escape(S("Recipe book")).."]"..
+		"tooltip[craftguide;"..F(S("Recipe book")).."]"..
 
 		"listring[context;dst]",
 		"listring[current_player;main]",

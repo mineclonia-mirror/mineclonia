@@ -21,7 +21,7 @@ core.register_on_joinplayer(function(player)
 			"size[14.75,5.925]",
 			"label[0.375,0.375;" .. F(C("#FF0000", fs_title)) .. "]",
 			--"label[0.375,1.375;"..low_version_warning.."]",
-			"textarea[0.375,0.875;12.0,3.5;;" .. core.formspec_escape(low_version_warning) .. ";]" ..
+			"textarea[0.375,0.875;12.0,3.5;;" .. F(low_version_warning) .. ";]" ..
 			"checkbox[0.375,4.0;notagain;"..F(C(mcl_formspec.label_color, fs_notagain)) .. "]",
 			"button_exit[0.375,4.5;3,1;leave;"..F(C(mcl_formspec.label_color, fs_leave)) .. "]",
 			"button_exit[3.575,4.5;3,1;ignore;"..F(C(mcl_formspec.label_color, fs_ignore)) .. "]",

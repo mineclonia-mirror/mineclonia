@@ -1,4 +1,5 @@
 local S = core.get_translator(core.get_current_modname())
+local F = core.formspec_escape
 
 local doc_identifier = {}
 
@@ -60,8 +61,8 @@ function doc_identifier.identify(itemstack, user, pointed_thing)
 			username,
 			"doc_identifier:error_missing_item_info",
 			"size[10,"..vsize..";]" ..
-			"textarea[0.5,0.2;10,"..(vsize-0.2)..";;;"..core.formspec_escape(message).."]" ..
-			"button_exit[3.75,"..(-0.5+vsize)..";3,1;okay;"..core.formspec_escape(S("OK")).."]"
+			"textarea[0.5,0.2;10,"..(vsize-0.2)..";;;"..F(message).."]" ..
+			"button_exit[3.75,"..(-0.5+vsize)..";3,1;okay;"..F(S("OK")).."]"
 		)
 	end
 	if pointed_thing.type == "node" then

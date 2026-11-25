@@ -1,14 +1,15 @@
 -- Copyright (c) 2013-18 rubenwardy. MIT.
 
 local S = awards.translator
+local F = core.formspec_escape
 
 function awards.get_formspec(name, _, sid)
 	local formspec = ""
 	local awards_list = awards.get_award_states(name)
 
 	if #awards_list == 0 then
-		formspec = formspec .. "label[3.9,1.5;"..core.formspec_escape(S("Error: No advancements available.")).."]"
-		formspec = formspec .. "button_exit[4.2,2.3;3,1;close;"..core.formspec_escape(S("OK")).."]"
+		formspec = formspec .. "label[3.9,1.5;"..F(S("Error: No advancements available.")).."]"
+		formspec = formspec .. "button_exit[4.2,2.3;3,1;close;"..F(S("OK")).."]"
 		return formspec
 	end
 	sid = awards_list[sid] and sid or 1
@@ -18,12 +19,11 @@ function awards.get_formspec(name, _, sid)
 	local sdef = sitem.def
 	if sdef and sdef.secret and not sitem.unlocked then
 		formspec = formspec .. "label[1,2.75;"..
-				core.formspec_escape(S("(Hidden Advancement)")).."]"..
+				F(S("(Hidden Advancement)")).."]"..
 				"image[1,0;3,3;awards_unknown.png]"
 		if sdef and sdef.description then
 			formspec = formspec	.. "textarea[0.25,3.25;4.8,1.7;;"..
-					core.formspec_escape(
-							S("Unlock this advancement to find out what it is."))..";]"
+					F(S("Unlock this advancement to find out what it is."))..";]"
 		end
 	else
 		local title = sitem.name
@@ -40,12 +40,10 @@ function awards.get_formspec(name, _, sid)
 			status = S("@1 (unlocked)")
 		end
 
-		formspec = formspec .. "textarea[0.5,3.1;4.8,1.45;;" ..
-			S(status, core.formspec_escape(title)) ..
-			";]"
+		formspec = formspec .. "textarea[0.5,3.1;4.8,1.45;;" .. S(status, F(title)) .. ";]"
 
 		if sdef and sdef.icon then
-			formspec = formspec .. "image[0.45,0;3.5,3.5;" .. core.formspec_escape(sdef.icon) .. "]"  -- adjusted values from 0.6,0;3,3
+			formspec = formspec .. "image[0.45,0;3.5,3.5;" .. F(sdef.icon) .. "]"  -- adjusted values from 0.6,0;3,3
 		end
 
 		if sitem.progress then
@@ -58,14 +56,13 @@ function awards.get_formspec(name, _, sid)
 			formspec = formspec .. "background[0,8.24;" .. barwidth ..",0.4;awards_progress_gray.png;false]"
 			formspec = formspec .. "background[0,8.24;" .. (barwidth * perc) ..",0.4;awards_progress_green.png;false]"
 			if label then
-				formspec = formspec .. "label[1.6,8.15;" .. core.formspec_escape(label) .. "]"
+				formspec = formspec .. "label[1.6,8.15;" .. F(label) .. "]"
 			end
 		end
 
 		if sdef and sdef.description then
 			formspec = formspec .. "box[-0.05,3.75;3.9,4.2;#000]"
-			formspec = formspec	.. "textarea[0.25,3.75;3.9,4.2;;" ..
-					core.formspec_escape(sdef.description) .. ";]"
+			formspec = formspec	.. "textarea[0.25,3.75;3.9,4.2;;" .. F(sdef.description) .. ";]"
 		end
 	end
 
@@ -81,7 +78,7 @@ function awards.get_formspec(name, _, sid)
 			first = false
 
 			if def.secret and not award.unlocked then
-				formspec = formspec .. "#707070"..core.formspec_escape(S("(Hidden Advancement)"))
+				formspec = formspec .. "#707070"..F(S("(Hidden Advancement)"))
 			else
 				local title = award.name
 				if def and def.title then
@@ -89,11 +86,11 @@ function awards.get_formspec(name, _, sid)
 				end
 				-- title = title .. " [" .. award.score .. "]"
 				if award.unlocked then
-					formspec = formspec .. core.formspec_escape(title)
+					formspec = formspec .. F(title)
 				elseif award.started then
-					formspec = formspec .. "#c0c0c0".. core.formspec_escape(title)
+					formspec = formspec .. "#c0c0c0".. F(title)
 				else
-					formspec = formspec .. "#a0a0a0".. core.formspec_escape(title)
+					formspec = formspec .. "#a0a0a0".. F(title)
 				end
 			end
 		end

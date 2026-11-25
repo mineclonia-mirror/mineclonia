@@ -1,4 +1,5 @@
 local S = core.get_translator(core.get_current_modname())
+local F = core.formspec_escape
 local NS = function(s) return s end
 
 doc.sub.items = {}
@@ -99,7 +100,6 @@ local function newline2(text)
 	end
 end
 
-
 -- Extract suitable item description for formspec
 local function description_for_formspec(itemstring)
 	if core.registered_items[itemstring] == nil then
@@ -109,9 +109,9 @@ local function description_for_formspec(itemstring)
 	end
 	local description = core.registered_items[itemstring].description
 	if description == nil or description == "" then
-		return core.formspec_escape(itemstring)
+		return F(itemstring)
 	else
-		return core.formspec_escape(scrub_newlines(description))
+		return F(scrub_newlines(description))
 	end
 end
 
