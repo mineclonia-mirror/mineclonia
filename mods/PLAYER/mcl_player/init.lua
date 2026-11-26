@@ -180,9 +180,9 @@ end
 core.register_globalstep(function(dtime)
 	connected_player_cache = {}
 	for player in mcl_util.connected_players() do
-		mcl_player.players[player].fake_player:refresh()
-		for _, func in pairs(mcl_player.registered_globalsteps) do
-			if mcl_player.players[player] then
+		if mcl_player.players[player] then
+			mcl_player.players[player].fake_player:refresh()
+			for _, func in pairs(mcl_player.registered_globalsteps) do
 				func(player, dtime, mcl_player.players[player].fake_player)
 			end
 		end
