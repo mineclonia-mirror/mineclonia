@@ -653,3 +653,11 @@ msgstr "Muito, Muito Assustador"
 #: mods/HUD/mcl_achievements/init.lua:705
 msgid "Strike a Villager with lightning."
 msgstr "Atinja um aldeão com um raio."
+
+#: mods/HUD/mcl_achievements/init.lua:369
+msgid ""
+"Catch a fish.\n"
+"Hint: Catch a fish, salmon, clownfish, or pufferfish."
+msgstr ""
+"Pegue um peixe.\n"
+"Dica: Pegue um peixe, salmão, peixe-palhaço ou baiacu."

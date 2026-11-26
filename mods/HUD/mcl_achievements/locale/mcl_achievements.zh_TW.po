@@ -619,3 +619,11 @@ msgstr ""
 #: mods/HUD/mcl_achievements/init.lua:705
 msgid "Strike a Villager with lightning."
 msgstr ""
+
+#: mods/HUD/mcl_achievements/init.lua:369
+msgid ""
+"Catch a fish.\n"
+"Hint: Catch a fish, salmon, clownfish, or pufferfish."
+msgstr ""
+"捕獲一條魚。\n"
+"提示：鱈魚、三文魚、熱帶魚、河豚皆可。"

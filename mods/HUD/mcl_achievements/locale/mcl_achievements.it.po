@@ -647,3 +647,12 @@ msgstr "Molto molto spaventoso"
 #: mods/HUD/mcl_achievements/init.lua:705
 msgid "Strike a Villager with lightning."
 msgstr "Colpisci un villico con un fulmine."
+
+#: mods/HUD/mcl_achievements/init.lua:369
+msgid ""
+"Catch a fish.\n"
+"Hint: Catch a fish, salmon, clownfish, or pufferfish."
+msgstr ""
+"Pesca un pesce.\n"
+"Suggerimento: Pesca un pesce, un salmone, un pesce pagliaccio od un pesce "
+"palla."

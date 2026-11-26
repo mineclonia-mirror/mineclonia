@@ -94,3 +94,7 @@ msgstr[0] ""
 #: mods/MAPGEN/mcl_biome_dispatch/init.lua:1207
 msgid "Usage: /locate [structure | biome | poi] <ID>"
 msgstr "使い方：/locate [structure | biome | poi] <ID>"
+
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:791
+msgid "Loading terrain"
+msgstr "地形を読み込み中"
