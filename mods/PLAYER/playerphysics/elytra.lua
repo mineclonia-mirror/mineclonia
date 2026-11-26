@@ -406,12 +406,12 @@ core.register_chatcommand ("attach_elytra", {
 local jump_counters = {}
 local jump_min_interval = 0.1
 
-mcl_player.register_globalstep(function (_, _, player)
+mcl_player.register_globalstep(function (player, _, cached)
 	if mcl_serverplayer.is_csm_capable (player) then
 		return
 	end
-	local self_pos = player:get_pos()
-	local inv = mcl_util.get_inventory(player)
+	local self_pos = cached:get_pos()
+	local inv = cached:get_inventory()
 	local itemstack = inv:get_stack("armor", 3)
 	local armor_name = itemstack:get_name()
 
@@ -421,7 +421,7 @@ mcl_player.register_globalstep(function (_, _, player)
 		return
 	end
 
-	local fly_pos = player:get_pos()
+	local fly_pos = cached:get_pos()
 	local fly_node = core.get_node(vector.offset(fly_pos,0,-0.1,0)).name
 	local fly_node_walkable = core.registered_nodes[fly_node]
 		and core.registered_nodes[fly_node].walkable
