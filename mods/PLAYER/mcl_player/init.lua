@@ -122,6 +122,7 @@ end)
 
 core.register_on_leaveplayer(function(player)
 	mcl_player.players[player] = nil
+	mcl_player.players[mcl_player.players[player].fake_player] = nil
 end)
 
 core.register_allow_player_inventory_action(function(_, action, _, inventory_info)
