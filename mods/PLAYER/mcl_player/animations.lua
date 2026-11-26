@@ -144,6 +144,7 @@ function mcl_player.player_get_animation(player)
 end
 
 local function update_player_textures(player)
+	player = mcl_player.real(player)
 	local textures = mcl_player.players[player].textures
 
 	if not mcl_player.players[player].visible then
@@ -167,6 +168,7 @@ end
 
 -- Called when a player's appearance needs to be updated
 function mcl_player.player_set_model(player, model_name)
+	player = mcl_player.real(player)
 	local model = mcl_player.registered_player_models[model_name]
 	if model then
 		if mcl_player.players[player].model == model_name then
@@ -186,22 +188,26 @@ function mcl_player.player_set_model(player, model_name)
 end
 
 function mcl_player.player_set_visibility(player, visible)
+	player = mcl_player.real(player)
 	if mcl_player.players[player].visible == visible then return end
 	mcl_player.players[player].visible = visible
 	update_player_textures(player)
 end
 
 function mcl_player.player_set_skin(player, texture)
+	player = mcl_player.real(player)
 	mcl_player.players[player].textures[1] = texture
 	update_player_textures(player)
 end
 
 function mcl_player.player_set_armor(player, texture)
+	player = mcl_player.real(player)
 	mcl_player.players[player].textures[2] = texture
 	update_player_textures(player)
 end
 
 function mcl_player.get_player_formspec_model(player, x, y, w, h, fsname)
+	player = mcl_player.real(player)
 	local model = mcl_player.players[player].model
 	local anim = mcl_player.registered_player_models[model].animations["stand"]
 	local textures = table.copy(mcl_player.players[player].textures)
@@ -217,6 +223,7 @@ function mcl_player.get_player_formspec_model(player, x, y, w, h, fsname)
 end
 
 function mcl_player.player_set_animation(player, anim_name, speed)
+	player = mcl_player.real(player)
 	if mcl_player.players[player].animation == anim_name then
 		return
 	end
@@ -230,6 +237,7 @@ function mcl_player.player_set_animation(player, anim_name, speed)
 end
 
 local function set_swimming(player, anim, anim_speed)
+	player = mcl_player.real(player)
 	local pitch = - math.deg(player:get_look_vertical())
 	local yaw = math.deg(player:get_look_horizontal())
 	local vel = player:get_velocity()
@@ -242,6 +250,7 @@ local function set_swimming(player, anim, anim_speed)
 end
 
 function mcl_player.position_wielditem (wielded_itemname, wielded_def, player)
+	player = mcl_player.real(player)
 	-- Specific wielditem positions according to item
 	if wielded_def and wielded_def._mcl_toollike_wield then
 		set_bone_pos(player, "Wield_Item", vector.new(0, 4.7, 3.1), vector.new(-90, 225, 90))

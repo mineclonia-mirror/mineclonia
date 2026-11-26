@@ -99,6 +99,10 @@ local function create_fake_player(player)
 	return obj
 end
 
+function mcl_player.real(obj)
+	return mcl_player.players[obj] and mcl_player.players[obj].player or obj
+end
+
 
 core.register_on_joinplayer(function(player)
 	local fp = create_fake_player(player)
