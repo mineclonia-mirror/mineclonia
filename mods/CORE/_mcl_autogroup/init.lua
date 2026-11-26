@@ -386,117 +386,111 @@ local function overwrite()
 	-- hardness_value.  Used for quick lookup.
 	local hardness_lookup = get_hardness_lookup_for_groups(hardness_values)
 
-	for nname, ndef in pairs(core.registered_nodes) do
-		local override = {}
-		local newgroups = table.copy(ndef.groups)
-		if (nname ~= "ignore" and ndef.diggable) then
-			-- Automatically assign the "solid" group for solid nodes
-			if (ndef.walkable == nil or ndef.walkable == true)
-					and (ndef.collision_box == nil or ndef.collision_box.type == "regular")
-					and (ndef.node_box == nil or ndef.node_box.type == "regular")
-					and (ndef.groups.not_solid == 0 or ndef.groups.not_solid == nil) then
-				newgroups.solid = 1
-			end
-			-- Automatically assign the "opaque" group for opaque nodes
-			if (not (ndef.paramtype == "light" or ndef.sunlight_propagates)) and
-					(ndef.groups.not_opaque == 0 or ndef.groups.not_opaque == nil) then
-				newgroups.opaque = 1
-			end
-
-			-- Assign groups used for digging this node depending on
-			-- the registered digging groups
-			for g, gdef in pairs(mcl_autogroup.registered_diggroups) do
-				local index = hardness_lookup[g][ndef._mcl_hardness] or newgroups[g] or hardness_lookup[g][0]
-				if newgroups[g] then
-					if gdef.levels then
-						newgroups[g .. "_dig_default"] = index
-
-						for i = newgroups[g], #gdef.levels do
-							newgroups[g .. "_dig_" .. gdef.levels[i]] = index
-						end
-					else
-						newgroups[g .. "_dig"] = index
-					end
-				end
-			end
-
-			-- Automatically assign the node to the
-			-- creative_breakable group if it belongs to any digging
-			-- group.
-			newgroups["creative_breakable"] = 1
-			override.groups = newgroups
-		end
-
-		-- dig_by_water and destroy_by_lava.  In most (all?) instances the two
-		-- are wholly equivalent.
-		if core.get_item_group(nname, "dig_by_water") > 0 or core.get_item_group(nname, "destroy_by_lava_flow") > 0 then
-			override.floodable = true
-			override.on_flood = mcl_core.basic_flood
-		end
-
-		if table.count(override) > 0 then
-			core.override_item(nname, override)
-		end
-	end
-
-	for tname, tdef in pairs(core.registered_items) do
+	for name, defs in pairs(core.registered_items) do
+		local overrides = {}
 		-- Assign groupcaps for digging the registered digging groups
 		-- depending on the _mcl_diggroups in the tool definition
-		if tdef._mcl_diggroups then
-			local toolcaps = table.copy(get_tool_capabilities(tdef))
-			toolcaps.groupcaps = mcl_autogroup.get_groupcaps(tname)
-
-			core.override_item(tname, {
-				tool_capabilities = toolcaps
-			})
+		if defs._mcl_diggroups then
+			local toolcaps = table.copy(get_tool_capabilities(defs))
+			toolcaps.groupcaps = mcl_autogroup.get_groupcaps(name)
+			overrides.tool_capabilities = toolcaps
 		end
 
-		local rarity_group = core.get_item_group(tname, "rarity")
-		if rarity_group > 0 and rarity_colors[rarity_group] then
-			local desc = tdef.description or tname
-			core.override_item(tname, {
-				description = C(rarity_colors[rarity_group], desc)
-			})
+		if core.get_item_group(name, "eatable") > 0 then
+			overrides.touch_interaction = "short_dig_long_place"
+		end
+		-- Changes the color of the description based on item's rarity.
+		-- It runs before `tt` adds the snippets to the description.
+		local item_rarity = core.get_item_group(name, "rarity")
+		if item_rarity > 0 and item_rarity <= #rarity_colors then
+			local desc = defs.description or name
+			overrides.description = C(rarity_colors[item_rarity], desc)
 		end
 
-		if tdef.groups.eatable and tdef.groups.eatable > 0 then
-			core.override_item(tname, {
-				touch_interaction = "short_dig_long_place",
-			})
-		end
-
-
-		if tdef._mcl_burntime and tdef._mcl_burntime > 0 then
+		if defs._mcl_burntime and defs._mcl_burntime > 0 then
 			core.register_craft({
 				type = "fuel",
-				recipe = tname,
-				burntime = tdef._mcl_burntime,
-				replacements = tdef._mcl_fuel_replacements
+				recipe = name,
+				burntime = defs._mcl_burntime,
+				replacements = defs._mcl_fuel_replacements
 			})
 		end
 
-		local cooking_output = tdef._mcl_cooking_output
+		local cooking_output = defs._mcl_cooking_output
 		if cooking_output and type(cooking_output) == "string" and cooking_output ~= "" then
 			core.register_craft({
 				type = "cooking",
-				recipe = tname,
+				recipe = name,
 				output = cooking_output,
-				cooktime = tdef._mcl_cooktime or 10,
-				replacements = tdef._mcl_cooking_replacements
+				cooktime = defs._mcl_cooktime or 10,
+				replacements = defs._mcl_cooking_replacements
 			})
 		end
 
-		local crafting_output = tdef._mcl_crafting_output
+		local crafting_output = defs._mcl_crafting_output
 		if crafting_output and type(crafting_output) == "table" then
-			for shape, defs in pairs(crafting_output) do
-				if type(defs.output) == "string" and defs.output ~= "" then
+			for shape, cdef in pairs(crafting_output) do
+				if type(cdef.output) == "string" and cdef.output ~= "" then
 					core.register_craft({
-						output = defs.output,
-						recipe = replace_material_tag(shapes[shape], tname),
-						replacements = defs.replacements
+						output = cdef.output,
+						recipe = replace_material_tag(shapes[shape], name),
+						replacements = cdef.replacements
 					})
 				end
 			end
+		end
+
+		if core.registered_nodes[name] ~= nil then
+			local groups = defs.groups or {}
+			local newgroups = table.copy(groups)
+			if (name ~= "ignore" and defs.diggable) then
+				-- Automatically assign the "solid" group for solid nodes
+				if (defs.walkable == nil or defs.walkable == true)
+						and (defs.collision_box == nil or defs.collision_box.type == "regular")
+						and (defs.node_box == nil or defs.node_box.type == "regular")
+						and (groups.not_solid == 0 or groups.not_solid == nil) then
+					newgroups.solid = 1
+				end
+				-- Automatically assign the "opaque" group for opaque nodes
+				if (not (defs.paramtype == "light" or defs.sunlight_propagates)) and
+						(groups.not_opaque == 0 or groups.not_opaque == nil) then
+					newgroups.opaque = 1
+				end
+
+				-- Assign groups used for digging this node depending on
+				-- the registered digging groups
+				for g, gdef in pairs(mcl_autogroup.registered_diggroups) do
+					local index = hardness_lookup[g][defs._mcl_hardness] or newgroups[g] or hardness_lookup[g][0]
+					if newgroups[g] then
+						if gdef.levels then
+							newgroups[g .. "_dig_default"] = index
+
+							for i = newgroups[g], #gdef.levels do
+								newgroups[g .. "_dig_" .. gdef.levels[i]] = index
+							end
+						else
+							newgroups[g .. "_dig"] = index
+						end
+					end
+				end
+
+				-- Automatically assign the node to the
+				-- creative_breakable group if it belongs to any digging
+				-- group.
+				newgroups["creative_breakable"] = 1
+				overrides.groups = newgroups
+			end
+
+			-- dig_by_water and destroy_by_lava.  In most (all?) instances the two
+			-- are wholly equivalent.
+			if core.get_item_group(name, "dig_by_water") > 0 or core.get_item_group(name, "destroy_by_lava_flow") > 0 then
+				overrides.floodable = true
+				overrides.on_flood = mcl_core.basic_flood
+			end
+		end
+
+		if table.count(overrides) > 0 then
+			core.override_item(name, overrides)
 		end
 	end
 end
