@@ -86,6 +86,9 @@ local function create_fake_player(player)
 	setmetatable(obj, {
 		__index = function(self, k)
 			if type(self.player[k]) == "function" then
+				if k:sub(1,4) == "set_" and type(self.player["get_"..k:sub(5)]) == "function" then
+					self.cached["get_"..k:sub(5)] = nil --if the set_ was used essentially disables cache returns for the rest of the step
+				end
 				return function(_, ...)
 					return self:get(k, ...)
 				end
