@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_biome_dispatch x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-10-02 05:04+0200\n"
+"POT-Creation-Date: 2026-10-29 18:09+0100\n"
 "PO-Revision-Date: 2026-08-28 05:29+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Basque <https://translate.codeberg.org/projects/mineclonia/"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Loading terrain..."
 msgstr "Lur-eremua kargatzen"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1103
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1303
 msgid ""
 "Locate a structure, biome, or point of interest identified by ID in the "
 "current dimension."
@@ -27,7 +27,7 @@ msgstr ""
 "Topatu uneko dimentsioan IDz identifikatutako egitura, bioma edo interes-"
 "gunea."
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1109
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1309
 msgid ""
 "/locate structure requires a structure ID.\n"
 "These structures are available: "
@@ -35,7 +35,7 @@ msgstr ""
 "/locate egitura-k egituraren ID bat behar du.\n"
 "Egitura hauek daude erabilgarri: "
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1121
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1324
 msgid ""
 "The nearest structure of type @1 is located at (@2,@3,@4) (@5 block away)"
 msgid_plural ""
@@ -43,11 +43,11 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1126
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1329
 msgid "No structure of type @1 exists near your position"
 msgstr "Ez dago @1 motako egiturarik existitzen zuren inguruan"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1135
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1338
 msgid ""
 "/locate biome requires a biome ID or a tag prefixed with `#'.\n"
 "These biomes and tags are available: "
@@ -55,18 +55,18 @@ msgstr ""
 "/locate bioma-k bioma ID bat edo '#'-z hasten den etiketa bat behar du.\n"
 "Bioma eta etiketa hauek daude erabilgarri: "
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1147
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1350
 msgid "The nearest biome matching @1 is located at (@2,@3,@4) (@5 block away)"
 msgid_plural ""
 "The nearest biome matching @1 is located at (@2,@3,@4) (@5 blocks away)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1152
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1355
 msgid "No biome matching @1 exists near your position"
 msgstr "Ez dago @1 motako biomarik zure inguruan"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1159
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1362
 msgid ""
 "/locate poi requires an identifier designating a valid point of interest.\n"
 "These points of interest are available: "
@@ -75,15 +75,15 @@ msgstr ""
 "identifikadore bat behar du.\n"
 "Interes-gune hauek daude erabilgarri: "
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1168
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1371
 msgid "@1 does not identify a valid point of interest"
 msgstr "Ezin da @1-ekin interes-gunerik identifikdatu"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1195
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1398
 msgid "No point of interest named @1 exists near your position"
 msgstr "Ez da @1 izeneko interes-gunerik existitzen zure inguruan"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1200
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1403
 msgid ""
 "The nearest point of interest named @1 is located at (@2,@3,@4) (@5 block "
 "away)"
@@ -93,10 +93,9 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1207
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1410
 msgid "Usage: /locate [structure | biome | poi] <ID>"
 msgstr "Erabilera: /locate [egitura | bioma | interes-gunea] <ID>"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:791
-msgid "Loading terrain"
-msgstr "Lur-eremua kargatzen"
+#~ msgid "Loading terrain"
+#~ msgstr "Lur-eremua kargatzen"

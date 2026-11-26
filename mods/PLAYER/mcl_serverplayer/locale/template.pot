@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-05 04:02+0200\n"
+"POT-Creation-Date: 2026-10-29 18:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: mods/PLAYER/mcl_serverplayer/player.lua:687
+#: mods/PLAYER/mcl_serverplayer/player.lua:693
 msgid "Elytra not equipped."
 msgstr ""
 
-#: mods/PLAYER/mcl_serverplayer/player.lua:694
+#: mods/PLAYER/mcl_serverplayer/player.lua:700
 msgid "Elytra not deployed. Jump while falling down to deploy."
 msgstr ""

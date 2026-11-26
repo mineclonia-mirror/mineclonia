@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the mineclonia package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: mineclonia\n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-10-31 00:29+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:6
+msgid "Cinnabar"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:7
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:7
+msgid "Variant of stone that can be found in sulfur caves"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:19
+msgid "Cinnabar Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:20
+msgid "Cinnabar Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:25
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:52
+msgid "Cinnabar Wall"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:32
+msgid "Polished Cinnabar"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:33
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:61
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:93
+msgid "Decorative variant of cinnabar"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:46
+msgid "Polished Cinnabar Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:47
+msgid "Polished Cinnabar Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:60
+msgid "Cinnabar Bricks"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:73
+msgid "Cinnabar Brick Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:74
+msgid "Cinnabar Brick Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:79
+msgid "Cinnabar Brick Wall"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/cinnabar_blocks.lua:92
+msgid "Chiseled Cinnabar"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:6
+msgid "Sulfur"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:22
+msgid "Sulfur Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:23
+msgid "Sulfur Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:28
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:55
+msgid "Sulfur Wall"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:35
+msgid "Polished Sulfur"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:36
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:64
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:96
+msgid "Decorative variant of sulfur"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:49
+msgid "Polished Sulfur Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:50
+msgid "Polished Sulfur Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:63
+msgid "Sulfur Bricks"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:76
+msgid "Sulfur Brick Stairs"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:77
+msgid "Sulfur Brick Slab"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:82
+msgid "Sulfur Brick Wall"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:95
+msgid "Chiseled Sulfur"
+msgstr ""
+
+#: mods/ITEMS/mcl_sulfur/sulfur_blocks.lua:119
+msgid "Potent Sulfur"
+msgstr ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-30 22:52+0200\n"
+"POT-Creation-Date: 2026-11-25 20:24+0100\n"
 "PO-Revision-Date: 2026-08-28 05:30+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.codeberg.org/projects/"
@@ -14,16 +14,16 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:157
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:158
 msgid "Structure Void"
 msgstr "Vazio Estrutural"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:158
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:159
 msgid "Enables structures not to replace existing level contents"
 msgstr ""
 "Permite que as estruturas não substituam os conteúdos existentes no nível"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:159
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:160
 msgid ""
 "The presence of a structure void block in a structure template indicates to "
 "the level generator that the contents of the level at the position it "
@@ -42,15 +42,15 @@ msgstr ""
 "vazio estrutural próximos ao usuário serão revelados por partículas contendo "
 "a imagem do item."
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:254
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
 msgid "Structure Block"
 msgstr "Bloco Estrutural"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:256
 msgid "Saves, generates, or records structure data"
 msgstr "Salva, gera ou registra dados estruturados"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:256
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:257
 msgid ""
 "A structure block is an administrative and programmer block which enables "
 "existing constructs in a map to be recorded for subsequent reuse by "
@@ -153,23 +153,23 @@ msgstr ""
 "durante a expansão de blocos de quebra-cabeça) e quaisquer blocos de "
 "estrutura em um Modo de Dados interno."
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:406
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:407
 msgid "Template name is not specified"
 msgstr "O nome do modelo não foi especificado"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:415
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:416
 msgid "Template `@1' is not available: @2"
 msgstr "O modelo `@1` não está disponível: @2"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:520
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:521
 msgid "Invalid dimensions: @1,@2,@3"
 msgstr "Dimensões inválidas: @1,@2,@3"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:574
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:575
 msgid "Metadata storage limit exceeded"
 msgstr "Limite de armazenamento de metadados excedido"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:612
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:613
 msgid "Creating file @1: @2"
 msgstr "Criando arquivo @1: @2"
 
@@ -188,15 +188,15 @@ msgstr ""
 "Não foi possível detectar o tamanho da estrutura.  Adicione cantos com nomes "
 "de estrutura correspondentes."
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1217
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1215
 msgid "Jigsaw Block"
 msgstr "Bloco de Quebra-cabeça"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1218
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1216
 msgid "Facilitates generation of multiple-piece structures"
 msgstr "Facilita a geração de estruturas de múltiplas peças"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1352
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1350
 msgid "`server' privileges are required to interact with jigsaw blocks"
 msgstr ""
 "São necessárias permissões de `servidor` para interagir com os blocos do "

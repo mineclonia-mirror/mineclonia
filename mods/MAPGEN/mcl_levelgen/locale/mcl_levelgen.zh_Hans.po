@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-30 22:52+0200\n"
+"POT-Creation-Date: 2026-11-25 20:24+0100\n"
 "PO-Revision-Date: 2026-08-28 05:30+0000\n"
 "Last-Translator: chenhe <chenhe@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -14,15 +14,15 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2026.8.1\n"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:157
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:158
 msgid "Structure Void"
 msgstr "结构空位"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:158
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:159
 msgid "Enables structures not to replace existing level contents"
 msgstr "启用结构不替换现有世界内容"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:159
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:160
 msgid ""
 "The presence of a structure void block in a structure template indicates to "
 "the level generator that the contents of the level at the position it "
@@ -38,15 +38,15 @@ msgstr ""
 "手持结构空位物品时才能看见结构空位节点；手持该物品后，持有者附近所有结构空位"
 "方块都会通过带有其物品图案的粒子显现出来。"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:254
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
 msgid "Structure Block"
 msgstr "结构方块"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:256
 msgid "Saves, generates, or records structure data"
 msgstr "保存、生成或记录结构数据"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:256
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:257
 msgid ""
 "A structure block is an administrative and programmer block which enables "
 "existing constructs in a map to be recorded for subsequent reuse by "
@@ -128,23 +128,23 @@ msgstr ""
 "殊处理逻辑，不会完全原样复刻：包含结构空位方块、拼图方块（仅拼图自动拼接拓展"
 "阶段载入时生效）、处于内部数据模式的各类结构方块。"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:406
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:407
 msgid "Template name is not specified"
 msgstr "未指定模板名称"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:415
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:416
 msgid "Template `@1' is not available: @2"
 msgstr "模板“@1”不可用：@2"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:520
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:521
 msgid "Invalid dimensions: @1,@2,@3"
 msgstr "无效尺寸：@1,@2,@3"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:574
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:575
 msgid "Metadata storage limit exceeded"
 msgstr "元数据存储超限"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:612
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:613
 msgid "Creating file @1: @2"
 msgstr "正在创建文件 @1：@2"
 
@@ -160,15 +160,15 @@ msgid ""
 "Unable to detect structure size.  Add corners with matching structure names."
 msgstr "无法检测结构大小，请添加结构名称一致的角落方块。"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1217
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1215
 msgid "Jigsaw Block"
 msgstr "拼图方块"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1218
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1216
 msgid "Facilitates generation of multiple-piece structures"
 msgstr "用于拼接生成由多个部件组成的大型建筑结构"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1352
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1350
 msgid "`server' privileges are required to interact with jigsaw blocks"
 msgstr "需要拥有服务器权限才能操作拼图方块"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-30 22:52+0200\n"
+"POT-Creation-Date: 2026-11-25 20:24+0100\n"
 "PO-Revision-Date: 2026-08-28 05:30+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Ukrainian <https://translate.codeberg.org/projects/mineclonia/"
@@ -15,15 +15,15 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:157
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:158
 msgid "Structure Void"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:158
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:159
 msgid "Enables structures not to replace existing level contents"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:159
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:160
 msgid ""
 "The presence of a structure void block in a structure template indicates to "
 "the level generator that the contents of the level at the position it "
@@ -34,15 +34,15 @@ msgid ""
 "revealed by particles containing its item image."
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:254
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
 msgid "Structure Block"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:256
 msgid "Saves, generates, or records structure data"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:256
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:257
 msgid ""
 "A structure block is an administrative and programmer block which enables "
 "existing constructs in a map to be recorded for subsequent reuse by "
@@ -94,23 +94,23 @@ msgid ""
 "blocks in an internal Data Mode."
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:406
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:407
 msgid "Template name is not specified"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:415
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:416
 msgid "Template `@1' is not available: @2"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:520
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:521
 msgid "Invalid dimensions: @1,@2,@3"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:574
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:575
 msgid "Metadata storage limit exceeded"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:612
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:613
 msgid "Creating file @1: @2"
 msgstr ""
 
@@ -126,15 +126,15 @@ msgid ""
 "Unable to detect structure size.  Add corners with matching structure names."
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1217
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1215
 msgid "Jigsaw Block"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1218
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1216
 msgid "Facilitates generation of multiple-piece structures"
 msgstr ""
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1352
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1350
 msgid "`server' privileges are required to interact with jigsaw blocks"
 msgstr ""
 

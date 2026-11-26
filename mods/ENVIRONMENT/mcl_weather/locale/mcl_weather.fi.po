@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_weather x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-11-01 05:02+0100\n"
 "PO-Revision-Date: 2026-08-28 06:38+0000\n"
 "Last-Translator: jopaSuomi <jopasuomi@noreply.codeberg.org>\n"
 "Language-Team: Finnish <https://translate.codeberg.org/projects/mineclonia/"
@@ -22,33 +22,33 @@ msgstr "Laita Hornan pölyhiukkaset päälle"
 msgid "Enable clouds"
 msgstr "Kytke pilvet päälle"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:219
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:215
 msgid "Gives ability to control weather"
 msgstr "Antaa kyvyn säädellä säätä"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:222
 msgid "Changes the weather to the specified parameter."
 msgstr "Muuttaa sään annettujen muuttujien mukaiseksi."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:230
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
 msgid "Error: No weather specified."
 msgstr "Virhe: Säätilaa ei ole määritetty."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:241
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:237
 msgid "Error: Invalid parameters."
 msgstr "Virhe: Virheelliset muuttujat."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:247
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:243
 msgid "Error: Duration can't be less than 1 second."
 msgstr "Virhe: Kesto ei voi olla alle yhden (1) sekunnin."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:257
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:253
 msgid "Error: Invalid weather specified. Use “clear”, “rain”, or “thunder”."
 msgstr ""
 "Virhe: Määritetty säätila on virheellinen. Käytä säätiloja \"clear\", "
 "\"rain\" tai \"thunder\"."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:264
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:260
 msgid ""
 "Toggles between clear weather and weather with downfall (randomly rain, "
 "thunderstorm or snow)"

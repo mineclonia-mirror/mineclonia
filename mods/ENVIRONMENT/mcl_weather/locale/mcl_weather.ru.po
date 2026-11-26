@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_weather x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-11-01 05:02+0100\n"
 "PO-Revision-Date: 2026-08-28 06:38+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Russian <https://translate.codeberg.org/projects/mineclonia/"
@@ -23,33 +23,33 @@ msgstr "Включить частицы пыли в Незере"
 msgid "Enable clouds"
 msgstr "Включить облака"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:219
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:215
 msgid "Gives ability to control weather"
 msgstr "Предоставляет возможность управлять погодой"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:222
 msgid "Changes the weather to the specified parameter."
 msgstr "Меняет погоду на заданное значение."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:230
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
 msgid "Error: No weather specified."
 msgstr "Ошибка: Не указана погода."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:241
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:237
 msgid "Error: Invalid parameters."
 msgstr "Ошибка: Недопустимые параметры."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:247
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:243
 msgid "Error: Duration can't be less than 1 second."
 msgstr "Ошибка: длительность не может быть менее 1 секунды."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:257
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:253
 msgid "Error: Invalid weather specified. Use “clear”, “rain”, or “thunder”."
 msgstr ""
 "Ошибка: Указана неверная погода. Используйье \"clear\", \"rain\", или "
 "\"thunder\"."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:264
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:260
 msgid ""
 "Toggles between clear weather and weather with downfall (randomly rain, "
 "thunderstorm or snow)"

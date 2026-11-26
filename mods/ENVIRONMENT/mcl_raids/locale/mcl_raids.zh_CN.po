@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_raids x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-10-04 02:44+0200\n"
 "PO-Revision-Date: 2026-08-28 06:37+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -18,19 +18,19 @@ msgstr ""
 msgid "Ominous Banner"
 msgstr "灾厄之旗"
 
-#: mods/ENVIRONMENT/mcl_raids/init.lua:217
-#: mods/ENVIRONMENT/mcl_raids/init.lua:223
+#: mods/ENVIRONMENT/mcl_raids/init.lua:218
+#: mods/ENVIRONMENT/mcl_raids/init.lua:224
 msgid "Raid (@1 of @2)"
 msgstr "袭击(@1 of @2)"
 
-#: mods/ENVIRONMENT/mcl_raids/init.lua:230
+#: mods/ENVIRONMENT/mcl_raids/init.lua:231
 msgid "Raid"
 msgstr "袭击"
 
-#: mods/ENVIRONMENT/mcl_raids/init.lua:233
+#: mods/ENVIRONMENT/mcl_raids/init.lua:234
 msgid "Raid (defeat)"
 msgstr "袭击（失败）"
 
-#: mods/ENVIRONMENT/mcl_raids/init.lua:236
+#: mods/ENVIRONMENT/mcl_raids/init.lua:237
 msgid "Raid (victory)"
 msgstr "袭击（成功）"

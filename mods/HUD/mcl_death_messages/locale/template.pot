@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-09-19 02:46+0200\n"
+"POT-Creation-Date: 2026-10-31 00:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -266,4 +266,8 @@ msgstr ""
 
 #: mods/HUD/mcl_death_messages/init.lua:140
 msgid "@1 was impaled by @2 with @3"
+msgstr ""
+
+#: mods/HUD/mcl_death_messages/init.lua:143
+msgid "@1 was stung to death"
 msgstr ""

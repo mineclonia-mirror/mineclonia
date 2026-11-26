@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mobs_mc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-07-10 05:32+0200\n"
+"POT-Creation-Date: 2026-11-25 20:24+0100\n"
 "PO-Revision-Date: 2026-08-28 06:41+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Russian <https://translate.codeberg.org/projects/mineclonia/"
@@ -15,11 +15,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: mods/ENTITIES/mobs_mc/axolotl.lua:10 mods/ENTITIES/mobs_mc/axolotl.lua:331
+#: mods/ENTITIES/mobs_mc/axolotl.lua:9 mods/ENTITIES/mobs_mc/axolotl.lua:330
 msgid "Axolotl"
 msgstr "Аксолотль"
 
-#: mods/ENTITIES/mobs_mc/axolotl.lua:325
+#: mods/ENTITIES/mobs_mc/axolotl.lua:324
 msgid "Spawning will only be successful on clay."
 msgstr "Будет успешно спавниться только на глине."
 
@@ -69,15 +69,15 @@ msgstr "Корова"
 msgid "Mooshroom"
 msgstr "Грибная корова"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:230 mods/ENTITIES/mobs_mc/creeper.lua:270
+#: mods/ENTITIES/mobs_mc/creeper.lua:228 mods/ENTITIES/mobs_mc/creeper.lua:268
 msgid "Creeper"
 msgstr "Крипер"
 
-#: mods/ENTITIES/mobs_mc/creeper.lua:253
+#: mods/ENTITIES/mobs_mc/creeper.lua:251
 msgid "Charged Creeper"
 msgstr "Заряженный крипер"
 
-#: mods/ENTITIES/mobs_mc/dolphin.lua:13 mods/ENTITIES/mobs_mc/dolphin.lua:642
+#: mods/ENTITIES/mobs_mc/dolphin.lua:12 mods/ENTITIES/mobs_mc/dolphin.lua:641
 msgid "Dolphin"
 msgstr "Дельфин"
 
@@ -93,15 +93,15 @@ msgstr "Утопленник-ребёнок"
 msgid "Drowned will spawn more frequently in this biome."
 msgstr "В этом биоме утопленники будут спавниться чаще."
 
-#: mods/ENTITIES/mobs_mc/ender_dragon.lua:13
-#: mods/ENTITIES/mobs_mc/ender_dragon.lua:184
-#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1988
-#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1996
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:11
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:182
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1986
+#: mods/ENTITIES/mobs_mc/ender_dragon.lua:1994
 msgid "Ender Dragon"
 msgstr "Дракон Края"
 
-#: mods/ENTITIES/mobs_mc/enderman.lua:235
-#: mods/ENTITIES/mobs_mc/enderman.lua:759
+#: mods/ENTITIES/mobs_mc/enderman.lua:234
+#: mods/ENTITIES/mobs_mc/enderman.lua:758
 msgid "Enderman"
 msgstr "Эндермен"
 
@@ -109,19 +109,19 @@ msgstr "Эндермен"
 msgid "Endermite"
 msgstr "Эндермит"
 
-#: mods/ENTITIES/mobs_mc/ghast.lua:17 mods/ENTITIES/mobs_mc/ghast.lua:241
+#: mods/ENTITIES/mobs_mc/ghast.lua:14 mods/ENTITIES/mobs_mc/ghast.lua:238
 msgid "Ghast"
 msgstr "Гаст"
 
-#: mods/ENTITIES/mobs_mc/ghast.lua:291
+#: mods/ENTITIES/mobs_mc/ghast.lua:288
 msgid "Ghast Fireball"
 msgstr "Огненный шар Гаста"
 
-#: mods/ENTITIES/mobs_mc/guardian.lua:10 mods/ENTITIES/mobs_mc/guardian.lua:456
+#: mods/ENTITIES/mobs_mc/guardian.lua:9 mods/ENTITIES/mobs_mc/guardian.lua:455
 msgid "Guardian"
 msgstr "Страж"
 
-#: mods/ENTITIES/mobs_mc/guardian.lua:417
+#: mods/ENTITIES/mobs_mc/guardian.lua:416
 msgid ""
 "Guardians spawn less frequently in regions of the ocean which are exposed to "
 "the sky at the surface."
@@ -134,20 +134,20 @@ msgstr ""
 msgid "Elder Guardian"
 msgstr "Древний страж"
 
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:15
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:514
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:14
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:513
 msgid "Hoglin"
 msgstr "Хоглин"
 
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:561
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:560
 msgid "Hoglins do not spawn above Nether Wart blocks."
 msgstr "Хоглины не спавняться на блоках нароста Нижнего мира."
 
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:562
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:561
 msgid "20% of Hoglins spawn as their baby variants."
 msgstr "20% хоглинов спавняться в варианте детёнышей."
 
-#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:572
+#: mods/ENTITIES/mobs_mc/hoglin+zoglin.lua:571
 msgid "Zoglin"
 msgstr "Зоглин"
 
@@ -177,8 +177,8 @@ msgstr "Ослик"
 msgid "Mule"
 msgstr "Мул"
 
-#: mods/ENTITIES/mobs_mc/iron_golem.lua:15
-#: mods/ENTITIES/mobs_mc/iron_golem.lua:514
+#: mods/ENTITIES/mobs_mc/iron_golem.lua:14
+#: mods/ENTITIES/mobs_mc/iron_golem.lua:513
 msgid "Iron Golem"
 msgstr "Железный голем"
 
@@ -204,15 +204,15 @@ msgstr "Железный голем"
 msgid "Llama"
 msgstr "Лама"
 
-#: mods/ENTITIES/mobs_mc/ocelot.lua:25 mods/ENTITIES/mobs_mc/ocelot.lua:1085
+#: mods/ENTITIES/mobs_mc/ocelot.lua:24 mods/ENTITIES/mobs_mc/ocelot.lua:1081
 msgid "Ocelot"
 msgstr "Оцелот"
 
-#: mods/ENTITIES/mobs_mc/ocelot.lua:437 mods/ENTITIES/mobs_mc/ocelot.lua:1086
+#: mods/ENTITIES/mobs_mc/ocelot.lua:436 mods/ENTITIES/mobs_mc/ocelot.lua:1082
 msgid "Cat"
 msgstr "Кошка"
 
-#: mods/ENTITIES/mobs_mc/ocelot.lua:1138
+#: mods/ENTITIES/mobs_mc/ocelot.lua:1134
 msgid ""
 "This mob will spawn infrequently on grass or leaves when no obstructions "
 "exist within a volume @1 nodes in size around the center of such a node's "
@@ -230,41 +230,27 @@ msgstr "Попугай"
 msgid "on grass, leaves, or logs"
 msgstr "на блоках травы, листьев или брёвнах"
 
-#. ~= "mcl_mobitems:carrot_on_a_stick" then -- Note: This is for when the ability to make the pig go faster is implemented
-#. Detach if already attached
-#. Initialize attachment properties.
-#. Ride pig if it has a saddle
-#. Make saddle load upon rejoin
-#. base
-#. saddle
-#. ----------------------------------------------------------------------
-#. Pig AI.
-#. ----------------------------------------------------------------------
-#. ----------------------------------------------------------------------
-#. Pig spawning.
-#. ----------------------------------------------------------------------
-#. spawn eggs
-#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:285
+#: mods/ENTITIES/mobs_mc/pig.lua:7 mods/ENTITIES/mobs_mc/pig.lua:279
 msgid "Pig"
 msgstr "Свинья"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:199 mods/ENTITIES/mobs_mc/piglin.lua:1945
+#: mods/ENTITIES/mobs_mc/piglin.lua:198 mods/ENTITIES/mobs_mc/piglin.lua:1944
 msgid "Piglin"
 msgstr "Пиглин"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1573 mods/ENTITIES/mobs_mc/piglin.lua:1946
+#: mods/ENTITIES/mobs_mc/piglin.lua:1572 mods/ENTITIES/mobs_mc/piglin.lua:1945
 msgid "Piglin Brute"
 msgstr "Брутальный пиглин"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1725 mods/ENTITIES/mobs_mc/zombiepig.lua:5
+#: mods/ENTITIES/mobs_mc/piglin.lua:1724 mods/ENTITIES/mobs_mc/zombiepig.lua:5
 msgid "Zombified Piglin"
 msgstr "Зомбированный пиглин"
 
-#: mods/ENTITIES/mobs_mc/piglin.lua:1947
+#: mods/ENTITIES/mobs_mc/piglin.lua:1946
 msgid "Zombie Piglin"
 msgstr "Зомби-пиглин"
 
-#: mods/ENTITIES/mobs_mc/pillager.lua:9 mods/ENTITIES/mobs_mc/pillager.lua:303
+#: mods/ENTITIES/mobs_mc/pillager.lua:7 mods/ENTITIES/mobs_mc/pillager.lua:305
 msgid "Pillager"
 msgstr "Разбойник"
 
@@ -286,11 +272,11 @@ msgstr "Второй полярный медведь в группе всегд�
 msgid "Pufferfish"
 msgstr "Иглобрюх"
 
-#: mods/ENTITIES/mobs_mc/rabbit.lua:7 mods/ENTITIES/mobs_mc/rabbit.lua:469
+#: mods/ENTITIES/mobs_mc/rabbit.lua:7 mods/ENTITIES/mobs_mc/rabbit.lua:467
 msgid "Rabbit"
 msgstr "Кролик"
 
-#: mods/ENTITIES/mobs_mc/rabbit.lua:427
+#: mods/ENTITIES/mobs_mc/rabbit.lua:425
 msgid "Killer Bunny"
 msgstr "Кролик-убийца"
 
@@ -302,7 +288,7 @@ msgstr "Разоритель"
 msgid "Salmon"
 msgstr "Лосось"
 
-#: mods/ENTITIES/mobs_mc/sheep.lua:58 mods/ENTITIES/mobs_mc/sheep.lua:352
+#: mods/ENTITIES/mobs_mc/sheep.lua:57 mods/ENTITIES/mobs_mc/sheep.lua:351
 msgid "Sheep"
 msgstr "Овца"
 
@@ -310,12 +296,12 @@ msgstr "Овца"
 #. ----------------------------------------------------------------------
 #. Shulker spawning.
 #. ----------------------------------------------------------------------
-#: mods/ENTITIES/mobs_mc/shulker.lua:15 mods/ENTITIES/mobs_mc/shulker.lua:850
+#: mods/ENTITIES/mobs_mc/shulker.lua:14 mods/ENTITIES/mobs_mc/shulker.lua:849
 msgid "Shulker"
 msgstr "Шалкер"
 
-#: mods/ENTITIES/mobs_mc/silverfish.lua:14
-#: mods/ENTITIES/mobs_mc/silverfish.lua:176
+#: mods/ENTITIES/mobs_mc/silverfish.lua:13
+#: mods/ENTITIES/mobs_mc/silverfish.lua:175
 msgid "Silverfish"
 msgstr "Чешуйница"
 
@@ -340,25 +326,25 @@ msgstr ""
 msgid "Wither Skeleton"
 msgstr "Скелет-иссушитель"
 
-#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:21
-#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:345
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:18
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:342
 msgid "Slime"
 msgstr "Слизень"
 
-#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:451
-#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:587
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:448
+#: mods/ENTITIES/mobs_mc/slime+magma_cube.lua:584
 msgid "Magma Cube"
 msgstr "Лавовый куб"
 
-#: mods/ENTITIES/mobs_mc/snowman.lua:22 mods/ENTITIES/mobs_mc/snowman.lua:239
+#: mods/ENTITIES/mobs_mc/snowman.lua:21 mods/ENTITIES/mobs_mc/snowman.lua:238
 msgid "Snow Golem"
 msgstr "Снежный голем"
 
-#: mods/ENTITIES/mobs_mc/spawning.lua:157
+#: mods/ENTITIES/mobs_mc/spawning.lua:154
 msgid "on grass nodes"
 msgstr "на блоках травы"
 
-#: mods/ENTITIES/mobs_mc/spawning.lua:161
+#: mods/ENTITIES/mobs_mc/spawning.lua:158
 msgid ""
 "This mob will spawn infrequently @1 with a surface occupying a full node "
 "when no obstructions exist within a volume @2 nodes in size around the "
@@ -368,7 +354,7 @@ msgstr ""
 "при условии отсутствия препятствий в объёме размером @2 блоков вокруг центра "
 "верхней поверхности такого блока и при уровне освещённости 8 или выше."
 
-#: mods/ENTITIES/mobs_mc/spawning.lua:214
+#: mods/ENTITIES/mobs_mc/spawning.lua:211
 msgid ""
 "This mob will spawn between sea level and Y level -12 when the nodes above "
 "and below are water and no obstructions exist within a volume @1 nodes in "
@@ -380,7 +366,7 @@ msgstr ""
 "основания жидкостного блока, где производится попытка спавна, нет "
 "препятствий."
 
-#: mods/ENTITIES/mobs_mc/spawning.lua:264
+#: mods/ENTITIES/mobs_mc/spawning.lua:261
 msgid ""
 "Spawning will only succeed in the absence of artificial lighting and if the "
 "natural light is @1 or dimmer."
@@ -388,15 +374,16 @@ msgstr ""
 "Спавн произойдёт только при отсутствии искусственного освещения и если "
 "естественный свет имеет уровень @1 или ниже (темнее)."
 
-#: mods/ENTITIES/mobs_mc/spawning.lua:266
+#: mods/ENTITIES/mobs_mc/spawning.lua:263
 msgid "Spawning will only succeed between artificial light levels of 0 and @1."
-msgstr "Спавн произойдёт только при уровне искусственного освещения от 0 до @1."
+msgstr ""
+"Спавн произойдёт только при уровне искусственного освещения от 0 до @1."
 
-#: mods/ENTITIES/mobs_mc/spawning.lua:268
+#: mods/ENTITIES/mobs_mc/spawning.lua:265
 msgid "Spawning will only succeed between natural light levels of 0 and @1."
 msgstr "Спавн произойдёт только при уровне естественного света от 0 до @1."
 
-#: mods/ENTITIES/mobs_mc/spawning.lua:270
+#: mods/ENTITIES/mobs_mc/spawning.lua:267
 msgid ""
 "Spawning will only succeed between artificial light levels of 0 and @1, and "
 "natural light levels of 0 and @2."
@@ -427,11 +414,11 @@ msgid "Glow Squid only spawn in absolute darkness at Y levels of 33 or below."
 msgstr ""
 "Светящиеся спруты появляются только в полной темноте на уровнях Y 33 и ниже."
 
-#: mods/ENTITIES/mobs_mc/strider.lua:16 mods/ENTITIES/mobs_mc/strider.lua:518
+#: mods/ENTITIES/mobs_mc/strider.lua:15 mods/ENTITIES/mobs_mc/strider.lua:515
 msgid "Strider"
 msgstr "Страйдер"
 
-#: mods/ENTITIES/mobs_mc/strider.lua:557
+#: mods/ENTITIES/mobs_mc/strider.lua:554
 msgid "Baby Strider"
 msgstr "Детёныш страйдера"
 
@@ -440,103 +427,103 @@ msgstr "Детёныш страйдера"
 msgid "Tropical Fish"
 msgstr "Тропическая рыба"
 
-#: mods/ENTITIES/mobs_mc/vex.lua:15 mods/ENTITIES/mobs_mc/vex.lua:333
+#: mods/ENTITIES/mobs_mc/vex.lua:14 mods/ENTITIES/mobs_mc/vex.lua:332
 msgid "Vex"
 msgstr "Досаждатель"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:973
-#: mods/ENTITIES/mobs_mc/villager.lua:6786
+#: mods/ENTITIES/mobs_mc/villager.lua:971
+#: mods/ENTITIES/mobs_mc/villager.lua:6842
 msgid "Villager"
 msgstr "Житель"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1021
+#: mods/ENTITIES/mobs_mc/villager.lua:1019
 msgid "Armorer"
 msgstr "Бронник"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1029
+#: mods/ENTITIES/mobs_mc/villager.lua:1027
 msgid "Butcher"
 msgstr "Мясник"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1037
+#: mods/ENTITIES/mobs_mc/villager.lua:1035
 msgid "Cartographer"
 msgstr "Картограф"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1045
+#: mods/ENTITIES/mobs_mc/villager.lua:1043
 msgid "Cleric"
 msgstr "Священник"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1053
+#: mods/ENTITIES/mobs_mc/villager.lua:1051
 msgid "Farmer"
 msgstr "Фермер"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1066
+#: mods/ENTITIES/mobs_mc/villager.lua:1064
 msgid "Fisherman"
 msgstr "Рыбак"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1074
+#: mods/ENTITIES/mobs_mc/villager.lua:1072
 msgid "Fletcher"
 msgstr "Лучник"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1082
+#: mods/ENTITIES/mobs_mc/villager.lua:1080
 msgid "Leatherworker"
 msgstr "Кожевник"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1090
+#: mods/ENTITIES/mobs_mc/villager.lua:1088
 msgid "Librarian"
 msgstr "Библиотекарь"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1098
+#: mods/ENTITIES/mobs_mc/villager.lua:1096
 msgid "Mason"
 msgstr "Каменщик"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1106
+#: mods/ENTITIES/mobs_mc/villager.lua:1104
 msgid "Shepherd"
 msgstr "Пастух"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1114
+#: mods/ENTITIES/mobs_mc/villager.lua:1112
 msgid "Toolsmith"
 msgstr "Инструментальщик"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1122
+#: mods/ENTITIES/mobs_mc/villager.lua:1120
 msgid "Weaponsmith"
 msgstr "Оружейник"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1130
+#: mods/ENTITIES/mobs_mc/villager.lua:1128
 msgid "Nitwit"
 msgstr "Нищий"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1966
+#: mods/ENTITIES/mobs_mc/villager.lua:2022
 msgid "Novice"
 msgstr "Новичок"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1967
+#: mods/ENTITIES/mobs_mc/villager.lua:2023
 msgid "Apprentice"
 msgstr "Ученик"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1968
+#: mods/ENTITIES/mobs_mc/villager.lua:2024
 msgid "Journeyman"
 msgstr "Умелец"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1969
+#: mods/ENTITIES/mobs_mc/villager.lua:2025
 msgid "Expert"
 msgstr "Эксперт"
 
-#: mods/ENTITIES/mobs_mc/villager.lua:1970
+#: mods/ENTITIES/mobs_mc/villager.lua:2026
 msgid "Master"
 msgstr "Мастер"
 
-#: mods/ENTITIES/mobs_mc/villager_evoker.lua:20
-#: mods/ENTITIES/mobs_mc/villager_evoker.lua:556
+#: mods/ENTITIES/mobs_mc/villager_evoker.lua:18
+#: mods/ENTITIES/mobs_mc/villager_evoker.lua:554
 msgid "Evoker"
 msgstr "Вызыватель"
 
-#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:19
-#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:647
+#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:18
+#: mods/ENTITIES/mobs_mc/villager_illusioner.lua:646
 msgid "Illusioner"
 msgstr "Иллюзор"
 
-#: mods/ENTITIES/mobs_mc/villager_vindicator.lua:17
-#: mods/ENTITIES/mobs_mc/villager_vindicator.lua:283
+#: mods/ENTITIES/mobs_mc/villager_vindicator.lua:16
+#: mods/ENTITIES/mobs_mc/villager_vindicator.lua:282
 msgid "Vindicator"
 msgstr "Поборник"
 
@@ -545,14 +532,14 @@ msgstr "Поборник"
 msgid "Zombie Villager"
 msgstr "Зомби-житель"
 
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:12
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:546
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:11
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:544
 msgid "Wandering Trader"
 msgstr "Бродячий торговец"
 
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:563
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:681
-#: mods/ENTITIES/mobs_mc/wandering_trader.lua:682
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:561
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:679
+#: mods/ENTITIES/mobs_mc/wandering_trader.lua:680
 msgid "Trader Llama"
 msgstr "Лама торговца"
 
@@ -560,16 +547,16 @@ msgstr "Лама торговца"
 msgid "Witch"
 msgstr "Ведьма"
 
-#: mods/ENTITIES/mobs_mc/wither.lua:11 mods/ENTITIES/mobs_mc/wither.lua:301
-#: mods/ENTITIES/mobs_mc/wither.lua:933
+#: mods/ENTITIES/mobs_mc/wither.lua:9 mods/ENTITIES/mobs_mc/wither.lua:299
+#: mods/ENTITIES/mobs_mc/wither.lua:932
 msgid "Wither"
 msgstr "Иссушитель"
 
-#: mods/ENTITIES/mobs_mc/wolf.lua:13 mods/ENTITIES/mobs_mc/wolf.lua:903
+#: mods/ENTITIES/mobs_mc/wolf.lua:12 mods/ENTITIES/mobs_mc/wolf.lua:902
 msgid "Wolf"
 msgstr "Волк"
 
-#: mods/ENTITIES/mobs_mc/wolf.lua:927
+#: mods/ENTITIES/mobs_mc/wolf.lua:926
 msgid "on grass, snow blocks, coarse dirt, or podzol"
 msgstr "на блоках травы, снега, земли или подзола"
 

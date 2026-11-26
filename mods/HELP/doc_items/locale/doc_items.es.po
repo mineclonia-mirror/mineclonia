@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain doc_items x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-11-25 20:24+0100\n"
 "PO-Revision-Date: 2026-08-28 06:45+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
@@ -14,433 +14,599 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2026.8.1\n"
 
+#: mods/HELP/doc_items/init.lua:9
 msgid "This is a decorational block."
 msgstr "Este es un bloque decorativo."
 
+#: mods/HELP/doc_items/init.lua:10
 msgid "This block is a building block for creating various buildings."
 msgstr ""
 "Este bloque es un bloque de construcción para crear diversas construcciones."
 
+#: mods/HELP/doc_items/init.lua:11
 msgid "This item is primarily used for crafting other items."
 msgstr "Este ítem se utiliza principalmente para fabricar otros ítems."
 
+#: mods/HELP/doc_items/init.lua:13
 msgid "Hold it in your hand, then leftclick to eat it."
 msgstr "Sujétalo en tu mano y luego haz clic izquierdo para comerlo."
 
-msgid "Hold it in your hand, then leftclick to eat it. But why would you want to do this?"
+#: mods/HELP/doc_items/init.lua:14
+msgid ""
+"Hold it in your hand, then leftclick to eat it. But why would you want to do "
+"this?"
 msgstr ""
 "Sostenlo en tu mano y luego haz clic izquierdo para comértelo. ¿Pero por qué "
 "harías esto?"
 
-msgid "This block's rotation is affected by the way you place it: Place it on the floor or ceiling for a vertical orientation; place it at the side for a horizontal orientation. Sneaking while placing it leads to a perpendicular orientation instead."
+#: mods/HELP/doc_items/init.lua:15
+msgid ""
+"This block's rotation is affected by the way you place it: Place it on the "
+"floor or ceiling for a vertical orientation; place it at the side for a "
+"horizontal orientation. Sneaking while placing it leads to a perpendicular "
+"orientation instead."
 msgstr ""
 "La rotación de este bloque se ve afectada por cómo lo colocas: Colócalo en "
 "el suelo o en el techo para una orientación vertical; colócalo en el lateral "
 "para una orientación horizontal. Agacharte mientras lo colocas resulta en "
 "una orientación perpendicular."
 
+#: mods/HELP/doc_items/init.lua:26
 msgid "Hand"
 msgstr "Mano"
 
+#: mods/HELP/doc_items/init.lua:27
 msgid "Air"
 msgstr "Aire"
 
+#: mods/HELP/doc_items/init.lua:40
 msgid "Yes"
 msgstr "Sí"
 
+#: mods/HELP/doc_items/init.lua:42
 msgid "No"
 msgstr "No"
 
+#: mods/HELP/doc_items/init.lua:56 mods/HELP/doc_items/init.lua:778
+#: mods/HELP/doc_items/init.lua:915
 msgid ", "
 msgstr ", "
 
+#: mods/HELP/doc_items/init.lua:108
 msgid "Unknown item (@1)"
 msgstr "Ítem desconocido (@1)"
 
+#: mods/HELP/doc_items/init.lua:139
 msgid "unknown"
 msgstr "desconocido"
 
+#: mods/HELP/doc_items/init.lua:141
 msgid "1 second"
 msgstr "1 segundo"
 
+#: mods/HELP/doc_items/init.lua:143
 msgid "@1 seconds"
 msgstr "@1 segundos"
 
+#: mods/HELP/doc_items/init.lua:190 mods/HELP/doc_items/init.lua:332
 msgid "• @1: @2"
 msgstr "• @1: @2"
 
+#: mods/HELP/doc_items/init.lua:208
 msgid "• @1, rating @2: @3 s - @4 s"
 msgstr "• @1, calificación @2 : @3s - @4s"
 
+#: mods/HELP/doc_items/init.lua:213
 msgid "• @1, rating @2: @3 s"
 msgstr "• @1, calificación @2: @3 s"
 
+#: mods/HELP/doc_items/init.lua:232
 msgid "• @1, level @2: @3 uses"
 msgstr "• @1, nivel @2: @3 usos"
 
+#: mods/HELP/doc_items/init.lua:234
 msgid "• @1, level @2: Unlimited"
 msgstr "• @1, nivel @2: Ilimitado"
 
+#: mods/HELP/doc_items/init.lua:242
 msgid "This tool is capable of mining."
 msgstr "Esta herramienta puede minar."
 
+#: mods/HELP/doc_items/init.lua:243
 msgid "Maximum toughness levels:"
 msgstr "Niveles máximos de dureza:"
 
+#: mods/HELP/doc_items/init.lua:248
 msgid "Mining times:"
 msgstr "Tiempo de minería:"
 
+#: mods/HELP/doc_items/init.lua:252
 msgid "Mining durability:"
 msgstr "Durabilidad minera:"
 
+#: mods/HELP/doc_items/init.lua:263
 msgid "This is a melee weapon which deals damage by punching."
 msgstr "Es un arma cuerpo a cuerpo que causa daño al golpear."
 
+#: mods/HELP/doc_items/init.lua:265
 msgid "Maximum damage per hit:"
 msgstr "Daño máximo por golpe:"
 
+#: mods/HELP/doc_items/init.lua:267
 msgid "• @1: @2 HP"
 msgstr "• @1: @2 PS"
 
+#: mods/HELP/doc_items/init.lua:276
 msgid "Full punch interval: @1 s"
 msgstr "Intervalo de golpe: @1 s"
 
+#: mods/HELP/doc_items/init.lua:307
 msgid "This block can be mined by any mining tool in half a second."
 msgstr ""
 "Este bloque se puede extraer con cualquier herramienta de minería en medio "
 "segundo."
 
+#: mods/HELP/doc_items/init.lua:309
 msgid "This block can be mined by any mining tool immediately."
 msgstr ""
 "Este bloque se puede extraer con cualquier herramienta de minería al "
 "instante."
 
+#: mods/HELP/doc_items/init.lua:312
 msgid "This block can not be mined by ordinary mining tools."
-msgstr "Este bloque no se puede extraer con herramientas de minería ordinarias."
+msgstr ""
+"Este bloque no se puede extraer con herramientas de minería ordinarias."
 
+#: mods/HELP/doc_items/init.lua:316
 msgid "This block can be destroyed by any mining tool in half a second."
 msgstr ""
 "Este bloque puede ser destruido por cualquier herramienta de minería en "
 "medio segundo."
 
+#: mods/HELP/doc_items/init.lua:318
 msgid "This block can be destroyed by any mining tool immediately."
 msgstr ""
 "Este bloque puede ser destruido instantáneamente por cualquier herramienta "
 "de minería."
 
+#: mods/HELP/doc_items/init.lua:320
 msgid "This block can not be destroyed by ordinary mining tools."
 msgstr ""
 "Este bloque no se puede destruir con herramientas de minería ordinarias."
 
-msgid "This block can be mined by mining tools which match any of the following mining ratings and its toughness level."
+#: mods/HELP/doc_items/init.lua:326
+msgid ""
+"This block can be mined by mining tools which match any of the following "
+"mining ratings and its toughness level."
 msgstr ""
 "Este bloque se puede extraer con herramientas de minería que coincidan con "
 "cualquiera de las siguientes clasificaciones de minería y su nivel de fuerza."
 
+#: mods/HELP/doc_items/init.lua:327
 msgid "Mining ratings:"
 msgstr "Calificaciones mineras:"
 
+#: mods/HELP/doc_items/init.lua:340
 msgid "Toughness level: @1"
 msgstr "Nivel de dureza: @1"
 
+#: mods/HELP/doc_items/init.lua:355 mods/HELP/doc_items/init.lua:359
 msgid "Range: @1"
 msgstr "Rango: @1"
 
+#: mods/HELP/doc_items/init.lua:361
 msgid "Range: @1 (@2)"
 msgstr "Rango: @1 (@2)"
 
+#: mods/HELP/doc_items/init.lua:376
 msgid "This tool can serve as a smelting fuel with a burning time of @1."
 msgstr "Esta herramienta se puede utilizar como combustible para @1."
 
+#: mods/HELP/doc_items/init.lua:378
 msgid "This block can serve as a smelting fuel with a burning time of @1."
 msgstr "Este bloque se puede utilizar como combustible para @1."
 
+#: mods/HELP/doc_items/init.lua:380
 msgid "This item can serve as a smelting fuel with a burning time of @1."
 msgstr "Este ítem se puede utilizar como combustible para @1."
 
+#: mods/HELP/doc_items/init.lua:385
 msgid " Using it as fuel turns it into: @1."
 msgstr " Usarlo como combustible lo convierte en: @1."
 
+#: mods/HELP/doc_items/init.lua:400
 msgid "Itemstring: \"@1\""
 msgstr "Itemstring: \"@1\""
 
+#: mods/HELP/doc_items/init.lua:458 mods/HELP/doc_items/init.lua:1137
 msgid "Description: @1"
 msgstr "Descripción: @1"
 
+#: mods/HELP/doc_items/init.lua:462
 msgid "Usage help: @1"
 msgstr "Ayuda para su uso: @1"
 
+#: mods/HELP/doc_items/init.lua:469
 msgid "Maximum stack size: @1"
 msgstr "Cantidad máxima por stack: @1"
 
+#: mods/HELP/doc_items/init.lua:478
 msgid "This block points to liquids."
 msgstr "Este bloque indica la dirección de los líquidos."
 
+#: mods/HELP/doc_items/init.lua:480
 msgid "This tool points to liquids."
 msgstr "Esta herramienta indica la dirección de los líquidos."
 
+#: mods/HELP/doc_items/init.lua:482
 msgid "This item points to liquids."
 msgstr "Este ítem indica la dirección de los líquidos."
 
-msgid "Punches with this block don't work as usual; melee combat and mining are either not possible or work differently."
+#: mods/HELP/doc_items/init.lua:487
+msgid ""
+"Punches with this block don't work as usual; melee combat and mining are "
+"either not possible or work differently."
 msgstr ""
 "Los golpes con este bloque no funcionan de la forma habitual; El combate "
 "cuerpo a cuerpo y la minería no son posibles o funcionan de manera diferente."
 
-msgid "Punches with this tool don't work as usual; melee combat and mining are either not possible or work differently."
+#: mods/HELP/doc_items/init.lua:489
+msgid ""
+"Punches with this tool don't work as usual; melee combat and mining are "
+"either not possible or work differently."
 msgstr ""
 "Los golpes con esta herramienta no funcionan normalmente; El combate cuerpo "
 "a cuerpo y la minería no son posibles o funcionan de manera diferente."
 
-msgid "Punches with this item don't work as usual; melee combat and mining are either not possible or work differently."
+#: mods/HELP/doc_items/init.lua:491
+msgid ""
+"Punches with this item don't work as usual; melee combat and mining are "
+"either not possible or work differently."
 msgstr ""
 "Los golpes con este ítem no funcionan normalmente; El combate cuerpo a "
 "cuerpo y la minería no son posibles o funcionan de manera diferente."
 
+#: mods/HELP/doc_items/init.lua:522
 msgid "This block belongs to the @1 group."
 msgstr "Este bloque pertenece al grupo @1."
 
+#: mods/HELP/doc_items/init.lua:524
 msgid "This tool belongs to the @1 group."
 msgstr "Esta herramienta pertenece al grupo @1."
 
+#: mods/HELP/doc_items/init.lua:526
 msgid "This item belongs to the @1 group."
 msgstr "Este ítem pertenece al grupo @1."
 
+#: mods/HELP/doc_items/init.lua:530
 msgid "This block belongs to these groups: @1."
 msgstr "Este bloque pertenece a estos grupos: @1."
 
+#: mods/HELP/doc_items/init.lua:532
 msgid "This tool belongs to these groups: @1."
 msgstr "Esta herramienta pertenece a estos grupos: @1."
 
+#: mods/HELP/doc_items/init.lua:534
 msgid "This item belongs to these groups: @1."
 msgstr "Este ítem pertenece a estos grupos: @1."
 
+#: mods/HELP/doc_items/init.lua:574
 msgid "Blocks"
 msgstr "Bloques"
 
-msgid "Item reference of blocks and other things which are capable of occupying space"
+#: mods/HELP/doc_items/init.lua:575
+msgid ""
+"Item reference of blocks and other things which are capable of occupying "
+"space"
 msgstr "Índice de bloques y otras cosas que pueden ocupar espacio"
 
+#: mods/HELP/doc_items/init.lua:583
 msgid "Collidable: @1"
 msgstr "Colisionable: @1"
 
+#: mods/HELP/doc_items/init.lua:585
 msgid "Pointable: Yes"
 msgstr "Apuntable: Sí"
 
+#: mods/HELP/doc_items/init.lua:587
 msgid "Pointable: Only by special items"
 msgstr "Apuntable: Solo por ítems especiales"
 
+#: mods/HELP/doc_items/init.lua:589
 msgid "Pointable: No"
 msgstr "Apuntable: No"
 
+#: mods/HELP/doc_items/init.lua:595
 msgid "This block is a liquid with these properties:"
 msgstr "Este bloque es un líquido con las siguientes propiedades:"
 
+#: mods/HELP/doc_items/init.lua:601
 msgid "• Renewable"
 msgstr "• Renovable"
 
+#: mods/HELP/doc_items/init.lua:603
 msgid "• Not renewable"
 msgstr "• No renovable"
 
+#: mods/HELP/doc_items/init.lua:606
 msgid "• No flowing"
 msgstr "• Sin flujo"
 
+#: mods/HELP/doc_items/init.lua:608
 msgid "• Flowing range: @1"
 msgstr "• Rango de flujo: @1"
 
+#: mods/HELP/doc_items/init.lua:610
 msgid "• Viscosity: @1"
 msgstr "• Viscosidad: @1"
 
+#: mods/HELP/doc_items/init.lua:619
 msgid "This block causes a damage of @1 hit points per second."
 msgstr "Este bloqueo causa un daño de @1 puntos de salud por segundo."
 
+#: mods/HELP/doc_items/init.lua:621
 msgid "This block causes a damage of @1 hit point per second."
 msgstr "Este bloqueo causa un daño de @1 punto de salud por segundo."
 
-msgid "This block decreases your breath and causes a drowning damage of @1 hit points every 2 seconds."
+#: mods/HELP/doc_items/init.lua:625
+msgid ""
+"This block decreases your breath and causes a drowning damage of @1 hit "
+"points every 2 seconds."
 msgstr ""
 "Este bloqueo disminuye tu respiración y causa un daño por ahogamiento de @1 "
 "punto de salud cada 2 segundos."
 
-msgid "This block decreases your breath and causes a drowning damage of @1 hit point every 2 seconds."
+#: mods/HELP/doc_items/init.lua:627
+msgid ""
+"This block decreases your breath and causes a drowning damage of @1 hit "
+"point every 2 seconds."
 msgstr ""
 "Este bloque reduce tu respiración y causa daño por ahogamiento de @1 puntos "
 "de salud cada 2 segundos."
 
+#: mods/HELP/doc_items/init.lua:633
 msgid "The fall damage on this block is increased by @1%."
 msgstr "El daño por caída en este bloque aumenta en un @1%."
 
+#: mods/HELP/doc_items/init.lua:635
 msgid "This block negates all fall damage."
 msgstr "Este bloque anula todos los daños por caída."
 
+#: mods/HELP/doc_items/init.lua:637
 msgid "The fall damage on this block is reduced by @1%."
 msgstr "El daño por caída en este bloque se reduce en un @1%."
 
+#: mods/HELP/doc_items/init.lua:647
 msgid "You can not jump while standing on this block."
 msgstr "No puedes saltar mientras estás en este bloque."
 
+#: mods/HELP/doc_items/init.lua:650
 msgid "This block can be climbed."
 msgstr "Este bloque se puede escalar."
 
+#: mods/HELP/doc_items/init.lua:654
 msgid "This block will make you bounce off with an elasticity of @1%."
 msgstr "Este bloque te hará rebotar con una elasticidad del @1%."
 
+#: mods/HELP/doc_items/init.lua:658
 msgid "This block is slippery."
 msgstr "Este bloque es resbaladizo."
 
+#: mods/HELP/doc_items/init.lua:680
 msgid "This block is completely silent when walked on, mined or built."
 msgstr "Este bloque no hace ruido al pisarlo, minarlo o construirlo."
 
+#: mods/HELP/doc_items/init.lua:682
 msgid "This block is completely silent when mined or built."
 msgstr "Este bloque no hace ruido cuando se mina o se coloca."
 
+#: mods/HELP/doc_items/init.lua:685
 msgid "Walking on this block is completely silent."
 msgstr "Caminar sobre este bloque es completamente silencioso."
 
+#: mods/HELP/doc_items/init.lua:688
 msgid "Mining this block is completely silent."
 msgstr "Minar este bloque es completamente silencioso."
 
+#: mods/HELP/doc_items/init.lua:691
 msgid "Building this block is completely silent."
 msgstr "Colocar este bloque es completamente silencioso."
 
+#: mods/HELP/doc_items/init.lua:702
 msgid "This block is affected by gravity and can fall."
 msgstr "Este bloque es afectado por la gravedad y puede caer."
 
-msgid "Building another block at this block will place it inside and replace it."
+#: mods/HELP/doc_items/init.lua:711
+msgid ""
+"Building another block at this block will place it inside and replace it."
 msgstr ""
 "Colocar otro bloque sobre este bloque lo colocará dentro y lo reemplazará."
 
-msgid "Falling blocks can go through this block; they destroy it when doing so."
+#: mods/HELP/doc_items/init.lua:713
+msgid ""
+"Falling blocks can go through this block; they destroy it when doing so."
 msgstr ""
 "Los bloques que caen pueden atravesar este bloque; lo destruyen al hacerlo."
 
+#: mods/HELP/doc_items/init.lua:718
 msgid "This block will drop as an item when a falling block ends up inside it."
-msgstr "Este bloque se convertirá en un ítem cuando otro bloque caiga sobre él."
+msgstr ""
+"Este bloque se convertirá en un ítem cuando otro bloque caiga sobre él."
 
+#: mods/HELP/doc_items/init.lua:720
 msgid "This block is destroyed when a falling block ends up inside it."
 msgstr "Este bloque se destruye cuando otro bloque cae sobre él."
 
-msgid "This block will drop as an item when it is not attached to a surrounding block."
+#: mods/HELP/doc_items/init.lua:725
+msgid ""
+"This block will drop as an item when it is not attached to a surrounding "
+"block."
 msgstr ""
 "Este bloque se transformará en un ítem cuando ya no esté unido a un bloque "
 "circundante."
 
+#: mods/HELP/doc_items/init.lua:727
 msgid "This block will drop as an item when no collidable block is below it."
 msgstr ""
 "Este bloque se convertirá en un ítem cuando ya no haya un bloque "
 "colisionable debajo de él."
 
+#: mods/HELP/doc_items/init.lua:731
 msgid "Liquids can flow into this block and destroy it."
 msgstr "Los líquidos pueden fluir hacia este bloque y destruirlo."
 
+#: mods/HELP/doc_items/init.lua:741
 msgid "This block is a light source with a light level of @1."
 msgstr "Este bloque es una fuente de luz de nivel @1."
 
+#: mods/HELP/doc_items/init.lua:743
 msgid "This block glows faintly with a light level of @1."
 msgstr "Este bloque brilla tenuemente con luz de nivel @1."
 
-msgid "This block allows light to propagate with a small loss of brightness, and sunlight can even go through losslessly."
+#: mods/HELP/doc_items/init.lua:746
+msgid ""
+"This block allows light to propagate with a small loss of brightness, and "
+"sunlight can even go through losslessly."
 msgstr ""
 "Este bloque permite el paso de la luz con una pequeña pérdida de brillo y la "
 "luz del sol puede atravesarlo sin pérdida."
 
+#: mods/HELP/doc_items/init.lua:748
 msgid "This block allows light to propagate with a small loss of brightness."
 msgstr "Este bloque deja pasar la luz con una pequeña pérdida de brillo."
 
+#: mods/HELP/doc_items/init.lua:750
 msgid "This block allows sunlight to propagate without loss in brightness."
 msgstr "Este bloque deja pasar la luz del sol sin pérdida de brillo."
 
+#: mods/HELP/doc_items/init.lua:783
 msgid "Unknown Node"
 msgstr "Nodo desconocido"
 
+#: mods/HELP/doc_items/init.lua:787
 msgid "This block connects to this block: @1."
 msgstr "Este bloque se conecta con este bloque: @1."
 
+#: mods/HELP/doc_items/init.lua:789
 msgid "This block connects to these blocks: @1."
 msgstr "Este bloque se conecta a estos bloques: @1."
 
+#: mods/HELP/doc_items/init.lua:794
 msgid "This block connects to blocks of the @1 group."
 msgstr "Este bloque se conecta a bloques del grupo @1."
 
+#: mods/HELP/doc_items/init.lua:796
 msgid "This block connects to blocks of the following groups: @1."
 msgstr "Este bloque se conecta a bloques de los siguientes grupos: @1."
 
+#: mods/HELP/doc_items/init.lua:817
 msgid "This block won't drop anything when mined."
 msgstr "Este bloque no recompensará nada cuando se mine."
 
+#: mods/HELP/doc_items/init.lua:824
 msgid "This block will drop the following when mined: @1×@2."
 msgstr "Este bloque recompensará lo siguiente al ser minado: @1×@2."
 
+#: mods/HELP/doc_items/init.lua:826 mods/HELP/doc_items/init.lua:837
 msgid "This block will drop the following when mined: @1."
 msgstr "Este bloque recompensará lo siguiente al ser minado: @1."
 
+#: mods/HELP/doc_items/init.lua:834
 msgid "This block will drop the following items when mined: @1."
 msgstr "Este bloque recompensará los siguientes ítems al ser minado: @1."
 
+#: mods/HELP/doc_items/init.lua:839
 msgid "This block will randomly drop one of the following when mined: @1."
 msgstr ""
 "Este bloque recompensará aleatoriamente uno de los siguientes ítems al ser "
 "minado: @1."
 
-msgid "This block will randomly drop up to @1 drops of the following possible drops when mined: @2."
+#: mods/HELP/doc_items/init.lua:842
+msgid ""
+"This block will randomly drop up to @1 drops of the following possible drops "
+"when mined: @2."
 msgstr ""
 "Este bloque recompensará aleatoriamente hasta @1 de los siguientes ítems "
 "cuando se mine: @2."
 
+#: mods/HELP/doc_items/init.lua:923
 msgid " and "
 msgstr " y "
 
+#: mods/HELP/doc_items/init.lua:928
 msgid "@1×@2"
 msgstr "@1×@2"
 
+#: mods/HELP/doc_items/init.lua:940
 msgid "@1 (<0.5%)"
 msgstr "@1 (<0.5%)"
 
+#: mods/HELP/doc_items/init.lua:945
 msgid "@1 (ca. @2%)"
 msgstr "@1 (aprox. @2%)"
 
+#: mods/HELP/doc_items/init.lua:947
 msgid "@1 (@2%)"
 msgstr "@1 (@2%)"
 
+#: mods/HELP/doc_items/init.lua:978
 msgid "Tools and weapons"
 msgstr "Herramientas y armas"
 
+#: mods/HELP/doc_items/init.lua:979
 msgid "Item reference of all wieldable tools and weapons"
 msgstr ""
 "Referencia de ítems de todas las herramientas y armas que se pueden usar"
 
+#: mods/HELP/doc_items/init.lua:1089
 msgid "Durability: @1 uses"
 msgstr "Durabilidad: @1 uso/s"
 
+#: mods/HELP/doc_items/init.lua:1093
 msgid "Durability: @1"
 msgstr "Durabilidad: @1"
 
+#: mods/HELP/doc_items/init.lua:1110
 msgid "Miscellaneous items"
 msgstr "Ítems diversos"
 
-msgid "Item reference of items which are neither blocks, tools or weapons (esp. crafting items)"
+#: mods/HELP/doc_items/init.lua:1111
+msgid ""
+"Item reference of items which are neither blocks, tools or weapons (esp. "
+"crafting items)"
 msgstr ""
 "Referencia de ítems que no son bloques, herramientas ni armas (especialmente "
 "ítems de fabricación)"
 
+#: mods/HELP/doc_items/init.lua:1128
 msgid "Mobs"
 msgstr "Criaturas"
 
+#: mods/HELP/doc_items/init.lua:1129
 msgid "Different Mobs"
 msgstr "Diferentes criaturas"
 
+#: mods/HELP/doc_items/init.lua:1145
 msgid "Drops: "
 msgstr "Recompensas: "
 
+#: mods/HELP/doc_items/init.lua:1163
 msgid "Follows player when these items are held:"
 msgstr "Sigue al jugador cuando se sostiene estos ítems:"
 
-msgid "A transparent block, basically empty space. It is usually left behind after digging something."
+#: mods/HELP/doc_items/init.lua:1265
+msgid ""
+"A transparent block, basically empty space. It is usually left behind after "
+"digging something."
 msgstr ""
 "Un bloque transparente, básicamente un espacio vacío. Generalmente queda "
 "después de excavar algo."
 
-msgid "Whenever you are not wielding any item, you use the hand which acts as a tool with its own capabilities. When you are wielding an item which is not a mining tool or a weapon it will behave as if it would be the hand."
+#: mods/HELP/doc_items/init.lua:1279
+msgid ""
+"Whenever you are not wielding any item, you use the hand which acts as a "
+"tool with its own capabilities. When you are wielding an item which is not a "
+"mining tool or a weapon it will behave as if it would be the hand."
 msgstr ""
 "Siempre que no estés sosteniendo ningún ítem, usas la mano, que actúa como "
 "una herramienta con sus propias capacidades. Cuando sostienes un ítem que no "

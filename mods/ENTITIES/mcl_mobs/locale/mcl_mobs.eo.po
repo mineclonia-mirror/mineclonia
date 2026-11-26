@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_mobs x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-10-10 04:50+0200\n"
+"POT-Creation-Date: 2026-11-20 06:58+0100\n"
 "PO-Revision-Date: 2026-08-28 06:42+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Esperanto <https://translate.codeberg.org/projects/mineclonia/"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: mods/ENTITIES/mcl_mobs/api.lua:737
+#: mods/ENTITIES/mcl_mobs/api.lua:729
 msgid ""
 "Remove all, nametagged or tamed mobs within the specified distance or "
 "everywhere. When unspecified remove all mobs except tamed and nametagged "
@@ -24,7 +24,7 @@ msgstr ""
 "distanco aŭ ĉie. Se ne estas difinita distanco, forigu ĉiujn monstrojn krome "
 "la malsovaĝitaj kaj nometikedigitaj."
 
-#: mods/ENTITIES/mcl_mobs/api.lua:750 mods/ENTITIES/mcl_mobs/api.lua:757
+#: mods/ENTITIES/mcl_mobs/api.lua:742 mods/ENTITIES/mcl_mobs/api.lua:749
 msgid "Invalid syntax."
 msgstr "Malvalida sintakso."
 
@@ -455,12 +455,6 @@ msgstr ""
 #. nodes.
 #. Consider neighbors in the four cardinal directions.
 #. Consider diagonal neighbors at an angle.
-#. jit.off (mob_class.gwp_edges, true)
-#. jit.off (gwp_edges_1, true)
-#. jit.off (mob_class.gwp_classify_node, true)
-#. jit.off (gwp_basic_classify, true)
-#. jit.off (mob_class.gwp_essay_drop, true)
-#. jit.off (mob_class.gwp_essay_jump, true)
 #. --------------------------------------------------------------------------------
 #. Pathfinder testing command `/mobpathfind'
 #.
@@ -792,7 +786,6 @@ msgstr ""
 #. appropriate.
 #. This is a workaround to prevent excess table allocations
 #. lua locals
-#. do mobs spawn?
 #. _just_portaled mobs should not despawn to allow
 #. mapblocks containing them to be unloaded if no
 #. players are nearby.
@@ -802,7 +795,7 @@ msgstr ""
 #. player approaches, or when damage
 #. is sustained from any source.
 #. Detach this rider.
-#: mods/ENTITIES/mcl_mobs/spawning.lua:136
+#: mods/ENTITIES/mcl_mobs/spawning.lua:135
 msgid ""
 "spawn_mob is a chatcommand that allows you to type in the name of a mob "
 "without 'typing mobs_mc:' all the time like so; 'spawn_mob spider'. however, "
@@ -822,76 +815,76 @@ msgid ""
 " etc."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1209
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1208
 msgid ""
 "This mob will spawn on solid and opaque nodes with a surface occupying a "
 "full node when no obstructions exist within a volume @1 nodes in size around "
 "the center of such a node's upper surface."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1212
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1211
 msgid ""
 "This mob will spawn in water when the node above is not opaque and no "
 "obstructions exist within a volume @1 nodes in size around the center of the "
 "base of the fluid node in question."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1215
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1214
 msgid ""
 "This mob will spawn on flowing lava and lava sources when no liquid or solid "
 "obstructions exist within a volume @1 nodes in size."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1218
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1217
 msgid "This mob does not document its spawning requirements."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1226
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1225
 msgid "Mobs will spawn in individual groups of 1."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1228
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1227
 msgid "Up to @1 mobs will spawn as a single group upon each spawning attempt."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1230
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1229
 msgid ""
 "A group of @1 to @2 mobs will attempt to be spawned upon each spawning "
 "attempt."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1380
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1377
 msgid "Dumped spawners for biome: @1"
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1477
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1474
 msgid "Environmental spawning requirements and mechanics:"
 msgstr ""
 
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1478
 #: mods/ENTITIES/mcl_mobs/spawning.lua:1481
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1484
 msgid ""
 "\n"
 "When spawned from spawner:"
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1487
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1484
 msgid ""
 "\n"
 "Mob does not spawn environmentally."
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1493
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1490
 msgid ""
 "\n"
 "When spawned in biome(s): "
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1499
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1496
 msgid "and when spawned in structure(s): "
 msgstr ""
 
-#: mods/ENTITIES/mcl_mobs/spawning.lua:1501
+#: mods/ENTITIES/mcl_mobs/spawning.lua:1498
 msgid ""
 "\n"
 "When spawned in structure(s): "

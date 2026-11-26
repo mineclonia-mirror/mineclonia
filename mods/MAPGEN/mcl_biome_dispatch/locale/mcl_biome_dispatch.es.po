@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_biome_dispatch x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-10-02 05:04+0200\n"
+"POT-Creation-Date: 2026-10-29 18:09+0100\n"
 "PO-Revision-Date: 2026-08-28 05:29+0000\n"
 "Last-Translator: gallegonovato <gallegonovato@noreply.codeberg.org>\n"
 "Language-Team: Spanish <https://translate.codeberg.org/projects/mineclonia/"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Loading terrain..."
 msgstr "Cargando el terreno"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1103
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1303
 msgid ""
 "Locate a structure, biome, or point of interest identified by ID in the "
 "current dimension."
@@ -27,7 +27,7 @@ msgstr ""
 "Localiza una estructura, un bioma o un punto de interés identificado por su "
 "ID en la dimensión actual."
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1109
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1309
 msgid ""
 "/locate structure requires a structure ID.\n"
 "These structures are available: "
@@ -35,7 +35,7 @@ msgstr ""
 "La estructura /locate requiere un identificador de estructura.\n"
 "Estas son las estructuras disponibles: "
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1121
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1324
 msgid ""
 "The nearest structure of type @1 is located at (@2,@3,@4) (@5 block away)"
 msgid_plural ""
@@ -47,11 +47,11 @@ msgstr[1] ""
 "La estructura más cercana del tipo @1 se encuentra en (@2,@3,@4) (a (@5) "
 "bloques de distancia)"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1126
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1329
 msgid "No structure of type @1 exists near your position"
 msgstr "No hay ninguna estructura de tipo @1 cerca tuya"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1135
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1338
 msgid ""
 "/locate biome requires a biome ID or a tag prefixed with `#'.\n"
 "These biomes and tags are available: "
@@ -60,7 +60,7 @@ msgstr ""
 "precedida por el símbolo «#».\n"
 "Están disponibles los siguientes biomas y etiquetas: "
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1147
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1350
 msgid "The nearest biome matching @1 is located at (@2,@3,@4) (@5 block away)"
 msgid_plural ""
 "The nearest biome matching @1 is located at (@2,@3,@4) (@5 blocks away)"
@@ -71,11 +71,11 @@ msgstr[1] ""
 "El bioma más cercano que coincide con @1 se encuentra en (@2,@3,@4) (a @5 "
 "bloques de distancia)"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1152
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1355
 msgid "No biome matching @1 exists near your position"
 msgstr "No hay ningún bioma que coincida con @1 cerca de tu ubicación"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1159
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1362
 msgid ""
 "/locate poi requires an identifier designating a valid point of interest.\n"
 "These points of interest are available: "
@@ -84,15 +84,15 @@ msgstr ""
 "válido.\n"
 "Estos son los puntos de interés disponibles: "
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1168
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1371
 msgid "@1 does not identify a valid point of interest"
 msgstr "@1 no identifica un punto de interés válido"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1195
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1398
 msgid "No point of interest named @1 exists near your position"
 msgstr "No hay ningún punto de interés llamado @1 cerca de tu ubicación"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1200
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1403
 msgid ""
 "The nearest point of interest named @1 is located at (@2,@3,@4) (@5 block "
 "away)"
@@ -106,10 +106,9 @@ msgstr[1] ""
 "El punto de interés más cercano, denominado @1, se encuentra en (@2,@3,@4) "
 "(a @5 bloques de distancia)"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1207
+#: mods/MAPGEN/mcl_biome_dispatch/init.lua:1410
 msgid "Usage: /locate [structure | biome | poi] <ID>"
 msgstr "Uso: /localizar [estructura | bioma | punto de interés] <ID>"
 
-#: mods/MAPGEN/mcl_biome_dispatch/init.lua:791
-msgid "Loading terrain"
-msgstr "Cargando el terreno"
+#~ msgid "Loading terrain"
+#~ msgstr "Cargando el terreno"

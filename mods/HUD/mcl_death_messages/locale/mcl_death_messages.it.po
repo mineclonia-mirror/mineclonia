@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_death_messages x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-10-31 00:41+0100\n"
 "PO-Revision-Date: 2026-08-28 06:32+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Italian <https://translate.codeberg.org/projects/mineclonia/"
@@ -172,7 +172,8 @@ msgstr "@1 è statə schiacciatə da un blocco cadente"
 
 #: mods/HUD/mcl_death_messages/init.lua:90
 msgid "@1 was squashed by a falling block whilst fighting @2"
-msgstr "@1 è statə schiacciatə da un blocco cadente mentre combatteva contro @2"
+msgstr ""
+"@1 è statə schiacciatə da un blocco cadente mentre combatteva contro @2"
 
 #: mods/HUD/mcl_death_messages/init.lua:93
 #: mods/HUD/mcl_death_messages/init.lua:97
@@ -270,3 +271,8 @@ msgstr "@1 è statə impalatə da @2"
 #: mods/HUD/mcl_death_messages/init.lua:140
 msgid "@1 was impaled by @2 with @3"
 msgstr "@1 è statə impalatə da @2 con @3"
+
+#: mods/HUD/mcl_death_messages/init.lua:143
+#, fuzzy
+msgid "@1 was stung to death"
+msgstr "@1 è statə puntə fatalmente"

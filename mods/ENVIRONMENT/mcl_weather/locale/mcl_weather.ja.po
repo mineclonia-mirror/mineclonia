@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_weather x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-11-01 05:02+0100\n"
 "PO-Revision-Date: 2026-08-28 06:38+0000\n"
 "Last-Translator: bo_chan <bo_chan@noreply.codeberg.org>\n"
 "Language-Team: Japanese <https://translate.codeberg.org/projects/mineclonia/"
@@ -22,31 +22,31 @@ msgstr "ネザーでダストパーティクルを有効化"
 msgid "Enable clouds"
 msgstr ""
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:219
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:215
 msgid "Gives ability to control weather"
 msgstr "天候操作能力を付与"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:222
 msgid "Changes the weather to the specified parameter."
 msgstr "指定されたパラメータの天気を変更します。"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:230
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
 msgid "Error: No weather specified."
 msgstr "エラー：天候が指定されていません。"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:241
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:237
 msgid "Error: Invalid parameters."
 msgstr "エラー：パラメータが無効です。"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:247
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:243
 msgid "Error: Duration can't be less than 1 second."
 msgstr "エラー：持続時間は1秒以下にはできません。"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:257
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:253
 msgid "Error: Invalid weather specified. Use “clear”, “rain”, or “thunder”."
 msgstr ""
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:264
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:260
 msgid ""
 "Toggles between clear weather and weather with downfall (randomly rain, "
 "thunderstorm or snow)"

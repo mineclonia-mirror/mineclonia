@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-09-19 01:42+0200\n"
 "PO-Revision-Date: 2026-08-28 06:43+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Czech <https://translate.codeberg.org/projects/mineclonia/"
@@ -27,7 +27,8 @@ msgid "This block can be turned into farmland with a hoe."
 msgstr "Tento blok může být přetvořen na ornici pomocí motyky."
 
 #: mods/HELP/mcl_doc/init.lua:38
-msgid "This block can be turned into grass path with a shovel."
+#, fuzzy
+msgid "This block can be turned into dirt path with a shovel."
 msgstr "Tento blok lze pomocí lopaty přeměnit na travnatou cestu."
 
 #: mods/HELP/mcl_doc/init.lua:48

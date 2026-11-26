@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_levelgen x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-06-30 22:52+0200\n"
+"POT-Creation-Date: 2026-11-25 20:24+0100\n"
 "PO-Revision-Date: 2026-08-28 05:30+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Finnish <https://translate.codeberg.org/projects/mineclonia/"
@@ -14,16 +14,16 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:157
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:158
 msgid "Structure Void"
 msgstr "Rakennelmatyhjiö"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:158
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:159
 msgid "Enables structures not to replace existing level contents"
 msgstr ""
 "Mahdollistaa sen, että rakennelma ei korvaa maailmassa jo olevia asioita"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:159
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:160
 msgid ""
 "The presence of a structure void block in a structure template indicates to "
 "the level generator that the contents of the level at the position it "
@@ -40,15 +40,15 @@ msgstr ""
 "rakennelmatyhjiöesinettä, lähellä olevat rakennelmatyhjiökuutiot näkyvät "
 "liuskoina."
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:254
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
 msgid "Structure Block"
 msgstr "Rakennelmakuutio"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:255
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:256
 msgid "Saves, generates, or records structure data"
 msgstr "Tallentaa, luo tai rekisteröi rakennelmien tietoja"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:256
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:257
 msgid ""
 "A structure block is an administrative and programmer block which enables "
 "existing constructs in a map to be recorded for subsequent reuse by "
@@ -141,23 +141,23 @@ msgstr ""
 "ladataan palapelikuutiolaajennuksen aikana) ja mitkä tahansa "
 "rakennelmakuutiot, jotka ovat sisäisessä tietotilassa."
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:406
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:407
 msgid "Template name is not specified"
 msgstr "Mallin nimeä ei ole määritetty"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:415
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:416
 msgid "Template `@1' is not available: @2"
 msgstr "Mallia \"@1\" ei ole saatavilla: @2"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:520
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:521
 msgid "Invalid dimensions: @1,@2,@3"
 msgstr "Virheelliset mitat: @1, @2, @3"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:574
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:575
 msgid "Metadata storage limit exceeded"
 msgstr "Metatietojen tallennusrajoitus ylitetty"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:612
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:613
 msgid "Creating file @1: @2"
 msgstr "Luodaan tiedosto @1: @2"
 
@@ -175,15 +175,15 @@ msgstr ""
 "Rakennelman koon määrittäminen ei onnistu. Lisää nurkkia, joilla on sama "
 "rakennelmanimi."
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1217
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1215
 msgid "Jigsaw Block"
 msgstr "Palapelikuutio"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1218
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1216
 msgid "Facilitates generation of multiple-piece structures"
 msgstr "Helpottaa moniosaisen rakennelman luontia"
 
-#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1352
+#: mods/MAPGEN/mcl_levelgen/jigsaw.lua:1350
 msgid "`server' privileges are required to interact with jigsaw blocks"
 msgstr "Palapelikuution käyttämiseen vaaditaan \"server\"-oikeus"
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain doc_items x.x.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: no@example.com\n"
+"POT-Creation-Date: 2026-11-25 20:24+0100\n"
 "PO-Revision-Date: 2026-08-28 06:45+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Finnish <https://translate.codeberg.org/projects/mineclonia/"
@@ -14,424 +14,589 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
+#: mods/HELP/doc_items/init.lua:9
 msgid "This is a decorational block."
 msgstr "Tämä on koristekuutio."
 
+#: mods/HELP/doc_items/init.lua:10
 msgid "This block is a building block for creating various buildings."
 msgstr ""
 "Tämä kuutio on monenlaisten rakennusten luomiseen soveltuva rakennuskuutio."
 
+#: mods/HELP/doc_items/init.lua:11
 msgid "This item is primarily used for crafting other items."
 msgstr "Tällä esineellä pääasiassa valmistetaan toisia esineitä."
 
+#: mods/HELP/doc_items/init.lua:13
 msgid "Hold it in your hand, then leftclick to eat it."
 msgstr "Ota se käteesi ja paina vasenta hiirennäppäintä syödäkseksi sen."
 
-msgid "Hold it in your hand, then leftclick to eat it. But why would you want to do this?"
+#: mods/HELP/doc_items/init.lua:14
+msgid ""
+"Hold it in your hand, then leftclick to eat it. But why would you want to do "
+"this?"
 msgstr ""
 "Ota se käteesi ja paina vasenta hiirennäppäintä syödäksesi sen. Miksi "
 "kuitenkaan haluaisit tehdä niin?"
 
-msgid "This block's rotation is affected by the way you place it: Place it on the floor or ceiling for a vertical orientation; place it at the side for a horizontal orientation. Sneaking while placing it leads to a perpendicular orientation instead."
+#: mods/HELP/doc_items/init.lua:15
+msgid ""
+"This block's rotation is affected by the way you place it: Place it on the "
+"floor or ceiling for a vertical orientation; place it at the side for a "
+"horizontal orientation. Sneaking while placing it leads to a perpendicular "
+"orientation instead."
 msgstr ""
 "Tämän kuution suunta riippuu siitä, miten asetat sen: Maahan tai kattoon "
 "sijoitettuna se on pystysuuntainen; seinään sijoitettuna se on "
 "vaakasuuntainen. Jos hiipii sijoittaessa, se asettuu kohtisuoraan."
 
+#: mods/HELP/doc_items/init.lua:26
 msgid "Hand"
 msgstr "Käsi"
 
+#: mods/HELP/doc_items/init.lua:27
 msgid "Air"
 msgstr "Ilma"
 
+#: mods/HELP/doc_items/init.lua:40
 msgid "Yes"
 msgstr "Kyllä"
 
+#: mods/HELP/doc_items/init.lua:42
 msgid "No"
 msgstr "Ei"
 
+#: mods/HELP/doc_items/init.lua:56 mods/HELP/doc_items/init.lua:778
+#: mods/HELP/doc_items/init.lua:915
 msgid ", "
 msgstr ", "
 
+#: mods/HELP/doc_items/init.lua:108
 msgid "Unknown item (@1)"
 msgstr "Tuntematon esine (@1)"
 
+#: mods/HELP/doc_items/init.lua:139
 msgid "unknown"
 msgstr "tuntematon"
 
+#: mods/HELP/doc_items/init.lua:141
 msgid "1 second"
 msgstr "1 sekunti"
 
+#: mods/HELP/doc_items/init.lua:143
 msgid "@1 seconds"
 msgstr "@1 sekuntia"
 
+#: mods/HELP/doc_items/init.lua:190 mods/HELP/doc_items/init.lua:332
 msgid "• @1: @2"
 msgstr "• @1: @2"
 
+#: mods/HELP/doc_items/init.lua:208
 msgid "• @1, rating @2: @3 s - @4 s"
 msgstr "• @1, luokitus @2: @3 s - @4 s"
 
+#: mods/HELP/doc_items/init.lua:213
 msgid "• @1, rating @2: @3 s"
 msgstr "• @1, luokitus @2: @3 s"
 
+#: mods/HELP/doc_items/init.lua:232
 msgid "• @1, level @2: @3 uses"
 msgstr "• @1, taso @2: @3 käyttökertaa"
 
+#: mods/HELP/doc_items/init.lua:234
 msgid "• @1, level @2: Unlimited"
 msgstr "• @1, taso @2: Rajoittamaton"
 
+#: mods/HELP/doc_items/init.lua:242
 msgid "This tool is capable of mining."
 msgstr "Tällä työkalulla pystyy kaivamaan."
 
+#: mods/HELP/doc_items/init.lua:243
 msgid "Maximum toughness levels:"
 msgstr "Suurin kovuustaso:"
 
+#: mods/HELP/doc_items/init.lua:248
 msgid "Mining times:"
 msgstr "Kaivuukertoja:"
 
+#: mods/HELP/doc_items/init.lua:252
 msgid "Mining durability:"
 msgstr "Kaivuukestävyys:"
 
+#: mods/HELP/doc_items/init.lua:263
 msgid "This is a melee weapon which deals damage by punching."
 msgstr "Tämä on lähitaisteluase, joka tuottaa vahinkoa lyömällä."
 
+#: mods/HELP/doc_items/init.lua:265
 msgid "Maximum damage per hit:"
 msgstr "Suurin määrä vahinkoa yhdellä iskulla:"
 
+#: mods/HELP/doc_items/init.lua:267
 msgid "• @1: @2 HP"
 msgstr "• @1: @2 terveyspistettä"
 
+#: mods/HELP/doc_items/init.lua:276
 msgid "Full punch interval: @1 s"
 msgstr "Täyden lyönnin väliaika: @1 sekuntia"
 
+#: mods/HELP/doc_items/init.lua:307
 msgid "This block can be mined by any mining tool in half a second."
 msgstr ""
 "Tämän kuution voi kaivaa millä tahansa kaivuutyökalulla puolessa sekunnissa."
 
+#: mods/HELP/doc_items/init.lua:309
 msgid "This block can be mined by any mining tool immediately."
 msgstr "Tämän kuution voi kaivaa millä tahansa kaivuutyökalulla välittömästi."
 
+#: mods/HELP/doc_items/init.lua:312
 msgid "This block can not be mined by ordinary mining tools."
 msgstr "Tätä kuutiota ei voi kaivaa tavallisilla kaivuutyökaluilla."
 
+#: mods/HELP/doc_items/init.lua:316
 msgid "This block can be destroyed by any mining tool in half a second."
 msgstr ""
 "Tämän kuution voi tuhota millä tahansa kaivuutyökalulla puolessa sekunnissa."
 
+#: mods/HELP/doc_items/init.lua:318
 msgid "This block can be destroyed by any mining tool immediately."
 msgstr "Tämän kuution voi tuhota millä tahansa kaivuutyökalulla välittomästi."
 
+#: mods/HELP/doc_items/init.lua:320
 msgid "This block can not be destroyed by ordinary mining tools."
 msgstr "Tätä kuutiota ei voi tuhota tavallisilla kaivuutyökaluilla."
 
-msgid "This block can be mined by mining tools which match any of the following mining ratings and its toughness level."
+#: mods/HELP/doc_items/init.lua:326
+msgid ""
+"This block can be mined by mining tools which match any of the following "
+"mining ratings and its toughness level."
 msgstr ""
 "Tämän kuution voi kaivaa kaivuutyökaluilla, jotka täyttävät seuraavat "
 "kaivuuluokitukset ja kuution lujuustason."
 
+#: mods/HELP/doc_items/init.lua:327
 msgid "Mining ratings:"
 msgstr "Kaivuuluokitukset:"
 
+#: mods/HELP/doc_items/init.lua:340
 msgid "Toughness level: @1"
 msgstr "Lujuustaso: @1"
 
+#: mods/HELP/doc_items/init.lua:355 mods/HELP/doc_items/init.lua:359
 msgid "Range: @1"
 msgstr "Kantavuus: @1"
 
+#: mods/HELP/doc_items/init.lua:361
 msgid "Range: @1 (@2)"
 msgstr "Kantavuus: @1 (@2)"
 
+#: mods/HELP/doc_items/init.lua:376
 msgid "This tool can serve as a smelting fuel with a burning time of @1."
 msgstr ""
 "Tätä työkalua voi käyttää uunin polttoaineena, ja sen palamisaika on @1."
 
+#: mods/HELP/doc_items/init.lua:378
 msgid "This block can serve as a smelting fuel with a burning time of @1."
 msgstr ""
 "Tätä kuutiota voi käyttää uunin polttoaineena, ja sen palamisaika on @1."
 
+#: mods/HELP/doc_items/init.lua:380
 msgid "This item can serve as a smelting fuel with a burning time of @1."
 msgstr ""
 "Tätä esinettä voi käyttää uunin polttoaineena, ja sen palamisaika on @1."
 
+#: mods/HELP/doc_items/init.lua:385
 msgid " Using it as fuel turns it into: @1."
 msgstr " Sen käyttäminen polttoaineena muuttaa sen esineeksi: @1."
 
+#: mods/HELP/doc_items/init.lua:400
 msgid "Itemstring: \"@1\""
 msgstr "Esinenimike: \"@1\""
 
+#: mods/HELP/doc_items/init.lua:458 mods/HELP/doc_items/init.lua:1137
 msgid "Description: @1"
 msgstr "Kuvaus: @1"
 
+#: mods/HELP/doc_items/init.lua:462
 msgid "Usage help: @1"
 msgstr "Käyttöohjeet: @1"
 
+#: mods/HELP/doc_items/init.lua:469
 msgid "Maximum stack size: @1"
 msgstr "Suurin pinokoko: @1"
 
+#: mods/HELP/doc_items/init.lua:478
 msgid "This block points to liquids."
 msgstr "Tämä kuutio osoittaa nesteisiin."
 
+#: mods/HELP/doc_items/init.lua:480
 msgid "This tool points to liquids."
 msgstr "Tämä työkalu osoittaa nesteisiin."
 
+#: mods/HELP/doc_items/init.lua:482
 msgid "This item points to liquids."
 msgstr "Tämä esine osoittaa nesteisiin."
 
-msgid "Punches with this block don't work as usual; melee combat and mining are either not possible or work differently."
+#: mods/HELP/doc_items/init.lua:487
+msgid ""
+"Punches with this block don't work as usual; melee combat and mining are "
+"either not possible or work differently."
 msgstr ""
 "Tällä kuutiolla lyöminen ei toimi kuten yleensä; lähitaistelu ja kaivaminen "
 "ei joko ole mahdollista tai toimii eri tavalla."
 
-msgid "Punches with this tool don't work as usual; melee combat and mining are either not possible or work differently."
+#: mods/HELP/doc_items/init.lua:489
+msgid ""
+"Punches with this tool don't work as usual; melee combat and mining are "
+"either not possible or work differently."
 msgstr ""
 "Tällä työkalulla lyöminen ei toimi kuten yleensä; lähitaistelu ja kaivaminen "
 "ei joko ole mahdollista tai toimii eri tavalla."
 
-msgid "Punches with this item don't work as usual; melee combat and mining are either not possible or work differently."
+#: mods/HELP/doc_items/init.lua:491
+msgid ""
+"Punches with this item don't work as usual; melee combat and mining are "
+"either not possible or work differently."
 msgstr ""
 "Tällä esineellä lyöminen ei toimi kuten yleensä; lähitaistelu ja kaivaminen "
 "ei joko ole mahdollista tai toimii eri tavalla."
 
+#: mods/HELP/doc_items/init.lua:522
 msgid "This block belongs to the @1 group."
 msgstr "Tämä kuutio kuuluu ryhmään @1."
 
+#: mods/HELP/doc_items/init.lua:524
 msgid "This tool belongs to the @1 group."
 msgstr "Tämä työkalu kuuluu ryhmään @1."
 
+#: mods/HELP/doc_items/init.lua:526
 msgid "This item belongs to the @1 group."
 msgstr "Tämä esine kuuluu ryhmään @1."
 
+#: mods/HELP/doc_items/init.lua:530
 msgid "This block belongs to these groups: @1."
 msgstr "Tämä kuutio kuuluu näihin ryhmiin: @1."
 
+#: mods/HELP/doc_items/init.lua:532
 msgid "This tool belongs to these groups: @1."
 msgstr "Tämä työkalu kuuluu näihin ryhmiin: @1."
 
+#: mods/HELP/doc_items/init.lua:534
 msgid "This item belongs to these groups: @1."
 msgstr "Tämä esine kuuluu näihin ryhmiin: @1."
 
+#: mods/HELP/doc_items/init.lua:574
 msgid "Blocks"
 msgstr "Kuutiot"
 
-msgid "Item reference of blocks and other things which are capable of occupying space"
-msgstr "Tietoa kuutioista ja muista asioista, jotka kykenevät asettumaan tilaan"
+#: mods/HELP/doc_items/init.lua:575
+msgid ""
+"Item reference of blocks and other things which are capable of occupying "
+"space"
+msgstr ""
+"Tietoa kuutioista ja muista asioista, jotka kykenevät asettumaan tilaan"
 
+#: mods/HELP/doc_items/init.lua:583
 msgid "Collidable: @1"
 msgstr "Törmättävä: @1"
 
+#: mods/HELP/doc_items/init.lua:585
 msgid "Pointable: Yes"
 msgstr "Osoitettava: Kyllä"
 
+#: mods/HELP/doc_items/init.lua:587
 msgid "Pointable: Only by special items"
 msgstr "Osoitettava: Vain erityisesineillä"
 
+#: mods/HELP/doc_items/init.lua:589
 msgid "Pointable: No"
 msgstr "Osoitettava: Ei"
 
+#: mods/HELP/doc_items/init.lua:595
 msgid "This block is a liquid with these properties:"
 msgstr "Tämä kuutio on nestettä, ja sillä on seuraavat ominaisuudet:"
 
+#: mods/HELP/doc_items/init.lua:601
 msgid "• Renewable"
 msgstr "• Uusiutuva"
 
+#: mods/HELP/doc_items/init.lua:603
 msgid "• Not renewable"
 msgstr "• Uusiutumaton"
 
+#: mods/HELP/doc_items/init.lua:606
 msgid "• No flowing"
 msgstr "• Ei virtausta"
 
+#: mods/HELP/doc_items/init.lua:608
 msgid "• Flowing range: @1"
 msgstr "• Virtauksen kantavuus: @1"
 
+#: mods/HELP/doc_items/init.lua:610
 msgid "• Viscosity: @1"
 msgstr "• Sitkaus: @1"
 
+#: mods/HELP/doc_items/init.lua:619
 msgid "This block causes a damage of @1 hit points per second."
 msgstr "Tämä kuutio aiheuttaa vahinkoa @1 terveyspistettä sekunnissa."
 
+#: mods/HELP/doc_items/init.lua:621
 msgid "This block causes a damage of @1 hit point per second."
 msgstr "Tämä kuutio aiheuttaa vahinkoa @1 terveyspisteen sekunnissa."
 
-msgid "This block decreases your breath and causes a drowning damage of @1 hit points every 2 seconds."
+#: mods/HELP/doc_items/init.lua:625
+msgid ""
+"This block decreases your breath and causes a drowning damage of @1 hit "
+"points every 2 seconds."
 msgstr ""
 "Tämä kuutio vähentää happea ja aiheuttaa hukkumisvahinkoa @1 terveyspistettä "
 "kahden sekunnin välein."
 
-msgid "This block decreases your breath and causes a drowning damage of @1 hit point every 2 seconds."
+#: mods/HELP/doc_items/init.lua:627
+msgid ""
+"This block decreases your breath and causes a drowning damage of @1 hit "
+"point every 2 seconds."
 msgstr ""
 "Tämä kuutio vähentää happea ja aiheuttaa hukkumisvahinkoa @1 terveyspisteen "
 "kahden sekunnin välein."
 
+#: mods/HELP/doc_items/init.lua:633
 msgid "The fall damage on this block is increased by @1%."
 msgstr "Tälle kuutiolle putoaminen aiheuttaa @1 % enemmän vahinkoa."
 
+#: mods/HELP/doc_items/init.lua:635
 msgid "This block negates all fall damage."
 msgstr "Tälle kuutiolle putoaminen ei vahingoita."
 
+#: mods/HELP/doc_items/init.lua:637
 msgid "The fall damage on this block is reduced by @1%."
 msgstr "Tälle kuutiolle putoaminen aiheuttaa @1 % vähemmän vahinkoa."
 
+#: mods/HELP/doc_items/init.lua:647
 msgid "You can not jump while standing on this block."
 msgstr "Et voi hypätä, kun seisot tämän kuution päällä."
 
+#: mods/HELP/doc_items/init.lua:650
 msgid "This block can be climbed."
 msgstr "Tätä kuutiota pitkin voi kiivetä."
 
+#: mods/HELP/doc_items/init.lua:654
 msgid "This block will make you bounce off with an elasticity of @1%."
 msgstr "Tämä kuutio pompauttaa sinua @1 prosentin joustolla."
 
+#: mods/HELP/doc_items/init.lua:658
 msgid "This block is slippery."
 msgstr "Tämä kuutio on liukas."
 
+#: mods/HELP/doc_items/init.lua:680
 msgid "This block is completely silent when walked on, mined or built."
 msgstr ""
 "Tämä kuutio on täysin äänetön, kun sen päällä kävelee tai sen kaivaa tai "
 "sijoittaa."
 
+#: mods/HELP/doc_items/init.lua:682
 msgid "This block is completely silent when mined or built."
 msgstr "Tämä kuutio on täysin äänetön, kun sen kaivaa tai sijoittaa."
 
+#: mods/HELP/doc_items/init.lua:685
 msgid "Walking on this block is completely silent."
 msgstr "Tällä kuutiolla käveleminen ei tuota ääntä."
 
+#: mods/HELP/doc_items/init.lua:688
 msgid "Mining this block is completely silent."
 msgstr "Tämän kuution kaivaminen ei tuota ääntä."
 
+#: mods/HELP/doc_items/init.lua:691
 msgid "Building this block is completely silent."
 msgstr "Tämän kuution sijoittaminen ei tuota ääntä."
 
+#: mods/HELP/doc_items/init.lua:702
 msgid "This block is affected by gravity and can fall."
 msgstr "Painovoima vaikuttaa tähän kuution, ja se voi pudota."
 
-msgid "Building another block at this block will place it inside and replace it."
+#: mods/HELP/doc_items/init.lua:711
+msgid ""
+"Building another block at this block will place it inside and replace it."
 msgstr "Tämä kuutio korvautuu, jos sen paikalle sijoitetaan toinen kuutio."
 
-msgid "Falling blocks can go through this block; they destroy it when doing so."
+#: mods/HELP/doc_items/init.lua:713
+msgid ""
+"Falling blocks can go through this block; they destroy it when doing so."
 msgstr "Putoavat kuutiot menevät tämän kuution läpi ja tuhoavat sen."
 
+#: mods/HELP/doc_items/init.lua:718
 msgid "This block will drop as an item when a falling block ends up inside it."
 msgstr "Tämä kuutio muuttuu esineeksi, kun putoava kuutio päätyy sen sisään."
 
+#: mods/HELP/doc_items/init.lua:720
 msgid "This block is destroyed when a falling block ends up inside it."
 msgstr "Tämä kuutio tuhoutuu, kun putoava kuutio päätyy sen sisään."
 
-msgid "This block will drop as an item when it is not attached to a surrounding block."
+#: mods/HELP/doc_items/init.lua:725
+msgid ""
+"This block will drop as an item when it is not attached to a surrounding "
+"block."
 msgstr ""
 "Tämä kuutio muuttuu esineeksi, kun se ei ole kiinni viereisessä kuutiossa."
 
+#: mods/HELP/doc_items/init.lua:727
 msgid "This block will drop as an item when no collidable block is below it."
 msgstr "Tämä kuutio muuttuu esineeksi, kun sen alla ei ole kiinteää kuutiota."
 
+#: mods/HELP/doc_items/init.lua:731
 msgid "Liquids can flow into this block and destroy it."
 msgstr "Nesteet voivat virrata tämän kuution sisään ja rikkoa sen."
 
+#: mods/HELP/doc_items/init.lua:741
 msgid "This block is a light source with a light level of @1."
 msgstr "Tämä kuutio on valonlähde, ja sen valaisevuus on @1."
 
+#: mods/HELP/doc_items/init.lua:743
 msgid "This block glows faintly with a light level of @1."
 msgstr "Tämä kuutio hohtaa heikosti, ja sen valaisevuus on @1."
 
-msgid "This block allows light to propagate with a small loss of brightness, and sunlight can even go through losslessly."
+#: mods/HELP/doc_items/init.lua:746
+msgid ""
+"This block allows light to propagate with a small loss of brightness, and "
+"sunlight can even go through losslessly."
 msgstr ""
 "Tämä kuutio päästää valon lävitseen jonkin verran himmeämpänä, ja "
 "auringonvalo pääsee sen lävitse kokonaan."
 
+#: mods/HELP/doc_items/init.lua:748
 msgid "This block allows light to propagate with a small loss of brightness."
 msgstr "Tämä kuutio päästää valon lävitseen jonkin verran himmeämpänä."
 
+#: mods/HELP/doc_items/init.lua:750
 msgid "This block allows sunlight to propagate without loss in brightness."
 msgstr "Tämä kuutio päästää auringonvalon kokonaan lävitseen."
 
+#: mods/HELP/doc_items/init.lua:783
 msgid "Unknown Node"
 msgstr "Tuntematon kuutio"
 
+#: mods/HELP/doc_items/init.lua:787
 msgid "This block connects to this block: @1."
 msgstr "Tämä kuutio yhdistyy tähän kuutioon: @1."
 
+#: mods/HELP/doc_items/init.lua:789
 msgid "This block connects to these blocks: @1."
 msgstr "Tämä kuutio yhdistyy näihin kuutioihin: @1."
 
+#: mods/HELP/doc_items/init.lua:794
 msgid "This block connects to blocks of the @1 group."
 msgstr "Tämä kuutio yhdistyy @1-ryhmän kuutioihin."
 
+#: mods/HELP/doc_items/init.lua:796
 msgid "This block connects to blocks of the following groups: @1."
 msgstr "Tämä kuutio yhdistyy seuraavien ryhmien kuutioihin: @1."
 
+#: mods/HELP/doc_items/init.lua:817
 msgid "This block won't drop anything when mined."
 msgstr "Tämä kuutio ei pudota mitään, kun sen kaivaa."
 
+#: mods/HELP/doc_items/init.lua:824
 msgid "This block will drop the following when mined: @1×@2."
 msgstr "Tämä kuutio pudottaa seuraavat asiat, kun sen kaivaa: @1 x @2."
 
+#: mods/HELP/doc_items/init.lua:826 mods/HELP/doc_items/init.lua:837
 msgid "This block will drop the following when mined: @1."
 msgstr "Tämä kuutio pudottaa seuraavat asiat, kun se kaivetaan: @1."
 
+#: mods/HELP/doc_items/init.lua:834
 msgid "This block will drop the following items when mined: @1."
 msgstr "Tämä kuutio pudottaa seuraavat esineet, kun se kaivetaan: @1."
 
+#: mods/HELP/doc_items/init.lua:839
 msgid "This block will randomly drop one of the following when mined: @1."
 msgstr ""
 "Tämä kuutio pudottaa satunnaisesti yhden seuraavista asioista, kun se "
 "kaivetaan: @1."
 
-msgid "This block will randomly drop up to @1 drops of the following possible drops when mined: @2."
+#: mods/HELP/doc_items/init.lua:842
+msgid ""
+"This block will randomly drop up to @1 drops of the following possible drops "
+"when mined: @2."
 msgstr ""
 "Tämä kuutio pudottaa satunnaisesti enintään @1 kappaletta seuraavia asioita, "
 "kun sen kaivaa: @2."
 
+#: mods/HELP/doc_items/init.lua:923
 msgid " and "
 msgstr " ja "
 
+#: mods/HELP/doc_items/init.lua:928
 msgid "@1×@2"
 msgstr "@1 × @2"
 
+#: mods/HELP/doc_items/init.lua:940
 msgid "@1 (<0.5%)"
 msgstr "@1 (< 0.5 %)"
 
+#: mods/HELP/doc_items/init.lua:945
 msgid "@1 (ca. @2%)"
 msgstr "@1 (n. @2 %)"
 
+#: mods/HELP/doc_items/init.lua:947
 msgid "@1 (@2%)"
 msgstr "@1 (@2 %)"
 
+#: mods/HELP/doc_items/init.lua:978
 msgid "Tools and weapons"
 msgstr "Työkalut ja aseet"
 
+#: mods/HELP/doc_items/init.lua:979
 msgid "Item reference of all wieldable tools and weapons"
 msgstr "Tietoa kaikista kädessä pidettävistä työkaluista ja aseista"
 
+#: mods/HELP/doc_items/init.lua:1089
 msgid "Durability: @1 uses"
 msgstr "Kestävyys: @1 käyttökertaa"
 
+#: mods/HELP/doc_items/init.lua:1093
 msgid "Durability: @1"
 msgstr "Kestävyys: @1"
 
+#: mods/HELP/doc_items/init.lua:1110
 msgid "Miscellaneous items"
 msgstr "Sekalaiset esineet"
 
-msgid "Item reference of items which are neither blocks, tools or weapons (esp. crafting items)"
+#: mods/HELP/doc_items/init.lua:1111
+msgid ""
+"Item reference of items which are neither blocks, tools or weapons (esp. "
+"crafting items)"
 msgstr ""
 "Tietoa esineistä, jotka eivät ole kuutioita, työkaluja eivätkä aseita "
 "(erityisesti valmistamiseen käytettävät esineet)"
 
+#: mods/HELP/doc_items/init.lua:1128
 msgid "Mobs"
 msgstr "Olennot"
 
+#: mods/HELP/doc_items/init.lua:1129
 msgid "Different Mobs"
 msgstr "Erilaisia olentoja"
 
+#: mods/HELP/doc_items/init.lua:1145
 msgid "Drops: "
 msgstr "Pudottaa: "
 
+#: mods/HELP/doc_items/init.lua:1163
 msgid "Follows player when these items are held:"
 msgstr "Seuraa pelaajaa, kun tämän kädessä on:"
 
-msgid "A transparent block, basically empty space. It is usually left behind after digging something."
+#: mods/HELP/doc_items/init.lua:1265
+msgid ""
+"A transparent block, basically empty space. It is usually left behind after "
+"digging something."
 msgstr ""
 "Läpinäkyvä kuutio, käytännössä tyhjä tila. Se jää useimmiten jäljelle, kun "
 "jokin kaivetaan."
 
-msgid "Whenever you are not wielding any item, you use the hand which acts as a tool with its own capabilities. When you are wielding an item which is not a mining tool or a weapon it will behave as if it would be the hand."
+#: mods/HELP/doc_items/init.lua:1279
+msgid ""
+"Whenever you are not wielding any item, you use the hand which acts as a "
+"tool with its own capabilities. When you are wielding an item which is not a "
+"mining tool or a weapon it will behave as if it would be the hand."
 msgstr ""
 "Aina kun sinulla ei ole kädessäsi mitään esinettä, käytät kättäsi, joka on "
 "omanlaisensa työkalu. Kun sinulla on kädessäsi muu esine kuin kaivuutyökalu "

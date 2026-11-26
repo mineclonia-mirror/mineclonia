@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_doc x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 20:58+0200\n"
+"POT-Creation-Date: 2026-09-19 01:42+0200\n"
 "PO-Revision-Date: 2026-08-28 06:44+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Italian <https://translate.codeberg.org/projects/mineclonia/"
@@ -28,7 +28,8 @@ msgid "This block can be turned into farmland with a hoe."
 msgstr "Questo blocco può venire mutato in terra arata con una zappa."
 
 #: mods/HELP/mcl_doc/init.lua:38
-msgid "This block can be turned into grass path with a shovel."
+#, fuzzy
+msgid "This block can be turned into dirt path with a shovel."
 msgstr "Questo blocco può essere trasformato in erba con una pala."
 
 #: mods/HELP/mcl_doc/init.lua:48
@@ -237,7 +238,8 @@ msgstr "Pala di legno"
 
 #: mods/HELP/mcl_doc/init.lua:215
 msgid "This block can be mined by any tool instantly."
-msgstr "Questo blocco può essere scavato istantaneamente da qualsiasi attrezzo."
+msgstr ""
+"Questo blocco può essere scavato istantaneamente da qualsiasi attrezzo."
 
 #: mods/HELP/mcl_doc/init.lua:238
 msgid "• Shears"

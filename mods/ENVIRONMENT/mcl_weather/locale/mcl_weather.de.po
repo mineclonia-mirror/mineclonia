@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luanti textdomain mcl_weather x.x.x\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-05-30 18:07+0200\n"
+"POT-Creation-Date: 2026-11-01 05:02+0100\n"
 "PO-Revision-Date: 2026-08-28 06:38+0000\n"
 "Last-Translator: Fhelron <fhelron@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/mineclonia/"
@@ -22,31 +22,31 @@ msgstr "Aktiviert Staubpartikel im Nether"
 msgid "Enable clouds"
 msgstr "Wolken aktivieren"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:219
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:215
 msgid "Gives ability to control weather"
 msgstr "Fähigkeit, das Wetter zu beeinflussen"
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:222
 msgid "Changes the weather to the specified parameter."
 msgstr "Ändert das Wetter."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:230
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:226
 msgid "Error: No weather specified."
 msgstr "Fehler: Kein Wetter angegeben."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:241
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:237
 msgid "Error: Invalid parameters."
 msgstr "Fehler: Ungültige Parameter."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:247
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:243
 msgid "Error: Duration can't be less than 1 second."
 msgstr "Fehler: Dauer darf nicht weniger als 1 Sekunde sein."
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:257
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:253
 msgid "Error: Invalid weather specified. Use “clear”, “rain”, or “thunder”."
 msgstr ""
 
-#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:264
+#: mods/ENVIRONMENT/mcl_weather/weather_core.lua:260
 msgid ""
 "Toggles between clear weather and weather with downfall (randomly rain, "
 "thunderstorm or snow)"

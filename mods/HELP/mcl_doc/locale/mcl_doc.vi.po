@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mineclonia\n"
 "Report-Msgid-Bugs-To: no@example.com\n"
-"POT-Creation-Date: 2026-04-01 21:41+0200\n"
+"POT-Creation-Date: 2026-09-19 01:42+0200\n"
 "PO-Revision-Date: 2026-08-28 07:04+0000\n"
 "Last-Translator: Anonymous <anonymous@noreply.codeberg.org>\n"
 "Language-Team: Vietnamese <https://translate.codeberg.org/projects/"
@@ -32,7 +32,7 @@ msgid "This block can be turned into farmland with a hoe."
 msgstr ""
 
 #: mods/HELP/mcl_doc/init.lua:38
-msgid "This block can be turned into grass path with a shovel."
+msgid "This block can be turned into dirt path with a shovel."
 msgstr ""
 
 #: mods/HELP/mcl_doc/init.lua:48
