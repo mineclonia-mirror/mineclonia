@@ -995,7 +995,7 @@ function mob_class:pacing_target (pos, width, height, groups)
 	set_search_bounds (pos, width, height)
 	local nodes = core.find_nodes_in_area_under_air (aa, bb, groups)
 
-	if (self._restrict_center or self.acceptable_pacing_target)
+	if (self._restriction_center or self.acceptable_pacing_target)
 		and #nodes > 0 then
 		-- Make ten attempts to select a node within the
 		-- restriction or one that is eligible.
@@ -1511,7 +1511,7 @@ local function aquatic_pacing_target (self, pos, width, height, groups)
 	set_search_bounds (pos, width, height)
 	local nodes = core.find_nodes_in_area (aa, bb, groups)
 
-	if self._restrict_center and #nodes > 0 then
+	if self._restriction_center and #nodes > 0 then
 		-- Make ten attempts to select a node within the
 		-- restriction.
 		for i = 1, 10 do
