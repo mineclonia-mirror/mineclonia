@@ -1607,15 +1607,11 @@ function mob_class:generate_default_equipment (mob_factor, do_armor, do_wieldite
 		if math.random () < 0.095 then
 			base_level = base_level + 1
 		end
-		local armor_generated = false
 		local stop_chance = 4
 		if mcl_vars.difficulty == 3 then
 			stop_chance = 10
 		end
 		for _, slot in ipairs (armor_types) do
-			if not armor_generated and math.random (stop_chance) == 1 then
-				break
-			end
 			local stack = ItemStack (armor_table[slot][base_level])
 			if math.random () < 0.5 * mob_factor then
 				local level = 5.0 + mob_factor * math.random (18)
@@ -1625,7 +1621,10 @@ function mob_class:generate_default_equipment (mob_factor, do_armor, do_wieldite
 			self.armor_list[slot] = stack:to_string ()
 			local probability = self.armor_drop_probability[slot]
 			self:set_armor_drop_probability (slot, probability)
-			armor_generated = true
+
+			if math.random(stop_chance) == 1 then
+				break
+			end
 		end
 		self:set_armor_texture ()
 	end
