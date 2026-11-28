@@ -4637,7 +4637,7 @@ local function sufficient_for_trade (a, b)
 end
 
 function villager:clear_wielditem (self_pos, dtime)
-	if self._wielditem ~= "" then
+	if self._wielditem then
 		self:set_wielditem (ItemStack (""))
 		self._displayed_trades = nil
 		self._wielditem_timer = nil
